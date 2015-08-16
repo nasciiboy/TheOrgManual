@@ -1,0 +1,120 @@
+/* worg.css inspired (copy) by http://orgmode.org/worg/org-tutorials/orgtutorial_dto-es.html */
+/*
+  color: #97fa87;
+  color: #daa520;
+*/
+
+@font-face { font-family: DroidSerif;   src: url(worg-data/fonts/droid/droid-serif/DroidSerif-Regular.ttf); }
+@font-face { font-family: joystixMono;  src: url(worg-data/fonts/vg/joystix/joystixMonospace.ttf); }
+@font-face { font-family: kongtext;     src: url(worg-data/fonts/vg/kongtext/kongtext.ttf); }
+@font-face { font-family: DejaVuSans;   src: url(worg-data/fonts/dejavu/dejavu-sans/DejaVuSans.ttf); }
+@font-face { font-family: FreeMonoBold; src: url(worg-data/fonts/mono/FreeMonoBold.ttf); }
+@font-face { font-family: FiraSansOT;   src: url(worg-data/fonts/fira/FiraSansOT-Medium.otf); }
+@font-face { font-family: terminus;     src: url(worg-data/fonts/code/terminus/TerminusTTF-4.39.ttf); }
+
+
+html { background: #000; color: #fff;
+       font: 300 .9em/1.6em DejaVuSans;
+       margin: 0;
+       background-image: url(img/icon-nba-tv.jpg);
+       background-attachment: fixed;
+       background-position: right bottom;
+       background-repeat: no-repeat;
+     }
+
+html body { color: white; font-size: 12pt; line-height: 18pt; margin-top: 0;}
+html body #content { padding: 2em 2em 2em 2em; max-width: 80%; min-width: 640px; margin-left: 20px;
+                     /* box-shadow: 3px 3px 5px #FFF;*/  }
+html body .title { color: #FF4500; font-size: 30pt; font-family: FreeMonoBold;
+                   line-height: 1em; }
+
+/* TOC inspired by http://jashkenas.github.com/coffee-script */
+html body #table-of-contents { background-color: #000; border: 1px solid #CCC;
+                               font-size: 12pt; line-height: 1em; text-align: right; overflow: auto;
+                               position: fixed; right: 0em; top: 0em;
+                               max-height: 80%; max-width: 50%; float: right; z-index: 1;
+                               box-shadow: 0 0 1em #777777; border-bottom-left-radius: 5px; }
+html body #table-of-contents h2 { color: #EEDD82; background-color: #000;
+                                  font-size: 15pt; font-weight: normal;
+                                  max-width: 9em; border: 0; padding: 0.05em 0.5em 0.05em 0.5em; }
+html body #table-of-contents #text-table-of-contents { display: none; text-align: left; }
+html body #table-of-contents:hover #text-table-of-contents { display: block; margin-top: 1em;
+                                                             line-height: 1em; }
+html body #table-of-contents:hover #text-table-of-contents ul li { margin: .3em 0em; list-style: none; }
+html body #table-of-contents:hover #text-table-of-contents ul li a { color: #87cefa; font-size: 14pt;
+                                                                     text-decoration: none; }
+html body #table-of-contents:hover #text-table-of-contents ul li a:hover { color: #fff; }
+html body #table-of-contents:hover #text-table-of-contents ul li ul li a { color: #97defa; font-size: 11pt; }
+
+/* org header #+title: TITLE   */
+html body h1 { color: yellow;  font-size: 2.1em; font-family: DejaVuSans;
+               padding:0 0 30px 0; margin-top: 10px; margin-bottom: 10px; margin-right: 7%; }
+/* org header *                */
+html body h2 { color: #87cefa; font-size: 1.5em; font-family: DejaVuSans;
+               line-height:16px; padding: 10px 0 10px 0;
+               border-bottom: 1px solid #ddd; }
+/* org header **               */
+html body h3 { color: #eedd82; font-size: 1.3em; font-family: DejaVuSans;
+               margin-left: 0.6em; }
+/* org header ***              */
+html body h4 { color: #00ffff; font-size: 1.2em; font-family: DejaVuSans;
+               margin-left: 1.2em; }
+/* org header ****             */
+html body h5 { color: #ff4500; font-size: 1.2em; font-family: DejaVuSans;
+               margin-left: 1.2em; }
+/* org header *****            */
+html body h6 { color: #8fec8f; font-size: 1.1em; font-family: DejaVuSans;
+               margin-left: 1.2em; }
+/* org header ******           */
+html body h7 { color: #72e4be; font-size: 1.1em; font-family: DejaVuSans;
+               margin-left: 1.2em; }
+
+html body .outline-text-2 { margin-left: 0.10em; color: #fff; }
+html body .outline-text-3 { margin-left: 0.70em; color: #fff; }
+html body .outline-text-4 { margin-left: 1.00em; color: #fff; }
+html body .outline-text-5 { margin-left: 1.40em; color: #fff; }
+html body .outline-text-6 { margin-left: 1.80em; color: #fff; }
+html body .outline-text-7 { margin-left: 2.15em; color: #fff; }
+
+dl { padding-bottom: 2em; }
+dt { color: #daa520; font-size: 1.2em; font-family: sans-serif; font-weight: bold;
+     margin-left: 0.6em; }
+
+img { border: none; filter: grayscale( 100% ); filter: invert(100%); }
+img:hover { filter: none;
+         /* filter: grayscale(50%);
+            filter: sepia(100%);
+            filter: blur(10px);
+            filter: brightness(0.5);
+            filter: contrast(200%);
+            filter: drop-shadow(16px 16px 10px black );
+            filter: hue-rotate(90deg);
+            filter: invert(100%);
+            filter: opacity(50%);
+            filter: saturate(200%); */ }
+
+table { border: 1px solid #fff; }
+td { border: none; }
+th { border: none; }
+
+code { background-color: #000; color: #eee; font-size: 1em; font-weight: bold; font-family: DejaVuSans;
+       /* border: 1px solid #DEDEDE; */ padding: 0px 0.2em; }
+pre { background-color: #000; color: white; font-size: 100%; text-align: left; font-family: DejaVuSans;
+      padding: 1.2em; border: 1px solid #ddd; overflow: auto; }
+
+a { color: #87cefa; text-decoration: none; }
+a:hover { color: #FF4500 }
+
+ul.org-ul li { color: #fff; font-size: 1em; }
+ul.org-ul li b { font-weight: bold; }
+ul.org-ul li p { color: #fff; font-size: 1em; }
+
+#postamble { background-color: #000; border: 1px solid #CCC;
+             font-size: 12pt; line-height: 12pt; text-align: right; overflow: auto;
+             position: relative left bottom; max-width: 10%;
+             border-top-right-radius: 5px; }
+#postamble h2 { color: #EEDD82; background-color: #000;
+                font-size: 15pt; font-weight: normal;
+                max-width: 9em; border: 0; padding: 0.05em 0.5em 0.05em 0.5em; }
+#postamble #p { display: none; text-align: left; }
+#postamble:hover #p { display: block; }
