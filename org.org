@@ -2044,474 +2044,548 @@ modify this GNU manual.”
 
 *** 3.5.6 Column formulas                                             <<#Column-formulas>>
 
-    When you assign a formula to a simple column reference like =$3==, the
-    same formula will be used in all fields of that column, with the
-    following very convenient exceptions: (i) If the table contains
-    horizontal separator hlines with rows above and below, everything before
-    the first such hline is considered part of the table /header/ and will
-    not be modified by column formulas. Therefore a header is mandatory when
-    you use column formulas and want to add hlines to group rows, like for
-    example to separate a total row at the bottom from the summand rows
-    above. (ii) Fields that already get a value from a field/range formula
-    will be left alone by column formulas. These conditions make column
-    formulas very easy to use.
+    When you assign a formula to a simple column reference like =$3==,
+    the same formula will be used in all fields of that column, with
+    the following very convenient exceptions: (i) If the table
+    contains horizontal separator hlines with rows above and below,
+    everything before the first such hline is considered part of the
+    table /header/ and will not be modified by column
+    formulas. Therefore a header is mandatory when you use column
+    formulas and want to add hlines to group rows, like for example to
+    separate a total row at the bottom from the summand rows
+    above. (ii) Fields that already get a value from a field/range
+    formula will be left alone by column formulas. These conditions
+    make column formulas very easy to use.
 
-    To assign a formula to a column, type it directly into any field in the
-    column, preceded by an equal sign, like ‘=$1+$2'. When you press =TAB=
-    or =RET= or C-c C-c with the cursor still in the field, the formula will
-    be stored as the formula for the current column, evaluated and the
-    current field replaced with the result. If the field contains only ‘=',
-    the previously stored formula for this column is used. For each column,
-    Org will only remember the most recently used formula. In the ‘#+TBLFM:'
-    line, column formulas will look like ‘$4=$1+$2'. The left-hand side of a
-    column formula cannot be the name of column, it must be the numeric
-    column reference or =$>=.
+    To assign a formula to a column, type it directly into any field
+    in the column, preceded by an equal sign, like ‘=$1+$2'. When you
+    press =TAB= or =RET= or */C-c C-c/* with the cursor still in the
+    field, the formula will be stored as the formula for the current
+    column, evaluated and the current field replaced with the
+    result. If the field contains only ‘=', the previously stored
+    formula for this column is used. For each column, Org will only
+    remember the most recently used formula. In the ‘#+TBLFM:' line,
+    column formulas will look like ‘$4=$1+$2'. The left-hand side of a
+    column formula cannot be the name of column, it must be the
+    numeric column reference or =$>=.
 
     Instead of typing an equation into the field, you may also use the
     following command:
 
-    C-c = (=org-table-eval-formula=)
+    - */C-c =/* (=org-table-eval-formula=)
 
-    Install a new formula for the current column and replace current field
-    with the result of the formula. The command prompts for a formula, with
-    default taken from the ‘#+TBLFM' line, applies it to the current field
-    and stores it. With a numeric prefix argument(e.g., C-5 C-c =) the
-    command will apply it to that many consecutive fields in the current
-    column.
+      Install a new formula for the current column and replace current
+      field with the result of the formula. The command prompts for a
+      formula, with default taken from the ‘#+TBLFM' line, applies it
+      to the current field and stores it. With a numeric prefix
+      argument(e.g., */C-5 C-c =/*) the command will apply it to that
+      many consecutive fields in the current column.
 
 *** 3.5.7 Lookup functions                                            <<#Lookup-functions>>
 
-    Org has three predefined Emacs Lisp functions for lookups in tables.
+    Org has three predefined Emacs Lisp functions for lookups in
+    tables.
 
--  =(org-lookup-first VAL S-LIST R-LIST &optional PREDICATE)= :: Searches
-     for the first element =S= in list =S-LIST= for which
+     - (org-lookup-first VAL S-LIST R-LIST &optional PREDICATE) ::
 
-     #+BEGIN_SRC lisp
-       (PREDICATE VAL S)
-     #+END_SRC
+       Searches for the first element =S= in list =S-LIST= for which
 
-     is =t=; returns the value from the corresponding position in list
-     =R-LIST=. The default =PREDICATE= is =equal=. Note that the
-     parameters =VAL= and =S= are passed to =PREDICATE= in the same order
-     as the corresponding parameters are in the call to
-     =org-lookup-first=, where =VAL= precedes =S-LIST=. If =R-LIST= is
-     =nil=, the matching element =S= of =S-LIST= is returned.
+       #+BEGIN_SRC lisp
+         (PREDICATE VAL S)
+       #+END_SRC
 
--  =(org-lookup-last VAL S-LIST R-LIST &optional PREDICATE)= :: Similar
-     to =org-lookup-first= above, but searches for the /last/ element for
-     which =PREDICATE= is =t=.
+       is =t=; returns the value from the corresponding position in
+       list =R-LIST=. The default =PREDICATE= is =equal=. Note that
+       the parameters =VAL= and =S= are passed to =PREDICATE= in the
+       same order as the corresponding parameters are in the call to
+       =org-lookup-first=, where =VAL= precedes =S-LIST=. If =R-LIST=
+       is =nil=, the matching element =S= of =S-LIST= is returned.
 
--  =(org-lookup-all VAL S-LIST R-LIST &optional PREDICATE)= :: Similar
-     to =org-lookup-first=, but searches for /all/ elements for which
-     =PREDICATE= is =t=, and returns /all/ corresponding values. This
-     function can not be used by itself in a formula, because it returns a
-     list of values. However, powerful lookups can be built when this
-     function is combined with other Emacs Lisp functions.
+     - (org-lookup-last VAL S-LIST R-LIST &optional PREDICATE)= ::
 
-If the ranges used in these functions contain empty fields, the =E= mode
-for the formula should usually be specified: otherwise empty fields will
-not be included in =S-LIST= and/or =R-LIST= which can, for example,
-result in an incorrect mapping from an element of =S-LIST= to the
-corresponding element of =R-LIST=.
+       Similar to =org-lookup-first= above, but searches for the
+       /last/ element for which =PREDICATE= is =t=.
 
-These three functions can be used to implement associative arrays, count
-matching cells, rank results, group data etc. For practical examples see
-[[http://orgmode.org/worg/org-tutorials/org-lookups.html][this tutorial
-on Worg]].
+     - (org-lookup-all VAL S-LIST R-LIST &optional PREDICATE)= ::
+
+       Similar to =org-lookup-first=, but searches for /all/ elements
+       for which =PREDICATE= is =t=, and returns /all/ corresponding
+       values. This function can not be used by itself in a formula,
+       because it returns a list of values. However, powerful lookups
+       can be built when this function is combined with other Emacs
+       Lisp functions.
+
+    If the ranges used in these functions contain empty fields, the
+    =E= mode for the formula should usually be specified: otherwise
+    empty fields will not be included in =S-LIST= and/or =R-LIST=
+    which can, for example, result in an incorrect mapping from an
+    element of =S-LIST= to the corresponding element of =R-LIST=.
+
+    These three functions can be used to implement associative arrays,
+    count matching cells, rank results, group data etc. For practical
+    examples see [[http://orgmode.org/worg/org-tutorials/org-lookups.html][this tutorial on Worg]].
 
 *** 3.5.8 Editing and debugging formulas                              <<#Editing-and-debugging-formulas>>
 
-    You can edit individual formulas in the minibuffer or directly in the
-    field. Org can also prepare a special buffer with all active formulas of
-    a table. When offering a formula for editing, Org converts references to
-    the standard format (like =B3= or =D&=) if possible. If you prefer to
-    only work with the internal format (like =@3$2= or =$4=), configure the
-    option =org-table-use-standard-references=.
+    You can edit individual formulas in the minibuffer or directly in
+    the field. Org can also prepare a special buffer with all active
+    formulas of a table. When offering a formula for editing, Org
+    converts references to the standard format (like =B3= or =D&=) if
+    possible. If you prefer to only work with the internal format
+    (like =@3$2= or =$4=), configure the option
+    =org-table-use-standard-references=.
 
-    C-c = or C-u C-c = (=org-table-eval-formula=)
+     - */C-c =/* or */C-u C-c = /* (=org-table-eval-formula=)
 
-    Edit the formula associated with the current column/field in the
-    minibuffer. See [[#Column-formulas][Column formulas]], and
-    [[#Field-and-range-formulas][Field and range formulas]].
+       Edit the formula associated with the current column/field in
+       the minibuffer. See [[#Column-formulas][Column formulas]], and [[#Field-and-range-formulas][Field and range
+       formulas]].
 
-    C-u C-u C-c = (=org-table-eval-formula=)
+     - */C-u C-u C-c = /* (=org-table-eval-formula=)
 
-    Re-insert the active formula (either a field formula, or a column
-    formula) into the current field, so that you can edit it directly in the
-    field. The advantage over editing in the minibuffer is that you can use
-    the command C-c ?.
+       Re-insert the active formula (either a field formula, or a
+       column formula) into the current field, so that you can edit it
+       directly in the field. The advantage over editing in the
+       minibuffer is that you can use the command */C-c ?/*.
 
-    C-c ? (=org-table-field-info=)
+     - */C-c ?/* (=org-table-field-info=)
 
-    While editing a formula in a table field, highlight the field(s)
-    referenced by the reference at the cursor position in the formula.
+       While editing a formula in a table field, highlight the
+       field(s) referenced by the reference at the cursor position in
+       the formula.
 
-    C-c }
+     - */C-c }/*
 
-    Toggle the display of row and column numbers for a table, using overlays
-    (=org-table-toggle-coordinate-overlays=). These are updated each time
-    the table is aligned; you can force it with C-c C-c.
+       Toggle the display of row and column numbers for a table, using
+       overlays (=org-table-toggle-coordinate-overlays=). These are
+       updated each time the table is aligned; you can force it with
+       */C-c C-c/*.
 
-    C-c {
+     - */C-c {/*
 
-    Toggle the formula debugger on and off
-    (=org-table-toggle-formula-debugger=). See below.
+       Toggle the formula debugger on and off
+       (=org-table-toggle-formula-debugger=). See below.
 
-    C-c ' (=org-table-edit-formulas=)
+     - C-c ' (=org-table-edit-formulas=)
 
-    Edit all formulas for the current table in a special buffer, where the
-    formulas will be displayed one per line. If the current field has an
-    active formula, the cursor in the formula editor will mark it. While
-    inside the special buffer, Org will automatically highlight any field or
-    range reference at the cursor position. You may edit, remove and add
-    formulas, and use the following commands:
+       Edit all formulas for the current table in a special buffer,
+       where the formulas will be displayed one per line. If the
+       current field has an active formula, the cursor in the formula
+       editor will mark it. While inside the special buffer, Org will
+       automatically highlight any field or range reference at the
+       cursor position. You may edit, remove and add formulas, and use
+       the following commands:
 
-    C-c C-c or C-x C-s (=org-table-fedit-finish=)
+        - */C-c C-c/* or */C-x C-s/* (=org-table-fedit-finish=)
 
-    Exit the formula editor and store the modified formulas. With C-u
-    prefix, also apply the new formulas to the entire table.
+          Exit the formula editor and store the modified
+          formulas. With C-u prefix, also apply the new formulas to
+          the entire table.
 
-    C-c C-q (=org-table-fedit-abort=)
+        - */C-c C-q/* (=org-table-fedit-abort=)
 
-    Exit the formula editor without installing changes.
+          Exit the formula editor without installing changes.
 
-    C-c C-r (=org-table-fedit-toggle-ref-type=)
+        - */C-c C-r/* (=org-table-fedit-toggle-ref-type=)
 
-    Toggle all references in the formula editor between standard (like =B3=)
-    and internal (like =@3$2=).
+          Toggle all references in the formula editor between standard
+          (like =B3=) and internal (like =@3$2=).
 
-    TAB (=org-table-fedit-lisp-indent=)
+        - */TAB/* (=org-table-fedit-lisp-indent=)
 
-    Pretty-print or indent Lisp formula at point. When in a line containing
-    a Lisp formula, format the formula according to Emacs Lisp rules.
-    Another =TAB= collapses the formula back again. In the open formula,
-    =TAB= re-indents just like in Emacs Lisp mode.
+          Pretty-print or indent Lisp formula at point. When in a line
+          containing a Lisp formula, format the formula according to
+          Emacs Lisp rules.  Another =TAB= collapses the formula back
+          again. In the open formula, =TAB= re-indents just like in
+          Emacs Lisp mode.
 
-    M-TAB (=lisp-complete-symbol=)
+        - */M-TAB/* (=lisp-complete-symbol=)
 
-    Complete Lisp symbols, just like in Emacs Lisp mode.
+          Complete Lisp symbols, just like in Emacs Lisp mode.
 
-    S-up/down/left/right
+        - */S-up/down/left/right/*
 
-    Shift the reference at point. For example, if the reference is =B3= and
-    you press S-right, it will become =C3=. This also works for relative
-    references and for hline references.
+          Shift the reference at point. For example, if the reference
+          is =B3= and you press S-right, it will become =C3=. This
+          also works for relative references and for hline references.
 
-    M-S-up (=org-table-fedit-line-up=)
+        - */M-S-up/* (=org-table-fedit-line-up=)
+        - */M-S-down/* (=org-table-fedit-line-down=)
 
-    M-S-down (=org-table-fedit-line-down=)
+          Move the test line for column formulas in the Org buffer up
+          and down.
 
-    Move the test line for column formulas in the Org buffer up and down.
+        - */M-up/* (=org-table-fedit-scroll-down=)
+        - */M-down/* (=org-table-fedit-scroll-up=)
 
-    M-up (=org-table-fedit-scroll-down=)
+          Scroll the window displaying the table.
 
-    M-down (=org-table-fedit-scroll-up=)
+        - */C-c }/*
 
-    Scroll the window displaying the table.
+          Turn the coordinate grid in the table on and off.
 
-    C-c }
+    Making a table field blank does not remove the formula associated
+    with the field, because that is stored in a different line (the
+    ‘#+TBLFM' line) -- during the next recalculation the field will be
+    filled again. To remove a formula from a field, you have to give
+    an empty reply when prompted for the formula, or to edit the
+    ‘#+TBLFM' line.
 
-    Turn the coordinate grid in the table on and off.
-
-    Making a table field blank does not remove the formula associated with
-    the field, because that is stored in a different line (the ‘#+TBLFM'
-    line)---during the next recalculation the field will be filled again. To
-    remove a formula from a field, you have to give an empty reply when
-    prompted for the formula, or to edit the ‘#+TBLFM' line.
-
-    You may edit the ‘#+TBLFM' directly and re-apply the changed equations
-    with C-c C-c in that line or with the normal recalculation commands in
-    the table.
+    You may edit the ‘#+TBLFM' directly and re-apply the changed
+    equations with */C-c C-c/* in that line or with the normal
+    recalculation commands in the table.
 
 **** Using multiple #+TBLFM lines
 
-     You may apply the formula temporarily. This is useful when you switch
-     the formula. Place multiple ‘#+TBLFM' lines right after the table, and
-     then press C-c C-c on the formula to apply. Here is an example:
+     You may apply the formula temporarily. This is useful when you
+     switch the formula. Place multiple ‘#+TBLFM' lines right after
+     the table, and then press */C-c C-c/* on the formula to
+     apply. Here is an example:
 
      #+BEGIN_EXAMPLE
-     | x | y |
-     |---+---|
-     | 1 |   |
-     | 2 |   |
-     #+TBLFM: $2=$1*1
-     #+TBLFM: $2=$1*2
+       | x | y |
+       |---+---|
+       | 1 |   |
+       | 2 |   |
+       #+TBLFM: $2=$1*1
+       #+TBLFM: $2=$1*2
      #+END_EXAMPLE
 
-     Pressing C-c C-c in the line of ‘#+TBLFM: $2=$1*2' yields:
+     Pressing */C-c C-c/* in the line of ‘#+TBLFM: $2=$1*2' yields:
 
      #+BEGIN_EXAMPLE
-     | x | y |
-     |---+---|
-     | 1 | 2 |
-     | 2 | 4 |
-     #+TBLFM: $2=$1*1
-     #+TBLFM: $2=$1*2
+       | x | y |
+       |---+---|
+       | 1 | 2 |
+       | 2 | 4 |
+       #+TBLFM: $2=$1*1
+       #+TBLFM: $2=$1*2
      #+END_EXAMPLE
 
-     Note: If you recalculate this table (with C-u C-c *, for example), you
-     will get the following result of applying only the first ‘#+TBLFM' line.
+     Note: If you recalculate this table (with */C-u C-c */*, for
+     example), you will get the following result of applying only the
+     first ‘#+TBLFM' line.
 
      #+BEGIN_EXAMPLE
-     | x | y |
-     |---+---|
-     | 1 | 1 |
-     | 2 | 2 |
-     #+TBLFM: $2=$1*1
-     #+TBLFM: $2=$1*2
+       | x | y |
+       |---+---|
+       | 1 | 1 |
+       | 2 | 2 |
+       #+TBLFM: $2=$1*1
+       #+TBLFM: $2=$1*2
      #+END_EXAMPLE
 
 **** Debugging formulas
 
-     When the evaluation of a formula leads to an error, the field content
-     becomes the string ‘#ERROR'. If you would like see what is going on
-     during variable substitution and calculation in order to find a bug,
-     turn on formula debugging in the =Tbl= menu and repeat the calculation,
-     for example by pressing C-u C-u C-c = RET in a field. Detailed
-     information will be displayed.
+     When the evaluation of a formula leads to an error, the field
+     content becomes the string ‘#ERROR'. If you would like see what
+     is going on during variable substitution and calculation in order
+     to find a bug, turn on formula debugging in the =Tbl= menu and
+     repeat the calculation, for example by pressing */C-u C-u C-c =
+     RET/* in a field. Detailed information will be displayed.
 
 *** 3.5.9 Updating the table                                          <<#Updating-the-table>>
 
-    Recalculation of a table is normally not automatic, but needs to be
-    triggered by a command. See [[#Advanced-features][Advanced features]],
-    for a way to make recalculation at least semi-automatic.
+    Recalculation of a table is normally not automatic, but needs to
+    be triggered by a command. See [[#Advanced-features][Advanced features]], for a way to
+    make recalculation at least semi-automatic.
 
-    In order to recalculate a line of a table or the entire table, use the
-    following commands:
+    In order to recalculate a line of a table or the entire table, use
+    the following commands:
 
-    C-c * (=org-table-recalculate=)
+     - */C-c */* (=org-table-recalculate=)
 
-    Recalculate the current row by first applying the stored column formulas
-    from left to right, and all field/range formulas in the current row.
+       Recalculate the current row by first applying the stored column
+       formulas from left to right, and all field/range formulas in
+       the current row.
 
-    C-u C-c *
+     - */C-u C-c */*
+     - */C-u C-c C-c/*
 
-    C-u C-c C-c
+       Recompute the entire table, line by line. Any lines before the
+       first hline are left alone, assuming that these are part of the
+       table header.
 
-    Recompute the entire table, line by line. Any lines before the first
-    hline are left alone, assuming that these are part of the table header.
+     - */C-u C-u C-c */* or */C-u C-u C-c C-c/* (=org-table-iterate=)
 
-    C-u C-u C-c * or C-u C-u C-c C-c (=org-table-iterate=)
+       Iterate the table by recomputing it until no further changes
+       occur. This may be necessary if some computed fields use the
+       value of other fields that are computed /later/ in the
+       calculation sequence.
 
-    Iterate the table by recomputing it until no further changes occur. This
-    may be necessary if some computed fields use the value of other fields
-    that are computed /later/ in the calculation sequence.
+     - */M-x org-table-recalculate-buffer-tables RET/*
 
-    M-x org-table-recalculate-buffer-tables RET
+       Recompute all tables in the current buffer.
 
-    Recompute all tables in the current buffer.
+     - */M-x org-table-iterate-buffer-tables RET/*
 
-    M-x org-table-iterate-buffer-tables RET
-
-    Iterate all tables in the current buffer, in order to converge
-    table-to-table dependencies.
+       Iterate all tables in the current buffer, in order to converge
+       table-to-table dependencies.
 
 *** 3.5.10 Advanced features                                          <<#Advanced-features>>
 
-    If you want the recalculation of fields to happen automatically, or if
-    you want to be able to assign /names/[fn:FOOT32] to fields and
-    columns, you need to reserve the first column of the table for special
-    marking characters.
+    If you want the recalculation of fields to happen automatically,
+    or if you want to be able to assign /names/ [fn:FOOT32] to fields
+    and columns, you need to reserve the first column of the table for
+    special marking characters.
 
-    C-# (=org-table-rotate-recalc-marks=)
+     - */C-#/* (=org-table-rotate-recalc-marks=)
 
-    Rotate the calculation mark in first column through the states ‘ ', ‘#',
-    ‘*', ‘!', ‘$'. When there is an active region, change all marks in the
-    region.
+       Rotate the calculation mark in first column through the states
+       ‘ ', ‘#', ‘*', ‘!', ‘$'. When there is an active region, change
+       all marks in the region.
 
-    Here is an example of a table that collects exam results of students and
-    makes use of these features:
+    Here is an example of a table that collects exam results of
+    students and makes use of these features:
 
     #+BEGIN_EXAMPLE
-    |---+---------+--------+--------+--------+-------+------|
-    |   | Student | Prob 1 | Prob 2 | Prob 3 | Total | Note |
-    |---+---------+--------+--------+--------+-------+------|
-    | ! |         |     P1 |     P2 |     P3 |   Tot |      |
-    | # | Maximum |     10 |     15 |     25 |    50 | 10.0 |
-    | ^ |         |     m1 |     m2 |     m3 |    mt |      |
-    |---+---------+--------+--------+--------+-------+------|
-    | # | Peter   |     10 |      8 |     23 |    41 |  8.2 |
-    | # | Sam     |      2 |      4 |      3 |     9 |  1.8 |
-    |---+---------+--------+--------+--------+-------+------|
-    |   | Average |        |        |        |  25.0 |      |
-    | ^ |         |        |        |        |    at |      |
-    | $ | max=50  |        |        |        |       |      |
-    |---+---------+--------+--------+--------+-------+------|
-    #+TBLFM: $6=vsum($P1..$P3)::$7=10*$Tot/$max;%.1f::$at=vmean(@-II..@-I);%.1f
+      |---+---------+--------+--------+--------+-------+------|
+      |   | Student | Prob 1 | Prob 2 | Prob 3 | Total | Note |
+      |---+---------+--------+--------+--------+-------+------|
+      | ! |         |     P1 |     P2 |     P3 |   Tot |      |
+      | # | Maximum |     10 |     15 |     25 |    50 | 10.0 |
+      | ^ |         |     m1 |     m2 |     m3 |    mt |      |
+      |---+---------+--------+--------+--------+-------+------|
+      | # | Peter   |     10 |      8 |     23 |    41 |  8.2 |
+      | # | Sam     |      2 |      4 |      3 |     9 |  1.8 |
+      |---+---------+--------+--------+--------+-------+------|
+      |   | Average |        |        |        |  25.0 |      |
+      | ^ |         |        |        |        |    at |      |
+      | $ | max=50  |        |        |        |       |      |
+      |---+---------+--------+--------+--------+-------+------|
+      #+TBLFM: $6=vsum($P1..$P3)::$7=10*$Tot/$max;%.1f::$at=vmean(@-II..@-I);%.1f
     #+END_EXAMPLE
 
-    *Important*: please note that for these special tables, recalculating
-    the table with C-u C-c * will only affect rows that are marked ‘#' or
-    ‘*', and fields that have a formula assigned to the field itself. The
-    column formulas are not applied in rows with empty first field.
+    *Important*: please note that for these special tables,
+    recalculating the table with */C-u C-c */* will only affect rows
+    that are marked ‘#' or ‘*', and fields that have a formula
+    assigned to the field itself. The column formulas are not applied
+    in rows with empty first field.
 
     The marking characters have the following meaning:
 
--  ‘!' :: The fields in this line define names for the columns, so that
-	  you may refer to a column as ‘$Tot' instead of ‘$6'.
+     - ‘!' ::
 
--  ‘\^' :: This row defines names for the fields /above/ the row. With
-	   such a definition, any formula in the table may use ‘$m1' to refer to
-	   the value ‘10'. Also, if you assign a formula to a names field, it
-	   will be stored as ‘$name=...'.
+       The fields in this line define names for the columns, so that
+       you may refer to a column as ‘$Tot' instead of ‘$6'.
 
--  ‘\_' :: Similar to ‘\^', but defines names for the fields in the row
-	   /below/.
+     - ‘^' ::
 
--  ‘$' :: Fields in this row can define /parameters/ for formulas. For
-	  example, if a field in a ‘$' row contains ‘max=50', then formulas in
-	  this table can refer to the value 50 using ‘$max'. Parameters work
-	  exactly like constants, only that they can be defined on a per-table
-	  basis.
+       This row defines names for the fields /above/ the row. With
+       such a definition, any formula in the table may use ‘$m1' to
+       refer to the value ‘10'. Also, if you assign a formula to a
+       names field, it will be stored as ‘$name=...'.
 
--  ‘#' :: Fields in this row are automatically recalculated when
-	  pressing =TAB= or =RET= or S-TAB in this row. Also, this row is
-	  selected for a global recalculation with C-u C-c *. Unmarked lines
-	  will be left alone by this command.
+     - ‘_' ::
 
--  ‘*' :: Selects this line for global recalculation with C-u C-c *, but
-	  not for automatic recalculation. Use this when automatic
-	  recalculation slows down editing too much.
+       Similar to ‘q^', but defines names for the fields in the row
+       /below/.
 
--  ‘' :: Unmarked lines are exempt from recalculation with C-u C-c *.
-	 All lines that should be recalculated should be marked with ‘#' or
-	 ‘*'.
+     - ‘$' ::
 
--  ‘/' :: Do not export this line. Useful for lines that contain the
-	  narrowing ‘<N>' markers or column group markers.
+       Fields in this row can define /parameters/ for formulas. For
+       example, if a field in a ‘$' row contains ‘max=50', then
+       formulas in this table can refer to the value 50 using
+       ‘$max'. Parameters work exactly like constants, only that they
+       can be defined on a per-table basis.
 
-Finally, just to whet your appetite for what can be done with the
-fantastic calc.el package, here is a table that computes the Taylor
-series of degree =n= at location =x= for a couple of functions.
+     - ‘#' ::
 
-#+BEGIN_EXAMPLE
-    |---+-------------+---+-----+--------------------------------------|
-    |   | Func        | n | x   | Result                               |
-    |---+-------------+---+-----+--------------------------------------|
-    | # | exp(x)      | 1 | x   | 1 + x                                |
-    | # | exp(x)      | 2 | x   | 1 + x + x^2 / 2                      |
-    | # | exp(x)      | 3 | x   | 1 + x + x^2 / 2 + x^3 / 6            |
-    | # | x^2+sqrt(x) | 2 | x=0 | x*(0.5 / 0) + x^2 (2 - 0.25 / 0) / 2 |
-    | # | x^2+sqrt(x) | 2 | x=1 | 2 + 2.5 x - 2.5 + 0.875 (x - 1)^2    |
-    | * | tan(x)      | 3 | x   | 0.0175 x + 1.77e-6 x^3               |
-    |---+-------------+---+-----+--------------------------------------|
-    #+TBLFM: $5=taylor($2,$4,$3);n3
-#+END_EXAMPLE
+       Fields in this row are automatically recalculated when pressing
+       =TAB= or =RET= or */S-TAB/* in this row. Also, this row is
+       selected for a global recalculation with */C-u C-c
+       */*. Unmarked lines will be left alone by this command.
+
+     - ‘*' ::
+
+       Selects this line for global recalculation with */C-u C-c */*,
+       but not for automatic recalculation. Use this when automatic
+       recalculation slows down editing too much.
+
+     - ' ' ::
+
+       Unmarked lines are exempt from recalculation with */C-u C-c
+       */*.  All lines that should be recalculated should be marked
+       with ‘#' or ‘*'.
+
+     - ‘/' ::
+
+       Do not export this line. Useful for lines that contain the
+       narrowing ‘<N>' markers or column group markers.
+
+    Finally, just to whet your appetite for what can be done with the
+    fantastic =calc.el= package, here is a table that computes the
+    Taylor series of degree =n= at location =x= for a couple of
+    functions.
+
+    #+BEGIN_EXAMPLE
+      |---+-------------+---+-----+--------------------------------------|
+      |   | Func        | n | x   | Result                               |
+      |---+-------------+---+-----+--------------------------------------|
+      | # | exp(x)      | 1 | x   | 1 + x                                |
+      | # | exp(x)      | 2 | x   | 1 + x + x^2 / 2                      |
+      | # | exp(x)      | 3 | x   | 1 + x + x^2 / 2 + x^3 / 6            |
+      | # | x^2+sqrt(x) | 2 | x=0 | x*(0.5 / 0) + x^2 (2 - 0.25 / 0) / 2 |
+      | # | x^2+sqrt(x) | 2 | x=1 | 2 + 2.5 x - 2.5 + 0.875 (x - 1)^2    |
+      | * | tan(x)      | 3 | x   | 0.0175 x + 1.77e-6 x^3               |
+      |---+-------------+---+-----+--------------------------------------|
+      #+TBLFM: $5=taylor($2,$4,$3);n3
+    #+END_EXAMPLE
 
 ** 3.6 Org-Plot                                                       <<#Org-plot>>
 
-   Org-Plot can produce graphs of information stored in org tables, either
-   graphically or in ASCII-art.
+   Org-Plot can produce graphs of information stored in org tables,
+   either graphically or in ASCII-art.
 
 *** Graphical plots using Gnuplot
 
     Org-Plot produces 2D and 3D graphs using Gnuplot
     [[http://www.gnuplot.info/]] and gnuplot-mode
     [[http://xafs.org/BruceRavel/GnuplotMode]]. To see this in action,
-    ensure that you have both Gnuplot and Gnuplot mode installed on your
-    system, then call C-c " g or M-x org-plot/gnuplot RET on the following
-    table.
+    ensure that you have both Gnuplot and Gnuplot mode installed on
+    your system, then call */C-c " g/* or */M-x org-plot/gnuplot RET/*
+    on the following table.
 
     #+BEGIN_EXAMPLE
-    #+PLOT: title:"Citas" ind:1 deps:(3) type:2d with:histograms set:"yrange [0:]"
-    | Sede      | Max cites | H-index |
-    |-----------+-----------+---------|
-    | Chile     |    257.72 |   21.39 |
-    | Leeds     |    165.77 |   19.68 |
-    | Sao Paolo |     71.00 |   11.50 |
-    | Stockholm |    134.19 |   14.33 |
-    | Morelia   |    257.56 |   17.67 |
+      #+PLOT: title:"Citas" ind:1 deps:(3) type:2d with:histograms set:"yrange [0:]"
+      | Sede      | Max cites | H-index |
+      |-----------+-----------+---------|
+      | Chile     |    257.72 |   21.39 |
+      | Leeds     |    165.77 |   19.68 |
+      | Sao Paolo |     71.00 |   11.50 |
+      | Stockholm |    134.19 |   14.33 |
+      | Morelia   |    257.56 |   17.67 |
     #+END_EXAMPLE
 
-    Notice that Org Plot is smart enough to apply the table's headers as
-    labels. Further control over the labels, type, content, and appearance
-    of plots can be exercised through the =#+PLOT:= lines preceding a table.
-    See below for a complete list of Org-plot options. The =#+PLOT:= lines
-    are optional. For more information and examples see the Org-plot
-    tutorial at [[http://orgmode.org/worg/org-tutorials/org-plot.html]].
+    Notice that Org Plot is smart enough to apply the table's headers
+    as labels. Further control over the labels, type, content, and
+    appearance of plots can be exercised through the =#+PLOT:= lines
+    preceding a table.  See below for a complete list of Org-plot
+    options. The =#+PLOT:= lines are optional. For more information
+    and examples see the Org-plot tutorial at
+    [[http://orgmode.org/worg/org-tutorials/org-plot.html]].
 
 *** Plot Options
 
--  =set= :: Specify any =gnuplot= option to be set when graphing.
+     - =set= ::
 
--  =title= :: Specify the title of the plot.
+       Specify any =gnuplot= option to be set when graphing.
 
--  =ind= :: Specify which column of the table to use as the =x= axis.
+     - =title= ::
 
--  =deps= :: Specify the columns to graph as a Lisp style list,
-	     surrounded by parentheses and separated by spaces for example
-	     =dep:(3 4)= to graph the third and fourth columns (defaults to
-	     graphing all other columns aside from the =ind= column).
+       Specify the title of the plot.
 
--  =type= :: Specify whether the plot will be =2d=, =3d=, or =grid=.
+     - =ind= ::
 
--  =with= :: Specify a =with= option to be inserted for every col being
-	     plotted (e.g., =lines=, =points=, =boxes=, =impulses=, etc...).
-	     Defaults to =lines=.
+       Specify which column of the table to use as the =x= axis.
 
--  =file= :: If you want to plot to a file, specify
-	     ="path/to/desired/output-file"=.
+     - =deps= ::
 
--  =labels= :: List of labels to be used for the =deps= (defaults to the
-	       column headers if they exist).
+       Specify the columns to graph as a Lisp style list, surrounded
+       by parentheses and separated by spaces for example =dep:(3 4)=
+       to graph the third and fourth columns (defaults to graphing all
+       other columns aside from the =ind= column).
 
--  =line= :: Specify an entire line to be inserted in the Gnuplot
-	     script.
+     - =type= ::
 
--  =map= :: When plotting =3d= or =grid= types, set this to =t= to graph
-	    a flat mapping rather than a =3d= slope.
+       Specify whether the plot will be =2d=, =3d=, or =grid=.
 
--  =timefmt= :: Specify format of Org mode timestamps as they will be
-		parsed by Gnuplot. Defaults to ‘%Y-%m-%d-%H:%M:%S'.
+     - =with= ::
 
--  =script= :: If you want total control, you can specify a script file
-	       (place the file name between double-quotes) which will be used to
-	       plot. Before plotting, every instance of =$datafile= in the specified
-	       script will be replaced with the path to the generated data file.
-	       Note: even if you set this option, you may still want to specify the
-	       plot type, as that can impact the content of the data file.
+       Specify a =with= option to be inserted for every col being
+       plotted (e.g., =lines=, =points=, =boxes=, =impulses=, etc...).
+       Defaults to =lines=.
+
+     - =file= ::
+
+       If you want to plot to a file, specify
+       "path/to/desired/output-file".
+
+     - =labels= ::
+
+       List of labels to be used for the =deps= (defaults to the
+       column headers if they exist).
+
+     - =line= ::
+
+       Specify an entire line to be inserted in the Gnuplot script.
+
+     - =map= ::
+
+       When plotting =3d= or =grid= types, set this to =t= to graph a
+       flat mapping rather than a =3d= slope.
+
+     - =timefmt= ::
+
+       Specify format of Org mode timestamps as they will be parsed by
+       Gnuplot. Defaults to ‘%Y-%m-%d-%H:%M:%S'.
+
+     - =script= ::
+
+       If you want total control, you can specify a script file (place
+       the file name between double-quotes) which will be used to
+       plot. Before plotting, every instance of =$datafile= in the
+       specified script will be replaced with the path to the
+       generated data file.  Note: even if you set this option, you
+       may still want to specify the plot type, as that can impact the
+       content of the data file.
 
 *** ASCII bar plots
 
-    While the cursor is on a column, typing C-c " a or M-x orgtbl-ascii-plot
-    RET create a new column containing an ASCII-art bars plot. The plot is
-    implemented through a regular column formula. When the source column
-    changes, the bar plot may be updated by refreshing the table, for
-    example typing C-u C-c *.
+    While the cursor is on a column, typing */C-c "/* a or */M-x
+    orgtbl-ascii-plot RET/* create a new column containing an
+    ASCII-art bars plot. The plot is implemented through a regular
+    column formula. When the source column changes, the bar plot may
+    be updated by refreshing the table, for example typing */C-u C-c
+    */*.
 
     #+BEGIN_EXAMPLE
-    | Sede          | Max cites |              |
-    |---------------+-----------+--------------|
-    | Chile         |    257.72 | WWWWWWWWWWWW |
-    | Leeds         |    165.77 | WWWWWWWh     |
-    | Sao Paolo     |     71.00 | WWW;         |
-    | Stockholm     |    134.19 | WWWWWW:      |
-    | Morelia       |    257.56 | WWWWWWWWWWWH |
-    | Rochefourchat |      0.00 |              |
-    #+TBLFM: $3='(orgtbl-ascii-draw $2 0.0 257.72 12)
+      | Sede          | Max cites |              |
+      |---------------+-----------+--------------|
+      | Chile         |    257.72 | WWWWWWWWWWWW |
+      | Leeds         |    165.77 | WWWWWWWh     |
+      | Sao Paolo     |     71.00 | WWW;         |
+      | Stockholm     |    134.19 | WWWWWW:      |
+      | Morelia       |    257.56 | WWWWWWWWWWWH |
+      | Rochefourchat |      0.00 |              |
+      #+TBLFM: $3='(orgtbl-ascii-draw $2 0.0 257.72 12)
     #+END_EXAMPLE
 
     The formula is an elisp call:
 
     #+BEGIN_SRC lisp
-    (orgtbl-ascii-draw COLUMN MIN MAX WIDTH)
+      (orgtbl-ascii-draw COLUMN MIN MAX WIDTH)
     #+END_SRC
 
--  =COLUMN= :: is a reference to the source column.
+     - =COLUMN= ::
 
--  =MIN MAX= :: are the minimal and maximal values displayed. Sources
-		values outside this range are displayed as ‘too small' or ‘too
-		large'.
+       is a reference to the source column.
 
--  =WIDTH= :: is the width in characters of the bar-plot. It defaults to
-	      ‘12'.
+     - =MIN MAX= ::
+
+       are the minimal and maximal values displayed. Sources values
+       outside this range are displayed as ‘too small' or ‘too large'.
+
+     - =WIDTH= ::
+
+       is the width in characters of the bar-plot. It defaults to
+       ‘12'.
 
 * 4 Hyperlinks
 
   Like HTML, Org provides links inside a file, external links to other
   files, Usenet articles, emails, and much more.
 
-** 4.1 Link format
+  | • [[#Link-format][Link format]]:             | How links in Org are formatted            |
+  | • [[#Internal-links][Internal links]]:          | Links to other places in the current file |
+  | • [[#External-links][External links]]:          | URL-like links to the world               |
+  | • [[#Handling-links][Handling links]]:          | Creating, inserting and following         |
+  | • [[#Using-links-outside-Org][Using links outside Org]]: | Linking from my C source code?            |
+  | • [[#Link-abbreviations][Link abbreviations]]:      | Shortcuts for writing complex links       |
+  | • [[#Search-options][Search options]]:          | Linking to a specific location            |
+  | • [[#Custom-searches][Custom searches]]:         | When the default search is not enough     |
+
+** 4.1 Link format                                                    <<#Link-format>>
 
    Org will recognize plain URL-like links and activate them as clickable
    links. The general link format, however, looks like this:
@@ -2536,7 +2610,7 @@ series of degree =n= at location =x= for a couple of functions.
    bracket hides the link internals again. To show the internal structure
    of all links, use the menu entry =Org->Hyperlinks->Literal links=.
 
-** 4.2 Internal links
+** 4.2 Internal links                                                 <<#Internal-links>>
 
    If the link does not look like a URL, it is considered to be internal in
    the current file. The most important case is a link like
@@ -2591,7 +2665,9 @@ series of degree =n= at location =x= for a couple of functions.
    to the previous position with C-c &. Using this command several times in
    direct succession goes back to positions recorded earlier.
 
-*** 4.2.1 Radio targets
+   | • [[#Radio-targets][Radio targets]]: | Make targets trigger links in plain text |
+
+*** 4.2.1 Radio targets                                               <<#Radio-targets>>
 
     Org can automatically turn any occurrences of certain target names in
     normal text into a link. So without explicitly creating a link, the text
@@ -2602,7 +2678,7 @@ series of degree =n= at location =x= for a couple of functions.
     when the file is first loaded into Emacs. To update the target list
     during editing, press C-c C-c with the cursor on or at a target.
 
-** 4.3 External links
+** 4.3 External links                                                 <<#External-links>>
 
    Org supports links to files, websites, Usenet and email messages, BBDB
    database entries and links to both IRC conversations and their logs.
@@ -2680,7 +2756,7 @@ series of degree =n= at location =x= for a couple of functions.
    Stallman'), or if you need to remove ambiguities about the end of the
    link, enclose them in square brackets.
 
-** 4.4 Handling links
+** 4.4 Handling links                                                 <<#Handling-links>>
 
    Org provides methods to create a link in the correct syntax, to insert
    it into an Org file, and to follow the link.
@@ -2851,7 +2927,7 @@ series of degree =n= at location =x= for a couple of functions.
         (define-key org-mode-map "\C-p" 'org-previous-link)))
    #+END_SRC
 
-** 4.5 Using links outside Org
+** 4.5 Using links outside Org                                        <<#Using-links-outside-Org>>
 
    You can insert and follow links that have Org syntax not only in Org,
    but in any Emacs buffer. For this, you should create two global
@@ -2862,7 +2938,7 @@ series of degree =n= at location =x= for a couple of functions.
     (global-set-key "\C-c o" 'org-open-at-point-global)
    #+END_SRC
 
-** 4.6 Link abbreviations
+** 4.6 Link abbreviations                                             <<#Link-abbreviations>>
 
    Long URLs can be cumbersome to type, and often many similar links are
    needed in a document. For this you can use link abbreviations. An
@@ -2922,7 +2998,7 @@ series of degree =n= at location =x= for a couple of functions.
    support for inserting such a link with C-c C-l. Such a function should
    not accept any arguments, and return the full link with prefix.
 
-** 4.7 Search options in file links
+** 4.7 Search options in file links                                   <<#Search-options>>
 
    File links can contain additional information to make Emacs jump to a
    particular location in the file when following a link. This can be a
@@ -2964,7 +3040,7 @@ As a degenerate case, a file link with an empty file name can be used to
 search the current file. For example, =[[file:::find me]]= does a search
 for ‘find me' in the current file, just as ‘[[find me]]' would.
 
-** 4.8 Custom Searches
+** 4.8 Custom Searches                                                <<#Custom-searches>>
 
    The default mechanism for creating search strings and for doing the
    actual search related to a file link may not work correctly in all

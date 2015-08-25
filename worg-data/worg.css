@@ -140,7 +140,7 @@ html body #content .verse { text-align: center; color: #b3b3b3;
                             font-style: italic; font-family: text_verse; }
 
 /* ############### FONT STYLE */
-html body #content b { font-family: text_bold }     /* *BOLD*       */
+html body #content b { font-family: text_bold; }     /* *BOLD*       */
 html body #content i { font-family: text_italic; }  /* /ITALIC/     */
 
 /* #################### LINKS */

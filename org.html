@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>The Org Manual</title>
-<!-- 2015-08-23 dom 15:46 -->
+<!-- 2015-08-24 lun 19:31 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Carsten Dominik with contributiond by Bastien Guerry, Nicolas Goazion, Eric Schulte, Jambunathan K. Dan Davison, Thomas O`Thoole, and Philip Rooke." />
@@ -158,18 +158,18 @@
 </li>
 <li><a href="#sec-4">4 Hyperlinks</a>
 <ul>
-<li><a href="#sec-4-1">4.1 Link format</a></li>
-<li><a href="#sec-4-2">4.2 Internal links</a>
+<li><a href="#sec-4-1">4.1 Link format                                                    </a></li>
+<li><a href="#sec-4-2">4.2 Internal links                                                 </a>
 <ul>
-<li><a href="#sec-4-2-1">4.2.1 Radio targets</a></li>
+<li><a href="#sec-4-2-1">4.2.1 Radio targets                                               </a></li>
 </ul>
 </li>
-<li><a href="#sec-4-3">4.3 External links</a></li>
-<li><a href="#sec-4-4">4.4 Handling links</a></li>
-<li><a href="#sec-4-5">4.5 Using links outside Org</a></li>
-<li><a href="#sec-4-6">4.6 Link abbreviations</a></li>
-<li><a href="#sec-4-7">4.7 Search options in file links</a></li>
-<li><a href="#sec-4-8">4.8 Custom Searches</a></li>
+<li><a href="#sec-4-3">4.3 External links                                                 </a></li>
+<li><a href="#sec-4-4">4.4 Handling links                                                 </a></li>
+<li><a href="#sec-4-5">4.5 Using links outside Org                                        </a></li>
+<li><a href="#sec-4-6">4.6 Link abbreviations                                             </a></li>
+<li><a href="#sec-4-7">4.7 Search options in file links                                   </a></li>
+<li><a href="#sec-4-8">4.8 Custom Searches                                                </a></li>
 </ul>
 </li>
 <li><a href="#sec-5">5 TODO items</a>
@@ -3698,30 +3698,32 @@ not all fields in a row.
 <h4 id="sec-3-5-6">3.5.6 Column formulas                                             <a id="Column-formulas" name="Column-formulas"></a></h4>
 <div class="outline-text-4" id="text-3-5-6">
 <p>
-When you assign a formula to a simple column reference like <code>$3=</code>, the
-same formula will be used in all fields of that column, with the
-following very convenient exceptions: (i) If the table contains
-horizontal separator hlines with rows above and below, everything before
-the first such hline is considered part of the table <i>header</i> and will
-not be modified by column formulas. Therefore a header is mandatory when
-you use column formulas and want to add hlines to group rows, like for
-example to separate a total row at the bottom from the summand rows
-above. (ii) Fields that already get a value from a field/range formula
-will be left alone by column formulas. These conditions make column
-formulas very easy to use.
+When you assign a formula to a simple column reference like <code>$3=</code>,
+the same formula will be used in all fields of that column, with
+the following very convenient exceptions: (i) If the table
+contains horizontal separator hlines with rows above and below,
+everything before the first such hline is considered part of the
+table <i>header</i> and will not be modified by column
+formulas. Therefore a header is mandatory when you use column
+formulas and want to add hlines to group rows, like for example to
+separate a total row at the bottom from the summand rows
+above. (ii) Fields that already get a value from a field/range
+formula will be left alone by column formulas. These conditions
+make column formulas very easy to use.
 </p>
 
 <p>
-To assign a formula to a column, type it directly into any field in the
-column, preceded by an equal sign, like ‘=$1+$2'. When you press <code>TAB</code>
-or <code>RET</code> or C-c C-c with the cursor still in the field, the formula will
-be stored as the formula for the current column, evaluated and the
-current field replaced with the result. If the field contains only ‘=',
-the previously stored formula for this column is used. For each column,
-Org will only remember the most recently used formula. In the ‘#+TBLFM:'
-line, column formulas will look like ‘$4=$1+$2'. The left-hand side of a
-column formula cannot be the name of column, it must be the numeric
-column reference or <code>$&gt;</code>.
+To assign a formula to a column, type it directly into any field
+in the column, preceded by an equal sign, like ‘=$1+$2'. When you
+press <code>TAB</code> or <code>RET</code> or <b><i>C-c C-c</i></b> with the cursor still in the
+field, the formula will be stored as the formula for the current
+column, evaluated and the current field replaced with the
+result. If the field contains only ‘=', the previously stored
+formula for this column is used. For each column, Org will only
+remember the most recently used formula. In the ‘#+TBLFM:' line,
+column formulas will look like ‘$4=$1+$2'. The left-hand side of a
+column formula cannot be the name of column, it must be the
+numeric column reference or <code>$&gt;</code>.
 </p>
 
 <p>
@@ -3729,18 +3731,19 @@ Instead of typing an equation into the field, you may also use the
 following command:
 </p>
 
-<p>
-C-c = (<code>org-table-eval-formula</code>)
-</p>
+<ul class="org-ul">
+<li><b><i>C-c =</i></b> (<code>org-table-eval-formula</code>)
 
 <p>
-Install a new formula for the current column and replace current field
-with the result of the formula. The command prompts for a formula, with
-default taken from the ‘#+TBLFM' line, applies it to the current field
-and stores it. With a numeric prefix argument(e.g., C-5 C-c =) the
-command will apply it to that many consecutive fields in the current
-column.
+Install a new formula for the current column and replace current
+field with the result of the formula. The command prompts for a
+formula, with default taken from the ‘#+TBLFM' line, applies it
+to the current field and stores it. With a numeric prefix
+argument(e.g., <b><i>C-5 C-c =</i></b>) the command will apply it to that
+many consecutive fields in the current column.
 </p>
+</li>
+</ul>
 </div>
 </div>
 
@@ -3748,12 +3751,12 @@ column.
 <h4 id="sec-3-5-7">3.5.7 Lookup functions                                            <a id="Lookup-functions" name="Lookup-functions"></a></h4>
 <div class="outline-text-4" id="text-3-5-7">
 <p>
-Org has three predefined Emacs Lisp functions for lookups in tables.
+Org has three predefined Emacs Lisp functions for lookups in
+tables.
 </p>
 
 <dl class="org-dl">
-<dt> <code>(org-lookup-first VAL S-LIST R-LIST &amp;optional PREDICATE)</code> </dt><dd>Searches
-for the first element <code>S</code> in list <code>S-LIST</code> for which
+<dt> (org-lookup-first VAL S-LIST R-LIST &amp;optional PREDICATE) </dt><dd>       Searches for the first element <code>S</code> in list <code>S-LIST</code> for which
 
 <div class="org-src-container">
 
@@ -3762,42 +3765,40 @@ for the first element <code>S</code> in list <code>S-LIST</code> for which
 </div>
 
 <p>
-is <code>t</code>; returns the value from the corresponding position in list
-<code>R-LIST</code>. The default <code>PREDICATE</code> is <code>equal</code>. Note that the
-parameters <code>VAL</code> and <code>S</code> are passed to <code>PREDICATE</code> in the same order
-as the corresponding parameters are in the call to
-<code>org-lookup-first</code>, where <code>VAL</code> precedes <code>S-LIST</code>. If <code>R-LIST</code> is
-<code>nil</code>, the matching element <code>S</code> of <code>S-LIST</code> is returned.
+is <code>t</code>; returns the value from the corresponding position in
+list <code>R-LIST</code>. The default <code>PREDICATE</code> is <code>equal</code>. Note that
+the parameters <code>VAL</code> and <code>S</code> are passed to <code>PREDICATE</code> in the
+same order as the corresponding parameters are in the call to
+<code>org-lookup-first</code>, where <code>VAL</code> precedes <code>S-LIST</code>. If <code>R-LIST</code>
+is <code>nil</code>, the matching element <code>S</code> of <code>S-LIST</code> is returned.
 </p>
 </dd>
 
-<dt> <code>(org-lookup-last VAL S-LIST R-LIST &amp;optional PREDICATE)</code> </dt><dd>Similar
-to <code>org-lookup-first</code> above, but searches for the <i>last</i> element for
-which <code>PREDICATE</code> is <code>t</code>.
+<dt> (org-lookup-last VAL S-LIST R-LIST &amp;optional PREDICATE)= </dt><dd>       Similar to <code>org-lookup-first</code> above, but searches for the
+<i>last</i> element for which <code>PREDICATE</code> is <code>t</code>.
 </dd>
 
-<dt> <code>(org-lookup-all VAL S-LIST R-LIST &amp;optional PREDICATE)</code> </dt><dd>Similar
-to <code>org-lookup-first</code>, but searches for <i>all</i> elements for which
-<code>PREDICATE</code> is <code>t</code>, and returns <i>all</i> corresponding values. This
-function can not be used by itself in a formula, because it returns a
-list of values. However, powerful lookups can be built when this
-function is combined with other Emacs Lisp functions.
+<dt> (org-lookup-all VAL S-LIST R-LIST &amp;optional PREDICATE)= </dt><dd>       Similar to <code>org-lookup-first</code>, but searches for <i>all</i> elements
+for which <code>PREDICATE</code> is <code>t</code>, and returns <i>all</i> corresponding
+values. This function can not be used by itself in a formula,
+because it returns a list of values. However, powerful lookups
+can be built when this function is combined with other Emacs
+Lisp functions.
 </dd>
 </dl>
 
 <p>
-If the ranges used in these functions contain empty fields, the <code>E</code> mode
-for the formula should usually be specified: otherwise empty fields will
-not be included in <code>S-LIST</code> and/or <code>R-LIST</code> which can, for example,
-result in an incorrect mapping from an element of <code>S-LIST</code> to the
-corresponding element of <code>R-LIST</code>.
+If the ranges used in these functions contain empty fields, the
+<code>E</code> mode for the formula should usually be specified: otherwise
+empty fields will not be included in <code>S-LIST</code> and/or <code>R-LIST</code>
+which can, for example, result in an incorrect mapping from an
+element of <code>S-LIST</code> to the corresponding element of <code>R-LIST</code>.
 </p>
 
 <p>
-These three functions can be used to implement associative arrays, count
-matching cells, rank results, group data etc. For practical examples see
-<a href="http://orgmode.org/worg/org-tutorials/org-lookups.html">this tutorial
-on Worg</a>.
+These three functions can be used to implement associative arrays,
+count matching cells, rank results, group data etc. For practical
+examples see <a href="http://orgmode.org/worg/org-tutorials/org-lookups.html">this tutorial on Worg</a>.
 </p>
 </div>
 </div>
@@ -3806,175 +3807,168 @@ on Worg</a>.
 <h4 id="sec-3-5-8">3.5.8 Editing and debugging formulas                              <a id="Editing-and-debugging-formulas" name="Editing-and-debugging-formulas"></a></h4>
 <div class="outline-text-4" id="text-3-5-8">
 <p>
-You can edit individual formulas in the minibuffer or directly in the
-field. Org can also prepare a special buffer with all active formulas of
-a table. When offering a formula for editing, Org converts references to
-the standard format (like <code>B3</code> or <code>D&amp;</code>) if possible. If you prefer to
-only work with the internal format (like <code>@3$2</code> or <code>$4</code>), configure the
-option <code>org-table-use-standard-references</code>.
+You can edit individual formulas in the minibuffer or directly in
+the field. Org can also prepare a special buffer with all active
+formulas of a table. When offering a formula for editing, Org
+converts references to the standard format (like <code>B3</code> or <code>D&amp;</code>) if
+possible. If you prefer to only work with the internal format
+(like <code>@3$2</code> or <code>$4</code>), configure the option
+<code>org-table-use-standard-references</code>.
 </p>
 
-<p>
-C-c = or C-u C-c = (<code>org-table-eval-formula</code>)
-</p>
+<ul class="org-ul">
+<li><b><i>C-c =</i></b> or <b>/C-u C-c = /</b> (<code>org-table-eval-formula</code>)
 
 <p>
-Edit the formula associated with the current column/field in the
-minibuffer. See <i>Column formulas</i>, and
-<i>Field and range formulas</i>.
+Edit the formula associated with the current column/field in
+the minibuffer. See <i>Column formulas</i>, and <i>Field and range
+formulas</i>.
 </p>
+</li>
+
+<li><b>/C-u C-u C-c = /</b> (<code>org-table-eval-formula</code>)
 
 <p>
-C-u C-u C-c = (<code>org-table-eval-formula</code>)
+Re-insert the active formula (either a field formula, or a
+column formula) into the current field, so that you can edit it
+directly in the field. The advantage over editing in the
+minibuffer is that you can use the command <b><i>C-c ?</i></b>.
 </p>
+</li>
+
+<li><b><i>C-c ?</i></b> (<code>org-table-field-info</code>)
 
 <p>
-Re-insert the active formula (either a field formula, or a column
-formula) into the current field, so that you can edit it directly in the
-field. The advantage over editing in the minibuffer is that you can use
-the command C-c ?.
+While editing a formula in a table field, highlight the
+field(s) referenced by the reference at the cursor position in
+the formula.
 </p>
+</li>
+
+<li><b><i>C-c }</i></b>
 
 <p>
-C-c ? (<code>org-table-field-info</code>)
+Toggle the display of row and column numbers for a table, using
+overlays (<code>org-table-toggle-coordinate-overlays</code>). These are
+updated each time the table is aligned; you can force it with
+<b><i>C-c C-c</i></b>.
 </p>
+</li>
 
-<p>
-While editing a formula in a table field, highlight the field(s)
-referenced by the reference at the cursor position in the formula.
-</p>
-
-<p>
-C-c }
-</p>
-
-<p>
-Toggle the display of row and column numbers for a table, using overlays
-(<code>org-table-toggle-coordinate-overlays</code>). These are updated each time
-the table is aligned; you can force it with C-c C-c.
-</p>
-
-<p>
-C-c {
-</p>
+<li><b><i>C-c {</i></b>
 
 <p>
 Toggle the formula debugger on and off
 (<code>org-table-toggle-formula-debugger</code>). See below.
 </p>
+</li>
+
+<li>C-c ' (<code>org-table-edit-formulas</code>)
 
 <p>
-C-c ' (<code>org-table-edit-formulas</code>)
+Edit all formulas for the current table in a special buffer,
+where the formulas will be displayed one per line. If the
+current field has an active formula, the cursor in the formula
+editor will mark it. While inside the special buffer, Org will
+automatically highlight any field or range reference at the
+cursor position. You may edit, remove and add formulas, and use
+the following commands:
 </p>
 
-<p>
-Edit all formulas for the current table in a special buffer, where the
-formulas will be displayed one per line. If the current field has an
-active formula, the cursor in the formula editor will mark it. While
-inside the special buffer, Org will automatically highlight any field or
-range reference at the cursor position. You may edit, remove and add
-formulas, and use the following commands:
-</p>
+<ul class="org-ul">
+<li><b><i>C-c C-c</i></b> or <b><i>C-x C-s</i></b> (<code>org-table-fedit-finish</code>)
 
 <p>
-C-c C-c or C-x C-s (<code>org-table-fedit-finish</code>)
+Exit the formula editor and store the modified
+formulas. With C-u prefix, also apply the new formulas to
+the entire table.
 </p>
+</li>
 
-<p>
-Exit the formula editor and store the modified formulas. With C-u
-prefix, also apply the new formulas to the entire table.
-</p>
-
-<p>
-C-c C-q (<code>org-table-fedit-abort</code>)
-</p>
+<li><b><i>C-c C-q</i></b> (<code>org-table-fedit-abort</code>)
 
 <p>
 Exit the formula editor without installing changes.
 </p>
+</li>
+
+<li><b><i>C-c C-r</i></b> (<code>org-table-fedit-toggle-ref-type</code>)
 
 <p>
-C-c C-r (<code>org-table-fedit-toggle-ref-type</code>)
+Toggle all references in the formula editor between standard
+(like <code>B3</code>) and internal (like <code>@3$2</code>).
 </p>
+</li>
+
+<li><b><i>TAB</i></b> (<code>org-table-fedit-lisp-indent</code>)
 
 <p>
-Toggle all references in the formula editor between standard (like <code>B3</code>)
-and internal (like <code>@3$2</code>).
+Pretty-print or indent Lisp formula at point. When in a line
+containing a Lisp formula, format the formula according to
+Emacs Lisp rules.  Another <code>TAB</code> collapses the formula back
+again. In the open formula, <code>TAB</code> re-indents just like in
+Emacs Lisp mode.
 </p>
+</li>
 
-<p>
-TAB (<code>org-table-fedit-lisp-indent</code>)
-</p>
-
-<p>
-Pretty-print or indent Lisp formula at point. When in a line containing
-a Lisp formula, format the formula according to Emacs Lisp rules.
-Another <code>TAB</code> collapses the formula back again. In the open formula,
-<code>TAB</code> re-indents just like in Emacs Lisp mode.
-</p>
-
-<p>
-M-TAB (<code>lisp-complete-symbol</code>)
-</p>
+<li><b><i>M-TAB</i></b> (<code>lisp-complete-symbol</code>)
 
 <p>
 Complete Lisp symbols, just like in Emacs Lisp mode.
 </p>
+</li>
+
+<li><b><i>S-up/down/left/right</i></b>
 
 <p>
-S-up/down/left/right
+Shift the reference at point. For example, if the reference
+is <code>B3</code> and you press S-right, it will become <code>C3</code>. This
+also works for relative references and for hline references.
 </p>
+</li>
+
+<li><b><i>M-S-up</i></b> (<code>org-table-fedit-line-up</code>)
+</li>
+<li><b><i>M-S-down</i></b> (<code>org-table-fedit-line-down</code>)
 
 <p>
-Shift the reference at point. For example, if the reference is <code>B3</code> and
-you press S-right, it will become <code>C3</code>. This also works for relative
-references and for hline references.
+Move the test line for column formulas in the Org buffer up
+and down.
 </p>
+</li>
 
-<p>
-M-S-up (<code>org-table-fedit-line-up</code>)
-</p>
-
-<p>
-M-S-down (<code>org-table-fedit-line-down</code>)
-</p>
-
-<p>
-Move the test line for column formulas in the Org buffer up and down.
-</p>
-
-<p>
-M-up (<code>org-table-fedit-scroll-down</code>)
-</p>
-
-<p>
-M-down (<code>org-table-fedit-scroll-up</code>)
-</p>
+<li><b><i>M-up</i></b> (<code>org-table-fedit-scroll-down</code>)
+</li>
+<li><b><i>M-down</i></b> (<code>org-table-fedit-scroll-up</code>)
 
 <p>
 Scroll the window displaying the table.
 </p>
+</li>
 
-<p>
-C-c }
-</p>
+<li><b><i>C-c }</i></b>
 
 <p>
 Turn the coordinate grid in the table on and off.
 </p>
+</li>
+</ul>
+</li>
+</ul>
 
 <p>
-Making a table field blank does not remove the formula associated with
-the field, because that is stored in a different line (the ‘#+TBLFM'
-line)&#x2014;during the next recalculation the field will be filled again. To
-remove a formula from a field, you have to give an empty reply when
-prompted for the formula, or to edit the ‘#+TBLFM' line.
+Making a table field blank does not remove the formula associated
+with the field, because that is stored in a different line (the
+‘#+TBLFM' line) &#x2013; during the next recalculation the field will be
+filled again. To remove a formula from a field, you have to give
+an empty reply when prompted for the formula, or to edit the
+‘#+TBLFM' line.
 </p>
 
 <p>
-You may edit the ‘#+TBLFM' directly and re-apply the changed equations
-with C-c C-c in that line or with the normal recalculation commands in
-the table.
+You may edit the ‘#+TBLFM' directly and re-apply the changed
+equations with <b><i>C-c C-c</i></b> in that line or with the normal
+recalculation commands in the table.
 </p>
 </div>
 
@@ -3982,9 +3976,10 @@ the table.
 <h5 id="sec-3-5-8-1">Using multiple #+TBLFM lines</h5>
 <div class="outline-text-5" id="text-3-5-8-1">
 <p>
-You may apply the formula temporarily. This is useful when you switch
-the formula. Place multiple ‘#+TBLFM' lines right after the table, and
-then press C-c C-c on the formula to apply. Here is an example:
+You may apply the formula temporarily. This is useful when you
+switch the formula. Place multiple ‘#+TBLFM' lines right after
+the table, and then press <b><i>C-c C-c</i></b> on the formula to
+apply. Here is an example:
 </p>
 
 <pre class="example">
@@ -3997,7 +3992,7 @@ then press C-c C-c on the formula to apply. Here is an example:
 </pre>
 
 <p>
-Pressing C-c C-c in the line of ‘#+TBLFM: $2=$1*2' yields:
+Pressing <b><i>C-c C-c</i></b> in the line of ‘#+TBLFM: $2=$1*2' yields:
 </p>
 
 <pre class="example">
@@ -4010,8 +4005,9 @@ Pressing C-c C-c in the line of ‘#+TBLFM: $2=$1*2' yields:
 </pre>
 
 <p>
-Note: If you recalculate this table (with C-u C-c *, for example), you
-will get the following result of applying only the first ‘#+TBLFM' line.
+Note: If you recalculate this table (with <b><i>C-u C-c *</i></b>, for
+example), you will get the following result of applying only the
+first ‘#+TBLFM' line.
 </p>
 
 <pre class="example">
@@ -4029,12 +4025,12 @@ will get the following result of applying only the first ‘#+TBLFM' line.
 <h5 id="sec-3-5-8-2">Debugging formulas</h5>
 <div class="outline-text-5" id="text-3-5-8-2">
 <p>
-When the evaluation of a formula leads to an error, the field content
-becomes the string ‘#ERROR'. If you would like see what is going on
-during variable substitution and calculation in order to find a bug,
-turn on formula debugging in the <code>Tbl</code> menu and repeat the calculation,
-for example by pressing C-u C-u C-c = RET in a field. Detailed
-information will be displayed.
+When the evaluation of a formula leads to an error, the field
+content becomes the string ‘#ERROR'. If you would like see what
+is going on during variable substitution and calculation in order
+to find a bug, turn on formula debugging in the <code>Tbl</code> menu and
+repeat the calculation, for example by pressing <b><i>C-u C-u C-c =
+RET</i></b> in a field. Detailed information will be displayed.
 </p>
 </div>
 </div>
@@ -4044,64 +4040,62 @@ information will be displayed.
 <h4 id="sec-3-5-9">3.5.9 Updating the table                                          <a id="Updating-the-table" name="Updating-the-table"></a></h4>
 <div class="outline-text-4" id="text-3-5-9">
 <p>
-Recalculation of a table is normally not automatic, but needs to be
-triggered by a command. See <i>Advanced features</i>,
-for a way to make recalculation at least semi-automatic.
+Recalculation of a table is normally not automatic, but needs to
+be triggered by a command. See <i>Advanced features</i>, for a way to
+make recalculation at least semi-automatic.
 </p>
 
 <p>
-In order to recalculate a line of a table or the entire table, use the
-following commands:
+In order to recalculate a line of a table or the entire table, use
+the following commands:
 </p>
 
-<p>
-C-c * (<code>org-table-recalculate</code>)
-</p>
+<ul class="org-ul">
+<li><b><i>C-c *</i></b> (<code>org-table-recalculate</code>)
 
 <p>
-Recalculate the current row by first applying the stored column formulas
-from left to right, and all field/range formulas in the current row.
+Recalculate the current row by first applying the stored column
+formulas from left to right, and all field/range formulas in
+the current row.
 </p>
+</li>
+
+<li><b><i>C-u C-c *</i></b>
+</li>
+<li><b><i>C-u C-c C-c</i></b>
 
 <p>
-C-u C-c *
+Recompute the entire table, line by line. Any lines before the
+first hline are left alone, assuming that these are part of the
+table header.
 </p>
+</li>
+
+<li><b><i>C-u C-u C-c *</i></b> or <b><i>C-u C-u C-c C-c</i></b> (<code>org-table-iterate</code>)
 
 <p>
-C-u C-c C-c
+Iterate the table by recomputing it until no further changes
+occur. This may be necessary if some computed fields use the
+value of other fields that are computed <i>later</i> in the
+calculation sequence.
 </p>
+</li>
 
-<p>
-Recompute the entire table, line by line. Any lines before the first
-hline are left alone, assuming that these are part of the table header.
-</p>
-
-<p>
-C-u C-u C-c * or C-u C-u C-c C-c (<code>org-table-iterate</code>)
-</p>
-
-<p>
-Iterate the table by recomputing it until no further changes occur. This
-may be necessary if some computed fields use the value of other fields
-that are computed <i>later</i> in the calculation sequence.
-</p>
-
-<p>
-M-x org-table-recalculate-buffer-tables RET
-</p>
+<li><b><i>M-x org-table-recalculate-buffer-tables RET</i></b>
 
 <p>
 Recompute all tables in the current buffer.
 </p>
+</li>
 
-<p>
-M-x org-table-iterate-buffer-tables RET
-</p>
+<li><b><i>M-x org-table-iterate-buffer-tables RET</i></b>
 
 <p>
 Iterate all tables in the current buffer, in order to converge
 table-to-table dependencies.
 </p>
+</li>
+</ul>
 </div>
 </div>
 
@@ -4109,25 +4103,26 @@ table-to-table dependencies.
 <h4 id="sec-3-5-10">3.5.10 Advanced features                                          <a id="Advanced-features" name="Advanced-features"></a></h4>
 <div class="outline-text-4" id="text-3-5-10">
 <p>
-If you want the recalculation of fields to happen automatically, or if
-you want to be able to assign /names/<sup><a id="fnr.32" name="fnr.32" class="footref" href="#fn.32">32</a></sup> to fields and
-columns, you need to reserve the first column of the table for special
-marking characters.
+If you want the recalculation of fields to happen automatically,
+or if you want to be able to assign <i>names</i> <sup><a id="fnr.32" name="fnr.32" class="footref" href="#fn.32">32</a></sup> to fields
+and columns, you need to reserve the first column of the table for
+special marking characters.
 </p>
 
-<p>
-C-# (<code>org-table-rotate-recalc-marks</code>)
-</p>
+<ul class="org-ul">
+<li><b><i>C-#</i></b> (<code>org-table-rotate-recalc-marks</code>)
 
 <p>
-Rotate the calculation mark in first column through the states ‘ ', ‘#',
-‘*', ‘!', ‘$'. When there is an active region, change all marks in the
-region.
+Rotate the calculation mark in first column through the states
+‘ ', ‘#', ‘*', ‘!', ‘$'. When there is an active region, change
+all marks in the region.
 </p>
+</li>
+</ul>
 
 <p>
-Here is an example of a table that collects exam results of students and
-makes use of these features:
+Here is an example of a table that collects exam results of
+students and makes use of these features:
 </p>
 
 <pre class="example">
@@ -4149,10 +4144,11 @@ makes use of these features:
 </pre>
 
 <p>
-<b>Important</b>: please note that for these special tables, recalculating
-the table with C-u C-c * will only affect rows that are marked ‘#' or
-‘*', and fields that have a formula assigned to the field itself. The
-column formulas are not applied in rows with empty first field.
+<b>Important</b>: please note that for these special tables,
+recalculating the table with <b><i>C-u C-c *</i></b> will only affect rows
+that are marked ‘#' or ‘*', and fields that have a formula
+assigned to the field itself. The column formulas are not applied
+in rows with empty first field.
 </p>
 
 <p>
@@ -4160,52 +4156,53 @@ The marking characters have the following meaning:
 </p>
 
 <dl class="org-dl">
-<dt> ‘!' </dt><dd>The fields in this line define names for the columns, so that
+<dt> ‘!' </dt><dd>       The fields in this line define names for the columns, so that
 you may refer to a column as ‘$Tot' instead of ‘$6'.
 </dd>
 
-<dt> ‘\<sup>'</sup> </dt><dd>This row defines names for the fields <i>above</i> the row. With
-such a definition, any formula in the table may use ‘$m1' to refer to
-the value ‘10'. Also, if you assign a formula to a names field, it
-will be stored as ‘$name=&#x2026;'.
+<dt> ‘<sup>'</sup> </dt><dd>       This row defines names for the fields <i>above</i> the row. With
+such a definition, any formula in the table may use ‘$m1' to
+refer to the value ‘10'. Also, if you assign a formula to a
+names field, it will be stored as ‘$name=&#x2026;'.
 </dd>
 
-<dt> ‘\<sub>'</sub> </dt><dd>Similar to ‘\<sup>'</sup>, but defines names for the fields in the row
+<dt> ‘<sub>'</sub> </dt><dd>       Similar to ‘q<sup>'</sup>, but defines names for the fields in the row
 <i>below</i>.
 </dd>
 
-<dt> ‘$' </dt><dd>Fields in this row can define <i>parameters</i> for formulas. For
-example, if a field in a ‘$' row contains ‘max=50', then formulas in
-this table can refer to the value 50 using ‘$max'. Parameters work
-exactly like constants, only that they can be defined on a per-table
-basis.
+<dt> ‘$' </dt><dd>       Fields in this row can define <i>parameters</i> for formulas. For
+example, if a field in a ‘$' row contains ‘max=50', then
+formulas in this table can refer to the value 50 using
+‘$max'. Parameters work exactly like constants, only that they
+can be defined on a per-table basis.
 </dd>
 
-<dt> ‘#' </dt><dd>Fields in this row are automatically recalculated when
-pressing <code>TAB</code> or <code>RET</code> or S-TAB in this row. Also, this row is
-selected for a global recalculation with C-u C-c *. Unmarked lines
-will be left alone by this command.
+<dt> ‘#' </dt><dd>       Fields in this row are automatically recalculated when pressing
+<code>TAB</code> or <code>RET</code> or <b><i>S-TAB</i></b> in this row. Also, this row is
+selected for a global recalculation with <b><i>C-u C-c
+*</i></b>. Unmarked lines will be left alone by this command.
 </dd>
 
-<dt> ‘*' </dt><dd>Selects this line for global recalculation with C-u C-c *, but
-not for automatic recalculation. Use this when automatic
+<dt> ‘*' </dt><dd>       Selects this line for global recalculation with <b><i>C-u C-c *</i></b>,
+but not for automatic recalculation. Use this when automatic
 recalculation slows down editing too much.
 </dd>
 
-<dt> ‘' </dt><dd>Unmarked lines are exempt from recalculation with C-u C-c *.
-All lines that should be recalculated should be marked with ‘#' or
-‘*'.
+<dt> ' ' </dt><dd>       Unmarked lines are exempt from recalculation with <b><i>C-u C-c
+*</i></b>.  All lines that should be recalculated should be marked
+with ‘#' or ‘*'.
 </dd>
 
-<dt> ‘/' </dt><dd>Do not export this line. Useful for lines that contain the
+<dt> ‘/' </dt><dd>       Do not export this line. Useful for lines that contain the
 narrowing ‘&lt;N&gt;' markers or column group markers.
 </dd>
 </dl>
 
 <p>
 Finally, just to whet your appetite for what can be done with the
-fantastic calc.el package, here is a table that computes the Taylor
-series of degree <code>n</code> at location <code>x</code> for a couple of functions.
+fantastic <code>calc.el</code> package, here is a table that computes the
+Taylor series of degree <code>n</code> at location <code>x</code> for a couple of
+functions.
 </p>
 
 <pre class="example">
@@ -4229,8 +4226,8 @@ series of degree <code>n</code> at location <code>x</code> for a couple of funct
 <h3 id="sec-3-6">3.6 Org-Plot                                                       <a id="Org-plot" name="Org-plot"></a></h3>
 <div class="outline-text-3" id="text-3-6">
 <p>
-Org-Plot can produce graphs of information stored in org tables, either
-graphically or in ASCII-art.
+Org-Plot can produce graphs of information stored in org tables,
+either graphically or in ASCII-art.
 </p>
 </div>
 
@@ -4241,9 +4238,9 @@ graphically or in ASCII-art.
 Org-Plot produces 2D and 3D graphs using Gnuplot
 <a href="http://www.gnuplot.info/">http://www.gnuplot.info/</a> and gnuplot-mode
 <a href="http://xafs.org/BruceRavel/GnuplotMode">http://xafs.org/BruceRavel/GnuplotMode</a>. To see this in action,
-ensure that you have both Gnuplot and Gnuplot mode installed on your
-system, then call C-c " g or M-x org-plot/gnuplot RET on the following
-table.
+ensure that you have both Gnuplot and Gnuplot mode installed on
+your system, then call <b><i>C-c " g</i></b> or <b><i>M-x org-plot/gnuplot RET</i></b>
+on the following table.
 </p>
 
 <pre class="example">
@@ -4258,12 +4255,13 @@ table.
 </pre>
 
 <p>
-Notice that Org Plot is smart enough to apply the table's headers as
-labels. Further control over the labels, type, content, and appearance
-of plots can be exercised through the <code>#+PLOT:</code> lines preceding a table.
-See below for a complete list of Org-plot options. The <code>#+PLOT:</code> lines
-are optional. For more information and examples see the Org-plot
-tutorial at <a href="http://orgmode.org/worg/org-tutorials/org-plot.html">http://orgmode.org/worg/org-tutorials/org-plot.html</a>.
+Notice that Org Plot is smart enough to apply the table's headers
+as labels. Further control over the labels, type, content, and
+appearance of plots can be exercised through the <code>#+PLOT:</code> lines
+preceding a table.  See below for a complete list of Org-plot
+options. The <code>#+PLOT:</code> lines are optional. For more information
+and examples see the Org-plot tutorial at
+<a href="http://orgmode.org/worg/org-tutorials/org-plot.html">http://orgmode.org/worg/org-tutorials/org-plot.html</a>.
 </p>
 </div>
 </div>
@@ -4272,55 +4270,55 @@ tutorial at <a href="http://orgmode.org/worg/org-tutorials/org-plot.html">http:/
 <h4 id="sec-3-6-2">Plot Options</h4>
 <div class="outline-text-4" id="text-3-6-2">
 <dl class="org-dl">
-<dt> <code>set</code> </dt><dd>Specify any <code>gnuplot</code> option to be set when graphing.
+<dt> <code>set</code> </dt><dd>       Specify any <code>gnuplot</code> option to be set when graphing.
 </dd>
 
-<dt> <code>title</code> </dt><dd>Specify the title of the plot.
+<dt> <code>title</code> </dt><dd>       Specify the title of the plot.
 </dd>
 
-<dt> <code>ind</code> </dt><dd>Specify which column of the table to use as the <code>x</code> axis.
+<dt> <code>ind</code> </dt><dd>       Specify which column of the table to use as the <code>x</code> axis.
 </dd>
 
-<dt> <code>deps</code> </dt><dd>Specify the columns to graph as a Lisp style list,
-surrounded by parentheses and separated by spaces for example
-<code>dep:(3 4)</code> to graph the third and fourth columns (defaults to
-graphing all other columns aside from the <code>ind</code> column).
+<dt> <code>deps</code> </dt><dd>       Specify the columns to graph as a Lisp style list, surrounded
+by parentheses and separated by spaces for example <code>dep:(3 4)</code>
+to graph the third and fourth columns (defaults to graphing all
+other columns aside from the <code>ind</code> column).
 </dd>
 
-<dt> <code>type</code> </dt><dd>Specify whether the plot will be <code>2d</code>, <code>3d</code>, or <code>grid</code>.
+<dt> <code>type</code> </dt><dd>       Specify whether the plot will be <code>2d</code>, <code>3d</code>, or <code>grid</code>.
 </dd>
 
-<dt> <code>with</code> </dt><dd>Specify a <code>with</code> option to be inserted for every col being
+<dt> <code>with</code> </dt><dd>       Specify a <code>with</code> option to be inserted for every col being
 plotted (e.g., <code>lines</code>, <code>points</code>, <code>boxes</code>, <code>impulses</code>, etc&#x2026;).
 Defaults to <code>lines</code>.
 </dd>
 
-<dt> <code>file</code> </dt><dd>If you want to plot to a file, specify
-="path/to/desired/output-file"=.
+<dt> <code>file</code> </dt><dd>       If you want to plot to a file, specify
+"path/to/desired/output-file".
 </dd>
 
-<dt> <code>labels</code> </dt><dd>List of labels to be used for the <code>deps</code> (defaults to the
+<dt> <code>labels</code> </dt><dd>       List of labels to be used for the <code>deps</code> (defaults to the
 column headers if they exist).
 </dd>
 
-<dt> <code>line</code> </dt><dd>Specify an entire line to be inserted in the Gnuplot
-script.
+<dt> <code>line</code> </dt><dd>       Specify an entire line to be inserted in the Gnuplot script.
 </dd>
 
-<dt> <code>map</code> </dt><dd>When plotting <code>3d</code> or <code>grid</code> types, set this to <code>t</code> to graph
-a flat mapping rather than a <code>3d</code> slope.
+<dt> <code>map</code> </dt><dd>       When plotting <code>3d</code> or <code>grid</code> types, set this to <code>t</code> to graph a
+flat mapping rather than a <code>3d</code> slope.
 </dd>
 
-<dt> <code>timefmt</code> </dt><dd>Specify format of Org mode timestamps as they will be
-parsed by Gnuplot. Defaults to ‘%Y-%m-%d-%H:%M:%S'.
+<dt> <code>timefmt</code> </dt><dd>       Specify format of Org mode timestamps as they will be parsed by
+Gnuplot. Defaults to ‘%Y-%m-%d-%H:%M:%S'.
 </dd>
 
-<dt> <code>script</code> </dt><dd>If you want total control, you can specify a script file
-(place the file name between double-quotes) which will be used to
-plot. Before plotting, every instance of <code>$datafile</code> in the specified
-script will be replaced with the path to the generated data file.
-Note: even if you set this option, you may still want to specify the
-plot type, as that can impact the content of the data file.
+<dt> <code>script</code> </dt><dd>       If you want total control, you can specify a script file (place
+the file name between double-quotes) which will be used to
+plot. Before plotting, every instance of <code>$datafile</code> in the
+specified script will be replaced with the path to the
+generated data file.  Note: even if you set this option, you
+may still want to specify the plot type, as that can impact the
+content of the data file.
 </dd>
 </dl>
 </div>
@@ -4330,11 +4328,12 @@ plot type, as that can impact the content of the data file.
 <h4 id="sec-3-6-3">ASCII bar plots</h4>
 <div class="outline-text-4" id="text-3-6-3">
 <p>
-While the cursor is on a column, typing C-c " a or M-x orgtbl-ascii-plot
-RET create a new column containing an ASCII-art bars plot. The plot is
-implemented through a regular column formula. When the source column
-changes, the bar plot may be updated by refreshing the table, for
-example typing C-u C-c *.
+While the cursor is on a column, typing <b>/C-c "/</b> a or <b><i>M-x
+orgtbl-ascii-plot RET</i></b> create a new column containing an
+ASCII-art bars plot. The plot is implemented through a regular
+column formula. When the source column changes, the bar plot may
+be updated by refreshing the table, for example typing <b><i>C-u C-c
+*</i></b>.
 </p>
 
 <pre class="example">
@@ -4360,15 +4359,14 @@ The formula is an elisp call:
 </div>
 
 <dl class="org-dl">
-<dt> <code>COLUMN</code> </dt><dd>is a reference to the source column.
+<dt> <code>COLUMN</code> </dt><dd>       is a reference to the source column.
 </dd>
 
-<dt> <code>MIN MAX</code> </dt><dd>are the minimal and maximal values displayed. Sources
-values outside this range are displayed as ‘too small' or ‘too
-large'.
+<dt> <code>MIN MAX</code> </dt><dd>       are the minimal and maximal values displayed. Sources values
+outside this range are displayed as ‘too small' or ‘too large'.
 </dd>
 
-<dt> <code>WIDTH</code> </dt><dd>is the width in characters of the bar-plot. It defaults to
+<dt> <code>WIDTH</code> </dt><dd>       is the width in characters of the bar-plot. It defaults to
 ‘12'.
 </dd>
 </dl>
@@ -4384,10 +4382,61 @@ large'.
 Like HTML, Org provides links inside a file, external links to other
 files, Usenet articles, emails, and much more.
 </p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">• <i>Link format</i>:</td>
+<td class="left">How links in Org are formatted</td>
+</tr>
+
+<tr>
+<td class="left">• <i>Internal links</i>:</td>
+<td class="left">Links to other places in the current file</td>
+</tr>
+
+<tr>
+<td class="left">• <i>External links</i>:</td>
+<td class="left">URL-like links to the world</td>
+</tr>
+
+<tr>
+<td class="left">• <i>Handling links</i>:</td>
+<td class="left">Creating, inserting and following</td>
+</tr>
+
+<tr>
+<td class="left">• <i>Using links outside Org</i>:</td>
+<td class="left">Linking from my C source code?</td>
+</tr>
+
+<tr>
+<td class="left">• <i>Link abbreviations</i>:</td>
+<td class="left">Shortcuts for writing complex links</td>
+</tr>
+
+<tr>
+<td class="left">• <i>Search options</i>:</td>
+<td class="left">Linking to a specific location</td>
+</tr>
+
+<tr>
+<td class="left">• <i>Custom searches</i>:</td>
+<td class="left">When the default search is not enough</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 <div id="outline-container-sec-4-1" class="outline-3">
-<h3 id="sec-4-1">4.1 Link format</h3>
+<h3 id="sec-4-1">4.1 Link format                                                    <a id="Link-format" name="Link-format"></a></h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 Org will recognize plain URL-like links and activate them as clickable
@@ -4421,7 +4470,7 @@ of all links, use the menu entry <code>Org-&gt;Hyperlinks-&gt;Literal links</cod
 </div>
 
 <div id="outline-container-sec-4-2" class="outline-3">
-<h3 id="sec-4-2">4.2 Internal links</h3>
+<h3 id="sec-4-2">4.2 Internal links                                                 <a id="Internal-links" name="Internal-links"></a></h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 If the link does not look like a URL, it is considered to be internal in
@@ -4493,10 +4542,26 @@ Following a link pushes a mark onto Org's own mark ring. You can return
 to the previous position with C-c &amp;. Using this command several times in
 direct succession goes back to positions recorded earlier.
 </p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">• <i>Radio targets</i>:</td>
+<td class="left">Make targets trigger links in plain text</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 <div id="outline-container-sec-4-2-1" class="outline-4">
-<h4 id="sec-4-2-1">4.2.1 Radio targets</h4>
+<h4 id="sec-4-2-1">4.2.1 Radio targets                                               <a id="Radio-targets" name="Radio-targets"></a></h4>
 <div class="outline-text-4" id="text-4-2-1">
 <p>
 Org can automatically turn any occurrences of certain target names in
@@ -4513,7 +4578,7 @@ during editing, press C-c C-c with the cursor on or at a target.
 </div>
 
 <div id="outline-container-sec-4-3" class="outline-3">
-<h3 id="sec-4-3">4.3 External links</h3>
+<h3 id="sec-4-3">4.3 External links                                                 <a id="External-links" name="External-links"></a></h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 Org supports links to files, websites, Usenet and email messages, BBDB
@@ -4606,7 +4671,7 @@ link, enclose them in square brackets.
 </div>
 
 <div id="outline-container-sec-4-4" class="outline-3">
-<h3 id="sec-4-4">4.4 Handling links</h3>
+<h3 id="sec-4-4">4.4 Handling links                                                 <a id="Handling-links" name="Handling-links"></a></h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 Org provides methods to create a link in the correct syntax, to insert
@@ -4856,7 +4921,7 @@ to C-n and C-p
 </div>
 
 <div id="outline-container-sec-4-5" class="outline-3">
-<h3 id="sec-4-5">4.5 Using links outside Org</h3>
+<h3 id="sec-4-5">4.5 Using links outside Org                                        <a id="Using-links-outside-Org" name="Using-links-outside-Org"></a></h3>
 <div class="outline-text-3" id="text-4-5">
 <p>
 You can insert and follow links that have Org syntax not only in Org,
@@ -4874,7 +4939,7 @@ commands, like this (please select suitable global keys yourself):
 </div>
 
 <div id="outline-container-sec-4-6" class="outline-3">
-<h3 id="sec-4-6">4.6 Link abbreviations</h3>
+<h3 id="sec-4-6">4.6 Link abbreviations                                             <a id="Link-abbreviations" name="Link-abbreviations"></a></h3>
 <div class="outline-text-3" id="text-4-6">
 <p>
 Long URLs can be cumbersome to type, and often many similar links are
@@ -4953,7 +5018,7 @@ not accept any arguments, and return the full link with prefix.
 </div>
 
 <div id="outline-container-sec-4-7" class="outline-3">
-<h3 id="sec-4-7">4.7 Search options in file links</h3>
+<h3 id="sec-4-7">4.7 Search options in file links                                   <a id="Search-options" name="Search-options"></a></h3>
 <div class="outline-text-3" id="text-4-7">
 <p>
 File links can contain additional information to make Emacs jump to a
@@ -5011,7 +5076,7 @@ for ‘find me' in the current file, just as ‘<i>find me</i>' would.
 </div>
 
 <div id="outline-container-sec-4-8" class="outline-3">
-<h3 id="sec-4-8">4.8 Custom Searches</h3>
+<h3 id="sec-4-8">4.8 Custom Searches                                                <a id="Custom-searches" name="Custom-searches"></a></h3>
 <div class="outline-text-3" id="text-4-8">
 <p>
 The default mechanism for creating search strings and for doing the
