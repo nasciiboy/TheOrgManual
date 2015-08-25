@@ -293,9 +293,9 @@ modify this GNU manual.”
         backtrace contains much more information if it is produced
         with uncompiled code. To do this, use
 
-   	#+BEGIN_EXAMPLE
+        #+BEGIN_EXAMPLE
           C-u M-x org-reload RET
-   	#+END_EXAMPLE
+        #+END_EXAMPLE
 
         or select =Org -> Refresh/Reload -> Reload Org uncompiled=
         from the menu.
@@ -2587,174 +2587,215 @@ modify this GNU manual.”
 
 ** 4.1 Link format                                                    <<#Link-format>>
 
-   Org will recognize plain URL-like links and activate them as clickable
-   links. The general link format, however, looks like this:
+   Org will recognize plain URL-like links and activate them as
+   clickable links. The general link format, however, looks like this:
 
    #+BEGIN_EXAMPLE
-    [[link][description]]       or alternatively           [[link]]
+     [[link][description]]       or alternatively           [[link]]
    #+END_EXAMPLE
 
-   Once a link in the buffer is complete (all brackets present), Org will
-   change the display so that ‘description' is displayed instead of
-   ‘[[link][description]]' and ‘link' is displayed instead of ‘[[link]]'.
-   Links will be highlighted in the face =org-link=, which by default is an
-   underlined face. You can directly edit the visible part of a link. Note
-   that this can be either the ‘link' part (if there is no description) or
-   the ‘description' part. To edit also the invisible ‘link' part, use C-c
-   C-l with the cursor on the link.
+   Once a link in the buffer is complete (all brackets present), Org
+   will change the display so that ‘description' is displayed instead
+   of
 
-   If you place the cursor at the beginning or just behind the end of the
-   displayed text and press =BACKSPACE=, you will remove the (invisible)
-   bracket at that location. This makes the link incomplete and the
-   internals are again displayed as plain text. Inserting the missing
-   bracket hides the link internals again. To show the internal structure
-   of all links, use the menu entry =Org->Hyperlinks->Literal links=.
+   #+BEGIN_EXAMPLE
+     [[link][description]]
+   #+END_EXAMPLE
+
+   and ‘link' is displayed instead of
+
+   #+BEGIN_EXAMPLE
+     [[link]]
+   #+END_EXAMPLE
+
+   Links will be highlighted in the face =org-link=, which by default
+   is an underlined face. You can directly edit the visible part of a
+   link. Note that this can be either the ‘link' part (if there is no
+   description) or the ‘description' part. To edit also the invisible
+   ‘link' part, use */C-c C-l/* with the cursor on the link.
+
+   If you place the cursor at the beginning or just behind the end of
+   the displayed text and press =BACKSPACE=, you will remove the
+   (invisible) bracket at that location. This makes the link
+   incomplete and the internals are again displayed as plain
+   text. Inserting the missing bracket hides the link internals
+   again. To show the internal structure of all links, use the menu
+   entry =Org->Hyperlinks->Literal links=.
 
 ** 4.2 Internal links                                                 <<#Internal-links>>
 
-   If the link does not look like a URL, it is considered to be internal in
-   the current file. The most important case is a link like
-   ‘[[#my-custom-id]]' which will link to the entry with the =CUSTOM_ID=
-   property ‘my-custom-id'. You are responsible yourself to make sure these
-   custom IDs are unique in a file.
-
-   Links such as ‘[[My Target]]' or ‘[[My Target][Find my target]]' lead to
-   a text search in the current file.
-
-   The link can be followed with C-c C-o when the cursor is on the link, or
-   with a mouse click (see [[#Handling-links][Handling links]]). Links to
-   custom IDs will point to the corresponding headline. The preferred match
-   for a text link is a /dedicated target/: the same string in double
-   angular brackets, like ‘<<My Target>>'.
-
-   If no dedicated target exists, the link will then try to match the exact
-   name of an element within the buffer. Naming is done with the =#+NAME=
-   keyword, which has to be put in the line before the element it refers
-   to, as in the following example
+   If the link does not look like a URL, it is considered to be
+   internal in the current file. The most important case is a link
+   like
 
    #+BEGIN_EXAMPLE
-    #+NAME: My Target
-    | a  | table      |
-    |----+------------|
-    | of | four cells |
+     [[#my-custom-id]]
    #+END_EXAMPLE
 
-   If none of the above succeeds, Org will search for a headline that is
-   exactly the link text but may also include a TODO keyword and
-   tags[fn:FOOT33].
+   which will link to the entry with the =CUSTOM_ID= property
+   ‘my-custom-id'. You are responsible yourself to make sure these
+   custom IDs are unique in a file.
 
-   During export, internal links will be used to mark objects and assign
-   them a number. Marked objects will then be referenced by links pointing
-   to them. In particular, links without a description will appear as the
-   number assigned to the marked object[fn:FOOT34]. In the following
-   excerpt from an Org buffer
+   Links such as
 
    #+BEGIN_EXAMPLE
-    - one item
-    - <<target>>another item
-    Here we refer to item [[target]].
+     ‘[[My Target]]'
+   #+END_EXAMPLE
+
+   or
+
+   #+BEGIN_EXAMPLE
+     ‘[[My Target][Find my target]]'
+   #+END_EXAMPLE
+
+   lead to a text search in the current file.
+
+   The link can be followed with */C-c C-o/* when the cursor is on the
+   link, or with a mouse click (see [[#Handling-links][Handling links]]). Links to custom
+   IDs will point to the corresponding headline. The preferred match
+   for a text link is a /dedicated target/: the same string in double
+   angular brackets, like
+
+   #+BEGIN_EXAMPLE
+     ‘<<My Target>>'
+   #+END_EXAMPLE
+
+   If no dedicated target exists, the link will then try to match the
+   exact name of an element within the buffer. Naming is done with the
+   =#+NAME= keyword, which has to be put in the line before the
+   element it refers to, as in the following example
+
+   #+BEGIN_EXAMPLE
+     #+NAME: My Target
+     | a  | table      |
+     |----+------------|
+     | of | four cells |
+   #+END_EXAMPLE
+
+   If none of the above succeeds, Org will search for a headline that
+   is exactly the link text but may also include a TODO keyword and
+   tags[fn:FOOT33].
+
+   During export, internal links will be used to mark objects and
+   assign them a number. Marked objects will then be referenced by
+   links pointing to them. In particular, links without a description
+   will appear as the number assigned to the marked
+   object[fn:FOOT34]. In the following excerpt from an Org buffer
+
+   #+BEGIN_EXAMPLE
+     - one item
+     - <<target>>another item
+     Here we refer to item [[target]].
    #+END_EXAMPLE
 
    The last sentence will appear as ‘Here we refer to item 2' when
    exported.
 
-   In non-Org files, the search will look for the words in the link text.
-   In the above example the search would be for ‘my target'.
+   In non-Org files, the search will look for the words in the link
+   text.  In the above example the search would be for ‘my target'.
 
-   Following a link pushes a mark onto Org's own mark ring. You can return
-   to the previous position with C-c &. Using this command several times in
-   direct succession goes back to positions recorded earlier.
+   Following a link pushes a mark onto Org's own mark ring. You can
+   return to the previous position with */C-c &/*. Using this command
+   several times in direct succession goes back to positions recorded
+   earlier.
 
    | • [[#Radio-targets][Radio targets]]: | Make targets trigger links in plain text |
 
 *** 4.2.1 Radio targets                                               <<#Radio-targets>>
 
-    Org can automatically turn any occurrences of certain target names in
-    normal text into a link. So without explicitly creating a link, the text
-    connects to the target radioing its position. Radio targets are enclosed
-    by triple angular brackets. For example, a target ‘<<<My Target>>>'
-    causes each occurrence of ‘my target' in normal text to become activated
-    as a link. The Org file is scanned automatically for radio targets only
-    when the file is first loaded into Emacs. To update the target list
-    during editing, press C-c C-c with the cursor on or at a target.
+    Org can automatically turn any occurrences of certain target names
+    in normal text into a link. So without explicitly creating a link,
+    the text connects to the target radioing its position. Radio
+    targets are enclosed by triple angular brackets. For example, a
+    target
+
+    #+BEGIN_EXAMPLE
+      ‘<<<My Target>>>'
+    #+END_EXAMPLE
+
+    causes each occurrence of ‘my target' in normal text to become
+    activated as a link. The Org file is scanned automatically for
+    radio targets only when the file is first loaded into Emacs. To
+    update the target list during editing, press */C-c C-c/* with the
+    cursor on or at a target.
 
 ** 4.3 External links                                                 <<#External-links>>
 
-   Org supports links to files, websites, Usenet and email messages, BBDB
-   database entries and links to both IRC conversations and their logs.
-   External links are URL-like locators. They start with a short
-   identifying string followed by a colon. There can be no space after the
-   colon. The following list shows examples for each link type.
+   Org supports links to files, websites, Usenet and email messages,
+   BBDB database entries and links to both IRC conversations and their
+   logs.  External links are URL-like locators. They start with a
+   short identifying string followed by a colon. There can be no space
+   after the colon. The following list shows examples for each link
+   type.
 
    #+BEGIN_EXAMPLE
-    http://www.astro.uva.nl/~dominik          on the web
-    doi:10.1000/182                           DOI for an electronic resource
-    file:/home/dominik/images/jupiter.jpg     file, absolute path
-    /home/dominik/images/jupiter.jpg          same as above
-    file:papers/last.pdf                      file, relative path
-    ./papers/last.pdf                         same as above
-    file:/myself@some.where:papers/last.pdf   file, path on remote machine
-    /myself@some.where:papers/last.pdf        same as above
-    file:sometextfile::NNN                    file, jump to line number
-    file:projects.org                         another Org file
-    file:projects.org::some words             text search in Org file(35)
-    file:projects.org::*task title heading search in Org
-    file(36)
-    file+sys:/path/to/file                    open via OS, like double-click
-    file+emacs:/path/to/file                  force opening by Emacs
-    docview:papers/last.pdf::NNN              open in doc-view mode at page
-    id:B7423F4D-2E8A-471B-8810-C40F074717E9   Link to heading by ID
-    news:comp.emacs                           Usenet link
-    mailto:adent@galaxy.net                   Mail link
-    mhe:folder                                MH-E folder link
-    mhe:folder#id                             MH-E message link
-    rmail:folder                              RMAIL folder link
-    rmail:folder#id                           RMAIL message link
-    gnus:group                                Gnus group link
-    gnus:group#id                             Gnus article link
-    bbdb:R.*Stallman                          BBDB link (with regexp)
-    irc:/irc.com/#emacs/bob                   IRC link
-    info:org#External links                   Info node or index link
-    shell:ls *.org                            A shell command
-    elisp:org-agenda                          Interactive Elisp command
-    elisp:(find-file-other-frame "Elisp.org") Elisp form to evaluate
+     http://www.astro.uva.nl/~dominik          on the web
+     doi:10.1000/182                           DOI for an electronic resource
+     file:/home/dominik/images/jupiter.jpg     file, absolute path
+     /home/dominik/images/jupiter.jpg          same as above
+     file:papers/last.pdf                      file, relative path
+     ./papers/last.pdf                         same as above
+     file:/myself@some.where:papers/last.pdf   file, path on remote machine
+     /myself@some.where:papers/last.pdf        same as above
+     file:sometextfile::NNN                    file, jump to line number
+     file:projects.org                         another Org file
+     file:projects.org::some words             text search in Org file(35)
+     file:projects.org::*task title heading search in Org
+     file(36)
+     file+sys:/path/to/file                    open via OS, like double-click
+     file+emacs:/path/to/file                  force opening by Emacs
+     docview:papers/last.pdf::NNN              open in doc-view mode at page
+     id:B7423F4D-2E8A-471B-8810-C40F074717E9   Link to heading by ID
+     news:comp.emacs                           Usenet link
+     mailto:adent@galaxy.net                   Mail link
+     mhe:folder                                MH-E folder link
+     mhe:folder#id                             MH-E message link
+     rmail:folder                              RMAIL folder link
+     rmail:folder#id                           RMAIL message link
+     gnus:group                                Gnus group link
+     gnus:group#id                             Gnus article link
+     bbdb:R.*Stallman                          BBDB link (with regexp)
+     irc:/irc.com/#emacs/bob                   IRC link
+     info:org#External links                   Info node or index link
+     shell:ls *.org                            A shell command
+     elisp:org-agenda                          Interactive Elisp command
+     elisp:(find-file-other-frame "Elisp.org") Elisp form to evaluate
    #+END_EXAMPLE
 
    On top of these built-in link types, some are available through the
-   =contrib/= directory (see [[#Installation][Installation]]). For example,
-   these links to VM or Wanderlust messages are available when you load the
+   =contrib/= directory (see [[#Installation][Installation]]). For example, these links
+   to VM or Wanderlust messages are available when you load the
    corresponding libraries from the =contrib/= directory:
 
    #+BEGIN_EXAMPLE
-    vm:folder                                 VM folder link
-    vm:folder#id                              VM message link
-    vm://myself@some.where.org/folder#id      VM on remote machine
-    vm-imap:account:folder                    VM IMAP folder link
-    vm-imap:account:folder#id                 VM IMAP message link
-    wl:folder                                 WANDERLUST folder link
-    wl:folder#id                              WANDERLUST message link
+     vm:folder                                 VM folder link
+     vm:folder#id                              VM message link
+     vm://myself@some.where.org/folder#id      VM on remote machine
+     vm-imap:account:folder                    VM IMAP folder link
+     vm-imap:account:folder#id                 VM IMAP message link
+     wl:folder                                 WANDERLUST folder link
+     wl:folder#id                              WANDERLUST message link
    #+END_EXAMPLE
 
-   For customizing Org to add new link types
-   [[#Adding-hyperlink-types][Adding hyperlink types]].
+   For customizing Org to add new link types [[#Adding-hyperlink-types][Adding hyperlink types]].
 
    A link should be enclosed in double brackets and may contain a
-   descriptive text to be displayed instead of the URL (see
-   [[#Link-format][Link format]]), for example:
+   descriptive text to be displayed instead of the URL (see [[#Link-format][Link
+   format]]), for example:
 
    #+BEGIN_EXAMPLE
-    [[http://www.gnu.org/software/emacs/][GNU Emacs]]
+     [[http://www.gnu.org/software/emacs/][GNU Emacs]]
    #+END_EXAMPLE
 
-   If the description is a file name or URL that points to an image, HTML
-   export (see [[#HTML-export][HTML export]]) will inline the image as a
-   clickable button. If there is no description at all and the link points
-   to an image, that image will be inlined into the exported HTML file.
+   If the description is a file name or URL that points to an image,
+   HTML export (see [[#HTML-export][HTML export]]) will inline the image as a clickable
+   button. If there is no description at all and the link points to an
+   image, that image will be inlined into the exported HTML file.
 
-   Org also finds external links in the normal text and activates them as
-   links. If spaces must be part of the link (for example in ‘bbdb:Richard
-   Stallman'), or if you need to remove ambiguities about the end of the
-   link, enclose them in square brackets.
+   Org also finds external links in the normal text and activates them
+   as links. If spaces must be part of the link (for example in
+   =bbdb:Richard Stallman=), or if you need to remove ambiguities
+   about the end of the link, enclose them in square brackets.
 
 ** 4.4 Handling links                                                 <<#Handling-links>>
 
@@ -3022,19 +3063,19 @@ modify this GNU manual.”
 -  =255= :: Jump to line 255.
 
 -  =My Target= :: Search for a link target ‘<<My Target>>', or do a text
-		  search for ‘my target', similar to the search in internal links, see
-		  [[#Internal-links][Internal links]]. In HTML export (see
-		  [[#HTML-export][HTML export]]), such a file link will become an HTML
-		  reference to the corresponding named anchor in the linked file.
+                  search for ‘my target', similar to the search in internal links, see
+                  [[#Internal-links][Internal links]]. In HTML export (see
+                  [[#HTML-export][HTML export]]), such a file link will become an HTML
+                  reference to the corresponding named anchor in the linked file.
 
 -  =*My Target= :: In an Org file, restrict search to headlines.
 
 -  =#my-custom-id= :: Link to a heading with a =CUSTOM_ID= property
 
 -  =/regexp/= :: Do a regular expression search for =regexp=. This uses
-		 the Emacs command =occur= to list all matches in a separate window.
-		 If the target file is in Org mode, =org-occur= is used to create a
-		 sparse tree with the matches.
+                 the Emacs command =occur= to list all matches in a separate window.
+                 If the target file is in Org mode, =org-occur= is used to create a
+                 sparse tree with the matches.
 
 As a degenerate case, a file link with an empty file name can be used to
 search the current file. For example, =[[file:::find me]]= does a search
@@ -8114,7 +8155,7 @@ C-c ;
 
 Toggle the ‘COMMENT' keyword at the beginning of an entry.
 
-** 11.2 Images and Tables
+** 11.2 Images and Tables                                             <<#Images-and-tables>>
 
 Both the native Org mode tables (see [[#Tables][Tables]]) and tables
 formatted with the table.el package will be exported properly. For Org
@@ -9167,7 +9208,7 @@ export.
         Please test this stuff!
 #+END_EXAMPLE
 
-** 12.6 HTML export
+** 12.6 HTML export                                                   <<#HTML-export>>
 
 Org mode contains an HTML (XHTML 1.0 strict) exporter with extensive
 HTML formatting, in ways similar to John Gruber's /markdown/ language,
@@ -14480,7 +14521,7 @@ contributed packages with the separate release available at
 directory for a list of contributed files. You may also find some more
 information on the Worg page: [[http://orgmode.org/worg/org-contrib/]].
 
-** A.3 Adding hyperlink types
+** A.3 Adding hyperlink types                                         <<#Adding-hyperlink-types>>
 
 Org has a large number of hyperlink types built-in (see
 [[#Hyperlinks][Hyperlinks]]). If you would like to add new link types,
@@ -16340,23 +16381,23 @@ Such names must start by an alphabetic character and use only
 alphanumeric/underscore characters.
 
 [fn:FOOT33]
-To insert a link targeting a headline, in-buffer completion can be used.
-Just type a star followed by a few optional letters into the buffer and
-press M-TAB. All headlines in the current buffer will be offered as
-completions.
+To insert a link targeting a headline, in-buffer completion can be
+used.  Just type a star followed by a few optional letters into the
+buffer and press */M-TAB/*. All headlines in the current buffer will
+be offered as completions.
 
 [fn:FOOT34]
 When targeting a =#+NAME= keyword, =#+CAPTION= keyword is mandatory in
-order to get proper numbering (see [[#Images-and-tables][Images and
-tables]]).
+order to get proper numbering (see [[#Images-and-tables][Images and tables]]).
 
 [fn:FOOT35]
-The actual behavior of the search will depend on the value of the option
-=org-link-search-must-match-exact-headline=. If its value is =nil=, then
-a fuzzy text search will be done. If it is t, then only the exact
-headline will be matched, ignoring spaces and cookies. If the value is
-=query-to-create=, then an exact headline will be searched; if it is not
-found, then the user will be queried to create it.
+The actual behavior of the search will depend on the value of the
+option =org-link-search-must-match-exact-headline=. If its value is
+=nil=, then a fuzzy text search will be done. If it is t, then only
+the exact headline will be matched, ignoring spaces and cookies. If
+the value is =query-to-create=, then an exact headline will be
+searched; if it is not found, then the user will be queried to create
+it.
 
 [fn:FOOT36]
 Headline searches always match the exact headline, ignoring spaces and
