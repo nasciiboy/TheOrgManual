@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>The Org Manual</title>
-<!-- 2015-08-29 sáb 14:33 -->
+<!-- 2015-08-29 sáb 17:51 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Carsten Dominik with contributiond by Bastien Guerry, Nicolas Goazion, Eric Schulte, Jambunathan K. Dan Davison, Thomas O`Thoole, and Philip Rooke." />
@@ -208,48 +208,60 @@
 </li>
 <li><a href="#sec-7">7 Properties and columns                                            </a>
 <ul>
-<li><a href="#sec-7-1">7.1 Property syntax</a></li>
-<li><a href="#sec-7-2">7.2 Special properties</a></li>
+<li><a href="#sec-7-1">7.1 Property syntax                                                </a></li>
+<li><a href="#sec-7-2">7.2 Special properties                                             </a></li>
 <li><a href="#sec-7-3">7.3 Property searches                                              </a></li>
-<li><a href="#sec-7-4">7.4 Property Inheritance</a></li>
-<li><a href="#sec-7-5">7.5 Column view</a>
+<li><a href="#sec-7-4">7.4 Property Inheritance                                           </a></li>
+<li><a href="#sec-7-5">7.5 Column view                                                    </a>
 <ul>
-<li><a href="#sec-7-5-1">7.5.1 Defining columns</a></li>
-<li><a href="#sec-7-5-2">7.5.1.1 Scope of column definitions</a></li>
-<li><a href="#sec-7-5-3">7.5.1.2 Column attributes</a></li>
-<li><a href="#sec-7-5-4">7.5.2 Using column view</a></li>
-<li><a href="#sec-7-5-5">7.5.3 Capturing column view</a></li>
+<li><a href="#sec-7-5-1">7.5.1 Defining columns                                            </a>
+<ul>
+<li><a href="#sec-7-5-1-1">7.5.1.1 Scope of column definitions                              </a></li>
+<li><a href="#sec-7-5-1-2">7.5.1.2 Column attributes                                        </a></li>
 </ul>
 </li>
-<li><a href="#sec-7-6">7.6 The Property API</a></li>
+<li><a href="#sec-7-5-2">7.5.2 Using column view                                           </a>
+<ul>
+<li><a href="#sec-7-5-2-1">Turning column view on and off</a></li>
+<li><a href="#sec-7-5-2-2">Editing values</a></li>
+<li><a href="#sec-7-5-2-3">Modifying the table structure</a></li>
+</ul>
+</li>
+<li><a href="#sec-7-5-3">7.5.3 Capturing column view                                       </a></li>
+</ul>
+</li>
+<li><a href="#sec-7-6">7.6 The Property API                                               </a></li>
 </ul>
 </li>
 <li><a href="#sec-8">8 Dates and times</a>
 <ul>
-<li><a href="#sec-8-1">8.1 Timestamps, deadlines, and scheduling</a></li>
+<li><a href="#sec-8-1">8.1 Timestamps, deadlines, and scheduling                          </a></li>
 <li><a href="#sec-8-2">8.2 Creating timestamps                                            </a>
 <ul>
-<li><a href="#sec-8-2-1">8.2.1 The date/time prompt</a></li>
-<li><a href="#sec-8-2-2">8.2.2 Custom time format</a></li>
+<li><a href="#sec-8-2-1">8.2.1 The date/time prompt                                        </a></li>
+<li><a href="#sec-8-2-2">8.2.2 Custom time format                                          </a></li>
 </ul>
 </li>
-<li><a href="#sec-8-3">8.3 Deadlines and scheduling</a>
+<li><a href="#sec-8-3">8.3 Deadlines and scheduling                                       </a>
 <ul>
-<li><a href="#sec-8-3-1">8.3.1 Inserting deadlines or schedules</a></li>
-<li><a href="#sec-8-3-2">8.3.2 Repeated tasks</a></li>
+<li><a href="#sec-8-3-1">8.3.1 Inserting deadlines or schedules                            </a></li>
+<li><a href="#sec-8-3-2">8.3.2 Repeated tasks                                              </a></li>
 </ul>
 </li>
 <li><a href="#sec-8-4">8.4 Clocking work time                                             </a>
 <ul>
-<li><a href="#sec-8-4-1">8.4.1 Clocking commands</a></li>
-<li><a href="#sec-8-4-2">8.4.2 The clock table</a></li>
-<li><a href="#sec-8-4-3">8.4.3 Resolving idle time and continuous clocking</a></li>
-<li><a href="#sec-8-4-4">Resolving idle time</a></li>
-<li><a href="#sec-8-4-5">Continuous clocking</a></li>
+<li><a href="#sec-8-4-1">8.4.1 Clocking commands                                           </a></li>
+<li><a href="#sec-8-4-2">8.4.2 The clock table                                             </a></li>
+<li><a href="#sec-8-4-3">8.4.3 Resolving idle time and continuous clocking                 </a>
+<ul>
+<li><a href="#sec-8-4-3-1">Resolving idle time</a></li>
+<li><a href="#sec-8-4-3-2">Continuous clocking</a></li>
 </ul>
 </li>
-<li><a href="#sec-8-5">8.5 Effort estimates</a></li>
-<li><a href="#sec-8-6">8.6 Taking notes with a timer</a></li>
+</ul>
+</li>
+<li><a href="#sec-8-5">8.5 Effort estimates                                               </a></li>
+<li><a href="#sec-8-6">8.6 Taking notes with a timer                                      </a></li>
 </ul>
 </li>
 <li><a href="#sec-9">9 Capture - Refile - Archive</a>
@@ -270,7 +282,7 @@
 <li><a href="#sec-9-5">9.5 Refile and copy                                                </a></li>
 <li><a href="#sec-9-6">9.6 Archiving</a>
 <ul>
-<li><a href="#sec-9-6-1">9.6.1 Moving a tree to the archive file</a></li>
+<li><a href="#sec-9-6-1">9.6.1 Moving a tree to the archive file                           </a></li>
 <li><a href="#sec-9-6-2">9.6.2 Internal archiving</a></li>
 </ul>
 </li>
@@ -642,11 +654,11 @@
 <li><a href="#sec-16-6-4">A.6.4 Radio lists</a></li>
 </ul>
 </li>
-<li><a href="#sec-16-7">A.7 Dynamic blocks</a></li>
+<li><a href="#sec-16-7">A.7 Dynamic blocks                                                 </a></li>
 <li><a href="#sec-16-8">A.8 Special agenda views</a></li>
 <li><a href="#sec-16-9">A.9 Speeding up your agendas                                       </a></li>
 <li><a href="#sec-16-10">A.10 Extracting agenda information</a></li>
-<li><a href="#sec-16-11">A.11 Using the property API</a></li>
+<li><a href="#sec-16-11">A.11 Using the property API                                        </a></li>
 <li><a href="#sec-16-12">A.12 Using the mapping API</a></li>
 </ul>
 </li>
@@ -6848,41 +6860,84 @@ description with many examples, see <a href="#Matching-tags-and-properties">Matc
 <h2 id="sec-7">7 Properties and columns                                            <a id="Properties-and-columns" name="Properties-and-columns"></a></h2>
 <div class="outline-text-2" id="text-7">
 <p>
-A property is a key-value pair associated with an entry. Properties can
-be set so they are associated with a single entry, with every entry in a
-tree, or with every entry in an Org mode file.
+A property is a key-value pair associated with an entry. Properties
+can be set so they are associated with a single entry, with every
+entry in a tree, or with every entry in an Org mode file.
 </p>
 
 <p>
 There are two main applications for properties in Org mode. First,
-properties are like tags, but with a value. Imagine maintaining a file
-where you document bugs and plan releases for a piece of software.
-Instead of using tags like <code>:release_1:</code>, <code>:release_2:</code>, you can use a
-property, say <code>:Release:</code>, that in different subtrees has different
-values, such as <code>1.0</code> or <code>2.0</code>. Second, you can use properties to
-implement (very basic) database capabilities in an Org buffer. Imagine
-keeping track of your music CDs, where properties could be things such
-as the album, artist, date of release, number of tracks, and so on.
+properties are like tags, but with a value. Imagine maintaining a
+file where you document bugs and plan releases for a piece of
+software.  Instead of using tags like <code>:release_1:</code>, <code>:release_2:</code>,
+you can use a property, say <code>:Release:</code>, that in different subtrees
+has different values, such as <code>1.0</code> or <code>2.0</code>. Second, you can use
+properties to implement (very basic) database capabilities in an Org
+buffer. Imagine keeping track of your music CDs, where properties
+could be things such as the album, artist, date of release, number
+of tracks, and so on.
 </p>
 
 <p>
 Properties can be conveniently edited and viewed in column view (see
-<i>Column view</i>).
+<a href="#Column-view">Column view</a>).
 </p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">• <a href="#Property-syntax">Property syntax</a>:</td>
+<td class="left">How properties are spelled out</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Special-properties">Special properties</a>:</td>
+<td class="left">Access to other Org mode features</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Property-searches">Property searches</a>:</td>
+<td class="left">Matching property values</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Property-inheritance">Property inheritance</a>:</td>
+<td class="left">Passing values down the tree</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Column-view">Column view</a>:</td>
+<td class="left">Tabular viewing and editing</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Property-API">Property API</a>:</td>
+<td class="left">Properties for Lisp programmers</td>
+</tr>
+</tbody>
+</table>
 </div>
 
+
 <div id="outline-container-sec-7-1" class="outline-3">
-<h3 id="sec-7-1">7.1 Property syntax</h3>
+<h3 id="sec-7-1">7.1 Property syntax                                                <a id="Property-syntax" name="Property-syntax"></a></h3>
 <div class="outline-text-3" id="text-7-1">
 <p>
-Properties are key-value pairs. When they are associated with a single
-entry or with a tree they need to be inserted into a special drawer (see
-<a href="#Drawers">Drawers</a>) with the name <code>PROPERTIES</code>, which has to be
+Properties are key-value pairs. When they are associated with a
+single entry or with a tree they need to be inserted into a special
+drawer (see <a href="#Drawers">Drawers</a>) with the name <code>PROPERTIES</code>, which has to be
 located right below a headline, and its planning line (see
-<i>Deadlines and scheduling</i>) when
-applicable. Each property is specified on a single line, with the key
-(surrounded by colons) first, and the value after it. Keys are
-case-insensitives. Here is an example:
+<a href="#Deadlines-and-scheduling">Deadlines and scheduling</a>) when applicable. Each property is
+specified on a single line, with the key (surrounded by colons)
+first, and the value after it. Keys are case-insensitives. Here is
+an example:
 </p>
 
 <pre class="example">
@@ -6890,42 +6945,42 @@ case-insensitives. Here is an example:
 ** Classic
 *** Goldberg Variations
     :PROPERTIES:
-    :Title:     Goldberg Variations
-    :Composer:  J.S. Bach
-    :Artist:    Glen Gould
-    :Publisher: Deutsche Grammophon
-    :NDisks:    1
-    :END:
+   :Title:     Goldberg Variations
+   :Composer:  J.S. Bach
+   :Artist:    Glen Gould
+   :Publisher: Deutsche Grammophon
+   :NDisks:    1
+   :END:
 </pre>
 
 <p>
-Depending on the value of <code>org-use-property-inheritance</code>, a property set
-this way will either be associated with a single entry, or the subtree
-defined by the entry, see <i>Property
-inheritance</i>.
+Depending on the value of <code>org-use-property-inheritance</code>, a
+property set this way will either be associated with a single
+entry, or the subtree defined by the entry, see <a href="#Property-inheritance">Property
+inheritance</a>.
 </p>
 
 <p>
-You may define the allowed values for a particular property ‘:Xyz:' by
-setting a property ‘:Xyz\<sub>ALL</sub>:'. This special property is <i>inherited</i>,
-so if you set it in a level 1 entry, it will apply to the entire tree.
-When allowed values are defined, setting the corresponding property
-becomes easier and is less prone to typing errors. For the example with
-the CD collection, we can predefine publishers and the number of disks
-in a box like this:
+You may define the allowed values for a particular property ‘:Xyz:'
+by setting a property ‘:Xyz\<sub>ALL</sub>:'. This special property is
+<i>inherited</i>, so if you set it in a level 1 entry, it will apply to
+the entire tree.  When allowed values are defined, setting the
+corresponding property becomes easier and is less prone to typing
+errors. For the example with the CD collection, we can predefine
+publishers and the number of disks in a box like this:
 </p>
 
 <pre class="example">
 * CD collection
   :PROPERTIES:
-  :NDisks_ALL:  1 2 3 4
-  :Publisher_ALL: "Deutsche Grammophon" Philips EMI
-  :END:
+ :NDisks_ALL:  1 2 3 4
+ :Publisher_ALL: "Deutsche Grammophon" Philips EMI
+ :END:
 </pre>
 
 <p>
-If you want to set properties that can be inherited by any entry in a
-file, use a line like
+If you want to set properties that can be inherited by any entry in
+a file, use a line like
 </p>
 
 <pre class="example">
@@ -6933,14 +6988,14 @@ file, use a line like
 </pre>
 
 <p>
-Contrary to properties set from a special drawer, you have to refresh
-the buffer with C-c C-c to activate this change.
+Contrary to properties set from a special drawer, you have to
+refresh the buffer with <b><i>C-c C-c</i></b> to activate this change.
 </p>
 
 <p>
-If you want to add to the value of an existing property, append a <code>+</code> to
-the property name. The following results in the property <code>var</code> having
-the value “foo=1 bar=2”.
+If you want to add to the value of an existing property, append a
+<code>+</code> to the property name. The following results in the property
+<code>var</code> having the value “foo=1 bar=2”.
 </p>
 
 <pre class="example">
@@ -6949,9 +7004,10 @@ the value “foo=1 bar=2”.
 </pre>
 
 <p>
-It is also possible to add to the values of inherited properties. The
-following results in the <code>genres</code> property having the value “Classic
-Baroque” under the <code>Goldberg Variations</code> subtree.
+It is also possible to add to the values of inherited
+properties. The following results in the <code>genres</code> property having
+the value “Classic Baroque” under the <code>Goldberg Variations</code>
+subtree.
 </p>
 
 <pre class="example">
@@ -6976,129 +7032,185 @@ Note that a property can only have one entry per Drawer.
 </p>
 
 <p>
-Property values set with the global variable <code>org-global-properties</code> can
-be inherited by all entries in all Org files.
+Property values set with the global variable
+<code>org-global-properties</code> can be inherited by all entries in all Org
+files.
 </p>
 
 <p>
 The following commands help to work with properties:
 </p>
 
-<p>
-M-TAB (<code>pcomplete</code>)
-</p>
+<ul class="org-ul">
+<li><b><i>M-TAB</i></b> (<code>pcomplete</code>)
 
 <p>
-After an initial colon in a line, complete property keys. All keys used
-in the current file will be offered as possible completions.
+After an initial colon in a line, complete property keys. All
+keys used in the current file will be offered as possible
+completions.
 </p>
+</li>
 
-<p>
-C-c C-x p (<code>org-set-property</code>)
-</p>
+<li><b><i>C-c C-x p</i></b> (<code>org-set-property</code>)
 
 <p>
 Set a property. This prompts for a property name and a value. If
 necessary, the property drawer is created as well.
 </p>
+</li>
+
+<li><b><i>C-u M-x org-insert-drawer RET</i></b>
 
 <p>
-C-u M-x org-insert-drawer RET
+Insert a property drawer into the current entry. The drawer will
+be inserted early in the entry, but after the lines with
+planning information like deadlines.
 </p>
+</li>
+
+<li><b><i>C-c C-c</i></b> (<code>org-property-action</code>)
 
 <p>
-Insert a property drawer into the current entry. The drawer will be
-inserted early in the entry, but after the lines with planning
-information like deadlines.
+With the cursor in a property drawer, this executes property
+commands.
 </p>
+</li>
+
+<li><b><i>C-c C-c s</i></b> (<code>org-set-property</code>)
 
 <p>
-C-c C-c (<code>org-property-action</code>)
+Set a property in the current entry. Both the property and the
+value can be inserted using completion.
 </p>
+</li>
 
-<p>
-With the cursor in a property drawer, this executes property commands.
-</p>
-
-<p>
-C-c C-c s (<code>org-set-property</code>)
-</p>
-
-<p>
-Set a property in the current entry. Both the property and the value can
-be inserted using completion.
-</p>
-
-<p>
-S-right (<code>org-property-next-allowed-value</code>)
-</p>
-
-<p>
-S-left (<code>org-property-previous-allowed-value</code>)
-</p>
+<li><b><i>S-right</i></b> (<code>org-property-next-allowed-value</code>)
+</li>
+<li><b><i>S-left</i></b> (<code>org-property-previous-allowed-value</code>)
 
 <p>
 Switch property at point to the next/previous allowed value.
 </p>
+</li>
 
-<p>
-C-c C-c d (<code>org-delete-property</code>)
-</p>
+<li><b><i>C-c C-c d</i></b> (<code>org-delete-property</code>)
 
 <p>
 Remove a property from the current entry.
 </p>
+</li>
+
+<li><b><i>C-c C-c D</i></b> (<code>org-delete-property-globally</code>)
 
 <p>
-C-c C-c D (<code>org-delete-property-globally</code>)
+Globally remove a property, from all entries in the current
+file.
 </p>
+</li>
+
+<li><b><i>C-c C-c c</i></b> (<code>org-compute-property-at-point</code>)
 
 <p>
-Globally remove a property, from all entries in the current file.
+Compute the property at point, using the operator and scope from
+the nearest column format definition.
 </p>
-
-<p>
-C-c C-c c (<code>org-compute-property-at-point</code>)
-</p>
-
-<p>
-Compute the property at point, using the operator and scope from the
-nearest column format definition.
-</p>
+</li>
+</ul>
 </div>
 </div>
 
 <div id="outline-container-sec-7-2" class="outline-3">
-<h3 id="sec-7-2">7.2 Special properties</h3>
+<h3 id="sec-7-2">7.2 Special properties                                             <a id="Special-properties" name="Special-properties"></a></h3>
 <div class="outline-text-3" id="text-7-2">
 <p>
 Special properties provide an alternative access method to Org mode
-features, like the TODO state or the priority of an entry, discussed in
-the previous chapters. This interface exists so that you can include
-these states in a column view (see <i>Column view</i>), or to
-use them in queries. The following property names are special and should
-not be used as keys in the properties drawer:
+features, like the TODO state or the priority of an entry,
+discussed in the previous chapters. This interface exists so that
+you can include these states in a column view (see <a href="#Column-view">Column view</a>), or
+to use them in queries. The following property names are special
+and should not be used as keys in the properties drawer:
 </p>
 
-<pre class="example">
-ALLTAGS      All tags, including inherited ones.
-BLOCKED      "t" if task is currently blocked by children or siblings.
-CLOCKSUM     The sum of CLOCK intervals in the subtree.  org-clock-sum
-             must be run first to compute the values in the current buffer.
-CLOCKSUM_T   The sum of CLOCK intervals in the subtree for today.
-             org-clock-sum-today must be run first to compute the
-             values in the current buffer.
-CLOSED       When was this entry closed?
-DEADLINE     The deadline time string, without the angular brackets.
-FILE         The filename the entry is located in.
-ITEM         The headline of the entry, with stars.
-PRIORITY     The priority of the entry, a string with a single letter.
-SCHEDULED    The scheduling timestamp, without the angular brackets.
-TAGS         The tags defined directly in the headline.
-TIMESTAMP    The first keyword-less timestamp in the entry.
-TIMESTAMP_IA The first inactive timestamp in the entry.
-TODO         The TODO keyword of the entry.
-</pre>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left"><code>ALLTAGS</code></td>
+<td class="left">All tags, including inherited ones.</td>
+</tr>
+
+<tr>
+<td class="left"><code>BLOCKED</code></td>
+<td class="left">"t" if task is currently blocked by children or siblings.</td>
+</tr>
+
+<tr>
+<td class="left"><code>CLOCKSUM</code></td>
+<td class="left">The sum of CLOCK intervals in the subtree.  <code>org-clock-sum</code> must be run first to compute the values in the current buffer.</td>
+</tr>
+
+<tr>
+<td class="left"><code>CLOCKSUM_T</code></td>
+<td class="left">The sum of CLOCK intervals in the subtree for today. <code>org-clock-sum-today</code> must be run first to compute the values in the current buffer.</td>
+</tr>
+
+<tr>
+<td class="left"><code>CLOSED</code></td>
+<td class="left">When was this entry closed?</td>
+</tr>
+
+<tr>
+<td class="left"><code>DEADLINE</code></td>
+<td class="left">The deadline time string, without the angular brackets.</td>
+</tr>
+
+<tr>
+<td class="left"><code>FILE</code></td>
+<td class="left">The filename the entry is located in.</td>
+</tr>
+
+<tr>
+<td class="left"><code>ITEM</code></td>
+<td class="left">The headline of the entry, with stars.</td>
+</tr>
+
+<tr>
+<td class="left"><code>PRIORITY</code></td>
+<td class="left">The priority of the entry, a string with a single letter.</td>
+</tr>
+
+<tr>
+<td class="left"><code>SCHEDULED</code></td>
+<td class="left">The scheduling timestamp, without the angular brackets.</td>
+</tr>
+
+<tr>
+<td class="left"><code>TAGS</code></td>
+<td class="left">The tags defined directly in the headline.</td>
+</tr>
+
+<tr>
+<td class="left"><code>TIMESTAMP</code></td>
+<td class="left">The first keyword-less timestamp in the entry.</td>
+</tr>
+
+<tr>
+<td class="left"><code>TIMESTAMP_IA</code></td>
+<td class="left">The first inactive timestamp in the entry.</td>
+</tr>
+
+<tr>
+<td class="left"><code>TODO</code></td>
+<td class="left">The TODO keyword of the entry.</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 
@@ -7107,143 +7219,191 @@ TODO         The TODO keyword of the entry.
 <div class="outline-text-3" id="text-7-3">
 <p>
 To create sparse trees and special lists with selection based on
-properties, the same commands are used as for tag searches (see
-<a href="#Tag-searches">Tag searches</a>).
+properties, the same commands are used as for tag searches (see <a href="#Tag-searches">Tag
+searches</a>).
 </p>
 
-<p>
-C-c / m or C-c \ (<code>org-match-sparse-tree</code>)
-</p>
+<ul class="org-ul">
+<li><b><i>C-c / m</i></b> or <b>/C-c \ /</b> (<code>org-match-sparse-tree</code>)
 
 <p>
 Create a sparse tree with all matching entries. With a C-u prefix
 argument, ignore headlines that are not a TODO line.
 </p>
+</li>
+
+<li><b><i>C-c a m</i></b> (<code>org-tags-view</code>)
 
 <p>
-C-c a m (<code>org-tags-view</code>)
+Create a global list of tag/property matches from all agenda
+files. See <a href="#Matching-tags-and-properties">Matching tags and properties</a>.
+</p>
+</li>
+
+<li><b><i>C-c a M</i></b> (<code>org-tags-view</code>)
+
+<p>
+Create a global list of tag matches from all agenda files, but
+check only TODO items and force checking of subitems (see the
+option <code>org-tags-match-list-sublevels</code>).
+</p>
+</li>
+</ul>
+
+<p>
+The syntax for the search string is described in <a href="#Matching-tags-and-properties">Matching tags and
+properties</a>.
 </p>
 
 <p>
-Create a global list of tag/property matches from all agenda files. See
-<a href="#Matching-tags-and-properties">Matching tags and properties</a>.
+There is also a special command for creating sparse trees based on
+a single property:
 </p>
 
-<p>
-C-c a M (<code>org-tags-view</code>)
-</p>
+<ul class="org-ul">
+<li><b><i>C-c / p</i></b>
 
 <p>
-Create a global list of tag matches from all agenda files, but check
-only TODO items and force checking of subitems (see the option
-<code>org-tags-match-list-sublevels</code>).
+Create a sparse tree based on the value of a property. This
+first prompts for the name of a property, and then for a
+value. A sparse tree is created with all entries that define
+this property with the given value. If you enclose the value in
+curly braces, it is interpreted as a regular expression and
+matched against the property values.
 </p>
-
-<p>
-The syntax for the search string is described in
-<a href="#Matching-tags-and-properties">Matching tags and properties</a>.
-</p>
-
-<p>
-There is also a special command for creating sparse trees based on a
-single property:
-</p>
-
-<p>
-C-c / p
-</p>
-
-<p>
-Create a sparse tree based on the value of a property. This first
-prompts for the name of a property, and then for a value. A sparse tree
-is created with all entries that define this property with the given
-value. If you enclose the value in curly braces, it is interpreted as a
-regular expression and matched against the property values.
-</p>
+</li>
+</ul>
 </div>
 </div>
 
 <div id="outline-container-sec-7-4" class="outline-3">
-<h3 id="sec-7-4">7.4 Property Inheritance</h3>
+<h3 id="sec-7-4">7.4 Property Inheritance                                           <a id="Property-inheritance" name="Property-inheritance"></a></h3>
 <div class="outline-text-3" id="text-7-4">
 <p>
 The outline structure of Org mode documents lends itself to an
-inheritance model of properties: if the parent in a tree has a certain
-property, the children can inherit this property. Org mode does not turn
-this on by default, because it can slow down property searches
-significantly and is often not needed. However, if you find inheritance
-useful, you can turn it on by setting the variable
+inheritance model of properties: if the parent in a tree has a
+certain property, the children can inherit this property. Org mode
+does not turn this on by default, because it can slow down property
+searches significantly and is often not needed. However, if you
+find inheritance useful, you can turn it on by setting the variable
 <code>org-use-property-inheritance</code>. It may be set to <code>t</code> to make all
 properties inherited from the parent, to a list of properties that
-should be inherited, or to a regular expression that matches inherited
-properties. If a property has the value <code>nil</code>, this is interpreted as an
-explicit undefine of the property, so that inheritance search will stop
-at this value and return <code>nil</code>.
+should be inherited, or to a regular expression that matches
+inherited properties. If a property has the value <code>nil</code>, this is
+interpreted as an explicit undefine of the property, so that
+inheritance search will stop at this value and return <code>nil</code>.
 </p>
 
 <p>
-Org mode has a few properties for which inheritance is hard-coded, at
-least for the special applications for which they are used:
+Org mode has a few properties for which inheritance is hard-coded,
+at least for the special applications for which they are used:
 </p>
 
 <dl class="org-dl">
-<dt> <code>COLUMNS</code> </dt><dd>The <code>:COLUMNS:</code> property defines the format of column
-view (see <i>Column view</i>). It is inherited in the
-sense that the level where a <code>:COLUMNS:</code> property is defined is used
-as the starting point for a column view table, independently of the
-location in the subtree from where columns view is turned on.
+<dt> <code>COLUMNS</code> </dt><dd>      The <code>:COLUMNS:</code> property defines the format of column view (see
+<a href="#Column-view">Column view</a>). It is inherited in the sense that the level where
+a <code>:COLUMNS:</code> property is defined is used as the starting point
+for a column view table, independently of the location in the
+subtree from where columns view is turned on.
 </dd>
 
-<dt> <code>CATEGORY</code> </dt><dd>For agenda view, a category set through a <code>:CATEGORY:</code>
-   property applies to the entire subtree.
+<dt> <code>CATEGORY</code> </dt><dd>      For agenda view, a category set through a <code>:CATEGORY:</code> property
+applies to the entire subtree.
 </dd>
 
-<dt> <code>ARCHIVE</code> </dt><dd>For archiving, the <code>:ARCHIVE:</code> property may define the
-archive location for the entire subtree (see
-<i>Moving subtrees</i>).
+<dt> <code>ARCHIVE</code> </dt><dd>      For archiving, the <code>:ARCHIVE:</code> property may define the archive
+location for the entire subtree (see <a href="#Moving-subtrees">Moving subtrees</a>).
 </dd>
 
-<dt> <code>LOGGING</code> </dt><dd>The LOGGING property may define logging settings for an
-entry or a subtree (see <a href="#Tracking-TODO-state-changes">Tracking TODO
-state changes</a>).
+<dt> <code>LOGGING</code> </dt><dd>      The LOGGING property may define logging settings for an entry or
+a subtree (see <a href="#Tracking-TODO-state-changes">Tracking TODO state changes</a>).
 </dd>
 </dl>
 </div>
 </div>
 
 <div id="outline-container-sec-7-5" class="outline-3">
-<h3 id="sec-7-5">7.5 Column view</h3>
+<h3 id="sec-7-5">7.5 Column view                                                    <a id="Column-view" name="Column-view"></a></h3>
 <div class="outline-text-3" id="text-7-5">
 <p>
-A great way to view and edit properties in an outline tree is <i>column
-view</i>. In column view, each outline node is turned into a table row.
-Columns in this table provide access to properties of the entries. Org
-mode implements columns by overlaying a tabular structure over the
-headline of each item. While the headlines have been turned into a table
-row, you can still change the visibility of the outline tree. For
-example, you get a compact table by switching to CONTENTS view (S-TAB
-S-TAB, or simply c while column view is active), but you can still open,
-read, and edit the entry below each headline. Or, you can switch to
-column view after executing a sparse tree command and in this way get a
-table only for the selected items. Column view also works in agenda
-buffers (see <a href="#Agenda-views">Agenda views</a>) where queries have
-collected selected items, possibly from a number of files.
+A great way to view and edit properties in an outline tree is
+<i>column view</i>. In column view, each outline node is turned into a
+table row.  Columns in this table provide access to properties of
+the entries. Org mode implements columns by overlaying a tabular
+structure over the headline of each item. While the headlines have
+been turned into a table row, you can still change the visibility
+of the outline tree. For example, you get a compact table by
+switching to CONTENTS view (<b><i>S-TAB S-TAB</i></b>, or simply c while
+column view is active), but you can still open, read, and edit the
+entry below each headline. Or, you can switch to column view after
+executing a sparse tree command and in this way get a table only
+for the selected items. Column view also works in agenda buffers
+(see <a href="#Agenda-views">Agenda views</a>) where queries have collected selected items,
+possibly from a number of files.
 </p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">• <a href="#Defining-columns">Defining columns</a>:</td>
+<td class="left">The COLUMNS format property</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Using-column-view">Using column view</a>:</td>
+<td class="left">How to create and use column view</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Capturing-column-view">Capturing column view</a>:</td>
+<td class="left">A dynamic block for column view</td>
+</tr>
+</tbody>
+</table>
 </div>
+
 
 <div id="outline-container-sec-7-5-1" class="outline-4">
-<h4 id="sec-7-5-1">7.5.1 Defining columns</h4>
+<h4 id="sec-7-5-1">7.5.1 Defining columns                                            <a id="Defining-columns" name="Defining-columns"></a></h4>
 <div class="outline-text-4" id="text-7-5-1">
 <p>
-Setting up a column view first requires defining the columns. This is
-done by defining a column format line.
+Setting up a column view first requires defining the columns. This
+is done by defining a column format line.
 </p>
-</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">• <a href="#Scope-of-column-definitions">Scope of column definitions</a>:</td>
+<td class="left">Where defined, where valid?</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Column-attributes">Column attributes</a>:</td>
+<td class="left">Appearance and content of a column</td>
+</tr>
+</tbody>
+</table>
 </div>
 
-<div id="outline-container-sec-7-5-2" class="outline-4">
-<h4 id="sec-7-5-2">7.5.1.1 Scope of column definitions</h4>
-<div class="outline-text-4" id="text-7-5-2">
+
+<div id="outline-container-sec-7-5-1-1" class="outline-5">
+<h5 id="sec-7-5-1-1">7.5.1.1 Scope of column definitions                              <a id="Scope-of-column-definitions" name="Scope-of-column-definitions"></a></h5>
+<div class="outline-text-5" id="text-7-5-1-1">
 <p>
 To define a column format for an entire file, use a line like
 </p>
@@ -7260,24 +7420,24 @@ To specify a format that only applies to a specific tree, add a
 <pre class="example">
 ** Top node for columns view
    :PROPERTIES:
-   :COLUMNS: %25ITEM %TAGS %PRIORITY %TODO
-   :END:
+ :COLUMNS: %25ITEM %TAGS %PRIORITY %TODO
+ :END:
 </pre>
 
 <p>
-If a <code>:COLUMNS:</code> property is present in an entry, it defines columns for
-the entry itself, and for the entire subtree below it. Since the column
-definition is part of the hierarchical structure of the document, you
-can define columns on level 1 that are general enough for all sublevels,
-and more specific columns further down, when you edit a deeper part of
-the tree.
+If a <code>:COLUMNS:</code> property is present in an entry, it defines
+columns for the entry itself, and for the entire subtree below
+it. Since the column definition is part of the hierarchical
+structure of the document, you can define columns on level 1 that
+are general enough for all sublevels, and more specific columns
+further down, when you edit a deeper part of the tree.
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-7-5-3" class="outline-4">
-<h4 id="sec-7-5-3">7.5.1.2 Column attributes</h4>
-<div class="outline-text-4" id="text-7-5-3">
+<div id="outline-container-sec-7-5-1-2" class="outline-5">
+<h5 id="sec-7-5-1-2">7.5.1.2 Column attributes                                        <a id="Column-attributes" name="Column-attributes"></a></h5>
+<div class="outline-text-5" id="text-7-5-1-2">
 <p>
 A column definition sets the attributes of a column. The general
 definition looks like this:
@@ -7292,191 +7452,370 @@ Except for the percent sign and the property name, all items are
 optional. The individual parts have the following meaning:
 </p>
 
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="left">width</th>
+<th scope="col" class="left">An integer specifying the width of the column in characters.</th>
+</tr>
+
+<tr>
+<th scope="col" class="left">&#xa0;</th>
+<th scope="col" class="left">If omitted, the width will be determined automatically.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="left">property</td>
+<td class="left">The property that should be edited in this column.</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">Special properties representing meta data are allowed here as well (see <a href="#Special-properties">Special properties</a>)</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">title</td>
+<td class="left">The header text for the column.  If omitted, the property name is used.</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="left">{summary-type}</td>
+<td class="left">The summary type.  If specified, the column values for parent nodes are computed from the children.</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">Supported summary types are:</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">{\+}       Sum numbers in this column.</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">{\+;%.1f}  Like ‘+’, but format result with ‘%.1f’.</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">{$}       Currency, short for ‘+;%.2f’.</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">{:}       Sum times, HH:MM, plain numbers are hours.</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">{X}       Checkbox status, ‘[X]’ if all children are ‘[X]’.</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">{X/}      Checkbox status, ‘[n/m]’.</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">{X%}      Checkbox status, ‘[n%]’.</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">{min}     Smallest number in column.</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">{max}     Largest number.</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">{mean}    Arithmetic mean of numbers.</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">{:min}    Smallest time value in column.</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">{:max}    Largest time value.</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">{:mean}   Arithmetic mean of time values.</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">{@min}    Minimum age (in days/hours/mins/seconds).</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">{@max}    Maximum age (in days/hours/mins/seconds).</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">{@mean}   Arithmetic mean of ages (in days/hours/mins/seconds).</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">{est+}    Add ‘low-high’ estimates.</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+Be aware that you can only have one summary type for any property
+you include. Subsequent columns referencing the same property
+will all display the same summary information.
+</p>
+
+<p>
+The <code>est+</code> summary type requires further explanation. It is used
+for combining estimates, expressed as ‘low-high' ranges or plain
+numbers.  For example, instead of estimating a particular task
+will take 5 days, you might estimate it as 5&#x2013;6 days if you're
+fairly confident you know how much work is required, or 1&#x2013;10
+days if you don't really know what needs to be done. Both ranges
+average at 5.5 days, but the first represents a more predictable
+delivery.
+</p>
+
+<p>
+When combining a set of such estimates, simply adding the lows
+and highs produces an unrealistically wide result. Instead,
+<code>est+</code> adds the statistical mean and variance of the sub-tasks,
+generating a final estimate from the sum. For example, suppose
+you had ten tasks, each of which was estimated at 0.5 to 2 days
+of work. Straight addition produces an estimate of 5 to 20 days,
+representing what to expect if everything goes either extremely
+well or extremely poorly. In contrast, <code>est+</code> estimates the full
+job more realistically, at 10&#x2013;15 days.
+</p>
+
+<p>
+Numbers are right-aligned when a format specifier with an
+explicit width like <code>%5d</code> or <code>%5.1f</code> is used.
+</p>
+
+<p>
+Here is an example for a complete columns definition, along with
+allowed values.
+</p>
+
 <pre class="example">
-width           An integer specifying the width of the column in characters.
-                If omitted, the width will be determined automatically.
-property        The property that should be edited in this column.
-                Special properties representing meta data are allowed here
-                as well (see Special properties)
-title           The header text for the column.  If omitted, the property
-                name is used.
-{summary-type}  The summary type.  If specified, the column values for
-                parent nodes are computed from the children.
-                Supported summary types are:
-                {+}       Sum numbers in this column.
-                {+;%.1f}  Like ‘+’, but format result with ‘%.1f’.
-                {$}       Currency, short for ‘+;%.2f’.
-                {:}       Sum times, HH:MM, plain numbers are hours.
-                {X}       Checkbox status, ‘[X]’ if all children are ‘[X]’.
-                {X/}      Checkbox status, ‘[n/m]’.
-                {X%}      Checkbox status, ‘[n%]’.
-                {min}     Smallest number in column.
-                {max}     Largest number.
-                {mean}    Arithmetic mean of numbers.
-                {:min}    Smallest time value in column.
-                {:max}    Largest time value.
-                {:mean}   Arithmetic mean of time values.
-                {@min}    Minimum age (in days/hours/mins/seconds).
-                {@max}    Maximum age (in days/hours/mins/seconds).
-                {@mean}   Arithmetic mean of ages (in days/hours/mins/seconds).
-                {est+}    Add ‘low-high’ estimates.
-</pre>
-
-<p>
-Be aware that you can only have one summary type for any property you
-include. Subsequent columns referencing the same property will all
-display the same summary information.
-</p>
-
-<p>
-The <code>est+</code> summary type requires further explanation. It is used for
-combining estimates, expressed as ‘low-high' ranges or plain numbers.
-For example, instead of estimating a particular task will take 5 days,
-you might estimate it as 5&#x2013;6 days if you're fairly confident you know
-how much work is required, or 1&#x2013;10 days if you don't really know what
-needs to be done. Both ranges average at 5.5 days, but the first
-represents a more predictable delivery.
-</p>
-
-<p>
-When combining a set of such estimates, simply adding the lows and highs
-produces an unrealistically wide result. Instead, <code>est+</code> adds the
-statistical mean and variance of the sub-tasks, generating a final
-estimate from the sum. For example, suppose you had ten tasks, each of
-which was estimated at 0.5 to 2 days of work. Straight addition produces
-an estimate of 5 to 20 days, representing what to expect if everything
-goes either extremely well or extremely poorly. In contrast, <code>est+</code>
-estimates the full job more realistically, at 10&#x2013;15 days.
-</p>
-
-<p>
-Numbers are right-aligned when a format specifier with an explicit width
-like <code>%5d</code> or <code>%5.1f</code> is used.
-</p>
-
-<p>
-Here is an example for a complete columns definition, along with allowed
-values.
-</p>
-
-<pre class="example">
-:COLUMNS:  %25ITEM %9Approved(Approved?){X} %Owner %11Status \(64)
+:COLUMNS:  %25ITEM %9Approved(Approved?){X} %Owner %11Status \ [fn:FOOT64]
                    %10Time_Estimate{:} %CLOCKSUM %CLOCKSUM_T
-:Owner_ALL:    Tammy Mark Karl Lisa Don
-:Status_ALL:   "In progress" "Not started yet" "Finished" ""
+:Owner_ALL: Tammy Mark Karl Lisa Don
+:Status_ALL: "In progress" "Not started yet" "Finished" ""
 :Approved_ALL: "[ ]" "[X]"
 </pre>
 
 <p>
-The first column, ‘%25ITEM', means the first 25 characters of the item
-itself, i.e., of the headline. You probably always should start the
-column definition with the ‘ITEM' specifier. The other specifiers create
-columns ‘Owner' with a list of names as allowed values, for ‘Status'
-with four different possible values, and for a checkbox field
-‘Approved'. When no width is given after the ‘%' character, the column
-will be exactly as wide as it needs to be in order to fully display all
-values. The ‘Approved' column does have a modified title (‘Approved?',
-with a question mark). Summaries will be created for the
-‘Time\<sub>Estimate'</sub> column by adding time duration expressions like HH:MM,
-and for the ‘Approved' column, by providing an ‘[X]' status if all
-children have been checked. The ‘CLOCKSUM' and ‘CLOCKSUM\<sub>T'</sub> columns are
-special, they lists the sums of CLOCK intervals in the subtree, either
-for all clocks or just for today.
+The first column, ‘%25ITEM', means the first 25 characters of the
+item itself, i.e., of the headline. You probably always should
+start the column definition with the ‘ITEM' specifier. The other
+specifiers create columns ‘Owner' with a list of names as allowed
+values, for ‘Status' with four different possible values, and for
+a checkbox field ‘Approved'. When no width is given after the ‘%'
+character, the column will be exactly as wide as it needs to be
+in order to fully display all values. The ‘Approved' column does
+have a modified title (‘Approved?', with a question
+mark). Summaries will be created for the ‘Time<sub>Estimate'</sub> column
+by adding time duration expressions like HH:MM, and for the
+‘Approved' column, by providing an ‘[X]' status if all children
+have been checked. The ‘CLOCKSUM' and ‘CLOCKSUM<sub>T'</sub> columns are
+special, they lists the sums of CLOCK intervals in the subtree,
+either for all clocks or just for today.
 </p>
 </div>
 </div>
+</div>
 
-<div id="outline-container-sec-7-5-4" class="outline-4">
-<h4 id="sec-7-5-4">7.5.2 Using column view</h4>
-<div class="outline-text-4" id="text-7-5-4">
-<dl class="org-dl">
-<dt> <b>Turning column view on and off</b> </dt><dd></dd>
-<dt> C-c C-x C-c (<code>org-columns</code>) </dt><dd>Turn on column view. If the cursor
-is before the first headline in the file, column view is turned on
-for the entire file, using the <code>#+COLUMNS</code> definition. If the cursor
-is somewhere inside the outline, this command searches the hierarchy,
-up from point, for a <code>:COLUMNS:</code> property that defines a format. When
-one is found, the column view table is established for the tree
-starting at the entry that contains the <code>:COLUMNS:</code> property. If no
-such property is found, the format is taken from the <code>#+COLUMNS</code> line
-or from the variable <code>org-columns-default-format</code>, and column view is
-established for the current entry and its subtree.
-</dd>
+<div id="outline-container-sec-7-5-2" class="outline-4">
+<h4 id="sec-7-5-2">7.5.2 Using column view                                           <a id="Using-column-view" name="Using-column-view"></a></h4>
+<div class="outline-text-4" id="text-7-5-2">
+</div><div id="outline-container-sec-7-5-2-1" class="outline-5">
+<h5 id="sec-7-5-2-1">Turning column view on and off</h5>
+<div class="outline-text-5" id="text-7-5-2-1">
+<ul class="org-ul">
+<li><b><i>C-c C-x C-c</i></b> (<code>org-columns</code>)
 
-<dt> r (<code>org-columns-redo</code>) </dt><dd>Recreate the column view, to include
-recent changes made in the buffer.
-</dd>
+<p>
+Turn on column view. If the cursor is before the first headline
+in the file, column view is turned on for the entire file,
+using the <code>#+COLUMNS</code> definition. If the cursor is somewhere
+inside the outline, this command searches the hierarchy, up
+from point, for a <code>:COLUMNS:</code> property that defines a
+format. When one is found, the column view table is established
+for the tree starting at the entry that contains the
+<code>:COLUMNS:</code> property. If no such property is found, the format
+is taken from the <code>#+COLUMNS</code> line or from the variable
+<code>org-columns-default-format</code>, and column view is established
+for the current entry and its subtree.
+</p>
+</li>
 
-<dt> g (<code>org-columns-redo</code>) </dt><dd>Same as r.
-</dd>
+<li><b><i>r</i></b> (<code>org-columns-redo</code>)
 
-<dt> q (<code>org-columns-quit</code>) </dt><dd>Exit column view.
-</dd>
+<p>
+Recreate the column view, to include recent changes made in the
+buffer.
+</p>
+</li>
 
-<dt> (no term) </dt><dd><b>Editing values</b><br  />
-   left right up down :: Move through the column view from field to
-field.
-</dd>
+<li><b><i>g</i></b> (<code>org-columns-redo</code>)
 
-<dt> S-left/right </dt><dd>Switch to the next/previous allowed value of the
-field. For this, you have to have specified allowed values for a
-property.
-</dd>
+<p>
+Same as r.
+</p>
+</li>
 
-<dt> 1..9,0 </dt><dd>Directly select the Nth allowed value, 0 selects the 10th
+<li><b><i>q</i></b> (<code>org-columns-quit</code>)
+
+<p>
+Exit column view.
+</p>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-7-5-2-2" class="outline-5">
+<h5 id="sec-7-5-2-2">Editing values</h5>
+<div class="outline-text-5" id="text-7-5-2-2">
+<ul class="org-ul">
+<li>(<code>left right up down</code>)
+
+<p>
+Move through the column view from field to field.
+</p>
+</li>
+
+<li><b><i>S-left/right</i></b>
+
+<p>
+Switch to the next/previous allowed value of the field. For
+this, you have to have specified allowed values for a property.
+</p>
+</li>
+
+<li><b><i>1..9,0</i></b>
+
+<p>
+Directly select the Nth allowed value, 0 selects the 10th
 value.
-</dd>
+</p>
+</li>
 
-<dt> (no term) </dt><dd>n (<code>org-columns-next-allowed-value</code>)<br  />
-   p (<code>org-columns-previous-allowed-value</code>) :: Same as S-left/right
-</dd>
+<li><b><i>n</i></b> (<code>org-columns-next-allowed-value</code>)<br  />
+</li>
+<li><b><i>p</i></b> (<code>org-columns-previous-allowed-value</code>)
 
-<dt> e (<code>org-columns-edit-value</code>) </dt><dd>Edit the property at point. For
-the special properties, this will invoke the same interface that you
-normally use to change that property. For example, when editing a
-TAGS property, the tag completion or fast selection interface will
-pop up.
-</dd>
+<p>
+Same as S-left/right
+</p>
+</li>
 
-<dt> C-c C-c (<code>org-columns-set-tags-or-toggle</code>) </dt><dd>When there is a
-checkbox at point, toggle it.
-</dd>
+<li><b><i>e</i></b> (<code>org-columns-edit-value</code>)
 
-<dt> v (<code>org-columns-show-value</code>) </dt><dd>View the full value of this
-property. This is useful if the width of the column is smaller than
-that of the value.
-</dd>
+<p>
+Edit the property at point. For the special properties, this
+will invoke the same interface that you normally use to change
+that property. For example, when editing a TAGS property, the
+tag completion or fast selection interface will pop up.
+</p>
+</li>
 
-<dt> a (<code>org-columns-edit-allowed</code>) </dt><dd>Edit the list of allowed values
-for this property. If the list is found in the hierarchy, the
-modified value is stored there. If no list is found, the new value is
-stored in the first entry that is part of the current column view.
-</dd>
+<li><b><i>C-c C-c</i></b> (<code>org-columns-set-tags-or-toggle</code>)
 
-<dt> <b>Modifying the table structure</b> </dt><dd></dd>
-<dt> (no term) </dt><dd>&lt; (<code>org-columns-narrow</code>)<br  />
-   &gt; (<code>org-columns-widen</code>) :: Make the column narrower/wider by one
-character.
-</dd>
+<p>
+When there is a checkbox at point, toggle it.
+</p>
+</li>
 
-<dt> S-M-right (<code>org-columns-new</code>) </dt><dd>Insert a new column, to the left
-of the current column.
-</dd>
+<li><b><i>v</i></b> (<code>org-columns-show-value</code>)
 
-<dt> S-M-left (<code>org-columns-delete</code>) </dt><dd>Delete the current column.
-</dd>
-</dl>
+<p>
+View the full value of this property. This is useful if the
+width of the column is smaller than that of the value.
+</p>
+</li>
+
+<li><b><i>a</i></b> (<code>org-columns-edit-allowed</code>)
+
+<p>
+Edit the list of allowed values for this property. If the list is
+found in the hierarchy, the modified value is stored there. If no
+list is found, the new value is stored in the first entry that is
+part of the current column view.
+</p>
+</li>
+</ul>
 </div>
 </div>
 
-<div id="outline-container-sec-7-5-5" class="outline-4">
-<h4 id="sec-7-5-5">7.5.3 Capturing column view</h4>
-<div class="outline-text-4" id="text-7-5-5">
+<div id="outline-container-sec-7-5-2-3" class="outline-5">
+<h5 id="sec-7-5-2-3">Modifying the table structure</h5>
+<div class="outline-text-5" id="text-7-5-2-3">
+<ul class="org-ul">
+<li><b><i>&lt;</i></b> (<code>org-columns-narrow</code>)
+</li>
+<li><b><i>&gt;</i></b> (<code>org-columns-widen</code>)
+
+<p>
+Make the column narrower/wider by one character.
+</p>
+</li>
+
+<li><b><i>S-M-right</i></b> (<code>org-columns-new</code>)
+
+<p>
+Insert a new column, to the left of the current column.
+</p>
+</li>
+
+<li><b><i>S-M-left</i></b> (<code>org-columns-delete</code>)
+
+<p>
+Delete the current column.
+</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-7-5-3" class="outline-4">
+<h4 id="sec-7-5-3">7.5.3 Capturing column view                                       <a id="Capturing-column-view" name="Capturing-column-view"></a></h4>
+<div class="outline-text-4" id="text-7-5-3">
 <p>
 Since column view is just an overlay over a buffer, it cannot be
-exported or printed directly. If you want to capture a column view, use
-a <code>columnview</code> dynamic block (see <i>Dynamic blocks</i>).
-The frame of this block looks like this:
+exported or printed directly. If you want to capture a column
+view, use a <code>columnview</code> dynamic block (see <a href="#Dynamic-blocks">Dynamic blocks</a>).  The
+frame of this block looks like this:
 </p>
 
 <pre class="example">
@@ -7490,100 +7829,139 @@ The frame of this block looks like this:
 This dynamic block has the following parameters:
 </p>
 
-<dl class="org-dl">
-<dt> <code>:id</code> </dt><dd>This is the most important parameter. Column view is a
-feature that is often localized to a certain (sub)tree, and the
-capture block might be at a different location in the file. To
-identify the tree whose view to capture, you can use 4 values:
+<ul class="org-ul">
+<li><code>:id</code>
 
-<pre class="example">
-local     use the tree in which the capture block is located
-global    make a global view, including all headings in the file
-"file:path-to-file"
-          run column view at the top of this file
-"ID"      call column view in the tree that has an :ID:
-          property with the value label.  You can use
-          M-x org-id-copy RET to create a globally unique ID for
-          the current entry and copy it to the kill-ring.
-</pre>
-</dd>
+<p>
+This is the most important parameter. Column view is a feature
+that is often localized to a certain (sub)tree, and the capture
+block might be at a different location in the file. To identify
+the tree whose view to capture, you can use 4 values:
+</p>
 
-<dt> <code>:hlines</code> </dt><dd>When <code>t</code>, insert an hline after every line. When a
-number N, insert an hline before each headline with level <code>&lt;</code> N=.
-</dd>
+<ul class="org-ul">
+<li>local
 
-<dt> <code>:vlines</code> </dt><dd>When set to <code>t</code>, force column groups to get vertical
-lines.
-</dd>
+<p>
+use the tree in which the capture block is located
+</p>
+</li>
+<li>global
 
-<dt> <code>:maxlevel</code> </dt><dd>When set to a number, don't capture entries below this
-level.
-</dd>
+<p>
+make a global view, including all headings in the file
+</p>
+</li>
 
-<dt> <code>:skip-empty-rows</code> </dt><dd>When set to <code>t</code>, skip rows where the only
-non-empty specifier of the column view is <code>ITEM</code>.
-</dd>
-</dl>
+<li><code>file:path-to-file</code>
+
+<p>
+run column view at the top of this file
+</p>
+</li>
+
+<li>"ID"
+
+<p>
+call column view in the tree that has an <code>:ID:</code> property
+with the value label.  You can use <b><i>M-x org-id-copy RET</i></b>
+to create a globally unique ID for the current entry and
+copy it to the kill-ring.
+</p>
+</li>
+</ul>
+</li>
+
+<li><code>:hlines</code>
+
+<p>
+When <code>t</code>, insert an hline after every line. When a number N,
+insert an hline before each headline with level <code>&lt;</code> N=.
+</p>
+</li>
+
+<li><code>:vlines</code>
+
+<p>
+When set to <code>t</code>, force column groups to get vertical lines.
+</p>
+</li>
+
+<li><code>:maxlevel</code>
+
+<p>
+When set to a number, don't capture entries below this level.
+</p>
+</li>
+
+<li><code>:skip-empty-rows</code>
+
+<p>
+When set to <code>t</code>, skip rows where the only non-empty specifier
+of the column view is <code>ITEM</code>.
+</p>
+</li>
+</ul>
 
 <p>
 The following commands insert or update the dynamic block:
 </p>
 
+<ul class="org-ul">
+<li><b><i>C-c C-x i</i></b> (<code>org-insert-columns-dblock</code>)
+
 <p>
-C-c C-x i (<code>org-insert-columns-dblock</code>)
+Insert a dynamic block capturing a column view. You will be
+prompted for the scope or ID of the view.
+</p>
+</li>
+
+<li><b><i>C-c C-c</i></b> or <b><i>C-c C-x C-u</i></b> (<code>org-dblock-update</code>)
+
+<p>
+Update dynamic block at point. The cursor needs to be in the
+<code>#+BEGIN</code> line of the dynamic block.
+</p>
+</li>
+
+<li><b><i>C-u C-c C-x C-u</i></b> (<code>org-update-all-dblocks</code>)
+
+<p>
+Update all dynamic blocks (see <a href="#Dynamic-blocks">Dynamic blocks</a>).  This is useful
+if you have several clock table blocks, column-capturing blocks
+or other dynamic blocks in a buffer.
+</p>
+</li>
+</ul>
+
+<p>
+You can add formulas to the column view table and you may add
+plotting instructions in front of the table &#x2013; these will survive
+an update of the block. If there is a <code>#+TBLFM:</code> after the table,
+the table will actually be recalculated automatically after an
+update.
 </p>
 
 <p>
-Insert a dynamic block capturing a column view. You will be prompted for
-the scope or ID of the view.
-</p>
-
-<p>
-C-c C-c or C-c C-x C-u (<code>org-dblock-update</code>)
-</p>
-
-<p>
-Update dynamic block at point. The cursor needs to be in the <code>#+BEGIN</code>
-line of the dynamic block.
-</p>
-
-<p>
-C-u C-c C-x C-u (<code>org-update-all-dblocks</code>)
-</p>
-
-<p>
-Update all dynamic blocks (see <i>Dynamic blocks</i>).
-This is useful if you have several clock table blocks, column-capturing
-blocks or other dynamic blocks in a buffer.
-</p>
-
-<p>
-You can add formulas to the column view table and you may add plotting
-instructions in front of the table&#x2014;these will survive an update of the
-block. If there is a <code>#+TBLFM:</code> after the table, the table will actually
-be recalculated automatically after an update.
-</p>
-
-<p>
-An alternative way to capture and process property values into a table
-is provided by Eric Schulte's org-collector.el which is a contributed
-package<sup><a id="fnr.62" name="fnr.62" class="footref" href="#fn.62">62</a></sup>. It provides a general API to collect
-properties from entries in a certain scope, and arbitrary Lisp
-expressions to process these values before inserting them into a table
-or a dynamic block.
+An alternative way to capture and process property values into a
+table is provided by Eric Schulte's org-collector.el which is a
+contributed package<sup><a id="fnr.62" name="fnr.62" class="footref" href="#fn.62">62</a></sup>. It provides a general API to
+collect properties from entries in a certain scope, and arbitrary
+Lisp expressions to process these values before inserting them into
+a table or a dynamic block.
 </p>
 </div>
 </div>
 </div>
 
 <div id="outline-container-sec-7-6" class="outline-3">
-<h3 id="sec-7-6">7.6 The Property API</h3>
+<h3 id="sec-7-6">7.6 The Property API                                               <a id="Property-API" name="Property-API"></a></h3>
 <div class="outline-text-3" id="text-7-6">
 <p>
-There is a full API for accessing and changing properties. This API can
-be used by Emacs Lisp programs to work with properties and to implement
-features based on them. For more information see
-<i>Using the property API</i>.
+There is a full API for accessing and changing properties. This API
+can be used by Emacs Lisp programs to work with properties and to
+implement features based on them. For more information see <a href="#Using-the-property-API">Using
+the property API</a>.
 </p>
 </div>
 </div>
@@ -7593,208 +7971,12 @@ features based on them. For more information see
 <h2 id="sec-8">8 Dates and times</h2>
 <div class="outline-text-2" id="text-8">
 <p>
-To assist project planning, TODO items can be labeled with a date and/or
-a time. The specially formatted string carrying the date and time
-information is called a <i>timestamp</i> in Org mode. This may be a little
-confusing because timestamp is often used to indicate when something was
-created or last changed. However, in Org mode this term is used in a
-much wider sense.
-</p>
-</div>
-
-<div id="outline-container-sec-8-1" class="outline-3">
-<h3 id="sec-8-1">8.1 Timestamps, deadlines, and scheduling</h3>
-<div class="outline-text-3" id="text-8-1">
-<p>
-A timestamp is a specification of a date (possibly with a time or a
-range of times) in a special format, either ‘&lt;2003-09-16
-Tue&gt;'<sup><a id="fnr.63" name="fnr.63" class="footref" href="#fn.63">63</a></sup> or ‘<span class="timestamp-wrapper"><span class="timestamp">&lt;2003-09-16 Tue 09:39&gt;</span></span>' or ‘&lt;2003-09-16 Tue
-12:00-12:30&gt;'<sup><a id="fnr.64" name="fnr.64" class="footref" href="#fn.64">64</a></sup>. A timestamp can appear anywhere in the
-headline or body of an Org tree entry. Its presence causes entries to be
-shown on specific dates in the agenda (see
-<a href="#Weekly_daily-agenda">Weekly/daily agenda</a>). We distinguish:
-</p>
-
-<dl class="org-dl">
-<dt> Plain timestamp; Event; Appointment </dt><dd>A simple timestamp just
-assigns a date/time to an item. This is just like writing down an
-appointment or event in a paper agenda. In the timeline and agenda
-displays, the headline of an entry associated with a plain timestamp
-will be shown exactly on that date.
-
-<pre class="example">
-* Meet Peter at the movies
-  &lt;2006-11-01 Wed 19:15&gt;
-* Discussion on climate change
-  &lt;2006-11-02 Thu 20:00-22:00&gt;
-</pre>
-</dd>
-
-<dt> Timestamp with repeater interval </dt><dd>A timestamp may contain a
-<i>repeater interval</i>, indicating that it applies not only on the given
-date, but again and again after a certain interval of N days (d),
-weeks (w), months (m), or years (y). The following will show up in
-the agenda every Wednesday:
-
-<pre class="example">
-* Pick up Sam at school
-  &lt;2007-05-16 Wed 12:30 +1w&gt;
-</pre>
-</dd>
-
-<dt> Diary-style sexp entries </dt><dd>For more complex date specifications, Org
-mode supports using the special sexp diary entries implemented in the
-Emacs calendar/diary package<sup><a id="fnr.65" name="fnr.65" class="footref" href="#fn.65">65</a></sup>. For example with
-optional time
-
-<pre class="example">
-* 22:00-23:00 The nerd meeting on every 2nd Thursday of the month
-  &lt;%%(diary-float t 4 2)&gt;
-</pre>
-</dd>
-
-<dt> Time/Date range </dt><dd>Two timestamps connected by ‘&#x2013;' denote a range.
-The headline will be shown on the first and last day of the range,
-and on any dates that are displayed and fall in the range. Here is an
-example:
-
-<pre class="example">
-** Meeting in Amsterdam
-   &lt;2004-08-23 Mon&gt;--&lt;2004-08-26 Thu&gt;
-</pre>
-</dd>
-
-<dt> Inactive timestamp </dt><dd>Just like a plain timestamp, but with square
-brackets instead of angular ones. These timestamps are inactive in
-the sense that they do <i>not</i> trigger an entry to show up in the
-agenda.
-
-<pre class="example">
-* Gillian comes late for the fifth time
-  [2006-11-01 Wed]
-</pre>
-</dd>
-</dl>
-</div>
-</div>
-
-<div id="outline-container-sec-8-2" class="outline-3">
-<h3 id="sec-8-2">8.2 Creating timestamps                                            <a id="Creating-timestamps" name="Creating-timestamps"></a></h3>
-<div class="outline-text-3" id="text-8-2">
-<p>
-For Org mode to recognize timestamps, they need to be in the specific
-format. All commands listed below produce timestamps in the correct
-format.
-</p>
-
-<p>
-C-c . (<code>org-time-stamp</code>)
-</p>
-
-<p>
-Prompt for a date and insert a corresponding timestamp. When the cursor
-is at an existing timestamp in the buffer, the command is used to modify
-this timestamp instead of inserting a new one. When this command is used
-twice in succession, a time range is inserted.
-</p>
-
-<p>
-C-c ! (<code>org-time-stamp-inactive</code>)
-</p>
-
-<p>
-Like C-c ., but insert an inactive timestamp that will not cause an
-agenda entry.
-</p>
-
-<p>
-C-u C-c .
-</p>
-
-<p>
-C-u C-c !
-</p>
-
-<p>
-Like C-c . and C-c !, but use the alternative format which contains date
-and time. The default time can be rounded to multiples of 5 minutes, see
-the option <code>org-time-stamp-rounding-minutes</code>.
-</p>
-
-<p>
-C-c C-c
-</p>
-
-<p>
-Normalize timestamp, insert/fix day name if missing or wrong.
-</p>
-
-<p>
-C-c &lt; (<code>org-date-from-calendar</code>)
-</p>
-
-<p>
-Insert a timestamp corresponding to the cursor date in the Calendar.
-</p>
-
-<p>
-C-c &gt; (<code>org-goto-calendar</code>)
-</p>
-
-<p>
-Access the Emacs calendar for the current date. If there is a timestamp
-in the current line, go to the corresponding date instead.
-</p>
-
-<p>
-C-c C-o (<code>org-open-at-point</code>)
-</p>
-
-<p>
-Access the agenda for the date given by the timestamp or -range at point
-(see <a href="#Weekly_daily-agenda">Weekly/daily agenda</a>).
-</p>
-
-<p>
-S-left (<code>org-timestamp-down-day</code>)
-</p>
-
-<p>
-S-right (<code>org-timestamp-up-day</code>)
-</p>
-
-<p>
-Change date at cursor by one day. These key bindings conflict with
-shift-selection and related modes (see <a href="#Conflicts">Conflicts</a>).
-</p>
-
-<p>
-S-up (<code>org-timestamp-up</code>)
-</p>
-
-<p>
-S-down (<code>org-timestamp-down-down</code>)
-</p>
-
-<p>
-Change the item under the cursor in a timestamp. The cursor can be on a
-year, month, day, hour or minute. When the timestamp contains a time
-range like ‘15:30-16:30', modifying the first time will also shift the
-second, shifting the time block with constant length. To change the
-length, modify the second time. Note that if the cursor is in a headline
-and not at a timestamp, these same keys modify the priority of an item.
-(see <a href="#Priorities">Priorities</a>). The key bindings also conflict with
-shift-selection and related modes (see <a href="#Conflicts">Conflicts</a>).
-</p>
-
-<p>
-C-c C-y (<code>org-evaluate-time-range</code>)
-</p>
-
-<p>
-Evaluate a time range by computing the difference between start and end.
-With a prefix argument, insert result after the time range (in a table:
-into the following column).
+To assist project planning, TODO items can be labeled with a date
+and/or a time. The specially formatted string carrying the date and
+time information is called a <i>timestamp</i> in Org mode. This may be a
+little confusing because timestamp is often used to indicate when
+something was created or last changed. However, in Org mode this
+term is used in a much wider sense.
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -7804,19 +7986,263 @@ into the following column).
 <col  class="left" />
 
 <col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">• <a href="#Timestamps">Timestamps</a>:</td>
+<td class="left">Assigning a time to a tree entry</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Creating-timestamps">Creating timestamps</a>:</td>
+<td class="left">Commands which insert timestamps</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Deadlines-and-scheduling">Deadlines and scheduling</a>:</td>
+<td class="left">Planning your work</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Clocking-work-time">Clocking work time</a>:</td>
+<td class="left">Tracking how long you spend on a task</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Effort-estimates">Effort estimates</a>:</td>
+<td class="left">Planning work effort in advance</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Timers">Timers</a>:</td>
+<td class="left">Notes with a running timer</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+<div id="outline-container-sec-8-1" class="outline-3">
+<h3 id="sec-8-1">8.1 Timestamps, deadlines, and scheduling                          <a id="Timestamps" name="Timestamps"></a></h3>
+<div class="outline-text-3" id="text-8-1">
+<p>
+A timestamp is a specification of a date (possibly with a time or a
+range of times) in a special format, either
+‘<span class="timestamp-wrapper"><span class="timestamp">&lt;2003-09-16 Tue&gt;</span></span>'<sup><a id="fnr.63" name="fnr.63" class="footref" href="#fn.63">63</a></sup> or ‘<span class="timestamp-wrapper"><span class="timestamp">&lt;2003-09-16 Tue 09:39&gt;</span></span>' or
+‘<span class="timestamp-wrapper"><span class="timestamp">&lt;2003-09-16 mar 12:00&gt;&#x2013;&lt;2003-09-16 mar 12:30&gt;</span></span>'<sup><a id="fnr.64" name="fnr.64" class="footref" href="#fn.64">64</a></sup>. A timestamp can appear
+anywhere in the headline or body of an Org tree entry. Its presence
+causes entries to be shown on specific dates in the agenda (see
+<a href="#Weekly_daily-agenda">Weekly/daily agenda</a>). We distinguish:
+</p>
+
+<ul class="org-ul">
+<li>Plain timestamp; Event; Appointment
+
+<p>
+A simple timestamp just assigns a date/time to an item. This is
+just like writing down an appointment or event in a paper
+agenda. In the timeline and agenda displays, the headline of an
+entry associated with a plain timestamp will be shown exactly on
+that date.
+</p>
+
+<pre class="example">
+* Meet Peter at the movies
+  &lt;2006-11-01 Wed 19:15&gt;
+* Discussion on climate change
+  &lt;2006-11-02 Thu 20:00-22:00&gt;
+</pre>
+</li>
+
+<li>Timestamp with repeater interval
+
+<p>
+A timestamp may contain a <i>repeater interval</i>, indicating that
+it applies not only on the given date, but again and again after
+a certain interval of N days (d), weeks (w), months (m), or
+years (y). The following will show up in the agenda every
+Wednesday:
+</p>
+
+<pre class="example">
+* Pick up Sam at school
+  &lt;2007-05-16 Wed 12:30 +1w&gt;
+</pre>
+</li>
+
+<li>Diary-style sexp entries
+
+<p>
+For more complex date specifications, Org mode supports using
+the special sexp diary entries implemented in the Emacs
+calendar/diary package<sup><a id="fnr.65" name="fnr.65" class="footref" href="#fn.65">65</a></sup>. For example with optional
+time
+</p>
+
+<pre class="example">
+* 22:00-23:00 The nerd meeting on every 2nd Thursday of the month
+  &lt;%%(diary-float t 4 2)&gt;
+</pre>
+</li>
+
+<li>Time/Date range
+
+<p>
+Two timestamps connected by ‘&#x2013;' denote a range.  The headline
+will be shown on the first and last day of the range, and on any
+dates that are displayed and fall in the range. Here is an
+example:
+</p>
+
+<pre class="example">
+** Meeting in Amsterdam
+   &lt;2004-08-23 Mon&gt;--&lt;2004-08-26 Thu&gt;
+</pre>
+</li>
+
+<li>Inactive timestamp
+
+<p>
+Just like a plain timestamp, but with square brackets instead of
+angular ones. These timestamps are inactive in the sense that
+they do <i>not</i> trigger an entry to show up in the agenda.
+</p>
+
+<pre class="example">
+* Gillian comes late for the fifth time
+  [2006-11-01 Wed]
+</pre>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-8-2" class="outline-3">
+<h3 id="sec-8-2">8.2 Creating timestamps                                            <a id="Creating-timestamps" name="Creating-timestamps"></a></h3>
+<div class="outline-text-3" id="text-8-2">
+<p>
+For Org mode to recognize timestamps, they need to be in the
+specific format. All commands listed below produce timestamps in
+the correct format.
+</p>
+
+<ul class="org-ul">
+<li><b><i>C-c .</i></b> (<code>org-time-stamp</code>)
+
+<p>
+Prompt for a date and insert a corresponding timestamp. When the
+cursor is at an existing timestamp in the buffer, the command is
+used to modify this timestamp instead of inserting a new
+one. When this command is used twice in succession, a time range
+is inserted.
+</p>
+</li>
+
+<li><b><i>C-c !</i></b> (<code>org-time-stamp-inactive</code>)
+
+<p>
+Like <b><i>C-c .</i></b>, but insert an inactive timestamp that will not
+cause an agenda entry.
+</p>
+</li>
+
+<li><b><i>C-u C-c .</i></b>
+</li>
+<li><b><i>C-u C-c !</i></b>
+
+<p>
+Like <b><i>C-c .</i></b> and <b><i>C-c !</i></b>, but use the alternative format
+which contains date and time. The default time can be rounded to
+multiples of 5 minutes, see the option
+<code>org-time-stamp-rounding-minutes</code>.
+</p>
+</li>
+
+<li><b><i>C-c C-c</i></b>
+
+<p>
+Normalize timestamp, insert/fix day name if missing or wrong.
+</p>
+</li>
+
+<li><b><i>C-c &lt;</i></b> (<code>org-date-from-calendar</code>)
+
+<p>
+Insert a timestamp corresponding to the cursor date in the
+Calendar.
+</p>
+</li>
+
+<li><b><i>C-c &gt;</i></b> (<code>org-goto-calendar</code>)
+
+<p>
+Access the Emacs calendar for the current date. If there is a
+timestamp in the current line, go to the corresponding date
+instead.
+</p>
+</li>
+
+<li><b><i>C-c C-o</i></b> (<code>org-open-at-point</code>)
+
+<p>
+Access the agenda for the date given by the timestamp or -range
+at point (see <a href="#Weekly_daily-agenda">Weekly/daily agenda</a>).
+</p>
+</li>
+
+<li><b><i>S-left</i></b> (<code>org-timestamp-down-day</code>)
+</li>
+<li><b><i>S-right</i></b> (<code>org-timestamp-up-day</code>)
+
+<p>
+Change date at cursor by one day. These key bindings conflict
+with shift-selection and related modes (see <a href="#Conflicts">Conflicts</a>).
+</p>
+</li>
+
+<li><b><i>S-up</i></b> (<code>org-timestamp-up</code>)
+</li>
+<li><b><i>S-down</i></b> (<code>org-timestamp-down-down</code>)
+
+<p>
+Change the item under the cursor in a timestamp. The cursor can
+be on a year, month, day, hour or minute. When the timestamp
+contains a time range like ‘15:30-16:30', modifying the first
+time will also shift the second, shifting the time block with
+constant length. To change the length, modify the second
+time. Note that if the cursor is in a headline and not at a
+timestamp, these same keys modify the priority of an item.  (see
+<a href="#Priorities">Priorities</a>). The key bindings also conflict with shift-selection
+and related modes (see <a href="#Conflicts">Conflicts</a>).
+</p>
+</li>
+
+<li><b><i>C-c C-y</i></b> (<code>org-evaluate-time-range</code>)
+
+<p>
+Evaluate a time range by computing the difference between start
+and end.  With a prefix argument, insert result after the time
+range (in a table: into the following column).
+</p>
+</li>
+</ul>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
 
 <col  class="left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="left">• <i>The date/time prompt</i>:</td>
-<td class="left">&#xa0;</td>
+<td class="left">• <a href="#The-date_time-prompt">The date/time prompt</a>:</td>
 <td class="left">How Org mode helps you entering date and time</td>
 </tr>
 
 <tr>
-<td class="left">• <i>Custom time format</i>:</td>
-<td class="left">&#xa0;</td>
+<td class="left">• <a href="#Custom-time-format">Custom time format</a>:</td>
 <td class="left">Making dates look different</td>
 </tr>
 </tbody>
@@ -7824,29 +8250,30 @@ into the following column).
 </div>
 
 <div id="outline-container-sec-8-2-1" class="outline-4">
-<h4 id="sec-8-2-1">8.2.1 The date/time prompt</h4>
+<h4 id="sec-8-2-1">8.2.1 The date/time prompt                                        <a id="The-date_time-prompt" name="The-date_time-prompt"></a></h4>
 <div class="outline-text-4" id="text-8-2-1">
 <p>
-When Org mode prompts for a date/time, the default is shown in default
-date/time format, and the prompt therefore seems to ask for a specific
-format. But it will in fact accept date/time information in a variety of
-formats. Generally, the information should start at the beginning of the
-string. Org mode will find whatever information is in there and derive
-anything you have not specified from the <i>default date and time</i>. The
-default is usually the current date and time, but when modifying an
-existing timestamp, or when entering the second stamp of a range, it is
-taken from the stamp in the buffer. When filling in information, Org
-mode assumes that most of the time you will want to enter a date in the
-future: if you omit the month/year and the given day/month is <i>before</i>
-today, it will assume that you mean a future date<sup><a id="fnr.66" name="fnr.66" class="footref" href="#fn.66">66</a></sup>. If
-the date has been automatically shifted into the future, the time prompt
-will show this with ‘(=&gt;F).'
+When Org mode prompts for a date/time, the default is shown in
+default date/time format, and the prompt therefore seems to ask
+for a specific format. But it will in fact accept date/time
+information in a variety of formats. Generally, the information
+should start at the beginning of the string. Org mode will find
+whatever information is in there and derive anything you have not
+specified from the <i>default date and time</i>. The default is usually
+the current date and time, but when modifying an existing
+timestamp, or when entering the second stamp of a range, it is
+taken from the stamp in the buffer. When filling in information,
+Org mode assumes that most of the time you will want to enter a
+date in the future: if you omit the month/year and the given
+day/month is <i>before</i> today, it will assume that you mean a future
+date<sup><a id="fnr.66" name="fnr.66" class="footref" href="#fn.66">66</a></sup>. If the date has been automatically shifted into
+the future, the time prompt will show this with ‘(=&gt;F).'
 </p>
 
 <p>
-For example, let's assume that today is <b>June 13, 2006</b>. Here is how
-various inputs will be interpreted, the items filled in by Org mode are
-in <b>bold</b>.
+For example, let's assume that today is <b>June 13, 2006</b>. Here is
+how various inputs will be interpreted, the items filled in by Org
+mode are in <b>bold</b>.
 </p>
 
 <pre class="example">
@@ -7867,13 +8294,13 @@ w4            ⇒ ISO week for of the current year 2006
 </pre>
 
 <p>
-Furthermore you can specify a relative date by giving, as the <i>first</i>
-thing in the input: a plus/minus sign, a number and a letter ([hdwmy])
-to indicate change in hours, days, weeks, months, or years. With a
-single plus or minus, the date is always relative to today. With a
-double plus or minus, it is relative to the default date. If instead of
-a single letter, you use the abbreviation of day name, the date will be
-the Nth such day, e.g.:
+Furthermore you can specify a relative date by giving, as the
+<i>first</i> thing in the input: a plus/minus sign, a number and a
+letter ([hdwmy]) to indicate change in hours, days, weeks, months,
+or years. With a single plus or minus, the date is always relative
+to today. With a double plus or minus, it is relative to the
+default date. If instead of a single letter, you use the
+abbreviation of day name, the date will be the Nth such day, e.g.:
 </p>
 
 <pre class="example">
@@ -7888,24 +8315,26 @@ the Nth such day, e.g.:
 </pre>
 
 <p>
-The function understands English month and weekday abbreviations. If you
-want to use unabbreviated names and/or other languages, configure the
-variables <code>parse-time-months</code> and <code>parse-time-weekdays</code>.
+The function understands English month and weekday
+abbreviations. If you want to use unabbreviated names and/or other
+languages, configure the variables <code>parse-time-months</code> and
+<code>parse-time-weekdays</code>.
 </p>
 
 <p>
-Not all dates can be represented in a given Emacs implementation. By
-default Org mode forces dates into the compatibility range 1970&#x2013;2037
-which works on all Emacs implementations. If you want to use dates
-outside of this range, read the docstring of the variable
+Not all dates can be represented in a given Emacs
+implementation. By default Org mode forces dates into the
+compatibility range 1970&#x2013;2037 which works on all Emacs
+implementations. If you want to use dates outside of this range,
+read the docstring of the variable
 <code>org-read-date-force-compatible-dates</code>.
 </p>
 
 <p>
-You can specify a time range by giving start and end times or by giving
-a start time and a duration (in HH:MM format). Use one or two dash(es)
-as the separator in the former case and use '+' as the separator in the
-latter case, e.g.:
+You can specify a time range by giving start and end times or by
+giving a start time and a duration (in HH:MM format). Use one or
+two dash(es) as the separator in the former case and use '+' as
+the separator in the latter case, e.g.:
 </p>
 
 <pre class="example">
@@ -7917,164 +8346,10 @@ latter case, e.g.:
 <p>
 Parallel to the minibuffer prompt, a calendar is popped
 up<sup><a id="fnr.67" name="fnr.67" class="footref" href="#fn.67">67</a></sup>. When you exit the date prompt, either by clicking
-on a date in the calendar, or by pressing <code>RET</code>, the date selected in
-the calendar will be combined with the information entered at the
-prompt. You can control the calendar fully from the minibuffer:
-</p>
-
-<pre class="example">
-RET              Choose date at cursor in calendar.
-mouse-1            Select date by clicking on it.
-S-right/left   One day forward/backward.
-S-down/up      One week forward/backward.
-M-S-right/left One month forward/backward.
-&gt; / &lt;              Scroll calendar forward/backward by one month.
-M-v / C-v          Scroll calendar forward/backward by 3 months.
-M-S-down/up    Scroll calendar forward/backward by one year.
-</pre>
-
-<p>
-The actions of the date/time prompt may seem complex, but I assure you
-they will grow on you, and you will start getting annoyed by pretty much
-any other way of entering a date/time out there. To help you understand
-what is going on, the current interpretation of your input will be
-displayed live in the minibuffer<sup><a id="fnr.68" name="fnr.68" class="footref" href="#fn.68">68</a></sup>.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-8-2-2" class="outline-4">
-<h4 id="sec-8-2-2">8.2.2 Custom time format</h4>
-<div class="outline-text-4" id="text-8-2-2">
-<p>
-Org mode uses the standard ISO notation for dates and times as it is
-defined in ISO 8601. If you cannot get used to this and require another
-representation of date and time to keep you happy, you can get it by
-customizing the options <code>org-display-custom-times</code> and
-<code>org-time-stamp-custom-formats</code>.
-</p>
-
-<p>
-C-c C-x C-t (<code>org-toggle-time-stamp-overlays</code>)
-</p>
-
-<p>
-Toggle the display of custom formats for dates and times.
-</p>
-
-<p>
-Org mode needs the default format for scanning, so the custom date/time
-format does not <i>replace</i> the default format&#x2014;instead it is put <i>over</i>
-the default format using text properties. This has the following
-consequences:
-</p>
-
-<ul class="org-ul">
-<li>You cannot place the cursor onto a timestamp anymore, only before or
-after.
-</li>
-<li>The S-up/down keys can no longer be used to adjust each component of
-a timestamp. If the cursor is at the beginning of the stamp,
-S-up/down will change the stamp by one day, just like S-left/right.
-At the end of the stamp, the time will be changed by one minute.
-</li>
-<li>If the timestamp contains a range of clock times or a repeater, these
-will not be overlaid, but remain in the buffer as they were.
-</li>
-<li>When you delete a timestamp character-by-character, it will only
-disappear from the buffer after <i>all</i> (invisible) characters
-belonging to the ISO timestamp have been removed.
-</li>
-<li>If the custom timestamp format is longer than the default and you are
-using dates in tables, table alignment will be messed up. If the
-custom format is shorter, things do work as expected.
-</li>
-</ul>
-</div>
-</div>
-</div>
-
-<div id="outline-container-sec-8-3" class="outline-3">
-<h3 id="sec-8-3">8.3 Deadlines and scheduling</h3>
-<div class="outline-text-3" id="text-8-3">
-<p>
-A timestamp may be preceded by special keywords to facilitate planning:
-</p>
-
-<dl class="org-dl">
-<dt> DEADLINE </dt><dd>Meaning: the task (most likely a TODO item, though not
-necessarily) is supposed to be finished on that date.
-
-<p>
-On the deadline date, the task will be listed in the agenda. In
-addition, the agenda for <i>today</i> will carry a warning about the
-approaching or missed deadline, starting <code>org-deadline-warning-days</code>
-before the due date, and continuing until the entry is marked DONE.
-An example:
-</p>
-
-<pre class="example">
-*** TODO write article about the Earth for the Guide
-    DEADLINE: &lt;2004-02-29 Sun&gt;
-    The editor in charge is [[bbdb:Ford Prefect]]
-</pre>
-
-<p>
-You can specify a different lead time for warnings for a specific
-deadline using the following syntax. Here is an example with a
-warning period of 5 days <code>DEADLINE: &lt;2004-02-29 Sun -5d&gt;</code>. This
-warning is deactivated if the task gets scheduled and you set
-<code>org-agenda-skip-deadline-prewarning-if-scheduled</code> to <code>t</code>.
-</p>
-</dd>
-
-<dt> SCHEDULED </dt><dd>Meaning: you are planning to start working on that task
-on the given date.
-
-<p>
-The headline will be listed under the given date<sup><a id="fnr.69" name="fnr.69" class="footref" href="#fn.69">69</a></sup>.
-In addition, a reminder that the scheduled date has passed will be
-present in the compilation for <i>today</i>, until the entry is marked
-DONE, i.e., the task will automatically be forwarded until completed.
-</p>
-
-<pre class="example">
-*** TODO Call Trillian for a date on New Years Eve.
-    SCHEDULED: &lt;2004-12-25 Sat&gt;
-</pre>
-
-<p>
-If you want to <i>delay</i> the display of this task in the agenda, use
-<code>SCHEDULED: &lt;2004-12-25 Sat -2d&gt;</code>: the task is still scheduled on the
-25th but will appear two days later. In case the task contains a
-repeater, the delay is considered to affect all occurrences; if you
-want the delay to only affect the first scheduled occurrence of the
-task, use <code>--2d</code> instead. See <code>org-scheduled-delay-days</code> and
-<code>org-agenda-skip-scheduled-delay-if-deadline</code> for details on how to
-control this globally or per agenda.
-</p>
-
-<p>
-<b>Important:</b> Scheduling an item in Org mode should <i>not</i> be
-understood in the same way that we understand <i>scheduling a meeting</i>.
-Setting a date for a meeting is just a simple appointment, you should
-mark this entry with a simple plain timestamp, to get this item shown
-on the date where it applies. This is a frequent misunderstanding by
-Org users. In Org mode, <i>scheduling</i> means setting a date when you
-want to start working on an action item.
-</p>
-</dd>
-</dl>
-
-<p>
-You may use timestamps with repeaters in scheduling and deadline
-entries. Org mode will issue early and late warnings based on the
-assumption that the timestamp represents the <i>nearest instance</i> of the
-repeater. However, the use of diary sexp entries like
-<code>&lt;%%(diary-float t 42)&gt;</code> in scheduling and deadline timestamps is
-limited. Org mode does not know enough about the internals of each sexp
-function to issue early and late warnings. However, it will show the
-item on each day where the sexp entry matches.
+on a date in the calendar, or by pressing <code>RET</code>, the date selected
+in the calendar will be combined with the information entered at
+the prompt. You can control the calendar fully from the
+minibuffer:
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -8084,19 +8359,230 @@ item on each day where the sexp entry matches.
 <col  class="left" />
 
 <col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">RET</td>
+<td class="left">Choose date at cursor in calendar.</td>
+</tr>
+
+<tr>
+<td class="left">mouse-1</td>
+<td class="left">Select date by clicking on it.</td>
+</tr>
+
+<tr>
+<td class="left">S-right/left</td>
+<td class="left">One day forward/backward.</td>
+</tr>
+
+<tr>
+<td class="left">S-down/up</td>
+<td class="left">One week forward/backward.</td>
+</tr>
+
+<tr>
+<td class="left">M-S-right/left</td>
+<td class="left">One month forward/backward.</td>
+</tr>
+
+<tr>
+<td class="left">&gt; / &lt;</td>
+<td class="left">Scroll calendar forward/backward by one month.</td>
+</tr>
+
+<tr>
+<td class="left">M-v / C-v</td>
+<td class="left">Scroll calendar forward/backward by 3 months.</td>
+</tr>
+
+<tr>
+<td class="left">M-S-down/up</td>
+<td class="left">Scroll calendar forward/backward by one year.</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+The actions of the date/time prompt may seem complex, but I assure
+you they will grow on you, and you will start getting annoyed by
+pretty much any other way of entering a date/time out there. To
+help you understand what is going on, the current interpretation
+of your input will be displayed live in the minibuffer<sup><a id="fnr.68" name="fnr.68" class="footref" href="#fn.68">68</a></sup>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-8-2-2" class="outline-4">
+<h4 id="sec-8-2-2">8.2.2 Custom time format                                          <a id="Custom-time-format" name="Custom-time-format"></a></h4>
+<div class="outline-text-4" id="text-8-2-2">
+<p>
+Org mode uses the standard ISO notation for dates and times as it
+is defined in ISO 8601. If you cannot get used to this and require
+another representation of date and time to keep you happy, you can
+get it by customizing the options <code>org-display-custom-times</code> and
+<code>org-time-stamp-custom-formats</code>.
+</p>
+
+<ul class="org-ul">
+<li><b><i>C-c C-x C-t</i></b> (<code>org-toggle-time-stamp-overlays</code>)
+
+<p>
+Toggle the display of custom formats for dates and times.
+</p>
+</li>
+</ul>
+
+<p>
+Org mode needs the default format for scanning, so the custom
+date/time format does not <i>replace</i> the default format&#x2014;instead
+it is put <i>over</i> the default format using text properties. This
+has the following consequences:
+</p>
+
+<ul class="org-ul">
+<li>You cannot place the cursor onto a timestamp anymore, only before or
+after.
+</li>
+
+<li>The <b><i>S-up/down</i></b> keys can no longer be used to adjust each
+component of a timestamp. If the cursor is at the beginning of
+the stamp, <b><i>S-up/down</i></b> will change the stamp by one day, just
+like <b><i>S-left/right</i></b>.  At the end of the stamp, the time will
+be changed by one minute.
+</li>
+
+<li>If the timestamp contains a range of clock times or a repeater,
+these will not be overlaid, but remain in the buffer as they
+were.
+</li>
+
+<li>When you delete a timestamp character-by-character, it will only
+disappear from the buffer after <i>all</i> (invisible) characters
+belonging to the ISO timestamp have been removed.
+</li>
+
+<li>If the custom timestamp format is longer than the default and
+you are using dates in tables, table alignment will be messed
+up. If the custom format is shorter, things do work as expected.
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-8-3" class="outline-3">
+<h3 id="sec-8-3">8.3 Deadlines and scheduling                                       <a id="Deadlines-and-scheduling" name="Deadlines-and-scheduling"></a></h3>
+<div class="outline-text-3" id="text-8-3">
+<p>
+A timestamp may be preceded by special keywords to facilitate
+planning:
+</p>
+
+<ul class="org-ul">
+<li>DEADLINE
+
+<p>
+Meaning: the task (most likely a TODO item, though not
+necessarily) is supposed to be finished on that date.
+</p>
+
+<p>
+On the deadline date, the task will be listed in the agenda. In
+addition, the agenda for <i>today</i> will carry a warning about the
+approaching or missed deadline, starting
+<code>org-deadline-warning-days</code> before the due date, and continuing
+until the entry is marked DONE.  An example:
+</p>
+
+<pre class="example">
+*** TODO write article about the Earth for the Guide
+    DEADLINE: &lt;2004-02-29 Sun&gt;
+    The editor in charge is [[bbdb:Ford Prefect]]
+</pre>
+
+<p>
+You can specify a different lead time for warnings for a
+specific deadline using the following syntax. Here is an example
+with a warning period of 5 days <code>DEADLINE:
+      &lt;2004-02-29 Sun -5d&gt;</code>. This warning is deactivated if the task
+gets scheduled and you set
+<code>org-agenda-skip-deadline-prewarning-if-scheduled</code> to <code>t</code>.
+</p>
+</li>
+
+<li>SCHEDULED
+
+<p>
+Meaning: you are planning to start working on that task on the
+given date.
+</p>
+
+<p>
+The headline will be listed under the given date<sup><a id="fnr.69" name="fnr.69" class="footref" href="#fn.69">69</a></sup>.  In
+addition, a reminder that the scheduled date has passed will be
+present in the compilation for <i>today</i>, until the entry is
+marked DONE, i.e., the task will automatically be forwarded
+until completed.
+</p>
+
+<pre class="example">
+*** TODO Call Trillian for a date on New Years Eve.
+    SCHEDULED: &lt;2004-12-25 Sat&gt;
+</pre>
+
+<p>
+If you want to <i>delay</i> the display of this task in the agenda,
+use <code>SCHEDULED: &lt;2004-12-25 Sat -2d&gt;</code>: the task is still
+scheduled on the 25th but will appear two days later. In case
+the task contains a repeater, the delay is considered to affect
+all occurrences; if you want the delay to only affect the first
+scheduled occurrence of the task, use <code>--2d</code> instead. See
+<code>org-scheduled-delay-days</code> and
+<code>org-agenda-skip-scheduled-delay-if-deadline</code> for details on how
+to control this globally or per agenda.
+</p>
+
+<p>
+<b>Important:</b> Scheduling an item in Org mode should <i>not</i> be
+understood in the same way that we understand <i>scheduling a
+meeting</i>.  Setting a date for a meeting is just a simple
+appointment, you should mark this entry with a simple plain
+timestamp, to get this item shown on the date where it
+applies. This is a frequent misunderstanding by Org users. In
+Org mode, <i>scheduling</i> means setting a date when you want to
+start working on an action item.
+</p>
+</li>
+</ul>
+
+<p>
+You may use timestamps with repeaters in scheduling and deadline
+entries. Org mode will issue early and late warnings based on the
+assumption that the timestamp represents the <i>nearest instance</i> of
+the repeater. However, the use of diary sexp entries like
+<code>&lt;%%(diary-float t 42)&gt;</code> in scheduling and deadline timestamps is
+limited. Org mode does not know enough about the internals of each
+sexp function to issue early and late warnings. However, it will
+show the item on each day where the sexp entry matches.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
 
 <col  class="left" />
 </colgroup>
 <tbody>
 <tr>
-<td class="left">• <i>Inserting deadline/schedule</i>:</td>
-<td class="left">&#xa0;</td>
+<td class="left">• <a href="#Inserting-deadline_schedule">Inserting deadline/schedule</a>:</td>
 <td class="left">Planning items</td>
 </tr>
 
 <tr>
-<td class="left">• <i>Repeated tasks</i>:</td>
-<td class="left">&#xa0;</td>
+<td class="left">• <a href="#Repeated-tasks">Repeated tasks</a>:</td>
 <td class="left">Items that show up again and again</td>
 </tr>
 </tbody>
@@ -8104,83 +8590,84 @@ item on each day where the sexp entry matches.
 </div>
 
 <div id="outline-container-sec-8-3-1" class="outline-4">
-<h4 id="sec-8-3-1">8.3.1 Inserting deadlines or schedules</h4>
+<h4 id="sec-8-3-1">8.3.1 Inserting deadlines or schedules                            <a id="Inserting-deadline_schedule" name="Inserting-deadline_schedule"></a></h4>
 <div class="outline-text-4" id="text-8-3-1">
 <p>
 The following commands allow you to quickly insert<sup><a id="fnr.70" name="fnr.70" class="footref" href="#fn.70">70</a></sup> a
 deadline or to schedule an item:
 </p>
 
-<p>
-C-c C-d (<code>org-deadline</code>)
-</p>
+<ul class="org-ul">
+<li><b><i>C-c C-d</i></b> (<code>org-deadline</code>)
 
 <p>
-Insert ‘DEADLINE' keyword along with a stamp. The insertion will happen
-in the line directly following the headline. Any CLOSED timestamp will
-be removed. When called with a prefix arg, an existing deadline will be
-removed from the entry. Depending on the variable
+Insert ‘DEADLINE' keyword along with a stamp. The insertion
+will happen in the line directly following the headline. Any
+CLOSED timestamp will be removed. When called with a prefix
+arg, an existing deadline will be removed from the
+entry. Depending on the variable
 =org-log-redeadline=<sup><a id="fnr.71" name="fnr.71" class="footref" href="#fn.71">71</a></sup>, a note will be taken when
 changing an existing deadline.
 </p>
+</li>
+
+<li><b><i>C-c C-s</i></b> (<code>org-schedule</code>)
 
 <p>
-C-c C-s (<code>org-schedule</code>)
+Insert ‘SCHEDULED' keyword along with a stamp. The insertion
+will happen in the line directly following the headline. Any
+CLOSED timestamp will be removed. When called with a prefix
+argument, remove the scheduling date from the entry. Depending
+on the variable <code>org-log-reschedule</code> <sup><a id="fnr.72" name="fnr.72" class="footref" href="#fn.72">72</a></sup>, a note will be
+taken when changing an existing scheduling time.
 </p>
+</li>
+
+<li><b><i>C-c / d</i></b> (<code>org-check-deadlines</code>)
 
 <p>
-Insert ‘SCHEDULED' keyword along with a stamp. The insertion will happen
-in the line directly following the headline. Any CLOSED timestamp will
-be removed. When called with a prefix argument, remove the scheduling
-date from the entry. Depending on the variable
-=org-log-reschedule=<sup><a id="fnr.72" name="fnr.72" class="footref" href="#fn.72">72</a></sup>, a note will be taken when
-changing an existing scheduling time.
-</p>
-
-<p>
-C-c / d (<code>org-check-deadlines</code>)
-</p>
-
-<p>
-Create a sparse tree with all deadlines that are either past-due, or
-which will become due within <code>org-deadline-warning-days</code>. With C-u
-prefix, show all deadlines in the file. With a numeric prefix, check
-that many days. For example, C-1 C-c / d shows all deadlines due
+Create a sparse tree with all deadlines that are either
+past-due, or which will become due within
+<code>org-deadline-warning-days</code>. With C-u prefix, show all
+deadlines in the file. With a numeric prefix, check that many
+days. For example, <b><i>C-1 C-c / d</i></b> shows all deadlines due
 tomorrow.
 </p>
+</li>
+
+<li><b><i>C-c / b</i></b> (<code>org-check-before-date</code>)
 
 <p>
-C-c / b (<code>org-check-before-date</code>)
+Sparse tree for deadlines and scheduled items before a given
+date.
 </p>
+</li>
+
+<li><b><i>C-c / a</i></b> (<code>org-check-after-date</code>)
 
 <p>
-Sparse tree for deadlines and scheduled items before a given date.
+Sparse tree for deadlines and scheduled items after a given
+date.
 </p>
+</li>
+</ul>
 
 <p>
-C-c / a (<code>org-check-after-date</code>)
-</p>
-
-<p>
-Sparse tree for deadlines and scheduled items after a given date.
-</p>
-
-<p>
-Note that <code>org-schedule</code> and <code>org-deadline</code> supports setting the date by
-indicating a relative time: e.g., +1d will set the date to the next day
-after today, and &#x2013;1w will set the date to the previous week before any
-current timestamp.
+Note that <code>org-schedule</code> and <code>org-deadline</code> supports setting the
+date by indicating a relative time: e.g., +1d will set the date to
+the next day after today, and &#x2013; 1w will set the date to the
+previous week before any current timestamp.
 </p>
 </div>
 </div>
 
 <div id="outline-container-sec-8-3-2" class="outline-4">
-<h4 id="sec-8-3-2">8.3.2 Repeated tasks</h4>
+<h4 id="sec-8-3-2">8.3.2 Repeated tasks                                              <a id="Repeated-tasks" name="Repeated-tasks"></a></h4>
 <div class="outline-text-4" id="text-8-3-2">
 <p>
 Some tasks need to be repeated again and again. Org mode helps to
-organize such tasks using a so-called repeater in a DEADLINE, SCHEDULED,
-or plain timestamp. In the following example
+organize such tasks using a so-called repeater in a DEADLINE,
+SCHEDULED, or plain timestamp. In the following example
 </p>
 
 <pre class="example">
@@ -8189,27 +8676,28 @@ or plain timestamp. In the following example
 </pre>
 
 <p>
-the <code>+1m</code> is a repeater; the intended interpretation is that the task
-has a deadline on <span class="timestamp-wrapper"><span class="timestamp">&lt;2005-10-01&gt;</span></span> and repeats itself every (one) month
-starting from that time. You can use yearly, monthly, weekly, daily and
-hourly repeat cookies by using the <code>y/w/m/d/h</code> letters. If you need both
-a repeater and a special warning period in a deadline entry, the
-repeater should come first and the warning period last:
-<code>DEADLINE: &lt;2005-10-01 Sat +1m -3d&gt;</code>.
+the <code>+1m</code> is a repeater; the intended interpretation is that the
+task has a deadline on <span class="timestamp-wrapper"><span class="timestamp">&lt;2005-10-01&gt;</span></span> and repeats itself every (one)
+month starting from that time. You can use yearly, monthly,
+weekly, daily and hourly repeat cookies by using the <code>y/w/m/d/h</code>
+letters. If you need both a repeater and a special warning period
+in a deadline entry, the repeater should come first and the
+warning period last: <code>DEADLINE: &lt;2005-10-01 Sat +1m -3d&gt;</code>.
 </p>
 
 <p>
-Deadlines and scheduled items produce entries in the agenda when they
-are over-due, so it is important to be able to mark such an entry as
-completed once you have done so. When you mark a DEADLINE or a SCHEDULE
-with the TODO keyword DONE, it will no longer produce entries in the
-agenda. The problem with this is, however, that then also the <i>next</i>
-instance of the repeated entry will not be active. Org mode deals with
-this in the following way: When you try to mark such an entry DONE
-(using C-c C-t), it will shift the base date of the repeating timestamp
-by the repeater interval, and immediately set the entry state back to
-TODO<sup><a id="fnr.73" name="fnr.73" class="footref" href="#fn.73">73</a></sup>. In the example above, setting the state to DONE
-would actually switch the date like this:
+Deadlines and scheduled items produce entries in the agenda when
+they are over-due, so it is important to be able to mark such an
+entry as completed once you have done so. When you mark a DEADLINE
+or a SCHEDULE with the TODO keyword DONE, it will no longer
+produce entries in the agenda. The problem with this is, however,
+that then also the <i>next</i> instance of the repeated entry will not
+be active. Org mode deals with this in the following way: When you
+try to mark such an entry DONE (using <b><i>C-c C-t</i></b>), it will shift
+the base date of the repeating timestamp by the repeater interval,
+and immediately set the entry state back to TODO<sup><a id="fnr.73" name="fnr.73" class="footref" href="#fn.73">73</a></sup>. In
+the example above, setting the state to DONE would actually switch
+the date like this:
 </p>
 
 <pre class="example">
@@ -8218,32 +8706,33 @@ would actually switch the date like this:
 </pre>
 
 <p>
-To mark a task with a repeater as <code>DONE</code>, use C&#x2013; 1 C-c C-t (i.e.,
-<code>org-todo</code> with a numeric prefix argument of -1.)
+To mark a task with a repeater as <code>DONE</code>, use <b><i>C&#x2013; 1 C-c C-t</i></b>
+(i.e., <code>org-todo</code> with a numeric prefix argument of -1.)
 </p>
 
 <p>
-A timestamp<sup><a id="fnr.74" name="fnr.74" class="footref" href="#fn.74">74</a></sup> will be added under the deadline, to keep
-a record that you actually acted on the previous instance of this
+A timestamp<sup><a id="fnr.74" name="fnr.74" class="footref" href="#fn.74">74</a></sup> will be added under the deadline, to keep a
+record that you actually acted on the previous instance of this
 deadline.
 </p>
 
 <p>
-As a consequence of shifting the base date, this entry will no longer be
-visible in the agenda when checking past dates, but all future instances
-will be visible.
+As a consequence of shifting the base date, this entry will no
+longer be visible in the agenda when checking past dates, but all
+future instances will be visible.
 </p>
 
 <p>
-With the ‘+1m' cookie, the date shift will always be exactly one month.
-So if you have not paid the rent for three months, marking this entry
-DONE will still keep it as an overdue deadline. Depending on the task,
-this may not be the best way to handle it. For example, if you forgot to
-call your father for 3 weeks, it does not make sense to call him 3 times
-in a single day to make up for it. Finally, there are tasks like
-changing batteries which should always repeat a certain time <i>after</i> the
-last time you did it. For these tasks, Org mode has special repeaters
-‘++' and ‘.+'. For example:
+With the ‘+1m' cookie, the date shift will always be exactly one
+month.  So if you have not paid the rent for three months, marking
+this entry DONE will still keep it as an overdue
+deadline. Depending on the task, this may not be the best way to
+handle it. For example, if you forgot to call your father for 3
+weeks, it does not make sense to call him 3 times in a single day
+to make up for it. Finally, there are tasks like changing
+batteries which should always repeat a certain time <i>after</i> the
+last time you did it. For these tasks, Org mode has special
+repeaters ‘++' and ‘.+'. For example:
 </p>
 
 <pre class="example">
@@ -8260,19 +8749,20 @@ last time you did it. For these tasks, Org mode has special repeaters
 </pre>
 
 <p>
-You may have both scheduling and deadline information for a specific
-task. If the repeater is set for the scheduling information only, you
-probably want the repeater to be ignored after the deadline. If so, set
-the variable <code>org-agenda-skip-scheduled-if-deadline-is-shown</code> to
-<code>repeated-after-deadline</code>. If you want both scheduling and deadline
-information to repeat after the same interval, set the same repeater for
-both timestamps.
+You may have both scheduling and deadline information for a
+specific task. If the repeater is set for the scheduling
+information only, you probably want the repeater to be ignored
+after the deadline. If so, set the variable
+<code>org-agenda-skip-scheduled-if-deadline-is-shown</code> to
+<code>repeated-after-deadline</code>. If you want both scheduling and
+deadline information to repeat after the same interval, set the
+same repeater for both timestamps.
 </p>
 
 <p>
-An alternative to using a repeater is to create a number of copies of a
-task subtree, with dates shifted in each copy. The command C-c C-x c was
-created for this purpose, it is described in
+An alternative to using a repeater is to create a number of copies
+of a task subtree, with dates shifted in each copy. The command
+<b><i>C-c C-x c</i></b> was created for this purpose, it is described in
 <a href="#Structure-editing">Structure editing</a>.
 </p>
 </div>
@@ -8283,13 +8773,14 @@ created for this purpose, it is described in
 <h3 id="sec-8-4">8.4 Clocking work time                                             <a id="Clocking-work-time" name="Clocking-work-time"></a></h3>
 <div class="outline-text-3" id="text-8-4">
 <p>
-Org mode allows you to clock the time you spend on specific tasks in a
-project. When you start working on an item, you can start the clock.
-When you stop working on that task, or when you mark the task done, the
-clock is stopped and the corresponding time interval is recorded. It
-also computes the total time spent on each subtree<sup><a id="fnr.75" name="fnr.75" class="footref" href="#fn.75">75</a></sup> of
-a project. And it remembers a history or tasks recently clocked, so that
-you can jump quickly between a number of tasks absorbing your time.
+Org mode allows you to clock the time you spend on specific tasks
+in a project. When you start working on an item, you can start the
+clock.  When you stop working on that task, or when you mark the
+task done, the clock is stopped and the corresponding time interval
+is recorded. It also computes the total time spent on each
+subtree<sup><a id="fnr.75" name="fnr.75" class="footref" href="#fn.75">75</a></sup> of a project. And it remembers a history or
+tasks recently clocked, so that you can jump quickly between a
+number of tasks absorbing your time.
 </p>
 
 <p>
@@ -8305,220 +8796,250 @@ To save the clock history across Emacs sessions, use
 
 <p>
 When you clock into a new task after resuming Emacs, the incomplete
-clock<sup><a id="fnr.76" name="fnr.76" class="footref" href="#fn.76">76</a></sup> will be found (see
-<i>Resolving idle time</i>) and you will be prompted
-about what to do with it.
+clock<sup><a id="fnr.76" name="fnr.76" class="footref" href="#fn.76">76</a></sup> will be found (see <a href="#Resolving-idle-time">Resolving idle time</a>) and you
+will be prompted about what to do with it.
 </p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">• <a href="#Clocking-commands">Clocking commands</a>:</td>
+<td class="left">Starting and stopping a clock</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#The-clock-table">The clock table</a>:</td>
+<td class="left">Detailed reports</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Resolving-idle-time">Resolving idle time</a>:</td>
+<td class="left">Resolving time when you've been idle</td>
+</tr>
+</tbody>
+</table>
 </div>
 
+
 <div id="outline-container-sec-8-4-1" class="outline-4">
-<h4 id="sec-8-4-1">8.4.1 Clocking commands</h4>
+<h4 id="sec-8-4-1">8.4.1 Clocking commands                                           <a id="Clocking-commands" name="Clocking-commands"></a></h4>
 <div class="outline-text-4" id="text-8-4-1">
+<ul class="org-ul">
+<li><b><i>C-c C-x C-i</i></b> (<code>org-clock-in</code>)
+
 <p>
-C-c C-x C-i (<code>org-clock-in</code>)
+Start the clock on the current item (clock-in). This inserts
+the CLOCK keyword together with a timestamp. If this is not the
+first clocking of this item, the multiple CLOCK lines will be
+wrapped into a <code>:LOGBOOK:</code> drawer (see also the variable
+<code>org-clock-into-drawer</code>). You can also overrule the setting of
+this variable for a subtree by setting a <code>CLOCK_INTO_DRAWER</code> or
+<code>LOG_INTO_DRAWER</code> property. When called with a <b><i>C-u</i></b> prefix
+argument, select the task from a list of recently clocked
+tasks. With two <b><i>C-u C-u</i></b> prefixes, clock into the task at
+point and mark it as the default task; the default task will
+then always be available with letter d when selecting a
+clocking task. With three <b><i>C-u C-u C-u</i></b> prefixes, force
+continuous clocking by starting the clock when the last clock
+stopped.
 </p>
 
 <p>
-Start the clock on the current item (clock-in). This inserts the CLOCK
-keyword together with a timestamp. If this is not the first clocking of
-this item, the multiple CLOCK lines will be wrapped into a <code>:LOGBOOK:</code>
-drawer (see also the variable <code>org-clock-into-drawer</code>). You can also
-overrule the setting of this variable for a subtree by setting a
-<code>CLOCK_INTO_DRAWER</code> or <code>LOG_INTO_DRAWER</code> property. When called with a
-C-u prefix argument, select the task from a list of recently clocked
-tasks. With two C-u C-u prefixes, clock into the task at point and mark
-it as the default task; the default task will then always be available
-with letter d when selecting a clocking task. With three C-u C-u C-u
-prefixes, force continuous clocking by starting the clock when the last
-clock stopped.<br  />
- While the clock is running, the current clocking time is shown in the
-mode line, along with the title of the task. The clock time shown will
-be all time ever clocked for this task and its children. If the task has
-an effort estimate (see <i>Effort estimates</i>), the
-mode line displays the current clocking time against
-it<sup><a id="fnr.77" name="fnr.77" class="footref" href="#fn.77">77</a></sup> If the task is a repeating one (see
-<i>Repeated tasks</i>), only the time since the last reset
-of the task <sup><a id="fnr.78" name="fnr.78" class="footref" href="#fn.78">78</a></sup> will be shown. More control over what
-time is shown can be exercised with the <code>CLOCK_MODELINE_TOTAL</code> property.
-It may have the values <code>current</code> to show only the current clocking
-instance, <code>today</code> to show all time clocked on this tasks today (see also
-the variable <code>org-extend-today-until</code>), <code>all</code> to include all time, or
-<code>auto</code> which is the default<sup><a id="fnr.79" name="fnr.79" class="footref" href="#fn.79">79</a></sup>.<br  />
- Clicking with mouse-1 onto the mode line entry will pop up a menu with
-clocking options.
+While the clock is running, the current clocking time is shown
+in the mode line, along with the title of the task. The clock
+time shown will be all time ever clocked for this task and its
+children. If the task has an effort estimate (see <a href="#Effort-estimates">Effort
+estimates</a>), the mode line displays the current clocking time
+against it<sup><a id="fnr.77" name="fnr.77" class="footref" href="#fn.77">77</a></sup> If the task is a repeating one (see
+<a href="#Repeated-tasks">Repeated tasks</a>), only the time since the last reset of the
+task <sup><a id="fnr.78" name="fnr.78" class="footref" href="#fn.78">78</a></sup> will be shown. More control over what time is
+shown can be exercised with the <code>CLOCK_MODELINE_TOTAL</code>
+property.  It may have the values <code>current</code> to show only the
+current clocking instance, <code>today</code> to show all time clocked on
+this tasks today (see also the variable
+<code>org-extend-today-until</code>), <code>all</code> to include all time, or <code>auto</code>
+which is the default<sup><a id="fnr.79" name="fnr.79" class="footref" href="#fn.79">79</a></sup>.
 </p>
 
 <p>
-C-c C-x C-o (<code>org-clock-out</code>)
+Clicking with mouse-1 onto the mode line entry will pop up a
+menu with clocking options.
 </p>
+</li>
+
+<li><b><i>C-c C-x C-o</i></b> (<code>org-clock-out</code>)
 
 <p>
-Stop the clock (clock-out). This inserts another timestamp at the same
-location where the clock was last started. It also directly computes the
-resulting time and inserts it after the time range as ‘=&gt; HH:MM'. See
-the variable <code>org-log-note-clock-out</code> for the possibility to record an
-additional note together with the clock-out timestamp<sup><a id="fnr.80" name="fnr.80" class="footref" href="#fn.80">80</a></sup>.
+Stop the clock (clock-out). This inserts another timestamp at
+the same location where the clock was last started. It also
+directly computes the resulting time and inserts it after the
+time range as ‘=&gt; HH:MM'. See the variable
+<code>org-log-note-clock-out</code> for the possibility to record an
+additional note together with the clock-out
+timestamp<sup><a id="fnr.80" name="fnr.80" class="footref" href="#fn.80">80</a></sup>.
 </p>
+</li>
+
+<li><b><i>C-c C-x C-x</i></b> (<code>org-clock-in-last</code>)
 
 <p>
-C-c C-x C-x (<code>org-clock-in-last</code>)
+Reclock the last clocked task. With one <b><i>C-u</i></b> prefix
+argument, select the task from the clock history. With two
+<b><i>C-u</i></b> prefixes, force continuous clocking by starting the
+clock when the last clock stopped.
 </p>
+</li>
 
-<p>
-Reclock the last clocked task. With one C-u prefix argument, select the
-task from the clock history. With two C-u prefixes, force continuous
-clocking by starting the clock when the last clock stopped.
-</p>
-
-<p>
-C-c C-x C-e (<code>org-clock-modify-effort-estimate</code>)
-</p>
+<li><b><i>C-c C-x C-e</i></b> (<code>org-clock-modify-effort-estimate</code>)
 
 <p>
 Update the effort estimate for the current clock task.
 </p>
+</li>
+
+<li><b><i>C-c C-c</i></b> or <b><i>C-c C-y</i></b> (<code>org-evaluate-time-range</code>)
 
 <p>
-C-c C-c or C-c C-y (<code>org-evaluate-time-range</code>)
+Recompute the time interval after changing one of the
+timestamps. This is only necessary if you edit the timestamps
+directly. If you change them with S-cursor keys, the update is
+automatic.
+</p>
+</li>
+
+<li><b><i>C-S-up/down</i></b> (<code>org-clock-timestamps-up/down</code>)
+
+<p>
+On <code>CLOCK</code> log lines, increase/decrease both timestamps so that
+the clock duration keeps the same.
+</p>
+</li>
+
+<li><b><i>S-M-up/down</i></b> (<code>org-timestamp-up/down</code>)
+
+<p>
+On <code>CLOCK</code> log lines, increase/decrease the timestamp at point
+and the one of the previous (or the next clock) timestamp by
+the same duration.  For example, if you hit S-M-up to increase
+a clocked-out timestamp by five minutes, then the clocked-in
+timestamp of the next clock will be increased by five minutes.
+</p>
+</li>
+
+<li><b><i>C-c C-t</i></b> (<code>org-todo</code>)
+
+<p>
+Changing the TODO state of an item to DONE automatically stops
+the clock if it is running in this same item.
+</p>
+</li>
+
+<li><b><i>C-c C-x C-q</i></b> (<code>org-clock-cancel</code>)
+
+<p>
+Cancel the current clock. This is useful if a clock was started
+by mistake, or if you ended up working on something else.
+</p>
+</li>
+
+<li><b><i>C-c C-x C-j</i></b> (<code>org-clock-goto</code>)
+
+<p>
+Jump to the headline of the currently clocked in task. With a
+<b><i>C-u</i></b> prefix arg, select the target task from a list of
+recently clocked tasks.
+</p>
+</li>
+
+<li><b><i>C-c C-x C-d</i></b> (<code>org-clock-display</code>)
+
+<p>
+Display time summaries for each subtree in the current
+buffer. This puts overlays at the end of each headline, showing
+the total time recorded under that heading, including the time
+of any subheadings. You can use visibility cycling to study the
+tree, but the overlays disappear when you change the buffer
+(see variable <code>org-remove-highlights-with-change</code>) or press
+<b><i>C-c C-c</i></b>.
+</p>
+</li>
+</ul>
+
+<p>
+The <b>l</b> key may be used in the timeline (see <a href="#Timeline">Timeline</a>) and in the
+agenda (see <a href="#Weekly_daily-agenda">Weekly/daily agenda</a>) to show which tasks have been
+worked on or closed during a day.
 </p>
 
 <p>
-Recompute the time interval after changing one of the timestamps. This
-is only necessary if you edit the timestamps directly. If you change
-them with S-cursor keys, the update is automatic.
-</p>
-
-<p>
-C-S-up/down (<code>org-clock-timestamps-up/down</code>)
-</p>
-
-<p>
-On <code>CLOCK</code> log lines, increase/decrease both timestamps so that the
-clock duration keeps the same.
-</p>
-
-<p>
-S-M-up/down (<code>org-timestamp-up/down</code>)
-</p>
-
-<p>
-On <code>CLOCK</code> log lines, increase/decrease the timestamp at point and the
-one of the previous (or the next clock) timestamp by the same duration.
-For example, if you hit S-M-up to increase a clocked-out timestamp by
-five minutes, then the clocked-in timestamp of the next clock will be
-increased by five minutes.
-</p>
-
-<p>
-C-c C-t (<code>org-todo</code>)
-</p>
-
-<p>
-Changing the TODO state of an item to DONE automatically stops the clock
-if it is running in this same item.
-</p>
-
-<p>
-C-c C-x C-q (<code>org-clock-cancel</code>)
-</p>
-
-<p>
-Cancel the current clock. This is useful if a clock was started by
-mistake, or if you ended up working on something else.
-</p>
-
-<p>
-C-c C-x C-j (<code>org-clock-goto</code>)
-</p>
-
-<p>
-Jump to the headline of the currently clocked in task. With a C-u prefix
-arg, select the target task from a list of recently clocked tasks.
-</p>
-
-<p>
-C-c C-x C-d (<code>org-clock-display</code>)
-</p>
-
-<p>
-Display time summaries for each subtree in the current buffer. This puts
-overlays at the end of each headline, showing the total time recorded
-under that heading, including the time of any subheadings. You can use
-visibility cycling to study the tree, but the overlays disappear when
-you change the buffer (see variable <code>org-remove-highlights-with-change</code>)
-or press C-c C-c.
-</p>
-
-<p>
-The l key may be used in the timeline (see <a href="#Timeline">Timeline</a>) and
-in the agenda (see <a href="#Weekly_daily-agenda">Weekly/daily agenda</a>) to
-show which tasks have been worked on or closed during a day.
-</p>
-
-<p>
-<b>Important:</b> note that both <code>org-clock-out</code> and <code>org-clock-in-last</code> can
-have a global keybinding and will not modify the window disposition.
+<b>Important:</b> note that both <code>org-clock-out</code> and
+<code>org-clock-in-last</code> can have a global keybinding and will not
+modify the window disposition.
 </p>
 </div>
 </div>
 
 <div id="outline-container-sec-8-4-2" class="outline-4">
-<h4 id="sec-8-4-2">8.4.2 The clock table</h4>
+<h4 id="sec-8-4-2">8.4.2 The clock table                                             <a id="The-clock-table" name="The-clock-table"></a></h4>
 <div class="outline-text-4" id="text-8-4-2">
 <p>
-Org mode can produce quite complex reports based on the time clocking
-information. Such a report is called a <i>clock table</i>, because it is
-formatted as one or several Org tables.
+Org mode can produce quite complex reports based on the time
+clocking information. Such a report is called a <i>clock table</i>,
+because it is formatted as one or several Org tables.
 </p>
 
-<p>
-C-c C-x C-r (<code>org-clock-report</code>)
-</p>
+<ul class="org-ul">
+<li><b><i>C-c C-x C-r</i></b> (<code>org-clock-report</code>)
 
 <p>
-Insert a dynamic block (see <i>Dynamic blocks</i>)
-containing a clock report as an Org mode table into the current file.
-When the cursor is at an existing clock table, just update it. When
-called with a prefix argument, jump to the first clock report in the
-current document and update it. The clock table always includes also
-trees with <code>:ARCHIVE:</code> tag.
+Insert a dynamic block (see <a href="#Dynamic-blocks">Dynamic blocks</a>) containing a clock
+report as an Org mode table into the current file.  When the
+cursor is at an existing clock table, just update it. When
+called with a prefix argument, jump to the first clock report
+in the current document and update it. The clock table always
+includes also trees with <code>:ARCHIVE:</code> tag.
 </p>
+</li>
+
+<li><b><i>C-c C-c</i></b> or <b><i>C-c C-x C-u</i></b> (<code>org-dblock-update</code>)
 
 <p>
-C-c C-c or C-c C-x C-u (<code>org-dblock-update</code>)
+Update dynamic block at point. The cursor needs to be in the
+<code>#+BEGIN</code> line of the dynamic block.
 </p>
+</li>
+
+<li><b><i>C-u C-c C-x C-u</i></b>
 
 <p>
-Update dynamic block at point. The cursor needs to be in the <code>#+BEGIN</code>
-line of the dynamic block.
+Update all dynamic blocks (see <a href="#Dynamic-blocks">Dynamic blocks</a>).  This is useful
+if you have several clock table blocks in a buffer.
 </p>
+</li>
+
+<li><b><i>S-left</i></b>
+</li>
+<li><b><i>S-right</i></b> (<code>org-clocktable-try-shift</code>)
 
 <p>
-C-u C-c C-x C-u
+Shift the current <code>:block</code> interval and update the table. The
+cursor needs to be in the <code>#+BEGIN: clocktable</code> line for this
+command. If <code>:block</code> is <code>today</code>, it will be shifted to
+<code>today-1</code> etc.
 </p>
+</li>
+</ul>
 
 <p>
-Update all dynamic blocks (see <i>Dynamic blocks</i>).
-This is useful if you have several clock table blocks in a buffer.
-</p>
-
-<p>
-S-left
-</p>
-
-<p>
-S-right (<code>org-clocktable-try-shift</code>)
-</p>
-
-<p>
-Shift the current <code>:block</code> interval and update the table. The cursor
-needs to be in the <code>#+BEGIN: clocktable</code> line for this command. If
-<code>:block</code> is <code>today</code>, it will be shifted to <code>today-1</code> etc.
-</p>
-
-<p>
-Here is an example of the frame for a clock table as it is inserted into
-the buffer with the C-c C-x C-r command:
+Here is an example of the frame for a clock table as it is
+inserted into the buffer with the <b><i>C-c C-x C-r</i></b> command:
 </p>
 
 <pre class="example">
@@ -8527,65 +9048,209 @@ the buffer with the C-c C-x C-r command:
 </pre>
 
 <p>
-The ‘BEGIN' line specifies a number of options to define the scope,
-structure, and formatting of the report. Defaults for all these options
-can be configured in the variable <code>org-clocktable-defaults</code>.
+The ‘BEGIN' line specifies a number of options to define the
+scope, structure, and formatting of the report. Defaults for all
+these options can be configured in the variable
+<code>org-clocktable-defaults</code>.
 </p>
 
 <p>
-First there are options that determine which clock entries are to be
-selected:
+First there are options that determine which clock entries are to
+be selected:
 </p>
 
-<pre class="example">
-:maxlevel    Maximum level depth to which times are listed in the table.
-             Clocks at deeper levels will be summed into the upper level.
-:scope       The scope to consider.  This can be any of the following:
-             nil        the current buffer or narrowed region
-             file       the full current buffer
-             subtree    the subtree where the clocktable is located
-             treeN      the surrounding level N tree, for example tree3
-             tree       the surrounding level 1 tree
-             agenda     all agenda files
-             ("file"..) scan these files
-             file-with-archives    current file and its archives
-             agenda-with-archives  all agenda files, including archives
-:block       The time block to consider.  This block is specified either
-             absolutely, or relative to the current time and may be any of
-             these formats:
-             2007-12-31    New year eve 2007
-             2007-12       December 2007
-             2007-W50      ISO-week 50 in 2007
-             2007-Q2       2nd quarter in 2007
-             2007          the year 2007
-             today, yesterday, today-N          a relative day
-             thisweek, lastweek, thisweek-N     a relative week
-             thismonth, lastmonth, thismonth-N  a relative month
-             thisyear, lastyear, thisyear-N     a relative year
-             untilnow
-             Use S-left/right keys to shift the time interval.
-:tstart      A time string specifying when to start considering times.
-             Relative times like "&lt;-2w&gt;" can also be used.  See
-             Matching tags and properties for relative time syntax.
-:tend        A time string specifying when to stop considering times.
-             Relative times like "&lt;now&gt;" can also be used.  See
-             Matching tags and properties for relative time syntax.
-:wstart      The starting day of the week.  The default is 1 for monday.
-:mstart      The starting day of the month.  The default 1 is for the first
-             day of the month.
-:step        week or day, to split the table into chunks.
-             To use this, :block or :tstart, :tend are needed.
-:stepskip0   Do not show steps that have zero time.
-:fileskip0   Do not show table sections from files which did not contribute.
-:tags        A tags match to select entries that should contribute.  See
-             Matching tags and properties for the match syntax.
-</pre>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">:maxlevel</td>
+<td class="left">Maximum level depth to which times are listed in the table.</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">Clocks at deeper levels will be summed into the upper level.</td>
+</tr>
+
+<tr>
+<td class="left">:scope</td>
+<td class="left">The scope to consider.  This can be any of the following:</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">nil        the current buffer or narrowed region</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">file       the full current buffer</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">subtree    the subtree where the clocktable is located</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">treeN      the surrounding level N tree, for example tree3</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">tree       the surrounding level 1 tree</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">agenda     all agenda files</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">("file"..) scan these files</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">file-with-archives    current file and its archives</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">agenda-with-archives  all agenda files, including archives</td>
+</tr>
+
+<tr>
+<td class="left">:block</td>
+<td class="left">The time block to consider.  This block is specified either absolutely, or relative to the current time and may be any of these formats:</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">2007-12-31    New year eve 2007</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">2007-12       December 2007</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">2007-W50      ISO-week 50 in 2007</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">2007-Q2       2nd quarter in 2007</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">2007          the year 2007</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">today, yesterday, today-N          a relative day</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">thisweek, lastweek, thisweek-N     a relative week</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">thismonth, lastmonth, thismonth-N  a relative month</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">thisyear, lastyear, thisyear-N     a relative year</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">untilnow</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">Use S-left/right keys to shift the time interval.</td>
+</tr>
+
+<tr>
+<td class="left">:tstart</td>
+<td class="left">A time string specifying when to start considering times.</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">Relative times like "&lt;-2w&gt;" can also be used.  See <a href="#Matching-tags-and-properties">Matching tags and properties</a> for relative time syntax.</td>
+</tr>
+
+<tr>
+<td class="left">:tend</td>
+<td class="left">A time string specifying when to stop considering times.</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">Relative times like "&lt;now&gt;" can also be used.  See <a href="#Matching-tags-and-properties">Matching tags and properties</a> for relative time syntax.</td>
+</tr>
+
+<tr>
+<td class="left">:wstart</td>
+<td class="left">The starting day of the week.  The default is 1 for monday.</td>
+</tr>
+
+<tr>
+<td class="left">:mstart</td>
+<td class="left">The starting day of the month.  The default 1 is for the first day of the month.</td>
+</tr>
+
+<tr>
+<td class="left">:step</td>
+<td class="left">week or day, to split the table into chunks.</td>
+</tr>
+
+<tr>
+<td class="left">&#xa0;</td>
+<td class="left">To use this, :block or :tstart, :tend are needed.</td>
+</tr>
+
+<tr>
+<td class="left">:stepskip0</td>
+<td class="left">Do not show steps that have zero time.</td>
+</tr>
+
+<tr>
+<td class="left">:fileskip0</td>
+<td class="left">Do not show table sections from files which did not contribute.</td>
+</tr>
+
+<tr>
+<td class="left">:tags</td>
+<td class="left">A tags match to select entries that should contribute.  See <a href="#Matching-tags-and-properties">Matching tags and properties</a> for the match syntax.</td>
+</tr>
+</tbody>
+</table>
+
 
 <p>
-Then there are options which determine the formatting of the table.
-These options are interpreted by the function
-<code>org-clocktable-write-default</code>, but you can specify your own function
-using the <code>:formatter</code> parameter.
+Then there are options which determine the formatting of the
+table.  These options are interpreted by the function
+<code>org-clocktable-write-default</code>, but you can specify your own
+function using the <code>:formatter</code> parameter.
 </p>
 
 <pre class="example">
@@ -8616,8 +9281,8 @@ using the <code>:formatter</code> parameter.
 </pre>
 
 <p>
-To get a clock summary of the current level 1 tree, for the current day,
-you could write
+To get a clock summary of the current level 1 tree, for the
+current day, you could write
 </p>
 
 <pre class="example">
@@ -8636,7 +9301,8 @@ and to use a specific time range you could write<sup><a id="fnr.81" name="fnr.81
 </pre>
 
 <p>
-A range starting a week ago and ending right now could be written as
+A range starting a week ago and ending right now could be written
+as
 </p>
 
 <pre class="example">
@@ -8654,8 +9320,8 @@ A summary of the current subtree with % times would be
 </pre>
 
 <p>
-A horizontally compact representation of everything clocked during last
-week would be
+A horizontally compact representation of everything clocked during
+last week would be
 </p>
 
 <pre class="example">
@@ -8666,148 +9332,174 @@ week would be
 </div>
 
 <div id="outline-container-sec-8-4-3" class="outline-4">
-<h4 id="sec-8-4-3">8.4.3 Resolving idle time and continuous clocking</h4>
-</div>
-
-<div id="outline-container-sec-8-4-4" class="outline-4">
-<h4 id="sec-8-4-4">Resolving idle time</h4>
-<div class="outline-text-4" id="text-8-4-4">
+<h4 id="sec-8-4-3">8.4.3 Resolving idle time and continuous clocking                 <a id="Resolving-idle-time" name="Resolving-idle-time"></a></h4>
+<div class="outline-text-4" id="text-8-4-3">
+</div><div id="outline-container-sec-8-4-3-1" class="outline-5">
+<h5 id="sec-8-4-3-1">Resolving idle time</h5>
+<div class="outline-text-5" id="text-8-4-3-1">
 <p>
 If you clock in on a work item, and then walk away from your
-computer&#x2014;perhaps to take a phone call&#x2014;you often need to “resolve”
-the time you were away by either subtracting it from the current clock,
-or applying it to another one.
+computer &#x2013; perhaps to take a phone call &#x2013; you often need to
+“resolve” the time you were away by either subtracting it from the
+current clock, or applying it to another one.
 </p>
 
 <p>
-By customizing the variable <code>org-clock-idle-time</code> to some integer, such
-as 10 or 15, Emacs can alert you when you get back to your computer
-after being idle for that many minutes<sup><a id="fnr.82" name="fnr.82" class="footref" href="#fn.82">82</a></sup>, and ask what
-you want to do with the idle time. There will be a question waiting for
-you when you get back, indicating how much idle time has passed
-(constantly updated with the current amount), as well as a set of
-choices to correct the discrepancy:
+By customizing the variable <code>org-clock-idle-time</code> to some integer,
+such as 10 or 15, Emacs can alert you when you get back to your
+computer after being idle for that many minutes<sup><a id="fnr.82" name="fnr.82" class="footref" href="#fn.82">82</a></sup>, and
+ask what you want to do with the idle time. There will be a
+question waiting for you when you get back, indicating how much
+idle time has passed (constantly updated with the current amount),
+as well as a set of choices to correct the discrepancy:
 </p>
 
-<dl class="org-dl">
-<dt> k </dt><dd>To keep some or all of the minutes and stay clocked in, press k.
-Org will ask how many of the minutes to keep. Press <code>RET</code> to keep
-them all, effectively changing nothing, or enter a number to keep
-that many minutes.
-</dd>
-
-<dt> K </dt><dd>If you use the shift key and press K, it will keep however many
-minutes you request and then immediately clock out of that task. If
-you keep all of the minutes, this is the same as just clocking out of
-the current task.
-</dd>
-
-<dt> s </dt><dd>To keep none of the minutes, use s to subtract all the away time
-from the clock, and then check back in from the moment you returned.
-</dd>
-
-<dt> S </dt><dd>To keep none of the minutes and just clock out at the start of
-the away time, use the shift key and press S. Remember that using
-shift will always leave you clocked out, no matter which option you
-choose.
-</dd>
-
-<dt> C </dt><dd>To cancel the clock altogether, use C. Note that if instead of
-canceling you subtract the away time, and the resulting clock amount
-is less than a minute, the clock will still be canceled rather than
-clutter up the log with an empty entry.
-</dd>
-</dl>
+<ul class="org-ul">
+<li>k
 
 <p>
-What if you subtracted those away minutes from the current clock, and
-now want to apply them to a new clock? Simply clock in to any task
-immediately after the subtraction. Org will notice that you have
-subtracted time “on the books”, so to speak, and will ask if you want to
-apply those minutes to the next task you clock in on.
+To keep some or all of the minutes and stay clocked in, press
+k.  Org will ask how many of the minutes to keep. Press <code>RET</code>
+to keep them all, effectively changing nothing, or enter a
+number to keep that many minutes.
+</p>
+</li>
+
+<li>K
+
+<p>
+If you use the shift key and press K, it will keep however many
+minutes you request and then immediately clock out of that
+task. If you keep all of the minutes, this is the same as just
+clocking out of the current task.
+</p>
+</li>
+
+<li>s
+
+<p>
+To keep none of the minutes, use s to subtract all the away
+time from the clock, and then check back in from the moment you
+returned.
+</p>
+</li>
+
+<li>S
+
+<p>
+To keep none of the minutes and just clock out at the start of
+the away time, use the shift key and press <b><i>S</i></b>. Remember that
+using shift will always leave you clocked out, no matter which
+option you choose.
+</p>
+</li>
+
+<li>C
+
+<p>
+To cancel the clock altogether, use <b><i>C</i></b>. Note that if instead of
+canceling you subtract the away time, and the resulting clock
+amount is less than a minute, the clock will still be canceled
+rather than clutter up the log with an empty entry.
+</p>
+</li>
+</ul>
+
+<p>
+What if you subtracted those away minutes from the current clock,
+and now want to apply them to a new clock? Simply clock in to any
+task immediately after the subtraction. Org will notice that you
+have subtracted time “on the books”, so to speak, and will ask if
+you want to apply those minutes to the next task you clock in on.
 </p>
 
 <p>
-There is one other instance when this clock resolution magic occurs. Say
-you were clocked in and hacking away, and suddenly your cat chased a
-mouse who scared a hamster that crashed into your UPS's power button!
-You suddenly lose all your buffers, but thanks to auto-save you still
-have your recent Org mode changes, including your last clock in.
+There is one other instance when this clock resolution magic
+occurs. Say you were clocked in and hacking away, and suddenly
+your cat chased a mouse who scared a hamster that crashed into
+your UPS's power button!  You suddenly lose all your buffers, but
+thanks to auto-save you still have your recent Org mode changes,
+including your last clock in.
 </p>
 
 <p>
-If you restart Emacs and clock into any task, Org will notice that you
-have a dangling clock which was never clocked out from your last
-session. Using that clock's starting time as the beginning of the
-unaccounted-for period, Org will ask how you want to resolve that time.
-The logic and behavior is identical to dealing with away time due to
-idleness; it is just happening due to a recovery event rather than a set
-amount of idle time.
+If you restart Emacs and clock into any task, Org will notice that
+you have a dangling clock which was never clocked out from your
+last session. Using that clock's starting time as the beginning of
+the unaccounted-for period, Org will ask how you want to resolve
+that time.  The logic and behavior is identical to dealing with
+away time due to idleness; it is just happening due to a recovery
+event rather than a set amount of idle time.
 </p>
 
 <p>
-You can also check all the files visited by your Org agenda for dangling
-clocks at any time using M-x org-resolve-clocks RET (or C-c C-x C-z).
+You can also check all the files visited by your Org agenda for
+dangling clocks at any time using <b><i>M-x org-resolve-clocks RET</i></b>
+(or <b><i>C-c C-x C-z</i></b>).
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-8-4-5" class="outline-4">
-<h4 id="sec-8-4-5">Continuous clocking</h4>
-<div class="outline-text-4" id="text-8-4-5">
+<div id="outline-container-sec-8-4-3-2" class="outline-5">
+<h5 id="sec-8-4-3-2">Continuous clocking</h5>
+<div class="outline-text-5" id="text-8-4-3-2">
 <p>
-You may want to start clocking from the time when you clocked out the
-previous task. To enable this systematically, set
-<code>org-clock-continuously</code> to <code>t</code>. Each time you clock in, Org retrieves
-the clock-out time of the last clocked entry for this session, and start
-the new clock from there.
+You may want to start clocking from the time when you clocked out
+the previous task. To enable this systematically, set
+<code>org-clock-continuously</code> to <code>t</code>. Each time you clock in, Org
+retrieves the clock-out time of the last clocked entry for this
+session, and start the new clock from there.
 </p>
 
 <p>
-If you only want this from time to time, use three universal prefix
-arguments with <code>org-clock-in</code> and two C-u C-u with <code>org-clock-in-last</code>.
+If you only want this from time to time, use three universal
+prefix arguments with <code>org-clock-in</code> and two <b><i>C-u C-u</i></b> with
+<code>org-clock-in-last</code>.
 </p>
+</div>
 </div>
 </div>
 </div>
 
 <div id="outline-container-sec-8-5" class="outline-3">
-<h3 id="sec-8-5">8.5 Effort estimates</h3>
+<h3 id="sec-8-5">8.5 Effort estimates                                               <a id="Effort-estimates" name="Effort-estimates"></a></h3>
 <div class="outline-text-3" id="text-8-5">
 <p>
-If you want to plan your work in a very detailed way, or if you need to
-produce offers with quotations of the estimated work effort, you may
-want to assign effort estimates to entries. If you are also clocking
-your work, you may later want to compare the planned effort with the
-actual working time, a great way to improve planning estimates. Effort
-estimates are stored in a special property <code>EFFORT</code>. You can set the
-effort for an entry with the following commands:
+If you want to plan your work in a very detailed way, or if you
+need to produce offers with quotations of the estimated work
+effort, you may want to assign effort estimates to entries. If you
+are also clocking your work, you may later want to compare the
+planned effort with the actual working time, a great way to improve
+planning estimates. Effort estimates are stored in a special
+property <code>EFFORT</code>. You can set the effort for an entry with the
+following commands:
 </p>
 
-<p>
-C-c C-x e (<code>org-set-effort</code>)
-</p>
+<ul class="org-ul">
+<li><b><i>C-c C-x e</i></b> (<code>org-set-effort</code>)
 
 <p>
-Set the effort estimate for the current entry. With a numeric prefix
-argument, set it to the Nth allowed value (see below). This command is
-also accessible from the agenda with the e key.
+Set the effort estimate for the current entry. With a numeric
+prefix argument, set it to the Nth allowed value (see
+below). This command is also accessible from the agenda with the
+e key.
 </p>
+</li>
 
-<p>
-C-c C-x C-e (<code>org-clock-modify-effort-estimate</code>)
-</p>
+<li><b><i>C-c C-x C-e</i></b> (<code>org-clock-modify-effort-estimate</code>)
 
 <p>
 Modify the effort estimate of the item currently being clocked.
 </p>
+</li>
+</ul>
 
 <p>
-Clearly the best way to work with effort estimates is through column
-view (see <i>Column view</i>). You should start by setting up
+Clearly the best way to work with effort estimates is through
+column view (see <a href="#Column-view">Column view</a>). You should start by setting up
 discrete values for effort estimates, and a <code>COLUMNS</code> format that
-displays these values together with clock sums (if you want to clock
-your time). For a specific buffer you can use
+displays these values together with clock sums (if you want to
+clock your time). For a specific buffer you can use
 </p>
 
 <pre class="example">
@@ -8816,17 +9508,18 @@ your time). For a specific buffer you can use
 </pre>
 
 <p>
-or, even better, you can set up these values globally by customizing the
-variables <code>org-global-properties</code> and <code>org-columns-default-format</code>. In
-particular if you want to use this setup also in the agenda, a global
-setup may be advised.
+or, even better, you can set up these values globally by
+customizing the variables <code>org-global-properties</code> and
+<code>org-columns-default-format</code>. In particular if you want to use this
+setup also in the agenda, a global setup may be advised.
 </p>
 
 <p>
-The way to assign estimates to individual items is then to switch to
-column mode, and to use S-right and S-left to change the value. The
-values you enter will immediately be summed up in the hierarchy. In the
-column next to it, any clocked time will be displayed.
+The way to assign estimates to individual items is then to switch
+to column mode, and to use <b><i>S-right</i></b> and <b><i>S-left</i></b> to change the
+value. The values you enter will immediately be summed up in the
+hierarchy. In the column next to it, any clocked time will be
+displayed.
 </p>
 
 <p>
@@ -8835,110 +9528,111 @@ column will summarize the estimated work effort for each
 day<sup><a id="fnr.83" name="fnr.83" class="footref" href="#fn.83">83</a></sup>, and you can use this to find space in your
 schedule. To get an overview of the entire part of the day that is
 committed, you can set the option
-<code>org-agenda-columns-add-appointments-to-effort-sum</code>. The appointments on
-a day that take place over a specified time interval will then also be
-added to the load estimate of the day.
+<code>org-agenda-columns-add-appointments-to-effort-sum</code>. The
+appointments on a day that take place over a specified time
+interval will then also be added to the load estimate of the day.
 </p>
 
 <p>
 Effort estimates can be used in secondary agenda filtering that is
-triggered with the / key in the agenda (see <a href="#Agenda-commands">Agenda
-commands</a>). If you have these estimates defined consistently, two or
-three key presses will narrow down the list to stuff that fits into an
+triggered with the / key in the agenda (see <a href="#Agenda-commands">Agenda commands</a>). If
+you have these estimates defined consistently, two or three key
+presses will narrow down the list to stuff that fits into an
 available time slot.
 </p>
 </div>
 </div>
 
 <div id="outline-container-sec-8-6" class="outline-3">
-<h3 id="sec-8-6">8.6 Taking notes with a timer</h3>
+<h3 id="sec-8-6">8.6 Taking notes with a timer                                      <a id="Timers" name="Timers"></a></h3>
 <div class="outline-text-3" id="text-8-6">
 <p>
-Org provides provides two types of timers. There is a relative timer
-that counts up, which can be useful when taking notes during, for
-example, a meeting or a video viewing. There is also a countdown timer.
+Org provides provides two types of timers. There is a relative
+timer that counts up, which can be useful when taking notes during,
+for example, a meeting or a video viewing. There is also a
+countdown timer.
 </p>
 
 <p>
 The relative and countdown are started with separate commands.
 </p>
 
-<p>
-C-c C-x 0 (<code>org-timer-start</code>)
-</p>
+<ul class="org-ul">
+<li><b><i>C-c C-x 0</i></b> (<code>org-timer-start</code>)
 
 <p>
-Start or reset the relative timer. By default, the timer is set to 0.
-When called with a C-u prefix, prompt the user for a starting offset. If
-there is a timer string at point, this is taken as the default,
-providing a convenient way to restart taking notes after a break in the
-process. When called with a double prefix argument C-u C-u, change all
-timer strings in the active region by a certain amount. This can be used
-to fix timer strings if the timer was not started at exactly the right
+Start or reset the relative timer. By default, the timer is set
+to 0.  When called with a <b><i>C-u</i></b> prefix, prompt the user for a
+starting offset. If there is a timer string at point, this is
+taken as the default, providing a convenient way to restart
+taking notes after a break in the process. When called with a
+double prefix argument <b><i>C-u C-u</i></b>, change all timer strings in
+the active region by a certain amount. This can be used to fix
+timer strings if the timer was not started at exactly the right
 moment.
 </p>
+</li>
 
-<p>
-C-c C-x ; (<code>org-timer-set-timer</code>)
-</p>
+<li><b><i>C-c C-x ;</i></b> (<code>org-timer-set-timer</code>)
 
 <p>
 Start a countdown timer. The user is prompted for a duration.
-<code>org-timer-default-timer</code> sets the default countdown value. Giving a
-prefix numeric argument overrides this default value. This command is
-available as ; in agenda buffers.
+<code>org-timer-default-timer</code> sets the default countdown
+value. Giving a prefix numeric argument overrides this default
+value. This command is available as ; in agenda buffers.
 </p>
+</li>
+</ul>
 
 <p>
-Once started, relative and countdown timers are controlled with the same
-commands.
+Once started, relative and countdown timers are controlled with the
+same commands.
 </p>
 
-<p>
-C-c C-x . (<code>org-timer</code>)
-</p>
+<ul class="org-ul">
+<li><b><i>C-c C-x .</i></b> (<code>org-timer</code>)
 
 <p>
-Insert the value of the current relative or countdown timer into the
-buffer. If no timer is running, the relative timer will be started. When
-called with a prefix argument, the relative timer is restarted.
+Insert the value of the current relative or countdown timer into
+the buffer. If no timer is running, the relative timer will be
+started. When called with a prefix argument, the relative timer
+is restarted.
 </p>
+</li>
+
+<li><b><i>C-c C-x -</i></b> (<code>org-timer-item</code>)
 
 <p>
-C-c C-x - (<code>org-timer-item</code>)
+Insert a description list item with the value of the current
+relative or countdown timer. With a prefix argument, first reset
+the relative timer to 0.
 </p>
+</li>
+
+<li><b><i>M-RET</i></b> (<code>org-insert-heading</code>)
 
 <p>
-Insert a description list item with the value of the current relative or
-countdown timer. With a prefix argument, first reset the relative timer
-to 0.
+Once the timer list is started, you can also use M-RET to insert
+new timer items.
 </p>
+</li>
 
-<p>
-M-RET (<code>org-insert-heading</code>)
-</p>
-
-<p>
-Once the timer list is started, you can also use M-RET to insert new
-timer items.
-</p>
-
-<p>
-C-c C-x \ (<code>org-timer-pause-or-continue</code>)
-</p>
+<li><b>/C-c C-x \ /</b> (<code>org-timer-pause-or-continue</code>)
 
 <p>
 Pause the timer, or continue it if it is already paused.
 </p>
+</li>
+
+<li><b><i>C-c C-x _</i></b> (<code>org-timer-stop</code>)
 
 <p>
-C-c C-x \_ (<code>org-timer-stop</code>)
+Stop the timer. After this, you can only start a new timer, not
+continue the old one. This command also removes the timer from
+the mode line.
 </p>
-
-<p>
-Stop the timer. After this, you can only start a new timer, not continue
-the old one. This command also removes the timer from the mode line.
-</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -9779,7 +10473,7 @@ Archive the current entry using the command specified in the variable
 </div>
 
 <div id="outline-container-sec-9-6-1" class="outline-4">
-<h4 id="sec-9-6-1">9.6.1 Moving a tree to the archive file</h4>
+<h4 id="sec-9-6-1">9.6.1 Moving a tree to the archive file                           <a id="Moving-subtrees" name="Moving-subtrees"></a></h4>
 <div class="outline-text-4" id="text-9-6-1">
 <p>
 The most common archiving action is to move a project tree to another
@@ -10416,7 +11110,7 @@ more compact:
 
 <ul class="org-ul">
 <li>- Some people view a TODO item that has been <i>scheduled</i> for
-execution or have a <i>deadline</i> (see <i>Timestamps</i>) as
+execution or have a <i>deadline</i> (see <a href="#Timestamps">Timestamps</a>) as
 no longer <i>open</i>. Configure the variables
 <code>org-agenda-todo-ignore-scheduled</code>,
 <code>org-agenda-todo-ignore-deadlines</code>,
@@ -10530,13 +11224,13 @@ You may also test for properties (see
 <a href="#Properties-and-columns">Properties and columns</a>) at the same time as
 matching tags. The properties may be real properties, or special
 properties that represent other metadata (see
-<i>Special properties</i>). For example, the
+<a href="#Special-properties">Special properties</a>). For example, the
 “property” <code>TODO</code> represents the TODO keyword of the entry and the
 “property” <code>PRIORITY</code> represents the PRIORITY keyword of the entry.
 </p>
 
 <p>
-In addition to the <i>Special properties</i>, one
+In addition to the <a href="#Special-properties">Special properties</a>, one
 other “property” can also be used. <code>LEVEL</code> represents the level of an
 entry. So a search ‘+LEVEL=3+boss-TODO="DONE"' lists all level three
 headlines that have the tag ‘boss' and are <i>not</i> marked with the TODO
@@ -10610,7 +11304,7 @@ October 11, 2008.
 <p>
 You can configure Org mode to use property inheritance during a search,
 but beware that this can slow down searches considerably. See
-<i>Property inheritance</i>, for details.
+<a href="#Property-inheritance">Property inheritance</a>, for details.
 </p>
 
 <p>
@@ -10910,8 +11604,8 @@ sequence in which they are found in the agenda files.
 <p>
 Sorting can be customized using the variable
 <code>org-agenda-sorting-strategy</code>, and may also include criteria based on
-the estimated effort of an entry (see <i>Effort
-estimates</i>).
+the estimated effort of an entry (see <a href="#Effort-estimates">Effort
+estimates</a>).
 </p>
 </div>
 </div>
@@ -11354,7 +12048,7 @@ buffers in the current Emacs session, and also the locations of IDs.
 </dd>
 
 <dt> C-c C-x C-c (<code>org-agenda-columns</code>) </dt><dd>Invoke column view (see
-<i>Column view</i>) in the agenda buffer. The column view
+<a href="#Column-view">Column view</a>) in the agenda buffer. The column view
 format is taken from the entry at point, or (if there is no entry at
 point), from the first entry in the agenda view. So whatever the
 format for that entry would be in the original buffer (taken from a
@@ -12027,7 +12721,7 @@ any custom agenda command with a list of output file names
 <h3 id="sec-10-8">10.8 Using column view in the agenda</h3>
 <div class="outline-text-3" id="text-10-8">
 <p>
-Column view (see <i>Column view</i>) is normally used to view
+Column view (see <a href="#Column-view">Column view</a>) is normally used to view
 and edit properties embedded in the hierarchical structure of an Org
 file. It can be quite useful to use column view also from the agenda,
 where entries are collected by certain criteria.
@@ -12059,7 +12753,7 @@ specific format (defined in a property, or in its file), it uses
 <code>org-columns-default-format</code>.
 </li>
 <li>If any of the columns has a summary type defined (see
-<i>Column attributes</i>), turning on column view in
+<a href="#Column-attributes">Column attributes</a>), turning on column view in
 the agenda will visit all relevant agenda files and make sure that
 the computations of this property are up to date. This is also true
 for the special <code>CLOCKSUM</code> property. Org will then sum the values
@@ -19451,7 +20145,7 @@ online at <a href="http://orgmode.org/worg/org-contrib/babel">http://orgmode.org
 <p>
 Buffer-wide header arguments may be specified as properties through the
 use of <code>#+PROPERTY:</code> lines placed anywhere in an Org mode file (see
-<i>Property syntax</i>).
+<a href="#Property-syntax">Property syntax</a>).
 </p>
 
 <p>
@@ -19469,7 +20163,7 @@ results would be inserted into the buffer.
 <p>
 Header arguments read from Org mode properties can also be set on a
 per-subtree basis using property drawers (see
-<i>Property syntax</i>). When properties are used to set
+<a href="#Property-syntax">Property syntax</a>). When properties are used to set
 default header arguments, they are always looked up with inheritance,
 regardless of the value of <code>org-use-property-inheritance</code>. Properties
 are evaluated as seen by the outermost call or source
@@ -23419,7 +24113,7 @@ list between the two marker lines.
 </div>
 
 <div id="outline-container-sec-16-7" class="outline-3">
-<h3 id="sec-16-7">A.7 Dynamic blocks</h3>
+<h3 id="sec-16-7">A.7 Dynamic blocks                                                 <a id="Dynamic-blocks" name="Dynamic-blocks"></a></h3>
 <div class="outline-text-3" id="text-16-7">
 <p>
 Org documents can contain <i>dynamic blocks</i>. These are specially marked
@@ -23811,7 +24505,7 @@ foreach $line (split(/\n/,$agenda)) {
 </div>
 
 <div id="outline-container-sec-16-11" class="outline-3">
-<h3 id="sec-16-11">A.11 Using the property API</h3>
+<h3 id="sec-16-11">A.11 Using the property API                                        <a id="Using-the-property-API" name="Using-the-property-API"></a></h3>
 <div class="outline-text-3" id="text-16-11">
 <p>
 Here is a description of the functions that can be used to work with
@@ -23976,8 +24670,8 @@ function or Lisp form
 
 <p>
 The function given to that mapping routine can really do anything you
-like. It can use the property API (see <i>Using
-the property API</i>) to gather more information about the entry, or in
+like. It can use the property API (see <a href="#Using-the-property-API">Using
+the property API</a>) to gather more information about the entry, or in
 order to change metadata in the entry. Here are a couple of functions
 that might be handy:
 </p>
@@ -25537,8 +26231,8 @@ keys.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.62" name="fn.62" class="footnum" href="#fnr.62">62</a></sup> <p class="footpara">
-Contributed packages are not part of Emacs, but are distributed with the
-main distribution of Org (visit <a href="http://orgmode.org">http://orgmode.org</a>).
+Contributed packages are not part of Emacs, but are distributed with
+the main distribution of Org (visit <a href="http://orgmode.org">http://orgmode.org</a>).
 </p></div>
 
 <div class="footdef"><sup><a id="fn.63" name="fn.63" class="footnum" href="#fnr.63">63</a></sup> <p class="footpara">
@@ -25549,21 +26243,22 @@ day name, for reading convenience.
 
 <div class="footdef"><sup><a id="fn.64" name="fn.64" class="footnum" href="#fnr.64">64</a></sup> <p class="footpara">
 This is inspired by the standard ISO 8601 date/time format. To use an
-alternative format, see <i>Custom time format</i>.
+alternative format, see <a href="#Custom-time-format">Custom time format</a>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.65" name="fn.65" class="footnum" href="#fnr.65">65</a></sup> <p class="footpara">
-When working with the standard diary sexp functions, you need to be very
-careful with the order of the arguments. That order depends evilly on
-the variable <code>calendar-date-style</code> (or, for older Emacs versions,
-<code>european-calendar-style</code>). For example, to specify a date December 1,
-2005, the call might look like <code>(diary-date 12 1 2005)</code> or
+When working with the standard diary sexp functions, you need to be
+very careful with the order of the arguments. That order depends
+evilly on the variable <code>calendar-date-style</code> (or, for older Emacs
+versions, <code>european-calendar-style</code>). For example, to specify a date
+December 1, 2005, the call might look like <code>(diary-date 12 1 2005)</code> or
 <code>(diary-date 1 12 2005)</code> or <code>(diary-date 2005 12 1)</code>, depending on the
-settings. This has been the source of much confusion. Org mode users can
-resort to special versions of these functions like <code>org-date</code> or
+settings. This has been the source of much confusion. Org mode users
+can resort to special versions of these functions like <code>org-date</code> or
 <code>org-anniversary</code>. These work just like the corresponding <code>diary-</code>
 functions, but with stable ISO order of arguments (year, month, day)
-wherever applicable, independent of the value of <code>calendar-date-style</code>.
+wherever applicable, independent of the value of
+<code>calendar-date-style</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.66" name="fn.66" class="footnum" href="#fnr.66">66</a></sup> <p class="footpara">
@@ -25607,8 +26302,8 @@ with corresponding <code>#+STARTUP</code> keywords <code>logreschedule</code>,
 <div class="footdef"><sup><a id="fn.73" name="fn.73" class="footnum" href="#fnr.73">73</a></sup> <p class="footpara">
 In fact, the target state is taken from, in this sequence, the
 <code>REPEAT_TO_STATE</code> property or the variable <code>org-todo-repeat-to-state</code>.
-If neither of these is specified, the target state defaults to the first
-state of the TODO state sequence.
+If neither of these is specified, the target state defaults to the
+first state of the TODO state sequence.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.74" name="fn.74" class="footnum" href="#fnr.74">74</a></sup> <p class="footpara">
@@ -25645,18 +26340,18 @@ The corresponding in-buffer setting is: <code>#+STARTUP: lognoteclock-out</code>
 </p></div>
 
 <div class="footdef"><sup><a id="fn.81" name="fn.81" class="footnum" href="#fnr.81">81</a></sup> <p class="footpara">
-Note that all parameters must be specified in a single line&#x2014;the line
-is broken here only to fit it into the manual.
+Note that all parameters must be specified in a single line &#x2013; the
+line is broken here only to fit it into the manual.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.82" name="fn.82" class="footnum" href="#fnr.82">82</a></sup> <p class="footpara">
-On computers using Mac OS X, idleness is based on actual user idleness,
-not just Emacs' idle time. For X11, you can install a utility program
-x11idle.c, available in the <code>contrib/scripts</code> directory of the Org git
-distribution, or install the xprintidle package and set it to the
-variable <code>org-clock-x11idle-program-name</code> if you are running Debian, to
-get the same general treatment of idleness. On other systems, idle time
-refers to Emacs idle time only.
+On computers using Mac OS X, idleness is based on actual user
+idleness, not just Emacs' idle time. For X11, you can install a
+utility program x11idle.c, available in the <code>contrib/scripts</code>
+directory of the Org git distribution, or install the xprintidle
+package and set it to the variable <code>org-clock-x11idle-program-name</code> if
+you are running Debian, to get the same general treatment of
+idleness. On other systems, idle time refers to Emacs idle time only.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.83" name="fn.83" class="footnum" href="#fnr.83">83</a></sup> <p class="footpara">
@@ -25665,12 +26360,12 @@ Please note the pitfalls of summing hierarchical data in a flat list
 </p></div>
 
 <div class="footdef"><sup><a id="fn.84" name="fn.84" class="footnum" href="#fnr.84">84</a></sup> <p class="footpara">
-Please select your own key, C-c c is only a suggestion.
+Please select your own key, <b><i>C-c c</i></b> is only a suggestion.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.85" name="fn.85" class="footnum" href="#fnr.85">85</a></sup> <p class="footpara">
-Datetree headlines for years accept tags, so if you use both
-<code>* 2013 :noexport:</code> and <code>* 2013</code> in your file, the capture will refile
+Datetree headlines for years accept tags, so if you use both <code>*
+2013 :noexport:</code> and <code>* 2013</code> in your file, the capture will refile
 the note to the first one matched.
 </p></div>
 
@@ -26065,8 +26760,8 @@ behavior has been kept for backwards compatibility.
 
 <div class="footdef"><sup><a id="fn.156" name="fn.156" class="footnum" href="#fnr.156">156</a></sup> <p class="footpara">
 (The example needs property inheritance to be turned on for the
-<code>noweb-ref</code> property, see <i>Property
-inheritance</i>).
+<code>noweb-ref</code> property, see <a href="#Property-inheritance">Property
+inheritance</a>).
 </p></div>
 
 <div class="footdef"><sup><a id="fn.157" name="fn.157" class="footnum" href="#fnr.157">157</a></sup> <p class="footpara">

@@ -147,6 +147,12 @@ html body #content i { font-family: text_italic; }  /* /ITALIC/     */
 html body #content a { color: #00ffff; text-decoration: underline; }
 html body #content a:hover { background-color: #556b2f; color: #ffffff; text-decoration: none; }
 
+/* ############ FOOTNOTE LINK */
+html body #content a.footref { color: #00ffff; text-decoration: none; }
+html body #content a.footref:hover { background-color: #556b2f; color: #ffffff; text-decoration: none; }
+html body #content a.footnum { color: #00ffff; text-decoration: none; }
+html body #content a.footnum:hover { background-color: #556b2f; color: #ffffff; text-decoration: none; }
+
 /* #################### LIST  */
 html body #content ul.org-ul li { color: #fff; font-size: 1em; }
 html body #content ul.org-ul li b { font-weight: bold; }

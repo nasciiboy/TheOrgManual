@@ -4311,1482 +4311,1628 @@ modify this GNU manual.”
 
 * 7 Properties and columns                                            <<@Properties-and-columns>>
 
-A property is a key-value pair associated with an entry. Properties can
-be set so they are associated with a single entry, with every entry in a
-tree, or with every entry in an Org mode file.
+  A property is a key-value pair associated with an entry. Properties
+  can be set so they are associated with a single entry, with every
+  entry in a tree, or with every entry in an Org mode file.
 
-There are two main applications for properties in Org mode. First,
-properties are like tags, but with a value. Imagine maintaining a file
-where you document bugs and plan releases for a piece of software.
-Instead of using tags like =:release_1:=, =:release_2:=, you can use a
-property, say =:Release:=, that in different subtrees has different
-values, such as =1.0= or =2.0=. Second, you can use properties to
-implement (very basic) database capabilities in an Org buffer. Imagine
-keeping track of your music CDs, where properties could be things such
-as the album, artist, date of release, number of tracks, and so on.
+  There are two main applications for properties in Org mode. First,
+  properties are like tags, but with a value. Imagine maintaining a
+  file where you document bugs and plan releases for a piece of
+  software.  Instead of using tags like =:release_1:=, =:release_2:=,
+  you can use a property, say =:Release:=, that in different subtrees
+  has different values, such as =1.0= or =2.0=. Second, you can use
+  properties to implement (very basic) database capabilities in an Org
+  buffer. Imagine keeping track of your music CDs, where properties
+  could be things such as the album, artist, date of release, number
+  of tracks, and so on.
 
-Properties can be conveniently edited and viewed in column view (see
-[[@Column-view][Column view]]).
+  Properties can be conveniently edited and viewed in column view (see
+  [[@Column-view][Column view]]).
 
-** 7.1 Property syntax
+  | • [[@Property-syntax][Property syntax]]:      | How properties are spelled out    |
+  | • [[@Special-properties][Special properties]]:   | Access to other Org mode features |
+  | • [[@Property-searches][Property searches]]:    | Matching property values          |
+  | • [[@Property-inheritance][Property inheritance]]: | Passing values down the tree      |
+  | • [[@Column-view][Column view]]:          | Tabular viewing and editing       |
+  | • [[@Property-API][Property API]]:         | Properties for Lisp programmers   |
 
-Properties are key-value pairs. When they are associated with a single
-entry or with a tree they need to be inserted into a special drawer (see
-[[@Drawers][Drawers]]) with the name =PROPERTIES=, which has to be
-located right below a headline, and its planning line (see
-[[@Deadlines-and-scheduling][Deadlines and scheduling]]) when
-applicable. Each property is specified on a single line, with the key
-(surrounded by colons) first, and the value after it. Keys are
-case-insensitives. Here is an example:
 
-#+BEGIN_EXAMPLE
-    * CD collection
-    ** Classic
-    *** Goldberg Variations
-        :PROPERTIES:
+** 7.1 Property syntax                                                <<@Property-syntax>>
+
+   Properties are key-value pairs. When they are associated with a
+   single entry or with a tree they need to be inserted into a special
+   drawer (see [[@Drawers][Drawers]]) with the name =PROPERTIES=, which has to be
+   located right below a headline, and its planning line (see
+   [[@Deadlines-and-scheduling][Deadlines and scheduling]]) when applicable. Each property is
+   specified on a single line, with the key (surrounded by colons)
+   first, and the value after it. Keys are case-insensitives. Here is
+   an example:
+
+   #+BEGIN_EXAMPLE
+     * CD collection
+     ** Classic
+     *** Goldberg Variations
+         :PROPERTIES:
         :Title:     Goldberg Variations
         :Composer:  J.S. Bach
         :Artist:    Glen Gould
         :Publisher: Deutsche Grammophon
         :NDisks:    1
         :END:
-#+END_EXAMPLE
+   #+END_EXAMPLE
 
-Depending on the value of =org-use-property-inheritance=, a property set
-this way will either be associated with a single entry, or the subtree
-defined by the entry, see [[@Property-inheritance][Property
-inheritance]].
+   Depending on the value of =org-use-property-inheritance=, a
+   property set this way will either be associated with a single
+   entry, or the subtree defined by the entry, see [[@Property-inheritance][Property
+   inheritance]].
 
-You may define the allowed values for a particular property ‘:Xyz:' by
-setting a property ‘:Xyz\_ALL:'. This special property is /inherited/,
-so if you set it in a level 1 entry, it will apply to the entire tree.
-When allowed values are defined, setting the corresponding property
-becomes easier and is less prone to typing errors. For the example with
-the CD collection, we can predefine publishers and the number of disks
-in a box like this:
+   You may define the allowed values for a particular property ‘:Xyz:'
+   by setting a property ‘:Xyz\_ALL:'. This special property is
+   /inherited/, so if you set it in a level 1 entry, it will apply to
+   the entire tree.  When allowed values are defined, setting the
+   corresponding property becomes easier and is less prone to typing
+   errors. For the example with the CD collection, we can predefine
+   publishers and the number of disks in a box like this:
 
-#+BEGIN_EXAMPLE
-    * CD collection
-      :PROPERTIES:
+   #+BEGIN_EXAMPLE
+     * CD collection
+       :PROPERTIES:
       :NDisks_ALL:  1 2 3 4
       :Publisher_ALL: "Deutsche Grammophon" Philips EMI
       :END:
-#+END_EXAMPLE
+   #+END_EXAMPLE
 
-If you want to set properties that can be inherited by any entry in a
-file, use a line like
+   If you want to set properties that can be inherited by any entry in
+   a file, use a line like
 
-#+BEGIN_EXAMPLE
-    #+PROPERTY: NDisks_ALL 1 2 3 4
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     #+PROPERTY: NDisks_ALL 1 2 3 4
+   #+END_EXAMPLE
 
-Contrary to properties set from a special drawer, you have to refresh
-the buffer with C-c C-c to activate this change.
+   Contrary to properties set from a special drawer, you have to
+   refresh the buffer with */C-c C-c/* to activate this change.
 
-If you want to add to the value of an existing property, append a =+= to
-the property name. The following results in the property =var= having
-the value “foo=1 bar=2”.
+   If you want to add to the value of an existing property, append a
+   =+= to the property name. The following results in the property
+   =var= having the value “foo=1 bar=2”.
 
-#+BEGIN_EXAMPLE
-    #+PROPERTY: var  foo=1
-    #+PROPERTY: var+ bar=2
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     #+PROPERTY: var  foo=1
+     #+PROPERTY: var+ bar=2
+   #+END_EXAMPLE
 
-It is also possible to add to the values of inherited properties. The
-following results in the =genres= property having the value “Classic
-Baroque” under the =Goldberg Variations= subtree.
+   It is also possible to add to the values of inherited
+   properties. The following results in the =genres= property having
+   the value “Classic Baroque” under the =Goldberg Variations=
+   subtree.
 
-#+BEGIN_EXAMPLE
-    * CD collection
-    ** Classic
-        :PROPERTIES:
-        :GENRES: Classic
-        :END:
-    *** Goldberg Variations
-        :PROPERTIES:
-        :Title:     Goldberg Variations
-        :Composer:  J.S. Bach
-        :Artist:    Glen Gould
-        :Publisher: Deutsche Grammophon
-        :NDisks:    1
-        :GENRES+:   Baroque
-        :END:
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     * CD collection
+     ** Classic
+         :PROPERTIES:
+         :GENRES: Classic
+         :END:
+     *** Goldberg Variations
+         :PROPERTIES:
+         :Title:     Goldberg Variations
+         :Composer:  J.S. Bach
+         :Artist:    Glen Gould
+         :Publisher: Deutsche Grammophon
+         :NDisks:    1
+         :GENRES+:   Baroque
+         :END:
+   #+END_EXAMPLE
 
-Note that a property can only have one entry per Drawer.
+   Note that a property can only have one entry per Drawer.
 
-Property values set with the global variable =org-global-properties= can
-be inherited by all entries in all Org files.
+   Property values set with the global variable
+   =org-global-properties= can be inherited by all entries in all Org
+   files.
 
-The following commands help to work with properties:
+   The following commands help to work with properties:
 
-M-TAB (=pcomplete=)
+    - */M-TAB/* (=pcomplete=)
 
-After an initial colon in a line, complete property keys. All keys used
-in the current file will be offered as possible completions.
+      After an initial colon in a line, complete property keys. All
+      keys used in the current file will be offered as possible
+      completions.
 
-C-c C-x p (=org-set-property=)
+    - */C-c C-x p/* (=org-set-property=)
 
-Set a property. This prompts for a property name and a value. If
-necessary, the property drawer is created as well.
+      Set a property. This prompts for a property name and a value. If
+      necessary, the property drawer is created as well.
 
-C-u M-x org-insert-drawer RET
+    - */C-u M-x org-insert-drawer RET/*
 
-Insert a property drawer into the current entry. The drawer will be
-inserted early in the entry, but after the lines with planning
-information like deadlines.
+      Insert a property drawer into the current entry. The drawer will
+      be inserted early in the entry, but after the lines with
+      planning information like deadlines.
 
-C-c C-c (=org-property-action=)
+    - */C-c C-c/* (=org-property-action=)
 
-With the cursor in a property drawer, this executes property commands.
+      With the cursor in a property drawer, this executes property
+      commands.
 
-C-c C-c s (=org-set-property=)
+    - */C-c C-c s/* (=org-set-property=)
 
-Set a property in the current entry. Both the property and the value can
-be inserted using completion.
+      Set a property in the current entry. Both the property and the
+      value can be inserted using completion.
 
-S-right (=org-property-next-allowed-value=)
+    - */S-right/* (=org-property-next-allowed-value=)
+    - */S-left/* (=org-property-previous-allowed-value=)
 
-S-left (=org-property-previous-allowed-value=)
+      Switch property at point to the next/previous allowed value.
 
-Switch property at point to the next/previous allowed value.
+    - */C-c C-c d/* (=org-delete-property=)
 
-C-c C-c d (=org-delete-property=)
+      Remove a property from the current entry.
 
-Remove a property from the current entry.
+    - */C-c C-c D/* (=org-delete-property-globally=)
 
-C-c C-c D (=org-delete-property-globally=)
+      Globally remove a property, from all entries in the current
+      file.
 
-Globally remove a property, from all entries in the current file.
+    - */C-c C-c c/* (=org-compute-property-at-point=)
 
-C-c C-c c (=org-compute-property-at-point=)
+      Compute the property at point, using the operator and scope from
+      the nearest column format definition.
 
-Compute the property at point, using the operator and scope from the
-nearest column format definition.
+** 7.2 Special properties                                             <<@Special-properties>>
 
-** 7.2 Special properties
+   Special properties provide an alternative access method to Org mode
+   features, like the TODO state or the priority of an entry,
+   discussed in the previous chapters. This interface exists so that
+   you can include these states in a column view (see [[@Column-view][Column view]]), or
+   to use them in queries. The following property names are special
+   and should not be used as keys in the properties drawer:
 
-Special properties provide an alternative access method to Org mode
-features, like the TODO state or the priority of an entry, discussed in
-the previous chapters. This interface exists so that you can include
-these states in a column view (see [[@Column-view][Column view]]), or to
-use them in queries. The following property names are special and should
-not be used as keys in the properties drawer:
-
-#+BEGIN_EXAMPLE
-    ALLTAGS      All tags, including inherited ones.
-    BLOCKED      "t" if task is currently blocked by children or siblings.
-    CLOCKSUM     The sum of CLOCK intervals in the subtree.  org-clock-sum
-                 must be run first to compute the values in the current buffer.
-    CLOCKSUM_T   The sum of CLOCK intervals in the subtree for today.
-                 org-clock-sum-today must be run first to compute the
-                 values in the current buffer.
-    CLOSED       When was this entry closed?
-    DEADLINE     The deadline time string, without the angular brackets.
-    FILE         The filename the entry is located in.
-    ITEM         The headline of the entry, with stars.
-    PRIORITY     The priority of the entry, a string with a single letter.
-    SCHEDULED    The scheduling timestamp, without the angular brackets.
-    TAGS         The tags defined directly in the headline.
-    TIMESTAMP    The first keyword-less timestamp in the entry.
-    TIMESTAMP_IA The first inactive timestamp in the entry.
-    TODO         The TODO keyword of the entry.
-#+END_EXAMPLE
+   | =ALLTAGS=      | All tags, including inherited ones.                |
+   | =BLOCKED=      | "t" if task is currently blocked by children or siblings. |
+   | =CLOCKSUM=     | The sum of CLOCK intervals in the subtree.  =org-clock-sum= must be run first to compute the values in the current buffer. |
+   | =CLOCKSUM_T=   | The sum of CLOCK intervals in the subtree for today. =org-clock-sum-today= must be run first to compute the values in the current buffer. |
+   | =CLOSED=       | When was this entry closed?                        |
+   | =DEADLINE=     | The deadline time string, without the angular brackets. |
+   | =FILE=         | The filename the entry is located in.              |
+   | =ITEM=         | The headline of the entry, with stars.             |
+   | =PRIORITY=     | The priority of the entry, a string with a single letter. |
+   | =SCHEDULED=    | The scheduling timestamp, without the angular brackets. |
+   | =TAGS=         | The tags defined directly in the headline.         |
+   | =TIMESTAMP=    | The first keyword-less timestamp in the entry.     |
+   | =TIMESTAMP_IA= | The first inactive timestamp in the entry.         |
+   | =TODO=         | The TODO keyword of the entry.                     |
 
 ** 7.3 Property searches                                              <<@Property-searches>>
 
-To create sparse trees and special lists with selection based on
-properties, the same commands are used as for tag searches (see
-[[@Tag-searches][Tag searches]]).
+   To create sparse trees and special lists with selection based on
+   properties, the same commands are used as for tag searches (see [[@Tag-searches][Tag
+   searches]]).
 
-C-c / m or C-c \ (=org-match-sparse-tree=)
-
-Create a sparse tree with all matching entries. With a C-u prefix
-argument, ignore headlines that are not a TODO line.
+    - */C-c / m/* or */C-c \ /* (=org-match-sparse-tree=)
 
-C-c a m (=org-tags-view=)
-
-Create a global list of tag/property matches from all agenda files. See
-[[@Matching-tags-and-properties][Matching tags and properties]].
-
-C-c a M (=org-tags-view=)
-
-Create a global list of tag matches from all agenda files, but check
-only TODO items and force checking of subitems (see the option
-=org-tags-match-list-sublevels=).
-
-The syntax for the search string is described in
-[[@Matching-tags-and-properties][Matching tags and properties]].
-
-There is also a special command for creating sparse trees based on a
-single property:
-
-C-c / p
+      Create a sparse tree with all matching entries. With a C-u prefix
+      argument, ignore headlines that are not a TODO line.
 
-Create a sparse tree based on the value of a property. This first
-prompts for the name of a property, and then for a value. A sparse tree
-is created with all entries that define this property with the given
-value. If you enclose the value in curly braces, it is interpreted as a
-regular expression and matched against the property values.
-
-** 7.4 Property Inheritance
-
-The outline structure of Org mode documents lends itself to an
-inheritance model of properties: if the parent in a tree has a certain
-property, the children can inherit this property. Org mode does not turn
-this on by default, because it can slow down property searches
-significantly and is often not needed. However, if you find inheritance
-useful, you can turn it on by setting the variable
-=org-use-property-inheritance=. It may be set to =t= to make all
-properties inherited from the parent, to a list of properties that
-should be inherited, or to a regular expression that matches inherited
-properties. If a property has the value =nil=, this is interpreted as an
-explicit undefine of the property, so that inheritance search will stop
-at this value and return =nil=.
-
-Org mode has a few properties for which inheritance is hard-coded, at
-least for the special applications for which they are used:
-
--  =COLUMNS= :: The =:COLUMNS:= property defines the format of column
-   view (see [[@Column-view][Column view]]). It is inherited in the
-   sense that the level where a =:COLUMNS:= property is defined is used
-   as the starting point for a column view table, independently of the
-   location in the subtree from where columns view is turned on.
-
--  =CATEGORY= :: For agenda view, a category set through a =:CATEGORY:=
-   property applies to the entire subtree.
-
--  =ARCHIVE= :: For archiving, the =:ARCHIVE:= property may define the
-   archive location for the entire subtree (see
-   [[@Moving-subtrees][Moving subtrees]]).
-
--  =LOGGING= :: The LOGGING property may define logging settings for an
-   entry or a subtree (see [[@Tracking-TODO-state-changes][Tracking TODO
-   state changes]]).
-
-** 7.5 Column view
-
-A great way to view and edit properties in an outline tree is /column
-view/. In column view, each outline node is turned into a table row.
-Columns in this table provide access to properties of the entries. Org
-mode implements columns by overlaying a tabular structure over the
-headline of each item. While the headlines have been turned into a table
-row, you can still change the visibility of the outline tree. For
-example, you get a compact table by switching to CONTENTS view (S-TAB
-S-TAB, or simply c while column view is active), but you can still open,
-read, and edit the entry below each headline. Or, you can switch to
-column view after executing a sparse tree command and in this way get a
-table only for the selected items. Column view also works in agenda
-buffers (see [[@Agenda-views][Agenda views]]) where queries have
-collected selected items, possibly from a number of files.
-
-*** 7.5.1 Defining columns
-
-Setting up a column view first requires defining the columns. This is
-done by defining a column format line.
-
-*** 7.5.1.1 Scope of column definitions
-
-To define a column format for an entire file, use a line like
-
-#+BEGIN_EXAMPLE
-    #+COLUMNS: %25ITEM %TAGS %PRIORITY %TODO
-#+END_EXAMPLE
-
-To specify a format that only applies to a specific tree, add a
-=:COLUMNS:= property to the top node of that tree, for example:
-
-#+BEGIN_EXAMPLE
-    ** Top node for columns view
-       :PROPERTIES:
-       :COLUMNS: %25ITEM %TAGS %PRIORITY %TODO
-       :END:
-#+END_EXAMPLE
-
-If a =:COLUMNS:= property is present in an entry, it defines columns for
-the entry itself, and for the entire subtree below it. Since the column
-definition is part of the hierarchical structure of the document, you
-can define columns on level 1 that are general enough for all sublevels,
-and more specific columns further down, when you edit a deeper part of
-the tree.
-
-*** 7.5.1.2 Column attributes
-
-A column definition sets the attributes of a column. The general
-definition looks like this:
-
-#+BEGIN_EXAMPLE
-     %[width]property[(title)][{summary-type}]
-#+END_EXAMPLE
-
-Except for the percent sign and the property name, all items are
-optional. The individual parts have the following meaning:
-
-#+BEGIN_EXAMPLE
-    width           An integer specifying the width of the column in characters.
-                    If omitted, the width will be determined automatically.
-    property        The property that should be edited in this column.
-                    Special properties representing meta data are allowed here
-                    as well (see Special properties)
-    title           The header text for the column.  If omitted, the property
-                    name is used.
-    {summary-type}  The summary type.  If specified, the column values for
-                    parent nodes are computed from the children.
-                    Supported summary types are:
-                    {+}       Sum numbers in this column.
-                    {+;%.1f}  Like ‘+’, but format result with ‘%.1f’.
-                    {$}       Currency, short for ‘+;%.2f’.
-                    {:}       Sum times, HH:MM, plain numbers are hours.
-                    {X}       Checkbox status, ‘[X]’ if all children are ‘[X]’.
-                    {X/}      Checkbox status, ‘[n/m]’.
-                    {X%}      Checkbox status, ‘[n%]’.
-                    {min}     Smallest number in column.
-                    {max}     Largest number.
-                    {mean}    Arithmetic mean of numbers.
-                    {:min}    Smallest time value in column.
-                    {:max}    Largest time value.
-                    {:mean}   Arithmetic mean of time values.
-                    {@min}    Minimum age (in days/hours/mins/seconds).
-                    {@max}    Maximum age (in days/hours/mins/seconds).
-                    {@mean}   Arithmetic mean of ages (in days/hours/mins/seconds).
-                    {est+}    Add ‘low-high’ estimates.
-#+END_EXAMPLE
-
-Be aware that you can only have one summary type for any property you
-include. Subsequent columns referencing the same property will all
-display the same summary information.
-
-The =est+= summary type requires further explanation. It is used for
-combining estimates, expressed as ‘low-high' ranges or plain numbers.
-For example, instead of estimating a particular task will take 5 days,
-you might estimate it as 5--6 days if you're fairly confident you know
-how much work is required, or 1--10 days if you don't really know what
-needs to be done. Both ranges average at 5.5 days, but the first
-represents a more predictable delivery.
-
-When combining a set of such estimates, simply adding the lows and highs
-produces an unrealistically wide result. Instead, =est+= adds the
-statistical mean and variance of the sub-tasks, generating a final
-estimate from the sum. For example, suppose you had ten tasks, each of
-which was estimated at 0.5 to 2 days of work. Straight addition produces
-an estimate of 5 to 20 days, representing what to expect if everything
-goes either extremely well or extremely poorly. In contrast, =est+=
-estimates the full job more realistically, at 10--15 days.
-
-Numbers are right-aligned when a format specifier with an explicit width
-like =%5d= or =%5.1f= is used.
-
-Here is an example for a complete columns definition, along with allowed
-values.
-
-#+BEGIN_EXAMPLE
-    :COLUMNS:  %25ITEM %9Approved(Approved?){X} %Owner %11Status \(64)
-                       %10Time_Estimate{:} %CLOCKSUM %CLOCKSUM_T
-    :Owner_ALL:    Tammy Mark Karl Lisa Don
-    :Status_ALL:   "In progress" "Not started yet" "Finished" ""
-    :Approved_ALL: "[ ]" "[X]"
-#+END_EXAMPLE
-
-The first column, ‘%25ITEM', means the first 25 characters of the item
-itself, i.e., of the headline. You probably always should start the
-column definition with the ‘ITEM' specifier. The other specifiers create
-columns ‘Owner' with a list of names as allowed values, for ‘Status'
-with four different possible values, and for a checkbox field
-‘Approved'. When no width is given after the ‘%' character, the column
-will be exactly as wide as it needs to be in order to fully display all
-values. The ‘Approved' column does have a modified title (‘Approved?',
-with a question mark). Summaries will be created for the
-‘Time\_Estimate' column by adding time duration expressions like HH:MM,
-and for the ‘Approved' column, by providing an ‘[X]' status if all
-children have been checked. The ‘CLOCKSUM' and ‘CLOCKSUM\_T' columns are
-special, they lists the sums of CLOCK intervals in the subtree, either
-for all clocks or just for today.
-
-*** 7.5.2 Using column view
-
--  *Turning column view on and off* ::
--  C-c C-x C-c (=org-columns=) :: Turn on column view. If the cursor
-   is before the first headline in the file, column view is turned on
-   for the entire file, using the =#+COLUMNS= definition. If the cursor
-   is somewhere inside the outline, this command searches the hierarchy,
-   up from point, for a =:COLUMNS:= property that defines a format. When
-   one is found, the column view table is established for the tree
-   starting at the entry that contains the =:COLUMNS:= property. If no
-   such property is found, the format is taken from the =#+COLUMNS= line
-   or from the variable =org-columns-default-format=, and column view is
-   established for the current entry and its subtree.
-
--  r (=org-columns-redo=) :: Recreate the column view, to include
-   recent changes made in the buffer.
-
--  g (=org-columns-redo=) :: Same as r.
-
--  q (=org-columns-quit=) :: Exit column view.
-
--  *Editing values*\\
-   left right up down :: Move through the column view from field to
-   field.
-
--  S-left/right :: Switch to the next/previous allowed value of the
-   field. For this, you have to have specified allowed values for a
-   property.
-
--  1..9,0 :: Directly select the Nth allowed value, 0 selects the 10th
-   value.
-
--  n (=org-columns-next-allowed-value=)\\
-   p (=org-columns-previous-allowed-value=) :: Same as S-left/right
-
--  e (=org-columns-edit-value=) :: Edit the property at point. For
-   the special properties, this will invoke the same interface that you
-   normally use to change that property. For example, when editing a
-   TAGS property, the tag completion or fast selection interface will
-   pop up.
-
--  C-c C-c (=org-columns-set-tags-or-toggle=) :: When there is a
-   checkbox at point, toggle it.
-
--  v (=org-columns-show-value=) :: View the full value of this
-   property. This is useful if the width of the column is smaller than
-   that of the value.
-
--  a (=org-columns-edit-allowed=) :: Edit the list of allowed values
-   for this property. If the list is found in the hierarchy, the
-   modified value is stored there. If no list is found, the new value is
-   stored in the first entry that is part of the current column view.
-
--  *Modifying the table structure* ::
--  < (=org-columns-narrow=)\\
-   > (=org-columns-widen=) :: Make the column narrower/wider by one
-   character.
-
--  S-M-right (=org-columns-new=) :: Insert a new column, to the left
-   of the current column.
-
--  S-M-left (=org-columns-delete=) :: Delete the current column.
-
-*** 7.5.3 Capturing column view
-
-Since column view is just an overlay over a buffer, it cannot be
-exported or printed directly. If you want to capture a column view, use
-a =columnview= dynamic block (see [[@Dynamic-blocks][Dynamic blocks]]).
-The frame of this block looks like this:
-
-#+BEGIN_EXAMPLE
-    * The column view
-    #+BEGIN: columnview :hlines 1 :id "label"
-
-    #+END:
-#+END_EXAMPLE
-
-This dynamic block has the following parameters:
-
--  =:id= :: This is the most important parameter. Column view is a
-   feature that is often localized to a certain (sub)tree, and the
-   capture block might be at a different location in the file. To
-   identify the tree whose view to capture, you can use 4 values:
-
-   #+BEGIN_EXAMPLE
-       local     use the tree in which the capture block is located
-       global    make a global view, including all headings in the file
-       "file:path-to-file"
-                 run column view at the top of this file
-       "ID"      call column view in the tree that has an :ID:
-                 property with the value label.  You can use
-                 M-x org-id-copy RET to create a globally unique ID for
-                 the current entry and copy it to the kill-ring.
-   #+END_EXAMPLE
-
--  =:hlines= :: When =t=, insert an hline after every line. When a
-   number N, insert an hline before each headline with level =<= N=.
-
--  =:vlines= :: When set to =t=, force column groups to get vertical
-   lines.
-
--  =:maxlevel= :: When set to a number, don't capture entries below this
-   level.
-
--  =:skip-empty-rows= :: When set to =t=, skip rows where the only
-   non-empty specifier of the column view is =ITEM=.
-
-The following commands insert or update the dynamic block:
-
-C-c C-x i (=org-insert-columns-dblock=)
-
-Insert a dynamic block capturing a column view. You will be prompted for
-the scope or ID of the view.
-
-C-c C-c or C-c C-x C-u (=org-dblock-update=)
-
-Update dynamic block at point. The cursor needs to be in the =#+BEGIN=
-line of the dynamic block.
-
-C-u C-c C-x C-u (=org-update-all-dblocks=)
-
-Update all dynamic blocks (see [[@Dynamic-blocks][Dynamic blocks]]).
-This is useful if you have several clock table blocks, column-capturing
-blocks or other dynamic blocks in a buffer.
-
-You can add formulas to the column view table and you may add plotting
-instructions in front of the table---these will survive an update of the
-block. If there is a =#+TBLFM:= after the table, the table will actually
-be recalculated automatically after an update.
-
-An alternative way to capture and process property values into a table
-is provided by Eric Schulte's org-collector.el which is a contributed
-package[fn:FOOT65]. It provides a general API to collect
-properties from entries in a certain scope, and arbitrary Lisp
-expressions to process these values before inserting them into a table
-or a dynamic block.
-
-** 7.6 The Property API
-
-There is a full API for accessing and changing properties. This API can
-be used by Emacs Lisp programs to work with properties and to implement
-features based on them. For more information see
-[[@Using-the-property-API][Using the property API]].
+    - */C-c a m/* (=org-tags-view=)
+
+      Create a global list of tag/property matches from all agenda
+      files. See [[@Matching-tags-and-properties][Matching tags and properties]].
+
+    - */C-c a M/* (=org-tags-view=)
+
+      Create a global list of tag matches from all agenda files, but
+      check only TODO items and force checking of subitems (see the
+      option =org-tags-match-list-sublevels=).
+
+   The syntax for the search string is described in [[@Matching-tags-and-properties][Matching tags and
+   properties]].
+
+   There is also a special command for creating sparse trees based on
+   a single property:
+
+    - */C-c / p/*
+
+      Create a sparse tree based on the value of a property. This
+      first prompts for the name of a property, and then for a
+      value. A sparse tree is created with all entries that define
+      this property with the given value. If you enclose the value in
+      curly braces, it is interpreted as a regular expression and
+      matched against the property values.
+
+** 7.4 Property Inheritance                                           <<@Property-inheritance>>
+
+   The outline structure of Org mode documents lends itself to an
+   inheritance model of properties: if the parent in a tree has a
+   certain property, the children can inherit this property. Org mode
+   does not turn this on by default, because it can slow down property
+   searches significantly and is often not needed. However, if you
+   find inheritance useful, you can turn it on by setting the variable
+   =org-use-property-inheritance=. It may be set to =t= to make all
+   properties inherited from the parent, to a list of properties that
+   should be inherited, or to a regular expression that matches
+   inherited properties. If a property has the value =nil=, this is
+   interpreted as an explicit undefine of the property, so that
+   inheritance search will stop at this value and return =nil=.
+
+   Org mode has a few properties for which inheritance is hard-coded,
+   at least for the special applications for which they are used:
+
+    - =COLUMNS= ::
+
+      The =:COLUMNS:= property defines the format of column view (see
+      [[@Column-view][Column view]]). It is inherited in the sense that the level where
+      a =:COLUMNS:= property is defined is used as the starting point
+      for a column view table, independently of the location in the
+      subtree from where columns view is turned on.
+
+    - =CATEGORY= ::
+
+      For agenda view, a category set through a =:CATEGORY:= property
+      applies to the entire subtree.
+
+    - =ARCHIVE= ::
+
+      For archiving, the =:ARCHIVE:= property may define the archive
+      location for the entire subtree (see [[@Moving-subtrees][Moving subtrees]]).
+
+    - =LOGGING= ::
+
+      The LOGGING property may define logging settings for an entry or
+      a subtree (see [[@Tracking-TODO-state-changes][Tracking TODO state changes]]).
+
+** 7.5 Column view                                                    <<@Column-view>>
+
+   A great way to view and edit properties in an outline tree is
+   /column view/. In column view, each outline node is turned into a
+   table row.  Columns in this table provide access to properties of
+   the entries. Org mode implements columns by overlaying a tabular
+   structure over the headline of each item. While the headlines have
+   been turned into a table row, you can still change the visibility
+   of the outline tree. For example, you get a compact table by
+   switching to CONTENTS view (*/S-TAB S-TAB/*, or simply c while
+   column view is active), but you can still open, read, and edit the
+   entry below each headline. Or, you can switch to column view after
+   executing a sparse tree command and in this way get a table only
+   for the selected items. Column view also works in agenda buffers
+   (see [[@Agenda-views][Agenda views]]) where queries have collected selected items,
+   possibly from a number of files.
+
+   | • [[@Defining-columns][Defining columns]]:      | The COLUMNS format property       |
+   | • [[@Using-column-view][Using column view]]:     | How to create and use column view |
+   | • [[@Capturing-column-view][Capturing column view]]: | A dynamic block for column view   |
+
+
+*** 7.5.1 Defining columns                                            <<@Defining-columns>>
+
+    Setting up a column view first requires defining the columns. This
+    is done by defining a column format line.
+
+    | • [[@Scope-of-column-definitions][Scope of column definitions]]: | Where defined, where valid?        |
+    | • [[@Column-attributes][Column attributes]]:           | Appearance and content of a column |
+
+
+**** 7.5.1.1 Scope of column definitions                              <<@Scope-of-column-definitions>>
+
+     To define a column format for an entire file, use a line like
+
+     #+BEGIN_EXAMPLE
+       #+COLUMNS: %25ITEM %TAGS %PRIORITY %TODO
+     #+END_EXAMPLE
+
+     To specify a format that only applies to a specific tree, add a
+     =:COLUMNS:= property to the top node of that tree, for example:
+
+     #+BEGIN_EXAMPLE
+       ** Top node for columns view
+          :PROPERTIES:
+        :COLUMNS: %25ITEM %TAGS %PRIORITY %TODO
+        :END:
+     #+END_EXAMPLE
+
+     If a =:COLUMNS:= property is present in an entry, it defines
+     columns for the entry itself, and for the entire subtree below
+     it. Since the column definition is part of the hierarchical
+     structure of the document, you can define columns on level 1 that
+     are general enough for all sublevels, and more specific columns
+     further down, when you edit a deeper part of the tree.
+
+**** 7.5.1.2 Column attributes                                        <<@Column-attributes>>
+
+     A column definition sets the attributes of a column. The general
+     definition looks like this:
+
+     #+BEGIN_EXAMPLE
+       %[width]property[(title)][{summary-type}]
+     #+END_EXAMPLE
+
+     Except for the percent sign and the property name, all items are
+     optional. The individual parts have the following meaning:
+
+     |----------------+-----------------------------------------------------------------------------------------------------|
+     | width          | An integer specifying the width of the column in characters.                                        |
+     |                | If omitted, the width will be determined automatically.                                             |
+     |----------------+-----------------------------------------------------------------------------------------------------|
+     | property       | The property that should be edited in this column.                                                  |
+     |                | Special properties representing meta data are allowed here as well (see [[@Special-properties][Special properties]])         |
+     |----------------+-----------------------------------------------------------------------------------------------------|
+     | title          | The header text for the column.  If omitted, the property name is used.                             |
+     |----------------+-----------------------------------------------------------------------------------------------------|
+     | {summary-type} | The summary type.  If specified, the column values for parent nodes are computed from the children. |
+     |                | Supported summary types are:                                                                        |
+     |                | {\+}       Sum numbers in this column.                                                              |
+     |                | {\+;%.1f}  Like ‘+’, but format result with ‘%.1f’.                                                 |
+     |                | {$}       Currency, short for ‘+;%.2f’.                                                             |
+     |                | {:}       Sum times, HH:MM, plain numbers are hours.                                                |
+     |                | {X}       Checkbox status, ‘[X]’ if all children are ‘[X]’.                                         |
+     |                | {X/}      Checkbox status, ‘[n/m]’.                                                                 |
+     |                | {X%}      Checkbox status, ‘[n%]’.                                                                  |
+     |                | {min}     Smallest number in column.                                                                |
+     |                | {max}     Largest number.                                                                           |
+     |                | {mean}    Arithmetic mean of numbers.                                                               |
+     |                | {:min}    Smallest time value in column.                                                            |
+     |                | {:max}    Largest time value.                                                                       |
+     |                | {:mean}   Arithmetic mean of time values.                                                           |
+     |                | {@min}    Minimum age (in days/hours/mins/seconds).                                                 |
+     |                | {@max}    Maximum age (in days/hours/mins/seconds).                                                 |
+     |                | {@mean}   Arithmetic mean of ages (in days/hours/mins/seconds).                                     |
+     |                | {est+}    Add ‘low-high’ estimates.                                                                 |
+     |----------------+-----------------------------------------------------------------------------------------------------|
+
+     Be aware that you can only have one summary type for any property
+     you include. Subsequent columns referencing the same property
+     will all display the same summary information.
+
+     The =est+= summary type requires further explanation. It is used
+     for combining estimates, expressed as ‘low-high' ranges or plain
+     numbers.  For example, instead of estimating a particular task
+     will take 5 days, you might estimate it as 5--6 days if you're
+     fairly confident you know how much work is required, or 1--10
+     days if you don't really know what needs to be done. Both ranges
+     average at 5.5 days, but the first represents a more predictable
+     delivery.
+
+     When combining a set of such estimates, simply adding the lows
+     and highs produces an unrealistically wide result. Instead,
+     =est+= adds the statistical mean and variance of the sub-tasks,
+     generating a final estimate from the sum. For example, suppose
+     you had ten tasks, each of which was estimated at 0.5 to 2 days
+     of work. Straight addition produces an estimate of 5 to 20 days,
+     representing what to expect if everything goes either extremely
+     well or extremely poorly. In contrast, =est+= estimates the full
+     job more realistically, at 10--15 days.
+
+     Numbers are right-aligned when a format specifier with an
+     explicit width like =%5d= or =%5.1f= is used.
+
+     Here is an example for a complete columns definition, along with
+     allowed values.
+
+     #+BEGIN_EXAMPLE
+       :COLUMNS:  %25ITEM %9Approved(Approved?){X} %Owner %11Status \ [fn:FOOT64]
+                          %10Time_Estimate{:} %CLOCKSUM %CLOCKSUM_T
+       :Owner_ALL: Tammy Mark Karl Lisa Don
+       :Status_ALL: "In progress" "Not started yet" "Finished" ""
+       :Approved_ALL: "[ ]" "[X]"
+     #+END_EXAMPLE
+
+     The first column, ‘%25ITEM', means the first 25 characters of the
+     item itself, i.e., of the headline. You probably always should
+     start the column definition with the ‘ITEM' specifier. The other
+     specifiers create columns ‘Owner' with a list of names as allowed
+     values, for ‘Status' with four different possible values, and for
+     a checkbox field ‘Approved'. When no width is given after the ‘%'
+     character, the column will be exactly as wide as it needs to be
+     in order to fully display all values. The ‘Approved' column does
+     have a modified title (‘Approved?', with a question
+     mark). Summaries will be created for the ‘Time_Estimate' column
+     by adding time duration expressions like HH:MM, and for the
+     ‘Approved' column, by providing an ‘[X]' status if all children
+     have been checked. The ‘CLOCKSUM' and ‘CLOCKSUM_T' columns are
+     special, they lists the sums of CLOCK intervals in the subtree,
+     either for all clocks or just for today.
+
+*** 7.5.2 Using column view                                           <<@Using-column-view>>
+
+**** Turning column view on and off
+
+     - */C-c C-x C-c/* (=org-columns=)
+
+       Turn on column view. If the cursor is before the first headline
+       in the file, column view is turned on for the entire file,
+       using the =#+COLUMNS= definition. If the cursor is somewhere
+       inside the outline, this command searches the hierarchy, up
+       from point, for a =:COLUMNS:= property that defines a
+       format. When one is found, the column view table is established
+       for the tree starting at the entry that contains the
+       =:COLUMNS:= property. If no such property is found, the format
+       is taken from the =#+COLUMNS= line or from the variable
+       =org-columns-default-format=, and column view is established
+       for the current entry and its subtree.
+
+    - */r/* (=org-columns-redo=)
+
+      Recreate the column view, to include recent changes made in the
+      buffer.
+
+    - */g/* (=org-columns-redo=)
+
+      Same as r.
+
+    - */q/* (=org-columns-quit=)
+
+      Exit column view.
+
+**** Editing values
+
+     - (=left right up down=)
+
+       Move through the column view from field to field.
+
+     - */S-left/right/*
+
+       Switch to the next/previous allowed value of the field. For
+       this, you have to have specified allowed values for a property.
+
+     - */1..9,0/*
+
+       Directly select the Nth allowed value, 0 selects the 10th
+       value.
+
+    - */n/* (=org-columns-next-allowed-value=)\\
+    - */p/* (=org-columns-previous-allowed-value=)
+
+      Same as S-left/right
+
+    - */e/* (=org-columns-edit-value=)
+
+      Edit the property at point. For the special properties, this
+      will invoke the same interface that you normally use to change
+      that property. For example, when editing a TAGS property, the
+      tag completion or fast selection interface will pop up.
+
+    - */C-c C-c/* (=org-columns-set-tags-or-toggle=)
+
+      When there is a checkbox at point, toggle it.
+
+    - */v/* (=org-columns-show-value=)
+
+      View the full value of this property. This is useful if the
+      width of the column is smaller than that of the value.
+
+   - */a/* (=org-columns-edit-allowed=)
+
+     Edit the list of allowed values for this property. If the list is
+     found in the hierarchy, the modified value is stored there. If no
+     list is found, the new value is stored in the first entry that is
+     part of the current column view.
+
+**** Modifying the table structure
+      - */</* (=org-columns-narrow=)
+      - */>/* (=org-columns-widen=)
+
+        Make the column narrower/wider by one character.
+
+      - */S-M-right/* (=org-columns-new=)
+
+        Insert a new column, to the left of the current column.
+
+      - */S-M-left/* (=org-columns-delete=)
+
+        Delete the current column.
+
+*** 7.5.3 Capturing column view                                       <<@Capturing-column-view>>
+
+    Since column view is just an overlay over a buffer, it cannot be
+    exported or printed directly. If you want to capture a column
+    view, use a =columnview= dynamic block (see [[@Dynamic-blocks][Dynamic blocks]]).  The
+    frame of this block looks like this:
+
+    #+BEGIN_EXAMPLE
+      * The column view
+      #+BEGIN: columnview :hlines 1 :id "label"
+
+      #+END:
+    #+END_EXAMPLE
+
+    This dynamic block has the following parameters:
+
+     - =:id=
+
+       This is the most important parameter. Column view is a feature
+       that is often localized to a certain (sub)tree, and the capture
+       block might be at a different location in the file. To identify
+       the tree whose view to capture, you can use 4 values:
+
+        - local
+
+          use the tree in which the capture block is located
+        - global
+
+          make a global view, including all headings in the file
+
+        - =file:path-to-file=
+
+          run column view at the top of this file
+
+        - "ID"
+
+          call column view in the tree that has an =:ID:= property
+          with the value label.  You can use */M-x org-id-copy RET/*
+          to create a globally unique ID for the current entry and
+          copy it to the kill-ring.
+
+     - =:hlines=
+
+       When =t=, insert an hline after every line. When a number N,
+       insert an hline before each headline with level =<= N=.
+
+     - =:vlines=
+
+       When set to =t=, force column groups to get vertical lines.
+
+     - =:maxlevel=
+
+       When set to a number, don't capture entries below this level.
+
+     - =:skip-empty-rows=
+
+       When set to =t=, skip rows where the only non-empty specifier
+       of the column view is =ITEM=.
+
+   The following commands insert or update the dynamic block:
+
+    - */C-c C-x i/* (=org-insert-columns-dblock=)
+
+      Insert a dynamic block capturing a column view. You will be
+      prompted for the scope or ID of the view.
+
+    - */C-c C-c/* or */C-c C-x C-u/* (=org-dblock-update=)
+
+      Update dynamic block at point. The cursor needs to be in the
+      =#+BEGIN= line of the dynamic block.
+
+    - */C-u C-c C-x C-u/* (=org-update-all-dblocks=)
+
+      Update all dynamic blocks (see [[@Dynamic-blocks][Dynamic blocks]]).  This is useful
+      if you have several clock table blocks, column-capturing blocks
+      or other dynamic blocks in a buffer.
+
+   You can add formulas to the column view table and you may add
+   plotting instructions in front of the table -- these will survive
+   an update of the block. If there is a =#+TBLFM:= after the table,
+   the table will actually be recalculated automatically after an
+   update.
+
+   An alternative way to capture and process property values into a
+   table is provided by Eric Schulte's org-collector.el which is a
+   contributed package[fn:FOOT65]. It provides a general API to
+   collect properties from entries in a certain scope, and arbitrary
+   Lisp expressions to process these values before inserting them into
+   a table or a dynamic block.
+
+** 7.6 The Property API                                               <<@Property-API>>
+
+   There is a full API for accessing and changing properties. This API
+   can be used by Emacs Lisp programs to work with properties and to
+   implement features based on them. For more information see [[@Using-the-property-API][Using
+   the property API]].
 
 * 8 Dates and times
 
-To assist project planning, TODO items can be labeled with a date and/or
-a time. The specially formatted string carrying the date and time
-information is called a /timestamp/ in Org mode. This may be a little
-confusing because timestamp is often used to indicate when something was
-created or last changed. However, in Org mode this term is used in a
-much wider sense.
+  To assist project planning, TODO items can be labeled with a date
+  and/or a time. The specially formatted string carrying the date and
+  time information is called a /timestamp/ in Org mode. This may be a
+  little confusing because timestamp is often used to indicate when
+  something was created or last changed. However, in Org mode this
+  term is used in a much wider sense.
 
-** 8.1 Timestamps, deadlines, and scheduling
+  | • [[@Timestamps][Timestamps]]:               | Assigning a time to a tree entry      |
+  | • [[@Creating-timestamps][Creating timestamps]]:      | Commands which insert timestamps      |
+  | • [[@Deadlines-and-scheduling][Deadlines and scheduling]]: | Planning your work                    |
+  | • [[@Clocking-work-time][Clocking work time]]:       | Tracking how long you spend on a task |
+  | • [[@Effort-estimates][Effort estimates]]:         | Planning work effort in advance       |
+  | • [[@Timers][Timers]]:                   | Notes with a running timer            |
 
-A timestamp is a specification of a date (possibly with a time or a
-range of times) in a special format, either ‘<2003-09-16
-Tue>'[fn:FOOT66] or ‘<2003-09-16 Tue 09:39>' or ‘<2003-09-16 Tue
-12:00-12:30>'[fn:FOOT67]. A timestamp can appear anywhere in the
-headline or body of an Org tree entry. Its presence causes entries to be
-shown on specific dates in the agenda (see
-[[@Weekly_daily-agenda][Weekly/daily agenda]]). We distinguish:
 
--  Plain timestamp; Event; Appointment :: A simple timestamp just
-   assigns a date/time to an item. This is just like writing down an
-   appointment or event in a paper agenda. In the timeline and agenda
-   displays, the headline of an entry associated with a plain timestamp
-   will be shown exactly on that date.
+** 8.1 Timestamps, deadlines, and scheduling                          <<@Timestamps>>
 
-   #+BEGIN_EXAMPLE
-       * Meet Peter at the movies
-         <2006-11-01 Wed 19:15>
-       * Discussion on climate change
-         <2006-11-02 Thu 20:00-22:00>
-   #+END_EXAMPLE
+   A timestamp is a specification of a date (possibly with a time or a
+   range of times) in a special format, either
+   ‘<2003-09-16 Tue>'[fn:FOOT66] or ‘<2003-09-16 Tue 09:39>' or
+   ‘<2003-09-16 Tue 12:00-12:30>'[fn:FOOT67]. A timestamp can appear
+   anywhere in the headline or body of an Org tree entry. Its presence
+   causes entries to be shown on specific dates in the agenda (see
+   [[@Weekly_daily-agenda][Weekly/daily agenda]]). We distinguish:
 
--  Timestamp with repeater interval :: A timestamp may contain a
-   /repeater interval/, indicating that it applies not only on the given
-   date, but again and again after a certain interval of N days (d),
-   weeks (w), months (m), or years (y). The following will show up in
-   the agenda every Wednesday:
+    - Plain timestamp; Event; Appointment
 
-   #+BEGIN_EXAMPLE
-       * Pick up Sam at school
-         <2007-05-16 Wed 12:30 +1w>
-   #+END_EXAMPLE
+      A simple timestamp just assigns a date/time to an item. This is
+      just like writing down an appointment or event in a paper
+      agenda. In the timeline and agenda displays, the headline of an
+      entry associated with a plain timestamp will be shown exactly on
+      that date.
 
--  Diary-style sexp entries :: For more complex date specifications, Org
-   mode supports using the special sexp diary entries implemented in the
-   Emacs calendar/diary package[fn:FOOT68]. For example with
-   optional time
+      #+BEGIN_EXAMPLE
+        * Meet Peter at the movies
+          <2006-11-01 Wed 19:15>
+        * Discussion on climate change
+          <2006-11-02 Thu 20:00-22:00>
+      #+END_EXAMPLE
 
-   #+BEGIN_EXAMPLE
-       * 22:00-23:00 The nerd meeting on every 2nd Thursday of the month
-         <%%(diary-float t 4 2)>
-   #+END_EXAMPLE
+    - Timestamp with repeater interval
 
--  Time/Date range :: Two timestamps connected by ‘--' denote a range.
-   The headline will be shown on the first and last day of the range,
-   and on any dates that are displayed and fall in the range. Here is an
-   example:
+      A timestamp may contain a /repeater interval/, indicating that
+      it applies not only on the given date, but again and again after
+      a certain interval of N days (d), weeks (w), months (m), or
+      years (y). The following will show up in the agenda every
+      Wednesday:
 
-   #+BEGIN_EXAMPLE
-       ** Meeting in Amsterdam
-          <2004-08-23 Mon>--<2004-08-26 Thu>
-   #+END_EXAMPLE
+      #+BEGIN_EXAMPLE
+        * Pick up Sam at school
+          <2007-05-16 Wed 12:30 +1w>
+      #+END_EXAMPLE
 
--  Inactive timestamp :: Just like a plain timestamp, but with square
-   brackets instead of angular ones. These timestamps are inactive in
-   the sense that they do /not/ trigger an entry to show up in the
-   agenda.
+    - Diary-style sexp entries
 
-   #+BEGIN_EXAMPLE
-       * Gillian comes late for the fifth time
-         [2006-11-01 Wed]
-   #+END_EXAMPLE
+      For more complex date specifications, Org mode supports using
+      the special sexp diary entries implemented in the Emacs
+      calendar/diary package[fn:FOOT68]. For example with optional
+      time
+
+      #+BEGIN_EXAMPLE
+        * 22:00-23:00 The nerd meeting on every 2nd Thursday of the month
+          <%%(diary-float t 4 2)>
+      #+END_EXAMPLE
+
+    - Time/Date range
+
+      Two timestamps connected by ‘--' denote a range.  The headline
+      will be shown on the first and last day of the range, and on any
+      dates that are displayed and fall in the range. Here is an
+      example:
+
+      #+BEGIN_EXAMPLE
+        ** Meeting in Amsterdam
+           <2004-08-23 Mon>--<2004-08-26 Thu>
+      #+END_EXAMPLE
+
+    - Inactive timestamp
+
+      Just like a plain timestamp, but with square brackets instead of
+      angular ones. These timestamps are inactive in the sense that
+      they do /not/ trigger an entry to show up in the agenda.
+
+      #+BEGIN_EXAMPLE
+        * Gillian comes late for the fifth time
+          [2006-11-01 Wed]
+      #+END_EXAMPLE
 
 ** 8.2 Creating timestamps                                            <<@Creating-timestamps>>
 
-For Org mode to recognize timestamps, they need to be in the specific
-format. All commands listed below produce timestamps in the correct
-format.
-
-C-c . (=org-time-stamp=)
-
-Prompt for a date and insert a corresponding timestamp. When the cursor
-is at an existing timestamp in the buffer, the command is used to modify
-this timestamp instead of inserting a new one. When this command is used
-twice in succession, a time range is inserted.
-
-C-c ! (=org-time-stamp-inactive=)
-
-Like C-c ., but insert an inactive timestamp that will not cause an
-agenda entry.
-
-C-u C-c .
-
-C-u C-c !
-
-Like C-c . and C-c !, but use the alternative format which contains date
-and time. The default time can be rounded to multiples of 5 minutes, see
-the option =org-time-stamp-rounding-minutes=.
-
-C-c C-c
-
-Normalize timestamp, insert/fix day name if missing or wrong.
-
-C-c < (=org-date-from-calendar=)
-
-Insert a timestamp corresponding to the cursor date in the Calendar.
-
-C-c > (=org-goto-calendar=)
-
-Access the Emacs calendar for the current date. If there is a timestamp
-in the current line, go to the corresponding date instead.
-
-C-c C-o (=org-open-at-point=)
-
-Access the agenda for the date given by the timestamp or -range at point
-(see [[@Weekly_daily-agenda][Weekly/daily agenda]]).
-
-S-left (=org-timestamp-down-day=)
-
-S-right (=org-timestamp-up-day=)
-
-Change date at cursor by one day. These key bindings conflict with
-shift-selection and related modes (see [[@Conflicts][Conflicts]]).
-
-S-up (=org-timestamp-up=)
-
-S-down (=org-timestamp-down-down=)
-
-Change the item under the cursor in a timestamp. The cursor can be on a
-year, month, day, hour or minute. When the timestamp contains a time
-range like ‘15:30-16:30', modifying the first time will also shift the
-second, shifting the time block with constant length. To change the
-length, modify the second time. Note that if the cursor is in a headline
-and not at a timestamp, these same keys modify the priority of an item.
-(see [[@Priorities][Priorities]]). The key bindings also conflict with
-shift-selection and related modes (see [[@Conflicts][Conflicts]]).
-
-C-c C-y (=org-evaluate-time-range=)
-
-Evaluate a time range by computing the difference between start and end.
-With a prefix argument, insert result after the time range (in a table:
-into the following column).
-
-| • [[@The-date_002ftime-prompt][The date/time prompt]]:   |    | How Org mode helps you entering date and time   |
-| • [[@Custom-time-format][Custom time format]]:           |    | Making dates look different                     |
-
-*** 8.2.1 The date/time prompt
-
-When Org mode prompts for a date/time, the default is shown in default
-date/time format, and the prompt therefore seems to ask for a specific
-format. But it will in fact accept date/time information in a variety of
-formats. Generally, the information should start at the beginning of the
-string. Org mode will find whatever information is in there and derive
-anything you have not specified from the /default date and time/. The
-default is usually the current date and time, but when modifying an
-existing timestamp, or when entering the second stamp of a range, it is
-taken from the stamp in the buffer. When filling in information, Org
-mode assumes that most of the time you will want to enter a date in the
-future: if you omit the month/year and the given day/month is /before/
-today, it will assume that you mean a future date[fn:FOOT69]. If
-the date has been automatically shifted into the future, the time prompt
-will show this with ‘(=>F).'
-
-For example, let's assume that today is *June 13, 2006*. Here is how
-various inputs will be interpreted, the items filled in by Org mode are
-in *bold*.
-
-#+BEGIN_EXAMPLE
-    3-2-5         ⇒ 2003-02-05
-    2/5/3         ⇒ 2003-02-05
-    14            ⇒ 2006-06-14
-    12            ⇒ 2006-07-12
-    2/5           ⇒ 2007-02-05
-    Fri           ⇒ nearest Friday after the default date
-    sep 15        ⇒ 2006-09-15
-    feb 15        ⇒ 2007-02-15
-    sep 12 9      ⇒ 2009-09-12
-    12:45         ⇒ 2006-06-13 12:45
-    22 sept 0:34  ⇒ 2006-09-22 00:34
-    w4            ⇒ ISO week for of the current year 2006
-    2012 w4 fri   ⇒ Friday of ISO week 4 in 2012
-    2012-w04-5    ⇒ Same as above
-#+END_EXAMPLE
-
-Furthermore you can specify a relative date by giving, as the /first/
-thing in the input: a plus/minus sign, a number and a letter ([hdwmy])
-to indicate change in hours, days, weeks, months, or years. With a
-single plus or minus, the date is always relative to today. With a
-double plus or minus, it is relative to the default date. If instead of
-a single letter, you use the abbreviation of day name, the date will be
-the Nth such day, e.g.:
-
-#+BEGIN_EXAMPLE
-    +0            ⇒ today
-    .             ⇒ today
-    +4d           ⇒ four days from today
-    +4            ⇒ same as above
-    +2w           ⇒ two weeks from today
-    ++5           ⇒ five days from default date
-    +2tue         ⇒ second Tuesday from now
-    -wed          ⇒ last Wednesday
-#+END_EXAMPLE
-
-The function understands English month and weekday abbreviations. If you
-want to use unabbreviated names and/or other languages, configure the
-variables =parse-time-months= and =parse-time-weekdays=.
-
-Not all dates can be represented in a given Emacs implementation. By
-default Org mode forces dates into the compatibility range 1970--2037
-which works on all Emacs implementations. If you want to use dates
-outside of this range, read the docstring of the variable
-=org-read-date-force-compatible-dates=.
-
-You can specify a time range by giving start and end times or by giving
-a start time and a duration (in HH:MM format). Use one or two dash(es)
-as the separator in the former case and use '+' as the separator in the
-latter case, e.g.:
-
-#+BEGIN_EXAMPLE
-    11am-1:15pm    ⇒ 11:00-13:15
-    11am--1:15pm   ⇒ same as above
-    11am+2:15      ⇒ same as above
-#+END_EXAMPLE
-
-Parallel to the minibuffer prompt, a calendar is popped
-up[fn:FOOT70]. When you exit the date prompt, either by clicking
-on a date in the calendar, or by pressing =RET=, the date selected in
-the calendar will be combined with the information entered at the
-prompt. You can control the calendar fully from the minibuffer:
-
-#+BEGIN_EXAMPLE
-    RET              Choose date at cursor in calendar.
-    mouse-1            Select date by clicking on it.
-    S-right/left   One day forward/backward.
-    S-down/up      One week forward/backward.
-    M-S-right/left One month forward/backward.
-    > / <              Scroll calendar forward/backward by one month.
-    M-v / C-v          Scroll calendar forward/backward by 3 months.
-    M-S-down/up    Scroll calendar forward/backward by one year.
-#+END_EXAMPLE
-
-The actions of the date/time prompt may seem complex, but I assure you
-they will grow on you, and you will start getting annoyed by pretty much
-any other way of entering a date/time out there. To help you understand
-what is going on, the current interpretation of your input will be
-displayed live in the minibuffer[fn:FOOT71].
-
-*** 8.2.2 Custom time format
-
-Org mode uses the standard ISO notation for dates and times as it is
-defined in ISO 8601. If you cannot get used to this and require another
-representation of date and time to keep you happy, you can get it by
-customizing the options =org-display-custom-times= and
-=org-time-stamp-custom-formats=.
-
-C-c C-x C-t (=org-toggle-time-stamp-overlays=)
-
-Toggle the display of custom formats for dates and times.
-
-Org mode needs the default format for scanning, so the custom date/time
-format does not /replace/ the default format---instead it is put /over/
-the default format using text properties. This has the following
-consequences:
-
--  You cannot place the cursor onto a timestamp anymore, only before or
-   after.
--  The S-up/down keys can no longer be used to adjust each component of
-   a timestamp. If the cursor is at the beginning of the stamp,
-   S-up/down will change the stamp by one day, just like S-left/right.
-   At the end of the stamp, the time will be changed by one minute.
--  If the timestamp contains a range of clock times or a repeater, these
-   will not be overlaid, but remain in the buffer as they were.
--  When you delete a timestamp character-by-character, it will only
-   disappear from the buffer after /all/ (invisible) characters
-   belonging to the ISO timestamp have been removed.
--  If the custom timestamp format is longer than the default and you are
-   using dates in tables, table alignment will be messed up. If the
-   custom format is shorter, things do work as expected.
-
-** 8.3 Deadlines and scheduling
-
-A timestamp may be preceded by special keywords to facilitate planning:
-
--  DEADLINE :: Meaning: the task (most likely a TODO item, though not
-   necessarily) is supposed to be finished on that date.
-
-   On the deadline date, the task will be listed in the agenda. In
-   addition, the agenda for /today/ will carry a warning about the
-   approaching or missed deadline, starting =org-deadline-warning-days=
-   before the due date, and continuing until the entry is marked DONE.
-   An example:
-
-   #+BEGIN_EXAMPLE
-       *** TODO write article about the Earth for the Guide
-           DEADLINE: <2004-02-29 Sun>
-           The editor in charge is [[bbdb:Ford Prefect]]
-   #+END_EXAMPLE
-
-   You can specify a different lead time for warnings for a specific
-   deadline using the following syntax. Here is an example with a
-   warning period of 5 days =DEADLINE: <2004-02-29 Sun -5d>=. This
-   warning is deactivated if the task gets scheduled and you set
-   =org-agenda-skip-deadline-prewarning-if-scheduled= to =t=.
-
--  SCHEDULED :: Meaning: you are planning to start working on that task
-   on the given date.
-
-   The headline will be listed under the given date[fn:FOOT72].
-   In addition, a reminder that the scheduled date has passed will be
-   present in the compilation for /today/, until the entry is marked
-   DONE, i.e., the task will automatically be forwarded until completed.
-
-   #+BEGIN_EXAMPLE
-       *** TODO Call Trillian for a date on New Years Eve.
-           SCHEDULED: <2004-12-25 Sat>
-   #+END_EXAMPLE
-
-   If you want to /delay/ the display of this task in the agenda, use
-   =SCHEDULED: <2004-12-25 Sat -2d>=: the task is still scheduled on the
-   25th but will appear two days later. In case the task contains a
-   repeater, the delay is considered to affect all occurrences; if you
-   want the delay to only affect the first scheduled occurrence of the
-   task, use =--2d= instead. See =org-scheduled-delay-days= and
-   =org-agenda-skip-scheduled-delay-if-deadline= for details on how to
-   control this globally or per agenda.
-
-   *Important:* Scheduling an item in Org mode should /not/ be
-   understood in the same way that we understand /scheduling a meeting/.
-   Setting a date for a meeting is just a simple appointment, you should
-   mark this entry with a simple plain timestamp, to get this item shown
-   on the date where it applies. This is a frequent misunderstanding by
-   Org users. In Org mode, /scheduling/ means setting a date when you
-   want to start working on an action item.
-
-You may use timestamps with repeaters in scheduling and deadline
-entries. Org mode will issue early and late warnings based on the
-assumption that the timestamp represents the /nearest instance/ of the
-repeater. However, the use of diary sexp entries like
-=<%%(diary-float t 42)>= in scheduling and deadline timestamps is
-limited. Org mode does not know enough about the internals of each sexp
-function to issue early and late warnings. However, it will show the
-item on each day where the sexp entry matches.
-
-| • [[@Inserting-deadline_002fschedule][Inserting deadline/schedule]]:   |    | Planning items                       |
-| • [[@Repeated-tasks][Repeated tasks]]:                                 |    | Items that show up again and again   |
-
-*** 8.3.1 Inserting deadlines or schedules
-
-The following commands allow you to quickly insert[fn:FOOT73] a
-deadline or to schedule an item:
-
-C-c C-d (=org-deadline=)
-
-Insert ‘DEADLINE' keyword along with a stamp. The insertion will happen
-in the line directly following the headline. Any CLOSED timestamp will
-be removed. When called with a prefix arg, an existing deadline will be
-removed from the entry. Depending on the variable
-=org-log-redeadline=[fn:FOOT74], a note will be taken when
-changing an existing deadline.
-
-C-c C-s (=org-schedule=)
-
-Insert ‘SCHEDULED' keyword along with a stamp. The insertion will happen
-in the line directly following the headline. Any CLOSED timestamp will
-be removed. When called with a prefix argument, remove the scheduling
-date from the entry. Depending on the variable
-=org-log-reschedule=[fn:FOOT75], a note will be taken when
-changing an existing scheduling time.
-
-C-c / d (=org-check-deadlines=)
-
-Create a sparse tree with all deadlines that are either past-due, or
-which will become due within =org-deadline-warning-days=. With C-u
-prefix, show all deadlines in the file. With a numeric prefix, check
-that many days. For example, C-1 C-c / d shows all deadlines due
-tomorrow.
-
-C-c / b (=org-check-before-date=)
-
-Sparse tree for deadlines and scheduled items before a given date.
-
-C-c / a (=org-check-after-date=)
-
-Sparse tree for deadlines and scheduled items after a given date.
-
-Note that =org-schedule= and =org-deadline= supports setting the date by
-indicating a relative time: e.g., +1d will set the date to the next day
-after today, and --1w will set the date to the previous week before any
-current timestamp.
-
-*** 8.3.2 Repeated tasks
-
-Some tasks need to be repeated again and again. Org mode helps to
-organize such tasks using a so-called repeater in a DEADLINE, SCHEDULED,
-or plain timestamp. In the following example
-
-#+BEGIN_EXAMPLE
-    ** TODO Pay the rent
-       DEADLINE: <2005-10-01 Sat +1m>
-#+END_EXAMPLE
-
-the =+1m= is a repeater; the intended interpretation is that the task
-has a deadline on <2005-10-01> and repeats itself every (one) month
-starting from that time. You can use yearly, monthly, weekly, daily and
-hourly repeat cookies by using the =y/w/m/d/h= letters. If you need both
-a repeater and a special warning period in a deadline entry, the
-repeater should come first and the warning period last:
-=DEADLINE: <2005-10-01 Sat +1m -3d>=.
-
-Deadlines and scheduled items produce entries in the agenda when they
-are over-due, so it is important to be able to mark such an entry as
-completed once you have done so. When you mark a DEADLINE or a SCHEDULE
-with the TODO keyword DONE, it will no longer produce entries in the
-agenda. The problem with this is, however, that then also the /next/
-instance of the repeated entry will not be active. Org mode deals with
-this in the following way: When you try to mark such an entry DONE
-(using C-c C-t), it will shift the base date of the repeating timestamp
-by the repeater interval, and immediately set the entry state back to
-TODO[fn:FOOT76]. In the example above, setting the state to DONE
-would actually switch the date like this:
-
-#+BEGIN_EXAMPLE
-    ** TODO Pay the rent
-       DEADLINE: <2005-11-01 Tue +1m>
-#+END_EXAMPLE
-
-To mark a task with a repeater as =DONE=, use C-- 1 C-c C-t (i.e.,
-=org-todo= with a numeric prefix argument of -1.)
-
-A timestamp[fn:FOOT77] will be added under the deadline, to keep
-a record that you actually acted on the previous instance of this
-deadline.
-
-As a consequence of shifting the base date, this entry will no longer be
-visible in the agenda when checking past dates, but all future instances
-will be visible.
-
-With the ‘+1m' cookie, the date shift will always be exactly one month.
-So if you have not paid the rent for three months, marking this entry
-DONE will still keep it as an overdue deadline. Depending on the task,
-this may not be the best way to handle it. For example, if you forgot to
-call your father for 3 weeks, it does not make sense to call him 3 times
-in a single day to make up for it. Finally, there are tasks like
-changing batteries which should always repeat a certain time /after/ the
-last time you did it. For these tasks, Org mode has special repeaters
-‘++' and ‘.+'. For example:
-
-#+BEGIN_EXAMPLE
-    ** TODO Call Father
-       DEADLINE: <2008-02-10 Sun ++1w>
-       Marking this DONE will shift the date by at least one week,
-       but also by as many weeks as it takes to get this date into
-       the future.  However, it stays on a Sunday, even if you called
-       and marked it done on Saturday.
-    ** TODO Check the batteries in the smoke detectors
-       DEADLINE: <2005-11-01 Tue .+1m>
-       Marking this DONE will shift the date to one month after
-       today.
-#+END_EXAMPLE
-
-You may have both scheduling and deadline information for a specific
-task. If the repeater is set for the scheduling information only, you
-probably want the repeater to be ignored after the deadline. If so, set
-the variable =org-agenda-skip-scheduled-if-deadline-is-shown= to
-=repeated-after-deadline=. If you want both scheduling and deadline
-information to repeat after the same interval, set the same repeater for
-both timestamps.
-
-An alternative to using a repeater is to create a number of copies of a
-task subtree, with dates shifted in each copy. The command C-c C-x c was
-created for this purpose, it is described in
-[[@Structure-editing][Structure editing]].
+   For Org mode to recognize timestamps, they need to be in the
+   specific format. All commands listed below produce timestamps in
+   the correct format.
+
+    - */C-c ./* (=org-time-stamp=)
+
+      Prompt for a date and insert a corresponding timestamp. When the
+      cursor is at an existing timestamp in the buffer, the command is
+      used to modify this timestamp instead of inserting a new
+      one. When this command is used twice in succession, a time range
+      is inserted.
+
+    - */C-c !/* (=org-time-stamp-inactive=)
+
+      Like */C-c ./*, but insert an inactive timestamp that will not
+      cause an agenda entry.
+
+    - */C-u C-c ./*
+    - */C-u C-c !/*
+
+      Like */C-c ./* and */C-c !/*, but use the alternative format
+      which contains date and time. The default time can be rounded to
+      multiples of 5 minutes, see the option
+      =org-time-stamp-rounding-minutes=.
+
+    - */C-c C-c/*
+
+      Normalize timestamp, insert/fix day name if missing or wrong.
+
+    - */C-c </* (=org-date-from-calendar=)
+
+      Insert a timestamp corresponding to the cursor date in the
+      Calendar.
+
+    - */C-c >/* (=org-goto-calendar=)
+
+      Access the Emacs calendar for the current date. If there is a
+      timestamp in the current line, go to the corresponding date
+      instead.
+
+    - */C-c C-o/* (=org-open-at-point=)
+
+      Access the agenda for the date given by the timestamp or -range
+      at point (see [[@Weekly_daily-agenda][Weekly/daily agenda]]).
+
+    - */S-left/* (=org-timestamp-down-day=)
+    - */S-right/* (=org-timestamp-up-day=)
+
+      Change date at cursor by one day. These key bindings conflict
+      with shift-selection and related modes (see [[@Conflicts][Conflicts]]).
+
+    - */S-up/* (=org-timestamp-up=)
+    - */S-down/* (=org-timestamp-down-down=)
+
+      Change the item under the cursor in a timestamp. The cursor can
+      be on a year, month, day, hour or minute. When the timestamp
+      contains a time range like ‘15:30-16:30', modifying the first
+      time will also shift the second, shifting the time block with
+      constant length. To change the length, modify the second
+      time. Note that if the cursor is in a headline and not at a
+      timestamp, these same keys modify the priority of an item.  (see
+      [[@Priorities][Priorities]]). The key bindings also conflict with shift-selection
+      and related modes (see [[@Conflicts][Conflicts]]).
+
+    - */C-c C-y/* (=org-evaluate-time-range=)
+
+      Evaluate a time range by computing the difference between start
+      and end.  With a prefix argument, insert result after the time
+      range (in a table: into the following column).
+
+   | • [[@The-date_time-prompt][The date/time prompt]]: | How Org mode helps you entering date and time |
+   | • [[@Custom-time-format][Custom time format]]:   | Making dates look different                   |
+
+*** 8.2.1 The date/time prompt                                        <<@The-date_time-prompt>>
+
+    When Org mode prompts for a date/time, the default is shown in
+    default date/time format, and the prompt therefore seems to ask
+    for a specific format. But it will in fact accept date/time
+    information in a variety of formats. Generally, the information
+    should start at the beginning of the string. Org mode will find
+    whatever information is in there and derive anything you have not
+    specified from the /default date and time/. The default is usually
+    the current date and time, but when modifying an existing
+    timestamp, or when entering the second stamp of a range, it is
+    taken from the stamp in the buffer. When filling in information,
+    Org mode assumes that most of the time you will want to enter a
+    date in the future: if you omit the month/year and the given
+    day/month is /before/ today, it will assume that you mean a future
+    date[fn:FOOT69]. If the date has been automatically shifted into
+    the future, the time prompt will show this with ‘(=>F).'
+
+    For example, let's assume that today is *June 13, 2006*. Here is
+    how various inputs will be interpreted, the items filled in by Org
+    mode are in *bold*.
+
+    #+BEGIN_EXAMPLE
+      3-2-5         ⇒ 2003-02-05
+      2/5/3         ⇒ 2003-02-05
+      14            ⇒ 2006-06-14
+      12            ⇒ 2006-07-12
+      2/5           ⇒ 2007-02-05
+      Fri           ⇒ nearest Friday after the default date
+      sep 15        ⇒ 2006-09-15
+      feb 15        ⇒ 2007-02-15
+      sep 12 9      ⇒ 2009-09-12
+      12:45         ⇒ 2006-06-13 12:45
+      22 sept 0:34  ⇒ 2006-09-22 00:34
+      w4            ⇒ ISO week for of the current year 2006
+      2012 w4 fri   ⇒ Friday of ISO week 4 in 2012
+      2012-w04-5    ⇒ Same as above
+    #+END_EXAMPLE
+
+    Furthermore you can specify a relative date by giving, as the
+    /first/ thing in the input: a plus/minus sign, a number and a
+    letter ([hdwmy]) to indicate change in hours, days, weeks, months,
+    or years. With a single plus or minus, the date is always relative
+    to today. With a double plus or minus, it is relative to the
+    default date. If instead of a single letter, you use the
+    abbreviation of day name, the date will be the Nth such day, e.g.:
+
+    #+BEGIN_EXAMPLE
+      +0            ⇒ today
+      .             ⇒ today
+      +4d           ⇒ four days from today
+      +4            ⇒ same as above
+      +2w           ⇒ two weeks from today
+      ++5           ⇒ five days from default date
+      +2tue         ⇒ second Tuesday from now
+      -wed          ⇒ last Wednesday
+    #+END_EXAMPLE
+
+    The function understands English month and weekday
+    abbreviations. If you want to use unabbreviated names and/or other
+    languages, configure the variables =parse-time-months= and
+    =parse-time-weekdays=.
+
+    Not all dates can be represented in a given Emacs
+    implementation. By default Org mode forces dates into the
+    compatibility range 1970--2037 which works on all Emacs
+    implementations. If you want to use dates outside of this range,
+    read the docstring of the variable
+    =org-read-date-force-compatible-dates=.
+
+    You can specify a time range by giving start and end times or by
+    giving a start time and a duration (in HH:MM format). Use one or
+    two dash(es) as the separator in the former case and use '+' as
+    the separator in the latter case, e.g.:
+
+    #+BEGIN_EXAMPLE
+      11am-1:15pm    ⇒ 11:00-13:15
+      11am--1:15pm   ⇒ same as above
+      11am+2:15      ⇒ same as above
+    #+END_EXAMPLE
+
+    Parallel to the minibuffer prompt, a calendar is popped
+    up[fn:FOOT70]. When you exit the date prompt, either by clicking
+    on a date in the calendar, or by pressing =RET=, the date selected
+    in the calendar will be combined with the information entered at
+    the prompt. You can control the calendar fully from the
+    minibuffer:
+
+    | RET            | Choose date at cursor in calendar.             |
+    | mouse-1        | Select date by clicking on it.                 |
+    | S-right/left   | One day forward/backward.                      |
+    | S-down/up      | One week forward/backward.                     |
+    | M-S-right/left | One month forward/backward.                    |
+    | > / <          | Scroll calendar forward/backward by one month. |
+    | M-v / C-v      | Scroll calendar forward/backward by 3 months.  |
+    | M-S-down/up    | Scroll calendar forward/backward by one year.  |
+
+    The actions of the date/time prompt may seem complex, but I assure
+    you they will grow on you, and you will start getting annoyed by
+    pretty much any other way of entering a date/time out there. To
+    help you understand what is going on, the current interpretation
+    of your input will be displayed live in the minibuffer[fn:FOOT71].
+
+*** 8.2.2 Custom time format                                          <<@Custom-time-format>>
+
+    Org mode uses the standard ISO notation for dates and times as it
+    is defined in ISO 8601. If you cannot get used to this and require
+    another representation of date and time to keep you happy, you can
+    get it by customizing the options =org-display-custom-times= and
+    =org-time-stamp-custom-formats=.
+
+     - */C-c C-x C-t/* (=org-toggle-time-stamp-overlays=)
+
+       Toggle the display of custom formats for dates and times.
+
+    Org mode needs the default format for scanning, so the custom
+    date/time format does not /replace/ the default format---instead
+    it is put /over/ the default format using text properties. This
+    has the following consequences:
+
+    - You cannot place the cursor onto a timestamp anymore, only before or
+      after.
+
+    - The */S-up/down/* keys can no longer be used to adjust each
+      component of a timestamp. If the cursor is at the beginning of
+      the stamp, */S-up/down/* will change the stamp by one day, just
+      like */S-left/right/*.  At the end of the stamp, the time will
+      be changed by one minute.
+
+    - If the timestamp contains a range of clock times or a repeater,
+      these will not be overlaid, but remain in the buffer as they
+      were.
+
+    - When you delete a timestamp character-by-character, it will only
+      disappear from the buffer after /all/ (invisible) characters
+      belonging to the ISO timestamp have been removed.
+
+    - If the custom timestamp format is longer than the default and
+      you are using dates in tables, table alignment will be messed
+      up. If the custom format is shorter, things do work as expected.
+
+** 8.3 Deadlines and scheduling                                       <<@Deadlines-and-scheduling>>
+
+   A timestamp may be preceded by special keywords to facilitate
+   planning:
+
+    - DEADLINE
+
+      Meaning: the task (most likely a TODO item, though not
+      necessarily) is supposed to be finished on that date.
+
+      On the deadline date, the task will be listed in the agenda. In
+      addition, the agenda for /today/ will carry a warning about the
+      approaching or missed deadline, starting
+      =org-deadline-warning-days= before the due date, and continuing
+      until the entry is marked DONE.  An example:
+
+      #+BEGIN_EXAMPLE
+        *** TODO write article about the Earth for the Guide
+            DEADLINE: <2004-02-29 Sun>
+            The editor in charge is [[bbdb:Ford Prefect]]
+      #+END_EXAMPLE
+
+      You can specify a different lead time for warnings for a
+      specific deadline using the following syntax. Here is an example
+      with a warning period of 5 days =DEADLINE:
+      <2004-02-29 Sun -5d>=. This warning is deactivated if the task
+      gets scheduled and you set
+      =org-agenda-skip-deadline-prewarning-if-scheduled= to =t=.
+
+    - SCHEDULED
+
+      Meaning: you are planning to start working on that task on the
+      given date.
+
+      The headline will be listed under the given date[fn:FOOT72].  In
+      addition, a reminder that the scheduled date has passed will be
+      present in the compilation for /today/, until the entry is
+      marked DONE, i.e., the task will automatically be forwarded
+      until completed.
+
+      #+BEGIN_EXAMPLE
+        *** TODO Call Trillian for a date on New Years Eve.
+            SCHEDULED: <2004-12-25 Sat>
+      #+END_EXAMPLE
+
+      If you want to /delay/ the display of this task in the agenda,
+      use =SCHEDULED: <2004-12-25 Sat -2d>=: the task is still
+      scheduled on the 25th but will appear two days later. In case
+      the task contains a repeater, the delay is considered to affect
+      all occurrences; if you want the delay to only affect the first
+      scheduled occurrence of the task, use =--2d= instead. See
+      =org-scheduled-delay-days= and
+      =org-agenda-skip-scheduled-delay-if-deadline= for details on how
+      to control this globally or per agenda.
+
+      *Important:* Scheduling an item in Org mode should /not/ be
+      understood in the same way that we understand /scheduling a
+      meeting/.  Setting a date for a meeting is just a simple
+      appointment, you should mark this entry with a simple plain
+      timestamp, to get this item shown on the date where it
+      applies. This is a frequent misunderstanding by Org users. In
+      Org mode, /scheduling/ means setting a date when you want to
+      start working on an action item.
+
+   You may use timestamps with repeaters in scheduling and deadline
+   entries. Org mode will issue early and late warnings based on the
+   assumption that the timestamp represents the /nearest instance/ of
+   the repeater. However, the use of diary sexp entries like
+   =<%%(diary-float t 42)>= in scheduling and deadline timestamps is
+   limited. Org mode does not know enough about the internals of each
+   sexp function to issue early and late warnings. However, it will
+   show the item on each day where the sexp entry matches.
+
+   | • [[@Inserting-deadline_schedule][Inserting deadline/schedule]]: | Planning items                     |
+   | • [[@Repeated-tasks][Repeated tasks]]:              | Items that show up again and again |
+
+*** 8.3.1 Inserting deadlines or schedules                            <<@Inserting-deadline_schedule>>
+
+    The following commands allow you to quickly insert[fn:FOOT73] a
+    deadline or to schedule an item:
+
+     - */C-c C-d/* (=org-deadline=)
+
+       Insert ‘DEADLINE' keyword along with a stamp. The insertion
+       will happen in the line directly following the headline. Any
+       CLOSED timestamp will be removed. When called with a prefix
+       arg, an existing deadline will be removed from the
+       entry. Depending on the variable
+       =org-log-redeadline=[fn:FOOT74], a note will be taken when
+       changing an existing deadline.
+
+     - */C-c C-s/* (=org-schedule=)
+
+       Insert ‘SCHEDULED' keyword along with a stamp. The insertion
+       will happen in the line directly following the headline. Any
+       CLOSED timestamp will be removed. When called with a prefix
+       argument, remove the scheduling date from the entry. Depending
+       on the variable =org-log-reschedule= [fn:FOOT75], a note will be
+       taken when changing an existing scheduling time.
+
+     - */C-c / d/* (=org-check-deadlines=)
+
+       Create a sparse tree with all deadlines that are either
+       past-due, or which will become due within
+       =org-deadline-warning-days=. With C-u prefix, show all
+       deadlines in the file. With a numeric prefix, check that many
+       days. For example, */C-1 C-c / d/* shows all deadlines due
+       tomorrow.
+
+     - */C-c / b/* (=org-check-before-date=)
+
+       Sparse tree for deadlines and scheduled items before a given
+       date.
+
+     - */C-c / a/* (=org-check-after-date=)
+
+       Sparse tree for deadlines and scheduled items after a given
+       date.
+
+    Note that =org-schedule= and =org-deadline= supports setting the
+    date by indicating a relative time: e.g., +1d will set the date to
+    the next day after today, and -- 1w will set the date to the
+    previous week before any current timestamp.
+
+*** 8.3.2 Repeated tasks                                              <<@Repeated-tasks>>
+
+    Some tasks need to be repeated again and again. Org mode helps to
+    organize such tasks using a so-called repeater in a DEADLINE,
+    SCHEDULED, or plain timestamp. In the following example
+
+    #+BEGIN_EXAMPLE
+      ** TODO Pay the rent
+         DEADLINE: <2005-10-01 Sat +1m>
+    #+END_EXAMPLE
+
+    the =+1m= is a repeater; the intended interpretation is that the
+    task has a deadline on <2005-10-01> and repeats itself every (one)
+    month starting from that time. You can use yearly, monthly,
+    weekly, daily and hourly repeat cookies by using the =y/w/m/d/h=
+    letters. If you need both a repeater and a special warning period
+    in a deadline entry, the repeater should come first and the
+    warning period last: =DEADLINE: <2005-10-01 Sat +1m -3d>=.
+
+    Deadlines and scheduled items produce entries in the agenda when
+    they are over-due, so it is important to be able to mark such an
+    entry as completed once you have done so. When you mark a DEADLINE
+    or a SCHEDULE with the TODO keyword DONE, it will no longer
+    produce entries in the agenda. The problem with this is, however,
+    that then also the /next/ instance of the repeated entry will not
+    be active. Org mode deals with this in the following way: When you
+    try to mark such an entry DONE (using */C-c C-t/*), it will shift
+    the base date of the repeating timestamp by the repeater interval,
+    and immediately set the entry state back to TODO[fn:FOOT76]. In
+    the example above, setting the state to DONE would actually switch
+    the date like this:
+
+    #+BEGIN_EXAMPLE
+      ** TODO Pay the rent
+         DEADLINE: <2005-11-01 Tue +1m>
+    #+END_EXAMPLE
+
+    To mark a task with a repeater as =DONE=, use */C-- 1 C-c C-t/*
+    (i.e., =org-todo= with a numeric prefix argument of -1.)
+
+    A timestamp[fn:FOOT77] will be added under the deadline, to keep a
+    record that you actually acted on the previous instance of this
+    deadline.
+
+    As a consequence of shifting the base date, this entry will no
+    longer be visible in the agenda when checking past dates, but all
+    future instances will be visible.
+
+    With the ‘+1m' cookie, the date shift will always be exactly one
+    month.  So if you have not paid the rent for three months, marking
+    this entry DONE will still keep it as an overdue
+    deadline. Depending on the task, this may not be the best way to
+    handle it. For example, if you forgot to call your father for 3
+    weeks, it does not make sense to call him 3 times in a single day
+    to make up for it. Finally, there are tasks like changing
+    batteries which should always repeat a certain time /after/ the
+    last time you did it. For these tasks, Org mode has special
+    repeaters ‘++' and ‘.+'. For example:
+
+    #+BEGIN_EXAMPLE
+      ** TODO Call Father
+         DEADLINE: <2008-02-10 Sun ++1w>
+         Marking this DONE will shift the date by at least one week,
+         but also by as many weeks as it takes to get this date into
+         the future.  However, it stays on a Sunday, even if you called
+         and marked it done on Saturday.
+      ** TODO Check the batteries in the smoke detectors
+         DEADLINE: <2005-11-01 Tue .+1m>
+         Marking this DONE will shift the date to one month after
+         today.
+    #+END_EXAMPLE
+
+    You may have both scheduling and deadline information for a
+    specific task. If the repeater is set for the scheduling
+    information only, you probably want the repeater to be ignored
+    after the deadline. If so, set the variable
+    =org-agenda-skip-scheduled-if-deadline-is-shown= to
+    =repeated-after-deadline=. If you want both scheduling and
+    deadline information to repeat after the same interval, set the
+    same repeater for both timestamps.
+
+    An alternative to using a repeater is to create a number of copies
+    of a task subtree, with dates shifted in each copy. The command
+    */C-c C-x c/* was created for this purpose, it is described in
+    [[@Structure-editing][Structure editing]].
 
 ** 8.4 Clocking work time                                             <<@Clocking-work-time>>
 
-Org mode allows you to clock the time you spend on specific tasks in a
-project. When you start working on an item, you can start the clock.
-When you stop working on that task, or when you mark the task done, the
-clock is stopped and the corresponding time interval is recorded. It
-also computes the total time spent on each subtree[fn:FOOT78] of
-a project. And it remembers a history or tasks recently clocked, so that
-you can jump quickly between a number of tasks absorbing your time.
-
-To save the clock history across Emacs sessions, use
-
-#+BEGIN_SRC lisp
-    (setq org-clock-persist 'history)
-    (org-clock-persistence-insinuate)
-#+END_SRC
-
-When you clock into a new task after resuming Emacs, the incomplete
-clock[fn:FOOT79] will be found (see
-[[@Resolving-idle-time][Resolving idle time]]) and you will be prompted
-about what to do with it.
-
-*** 8.4.1 Clocking commands
-
-C-c C-x C-i (=org-clock-in=)
-
-Start the clock on the current item (clock-in). This inserts the CLOCK
-keyword together with a timestamp. If this is not the first clocking of
-this item, the multiple CLOCK lines will be wrapped into a =:LOGBOOK:=
-drawer (see also the variable =org-clock-into-drawer=). You can also
-overrule the setting of this variable for a subtree by setting a
-=CLOCK_INTO_DRAWER= or =LOG_INTO_DRAWER= property. When called with a
-C-u prefix argument, select the task from a list of recently clocked
-tasks. With two C-u C-u prefixes, clock into the task at point and mark
-it as the default task; the default task will then always be available
-with letter d when selecting a clocking task. With three C-u C-u C-u
-prefixes, force continuous clocking by starting the clock when the last
-clock stopped.\\
- While the clock is running, the current clocking time is shown in the
-mode line, along with the title of the task. The clock time shown will
-be all time ever clocked for this task and its children. If the task has
-an effort estimate (see [[@Effort-estimates][Effort estimates]]), the
-mode line displays the current clocking time against
-it[fn:FOOT80] If the task is a repeating one (see
-[[@Repeated-tasks][Repeated tasks]]), only the time since the last reset
-of the task [fn:FOOT81] will be shown. More control over what
-time is shown can be exercised with the =CLOCK_MODELINE_TOTAL= property.
-It may have the values =current= to show only the current clocking
-instance, =today= to show all time clocked on this tasks today (see also
-the variable =org-extend-today-until=), =all= to include all time, or
-=auto= which is the default[fn:FOOT82].\\
- Clicking with mouse-1 onto the mode line entry will pop up a menu with
-clocking options.
+   Org mode allows you to clock the time you spend on specific tasks
+   in a project. When you start working on an item, you can start the
+   clock.  When you stop working on that task, or when you mark the
+   task done, the clock is stopped and the corresponding time interval
+   is recorded. It also computes the total time spent on each
+   subtree[fn:FOOT78] of a project. And it remembers a history or
+   tasks recently clocked, so that you can jump quickly between a
+   number of tasks absorbing your time.
+
+   To save the clock history across Emacs sessions, use
+
+   #+BEGIN_SRC lisp
+     (setq org-clock-persist 'history)
+     (org-clock-persistence-insinuate)
+   #+END_SRC
+
+   When you clock into a new task after resuming Emacs, the incomplete
+   clock[fn:FOOT79] will be found (see [[@Resolving-idle-time][Resolving idle time]]) and you
+   will be prompted about what to do with it.
+
+   | • [[@Clocking-commands][Clocking commands]]:   | Starting and stopping a clock        |
+   | • [[@The-clock-table][The clock table]]:     | Detailed reports                     |
+   | • [[@Resolving-idle-time][Resolving idle time]]: | Resolving time when you've been idle |
+
+
+*** 8.4.1 Clocking commands                                           <<@Clocking-commands>>
+
+     - */C-c C-x C-i/* (=org-clock-in=)
+
+       Start the clock on the current item (clock-in). This inserts
+       the CLOCK keyword together with a timestamp. If this is not the
+       first clocking of this item, the multiple CLOCK lines will be
+       wrapped into a =:LOGBOOK:= drawer (see also the variable
+       =org-clock-into-drawer=). You can also overrule the setting of
+       this variable for a subtree by setting a =CLOCK_INTO_DRAWER= or
+       =LOG_INTO_DRAWER= property. When called with a */C-u/* prefix
+       argument, select the task from a list of recently clocked
+       tasks. With two */C-u C-u/* prefixes, clock into the task at
+       point and mark it as the default task; the default task will
+       then always be available with letter d when selecting a
+       clocking task. With three */C-u C-u C-u/* prefixes, force
+       continuous clocking by starting the clock when the last clock
+       stopped.
+
+       While the clock is running, the current clocking time is shown
+       in the mode line, along with the title of the task. The clock
+       time shown will be all time ever clocked for this task and its
+       children. If the task has an effort estimate (see [[@Effort-estimates][Effort
+       estimates]]), the mode line displays the current clocking time
+       against it[fn:FOOT80] If the task is a repeating one (see
+       [[@Repeated-tasks][Repeated tasks]]), only the time since the last reset of the
+       task [fn:FOOT81] will be shown. More control over what time is
+       shown can be exercised with the =CLOCK_MODELINE_TOTAL=
+       property.  It may have the values =current= to show only the
+       current clocking instance, =today= to show all time clocked on
+       this tasks today (see also the variable
+       =org-extend-today-until=), =all= to include all time, or =auto=
+       which is the default[fn:FOOT82].
+
+       Clicking with mouse-1 onto the mode line entry will pop up a
+       menu with clocking options.
+
+     - */C-c C-x C-o/* (=org-clock-out=)
 
-C-c C-x C-o (=org-clock-out=)
+       Stop the clock (clock-out). This inserts another timestamp at
+       the same location where the clock was last started. It also
+       directly computes the resulting time and inserts it after the
+       time range as ‘=> HH:MM'. See the variable
+       =org-log-note-clock-out= for the possibility to record an
+       additional note together with the clock-out
+       timestamp[fn:FOOT83].
 
-Stop the clock (clock-out). This inserts another timestamp at the same
-location where the clock was last started. It also directly computes the
-resulting time and inserts it after the time range as ‘=> HH:MM'. See
-the variable =org-log-note-clock-out= for the possibility to record an
-additional note together with the clock-out timestamp[fn:FOOT83].
+     - */C-c C-x C-x/* (=org-clock-in-last=)
 
-C-c C-x C-x (=org-clock-in-last=)
+       Reclock the last clocked task. With one */C-u/* prefix
+       argument, select the task from the clock history. With two
+       */C-u/* prefixes, force continuous clocking by starting the
+       clock when the last clock stopped.
 
-Reclock the last clocked task. With one C-u prefix argument, select the
-task from the clock history. With two C-u prefixes, force continuous
-clocking by starting the clock when the last clock stopped.
+     - */C-c C-x C-e/* (=org-clock-modify-effort-estimate=)
 
-C-c C-x C-e (=org-clock-modify-effort-estimate=)
+       Update the effort estimate for the current clock task.
+
+     - */C-c C-c/* or */C-c C-y/* (=org-evaluate-time-range=)
 
-Update the effort estimate for the current clock task.
-
-C-c C-c or C-c C-y (=org-evaluate-time-range=)
-
-Recompute the time interval after changing one of the timestamps. This
-is only necessary if you edit the timestamps directly. If you change
-them with S-cursor keys, the update is automatic.
-
-C-S-up/down (=org-clock-timestamps-up/down=)
-
-On =CLOCK= log lines, increase/decrease both timestamps so that the
-clock duration keeps the same.
-
-S-M-up/down (=org-timestamp-up/down=)
-
-On =CLOCK= log lines, increase/decrease the timestamp at point and the
-one of the previous (or the next clock) timestamp by the same duration.
-For example, if you hit S-M-up to increase a clocked-out timestamp by
-five minutes, then the clocked-in timestamp of the next clock will be
-increased by five minutes.
-
-C-c C-t (=org-todo=)
-
-Changing the TODO state of an item to DONE automatically stops the clock
-if it is running in this same item.
-
-C-c C-x C-q (=org-clock-cancel=)
-
-Cancel the current clock. This is useful if a clock was started by
-mistake, or if you ended up working on something else.
-
-C-c C-x C-j (=org-clock-goto=)
-
-Jump to the headline of the currently clocked in task. With a C-u prefix
-arg, select the target task from a list of recently clocked tasks.
-
-C-c C-x C-d (=org-clock-display=)
-
-Display time summaries for each subtree in the current buffer. This puts
-overlays at the end of each headline, showing the total time recorded
-under that heading, including the time of any subheadings. You can use
-visibility cycling to study the tree, but the overlays disappear when
-you change the buffer (see variable =org-remove-highlights-with-change=)
-or press C-c C-c.
-
-The l key may be used in the timeline (see [[@Timeline][Timeline]]) and
-in the agenda (see [[@Weekly_daily-agenda][Weekly/daily agenda]]) to
-show which tasks have been worked on or closed during a day.
-
-*Important:* note that both =org-clock-out= and =org-clock-in-last= can
-have a global keybinding and will not modify the window disposition.
-
-*** 8.4.2 The clock table
-
-Org mode can produce quite complex reports based on the time clocking
-information. Such a report is called a /clock table/, because it is
-formatted as one or several Org tables.
-
-C-c C-x C-r (=org-clock-report=)
-
-Insert a dynamic block (see [[@Dynamic-blocks][Dynamic blocks]])
-containing a clock report as an Org mode table into the current file.
-When the cursor is at an existing clock table, just update it. When
-called with a prefix argument, jump to the first clock report in the
-current document and update it. The clock table always includes also
-trees with =:ARCHIVE:= tag.
-
-C-c C-c or C-c C-x C-u (=org-dblock-update=)
-
-Update dynamic block at point. The cursor needs to be in the =#+BEGIN=
-line of the dynamic block.
-
-C-u C-c C-x C-u
-
-Update all dynamic blocks (see [[@Dynamic-blocks][Dynamic blocks]]).
-This is useful if you have several clock table blocks in a buffer.
-
-S-left
-
-S-right (=org-clocktable-try-shift=)
-
-Shift the current =:block= interval and update the table. The cursor
-needs to be in the =#+BEGIN: clocktable= line for this command. If
-=:block= is =today=, it will be shifted to =today-1= etc.
-
-Here is an example of the frame for a clock table as it is inserted into
-the buffer with the C-c C-x C-r command:
-
-#+BEGIN_EXAMPLE
-    #+BEGIN: clocktable :maxlevel 2 :emphasize nil :scope file
-    #+END: clocktable
-#+END_EXAMPLE
-
-The ‘BEGIN' line specifies a number of options to define the scope,
-structure, and formatting of the report. Defaults for all these options
-can be configured in the variable =org-clocktable-defaults=.
-
-First there are options that determine which clock entries are to be
-selected:
-
-#+BEGIN_EXAMPLE
-    :maxlevel    Maximum level depth to which times are listed in the table.
-                 Clocks at deeper levels will be summed into the upper level.
-    :scope       The scope to consider.  This can be any of the following:
-                 nil        the current buffer or narrowed region
-                 file       the full current buffer
-                 subtree    the subtree where the clocktable is located
-                 treeN      the surrounding level N tree, for example tree3
-                 tree       the surrounding level 1 tree
-                 agenda     all agenda files
-                 ("file"..) scan these files
-                 file-with-archives    current file and its archives
-                 agenda-with-archives  all agenda files, including archives
-    :block       The time block to consider.  This block is specified either
-                 absolutely, or relative to the current time and may be any of
-                 these formats:
-                 2007-12-31    New year eve 2007
-                 2007-12       December 2007
-                 2007-W50      ISO-week 50 in 2007
-                 2007-Q2       2nd quarter in 2007
-                 2007          the year 2007
-                 today, yesterday, today-N          a relative day
-                 thisweek, lastweek, thisweek-N     a relative week
-                 thismonth, lastmonth, thismonth-N  a relative month
-                 thisyear, lastyear, thisyear-N     a relative year
-                 untilnow
-                 Use S-left/right keys to shift the time interval.
-    :tstart      A time string specifying when to start considering times.
-                 Relative times like "<-2w>" can also be used.  See
-                 Matching tags and properties for relative time syntax.
-    :tend        A time string specifying when to stop considering times.
-                 Relative times like "<now>" can also be used.  See
-                 Matching tags and properties for relative time syntax.
-    :wstart      The starting day of the week.  The default is 1 for monday.
-    :mstart      The starting day of the month.  The default 1 is for the first
-                 day of the month.
-    :step        week or day, to split the table into chunks.
-                 To use this, :block or :tstart, :tend are needed.
-    :stepskip0   Do not show steps that have zero time.
-    :fileskip0   Do not show table sections from files which did not contribute.
-    :tags        A tags match to select entries that should contribute.  See
-                 Matching tags and properties for the match syntax.
-#+END_EXAMPLE
-
-Then there are options which determine the formatting of the table.
-These options are interpreted by the function
-=org-clocktable-write-default=, but you can specify your own function
-using the =:formatter= parameter.
-
-#+BEGIN_EXAMPLE
-    :emphasize   When t, emphasize level one and level two items.
-    :lang        Language(84) to use for descriptive cells like "Task".
-    :link        Link the item headlines in the table to their origins.
-    :narrow      An integer to limit the width of the headline column in
-                 the org table.  If you write it like ‘50!’, then the
-                 headline will also be shortened in export.
-    :indent      Indent each headline field according to its level.
-    :tcolumns    Number of columns to be used for times.  If this is smaller
-                 than :maxlevel, lower levels will be lumped into one column.
-    :level       Should a level number column be included?
-    :sort        A cons cell like containing the column to sort and a sorting type.
-                 E.g., :sort (1 . ?a) sorts the first column alphabetically.
-    :compact     Abbreviation for :level nil :indent t :narrow 40! :tcolumns 1
-                 All are overwritten except if there is an explicit :narrow
-    :timestamp   A timestamp for the entry, when available.  Look for SCHEDULED,
-                 DEADLINE, TIMESTAMP and TIMESTAMP_IA, in this order.
-    :properties  List of properties that should be shown in the table.  Each
-                 property will get its own column.
-    :inherit-props When this flag is t, the values for :properties will be inherited.
-    :formula     Content of a #+TBLFM line to be added and evaluated.
-                 As a special case, ‘:formula %’ adds a column with % time.
-                 If you do not specify a formula here, any existing formula
-                 below the clock table will survive updates and be evaluated.
-    :formatter   A function to format clock data and insert it into the buffer.
-#+END_EXAMPLE
-
-To get a clock summary of the current level 1 tree, for the current day,
-you could write
-
-#+BEGIN_EXAMPLE
-    #+BEGIN: clocktable :maxlevel 2 :block today :scope tree1 :link t
-    #+END: clocktable
-#+END_EXAMPLE
-
-and to use a specific time range you could write[fn:FOOT85]
-
-#+BEGIN_EXAMPLE
-    #+BEGIN: clocktable :tstart "<2006-08-10 Thu 10:00>"
-                        :tend "<2006-08-10 Thu 12:00>"
-    #+END: clocktable
-#+END_EXAMPLE
-
-A range starting a week ago and ending right now could be written as
-
-#+BEGIN_EXAMPLE
-    #+BEGIN: clocktable :tstart "<-1w>" :tend "<now>"
-    #+END: clocktable
-#+END_EXAMPLE
-
-A summary of the current subtree with % times would be
-
-#+BEGIN_EXAMPLE
-    #+BEGIN: clocktable :scope subtree :link t :formula %
-    #+END: clocktable
-#+END_EXAMPLE
-
-A horizontally compact representation of everything clocked during last
-week would be
-
-#+BEGIN_EXAMPLE
-    #+BEGIN: clocktable :scope agenda :block lastweek :compact t
-    #+END: clocktable
-#+END_EXAMPLE
-
-*** 8.4.3 Resolving idle time and continuous clocking
-
-*** Resolving idle time
-
-If you clock in on a work item, and then walk away from your
-computer---perhaps to take a phone call---you often need to “resolve”
-the time you were away by either subtracting it from the current clock,
-or applying it to another one.
-
-By customizing the variable =org-clock-idle-time= to some integer, such
-as 10 or 15, Emacs can alert you when you get back to your computer
-after being idle for that many minutes[fn:FOOT86], and ask what
-you want to do with the idle time. There will be a question waiting for
-you when you get back, indicating how much idle time has passed
-(constantly updated with the current amount), as well as a set of
-choices to correct the discrepancy:
-
--  k :: To keep some or all of the minutes and stay clocked in, press k.
-   Org will ask how many of the minutes to keep. Press =RET= to keep
-   them all, effectively changing nothing, or enter a number to keep
-   that many minutes.
-
--  K :: If you use the shift key and press K, it will keep however many
-   minutes you request and then immediately clock out of that task. If
-   you keep all of the minutes, this is the same as just clocking out of
-   the current task.
-
--  s :: To keep none of the minutes, use s to subtract all the away time
-   from the clock, and then check back in from the moment you returned.
-
--  S :: To keep none of the minutes and just clock out at the start of
-   the away time, use the shift key and press S. Remember that using
-   shift will always leave you clocked out, no matter which option you
-   choose.
-
--  C :: To cancel the clock altogether, use C. Note that if instead of
-   canceling you subtract the away time, and the resulting clock amount
-   is less than a minute, the clock will still be canceled rather than
-   clutter up the log with an empty entry.
-
-What if you subtracted those away minutes from the current clock, and
-now want to apply them to a new clock? Simply clock in to any task
-immediately after the subtraction. Org will notice that you have
-subtracted time “on the books”, so to speak, and will ask if you want to
-apply those minutes to the next task you clock in on.
-
-There is one other instance when this clock resolution magic occurs. Say
-you were clocked in and hacking away, and suddenly your cat chased a
-mouse who scared a hamster that crashed into your UPS's power button!
-You suddenly lose all your buffers, but thanks to auto-save you still
-have your recent Org mode changes, including your last clock in.
-
-If you restart Emacs and clock into any task, Org will notice that you
-have a dangling clock which was never clocked out from your last
-session. Using that clock's starting time as the beginning of the
-unaccounted-for period, Org will ask how you want to resolve that time.
-The logic and behavior is identical to dealing with away time due to
-idleness; it is just happening due to a recovery event rather than a set
-amount of idle time.
-
-You can also check all the files visited by your Org agenda for dangling
-clocks at any time using M-x org-resolve-clocks RET (or C-c C-x C-z).
-
-*** Continuous clocking
-
-You may want to start clocking from the time when you clocked out the
-previous task. To enable this systematically, set
-=org-clock-continuously= to =t=. Each time you clock in, Org retrieves
-the clock-out time of the last clocked entry for this session, and start
-the new clock from there.
-
-If you only want this from time to time, use three universal prefix
-arguments with =org-clock-in= and two C-u C-u with =org-clock-in-last=.
-
-** 8.5 Effort estimates
-
-If you want to plan your work in a very detailed way, or if you need to
-produce offers with quotations of the estimated work effort, you may
-want to assign effort estimates to entries. If you are also clocking
-your work, you may later want to compare the planned effort with the
-actual working time, a great way to improve planning estimates. Effort
-estimates are stored in a special property =EFFORT=. You can set the
-effort for an entry with the following commands:
-
-C-c C-x e (=org-set-effort=)
-
-Set the effort estimate for the current entry. With a numeric prefix
-argument, set it to the Nth allowed value (see below). This command is
-also accessible from the agenda with the e key.
-
-C-c C-x C-e (=org-clock-modify-effort-estimate=)
-
-Modify the effort estimate of the item currently being clocked.
-
-Clearly the best way to work with effort estimates is through column
-view (see [[@Column-view][Column view]]). You should start by setting up
-discrete values for effort estimates, and a =COLUMNS= format that
-displays these values together with clock sums (if you want to clock
-your time). For a specific buffer you can use
-
-#+BEGIN_EXAMPLE
-    #+PROPERTY: Effort_ALL 0 0:10 0:30 1:00 2:00 3:00 4:00 5:00 6:00 7:00
-    #+COLUMNS: %40ITEM(Task) %17Effort(Estimated Effort){:} %CLOCKSUM
-#+END_EXAMPLE
-
-or, even better, you can set up these values globally by customizing the
-variables =org-global-properties= and =org-columns-default-format=. In
-particular if you want to use this setup also in the agenda, a global
-setup may be advised.
-
-The way to assign estimates to individual items is then to switch to
-column mode, and to use S-right and S-left to change the value. The
-values you enter will immediately be summed up in the hierarchy. In the
-column next to it, any clocked time will be displayed.
-
-If you switch to column view in the daily/weekly agenda, the effort
-column will summarize the estimated work effort for each
-day[fn:FOOT87], and you can use this to find space in your
-schedule. To get an overview of the entire part of the day that is
-committed, you can set the option
-=org-agenda-columns-add-appointments-to-effort-sum=. The appointments on
-a day that take place over a specified time interval will then also be
-added to the load estimate of the day.
-
-Effort estimates can be used in secondary agenda filtering that is
-triggered with the / key in the agenda (see [[@Agenda-commands][Agenda
-commands]]). If you have these estimates defined consistently, two or
-three key presses will narrow down the list to stuff that fits into an
-available time slot.
-
-** 8.6 Taking notes with a timer
-
-Org provides provides two types of timers. There is a relative timer
-that counts up, which can be useful when taking notes during, for
-example, a meeting or a video viewing. There is also a countdown timer.
-
-The relative and countdown are started with separate commands.
-
-C-c C-x 0 (=org-timer-start=)
-
-Start or reset the relative timer. By default, the timer is set to 0.
-When called with a C-u prefix, prompt the user for a starting offset. If
-there is a timer string at point, this is taken as the default,
-providing a convenient way to restart taking notes after a break in the
-process. When called with a double prefix argument C-u C-u, change all
-timer strings in the active region by a certain amount. This can be used
-to fix timer strings if the timer was not started at exactly the right
-moment.
-
-C-c C-x ; (=org-timer-set-timer=)
-
-Start a countdown timer. The user is prompted for a duration.
-=org-timer-default-timer= sets the default countdown value. Giving a
-prefix numeric argument overrides this default value. This command is
-available as ; in agenda buffers.
-
-Once started, relative and countdown timers are controlled with the same
-commands.
-
-C-c C-x . (=org-timer=)
-
-Insert the value of the current relative or countdown timer into the
-buffer. If no timer is running, the relative timer will be started. When
-called with a prefix argument, the relative timer is restarted.
-
-C-c C-x - (=org-timer-item=)
-
-Insert a description list item with the value of the current relative or
-countdown timer. With a prefix argument, first reset the relative timer
-to 0.
-
-M-RET (=org-insert-heading=)
-
-Once the timer list is started, you can also use M-RET to insert new
-timer items.
-
-C-c C-x \ (=org-timer-pause-or-continue=)
-
-Pause the timer, or continue it if it is already paused.
-
-C-c C-x \_ (=org-timer-stop=)
-
-Stop the timer. After this, you can only start a new timer, not continue
-the old one. This command also removes the timer from the mode line.
+       Recompute the time interval after changing one of the
+       timestamps. This is only necessary if you edit the timestamps
+       directly. If you change them with S-cursor keys, the update is
+       automatic.
+
+     - */C-S-up/down/* (=org-clock-timestamps-up/down=)
+
+       On =CLOCK= log lines, increase/decrease both timestamps so that
+       the clock duration keeps the same.
+
+     - */S-M-up/down/* (=org-timestamp-up/down=)
+
+       On =CLOCK= log lines, increase/decrease the timestamp at point
+       and the one of the previous (or the next clock) timestamp by
+       the same duration.  For example, if you hit S-M-up to increase
+       a clocked-out timestamp by five minutes, then the clocked-in
+       timestamp of the next clock will be increased by five minutes.
+
+     - */C-c C-t/* (=org-todo=)
+
+       Changing the TODO state of an item to DONE automatically stops
+       the clock if it is running in this same item.
+
+     - */C-c C-x C-q/* (=org-clock-cancel=)
+
+       Cancel the current clock. This is useful if a clock was started
+       by mistake, or if you ended up working on something else.
+
+     - */C-c C-x C-j/* (=org-clock-goto=)
+
+       Jump to the headline of the currently clocked in task. With a
+       */C-u/* prefix arg, select the target task from a list of
+       recently clocked tasks.
+
+     - */C-c C-x C-d/* (=org-clock-display=)
+
+       Display time summaries for each subtree in the current
+       buffer. This puts overlays at the end of each headline, showing
+       the total time recorded under that heading, including the time
+       of any subheadings. You can use visibility cycling to study the
+       tree, but the overlays disappear when you change the buffer
+       (see variable =org-remove-highlights-with-change=) or press
+       */C-c C-c/*.
+
+    The *l* key may be used in the timeline (see [[@Timeline][Timeline]]) and in the
+    agenda (see [[@Weekly_daily-agenda][Weekly/daily agenda]]) to show which tasks have been
+    worked on or closed during a day.
+
+    *Important:* note that both =org-clock-out= and
+    =org-clock-in-last= can have a global keybinding and will not
+    modify the window disposition.
+
+*** 8.4.2 The clock table                                             <<@The-clock-table>>
+
+    Org mode can produce quite complex reports based on the time
+    clocking information. Such a report is called a /clock table/,
+    because it is formatted as one or several Org tables.
+
+     - */C-c C-x C-r/* (=org-clock-report=)
+
+       Insert a dynamic block (see [[@Dynamic-blocks][Dynamic blocks]]) containing a clock
+       report as an Org mode table into the current file.  When the
+       cursor is at an existing clock table, just update it. When
+       called with a prefix argument, jump to the first clock report
+       in the current document and update it. The clock table always
+       includes also trees with =:ARCHIVE:= tag.
+
+     - */C-c C-c/* or */C-c C-x C-u/* (=org-dblock-update=)
+
+       Update dynamic block at point. The cursor needs to be in the
+       =#+BEGIN= line of the dynamic block.
+
+     - */C-u C-c C-x C-u/*
+
+       Update all dynamic blocks (see [[@Dynamic-blocks][Dynamic blocks]]).  This is useful
+       if you have several clock table blocks in a buffer.
+
+     - */S-left/*
+     - */S-right/* (=org-clocktable-try-shift=)
+
+       Shift the current =:block= interval and update the table. The
+       cursor needs to be in the =#+BEGIN: clocktable= line for this
+       command. If =:block= is =today=, it will be shifted to
+       =today-1= etc.
+
+    Here is an example of the frame for a clock table as it is
+    inserted into the buffer with the */C-c C-x C-r/* command:
+
+    #+BEGIN_EXAMPLE
+      #+BEGIN: clocktable :maxlevel 2 :emphasize nil :scope file
+      #+END: clocktable
+    #+END_EXAMPLE
+
+    The ‘BEGIN' line specifies a number of options to define the
+    scope, structure, and formatting of the report. Defaults for all
+    these options can be configured in the variable
+    =org-clocktable-defaults=.
+
+    First there are options that determine which clock entries are to
+    be selected:
+
+    | :maxlevel  | Maximum level depth to which times are listed in the table.                                                                              |
+    |            | Clocks at deeper levels will be summed into the upper level.                                                                             |
+    | :scope     | The scope to consider.  This can be any of the following:                                                                                |
+    |            | nil        the current buffer or narrowed region                                                                                         |
+    |            | file       the full current buffer                                                                                                       |
+    |            | subtree    the subtree where the clocktable is located                                                                                   |
+    |            | treeN      the surrounding level N tree, for example tree3                                                                               |
+    |            | tree       the surrounding level 1 tree                                                                                                  |
+    |            | agenda     all agenda files                                                                                                              |
+    |            | ("file"..) scan these files                                                                                                              |
+    |            | file-with-archives    current file and its archives                                                                                      |
+    |            | agenda-with-archives  all agenda files, including archives                                                                               |
+    | :block     | The time block to consider.  This block is specified either absolutely, or relative to the current time and may be any of these formats: |
+    |            | 2007-12-31    New year eve 2007                                                                                                          |
+    |            | 2007-12       December 2007                                                                                                              |
+    |            | 2007-W50      ISO-week 50 in 2007                                                                                                        |
+    |            | 2007-Q2       2nd quarter in 2007                                                                                                        |
+    |            | 2007          the year 2007                                                                                                              |
+    |            | today, yesterday, today-N          a relative day                                                                                        |
+    |            | thisweek, lastweek, thisweek-N     a relative week                                                                                       |
+    |            | thismonth, lastmonth, thismonth-N  a relative month                                                                                      |
+    |            | thisyear, lastyear, thisyear-N     a relative year                                                                                       |
+    |            | untilnow                                                                                                                                 |
+    |            | Use S-left/right keys to shift the time interval.                                                                                        |
+    | :tstart    | A time string specifying when to start considering times.                                                                                |
+    |            | Relative times like "<-2w>" can also be used.  See [[@Matching-tags-and-properties][Matching tags and properties]] for relative time syntax.                                |
+    | :tend      | A time string specifying when to stop considering times.                                                                                 |
+    |            | Relative times like "<now>" can also be used.  See [[@Matching-tags-and-properties][Matching tags and properties]] for relative time syntax.                                |
+    | :wstart    | The starting day of the week.  The default is 1 for monday.                                                                              |
+    | :mstart    | The starting day of the month.  The default 1 is for the first day of the month.                                                         |
+    | :step      | week or day, to split the table into chunks.                                                                                             |
+    |            | To use this, :block or :tstart, :tend are needed.                                                                                        |
+    | :stepskip0 | Do not show steps that have zero time.                                                                                                   |
+    | :fileskip0 | Do not show table sections from files which did not contribute.                                                                          |
+    | :tags      | A tags match to select entries that should contribute.  See [[@Matching-tags-and-properties][Matching tags and properties]] for the match syntax.                           |
+
+
+    Then there are options which determine the formatting of the
+    table.  These options are interpreted by the function
+    =org-clocktable-write-default=, but you can specify your own
+    function using the =:formatter= parameter.
+
+    #+BEGIN_EXAMPLE
+      :emphasize   When t, emphasize level one and level two items.
+      :lang        Language(84) to use for descriptive cells like "Task".
+      :link        Link the item headlines in the table to their origins.
+      :narrow      An integer to limit the width of the headline column in
+                   the org table.  If you write it like ‘50!’, then the
+                   headline will also be shortened in export.
+      :indent      Indent each headline field according to its level.
+      :tcolumns    Number of columns to be used for times.  If this is smaller
+                   than :maxlevel, lower levels will be lumped into one column.
+      :level       Should a level number column be included?
+      :sort        A cons cell like containing the column to sort and a sorting type.
+                   E.g., :sort (1 . ?a) sorts the first column alphabetically.
+      :compact     Abbreviation for :level nil :indent t :narrow 40! :tcolumns 1
+                   All are overwritten except if there is an explicit :narrow
+      :timestamp   A timestamp for the entry, when available.  Look for SCHEDULED,
+                   DEADLINE, TIMESTAMP and TIMESTAMP_IA, in this order.
+      :properties  List of properties that should be shown in the table.  Each
+                   property will get its own column.
+      :inherit-props When this flag is t, the values for :properties will be inherited.
+      :formula     Content of a #+TBLFM line to be added and evaluated.
+                   As a special case, ‘:formula %’ adds a column with % time.
+                   If you do not specify a formula here, any existing formula
+                   below the clock table will survive updates and be evaluated.
+      :formatter   A function to format clock data and insert it into the buffer.
+    #+END_EXAMPLE
+
+    To get a clock summary of the current level 1 tree, for the
+    current day, you could write
+
+    #+BEGIN_EXAMPLE
+      #+BEGIN: clocktable :maxlevel 2 :block today :scope tree1 :link t
+      #+END: clocktable
+    #+END_EXAMPLE
+
+    and to use a specific time range you could write[fn:FOOT85]
+
+    #+BEGIN_EXAMPLE
+      #+BEGIN: clocktable :tstart "<2006-08-10 Thu 10:00>"
+                          :tend "<2006-08-10 Thu 12:00>"
+      #+END: clocktable
+    #+END_EXAMPLE
+
+    A range starting a week ago and ending right now could be written
+    as
+
+    #+BEGIN_EXAMPLE
+      #+BEGIN: clocktable :tstart "<-1w>" :tend "<now>"
+      #+END: clocktable
+    #+END_EXAMPLE
+
+    A summary of the current subtree with % times would be
+
+    #+BEGIN_EXAMPLE
+      #+BEGIN: clocktable :scope subtree :link t :formula %
+      #+END: clocktable
+    #+END_EXAMPLE
+
+    A horizontally compact representation of everything clocked during
+    last week would be
+
+    #+BEGIN_EXAMPLE
+      #+BEGIN: clocktable :scope agenda :block lastweek :compact t
+      #+END: clocktable
+    #+END_EXAMPLE
+
+*** 8.4.3 Resolving idle time and continuous clocking                 <<@Resolving-idle-time>>
+
+**** Resolving idle time
+
+    If you clock in on a work item, and then walk away from your
+    computer -- perhaps to take a phone call -- you often need to
+    “resolve” the time you were away by either subtracting it from the
+    current clock, or applying it to another one.
+
+    By customizing the variable =org-clock-idle-time= to some integer,
+    such as 10 or 15, Emacs can alert you when you get back to your
+    computer after being idle for that many minutes[fn:FOOT86], and
+    ask what you want to do with the idle time. There will be a
+    question waiting for you when you get back, indicating how much
+    idle time has passed (constantly updated with the current amount),
+    as well as a set of choices to correct the discrepancy:
+
+     - k
+
+       To keep some or all of the minutes and stay clocked in, press
+       k.  Org will ask how many of the minutes to keep. Press =RET=
+       to keep them all, effectively changing nothing, or enter a
+       number to keep that many minutes.
+
+     - K
+
+       If you use the shift key and press K, it will keep however many
+       minutes you request and then immediately clock out of that
+       task. If you keep all of the minutes, this is the same as just
+       clocking out of the current task.
+
+     - s
+
+       To keep none of the minutes, use s to subtract all the away
+       time from the clock, and then check back in from the moment you
+       returned.
+
+     - S
+
+       To keep none of the minutes and just clock out at the start of
+       the away time, use the shift key and press */S/*. Remember that
+       using shift will always leave you clocked out, no matter which
+       option you choose.
+
+     - C
+
+       To cancel the clock altogether, use */C/*. Note that if instead of
+       canceling you subtract the away time, and the resulting clock
+       amount is less than a minute, the clock will still be canceled
+       rather than clutter up the log with an empty entry.
+
+    What if you subtracted those away minutes from the current clock,
+    and now want to apply them to a new clock? Simply clock in to any
+    task immediately after the subtraction. Org will notice that you
+    have subtracted time “on the books”, so to speak, and will ask if
+    you want to apply those minutes to the next task you clock in on.
+
+    There is one other instance when this clock resolution magic
+    occurs. Say you were clocked in and hacking away, and suddenly
+    your cat chased a mouse who scared a hamster that crashed into
+    your UPS's power button!  You suddenly lose all your buffers, but
+    thanks to auto-save you still have your recent Org mode changes,
+    including your last clock in.
+
+    If you restart Emacs and clock into any task, Org will notice that
+    you have a dangling clock which was never clocked out from your
+    last session. Using that clock's starting time as the beginning of
+    the unaccounted-for period, Org will ask how you want to resolve
+    that time.  The logic and behavior is identical to dealing with
+    away time due to idleness; it is just happening due to a recovery
+    event rather than a set amount of idle time.
+
+    You can also check all the files visited by your Org agenda for
+    dangling clocks at any time using */M-x org-resolve-clocks RET/*
+    (or */C-c C-x C-z/*).
+
+**** Continuous clocking
+
+     You may want to start clocking from the time when you clocked out
+     the previous task. To enable this systematically, set
+     =org-clock-continuously= to =t=. Each time you clock in, Org
+     retrieves the clock-out time of the last clocked entry for this
+     session, and start the new clock from there.
+
+     If you only want this from time to time, use three universal
+     prefix arguments with =org-clock-in= and two */C-u C-u/* with
+     =org-clock-in-last=.
+
+** 8.5 Effort estimates                                               <<@Effort-estimates>>
+
+   If you want to plan your work in a very detailed way, or if you
+   need to produce offers with quotations of the estimated work
+   effort, you may want to assign effort estimates to entries. If you
+   are also clocking your work, you may later want to compare the
+   planned effort with the actual working time, a great way to improve
+   planning estimates. Effort estimates are stored in a special
+   property =EFFORT=. You can set the effort for an entry with the
+   following commands:
+
+    - */C-c C-x e/* (=org-set-effort=)
+
+      Set the effort estimate for the current entry. With a numeric
+      prefix argument, set it to the Nth allowed value (see
+      below). This command is also accessible from the agenda with the
+      e key.
+
+    - */C-c C-x C-e/* (=org-clock-modify-effort-estimate=)
+
+      Modify the effort estimate of the item currently being clocked.
+
+   Clearly the best way to work with effort estimates is through
+   column view (see [[@Column-view][Column view]]). You should start by setting up
+   discrete values for effort estimates, and a =COLUMNS= format that
+   displays these values together with clock sums (if you want to
+   clock your time). For a specific buffer you can use
+
+   #+BEGIN_EXAMPLE
+     #+PROPERTY: Effort_ALL 0 0:10 0:30 1:00 2:00 3:00 4:00 5:00 6:00 7:00
+     #+COLUMNS: %40ITEM(Task) %17Effort(Estimated Effort){:} %CLOCKSUM
+   #+END_EXAMPLE
+
+   or, even better, you can set up these values globally by
+   customizing the variables =org-global-properties= and
+   =org-columns-default-format=. In particular if you want to use this
+   setup also in the agenda, a global setup may be advised.
+
+   The way to assign estimates to individual items is then to switch
+   to column mode, and to use */S-right/* and */S-left/* to change the
+   value. The values you enter will immediately be summed up in the
+   hierarchy. In the column next to it, any clocked time will be
+   displayed.
+
+   If you switch to column view in the daily/weekly agenda, the effort
+   column will summarize the estimated work effort for each
+   day[fn:FOOT87], and you can use this to find space in your
+   schedule. To get an overview of the entire part of the day that is
+   committed, you can set the option
+   =org-agenda-columns-add-appointments-to-effort-sum=. The
+   appointments on a day that take place over a specified time
+   interval will then also be added to the load estimate of the day.
+
+   Effort estimates can be used in secondary agenda filtering that is
+   triggered with the / key in the agenda (see [[@Agenda-commands][Agenda commands]]). If
+   you have these estimates defined consistently, two or three key
+   presses will narrow down the list to stuff that fits into an
+   available time slot.
+
+** 8.6 Taking notes with a timer                                      <<@Timers>>
+
+   Org provides provides two types of timers. There is a relative
+   timer that counts up, which can be useful when taking notes during,
+   for example, a meeting or a video viewing. There is also a
+   countdown timer.
+
+   The relative and countdown are started with separate commands.
+
+    - */C-c C-x 0/* (=org-timer-start=)
+
+      Start or reset the relative timer. By default, the timer is set
+      to 0.  When called with a */C-u/* prefix, prompt the user for a
+      starting offset. If there is a timer string at point, this is
+      taken as the default, providing a convenient way to restart
+      taking notes after a break in the process. When called with a
+      double prefix argument */C-u C-u/*, change all timer strings in
+      the active region by a certain amount. This can be used to fix
+      timer strings if the timer was not started at exactly the right
+      moment.
+
+    - */C-c C-x ;/* (=org-timer-set-timer=)
+
+      Start a countdown timer. The user is prompted for a duration.
+      =org-timer-default-timer= sets the default countdown
+      value. Giving a prefix numeric argument overrides this default
+      value. This command is available as ; in agenda buffers.
+
+   Once started, relative and countdown timers are controlled with the
+   same commands.
+
+    - */C-c C-x ./* (=org-timer=)
+
+      Insert the value of the current relative or countdown timer into
+      the buffer. If no timer is running, the relative timer will be
+      started. When called with a prefix argument, the relative timer
+      is restarted.
+
+    - */C-c C-x -/* (=org-timer-item=)
+
+      Insert a description list item with the value of the current
+      relative or countdown timer. With a prefix argument, first reset
+      the relative timer to 0.
+
+    - */M-RET/* (=org-insert-heading=)
+
+      Once the timer list is started, you can also use M-RET to insert
+      new timer items.
+
+    - */C-c C-x \ /* (=org-timer-pause-or-continue=)
+
+      Pause the timer, or continue it if it is already paused.
+
+    - */C-c C-x _/* (=org-timer-stop=)
+
+      Stop the timer. After this, you can only start a new timer, not
+      continue the old one. This command also removes the timer from
+      the mode line.
 
 * 9 Capture - Refile - Archive
 
@@ -6358,7 +6504,7 @@ C-c C-x C-a (=org-archive-subtree-default=)
 Archive the current entry using the command specified in the variable
 =org-archive-default-command=.
 
-*** 9.6.1 Moving a tree to the archive file
+*** 9.6.1 Moving a tree to the archive file                           <<@Moving-subtrees>>
 
 The most common archiving action is to move a project tree to another
 file, the archive file.
@@ -15070,7 +15216,7 @@ file:
 Pressing C-c C-c on =a new house= and will insert the converted LaTeX
 list between the two marker lines.
 
-** A.7 Dynamic blocks
+** A.7 Dynamic blocks                                                 <<@Dynamic-blocks>>
 
 Org documents can contain /dynamic blocks/. These are specially marked
 regions that are updated by some user-written function. A good example
@@ -15359,7 +15505,7 @@ Emacs/Org and prints all the items, preceded by a checkbox:
     }
 #+END_EXAMPLE
 
-** A.11 Using the property API
+** A.11 Using the property API                                        <<@Using-the-property-API>>
 
 Here is a description of the functions that can be used to work with
 properties.
@@ -16666,12 +16812,12 @@ Keys will automatically be assigned to tags which have no configured
 keys.
 
 [fn:FOOT64]
-Please note that the COLUMNS definition must be on a single line---it is
-wrapped here only because of formatting constraints.
+Please note that the COLUMNS definition must be on a single line---it
+is wrapped here only because of formatting constraints.
 
 [fn:FOOT65]
-Contributed packages are not part of Emacs, but are distributed with the
-main distribution of Org (visit [[http://orgmode.org]]).
+Contributed packages are not part of Emacs, but are distributed with
+the main distribution of Org (visit [[http://orgmode.org]]).
 
 [fn:FOOT66]
 In this simplest form, the day name is optional when you type the date
@@ -16683,17 +16829,18 @@ This is inspired by the standard ISO 8601 date/time format. To use an
 alternative format, see [[@Custom-time-format][Custom time format]].
 
 [fn:FOOT68]
-When working with the standard diary sexp functions, you need to be very
-careful with the order of the arguments. That order depends evilly on
-the variable =calendar-date-style= (or, for older Emacs versions,
-=european-calendar-style=). For example, to specify a date December 1,
-2005, the call might look like =(diary-date 12 1 2005)= or
+When working with the standard diary sexp functions, you need to be
+very careful with the order of the arguments. That order depends
+evilly on the variable =calendar-date-style= (or, for older Emacs
+versions, =european-calendar-style=). For example, to specify a date
+December 1, 2005, the call might look like =(diary-date 12 1 2005)= or
 =(diary-date 1 12 2005)= or =(diary-date 2005 12 1)=, depending on the
-settings. This has been the source of much confusion. Org mode users can
-resort to special versions of these functions like =org-date= or
+settings. This has been the source of much confusion. Org mode users
+can resort to special versions of these functions like =org-date= or
 =org-anniversary=. These work just like the corresponding =diary-=
 functions, but with stable ISO order of arguments (year, month, day)
-wherever applicable, independent of the value of =calendar-date-style=.
+wherever applicable, independent of the value of
+=calendar-date-style=.
 
 [fn:FOOT69]
 See the variable =org-read-date-prefer-future=. You may set that
@@ -16729,8 +16876,8 @@ with corresponding =#+STARTUP= keywords =logreschedule=,
 [fn:FOOT76]
 In fact, the target state is taken from, in this sequence, the
 =REPEAT_TO_STATE= property or the variable =org-todo-repeat-to-state=.
-If neither of these is specified, the target state defaults to the first
-state of the TODO state sequence.
+If neither of these is specified, the target state defaults to the
+first state of the TODO state sequence.
 
 [fn:FOOT77]
 You can change this using the option =org-log-repeat=, or the
@@ -16763,28 +16910,28 @@ Language terms can be set through the variable
 =org-clock-clocktable-language-setup=.
 
 [fn:FOOT85]
-Note that all parameters must be specified in a single line---the line
-is broken here only to fit it into the manual.
+Note that all parameters must be specified in a single line -- the
+line is broken here only to fit it into the manual.
 
 [fn:FOOT86]
-On computers using Mac OS X, idleness is based on actual user idleness,
-not just Emacs' idle time. For X11, you can install a utility program
-x11idle.c, available in the =contrib/scripts= directory of the Org git
-distribution, or install the xprintidle package and set it to the
-variable =org-clock-x11idle-program-name= if you are running Debian, to
-get the same general treatment of idleness. On other systems, idle time
-refers to Emacs idle time only.
+On computers using Mac OS X, idleness is based on actual user
+idleness, not just Emacs' idle time. For X11, you can install a
+utility program x11idle.c, available in the =contrib/scripts=
+directory of the Org git distribution, or install the xprintidle
+package and set it to the variable =org-clock-x11idle-program-name= if
+you are running Debian, to get the same general treatment of
+idleness. On other systems, idle time refers to Emacs idle time only.
 
 [fn:FOOT87]
 Please note the pitfalls of summing hierarchical data in a flat list
 (see [[@Agenda-column-view][Agenda column view]]).
 
 [fn:FOOT88]
-Please select your own key, C-c c is only a suggestion.
+Please select your own key, */C-c c/* is only a suggestion.
 
 [fn:FOOT89]
-Datetree headlines for years accept tags, so if you use both
-=* 2013 :noexport:= and =* 2013= in your file, the capture will refile
+Datetree headlines for years accept tags, so if you use both =*
+2013 :noexport:= and =* 2013= in your file, the capture will refile
 the note to the first one matched.
 
 [fn:FOOT90]
