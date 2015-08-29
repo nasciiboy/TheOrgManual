@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>The Org Manual</title>
-<!-- 2015-08-25 mar 19:52 -->
+<!-- 2015-08-29 sáb 14:33 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Carsten Dominik with contributiond by Bastien Guerry, Nicolas Goazion, Eric Schulte, Jambunathan K. Dan Davison, Thomas O`Thoole, and Philip Rooke." />
@@ -200,17 +200,17 @@
 </li>
 <li><a href="#sec-6">6 Tags                                                              </a>
 <ul>
-<li><a href="#sec-6-1">6.1 Tag inheritance</a></li>
+<li><a href="#sec-6-1">6.1 Tag inheritance                                                </a></li>
 <li><a href="#sec-6-2">6.2 Setting tags                                                   </a></li>
-<li><a href="#sec-6-3">6.3 Tag hierarchy</a></li>
-<li><a href="#sec-6-4">6.4 Tag searches</a></li>
+<li><a href="#sec-6-3">6.3 Tag hierarchy                                                  </a></li>
+<li><a href="#sec-6-4">6.4 Tag searches                                                   </a></li>
 </ul>
 </li>
 <li><a href="#sec-7">7 Properties and columns                                            </a>
 <ul>
 <li><a href="#sec-7-1">7.1 Property syntax</a></li>
 <li><a href="#sec-7-2">7.2 Special properties</a></li>
-<li><a href="#sec-7-3">7.3 Property searches</a></li>
+<li><a href="#sec-7-3">7.3 Property searches                                              </a></li>
 <li><a href="#sec-7-4">7.4 Property Inheritance</a></li>
 <li><a href="#sec-7-5">7.5 Column view</a>
 <ul>
@@ -287,7 +287,7 @@
 <li><a href="#sec-10-3-3">Anniversaries from BBDB</a></li>
 <li><a href="#sec-10-3-4">Appointment reminders</a></li>
 <li><a href="#sec-10-3-5">10.3.2 The global TODO list                                       </a></li>
-<li><a href="#sec-10-3-6">10.3.3 Matching tags and properties</a></li>
+<li><a href="#sec-10-3-6">10.3.3 Matching tags and properties                               </a></li>
 <li><a href="#sec-10-3-7">Match syntax</a></li>
 <li><a href="#sec-10-3-8">10.3.4 Timeline for a single file                                 </a></li>
 <li><a href="#sec-10-3-9">10.3.5 Search view</a></li>
@@ -6341,20 +6341,20 @@ use this command to get things back into sync.
 <h2 id="sec-6">6 Tags                                                              <a id="Tags" name="Tags"></a></h2>
 <div class="outline-text-2" id="text-6">
 <p>
-An excellent way to implement labels and contexts for cross-correlating
-information is to assign <i>tags</i> to headlines. Org mode has extensive
-support for tags.
+An excellent way to implement labels and contexts for
+cross-correlating information is to assign <i>tags</i> to headlines. Org
+mode has extensive support for tags.
 </p>
 
 <p>
-Every headline can contain a list of tags; they occur at the end of the
-headline. Tags are normal words containing letters, numbers, ‘\<sub>'</sub>, and
-‘@'. Tags must be preceded and followed by a single colon, e.g.,
-‘:work:'. Several tags can be specified, as in ‘:work:urgent:'. Tags
-will by default be in bold face with the same color as the headline. You
-may specify special faces for specific tags using the option
-<code>org-tag-faces</code>, in much the same way as you can for TODO keywords (see
-<a href="#Faces-for-TODO-keywords">Faces for TODO keywords</a>).
+Every headline can contain a list of tags; they occur at the end of
+the headline. Tags are normal words containing letters, numbers,
+‘<sub>'</sub>, and ‘@'. Tags must be preceded and followed by a single colon,
+e.g., ‘:work:'. Several tags can be specified, as in
+‘:work:urgent:'. Tags will by default be in bold face with the same
+color as the headline. You may specify special faces for specific
+tags using the option <code>org-tag-faces</code>, in much the same way as you
+can for TODO keywords (see <a href="#Faces-for-TODO-keywords">Faces for TODO keywords</a>).
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -6367,7 +6367,7 @@ may specify special faces for specific tags using the option
 </colgroup>
 <tbody>
 <tr>
-<td class="left">• <i>Tag inheritance</i>:</td>
+<td class="left">• <a href="#Tag-inheritance">Tag inheritance</a>:</td>
 <td class="left">Tags use the tree structure of the outline</td>
 </tr>
 
@@ -6377,12 +6377,12 @@ may specify special faces for specific tags using the option
 </tr>
 
 <tr>
-<td class="left">• <i>Tag hierarchy</i>:</td>
+<td class="left">• <a href="#Tag-hierarchy">Tag hierarchy</a>:</td>
 <td class="left">Create a hierarchy of tags</td>
 </tr>
 
 <tr>
-<td class="left">• <i>Tag searches</i>:</td>
+<td class="left">• <a href="#Tag-searches">Tag searches</a>:</td>
 <td class="left">Searching for combinations of tags</td>
 </tr>
 </tbody>
@@ -6390,12 +6390,12 @@ may specify special faces for specific tags using the option
 </div>
 
 <div id="outline-container-sec-6-1" class="outline-3">
-<h3 id="sec-6-1">6.1 Tag inheritance</h3>
+<h3 id="sec-6-1">6.1 Tag inheritance                                                <a id="Tag-inheritance" name="Tag-inheritance"></a></h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
-<i>Tags</i> make use of the hierarchical structure of outline trees. If a
-heading has a certain tag, all subheadings will inherit the tag as well.
-For example, in the list
+<i>Tags</i> make use of the hierarchical structure of outline trees. If
+a heading has a certain tag, all subheadings will inherit the tag
+as well.  For example, in the list
 </p>
 
 <pre class="example">
@@ -6405,11 +6405,12 @@ For example, in the list
 </pre>
 
 <p>
-the final heading will have the tags ‘:work:', ‘:boss:', ‘:notes:', and
-‘:action:' even though the final heading is not explicitly marked with
-those tags. You can also set tags that all entries in a file should
-inherit just as if these tags were defined in a hypothetical level zero
-that surrounds the entire file. Use a line like this<sup><a id="fnr.59" name="fnr.59" class="footref" href="#fn.59">59</a></sup>:
+the final heading will have the tags ‘:work:', ‘:boss:', ‘:notes:',
+and ‘:action:' even though the final heading is not explicitly
+marked with those tags. You can also set tags that all entries in a
+file should inherit just as if these tags were defined in a
+hypothetical level zero that surrounds the entire file. Use a line
+like this<sup><a id="fnr.59" name="fnr.59" class="footref" href="#fn.59">59</a></sup>:
 </p>
 
 <pre class="example">
@@ -6423,21 +6424,23 @@ To limit tag inheritance to specific tags, use
 </p>
 
 <p>
-When a headline matches during a tags search while tag inheritance is
-turned on, all the sublevels in the same tree will (for a simple match
-form) match as well<sup><a id="fnr.60" name="fnr.60" class="footref" href="#fn.60">60</a></sup>. The list of matches may then
+When a headline matches during a tags search while tag inheritance
+is turned on, all the sublevels in the same tree will (for a simple
+match form) match as well<sup><a id="fnr.60" name="fnr.60" class="footref" href="#fn.60">60</a></sup>. The list of matches may then
 become very long. If you only want to see the first tags match in a
-subtree, configure <code>org-tags-match-list-sublevels</code> (not recommended).
+subtree, configure <code>org-tags-match-list-sublevels</code> (not
+recommended).
 </p>
 
 <p>
-Tag inheritance is relevant when the agenda search tries to match a tag,
-either in the <code>tags</code> or <code>tags-todo</code> agenda types. In other agenda types,
-<code>org-use-tag-inheritance</code> has no effect. Still, you may want to have
-your tags correctly set in the agenda, so that tag filtering works fine,
-with inherited tags. Set <code>org-agenda-use-tag-inheritance</code> to control
-this: the default value includes all agenda types, but setting this to
-<code>nil</code> can really speed up agenda generation.
+Tag inheritance is relevant when the agenda search tries to match a
+tag, either in the <code>tags</code> or <code>tags-todo</code> agenda types. In other
+agenda types, <code>org-use-tag-inheritance</code> has no effect. Still, you
+may want to have your tags correctly set in the agenda, so that tag
+filtering works fine, with inherited tags. Set
+<code>org-agenda-use-tag-inheritance</code> to control this: the default value
+includes all agenda types, but setting this to <code>nil</code> can really
+speed up agenda generation.
 </p>
 </div>
 </div>
@@ -6446,39 +6449,41 @@ this: the default value includes all agenda types, but setting this to
 <h3 id="sec-6-2">6.2 Setting tags                                                   <a id="Setting-tags" name="Setting-tags"></a></h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
-Tags can simply be typed into the buffer at the end of a headline. After
-a colon, M-TAB offers completion on tags. There is also a special
-command for inserting tags:
+Tags can simply be typed into the buffer at the end of a
+headline. After a colon, M-TAB offers completion on tags. There is
+also a special command for inserting tags:
 </p>
 
-<p>
-C-c C-q (<code>org-set-tags-command</code>)
-</p>
+<ul class="org-ul">
+<li><b><i>C-c C-q</i></b> (<code>org-set-tags-command</code>)
 
 <p>
-Enter new tags for the current headline. Org mode will either offer
-completion or a special single-key interface for setting tags, see
-below. After pressing <code>RET</code>, the tags will be inserted and aligned to
-<code>org-tags-column</code>. When called with a C-u prefix, all tags in the
-current buffer will be aligned to that column, just to make things look
-nice. TAGS are automatically realigned after promotion, demotion, and
-TODO state changes (see <a href="#TODO-basics">TODO basics</a>).
+Enter new tags for the current headline. Org mode will either
+offer completion or a special single-key interface for setting
+tags, see below. After pressing <code>RET</code>, the tags will be inserted
+and aligned to <code>org-tags-column</code>. When called with a C-u prefix,
+all tags in the current buffer will be aligned to that column,
+just to make things look nice. TAGS are automatically realigned
+after promotion, demotion, and TODO state changes (see <a href="#TODO-basics">TODO
+basics</a>).
 </p>
+</li>
+
+<li><b><i>C-c C-c</i></b> (<code>org-set-tags-command</code>)
 
 <p>
-C-c C-c (<code>org-set-tags-command</code>)
+When the cursor is in a headline, this does the same as <b><i>C-c
+C-q</i></b>.
 </p>
+</li>
+</ul>
 
 <p>
-When the cursor is in a headline, this does the same as C-c C-q.
-</p>
-
-<p>
-Org supports tag insertion based on a <i>list of tags</i>. By default this
-list is constructed dynamically, containing all tags currently used in
-the buffer. You may also globally specify a hard list of tags with the
-variable <code>org-tag-alist</code>. Finally you can set the default tags for a
-given file with lines like
+Org supports tag insertion based on a <i>list of tags</i>. By default
+this list is constructed dynamically, containing all tags currently
+used in the buffer. You may also globally specify a hard list of
+tags with the variable <code>org-tag-alist</code>. Finally you can set the
+default tags for a given file with lines like
 </p>
 
 <pre class="example">
@@ -6488,8 +6493,8 @@ given file with lines like
 
 <p>
 If you have globally defined your preferred set of tags using the
-variable <code>org-tag-alist</code>, but would like to use a dynamic tag list in a
-specific file, add an empty TAGS option line to that file:
+variable <code>org-tag-alist</code>, but would like to use a dynamic tag list
+in a specific file, add an empty TAGS option line to that file:
 </p>
 
 <pre class="example">
@@ -6497,11 +6502,11 @@ specific file, add an empty TAGS option line to that file:
 </pre>
 
 <p>
-If you have a preferred set of tags that you would like to use in every
-file, in addition to those defined on a per-file basis by TAGS option
-lines, then you may specify a list of tags with the variable
-<code>org-tag-persistent-alist</code>. You may turn this off on a per-file basis by
-adding a STARTUP option line to that file:
+If you have a preferred set of tags that you would like to use in
+every file, in addition to those defined on a per-file basis by
+TAGS option lines, then you may specify a list of tags with the
+variable <code>org-tag-persistent-alist</code>. You may turn this off on a
+per-file basis by adding a STARTUP option line to that file:
 </p>
 
 <pre class="example">
@@ -6509,14 +6514,15 @@ adding a STARTUP option line to that file:
 </pre>
 
 <p>
-By default Org mode uses the standard minibuffer completion facilities
-for entering tags. However, it also implements another, quicker, tag
-selection method called <i>fast tag selection</i>. This allows you to select
-and deselect tags with just a single key press. For this to work well
-you should assign unique letters to most of your commonly used tags. You
-can do this globally by configuring the variable <code>org-tag-alist</code> in your
-.emacs file. For example, you may find the need to tag many items in
-different files with ‘:@home:'. In this case you can set something like:
+By default Org mode uses the standard minibuffer completion
+facilities for entering tags. However, it also implements another,
+quicker, tag selection method called <i>fast tag selection</i>. This
+allows you to select and deselect tags with just a single key
+press. For this to work well you should assign unique letters to
+most of your commonly used tags. You can do this globally by
+configuring the variable <code>org-tag-alist</code> in your .emacs file. For
+example, you may find the need to tag many items in different files
+with ‘:@home:'. In this case you can set something like:
 </p>
 
 <div class="org-src-container">
@@ -6526,8 +6532,8 @@ different files with ‘:@home:'. In this case you can set something like:
 </div>
 
 <p>
-If the tag is only relevant to the file you are working on, then you can
-instead set the TAGS option line as:
+If the tag is only relevant to the file you are working on, then
+you can instead set the TAGS option line as:
 </p>
 
 <pre class="example">
@@ -6535,9 +6541,9 @@ instead set the TAGS option line as:
 </pre>
 
 <p>
-The tags interface will show the available tags in a splash window. If
-you want to start a new line after a specific tag, insert ‘\n' into the
-tag list
+The tags interface will show the available tags in a splash
+window. If you want to start a new line after a specific tag,
+insert ‘\n' into the tag list
 </p>
 
 <pre class="example">
@@ -6554,8 +6560,8 @@ or write them in two lines:
 </pre>
 
 <p>
-You can also group together tags that are mutually exclusive by using
-braces, as in:
+You can also group together tags that are mutually exclusive by
+using braces, as in:
 </p>
 
 <pre class="example">
@@ -6563,20 +6569,21 @@ braces, as in:
 </pre>
 
 <p>
-you indicate that at most one of ‘@work', ‘@home', and ‘@tennisclub'
-should be selected. Multiple such groups are allowed.
+you indicate that at most one of ‘@work', ‘@home', and
+‘@tennisclub' should be selected. Multiple such groups are allowed.
 </p>
 
 <p>
-Don't forget to press C-c C-c with the cursor in one of these lines to
-activate any changes.
+Don't forget to press <b><i>C-c C-c</i></b> with the cursor in one of these
+lines to activate any changes.
 </p>
 
 <p>
-To set these mutually exclusive groups in the variable <code>org-tag-alist</code>,
-you must use the dummy tags <code>:startgroup</code> and <code>:endgroup</code> instead of the
-braces. Similarly, you can use <code>:newline</code> to indicate a line break. The
-previous example would be set globally by the following configuration:
+To set these mutually exclusive groups in the variable
+<code>org-tag-alist</code>, you must use the dummy tags <code>:startgroup</code> and
+<code>:endgroup</code> instead of the braces. Similarly, you can use
+<code>:newline</code> to indicate a line break. The previous example would be
+set globally by the following configuration:
 </p>
 
 <div class="org-src-container">
@@ -6590,96 +6597,101 @@ previous example would be set globally by the following configuration:
 </div>
 
 <p>
-If at least one tag has a selection key then pressing C-c C-c will
-automatically present you with a special interface, listing inherited
-tags, the tags of the current headline, and a list of all valid tags
-with corresponding keys<sup><a id="fnr.61" name="fnr.61" class="footref" href="#fn.61">61</a></sup>. In this interface, you can
-use the following keys:
+If at least one tag has a selection key then pressing <b><i>C-c C-c</i></b>
+will automatically present you with a special interface, listing
+inherited tags, the tags of the current headline, and a list of all
+valid tags with corresponding keys<sup><a id="fnr.61" name="fnr.61" class="footref" href="#fn.61">61</a></sup>. In this interface,
+you can use the following keys:
 </p>
 
 <dl class="org-dl">
-<dt> a-z&#x2026; </dt><dd>Pressing keys assigned to tags will add or remove them from
-the list of tags in the current line. Selecting a tag in a group of
-mutually exclusive tags will turn off any other tags from that group.
+<dt> <b><i>a-z&#x2026;</i></b> </dt><dd>      Pressing keys assigned to tags will add or remove them from the
+list of tags in the current line. Selecting a tag in a group of
+mutually exclusive tags will turn off any other tags from that
+group.
 </dd>
 
-<dt> TAB </dt><dd>Enter a tag in the minibuffer, even if the tag is not in the
-predefined list. You will be able to complete on all tags present in
-the buffer. You can also add several tags: just separate them with a
-comma.
+<dt> <b><i>TAB</i></b> </dt><dd>      Enter a tag in the minibuffer, even if the tag is not in the
+predefined list. You will be able to complete on all tags
+present in the buffer. You can also add several tags: just
+separate them with a comma.
 </dd>
 
-<dt> SPC </dt><dd>Clear all tags for this line.
+<dt> <b><i>SPC</i></b> </dt><dd>      Clear all tags for this line.
 </dd>
 
-<dt> RET </dt><dd>Accept the modified set.
+<dt> <b><i>RET</i></b> </dt><dd>      Accept the modified set.
 </dd>
 
-<dt> C-g </dt><dd>Abort without installing changes.
+<dt> <b><i>C-g</i></b> </dt><dd>      Abort without installing changes.
 </dd>
 
-<dt> q </dt><dd>If q is not assigned to a tag, it aborts like C-g.
+<dt> <b><i>q</i></b> </dt><dd>      If q is not assigned to a tag, it aborts like <b><i>C-g</i></b>.
 </dd>
 
-<dt> ! </dt><dd>Turn off groups of mutually exclusive tags. Use this to (as an
+<dt> <b><i>!</i></b> </dt><dd>      Turn off groups of mutually exclusive tags. Use this to (as an
 exception) assign several tags from such a group.
 </dd>
 
-<dt> C-c </dt><dd>Toggle auto-exit after the next change (see below). If you are
-using expert mode, the first C-c will display the selection window.
+<dt> <b><i>C-c</i></b> </dt><dd>      Toggle auto-exit after the next change (see below). If you are
+using expert mode, the first <b><i>C-c</i></b> will display the selection
+window.
 </dd>
 </dl>
 
 <p>
-This method lets you assign tags to a headline with very few keys. With
-the above setup, you could clear the current tags and set ‘@home',
-‘laptop' and ‘pc' tags with just the following keys: C-c C-c SPC h l p
-RET. Switching from ‘@home' to ‘@work' would be done with C-c C-c w RET
-or alternatively with C-c C-c C-c w. Adding the non-predefined tag
-‘Sarah' could be done with C-c C-c TAB S a r a h RET RET.
+This method lets you assign tags to a headline with very few
+keys. With the above setup, you could clear the current tags and
+set ‘@home', ‘laptop' and ‘pc' tags with just the following keys:
+<b><i>C-c C-c SPC h l p RET</i></b>. Switching from ‘@home' to ‘@work' would
+be done with <b><i>C-c C-c w RET</i></b> or alternatively with <b><i>C-c C-c C-c
+w</i></b>. Adding the non-predefined tag ‘Sarah' could be done with <b><i>C-c
+C-c TAB S a r a h RET RET</i></b>.
 </p>
 
 <p>
-If you find that most of the time you need only a single key press to
-modify your list of tags, set <code>org-fast-tag-selection-single-key</code>. Then
-you no longer have to press <code>RET</code> to exit fast tag selection&#x2014;it will
-immediately exit after the first change. If you then occasionally need
-more keys, press C-c to turn off auto-exit for the current tag selection
-process (in effect: start selection with C-c C-c C-c instead of C-c
-C-c). If you set the variable to the value <code>expert</code>, the special window
-is not even shown for single-key tag selection, it comes up only when
-you press an extra C-c.
+If you find that most of the time you need only a single key press
+to modify your list of tags, set
+<code>org-fast-tag-selection-single-key</code>. Then you no longer have to
+press <code>RET</code> to exit fast tag selection &#x2013; it will immediately exit
+after the first change. If you then occasionally need more keys,
+press <b><i>C-c</i></b> to turn off auto-exit for the current tag selection
+process (in effect: start selection with <b><i>C-c C-c C-c</i></b> instead of
+<b><i>C-c C-c</i></b>). If you set the variable to the value <code>expert</code>, the
+special window is not even shown for single-key tag selection, it
+comes up only when you press an extra <b><i>C-c</i></b>.
 </p>
 </div>
 </div>
 
 <div id="outline-container-sec-6-3" class="outline-3">
-<h3 id="sec-6-3">6.3 Tag hierarchy</h3>
+<h3 id="sec-6-3">6.3 Tag hierarchy                                                  <a id="Tag-hierarchy" name="Tag-hierarchy"></a></h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
-Tags can be defined in hierarchies. A tag can be defined as a <i>group
-tag</i> for a set of other tags. The group tag can be seen as the “broader
-term” for its set of tags. Defining multiple <i>group tags</i> and nesting
-them creates a tag hierarchy.
+Tags can be defined in hierarchies. A tag can be defined as a
+<i>group tag</i> for a set of other tags. The group tag can be seen as
+the “broader term” for its set of tags. Defining multiple <i>group
+tags</i> and nesting them creates a tag hierarchy.
 </p>
 
 <p>
-One use-case is to create a taxonomy of terms (tags) that can be used to
-classify nodes in a document or set of documents.
+One use-case is to create a taxonomy of terms (tags) that can be
+used to classify nodes in a document or set of documents.
 </p>
 
 <p>
-When you search for a group tag, it will return matches for all members
-in the group and its subgroup. In an agenda view, filtering by a group
-tag will display or hide headlines tagged with at least one of the
-members of the group or any of its subgroups. This makes tag searches
-and filters even more flexible.
+When you search for a group tag, it will return matches for all
+members in the group and its subgroup. In an agenda view, filtering
+by a group tag will display or hide headlines tagged with at least
+one of the members of the group or any of its subgroups. This makes
+tag searches and filters even more flexible.
 </p>
 
 <p>
-You can set group tags by using brackets and inserting a colon between
-the group tag and its related tags&#x2014;beware that all whitespaces are
-mandatory so that Org can parse this line correctly:
+You can set group tags by using brackets and inserting a colon
+between the group tag and its related tags&#x2014;beware that all
+whitespaces are mandatory so that Org can parse this line
+correctly:
 </p>
 
 <pre class="example">
@@ -6687,9 +6699,9 @@ mandatory so that Org can parse this line correctly:
 </pre>
 
 <p>
-In this example, ‘GTD' is the <i>group tag</i> and it is related to two other
-tags: ‘Control', ‘Persp'. Defining ‘Control' and ‘Persp' as group tags
-creates an hierarchy of tags:
+In this example, ‘GTD' is the <i>group tag</i> and it is related to two
+other tags: ‘Control', ‘Persp'. Defining ‘Control' and ‘Persp' as
+group tags creates an hierarchy of tags:
 </p>
 
 <pre class="example">
@@ -6736,9 +6748,9 @@ keyword directly when setting <code>org-tag-alist</code> directly:
 </div>
 
 <p>
-The tags in a group can be mutually exclusive if using the same group
-syntax as is used for grouping mutually exclusive tags together; using
-curly brackets.
+The tags in a group can be mutually exclusive if using the same
+group syntax as is used for grouping mutually exclusive tags
+together; using curly brackets.
 </p>
 
 <pre class="example">
@@ -6746,16 +6758,16 @@ curly brackets.
 </pre>
 
 <p>
-When setting <code>org-tag-alist</code> you can use <code>:startgroup</code> &amp; <code>:endgroup</code>
-instead of <code>:startgrouptag</code> &amp; <code>:endgrouptag</code> to make the tags mutually
-exclusive.
+When setting <code>org-tag-alist</code> you can use <code>:startgroup</code> &amp;
+<code>:endgroup</code> instead of <code>:startgrouptag</code> &amp; <code>:endgrouptag</code> to make
+the tags mutually exclusive.
 </p>
 
 <p>
 Furthermore; The members of a <i>group tag</i> can also be regular
 expression, creating the possibility of more dynamic and rule-based
-tag-structure. The regular expressions in the group must be marked up
-within { }. Example use, to expand on the example given above:
+tag-structure. The regular expressions in the group must be marked
+up within { }. Example use, to expand on the example given above:
 </p>
 
 <pre class="example">
@@ -6766,67 +6778,67 @@ within { }. Example use, to expand on the example given above:
 </pre>
 
 <p>
-Searching for the tag ‘Project' will now list all tags also including
-regular expression matches for ‘P@.+'. Similar for tag-searches on
-‘Vision', ‘Goal' and ‘AOF'. This can be good for example if tags for a
-certain project is tagged with a common project-identifier, i.e.
-‘P@2014\<sub>OrgTags'</sub>.
+Searching for the tag ‘Project' will now list all tags also
+including regular expression matches for ‘P@.+'. Similar for
+tag-searches on ‘Vision', ‘Goal' and ‘AOF'. This can be good for
+example if tags for a certain project is tagged with a common
+project-identifier, i.e.  ‘P@2014<sub>OrgTags'</sub>.
 </p>
 
 <p>
-If you want to ignore group tags temporarily, toggle group tags support
-with <code>org-toggle-tags-groups</code>, bound to C-c C-x q. If you want to
-disable tag groups completely, set <code>org-group-tags</code> to <code>nil</code>.
+If you want to ignore group tags temporarily, toggle group tags
+support with <code>org-toggle-tags-groups</code>, bound to <b><i>C-c C-x q</i></b>. If
+you want to disable tag groups completely, set <code>org-group-tags</code> to
+<code>nil</code>.
 </p>
 </div>
 </div>
 
 <div id="outline-container-sec-6-4" class="outline-3">
-<h3 id="sec-6-4">6.4 Tag searches</h3>
+<h3 id="sec-6-4">6.4 Tag searches                                                   <a id="Tag-searches" name="Tag-searches"></a></h3>
 <div class="outline-text-3" id="text-6-4">
 <p>
-Once a system of tags has been set up, it can be used to collect related
-information into special lists.
+Once a system of tags has been set up, it can be used to collect
+related information into special lists.
 </p>
 
-<p>
-C-c / m or C-c \ (<code>org-match-sparse-tree</code>)
-</p>
+<ul class="org-ul">
+<li><b><i>C-c / m</i></b> or <b>/C-c \ /</b> (<code>org-match-sparse-tree</code>)
 
 <p>
-Create a sparse tree with all headlines matching a tags/property/TODO
-search. With a C-u prefix argument, ignore headlines that are not a TODO
-line. See <i>Matching tags and
-properties</i>.
+Create a sparse tree with all headlines matching a
+tags/property/TODO search. With a C-u prefix argument, ignore
+headlines that are not a TODO line. See <a href="#Matching-tags-and-properties">Matching tags and
+properties</a>.
 </p>
+</li>
 
-<p>
-C-c a m (<code>org-tags-view</code>)
-</p>
+<li><b><i>C-c a m</i></b> (<code>org-tags-view</code>)
 
 <p>
 Create a global list of tag matches from all agenda files. See
-<i>Matching tags and properties</i>.
+<a href="#Matching-tags-and-properties">Matching tags and properties</a>.
 </p>
+</li>
+
+<li><b><i>C-c a M</i></b> (<code>org-tags-view</code>)
 
 <p>
-C-c a M (<code>org-tags-view</code>)
+Create a global list of tag matches from all agenda files, but
+check only TODO items and force checking subitems (see the
+option <code>org-tags-match-list-sublevels</code>).
 </p>
+</li>
+</ul>
 
 <p>
-Create a global list of tag matches from all agenda files, but check
-only TODO items and force checking subitems (see the option
-<code>org-tags-match-list-sublevels</code>).
-</p>
-
-<p>
-These commands all prompt for a match string which allows basic Boolean
-logic like ‘+boss+urgent-project1', to find entries with tags ‘boss' and
-‘urgent', but not ‘project1', or ‘Kathy|Sally' to find entries which are
-tagged, like ‘Kathy' or ‘Sally'. The full syntax of the search string is
-rich and allows also matching against TODO keywords, entry levels and
-properties. For a complete description with many examples, see
-<i>Matching tags and properties</i>.
+These commands all prompt for a match string which allows basic
+Boolean logic like ‘+boss+urgent-project1', to find entries with
+tags ‘boss' and ‘urgent', but not ‘project1', or ‘Kathy|Sally' to
+find entries which are tagged, like ‘Kathy' or ‘Sally'. The full
+syntax of the search string is rich and allows also matching
+against TODO keywords, entry levels and properties. For a complete
+description with many examples, see <a href="#Matching-tags-and-properties">Matching tags and properties</a>.
 </p>
 </div>
 </div>
@@ -7091,12 +7103,12 @@ TODO         The TODO keyword of the entry.
 </div>
 
 <div id="outline-container-sec-7-3" class="outline-3">
-<h3 id="sec-7-3">7.3 Property searches</h3>
+<h3 id="sec-7-3">7.3 Property searches                                              <a id="Property-searches" name="Property-searches"></a></h3>
 <div class="outline-text-3" id="text-7-3">
 <p>
 To create sparse trees and special lists with selection based on
 properties, the same commands are used as for tag searches (see
-<i>Tag searches</i>).
+<a href="#Tag-searches">Tag searches</a>).
 </p>
 
 <p>
@@ -7114,7 +7126,7 @@ C-c a m (<code>org-tags-view</code>)
 
 <p>
 Create a global list of tag/property matches from all agenda files. See
-<i>Matching tags and properties</i>.
+<a href="#Matching-tags-and-properties">Matching tags and properties</a>.
 </p>
 
 <p>
@@ -7129,7 +7141,7 @@ only TODO items and force checking of subitems (see the option
 
 <p>
 The syntax for the search string is described in
-<i>Matching tags and properties</i>.
+<a href="#Matching-tags-and-properties">Matching tags and properties</a>.
 </p>
 
 <p>
@@ -10122,7 +10134,7 @@ The dispatcher offers the following default commands:
 </dd>
 
 <dt> m / M </dt><dd>Create a list of headlines matching a TAGS expression (see
-<i>Matching tags and properties</i>).
+<a href="#Matching-tags-and-properties">Matching tags and properties</a>).
 </dd>
 
 <dt> L </dt><dd>Create the timeline view for the current buffer (see
@@ -10387,7 +10399,7 @@ this command to change the selected TODO keyword, for example 3 r. If
 you often need a search for a specific keyword, define a custom command
 for it (see <a href="#Agenda-dispatcher">Agenda dispatcher</a>).<br  />
  Matching specific TODO keywords can also be done as part of a tags
-search (see <i>Tag searches</i>).
+search (see <a href="#Tag-searches">Tag searches</a>).
 </p>
 
 <p>
@@ -10422,7 +10434,7 @@ variable <code>org-agenda-todo-list-sublevels</code> to get this behavior.
 </div>
 
 <div id="outline-container-sec-10-3-6" class="outline-4">
-<h4 id="sec-10-3-6">10.3.3 Matching tags and properties</h4>
+<h4 id="sec-10-3-6">10.3.3 Matching tags and properties                               <a id="Matching-tags-and-properties" name="Matching-tags-and-properties"></a></h4>
 <div class="outline-text-4" id="text-10-3-6">
 <p>
 If headlines in the agenda files are marked with <i>tags</i> (see
@@ -10455,7 +10467,7 @@ not-DONE state and force checking subitems (see variable
 <code>org-tags-match-list-sublevels</code>). To exclude scheduled/deadline items,
 see the variable <code>org-agenda-tags-todo-honor-ignore-options</code>. Matching
 specific TODO keywords together with a tags match is also possible, see
-<i>Tag searches</i>.
+<a href="#Tag-searches">Tag searches</a>.
 </p>
 
 <p>
@@ -10505,7 +10517,7 @@ contain the tag ‘:work:' and any tag <i>starting</i> with ‘boss'.
 </p>
 
 <p>
-Group tags (see <i>Tag hierarchy</i>) are expanded as
+Group tags (see <a href="#Tag-hierarchy">Tag hierarchy</a>) are expanded as
 regular expressions. E.g., if ‘:work:' is a group tag for the group
 ‘:work:lab:conf:', then searching for ‘work' will search for
 ‘{\(?:work\|lab\|conf\)}' and searching for ‘-work' will search for all
@@ -25510,13 +25522,13 @@ add checkboxes to the rest of the list.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.59" name="fn.59" class="footnum" href="#fnr.59">59</a></sup> <p class="footpara">
-As with all these in-buffer settings, pressing C-c C-c activates any
-changes in the line.
+As with all these in-buffer settings, pressing <b><i>C-c C-c</i></b> activates
+any changes in the line.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.60" name="fn.60" class="footnum" href="#fnr.60">60</a></sup> <p class="footpara">
 This is only true if the search does not involve more complex tests
-including properties (see <i>Property searches</i>).
+including properties (see <a href="#Property-searches">Property searches</a>).
 </p></div>
 
 <div class="footdef"><sup><a id="fn.61" name="fn.61" class="footnum" href="#fnr.61">61</a></sup> <p class="footpara">
@@ -25712,7 +25724,7 @@ the dedicated TODO list, or a block agenda instead (see
 </p></div>
 
 <div class="footdef"><sup><a id="fn.95" name="fn.95" class="footnum" href="#fnr.95">95</a></sup> <p class="footpara">
-See <i>Tag searches</i>.
+See <a href="#Tag-searches">Tag searches</a>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.96" name="fn.96" class="footnum" href="#fnr.96">96</a></sup> <p class="footpara">

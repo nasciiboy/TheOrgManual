@@ -3936,256 +3936,284 @@ modify this GNU manual.”
 
 * 6 Tags                                                              <<@Tags>>
 
-An excellent way to implement labels and contexts for cross-correlating
-information is to assign /tags/ to headlines. Org mode has extensive
-support for tags.
+  An excellent way to implement labels and contexts for
+  cross-correlating information is to assign /tags/ to headlines. Org
+  mode has extensive support for tags.
 
-Every headline can contain a list of tags; they occur at the end of the
-headline. Tags are normal words containing letters, numbers, ‘\_', and
-‘@'. Tags must be preceded and followed by a single colon, e.g.,
-‘:work:'. Several tags can be specified, as in ‘:work:urgent:'. Tags
-will by default be in bold face with the same color as the headline. You
-may specify special faces for specific tags using the option
-=org-tag-faces=, in much the same way as you can for TODO keywords (see
-[[@Faces-for-TODO-keywords][Faces for TODO keywords]]).
+  Every headline can contain a list of tags; they occur at the end of
+  the headline. Tags are normal words containing letters, numbers,
+  ‘_', and ‘@'. Tags must be preceded and followed by a single colon,
+  e.g., ‘:work:'. Several tags can be specified, as in
+  ‘:work:urgent:'. Tags will by default be in bold face with the same
+  color as the headline. You may specify special faces for specific
+  tags using the option =org-tag-faces=, in much the same way as you
+  can for TODO keywords (see [[@Faces-for-TODO-keywords][Faces for TODO keywords]]).
 
-| • [[@Tag-inheritance][Tag inheritance]]: | Tags use the tree structure of the outline |
-| • [[@Setting-tags][Setting tags]]:    | How to assign tags to a headline           |
-| • [[@Tag-hierarchy][Tag hierarchy]]:   | Create a hierarchy of tags                 |
-| • [[@Tag-searches][Tag searches]]:    | Searching for combinations of tags         |
+  | • [[@Tag-inheritance][Tag inheritance]]: | Tags use the tree structure of the outline |
+  | • [[@Setting-tags][Setting tags]]:    | How to assign tags to a headline           |
+  | • [[@Tag-hierarchy][Tag hierarchy]]:   | Create a hierarchy of tags                 |
+  | • [[@Tag-searches][Tag searches]]:    | Searching for combinations of tags         |
 
-** 6.1 Tag inheritance
+** 6.1 Tag inheritance                                                <<@Tag-inheritance>>
 
-/Tags/ make use of the hierarchical structure of outline trees. If a
-heading has a certain tag, all subheadings will inherit the tag as well.
-For example, in the list
+   /Tags/ make use of the hierarchical structure of outline trees. If
+   a heading has a certain tag, all subheadings will inherit the tag
+   as well.  For example, in the list
 
-#+BEGIN_EXAMPLE
-    * Meeting with the French group      :work:
-    ** Summary by Frank                  :boss:notes:
-    *** TODO Prepare slides for him      :action:
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     * Meeting with the French group      :work:
+     ** Summary by Frank                  :boss:notes:
+     *** TODO Prepare slides for him      :action:
+   #+END_EXAMPLE
 
-the final heading will have the tags ‘:work:', ‘:boss:', ‘:notes:', and
-‘:action:' even though the final heading is not explicitly marked with
-those tags. You can also set tags that all entries in a file should
-inherit just as if these tags were defined in a hypothetical level zero
-that surrounds the entire file. Use a line like this[fn:FOOT61]:
+   the final heading will have the tags ‘:work:', ‘:boss:', ‘:notes:',
+   and ‘:action:' even though the final heading is not explicitly
+   marked with those tags. You can also set tags that all entries in a
+   file should inherit just as if these tags were defined in a
+   hypothetical level zero that surrounds the entire file. Use a line
+   like this[fn:FOOT61]:
 
-#+BEGIN_EXAMPLE
-    #+FILETAGS: :Peter:Boss:Secret:
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     #+FILETAGS: :Peter:Boss:Secret:
+   #+END_EXAMPLE
 
-To limit tag inheritance to specific tags, use
-=org-tags-exclude-from-inheritance=. To turn it off entirely, use
-=org-use-tag-inheritance=.
+   To limit tag inheritance to specific tags, use
+   =org-tags-exclude-from-inheritance=. To turn it off entirely, use
+   =org-use-tag-inheritance=.
 
-When a headline matches during a tags search while tag inheritance is
-turned on, all the sublevels in the same tree will (for a simple match
-form) match as well[fn:FOOT62]. The list of matches may then
-become very long. If you only want to see the first tags match in a
-subtree, configure =org-tags-match-list-sublevels= (not recommended).
+   When a headline matches during a tags search while tag inheritance
+   is turned on, all the sublevels in the same tree will (for a simple
+   match form) match as well[fn:FOOT62]. The list of matches may then
+   become very long. If you only want to see the first tags match in a
+   subtree, configure =org-tags-match-list-sublevels= (not
+   recommended).
 
-Tag inheritance is relevant when the agenda search tries to match a tag,
-either in the =tags= or =tags-todo= agenda types. In other agenda types,
-=org-use-tag-inheritance= has no effect. Still, you may want to have
-your tags correctly set in the agenda, so that tag filtering works fine,
-with inherited tags. Set =org-agenda-use-tag-inheritance= to control
-this: the default value includes all agenda types, but setting this to
-=nil= can really speed up agenda generation.
+   Tag inheritance is relevant when the agenda search tries to match a
+   tag, either in the =tags= or =tags-todo= agenda types. In other
+   agenda types, =org-use-tag-inheritance= has no effect. Still, you
+   may want to have your tags correctly set in the agenda, so that tag
+   filtering works fine, with inherited tags. Set
+   =org-agenda-use-tag-inheritance= to control this: the default value
+   includes all agenda types, but setting this to =nil= can really
+   speed up agenda generation.
 
 ** 6.2 Setting tags                                                   <<@Setting-tags>>
 
-Tags can simply be typed into the buffer at the end of a headline. After
-a colon, M-TAB offers completion on tags. There is also a special
-command for inserting tags:
+   Tags can simply be typed into the buffer at the end of a
+   headline. After a colon, M-TAB offers completion on tags. There is
+   also a special command for inserting tags:
 
-C-c C-q (=org-set-tags-command=)
+    - */C-c C-q/* (=org-set-tags-command=)
 
-Enter new tags for the current headline. Org mode will either offer
-completion or a special single-key interface for setting tags, see
-below. After pressing =RET=, the tags will be inserted and aligned to
-=org-tags-column=. When called with a C-u prefix, all tags in the
-current buffer will be aligned to that column, just to make things look
-nice. TAGS are automatically realigned after promotion, demotion, and
-TODO state changes (see [[@TODO-basics][TODO basics]]).
+      Enter new tags for the current headline. Org mode will either
+      offer completion or a special single-key interface for setting
+      tags, see below. After pressing =RET=, the tags will be inserted
+      and aligned to =org-tags-column=. When called with a C-u prefix,
+      all tags in the current buffer will be aligned to that column,
+      just to make things look nice. TAGS are automatically realigned
+      after promotion, demotion, and TODO state changes (see [[@TODO-basics][TODO
+      basics]]).
 
-C-c C-c (=org-set-tags-command=)
+    - */C-c C-c/* (=org-set-tags-command=)
 
-When the cursor is in a headline, this does the same as C-c C-q.
+      When the cursor is in a headline, this does the same as */C-c
+      C-q/*.
 
-Org supports tag insertion based on a /list of tags/. By default this
-list is constructed dynamically, containing all tags currently used in
-the buffer. You may also globally specify a hard list of tags with the
-variable =org-tag-alist=. Finally you can set the default tags for a
-given file with lines like
+   Org supports tag insertion based on a /list of tags/. By default
+   this list is constructed dynamically, containing all tags currently
+   used in the buffer. You may also globally specify a hard list of
+   tags with the variable =org-tag-alist=. Finally you can set the
+   default tags for a given file with lines like
 
-#+BEGIN_EXAMPLE
-    #+TAGS: @work @home @tennisclub
-    #+TAGS: laptop car pc sailboat
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     #+TAGS: @work @home @tennisclub
+     #+TAGS: laptop car pc sailboat
+   #+END_EXAMPLE
 
-If you have globally defined your preferred set of tags using the
-variable =org-tag-alist=, but would like to use a dynamic tag list in a
-specific file, add an empty TAGS option line to that file:
+   If you have globally defined your preferred set of tags using the
+   variable =org-tag-alist=, but would like to use a dynamic tag list
+   in a specific file, add an empty TAGS option line to that file:
 
-#+BEGIN_EXAMPLE
-    #+TAGS:
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     #+TAGS:
+   #+END_EXAMPLE
 
-If you have a preferred set of tags that you would like to use in every
-file, in addition to those defined on a per-file basis by TAGS option
-lines, then you may specify a list of tags with the variable
-=org-tag-persistent-alist=. You may turn this off on a per-file basis by
-adding a STARTUP option line to that file:
+   If you have a preferred set of tags that you would like to use in
+   every file, in addition to those defined on a per-file basis by
+   TAGS option lines, then you may specify a list of tags with the
+   variable =org-tag-persistent-alist=. You may turn this off on a
+   per-file basis by adding a STARTUP option line to that file:
 
-#+BEGIN_EXAMPLE
-    #+STARTUP: noptag
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     #+STARTUP: noptag
+   #+END_EXAMPLE
 
-By default Org mode uses the standard minibuffer completion facilities
-for entering tags. However, it also implements another, quicker, tag
-selection method called /fast tag selection/. This allows you to select
-and deselect tags with just a single key press. For this to work well
-you should assign unique letters to most of your commonly used tags. You
-can do this globally by configuring the variable =org-tag-alist= in your
-.emacs file. For example, you may find the need to tag many items in
-different files with ‘:@home:'. In this case you can set something like:
+   By default Org mode uses the standard minibuffer completion
+   facilities for entering tags. However, it also implements another,
+   quicker, tag selection method called /fast tag selection/. This
+   allows you to select and deselect tags with just a single key
+   press. For this to work well you should assign unique letters to
+   most of your commonly used tags. You can do this globally by
+   configuring the variable =org-tag-alist= in your .emacs file. For
+   example, you may find the need to tag many items in different files
+   with ‘:@home:'. In this case you can set something like:
 
-#+BEGIN_SRC lisp
+   #+BEGIN_SRC lisp
     (setq org-tag-alist '(("@work" . ?w) ("@home" . ?h) ("laptop" . ?l)))
-#+END_SRC
+   #+END_SRC
 
-If the tag is only relevant to the file you are working on, then you can
-instead set the TAGS option line as:
+   If the tag is only relevant to the file you are working on, then
+   you can instead set the TAGS option line as:
 
-#+BEGIN_EXAMPLE
-    #+TAGS: @work(w)  @home(h)  @tennisclub(t)  laptop(l)  pc(p)
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     #+TAGS: @work(w)  @home(h)  @tennisclub(t)  laptop(l)  pc(p)
+   #+END_EXAMPLE
 
-The tags interface will show the available tags in a splash window. If
-you want to start a new line after a specific tag, insert ‘\n' into the
-tag list
+   The tags interface will show the available tags in a splash
+   window. If you want to start a new line after a specific tag,
+   insert ‘\n' into the tag list
 
-#+BEGIN_EXAMPLE
-    #+TAGS: @work(w)  @home(h)  @tennisclub(t) \n laptop(l)  pc(p)
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     #+TAGS: @work(w)  @home(h)  @tennisclub(t) \n laptop(l)  pc(p)
+   #+END_EXAMPLE
 
-or write them in two lines:
+   or write them in two lines:
 
-#+BEGIN_EXAMPLE
-    #+TAGS: @work(w)  @home(h)  @tennisclub(t)
-    #+TAGS: laptop(l)  pc(p)
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     #+TAGS: @work(w)  @home(h)  @tennisclub(t)
+     #+TAGS: laptop(l)  pc(p)
+   #+END_EXAMPLE
 
-You can also group together tags that are mutually exclusive by using
-braces, as in:
+   You can also group together tags that are mutually exclusive by
+   using braces, as in:
 
-#+BEGIN_EXAMPLE
+   #+BEGIN_EXAMPLE
     #+TAGS: { @work(w)  @home(h)  @tennisclub(t) }  laptop(l)  pc(p)
-#+END_EXAMPLE
+   #+END_EXAMPLE
 
-you indicate that at most one of ‘@work', ‘@home', and ‘@tennisclub'
-should be selected. Multiple such groups are allowed.
+   you indicate that at most one of ‘@work', ‘@home', and
+   ‘@tennisclub' should be selected. Multiple such groups are allowed.
 
-Don't forget to press C-c C-c with the cursor in one of these lines to
-activate any changes.
+   Don't forget to press */C-c C-c/* with the cursor in one of these
+   lines to activate any changes.
 
-To set these mutually exclusive groups in the variable =org-tag-alist=,
-you must use the dummy tags =:startgroup= and =:endgroup= instead of the
-braces. Similarly, you can use =:newline= to indicate a line break. The
-previous example would be set globally by the following configuration:
+   To set these mutually exclusive groups in the variable
+   =org-tag-alist=, you must use the dummy tags =:startgroup= and
+   =:endgroup= instead of the braces. Similarly, you can use
+   =:newline= to indicate a line break. The previous example would be
+   set globally by the following configuration:
 
-#+BEGIN_SRC lisp
-    (setq org-tag-alist '((:startgroup . nil)
-                          ("@work" . ?w) ("@home" . ?h)
-                          ("@tennisclub" . ?t)
-                          (:endgroup . nil)
-                          ("laptop" . ?l) ("pc" . ?p)))
-#+END_SRC
+   #+BEGIN_SRC lisp
+     (setq org-tag-alist '((:startgroup . nil)
+                           ("@work" . ?w) ("@home" . ?h)
+                           ("@tennisclub" . ?t)
+                           (:endgroup . nil)
+                           ("laptop" . ?l) ("pc" . ?p)))
+   #+END_SRC
 
-If at least one tag has a selection key then pressing C-c C-c will
-automatically present you with a special interface, listing inherited
-tags, the tags of the current headline, and a list of all valid tags
-with corresponding keys[fn:FOOT63]. In this interface, you can
-use the following keys:
+   If at least one tag has a selection key then pressing */C-c C-c/*
+   will automatically present you with a special interface, listing
+   inherited tags, the tags of the current headline, and a list of all
+   valid tags with corresponding keys[fn:FOOT63]. In this interface,
+   you can use the following keys:
 
--  a-z... :: Pressing keys assigned to tags will add or remove them from
-   the list of tags in the current line. Selecting a tag in a group of
-   mutually exclusive tags will turn off any other tags from that group.
+    - */a-z.../* ::
 
--  TAB :: Enter a tag in the minibuffer, even if the tag is not in the
-   predefined list. You will be able to complete on all tags present in
-   the buffer. You can also add several tags: just separate them with a
-   comma.
+      Pressing keys assigned to tags will add or remove them from the
+      list of tags in the current line. Selecting a tag in a group of
+      mutually exclusive tags will turn off any other tags from that
+      group.
 
--  SPC :: Clear all tags for this line.
+    - */TAB/* ::
 
--  RET :: Accept the modified set.
+      Enter a tag in the minibuffer, even if the tag is not in the
+      predefined list. You will be able to complete on all tags
+      present in the buffer. You can also add several tags: just
+      separate them with a comma.
 
--  C-g :: Abort without installing changes.
+    - */SPC/* ::
 
--  q :: If q is not assigned to a tag, it aborts like C-g.
+      Clear all tags for this line.
 
--  ! :: Turn off groups of mutually exclusive tags. Use this to (as an
-   exception) assign several tags from such a group.
+    - */RET/* ::
 
--  C-c :: Toggle auto-exit after the next change (see below). If you are
-   using expert mode, the first C-c will display the selection window.
+      Accept the modified set.
 
-This method lets you assign tags to a headline with very few keys. With
-the above setup, you could clear the current tags and set ‘@home',
-‘laptop' and ‘pc' tags with just the following keys: C-c C-c SPC h l p
-RET. Switching from ‘@home' to ‘@work' would be done with C-c C-c w RET
-or alternatively with C-c C-c C-c w. Adding the non-predefined tag
-‘Sarah' could be done with C-c C-c TAB S a r a h RET RET.
+    - */C-g/* ::
 
-If you find that most of the time you need only a single key press to
-modify your list of tags, set =org-fast-tag-selection-single-key=. Then
-you no longer have to press =RET= to exit fast tag selection---it will
-immediately exit after the first change. If you then occasionally need
-more keys, press C-c to turn off auto-exit for the current tag selection
-process (in effect: start selection with C-c C-c C-c instead of C-c
-C-c). If you set the variable to the value =expert=, the special window
-is not even shown for single-key tag selection, it comes up only when
-you press an extra C-c.
+      Abort without installing changes.
 
-** 6.3 Tag hierarchy
+    - */q/* ::
 
-Tags can be defined in hierarchies. A tag can be defined as a /group
-tag/ for a set of other tags. The group tag can be seen as the “broader
-term” for its set of tags. Defining multiple /group tags/ and nesting
-them creates a tag hierarchy.
+      If q is not assigned to a tag, it aborts like */C-g/*.
 
-One use-case is to create a taxonomy of terms (tags) that can be used to
-classify nodes in a document or set of documents.
+    - */!/* ::
 
-When you search for a group tag, it will return matches for all members
-in the group and its subgroup. In an agenda view, filtering by a group
-tag will display or hide headlines tagged with at least one of the
-members of the group or any of its subgroups. This makes tag searches
-and filters even more flexible.
+      Turn off groups of mutually exclusive tags. Use this to (as an
+      exception) assign several tags from such a group.
 
-You can set group tags by using brackets and inserting a colon between
-the group tag and its related tags---beware that all whitespaces are
-mandatory so that Org can parse this line correctly:
+    - */C-c/* ::
 
-#+BEGIN_EXAMPLE
-    #+TAGS: [ GTD : Control Persp ]
-#+END_EXAMPLE
+      Toggle auto-exit after the next change (see below). If you are
+      using expert mode, the first */C-c/* will display the selection
+      window.
 
-In this example, ‘GTD' is the /group tag/ and it is related to two other
-tags: ‘Control', ‘Persp'. Defining ‘Control' and ‘Persp' as group tags
-creates an hierarchy of tags:
+   This method lets you assign tags to a headline with very few
+   keys. With the above setup, you could clear the current tags and
+   set ‘@home', ‘laptop' and ‘pc' tags with just the following keys:
+   */C-c C-c SPC h l p RET/*. Switching from ‘@home' to ‘@work' would
+   be done with */C-c C-c w RET/* or alternatively with */C-c C-c C-c
+   w/*. Adding the non-predefined tag ‘Sarah' could be done with */C-c
+   C-c TAB S a r a h RET RET/*.
 
-#+BEGIN_EXAMPLE
-    #+TAGS: [ Control : Context Task ]
-    #+TAGS: [ Persp : Vision Goal AOF Project ]
-#+END_EXAMPLE
+   If you find that most of the time you need only a single key press
+   to modify your list of tags, set
+   =org-fast-tag-selection-single-key=. Then you no longer have to
+   press =RET= to exit fast tag selection -- it will immediately exit
+   after the first change. If you then occasionally need more keys,
+   press */C-c/* to turn off auto-exit for the current tag selection
+   process (in effect: start selection with */C-c C-c C-c/* instead of
+   */C-c C-c/*). If you set the variable to the value =expert=, the
+   special window is not even shown for single-key tag selection, it
+   comes up only when you press an extra */C-c/*.
 
-That can conceptually be seen as a hierarchy of tags:
+** 6.3 Tag hierarchy                                                  <<@Tag-hierarchy>>
 
-#+BEGIN_EXAMPLE
+   Tags can be defined in hierarchies. A tag can be defined as a
+   /group tag/ for a set of other tags. The group tag can be seen as
+   the “broader term” for its set of tags. Defining multiple /group
+   tags/ and nesting them creates a tag hierarchy.
+
+   One use-case is to create a taxonomy of terms (tags) that can be
+   used to classify nodes in a document or set of documents.
+
+   When you search for a group tag, it will return matches for all
+   members in the group and its subgroup. In an agenda view, filtering
+   by a group tag will display or hide headlines tagged with at least
+   one of the members of the group or any of its subgroups. This makes
+   tag searches and filters even more flexible.
+
+   You can set group tags by using brackets and inserting a colon
+   between the group tag and its related tags---beware that all
+   whitespaces are mandatory so that Org can parse this line
+   correctly:
+
+   #+BEGIN_EXAMPLE
+     #+TAGS: [ GTD : Control Persp ]
+   #+END_EXAMPLE
+
+   In this example, ‘GTD' is the /group tag/ and it is related to two
+   other tags: ‘Control', ‘Persp'. Defining ‘Control' and ‘Persp' as
+   group tags creates an hierarchy of tags:
+
+   #+BEGIN_EXAMPLE
+     #+TAGS: [ Control : Context Task ]
+     #+TAGS: [ Persp : Vision Goal AOF Project ]
+   #+END_EXAMPLE
+
+   That can conceptually be seen as a hierarchy of tags:
+
+   #+BEGIN_EXAMPLE
     - GTD
       - Persp
         - Vision
@@ -4195,90 +4223,91 @@ That can conceptually be seen as a hierarchy of tags:
       - Control
         - Context
         - Task
-#+END_EXAMPLE
+   #+END_EXAMPLE
 
-You can use the =:startgrouptag=, =:grouptags= and =:endgrouptag=
-keyword directly when setting =org-tag-alist= directly:
+   You can use the =:startgrouptag=, =:grouptags= and =:endgrouptag=
+   keyword directly when setting =org-tag-alist= directly:
 
-#+BEGIN_SRC lisp
-    (setq org-tag-alist '((:startgrouptag)
-                          ("GTD")
-                          (:grouptags)
-                          ("Control")
-                          ("Persp")
-                          (:endgrouptag)
-                          (:startgrouptag)
-                          ("Control")
-                          (:grouptags)
-                          ("Context")
-                          ("Task")
-                          (:endgrouptag)))
-#+END_SRC
+   #+BEGIN_SRC lisp
+     (setq org-tag-alist '((:startgrouptag)
+                           ("GTD")
+                           (:grouptags)
+                           ("Control")
+                           ("Persp")
+                           (:endgrouptag)
+                           (:startgrouptag)
+                           ("Control")
+                           (:grouptags)
+                           ("Context")
+                           ("Task")
+                           (:endgrouptag)))
+   #+END_SRC
 
-The tags in a group can be mutually exclusive if using the same group
-syntax as is used for grouping mutually exclusive tags together; using
-curly brackets.
+   The tags in a group can be mutually exclusive if using the same
+   group syntax as is used for grouping mutually exclusive tags
+   together; using curly brackets.
 
-#+BEGIN_EXAMPLE
-    #+TAGS: { Context : @Home @Work @Call }
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     #+TAGS: { Context : @Home @Work @Call }
+   #+END_EXAMPLE
 
-When setting =org-tag-alist= you can use =:startgroup= & =:endgroup=
-instead of =:startgrouptag= & =:endgrouptag= to make the tags mutually
-exclusive.
+   When setting =org-tag-alist= you can use =:startgroup= &
+   =:endgroup= instead of =:startgrouptag= & =:endgrouptag= to make
+   the tags mutually exclusive.
 
-Furthermore; The members of a /group tag/ can also be regular
-expression, creating the possibility of more dynamic and rule-based
-tag-structure. The regular expressions in the group must be marked up
-within { }. Example use, to expand on the example given above:
+   Furthermore; The members of a /group tag/ can also be regular
+   expression, creating the possibility of more dynamic and rule-based
+   tag-structure. The regular expressions in the group must be marked
+   up within { }. Example use, to expand on the example given above:
 
-#+BEGIN_EXAMPLE
-    #+TAGS: [ Vision : {V.+} ]
-    #+TAGS: [ Goal : {G.+} ]
-    #+TAGS: [ AOF : {AOF.+} ]
-    #+TAGS: [ Project : {P.+} ]
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     #+TAGS: [ Vision : {V.+} ]
+     #+TAGS: [ Goal : {G.+} ]
+     #+TAGS: [ AOF : {AOF.+} ]
+     #+TAGS: [ Project : {P.+} ]
+   #+END_EXAMPLE
 
-Searching for the tag ‘Project' will now list all tags also including
-regular expression matches for ‘P@.+'. Similar for tag-searches on
-‘Vision', ‘Goal' and ‘AOF'. This can be good for example if tags for a
-certain project is tagged with a common project-identifier, i.e.
-‘P@2014\_OrgTags'.
+   Searching for the tag ‘Project' will now list all tags also
+   including regular expression matches for ‘P@.+'. Similar for
+   tag-searches on ‘Vision', ‘Goal' and ‘AOF'. This can be good for
+   example if tags for a certain project is tagged with a common
+   project-identifier, i.e.  ‘P@2014_OrgTags'.
 
-If you want to ignore group tags temporarily, toggle group tags support
-with =org-toggle-tags-groups=, bound to C-c C-x q. If you want to
-disable tag groups completely, set =org-group-tags= to =nil=.
+   If you want to ignore group tags temporarily, toggle group tags
+   support with =org-toggle-tags-groups=, bound to */C-c C-x q/*. If
+   you want to disable tag groups completely, set =org-group-tags= to
+   =nil=.
 
-** 6.4 Tag searches
+** 6.4 Tag searches                                                   <<@Tag-searches>>
 
-Once a system of tags has been set up, it can be used to collect related
-information into special lists.
+   Once a system of tags has been set up, it can be used to collect
+   related information into special lists.
 
-C-c / m or C-c \ (=org-match-sparse-tree=)
+    - */C-c / m/* or */C-c \ /* (=org-match-sparse-tree=)
 
-Create a sparse tree with all headlines matching a tags/property/TODO
-search. With a C-u prefix argument, ignore headlines that are not a TODO
-line. See [[@Matching-tags-and-properties][Matching tags and
-properties]].
+      Create a sparse tree with all headlines matching a
+      tags/property/TODO search. With a C-u prefix argument, ignore
+      headlines that are not a TODO line. See [[@Matching-tags-and-properties][Matching tags and
+      properties]].
 
-C-c a m (=org-tags-view=)
+    - */C-c a m/* (=org-tags-view=)
 
-Create a global list of tag matches from all agenda files. See
-[[@Matching-tags-and-properties][Matching tags and properties]].
+      Create a global list of tag matches from all agenda files. See
+      [[@Matching-tags-and-properties][Matching tags and properties]].
 
-C-c a M (=org-tags-view=)
+    - */C-c a M/* (=org-tags-view=)
 
-Create a global list of tag matches from all agenda files, but check
-only TODO items and force checking subitems (see the option
-=org-tags-match-list-sublevels=).
+      Create a global list of tag matches from all agenda files, but
+      check only TODO items and force checking subitems (see the
+      option =org-tags-match-list-sublevels=).
 
-These commands all prompt for a match string which allows basic Boolean
-logic like ‘+boss+urgent-project1', to find entries with tags ‘boss' and
-‘urgent', but not ‘project1', or ‘Kathy|Sally' to find entries which are
-tagged, like ‘Kathy' or ‘Sally'. The full syntax of the search string is
-rich and allows also matching against TODO keywords, entry levels and
-properties. For a complete description with many examples, see
-[[@Matching-tags-and-properties][Matching tags and properties]].
+   These commands all prompt for a match string which allows basic
+   Boolean logic like ‘+boss+urgent-project1', to find entries with
+   tags ‘boss' and ‘urgent', but not ‘project1', or ‘Kathy|Sally' to
+   find entries which are tagged, like ‘Kathy' or ‘Sally'. The full
+   syntax of the search string is rich and allows also matching
+   against TODO keywords, entry levels and properties. For a complete
+   description with many examples, see [[@Matching-tags-and-properties][Matching tags and properties]].
 
 * 7 Properties and columns                                            <<@Properties-and-columns>>
 
@@ -4464,7 +4493,7 @@ not be used as keys in the properties drawer:
     TODO         The TODO keyword of the entry.
 #+END_EXAMPLE
 
-** 7.3 Property searches
+** 7.3 Property searches                                              <<@Property-searches>>
 
 To create sparse trees and special lists with selection based on
 properties, the same commands are used as for tag searches (see
@@ -6775,7 +6804,7 @@ more compact:
    headline and omit the sublevels from the global list. Configure the
    variable =org-agenda-todo-list-sublevels= to get this behavior.
 
-*** 10.3.3 Matching tags and properties
+*** 10.3.3 Matching tags and properties                               <<@Matching-tags-and-properties>>
 
 If headlines in the agenda files are marked with /tags/ (see
 [[@Tags][Tags]]), or have properties (see
@@ -12552,42 +12581,42 @@ evaluation of the =factorial= code block.
 
 *** 14.8.2 Specific header arguments
 
-Header arguments consist of an initial colon followed by the name of the
-argument in lowercase letters. The following header arguments are
-defined:
+    Header arguments consist of an initial colon followed by the name of the
+    argument in lowercase letters. The following header arguments are
+    defined:
 
-| [[@var][var]]:         | Pass arguments to code blocks                                            |
-| [[@Results][Results]]:     | Specify the type of results and how they will be collected and handled   |
-| [[@file][file]]:        | Specify a path for file output                                           |
-| [[@file_002ddesc][file-desc]]:   | Specify a description for file results                                   |
-| [[@file_002dext][file-ext]]:    | Specify an extension for file output                                     |
-| [[@output_002ddir][output-dir]]:  | Specify a directory to write file output to                              |
-| [[@dir][dir]]:         | Specify the default (possibly remote) directory for code block execution |
-| [[@exports][exports]]:     | Export code and/or results                                               |
-| [[@tangle][tangle]]:      | Toggle tangling and specify file name                                    |
-| [[@mkdirp][mkdirp]]:      | Toggle creation of parent directories of target files during tangling    |
-| [[@comments][comments]]:    | Toggle insertion of comments in tangled code files                       |
-| [[@padline][padline]]:     | Control insertion of padding lines in tangled code files                 |
-| [[@no_002dexpand][no-expand]]:   | Turn off variable assignment and noweb expansion during tangling         |
-| [[@session][session]]:     | Preserve the state of code evaluation                                    |
-| [[@noweb][noweb]]:       | Toggle expansion of noweb references                                     |
-| [[@noweb_002dref][noweb-ref]]:   | Specify block's noweb reference resolution target                        |
-| [[@noweb_002dsep][noweb-sep]]:   | String used to separate noweb references                                 |
-| [[@cache][cache]]:       | Avoid re-evaluating unchanged code blocks                                |
-| [[@sep][sep]]:         | Delimiter for writing tabular results outside Org                        |
-| [[@hlines][hlines]]:      | Handle horizontal lines in tables                                        |
-| [[@colnames][colnames]]:    | Handle column names in tables                                            |
-| [[@rownames][rownames]]:    | Handle row names in tables                                               |
-| [[@shebang][shebang]]:     | Make tangled files executable                                            |
-| [[@tangle_002dmode][tangle-mode]]: | Set permission of tangled files                                          |
-| [[@eval][eval]]:        | Limit evaluation of specific code blocks                                 |
-| [[@wrap][wrap]]:        | Mark source block evaluation results                                     |
-| [[@post][post]]:        | Post processing of code block results                                    |
-| [[@prologue][prologue]]:    | Text to prepend to code block body                                       |
-| [[@epilogue][epilogue]]:    | Text to append to code block body                                        |
+    | [[@var][var]]:         | Pass arguments to code blocks                                            |
+    | [[@Results][Results]]:     | Specify the type of results and how they will be collected and handled   |
+    | [[@file][file]]:        | Specify a path for file output                                           |
+    | [[@file_002ddesc][file-desc]]:   | Specify a description for file results                                   |
+    | [[@file_002dext][file-ext]]:    | Specify an extension for file output                                     |
+    | [[@output_002ddir][output-dir]]:  | Specify a directory to write file output to                              |
+    | [[@dir][dir]]:         | Specify the default (possibly remote) directory for code block execution |
+    | [[@exports][exports]]:     | Export code and/or results                                               |
+    | [[@tangle][tangle]]:      | Toggle tangling and specify file name                                    |
+    | [[@mkdirp][mkdirp]]:      | Toggle creation of parent directories of target files during tangling    |
+    | [[@comments][comments]]:    | Toggle insertion of comments in tangled code files                       |
+    | [[@padline][padline]]:     | Control insertion of padding lines in tangled code files                 |
+    | [[@no_002dexpand][no-expand]]:   | Turn off variable assignment and noweb expansion during tangling         |
+    | [[@session][session]]:     | Preserve the state of code evaluation                                    |
+    | [[@noweb][noweb]]:       | Toggle expansion of noweb references                                     |
+    | [[@noweb_002dref][noweb-ref]]:   | Specify block's noweb reference resolution target                        |
+    | [[@noweb_002dsep][noweb-sep]]:   | String used to separate noweb references                                 |
+    | [[@cache][cache]]:       | Avoid re-evaluating unchanged code blocks                                |
+    | [[@sep][sep]]:         | Delimiter for writing tabular results outside Org                        |
+    | [[@hlines][hlines]]:      | Handle horizontal lines in tables                                        |
+    | [[@colnames][colnames]]:    | Handle column names in tables                                            |
+    | [[@rownames][rownames]]:    | Handle row names in tables                                               |
+    | [[@shebang][shebang]]:     | Make tangled files executable                                            |
+    | [[@tangle_002dmode][tangle-mode]]: | Set permission of tangled files                                          |
+    | [[@eval][eval]]:        | Limit evaluation of specific code blocks                                 |
+    | [[@wrap][wrap]]:        | Mark source block evaluation results                                     |
+    | [[@post][post]]:        | Post processing of code block results                                    |
+    | [[@prologue][prologue]]:    | Text to prepend to code block body                                       |
+    | [[@epilogue][epilogue]]:    | Text to append to code block body                                        |
 
-Additional header arguments are defined on a language-specific basis,
-see [[@Languages][Languages]].
+    Additional header arguments are defined on a language-specific basis,
+    see [[@Languages][Languages]].
 
 *** 14.8.2.1 =:var=
 
@@ -16625,8 +16654,8 @@ belonging to direct children.
 add checkboxes to the rest of the list.
 
 [fn:FOOT61]
-As with all these in-buffer settings, pressing C-c C-c activates any
-changes in the line.
+As with all these in-buffer settings, pressing */C-c C-c/* activates
+any changes in the line.
 
 [fn:FOOT62]
 This is only true if the search does not involve more complex tests
