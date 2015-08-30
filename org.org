@@ -23,7 +23,7 @@ is included in the section entitled “GNU Free Documentation License.”
 modify this GNU manual.”
 #+END_QUOTE
 
-* 1 Introduction
+* 1 Introduction                                                      <<@Introduction>>
 
   | • [[@Summary][Summary]]:      | Brief summary of what Org does          |
   | • [[@Installation][Installation]]: | Installing Org                          |
@@ -352,7 +352,7 @@ modify this GNU manual.”
     prefer, you can compile the manual without the command names by
     unsetting the flag =cmdnames= in org.texi.
 
-* 2 Document structure
+* 2 Document structure                                                <<@Document structure>>
 
   Org is based on Outline mode and provides flexible commands to edit
   the structure of the document.
@@ -2571,7 +2571,7 @@ modify this GNU manual.”
        is the width in characters of the bar-plot. It defaults to
        ‘12'.
 
-* 4 Hyperlinks
+* 4 Hyperlinks                                                        <<@Hyperlinks>>
 
   Like HTML, Org provides links inside a file, external links to other
   files, Usenet articles, emails, and much more.
@@ -5936,677 +5936,780 @@ modify this GNU manual.”
 
 * 9 Capture - Refile - Archive
 
-An important part of any organization system is the ability to quickly
-capture new ideas and tasks, and to associate reference material with
-them. Org does this using a process called /capture/. It also can store
-files related to a task (/attachments/) in a special directory. Once in
-the system, tasks and projects need to be moved around. Moving completed
-project trees to an archive file keeps the system compact and fast.
+  An important part of any organization system is the ability to
+  quickly capture new ideas and tasks, and to associate reference
+  material with them. Org does this using a process called
+  /capture/. It also can store files related to a task (/attachments/)
+  in a special directory. Once in the system, tasks and projects need
+  to be moved around. Moving completed project trees to an archive
+  file keeps the system compact and fast.
 
-** 9.1 Capture
+  | • [[@Capture][Capture]]:         | Capturing new stuff                              |
+  | • [[@Attachments][Attachments]]:     | Add files to tasks                               |
+  | • [[@RSS-feeds][RSS feeds]]:       | Getting input from RSS feeds                     |
+  | • [[@Protocols][Protocols]]:       | External (e.g., Browser) access to Emacs and Org |
+  | • [[@Refile-and-copy][Refile and copy]]: | Moving/copying a tree from one place to another  |
+  | • [[@Archiving][Archiving]]:       | What to do with finished projects                |
 
-Capture lets you quickly store notes with little interruption of your
-work flow. Org's method for capturing new items is heavily inspired by
-John Wiegley excellent remember.el package. Up to version 6.36, Org used
-a special setup for remember.el, then replaced it with org-remember.el.
-As of version 8.0, org-remember.el has been completely replaced by
-org-capture.el.
+** 9.1 Capture                                                        <<@Capture>>
 
-If your configuration depends on org-remember.el, you need to update it
-and use the setup described below. To convert your
-=org-remember-templates=, run the command
+   Capture lets you quickly store notes with little interruption of
+   your work flow. Org's method for capturing new items is heavily
+   inspired by John Wiegley excellent remember.el package. Up to
+   version 6.36, Org used a special setup for remember.el, then
+   replaced it with org-remember.el.  As of version 8.0,
+   org-remember.el has been completely replaced by org-capture.el.
 
-#+BEGIN_EXAMPLE
-    M-x org-capture-import-remember-templates RET
-#+END_EXAMPLE
-
-and then customize the new variable with M-x customize-variable
-org-capture-templates, check the result, and save the customization.
-
-*** 9.1.1 Setting up capture
-
-The following customization sets a default target file for notes, and
-defines a global key[fn:FOOT88] for capturing new material.
-
-#+BEGIN_EXAMPLE
-    (setq org-default-notes-file (concat org-directory "/notes.org"))
-    (define-key global-map "\C-cc" 'org-capture)
-#+END_EXAMPLE
-
-*** 9.1.2 Using capture
-
-C-c c (=org-capture=)
-
-Call the command =org-capture=. Note that this keybinding is global and
-not active by default: you need to install it. If you have templates
-defined see [[@Capture-templates][Capture templates]], it will offer
-these templates for selection or use a new Org outline node as the
-default template. It will insert the template into the target file and
-switch to an indirect buffer narrowed to this new node. You may then
-insert the information you want.
-
-C-c C-c (=org-capture-finalize=)
-
-Once you have finished entering information into the capture buffer, C-c
-C-c will return you to the window configuration before the capture
-process, so that you can resume your work without further distraction.
-When called with a prefix arg, finalize and then jump to the captured
-item.
-
-C-c C-w (=org-capture-refile=)
-
-Finalize the capture process by refiling (see [[@Refile-and-copy][Refile
-and copy]]) the note to a different place. Please realize that this is a
-normal refiling command that will be executed---so the cursor position
-at the moment you run this command is important. If you have inserted a
-tree with a parent and children, first move the cursor back to the
-parent. Any prefix argument given to this command will be passed on to
-the =org-refile= command.
-
-C-c C-k (=org-capture-kill=)
-
-Abort the capture process and return to the previous state.
-
-You can also call =org-capture= in a special way from the agenda, using
-the k c key combination. With this access, any timestamps inserted by
-the selected capture template will default to the cursor date in the
-agenda, rather than to the current date.
-
-To find the locations of the last stored capture, use =org-capture= with
-prefix commands:
-
-C-u C-c c
-
-Visit the target location of a capture template. You get to select the
-template in the usual way.
-
-C-u C-u C-c c
-
-Visit the last stored capture item in its buffer.
-
-You can also jump to the bookmark =org-capture-last-stored=, which will
-automatically be created unless you set =org-capture-bookmark= to =nil=.
-
-To insert the capture at point in an Org buffer, call =org-capture= with
-a =C-0= prefix argument.
-
-*** 9.1.3 Capture templates
-
-You can use templates for different types of capture items, and for
-different target locations. The easiest way to create such templates is
-through the customize interface.
-
-C-c c C
-
-Customize the variable =org-capture-templates=.
-
-Before we give the formal description of template definitions, let's
-look at an example. Say you would like to use one template to create
-general TODO entries, and you want to put these entries under the
-heading ‘Tasks' in your file ~/org/gtd.org. Also, a date tree in the
-file journal.org should capture journal entries. A possible
-configuration would look like:
-
-#+BEGIN_EXAMPLE
-    (setq org-capture-templates
-     '(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tasks")
-            "* TODO %?\n  %i\n  %a")
-       ("j" "Journal" entry (file+datetree "~/org/journal.org")
-            "* %?\nEntered on %U\n  %i\n  %a")))
-#+END_EXAMPLE
-
-If you then press C-c c t, Org will prepare the template for you like
-this:
-
-#+BEGIN_EXAMPLE
-    * TODO
-      [[file:link to where you initiated capture]]
-#+END_EXAMPLE
-
-During expansion of the template, =%a= has been replaced by a link to
-the location from where you called the capture command. This can be
-extremely useful for deriving tasks from emails, for example. You fill
-in the task definition, press C-c C-c and Org returns you to the same
-place where you started the capture process.
-
-To define special keys to capture to a particular template without going
-through the interactive template selection, you can create your key
-binding like this:
-
-#+BEGIN_SRC lisp
-    (define-key global-map "\C-cx"
-       (lambda () (interactive) (org-capture nil "x")))
-#+END_SRC
-
-*** 9.1.3.1 Template elements
-
-Now lets look at the elements of a template definition. Each entry in
-=org-capture-templates= is a list with the following items:
-
--  keys :: The keys that will select the template, as a string,
-   characters only, for example ="a"= for a template to be selected with
-   a single key, or ="bt"= for selection with two keys. When using
-   several keys, keys using the same prefix key must be sequential in
-   the list and preceded by a 2-element entry explaining the prefix key,
-   for example
+   If your configuration depends on org-remember.el, you need to
+   update it and use the setup described below. To convert your
+   =org-remember-templates=, run the command
 
    #+BEGIN_EXAMPLE
-                ("b" "Templates for marking stuff to buy")
+     M-x org-capture-import-remember-templates RET
    #+END_EXAMPLE
 
-   If you do not define a template for the C key, this key will be used
-   to open the customize buffer for this complex variable.
+   and then customize the new variable with */M-x customize-variable
+   org-capture-templates/*, check the result, and save the
+   customization.
 
--  description :: A short string describing the template, which will be
-   shown during selection.
+   | • [[@Setting-up-capture][Setting up capture]]: | Where notes will be stored                 |
+   | • [[@Using-capture][Using capture]]:      | Commands to invoke and terminate capture   |
+   | • [[@Capture-templates][Capture templates]]:  | Define the outline of different note types |
 
--  type :: The type of entry, a symbol. Valid values are:
+*** 9.1.1 Setting up capture                                          <<@Setting-up-capture>>
 
-   -  =entry= :: An Org mode node, with a headline. Will be filed as the
-      child of the target entry or as a top-level entry. The target file
-      should be an Org mode file.
+    The following customization sets a default target file for notes,
+    and defines a global key[fn:FOOT88] for capturing new material.
 
-   -  =item= :: A plain list item, placed in the first plain list at the
-      target location. Again the target file should be an Org file.
+    #+BEGIN_EXAMPLE
+     (setq org-default-notes-file (concat org-directory "/notes.org"))
+     (define-key global-map "\C-cc" 'org-capture)
+    #+END_EXAMPLE
 
-   -  =checkitem= :: A checkbox item. This only differs from the plain
-      list item by the default template.
+*** 9.1.2 Using capture                                               <<@Using-capture>>
 
-   -  =table-line= :: a new line in the first table at the target
-      location. Where exactly the line will be inserted depends on the
-      properties =:prepend= and =:table-line-pos= (see below).
+     - */C-c c/* (=org-capture=)
 
-   -  =plain= :: Text to be inserted as it is.
+       Call the command =org-capture=. Note that this keybinding is
+       global and not active by default: you need to install it. If
+       you have templates defined see [[@Capture-templates][Capture templates]], it will offer
+       these templates for selection or use a new Org outline node as
+       the default template. It will insert the template into the
+       target file and switch to an indirect buffer narrowed to this
+       new node. You may then insert the information you want.
 
--  target :: Specification of where the captured item should be placed.
-   In Org mode files, targets usually define a node. Entries will become
-   children of this node. Other types will be added to the table or list
-   in the body of this node. Most target specifications contain a file
-   name. If that file name is the empty string, it defaults to
-   =org-default-notes-file=. A file can also be given as a variable,
-   function, or Emacs Lisp form.
+     - */C-c C-c/* (=org-capture-finalize=)
 
-   Valid values are:
-
-   -  =(file "path/to/file")= :: Text will be placed at the beginning or
-      end of that file.
-
-   -  =(id "id of existing org entry")= :: Filing as child of this
-      entry, or in the body of the entry.
-
-   -  =(file+headline "path/to/file" "node headline")= :: Fast
-      configuration if the target heading is unique in the file.
-
-   -  =(file+olp "path/to/file" "Level 1 heading" "Level 2" ...)= :: For
-      non-unique headings, the full path is safer.
-
-   -  =(file+regexp  "path/to/file" "regexp to find location")= :: Use a
-      regular expression to position the cursor.
-
-   -  =(file+datetree "path/to/file")= :: Will create a heading in a
-      date tree for today's date[fn:FOOT89].
-
-   -  =(file+datetree+prompt "path/to/file")= :: Will create a heading
-      in a date tree, but will prompt for the date.
-
-   -  =(file+function "path/to/file" function-finding-location)= :: A
-      function to find the right location in the file.
-
-   -  =(clock)= :: File to the entry that is currently being clocked.
-
-   -  =(function function-finding-location)= :: Most general way, write
-      your own function to find both file and location.
-
--  template :: The template for creating the capture item. If you leave
-   this empty, an appropriate default template will be used. Otherwise
-   this is a string with escape codes, which will be replaced depending
-   on time and context of the capture call. The string with escapes may
-   be loaded from a template file, using the special syntax
-   =(file "path/to/template")=. See below for more details.
-
--  properties :: The rest of the entry is a property list of additional
-   options. Recognized properties are:
-
-   -  =:prepend= :: Normally new captured information will be appended
-      at the target location (last child, last table line, last list
-      item...). Setting this property will change that.
-
-   -  =:immediate-finish= :: When set, do not offer to edit the
-      information, just file it away immediately. This makes sense if
-      the template only needs information that can be added
-      automatically.
-
-   -  =:empty-lines= :: Set this to the number of lines to insert before
-      and after the new item. Default 0, only common other value is 1.
-
-   -  =:clock-in= :: Start the clock in this item.
-
-   -  =:clock-keep= :: Keep the clock running when filing the captured
-      entry.
-
-   -  =:clock-resume= :: If starting the capture interrupted a clock,
-      restart that clock when finished with the capture. Note that
-      =:clock-keep= has precedence over =:clock-resume=. When setting
-      both to =t=, the current clock will run and the previous one will
-      not be resumed.
-
-   -  =:unnarrowed= :: Do not narrow the target buffer, simply show the
-      full buffer. Default is to narrow it so that you only see the new
-      material.
-
-   -  =:table-line-pos= :: Specification of the location in the table
-      where the new line should be inserted. It can be a string, a
-      variable holding a string or a function returning a string. The
-      string should look like ="II-3"= meaning that the new line should
-      become the third line before the second horizontal separator line.
-
-   -  =:kill-buffer= :: If the target file was not yet visited when
-      capture was invoked, kill the buffer again after capture is
-      completed.
-
-*** 9.1.3.2 Template expansion
-
-In the template itself, special %-escapes[fn:FOOT90] allow
-dynamic insertion of content. The templates are expanded in the order
-given here:
-
-#+BEGIN_EXAMPLE
-    %[file]     Insert the contents of the file given by file.
-    %(sexp)     Evaluate Elisp sexp and replace with the result.
-                      For convenience, %:keyword (see below) placeholders
-                      within the expression will be expanded prior to this.
-                      The sexp must return a string.
-    %<...>      The result of format-time-string on the ... format specification.
-    %t          Timestamp, date only.
-    %T          Timestamp, with date and time.
-    %u, %U      Like the above, but inactive timestamps.
-    %i          Initial content, the region when capture is called while the
-                region is active.
-                The entire text will be indented like %i itself.
-    %a          Annotation, normally the link created with org-store-link.
-    %A          Like %a, but prompt for the description part.
-    %l          Like %a, but only insert the literal link.
-    %c          Current kill ring head.
-    %x          Content of the X clipboard.
-    %k          Title of the currently clocked task.
-    %K          Link to the currently clocked task.
-    %n          User name (taken from user-full-name).
-    %f          File visited by current buffer when org-capture was called.
-    %F          Full path of the file or directory visited by current buffer.
-    %:keyword   Specific information for certain link types, see below.
-    %^g         Prompt for tags, with completion on tags in target file.
-    %^G         Prompt for tags, with completion all tags in all agenda files.
-    %^t         Like %t, but prompt for date.  Similarly %^T, %^u, %^U.
-                You may define a prompt like %^{Birthday}t.
-    %^C         Interactive selection of which kill or clip to use.
-    %^L         Like %^C, but insert as link.
-    %^{prop}p   Prompt the user for a value for property prop.
-    %^{prompt}  prompt the user for a string and replace this sequence with it.
-                You may specify a default value and a completion table with
-                %^{prompt|default|completion2|completion3...}.
-                The arrow keys access a prompt-specific history.
-    %\\n        Insert the text entered at the nth %^{prompt}, where n is
-                a number, starting from 1.
-    %?          After completing the template, position cursor here.
-#+END_EXAMPLE
-
-For specific link types, the following keywords will be
-defined[fn:FOOT91]:
-
-#+BEGIN_EXAMPLE
-    Link type                        |  Available keywords
-    ---------------------------------+----------------------------------------------
-    bbdb                             |  %:name %:company
-    irc                              |  %:server %:port %:nick
-    vm, vm-imap, wl, mh, mew, rmail  |  %:type %:subject %:message-id
-                                     |  %:from %:fromname %:fromaddress
-                                     |  %:to   %:toname   %:toaddress
-                                     |  %:date (message date header field)
-                                     |  %:date-timestamp (date as active timestamp)
-                                     |  %:date-timestamp-inactive (date as inactive timestamp)
-                                     |  %:fromto (either "to NAME" or "from NAME")(92)
-    gnus                             |  %:group, for messages also all email fields
-    w3, w3m                          |  %:url
-    info                             |  %:file %:node
-    calendar                         |  %:date
-#+END_EXAMPLE
-
-To place the cursor after template expansion use:
-
-#+BEGIN_EXAMPLE
-    %?          After completing the template, position cursor here.
-#+END_EXAMPLE
-
-*** 9.1.3.3 Templates in contexts
-
-To control whether a capture template should be accessible from a
-specific context, you can customize =org-capture-templates-contexts=.
-Let's say for example that you have a capture template ="p"= for storing
-Gnus emails containing patches. Then you would configure this option
-like this:
-
-#+BEGIN_EXAMPLE
-    (setq org-capture-templates-contexts
-          '(("p" (in-mode . "message-mode"))))
-#+END_EXAMPLE
-
-You can also tell that the command key ="p"= should refer to another
-template. In that case, add this command key like this:
-
-#+BEGIN_EXAMPLE
-    (setq org-capture-templates-contexts
-          '(("p" "q" (in-mode . "message-mode"))))
-#+END_EXAMPLE
-
-See the docstring of the variable for more information.
-
-** 9.2 Attachments
-
-It is often useful to associate reference material with an outline
-node/task. Small chunks of plain text can simply be stored in the
-subtree of a project. Hyperlinks (see [[@Hyperlinks][Hyperlinks]]) can
-establish associations with files that live elsewhere on your computer
-or in the cloud, like emails or source code files belonging to a
-project. Another method is /attachments/, which are files located in a
-directory belonging to an outline node. Org uses directories named by
-the unique ID of each entry. These directories are located in the data
-directory which lives in the same directory where your Org file
-lives[fn:FOOT93]. If you initialize this directory with
-=git init=, Org will automatically commit changes when it sees them. The
-attachment system has been contributed to Org by John Wiegley.
-
-In cases where it seems better to do so, you can also attach a directory
-of your choice to an entry. You can also make children inherit the
-attachment directory from a parent, so that an entire subtree uses the
-same attached directory.
-
-The following commands deal with attachments:
-
-C-c C-a (=org-attach=)
-
-The dispatcher for commands related to the attachment system. After
-these keys, a list of commands is displayed and you must press an
-additional key to select a command:
-
-a (=org-attach-attach=)
-
-Select a file and move it into the task's attachment directory. The file
-will be copied, moved, or linked, depending on =org-attach-method=. Note
-that hard links are not supported on all systems.
-
-c/m/l
-
-Attach a file using the copy/move/link method. Note that hard links are
-not supported on all systems.
-
-n (=org-attach-new=)
-
-Create a new attachment as an Emacs buffer.
-
-z (=org-attach-sync=)
-
-Synchronize the current task with its attachment directory, in case you
-added attachments yourself.
-
-o (=org-attach-open=)
-
-Open current task's attachment. If there is more than one, prompt for a
-file name first. Opening will follow the rules set by =org-file-apps=.
-For more details, see the information on following hyperlinks (see
-[[@Handling-links][Handling links]]).
-
-O (=org-attach-open-in-emacs=)
-
-Also open the attachment, but force opening the file in Emacs.
-
-f (=org-attach-reveal=)
-
-Open the current task's attachment directory.
-
-F (=org-attach-reveal-in-emacs=)
-
-Also open the directory, but force using =dired= in Emacs.
-
-d (=org-attach-delete-one=)
-
-Select and delete a single attachment.
-
-D (=org-attach-delete-all=)
-
-Delete all of a task's attachments. A safer way is to open the directory
-in =dired= and delete from there.
-
-s (=org-attach-set-directory=)
-
-Set a specific directory as the entry's attachment directory. This works
-by putting the directory path into the =ATTACH_DIR= property.
-
-i (=org-attach-set-inherit=)
-
-Set the =ATTACH_DIR_INHERIT= property, so that children will use the
-same directory for attachments as the parent does.
-
-** 9.3 RSS feeds
-
-Org can add and change entries based on information found in RSS feeds
-and Atom feeds. You could use this to make a task out of each new
-podcast in a podcast feed. Or you could use a phone-based note-creating
-service on the web to import tasks into Org. To access feeds, configure
-the variable =org-feed-alist=. The docstring of this variable has
-detailed information. Here is just an example:
-
-#+BEGIN_EXAMPLE
-    (setq org-feed-alist
-         '(("Slashdot"
-             "http://rss.slashdot.org/Slashdot/slashdot"
-             "~/txt/org/feeds.org" "Slashdot Entries")))
-#+END_EXAMPLE
-
-will configure that new items from the feed provided by
-=rss.slashdot.org= will result in new entries in the file
-~/org/feeds.org under the heading ‘Slashdot Entries', whenever the
-following command is used:
-
-C-c C-x g (=org-feed-update-all=)
-
-C-c C-x g
-
-Collect items from the feeds configured in =org-feed-alist= and act upon
-them.
-
-C-c C-x G (=org-feed-goto-inbox=)
-
-Prompt for a feed name and go to the inbox configured for this feed.
-
-Under the same headline, Org will create a drawer ‘FEEDSTATUS' in which
-it will store information about the status of items in the feed, to
-avoid adding the same item several times.
-
-For more information, including how to read atom feeds, see org-feed.el
-and the docstring of =org-feed-alist=.
-
-** 9.4 Protocols for external access
-
-You can set up Org for handling protocol calls from outside applications
-that are passed to Emacs through the emacsserver. For example, you can
-configure bookmarks in your web browser to send a link to the current
-page to Org and create a note from it using capture (see
-[[@Capture][Capture]]). Or you could create a bookmark that will tell
-Emacs to open the local source file of a remote website you are looking
-at with the browser. See
-[[http://orgmode.org/worg/org-contrib/org-protocol.php]] for detailed
-documentation and setup instructions.
+       Once you have finished entering information into the capture
+       buffer, */C-c C-c/* will return you to the window configuration
+       before the capture process, so that you can resume your work
+       without further distraction.  When called with a prefix arg,
+       finalize and then jump to the captured item.
+
+     - */C-c C-w/* (=org-capture-refile=)
+
+       Finalize the capture process by refiling (see [[@Refile-and-copy][Refile and copy]])
+       the note to a different place. Please realize that this is a
+       normal refiling command that will be executed -- so the cursor
+       position at the moment you run this command is important. If
+       you have inserted a tree with a parent and children, first move
+       the cursor back to the parent. Any prefix argument given to
+       this command will be passed on to the =org-refile= command.
+
+     - */C-c C-k/* (=org-capture-kill=)
+
+       Abort the capture process and return to the previous state.
+
+    You can also call =org-capture= in a special way from the agenda,
+    using the k c key combination. With this access, any timestamps
+    inserted by the selected capture template will default to the
+    cursor date in the agenda, rather than to the current date.
+
+    To find the locations of the last stored capture, use
+    =org-capture= with prefix commands:
+
+     - */C-u C-c c/*
+
+       Visit the target location of a capture template. You get to
+       select the template in the usual way.
+
+     - */C-u C-u C-c c/*
+
+       Visit the last stored capture item in its buffer.
+
+    You can also jump to the bookmark =org-capture-last-stored=, which
+    will automatically be created unless you set
+    =org-capture-bookmark= to =nil=.
+
+    To insert the capture at point in an Org buffer, call
+    =org-capture= with a =C-0= prefix argument.
+
+*** 9.1.3 Capture templates                                           <<@Capture-templates>>
+
+    You can use templates for different types of capture items, and
+    for different target locations. The easiest way to create such
+    templates is through the customize interface.
+
+     - */C-c c C/*
+
+       Customize the variable =org-capture-templates=.
+
+    Before we give the formal description of template definitions,
+    let's look at an example. Say you would like to use one template
+    to create general TODO entries, and you want to put these entries
+    under the heading ‘Tasks' in your file ~/org/gtd.org. Also, a date
+    tree in the file journal.org should capture journal entries. A
+    possible configuration would look like:
+
+    #+BEGIN_EXAMPLE
+      (setq org-capture-templates
+       '(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tasks")
+              "* TODO %?\n  %i\n  %a")
+         ("j" "Journal" entry (file+datetree "~/org/journal.org")
+              "* %?\nEntered on %U\n  %i\n  %a")))
+    #+END_EXAMPLE
+
+    If you then press */C-c c t/*, Org will prepare the template for
+    you like this:
+
+    #+BEGIN_EXAMPLE
+      * TODO
+        [[file:link to where you initiated capture]]
+    #+END_EXAMPLE
+
+    During expansion of the template, =%a= has been replaced by a link
+    to the location from where you called the capture command. This
+    can be extremely useful for deriving tasks from emails, for
+    example. You fill in the task definition, press */C-c C-c/* and
+    Org returns you to the same place where you started the capture
+    process.
+
+    To define special keys to capture to a particular template without
+    going through the interactive template selection, you can create
+    your key binding like this:
+
+    #+BEGIN_SRC lisp
+      (define-key global-map "\C-cx"
+         (lambda () (interactive) (org-capture nil "x")))
+    #+END_SRC
+
+    | • [[@Template-elements][Template elements]]:     | What is needed for a complete template entry  |
+    | • [[@Template-expansion][Template expansion]]:    | Filling in information about time and context |
+    | • [[@Templates-in-contexts][Templates in contexts]]: | Only show a template in a specific context    |
+
+**** 9.1.3.1 Template elements                                        <<@Template-elements>>
+
+     Now lets look at the elements of a template definition. Each
+     entry in =org-capture-templates= is a list with the following
+     items:
+
+      - keys
+
+        The keys that will select the template, as a string,
+        characters only, for example "a" for a template to be selected
+        with a single key, or "bt" for selection with two keys. When
+        using several keys, keys using the same prefix key must be
+        sequential in the list and preceded by a 2-element entry
+        explaining the prefix key, for example
+
+        #+BEGIN_EXAMPLE
+          ("b" "Templates for marking stuff to buy")
+        #+END_EXAMPLE
+
+        If you do not define a template for the */C/* key, this key
+        will be used to open the customize buffer for this complex
+        variable.
+
+      - description
+
+        A short string describing the template, which will be shown
+        during selection.
+
+      - type
+
+        The type of entry, a symbol. Valid values are:
+
+         - =entry=
+
+           An Org mode node, with a headline. Will be filed as the
+           child of the target entry or as a top-level entry. The
+           target file should be an Org mode file.
+
+         - =item=
+
+           A plain list item, placed in the first plain list at the
+           target location. Again the target file should be an Org
+           file.
+
+         - =checkitem=
+
+           A checkbox item. This only differs from the plain list item
+           by the default template.
+
+         - =table-line=
+
+           a new line in the first table at the target location. Where
+           exactly the line will be inserted depends on the properties
+           =:prepend= and =:table-line-pos= (see below).
+
+         - =plain=
+
+           Text to be inserted as it is.
+
+      - target
+
+        Specification of where the captured item should be placed.  In
+        Org mode files, targets usually define a node. Entries will
+        become children of this node. Other types will be added to the
+        table or list in the body of this node. Most target
+        specifications contain a file name. If that file name is the
+        empty string, it defaults to =org-default-notes-file=. A file
+        can also be given as a variable, function, or Emacs Lisp form.
+
+        Valid values are:
+
+         - =(file "path/to/file")=
+
+           Text will be placed at the beginning or end of that file.
+
+         - =(id "id of existing org entry")=
+
+           Filing as child of this entry, or in the body of the entry.
+
+         - =(file+headline "path/to/file" "node headline")=
+
+           Fast configuration if the target heading is unique in the
+           file.
+
+         - =(file+olp "path/to/file" "Level 1 heading" "Level 2" ...)=
+
+           For non-unique headings, the full path is safer.
+
+         - =(file+regexp  "path/to/file" "regexp to find location")=
+
+           Use a regular expression to position the cursor.
+
+         - =(file+datetree "path/to/file")=
+
+           Will create a heading in a date tree for today's
+           date[fn:FOOT89].
+
+         - =(file+datetree+prompt "path/to/file")=
+
+           Will create a heading in a date tree, but will prompt for
+           the date.
+
+         - =(file+function "path/to/file" function-finding-location)=
+
+           A function to find the right location in the file.
+
+         - =(clock)=
+
+           File to the entry that is currently being clocked.
+
+         - =(function function-finding-location)=
+
+           Most general way, write your own function to find both file
+           and location.
+
+      - template
+
+        The template for creating the capture item. If you leave this
+        empty, an appropriate default template will be used. Otherwise
+        this is a string with escape codes, which will be replaced
+        depending on time and context of the capture call. The string
+        with escapes may be loaded from a template file, using the
+        special syntax =(file "path/to/template")=. See below for more
+        details.
+
+      - properties
+
+        The rest of the entry is a property list of additional
+        options. Recognized properties are:
+
+         - =:prepend=
+
+           Normally new captured information will be appended at the
+           target location (last child, last table line, last list
+           item...). Setting this property will change that.
+
+         - =:immediate-finish=
+
+           When set, do not offer to edit the information, just file
+           it away immediately. This makes sense if the template only
+           needs information that can be added automatically.
+
+         - =:empty-lines=
+
+           Set this to the number of lines to insert before and after
+           the new item. Default 0, only common other value is 1.
+
+         - =:clock-in=
+
+           Start the clock in this item.
+
+         - =:clock-keep=
+
+           Keep the clock running when filing the captured entry.
+
+         - =:clock-resume=
+
+           If starting the capture interrupted a clock, restart that
+           clock when finished with the capture. Note that
+           =:clock-keep= has precedence over =:clock-resume=. When
+           setting both to =t=, the current clock will run and the
+           previous one will not be resumed.
+
+         - =:unnarrowed=
+
+           Do not narrow the target buffer, simply show the full
+           buffer. Default is to narrow it so that you only see the
+           new material.
+
+         - =:table-line-pos=
+
+           Specification of the location in the table where the new
+           line should be inserted. It can be a string, a variable
+           holding a string or a function returning a string. The
+           string should look like "II-3" meaning that the new line
+           should become the third line before the second horizontal
+           separator line.
+
+         - =:kill-buffer=
+
+           If the target file was not yet visited when capture was
+           invoked, kill the buffer again after capture is completed.
+
+**** 9.1.3.2 Template expansion                                       <<@Template-expansion>>
+
+     In the template itself, special %-escapes[fn:FOOT90] allow
+     dynamic insertion of content. The templates are expanded in the
+     order given here:
+
+     #+BEGIN_EXAMPLE
+       %[file]     Insert the contents of the file given by file.
+       %(sexp)     Evaluate Elisp sexp and replace with the result.
+                         For convenience, %:keyword (see below) placeholders
+                         within the expression will be expanded prior to this.
+                         The sexp must return a string.
+       %<...>      The result of format-time-string on the ... format specification.
+       %t          Timestamp, date only.
+       %T          Timestamp, with date and time.
+       %u, %U      Like the above, but inactive timestamps.
+       %i          Initial content, the region when capture is called while the
+                   region is active.
+                   The entire text will be indented like %i itself.
+       %a          Annotation, normally the link created with org-store-link.
+       %A          Like %a, but prompt for the description part.
+       %l          Like %a, but only insert the literal link.
+       %c          Current kill ring head.
+       %x          Content of the X clipboard.
+       %k          Title of the currently clocked task.
+       %K          Link to the currently clocked task.
+       %n          User name (taken from user-full-name).
+       %f          File visited by current buffer when org-capture was called.
+       %F          Full path of the file or directory visited by current buffer.
+       %:keyword   Specific information for certain link types, see below.
+       %^g         Prompt for tags, with completion on tags in target file.
+       %^G         Prompt for tags, with completion all tags in all agenda files.
+       %^t         Like %t, but prompt for date.  Similarly %^T, %^u, %^U.
+                   You may define a prompt like %^{Birthday}t.
+       %^C         Interactive selection of which kill or clip to use.
+       %^L         Like %^C, but insert as link.
+       %^{prop}p   Prompt the user for a value for property prop.
+       %^{prompt}  prompt the user for a string and replace this sequence with it.
+                   You may specify a default value and a completion table with
+                   %^{prompt|default|completion2|completion3...}.
+                   The arrow keys access a prompt-specific history.
+       %\\n        Insert the text entered at the nth %^{prompt}, where n is
+                   a number, starting from 1.
+       %?          After completing the template, position cursor here.
+     #+END_EXAMPLE
+
+     For specific link types, the following keywords will be
+     defined[fn:FOOT91]:
+
+     | Link type                       | Available keywords                                     |
+     |---------------------------------+--------------------------------------------------------|
+     | bbdb                            | %:name   %:company                                     |
+     |---------------------------------+--------------------------------------------------------|
+     | irc                             | %:server %:port     %:nick                             |
+     |---------------------------------+--------------------------------------------------------|
+     | vm, vm-imap, wl, mh, mew, rmail | %:type   %:subject  %:message-id                       |
+     |                                 | %:from   %:fromname %:fromaddress                      |
+     |                                 | %:to     %:toname   %:toaddress                        |
+     |                                 | %:date (message date header field)                     |
+     |                                 | %:date-timestamp (date as active timestamp)            |
+     |                                 | %:date-timestamp-inactive (date as inactive timestamp) |
+     |                                 | %:fromto (either "to NAME" or "from NAME")[fn:FOOT92]  |
+     |---------------------------------+--------------------------------------------------------|
+     | gnus                            | %:group, for messages also all email fields            |
+     |---------------------------------+--------------------------------------------------------|
+     | w3, w3m                         | %:url                                                  |
+     |---------------------------------+--------------------------------------------------------|
+     | info                            | %:file %:node                                          |
+     |---------------------------------+--------------------------------------------------------|
+     | calendar                        | %:date                                                 |
+     |---------------------------------+--------------------------------------------------------|
+
+     To place the cursor after template expansion use:
+
+     #+BEGIN_EXAMPLE
+       %?          After completing the template, position cursor here.
+     #+END_EXAMPLE
+
+**** 9.1.3.3 Templates in contexts                                    <<@Templates-in-contexts>>
+
+     To control whether a capture template should be accessible from a
+     specific context, you can customize
+     =org-capture-templates-contexts=.  Let's say for example that you
+     have a capture template ="p"= for storing Gnus emails containing
+     patches. Then you would configure this option like this:
+
+     #+BEGIN_EXAMPLE
+       (setq org-capture-templates-contexts
+             '(("p" (in-mode . "message-mode"))))
+     #+END_EXAMPLE
+
+     You can also tell that the command key ="p"= should refer to
+     another template. In that case, add this command key like this:
+
+     #+BEGIN_EXAMPLE
+       (setq org-capture-templates-contexts
+             '(("p" "q" (in-mode . "message-mode"))))
+     #+END_EXAMPLE
+
+     See the docstring of the variable for more information.
+
+** 9.2 Attachments                                                    <<@Attachments>>
+
+   It is often useful to associate reference material with an outline
+   node/task. Small chunks of plain text can simply be stored in the
+   subtree of a project. Hyperlinks (see [[@Hyperlinks][Hyperlinks]]) can establish
+   associations with files that live elsewhere on your computer or in
+   the cloud, like emails or source code files belonging to a
+   project. Another method is /attachments/, which are files located
+   in a directory belonging to an outline node. Org uses directories
+   named by the unique ID of each entry. These directories are located
+   in the data directory which lives in the same directory where your
+   Org file lives[fn:FOOT93]. If you initialize this directory with
+   =git init=, Org will automatically commit changes when it sees
+   them. The attachment system has been contributed to Org by John
+   Wiegley.
+
+   In cases where it seems better to do so, you can also attach a
+   directory of your choice to an entry. You can also make children
+   inherit the attachment directory from a parent, so that an entire
+   subtree uses the same attached directory.
+
+   The following commands deal with attachments:
+
+   - */C-c C-a/* (=org-attach=)
+
+     The dispatcher for commands related to the attachment
+     system. After these keys, a list of commands is displayed and you
+     must press an additional key to select a command:
+
+      - a (=org-attach-attach=)
+
+        Select a file and move it into the task's attachment
+        directory. The file will be copied, moved, or linked,
+        depending on =org-attach-method=. Note that hard links are not
+        supported on all systems.
+
+      - c/m/l
+
+        Attach a file using the copy/move/link method. Note that hard
+        links are not supported on all systems.
+
+      - n (=org-attach-new=)
+
+        Create a new attachment as an Emacs buffer.
+
+      - z (=org-attach-sync=)
+
+        Synchronize the current task with its attachment directory, in
+        case you added attachments yourself.
+
+      - o (=org-attach-open=)
+
+        Open current task's attachment. If there is more than one,
+        prompt for a file name first. Opening will follow the rules
+        set by =org-file-apps=.  For more details, see the information
+        on following hyperlinks (see [[@Handling-links][Handling links]]).
+
+      - O (=org-attach-open-in-emacs=)
+
+        Also open the attachment, but force opening the file in Emacs.
+
+      - f (=org-attach-reveal=)
+
+        Open the current task's attachment directory.
+
+      - F (=org-attach-reveal-in-emacs=)
+
+        Also open the directory, but force using =dired= in Emacs.
+
+      - d (=org-attach-delete-one=)
+
+        Select and delete a single attachment.
+
+      - D (=org-attach-delete-all=)
+
+        Delete all of a task's attachments. A safer way is to open the
+        directory in =dired= and delete from there.
+
+      - s (=org-attach-set-directory=)
+
+        Set a specific directory as the entry's attachment
+        directory. This works by putting the directory path into the
+        =ATTACH_DIR= property.
+
+      - i (=org-attach-set-inherit=)
+
+        Set the =ATTACH_DIR_INHERIT= property, so that children will
+        use the same directory for attachments as the parent does.
+
+** 9.3 RSS feeds                                                      <<@RSS-feeds>>
+
+   Org can add and change entries based on information found in RSS
+   feeds and Atom feeds. You could use this to make a task out of each
+   new podcast in a podcast feed. Or you could use a phone-based
+   note-creating service on the web to import tasks into Org. To
+   access feeds, configure the variable =org-feed-alist=. The
+   docstring of this variable has detailed information. Here is just
+   an example:
+
+   #+BEGIN_EXAMPLE
+     (setq org-feed-alist
+          '(("Slashdot"
+              "http://rss.slashdot.org/Slashdot/slashdot"
+              "~/txt/org/feeds.org" "Slashdot Entries")))
+   #+END_EXAMPLE
+
+   will configure that new items from the feed provided by
+   =rss.slashdot.org= will result in new entries in the file
+   ~/org/feeds.org under the heading ‘Slashdot Entries', whenever the
+   following command is used:
+
+    - */C-c C-x g/* (=org-feed-update-all=)
+    - */C-c C-x g/*
+
+      Collect items from the feeds configured in =org-feed-alist= and
+      act upon them.
+
+    - */C-c C-x G/* (=org-feed-goto-inbox=)
+
+      Prompt for a feed name and go to the inbox configured for this
+      feed.
+
+   Under the same headline, Org will create a drawer ‘FEEDSTATUS' in
+   which it will store information about the status of items in the
+   feed, to avoid adding the same item several times.
+
+   For more information, including how to read atom feeds, see
+   org-feed.el and the docstring of =org-feed-alist=.
+
+** 9.4 Protocols for external access                                  <<@Protocols>>
+
+   You can set up Org for handling protocol calls from outside
+   applications that are passed to Emacs through the emacsserver. For
+   example, you can configure bookmarks in your web browser to send a
+   link to the current page to Org and create a note from it using
+   capture (see [[@Capture][Capture]]). Or you could create a bookmark that will
+   tell Emacs to open the local source file of a remote website you
+   are looking at with the browser. See
+   [[http://orgmode.org/worg/org-contrib/org-protocol.php]] for detailed
+   documentation and setup instructions.
 
 ** 9.5 Refile and copy                                                <<@Refile-and-copy>>
 
-When reviewing the captured data, you may want to refile or to copy some
-of the entries into a different list, for example into a project.
-Cutting, finding the right location, and then pasting the note is
-cumbersome. To simplify this process, you can use the following special
-command:
+   When reviewing the captured data, you may want to refile or to copy
+   some of the entries into a different list, for example into a
+   project.  Cutting, finding the right location, and then pasting the
+   note is cumbersome. To simplify this process, you can use the
+   following special command:
 
-C-c M-w (=org-copy=)
+    - */C-c M-w/* (=org-copy=)
 
-Copying works like refiling, except that the original note is not
-deleted.
+      Copying works like refiling, except that the original note is
+      not deleted.
 
-C-c C-w (=org-refile=)
+    - */C-c C-w/* (=org-refile=)
 
-Refile the entry or region at point. This command offers possible
-locations for refiling the entry and lets you select one with
-completion. The item (or all items in the region) is filed below the
-target heading as a subitem. Depending on =org-reverse-note-order=, it
-will be either the first or last subitem.\\
- By default, all level 1 headlines in the current buffer are considered
-to be targets, but you can have more complex definitions across a number
-of files. See the variable =org-refile-targets= for details. If you
-would like to select a location via a file-path-like completion along
-the outline path, see the variables =org-refile-use-outline-path= and
-=org-outline-path-complete-in-steps=. If you would like to be able to
-create new nodes as new parents for refiling on the fly, check the
-variable =org-refile-allow-creating-parent-nodes=. When the variable
-=org-log-refile=[fn:FOOT94] is set, a timestamp or a note will be
-recorded when an entry has been refiled.
+      Refile the entry or region at point. This command offers
+      possible locations for refiling the entry and lets you select
+      one with completion. The item (or all items in the region) is
+      filed below the target heading as a subitem. Depending on
+      =org-reverse-note-order=, it will be either the first or last
+      subitem.
 
-C-u C-c C-w
+      By default, all level 1 headlines in the current buffer are
+      considered to be targets, but you can have more complex
+      definitions across a number of files. See the variable
+      =org-refile-targets= for details. If you would like to select a
+      location via a file-path-like completion along the outline path,
+      see the variables =org-refile-use-outline-path= and
+      =org-outline-path-complete-in-steps=. If you would like to be
+      able to create new nodes as new parents for refiling on the fly,
+      check the variable
+      =org-refile-allow-creating-parent-nodes=. When the variable
+      =org-log-refile= [fn:FOOT94] is set, a timestamp or a note will
+      be recorded when an entry has been refiled.
 
-Use the refile interface to jump to a heading.
+    - */C-u C-c C-w/*
 
-C-u C-u C-c C-w (=org-refile-goto-last-stored=)
+      Use the refile interface to jump to a heading.
 
-Jump to the location where =org-refile= last moved a tree to.
+    - */C-u C-u C-c C-w/* (=org-refile-goto-last-stored=)
 
-C-2 C-c C-w
+      Jump to the location where =org-refile= last moved a tree to.
 
-Refile as the child of the item currently being clocked.
+    - */C-2 C-c C-w/*
 
-C-3 C-c C-w
+      Refile as the child of the item currently being clocked.
 
-Refile and keep the entry in place. Also see =org-refile-keep= to make
-this the default behavior, and beware that this may result in duplicated
-=ID= properties.
+    - */C-3 C-c C-w/*
 
-C-0 C-c C-w or C-u C-u C-u C-c C-w (=org-refile-cache-clear=)
+      Refile and keep the entry in place. Also see =org-refile-keep=
+      to make this the default behavior, and beware that this may
+      result in duplicated =ID= properties.
 
-Clear the target cache. Caching of refile targets can be turned on by
-setting =org-refile-use-cache=. To make the command see new possible
-targets, you have to clear the cache with this command.
+    - */C-0 C-c C-w/* or */C-u C-u C-u C-c C-w/* (=org-refile-cache-clear=)
 
-** 9.6 Archiving
+      Clear the target cache. Caching of refile targets can be turned
+      on by setting =org-refile-use-cache=. To make the command see
+      new possible targets, you have to clear the cache with this
+      command.
 
-When a project represented by a (sub)tree is finished, you may want to
-move the tree out of the way and to stop it from contributing to the
-agenda. Archiving is important to keep your working files compact and
-global searches like the construction of agenda views fast.
+** 9.6 Archiving                                                      <<@Archiving>>
 
-C-c C-x C-a (=org-archive-subtree-default=)
+   When a project represented by a (sub)tree is finished, you may want
+   to move the tree out of the way and to stop it from contributing to
+   the agenda. Archiving is important to keep your working files
+   compact and global searches like the construction of agenda views
+   fast.
 
-Archive the current entry using the command specified in the variable
-=org-archive-default-command=.
+    - */C-c C-x C-a/* (=org-archive-subtree-default=)
+
+      Archive the current entry using the command specified in the
+      variable =org-archive-default-command=.
+
+   | • [[@Moving-subtrees][Moving subtrees]]:    | Moving a tree to an archive file          |
+   | • [[@Internal-archiving][Internal archiving]]: | Switch off a tree but keep it in the file |
 
 *** 9.6.1 Moving a tree to the archive file                           <<@Moving-subtrees>>
 
-The most common archiving action is to move a project tree to another
-file, the archive file.
+    The most common archiving action is to move a project tree to
+    another file, the archive file.
 
-C-c C-x C-s or short C-c $ (=org-archive-subtree=)
+     - */C-c C-x C-s/* or short */C-c $/* (=org-archive-subtree=)
 
-Archive the subtree starting at the cursor position to the location
-given by =org-archive-location=.
+       Archive the subtree starting at the cursor position to the
+       location given by =org-archive-location=.
 
-C-u C-c C-x C-s
+     - */C-u C-c C-x C-s/*
 
-Check if any direct children of the current headline could be moved to
-the archive. To do this, each subtree is checked for open TODO entries.
-If none are found, the command offers to move it to the archive
-location. If the cursor is /not/ on a headline when this command is
-invoked, the level 1 trees will be checked.
+       Check if any direct children of the current headline could be
+       moved to the archive. To do this, each subtree is checked for
+       open TODO entries.  If none are found, the command offers to
+       move it to the archive location. If the cursor is /not/ on a
+       headline when this command is invoked, the level 1 trees will
+       be checked.
 
-C-u C-u C-c C-x C-s
+     - */C-u C-u C-c C-x C-s/*
 
-As above, but check subtree for timestamps instead of TODO entries. The
-command will offer to archive the subtree if it /does/ contain a
-timestamp, and that timestamp is in the past.
+       As above, but check subtree for timestamps instead of TODO
+       entries. The command will offer to archive the subtree if it
+       /does/ contain a timestamp, and that timestamp is in the past.
 
-The default archive location is a file in the same directory as the
-current file, with the name derived by appending \_archive to the
-current file name. You can also choose what heading to file archived
-items under, with the possibility to add them to a datetree in a file.
-For information and examples on how to specify the file and the heading,
-see the documentation string of the variable =org-archive-location=.
+    The default archive location is a file in the same directory as
+    the current file, with the name derived by appending =_archive= to
+    the current file name. You can also choose what heading to file
+    archived items under, with the possibility to add them to a
+    datetree in a file.  For information and examples on how to
+    specify the file and the heading, see the documentation string of
+    the variable =org-archive-location=.
 
-There is also an in-buffer option for setting this variable, for
-example:
+    There is also an in-buffer option for setting this variable, for
+    example:
 
-#+BEGIN_EXAMPLE
-    #+ARCHIVE: %s_done::
-#+END_EXAMPLE
+    #+BEGIN_EXAMPLE
+      #+ARCHIVE: %s_done::
+    #+END_EXAMPLE
 
-If you would like to have a special ARCHIVE location for a single entry
-or a (sub)tree, give the entry an =:ARCHIVE:= property with the location
-as the value (see [[@Properties-and-columns][Properties and columns]]).
+    If you would like to have a special ARCHIVE location for a single
+    entry or a (sub)tree, give the entry an =:ARCHIVE:= property with
+    the location as the value (see [[@Properties-and-columns][Properties and columns]]).
 
-When a subtree is moved, it receives a number of special properties that
-record context information like the file from where the entry came, its
-outline path the archiving time etc. Configure the variable
-=org-archive-save-context-info= to adjust the amount of information
-added.
+    When a subtree is moved, it receives a number of special
+    properties that record context information like the file from
+    where the entry came, its outline path the archiving time
+    etc. Configure the variable =org-archive-save-context-info= to
+    adjust the amount of information added.
 
-*** 9.6.2 Internal archiving
+*** 9.6.2 Internal archiving                                          <<@Internal-archiving>>
 
-If you want to just switch off (for agenda views) certain subtrees
-without moving them to a different file, you can use the =ARCHIVE tag=.
+    If you want to just switch off (for agenda views) certain subtrees
+    without moving them to a different file, you can use the =ARCHIVE
+    tag=.
 
-A headline that is marked with the ARCHIVE tag (see [[@Tags][Tags]])
-stays at its location in the outline tree, but behaves in the following
-way:
+    A headline that is marked with the ARCHIVE tag (see [[@Tags][Tags]]) stays at
+    its location in the outline tree, but behaves in the following
+    way:
 
--  - It does not open when you attempt to do so with a visibility
-   cycling command (see [[@Visibility-cycling][Visibility cycling]]).
-   You can force cycling archived subtrees with C-TAB, or by setting the
-   option =org-cycle-open-archived-trees=. Also normal outline commands
-   like =show-all= will open archived subtrees.
--  - During sparse tree construction (see [[@Sparse-trees][Sparse
-   trees]]), matches in archived subtrees are not exposed, unless you
-   configure the option =org-sparse-tree-open-archived-trees=.
--  - During agenda view construction (see [[@Agenda-views][Agenda
-   views]]), the content of archived trees is ignored unless you
-   configure the option =org-agenda-skip-archived-trees=, in which case
-   these trees will always be included. In the agenda you can press v a
-   to get archives temporarily included.
--  - Archived trees are not exported (see [[@Exporting][Exporting]]),
-   only the headline is. Configure the details using the variable
-   =org-export-with-archived-trees=.
--  - Archived trees are excluded from column view unless the variable
-   =org-columns-skip-archived-trees= is configured to =nil=.
+     - It does not open when you attempt to do so with a visibility
+       cycling command (see [[@Visibility-cycling][Visibility cycling]]).  You can force
+       cycling archived subtrees with C-TAB, or by setting the option
+       =org-cycle-open-archived-trees=. Also normal outline commands
+       like =show-all= will open archived subtrees.
 
-The following commands help manage the ARCHIVE tag:
+     - During sparse tree construction (see [[@Sparse-trees][Sparse trees]]), matches in
+       archived subtrees are not exposed, unless you configure the
+       option =org-sparse-tree-open-archived-trees=.
 
-C-c C-x a (=org-toggle-archive-tag=)
+     - During agenda view construction (see [[@Agenda-views][Agenda views]]), the content
+       of archived trees is ignored unless you configure the option
+       =org-agenda-skip-archived-trees=, in which case these trees
+       will always be included. In the agenda you can press v a to get
+       archives temporarily included.
 
-Toggle the ARCHIVE tag for the current headline. When the tag is set,
-the headline changes to a shadowed face, and the subtree below it is
-hidden.
+     - Archived trees are not exported (see [[@Exporting][Exporting]]), only the
+       headline is. Configure the details using the variable
+       =org-export-with-archived-trees=.
 
-C-u C-c C-x a
+     - Archived trees are excluded from column view unless the
+       variable =org-columns-skip-archived-trees= is configured to
+       =nil=.
 
-Check if any direct children of the current headline should be archived.
-To do this, each subtree is checked for open TODO entries. If none are
-found, the command offers to set the ARCHIVE tag for the child. If the
-cursor is /not/ on a headline when this command is invoked, the level 1
-trees will be checked.
+    The following commands help manage the ARCHIVE tag:
 
-C-TAB (=org-force-cycle-archived=)
+     - */C-c C-x a/* (=org-toggle-archive-tag=)
 
-Cycle a tree even if it is tagged with ARCHIVE.
+       Toggle the ARCHIVE tag for the current headline. When the tag
+       is set, the headline changes to a shadowed face, and the
+       subtree below it is hidden.
 
-C-c C-x A (=org-archive-to-archive-sibling=)
+     - */C-u C-c C-x a/*
 
-Move the current entry to the /Archive Sibling/. This is a sibling of
-the entry with the heading ‘Archive' and the tag ‘ARCHIVE'. The entry
-becomes a child of that sibling and in this way retains a lot of its
-original context, including inherited tags and approximate position in
-the outline.
+       Check if any direct children of the current headline should be
+       archived.  To do this, each subtree is checked for open TODO
+       entries. If none are found, the command offers to set the
+       ARCHIVE tag for the child. If the cursor is /not/ on a headline
+       when this command is invoked, the level 1 trees will be
+       checked.
+
+     - */C-TAB/* (=org-force-cycle-archived=)
+
+       Cycle a tree even if it is tagged with ARCHIVE.
+
+     - */C-c C-x A/* (=org-archive-to-archive-sibling=)
+
+       Move the current entry to the /Archive Sibling/. This is a
+       sibling of the entry with the heading ‘Archive' and the tag
+       ‘ARCHIVE'. The entry becomes a child of that sibling and in
+       this way retains a lot of its original context, including
+       inherited tags and approximate position in the outline.
 
 * 10 Agenda views                                                     <<@Agenda-views>>
 
@@ -16939,17 +17042,18 @@ If you need one of these sequences literally, escape the % with a
 backslash.
 
 [fn:FOOT91]
-If you define your own link types (see [[@Adding-hyperlink-types][Adding
-hyperlink types]]), any property you store with =org-store-link-props=
-can be accessed in capture templates in a similar way.
+If you define your own link types (see [[@Adding-hyperlink-types][Adding hyperlink types]]), any
+property you store with =org-store-link-props= can be accessed in
+capture templates in a similar way.
 
 [fn:FOOT92]
 This will always be the other, not the user. See the variable
 =org-from-is-user-regexp=.
 
 [fn:FOOT93]
-If you move entries or Org files from one directory to another, you may
-want to configure =org-attach-directory= to contain an absolute path.
+If you move entries or Org files from one directory to another, you
+may want to configure =org-attach-directory= to contain an absolute
+path.
 
 [fn:FOOT94]
 with corresponding =#+STARTUP= keywords =logrefile=, =lognoterefile=,
