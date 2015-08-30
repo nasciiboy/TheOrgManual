@@ -352,7 +352,7 @@ modify this GNU manual.”
     prefer, you can compile the manual without the command names by
     unsetting the flag =cmdnames= in org.texi.
 
-* 2 Document structure                                                <<@Document structure>>
+* 2 Document structure                                                <<@Document_structure>>
 
   Org is based on Outline mode and provides flexible commands to edit
   the structure of the document.
@@ -6713,637 +6713,726 @@ modify this GNU manual.”
 
 * 10 Agenda views                                                     <<@Agenda-views>>
 
-Due to the way Org works, TODO items, time-stamped items, and tagged
-headlines can be scattered throughout a file or even a number of files.
-To get an overview of open action items, or of events that are important
-for a particular date, this information must be collected, sorted and
-displayed in an organized way.
+  Due to the way Org works, TODO items, time-stamped items, and tagged
+  headlines can be scattered throughout a file or even a number of
+  files.  To get an overview of open action items, or of events that
+  are important for a particular date, this information must be
+  collected, sorted and displayed in an organized way.
 
-Org can select items based on various criteria and display them in a
-separate buffer. Seven different view types are provided:
+  Org can select items based on various criteria and display them in a
+  separate buffer. Seven different view types are provided:
 
--  an /agenda/ that is like a calendar and shows information for
-   specific dates,
--  a /TODO list/ that covers all unfinished action items,
--  a /match view/, showings headlines based on the tags, properties, and
-   TODO state associated with them,
--  a /timeline view/ that shows all events in a single Org file, in
-   time-sorted view,
--  a /text search view/ that shows all entries from multiple files that
-   contain specified keywords,
--  a /stuck projects view/ showing projects that currently don't move
-   along, and
--  /custom views/ that are special searches and combinations of
-   different views.
+   - an /agenda/ that is like a calendar and shows information for
+     specific dates,
 
-The extracted information is displayed in a special /agenda buffer/.
-This buffer is read-only, but provides commands to visit the
-corresponding locations in the original Org files, and even to edit
-these files remotely.
+   - a /TODO list/ that covers all unfinished action items,
 
-Two variables control how the agenda buffer is displayed and whether the
-window configuration is restored when the agenda exits:
-=org-agenda-window-setup= and =org-agenda-restore-windows-after-quit=.
+   - a /match view/, showings headlines based on the tags, properties,
+     and TODO state associated with them,
 
-** 10.1 Agenda files
+   - a /timeline view/ that shows all events in a single Org file, in
+     time-sorted view,
 
-The information to be shown is normally collected from all /agenda
-files/, the files listed in the variable
-=org-agenda-files=[fn:FOOT95]. If a directory is part of this
-list, all files with the extension .org in this directory will be part
-of the list.
+   - a /text search view/ that shows all entries from multiple files
+     that contain specified keywords,
 
-Thus, even if you only work with a single Org file, that file should be
-put into the list[fn:FOOT96]. You can customize
-=org-agenda-files=, but the easiest way to maintain it is through the
-following commands
+   - a /stuck projects view/ showing projects that currently don't
+     move along, and
 
-C-c [ (=org-agenda-file-to-front=)
+   - /custom views/ that are special searches and combinations of
+     different views.
 
-Add current file to the list of agenda files. The file is added to the
-front of the list. If it was already in the list, it is moved to the
-front. With a prefix argument, file is added/moved to the end.
+  The extracted information is displayed in a special /agenda buffer/.
+  This buffer is read-only, but provides commands to visit the
+  corresponding locations in the original Org files, and even to edit
+  these files remotely.
 
-C-c ] (=org-remove-file=)
+  Two variables control how the agenda buffer is displayed and whether
+  the window configuration is restored when the agenda exits:
+  =org-agenda-window-setup= and
+  =org-agenda-restore-windows-after-quit=.
 
-Remove current file from the list of agenda files.
+  | • [[@Agenda-files][Agenda files]]:             | Files being searched for agenda information |
+  | • [[@Agenda-dispatcher][Agenda dispatcher]]:        | Keyboard access to agenda views             |
+  | • [[@Built_in-agenda-views][Built-in agenda views]]:    | What is available out of the box?           |
+  | • [[@Presentation-and-sorting][Presentation and sorting]]: | How agenda items are prepared for display   |
+  | • [[@Agenda-commands][Agenda commands]]:          | Remote editing of Org trees                 |
+  | • [[@Custom-agenda-views][Custom agenda views]]:      | Defining special searches and views         |
+  | • [[@Exporting-agenda-views][Exporting agenda views]]:   | Writing a view to a file                    |
+  | • [[@Agenda-column-view][Agenda column view]]:       | Using column view for collected entries     |
 
-C-' (=org-cycle-agenda-files=)
+** 10.1 Agenda files                                                  <<@Agenda-files>>
 
-C-,
+   The information to be shown is normally collected from all /agenda
+   files/, the files listed in the variable
+   =org-agenda-files= [fn:FOOT95]. If a directory is part of this list,
+   all files with the extension .org in this directory will be part of
+   the list.
 
-Cycle through agenda file list, visiting one file after the other.
+   Thus, even if you only work with a single Org file, that file
+   should be put into the list[fn:FOOT96]. You can customize
+   =org-agenda-files=, but the easiest way to maintain it is through
+   the following commands
 
-M-x org-iswitchb RET
+    - */C-c [/* (=org-agenda-file-to-front=)
 
-Command to use an =iswitchb=-like interface to switch to and between Org
-buffers.
+      Add current file to the list of agenda files. The file is added
+      to the front of the list. If it was already in the list, it is
+      moved to the front. With a prefix argument, file is added/moved
+      to the end.
 
-The Org menu contains the current list of files and can be used to visit
-any of them.
+    - */C-c ]/* (=org-remove-file=)
 
-If you would like to focus the agenda temporarily on a file not in this
-list, or on just one file in the list, or even on only a subtree in a
-file, then this can be done in different ways. For a single agenda
-command, you may press < once or several times in the dispatcher (see
-[[@Agenda-dispatcher][Agenda dispatcher]]). To restrict the agenda scope
-for an extended period, use the following commands:
+      Remove current file from the list of agenda files.
 
-C-c C-x < (=org-agenda-set-restriction-lock=)
+    - */C-'/* (=org-cycle-agenda-files=)
+    - */C-,/*
 
-Permanently restrict the agenda to the current subtree. When with a
-prefix argument, or with the cursor before the first headline in a file,
-the agenda scope is set to the entire file. This restriction remains in
-effect until removed with C-c C-x >, or by typing either < or > in the
-agenda dispatcher. If there is a window displaying an agenda view, the
-new restriction takes effect immediately.
+      Cycle through agenda file list, visiting one file after the
+      other.
 
-C-c C-x > (=org-agenda-remove-restriction-lock=)
+    - */M-x org-iswitchb RET/*
 
-Remove the permanent restriction created by C-c C-x <.
+      Command to use an =iswitchb=-like interface to switch to and
+      between Org buffers.
 
-When working with speedbar.el, you can use the following commands in the
-Speedbar frame:
+   The Org menu contains the current list of files and can be used to
+   visit any of them.
 
-< in the speedbar frame (=org-speedbar-set-agenda-restriction=)
+   If you would like to focus the agenda temporarily on a file not in
+   this list, or on just one file in the list, or even on only a
+   subtree in a file, then this can be done in different ways. For a
+   single agenda command, you may press < once or several times in the
+   dispatcher (see [[@Agenda-dispatcher][Agenda dispatcher]]). To restrict the agenda scope
+   for an extended period, use the following commands:
 
-Permanently restrict the agenda to the item---either an Org file or a
-subtree in such a file---at the cursor in the Speedbar frame. If there
-is a window displaying an agenda view, the new restriction takes effect
-immediately.
+    - */C-c C-x </* (=org-agenda-set-restriction-lock=)
 
-> in the speedbar frame (=org-agenda-remove-restriction-lock=)
+      Permanently restrict the agenda to the current subtree. When
+      with a prefix argument, or with the cursor before the first
+      headline in a file, the agenda scope is set to the entire
+      file. This restriction remains in effect until removed with
+      */C-c C-x >/*, or by typing either < or > in the agenda
+      dispatcher. If there is a window displaying an agenda view, the
+      new restriction takes effect immediately.
 
-Lift the restriction.
+    - */C-c C-x >/* (=org-agenda-remove-restriction-lock=)
+
+      Remove the permanent restriction created by */C-c C-x </*.
+
+   When working with speedbar.el, you can use the following commands
+   in the Speedbar frame:
+
+    - < in the speedbar frame (=org-speedbar-set-agenda-restriction=)
+
+      Permanently restrict the agenda to the item -- either an Org
+      file or a subtree in such a file -- at the cursor in the
+      Speedbar frame. If there is a window displaying an agenda view,
+      the new restriction takes effect immediately.
+
+    - > in the speedbar frame (=org-agenda-remove-restriction-lock=)
+
+      Lift the restriction.
 
 ** 10.2 The agenda dispatcher                                         <<@Agenda-dispatcher>>
 
-The views are created through a dispatcher, which should be bound to a
-global key---for example C-c a (see [[@Activation][Activation]]). In the
-following we will assume that C-c a is indeed how the dispatcher is
-accessed and list keyboard access to commands accordingly. After
-pressing C-c a, an additional letter is required to execute a command.
-The dispatcher offers the following default commands:
+   The views are created through a dispatcher, which should be bound
+   to a global key -- for example */C-c a/* (see [[@Activation][Activation]]). In the
+   following we will assume that */C-c a/* is indeed how the
+   dispatcher is accessed and list keyboard access to commands
+   accordingly. After pressing */C-c a/*, an additional letter is
+   required to execute a command.  The dispatcher offers the following
+   default commands:
 
--  a :: Create the calendar-like agenda (see
-   [[@Weekly_daily-agenda][Weekly/daily agenda]]).
+    - a
 
--  t / T :: Create a list of all TODO items (see
-   [[@Global-TODO-list][Global TODO list]]).
+      Create the calendar-like agenda (see [[@Weekly_daily-agenda][Weekly/daily agenda]]).
 
--  m / M :: Create a list of headlines matching a TAGS expression (see
-   [[@Matching-tags-and-properties][Matching tags and properties]]).
+    - t / T
 
--  L :: Create the timeline view for the current buffer (see
-   [[@Timeline][Timeline]]).
+      Create a list of all TODO items (see [[@Global-TODO-list][Global TODO list]]).
 
--  s :: Create a list of entries selected by a boolean expression of
-   keywords and/or regular expressions that must or must not occur in
-   the entry.
+    - m / M
 
--  / :: Search for a regular expression in all agenda files and
-   additionally in the files listed in
-   =org-agenda-text-search-extra-files=. This uses the Emacs command
-   =multi-occur=. A prefix argument can be used to specify the number of
-   context lines for each match, default is 1.
+      Create a list of headlines matching a TAGS expression (see
+      [[@Matching-tags-and-properties][Matching tags and properties]]).
 
--  # / ! :: Create a list of stuck projects (see
-   [[@Stuck-projects][Stuck projects]]).
+    - L
 
--  < :: Restrict an agenda command to the current
-   buffer[fn:FOOT97]. After pressing <, you still need to press
-   the character selecting the command.
+      Create the timeline view for the current buffer (see [[@Timeline][Timeline]]).
 
--  < < :: If there is an active region, restrict the following agenda
-   command to the region. Otherwise, restrict it to the current
-   subtree[fn:FOOT98]. After pressing < <, you still need to
-   press the character selecting the command.
+    - s
 
--  * :: Toggle sticky agenda views. By default, Org maintains only a
-   single agenda buffer and rebuilds it each time you change the view,
-   to make sure everything is always up to date. If you often switch
-   between agenda views and the build time bothers you, you can turn on
-   sticky agenda buffers or make this the default by customizing the
-   variable =org-agenda-sticky=. With sticky agendas, the agenda
-   dispatcher will not recreate agenda views from scratch, it will only
-   switch to the selected one, and you need to update the agenda by hand
-   with r or g when needed. You can toggle sticky agenda view any time
-   with =org-toggle-sticky-agenda=.
+      Create a list of entries selected by a boolean expression of
+      keywords and/or regular expressions that must or must not occur
+      in the entry.
 
-You can also define custom commands that will be accessible through the
-dispatcher, just like the default commands. This includes the
-possibility to create extended agenda buffers that contain several
-blocks together, for example the weekly agenda, the global TODO list and
-a number of special tags matches. See [[@Custom-agenda-views][Custom
-agenda views]].
+    - /
 
-** 10.3 The built-in agenda views
+      Search for a regular expression in all agenda files and
+      additionally in the files listed in
+      =org-agenda-text-search-extra-files=. This uses the Emacs
+      command =multi-occur=. A prefix argument can be used to specify
+      the number of context lines for each match, default is 1.
 
-In this section we describe the built-in views.
+    - # / !
+
+      Create a list of stuck projects (see [[@Stuck-projects][Stuck projects]]).
+
+    - <
+
+      Restrict an agenda command to the current
+      buffer[fn:FOOT97]. After pressing <, you still need to press the
+      character selecting the command.
+
+    - < <
+
+      If there is an active region, restrict the following agenda
+      command to the region. Otherwise, restrict it to the current
+      subtree[fn:FOOT98]. After pressing < <, you still need to press
+      the character selecting the command.
+
+    - *
+
+      Toggle sticky agenda views. By default, Org maintains only a
+      single agenda buffer and rebuilds it each time you change the
+      view, to make sure everything is always up to date. If you often
+      switch between agenda views and the build time bothers you, you
+      can turn on sticky agenda buffers or make this the default by
+      customizing the variable =org-agenda-sticky=. With sticky
+      agendas, the agenda dispatcher will not recreate agenda views
+      from scratch, it will only switch to the selected one, and you
+      need to update the agenda by hand with r or g when needed. You
+      can toggle sticky agenda view any time with
+      =org-toggle-sticky-agenda=.
+
+   You can also define custom commands that will be accessible through
+   the dispatcher, just like the default commands. This includes the
+   possibility to create extended agenda buffers that contain several
+   blocks together, for example the weekly agenda, the global TODO
+   list and a number of special tags matches. See [[@Custom-agenda-views][Custom agenda views]].
+
+** 10.3 The built-in agenda views                                     <<@Built_in-agenda-views>>
+
+   In this section we describe the built-in views.
+
+   | • [[@Weekly_daily-agenda][Weekly/daily agenda]]:          | The calendar page with current tasks          |
+   | • [[@Global-TODO-list][Global TODO list]]:             | All unfinished action items                   |
+   | • [[@Matching-tags-and-properties][Matching tags and properties]]: | Structured information with fine-tuned search |
+   | • [[@Timeline][Timeline]]:                     | Time-sorted view for single file              |
+   | • [[@Search-view][Search view]]:                  | Find entries by searching for text            |
+   | • [[@Stuck-projects][Stuck projects]]:               | Find projects you need to review              |
 
 *** 10.3.1 The weekly/daily agenda                                    <<@Weekly_daily-agenda>>
 
-The purpose of the weekly/daily /agenda/ is to act like a page of a
-paper agenda, showing all the tasks for the current week or day.
+    The purpose of the weekly/daily /agenda/ is to act like a page of
+    a paper agenda, showing all the tasks for the current week or day.
 
-C-c a a (=org-agenda-list=)
+     - */C-c a a/* (=org-agenda-list=)
 
-Compile an agenda for the current week from a list of Org files. The
-agenda shows the entries for each day. With a numeric
-prefix[fn:FOOT99] (like C-u 2 1 C-c a a) you may set the number
-of days to be displayed.
+       Compile an agenda for the current week from a list of Org
+       files. The agenda shows the entries for each day. With a
+       numeric prefix[fn:FOOT99] (like */C-u 2 1 C-c a a/*) you may
+       set the number of days to be displayed.
 
-The default number of days displayed in the agenda is set by the
-variable =org-agenda-span= (or the obsolete =org-agenda-ndays=). This
-variable can be set to any number of days you want to see by default in
-the agenda, or to a span name, such as =day=, =week=, =month= or =year=.
-For weekly agendas, the default is to start on the previous monday (see
-=org-agenda-start-on-weekday=). You can also set the start date using a
-date shift: =(setq org-agenda-start-day "+10d")= will start the agenda
-ten days from today in the future.
+    The default number of days displayed in the agenda is set by the
+    variable =org-agenda-span= (or the obsolete
+    =org-agenda-ndays=). This variable can be set to any number of
+    days you want to see by default in the agenda, or to a span name,
+    such as =day=, =week=, =month= or =year=.  For weekly agendas, the
+    default is to start on the previous monday (see
+    =org-agenda-start-on-weekday=). You can also set the start date
+    using a date shift: =(setq org-agenda-start-day "+10d")= will
+    start the agenda ten days from today in the future.
 
-Remote editing from the agenda buffer means, for example, that you can
-change the dates of deadlines and appointments from the agenda buffer.
-The commands available in the Agenda buffer are listed in
-[[@Agenda-commands][Agenda commands]].
+    Remote editing from the agenda buffer means, for example, that you
+    can change the dates of deadlines and appointments from the agenda
+    buffer.  The commands available in the Agenda buffer are listed in
+    [[@Agenda-commands][Agenda commands]].
 
-*** Calendar/Diary integration
+**** Calendar/Diary integration
 
-Emacs contains the calendar and diary by Edward M. Reingold. The
-calendar displays a three-month calendar with holidays from different
-countries and cultures. The diary allows you to keep track of
-anniversaries, lunar phases, sunrise/set, recurrent appointments
-(weekly, monthly) and more. In this way, it is quite complementary to
-Org. It can be very useful to combine output from Org with the diary.
+     Emacs contains the calendar and diary by Edward M. Reingold. The
+     calendar displays a three-month calendar with holidays from
+     different countries and cultures. The diary allows you to keep
+     track of anniversaries, lunar phases, sunrise/set, recurrent
+     appointments (weekly, monthly) and more. In this way, it is quite
+     complementary to Org. It can be very useful to combine output
+     from Org with the diary.
 
-In order to include entries from the Emacs diary into Org mode's agenda,
-you only need to customize the variable
+     In order to include entries from the Emacs diary into Org mode's
+     agenda, you only need to customize the variable
 
-#+BEGIN_SRC lisp
-    (setq org-agenda-include-diary t)
-#+END_SRC
+     #+BEGIN_SRC lisp
+       (setq org-agenda-include-diary t)
+     #+END_SRC
 
-After that, everything will happen automatically. All diary entries
-including holidays, anniversaries, etc., will be included in the agenda
-buffer created by Org mode. =SPC=, =TAB=, and =RET= can be used from the
-agenda buffer to jump to the diary file in order to edit existing diary
-entries. The i command to insert new entries for the current date works
-in the agenda buffer, as well as the commands S, M, and C to display
-Sunrise/Sunset times, show lunar phases and to convert to other
-calendars, respectively. c can be used to switch back and forth between
-calendar and agenda.
+     After that, everything will happen automatically. All diary
+     entries including holidays, anniversaries, etc., will be included
+     in the agenda buffer created by Org mode. =SPC=, =TAB=, and =RET=
+     can be used from the agenda buffer to jump to the diary file in
+     order to edit existing diary entries. The i command to insert new
+     entries for the current date works in the agenda buffer, as well
+     as the commands S, M, and C to display Sunrise/Sunset times, show
+     lunar phases and to convert to other calendars, respectively. c
+     can be used to switch back and forth between calendar and agenda.
 
-If you are using the diary only for sexp entries and holidays, it is
-faster to not use the above setting, but instead to copy or even move
-the entries into an Org file. Org mode evaluates diary-style sexp
-entries, and does it faster because there is no overhead for first
-creating the diary display. Note that the sexp entries must start at the
-left margin, no whitespace is allowed before them. For example, the
-following segment of an Org file will be processed and entries will be
-made in the agenda:
+     If you are using the diary only for sexp entries and holidays, it
+     is faster to not use the above setting, but instead to copy or
+     even move the entries into an Org file. Org mode evaluates
+     diary-style sexp entries, and does it faster because there is no
+     overhead for first creating the diary display. Note that the sexp
+     entries must start at the left margin, no whitespace is allowed
+     before them. For example, the following segment of an Org file
+     will be processed and entries will be made in the agenda:
 
-#+BEGIN_EXAMPLE
-    * Holidays
-      :PROPERTIES:
-      :CATEGORY: Holiday
-      :END:
-    %%(org-calendar-holiday)   ; special function for holiday names
+     #+BEGIN_EXAMPLE
+       * Holidays
+         :PROPERTIES:
+         :CATEGORY: Holiday
+         :END:
+       %%(org-calendar-holiday)   ; special function for holiday names
 
-    * Birthdays
-      :PROPERTIES:
-      :CATEGORY: Ann
-      :END:
-    %%(org-anniversary 1956  5 14)(100) Arthur Dent is %d years old
-    %%(org-anniversary 1869 10  2) Mahatma Gandhi would be %d years old
-#+END_EXAMPLE
+       * Birthdays
+         :PROPERTIES:
+         :CATEGORY: Ann
+         :END:
+       %%(org-anniversary 1956  5 14)[fn:FOOT100] Arthur Dent is %d years old
+       %%(org-anniversary 1869 10  2) Mahatma Gandhi would be %d years old
+     #+END_EXAMPLE
 
-*** Anniversaries from BBDB
+**** Anniversaries from BBDB
 
-If you are using the Big Brothers Database to store your contacts, you
-will very likely prefer to store anniversaries in BBDB rather than in a
-separate Org or diary file. Org supports this and will show BBDB
-anniversaries as part of the agenda. All you need to do is to add the
-following to one of your agenda files:
+     If you are using the Big Brothers Database to store your
+     contacts, you will very likely prefer to store anniversaries in
+     BBDB rather than in a separate Org or diary file. Org supports
+     this and will show BBDB anniversaries as part of the agenda. All
+     you need to do is to add the following to one of your agenda
+     files:
 
-#+BEGIN_EXAMPLE
-    * Anniversaries
-      :PROPERTIES:
-      :CATEGORY: Anniv
-      :END:
-    %%(org-bbdb-anniversaries)
-#+END_EXAMPLE
+     #+BEGIN_EXAMPLE
+       * Anniversaries
+         :PROPERTIES:
+         :CATEGORY: Anniv
+         :END:
+       %%(org-bbdb-anniversaries)
+     #+END_EXAMPLE
 
-You can then go ahead and define anniversaries for a BBDB record.
-Basically, you need to press C-o anniversary RET with the cursor in a
-BBDB record and then add the date in the format =YYYY-MM-DD= or =MM-DD=,
-followed by a space and the class of the anniversary (‘birthday' or
-‘wedding', or a format string). If you omit the class, it will default
-to ‘birthday'. Here are a few examples, the header for the file
-org-bbdb.el contains more detailed information.
+     You can then go ahead and define anniversaries for a BBDB record.
+     Basically, you need to press */C-o anniversary RET/* with the
+     cursor in a BBDB record and then add the date in the format
+     =YYYY-MM-DD= or =MM-DD=, followed by a space and the class of the
+     anniversary (‘birthday' or ‘wedding', or a format string). If you
+     omit the class, it will default to ‘birthday'. Here are a few
+     examples, the header for the file org-bbdb.el contains more
+     detailed information.
 
-#+BEGIN_EXAMPLE
-    1973-06-22
-    06-22
-    1955-08-02 wedding
-    2008-04-14 %s released version 6.01 of org mode, %d years ago
-#+END_EXAMPLE
+     #+BEGIN_EXAMPLE
+       1973-06-22
+       06-22
+       1955-08-02 wedding
+       2008-04-14 %s released version 6.01 of org mode, %d years ago
+     #+END_EXAMPLE
 
-After a change to BBDB, or for the first agenda display during an Emacs
-session, the agenda display will suffer a short delay as Org updates its
-hash with anniversaries. However, from then on things will be very
-fast---much faster in fact than a long list of ‘%%(diary-anniversary)'
-entries in an Org or Diary file.
+     After a change to BBDB, or for the first agenda display during an
+     Emacs session, the agenda display will suffer a short delay as
+     Org updates its hash with anniversaries. However, from then on
+     things will be very fast -- much faster in fact than a long list
+     of ‘%%(diary-anniversary)' entries in an Org or Diary file.
 
-*** Appointment reminders
+**** Appointment reminders
 
-Org can interact with Emacs appointments notification facility. To add
-the appointments of your agenda files, use the command
-=org-agenda-to-appt=. This command lets you filter through the list of
-your appointments and add only those belonging to a specific category or
-matching a regular expression. It also reads a =APPT_WARNTIME= property
-which will then override the value of =appt-message-warning-time= for
-this appointment. See the docstring for details.
+     Org can interact with Emacs appointments notification
+     facility. To add the appointments of your agenda files, use the
+     command =org-agenda-to-appt=. This command lets you filter
+     through the list of your appointments and add only those
+     belonging to a specific category or matching a regular
+     expression. It also reads a =APPT_WARNTIME= property which will
+     then override the value of =appt-message-warning-time= for this
+     appointment. See the docstring for details.
 
 *** 10.3.2 The global TODO list                                       <<@Global-TODO-list>>
 
-The global TODO list contains all unfinished TODO items formatted and
-collected into a single place.
+    The global TODO list contains all unfinished TODO items formatted
+    and collected into a single place.
 
-C-c a t (=org-todo-list=)
+     - */C-c a t/* (=org-todo-list=)
 
-Show the global TODO list. This collects the TODO items from all agenda
-files (see [[@Agenda-views][Agenda views]]) into a single buffer. By
-default, this lists items with a state the is not a DONE state. The
-buffer is in =agenda-mode=, so there are commands to examine and
-manipulate the TODO entries directly from that buffer (see
-[[@Agenda-commands][Agenda commands]]).
+       Show the global TODO list. This collects the TODO items from
+       all agenda files (see [[@Agenda-views][Agenda views]]) into a single buffer. By
+       default, this lists items with a state the is not a DONE
+       state. The buffer is in =agenda-mode=, so there are commands to
+       examine and manipulate the TODO entries directly from that
+       buffer (see [[@Agenda-commands][Agenda commands]]).
 
-C-c a T (=org-todo-list=)
+     - */C-c a T/* (=org-todo-list=)
 
-Like the above, but allows selection of a specific TODO keyword. You can
-also do this by specifying a prefix argument to C-c a t. You are
-prompted for a keyword, and you may also specify several keywords by
-separating them with ‘|' as the boolean OR operator. With a numeric
-prefix, the Nth keyword in =org-todo-keywords= is selected. The r key in
-the agenda buffer regenerates it, and you can give a prefix argument to
-this command to change the selected TODO keyword, for example 3 r. If
-you often need a search for a specific keyword, define a custom command
-for it (see [[@Agenda-dispatcher][Agenda dispatcher]]).\\
- Matching specific TODO keywords can also be done as part of a tags
-search (see [[@Tag-searches][Tag searches]]).
+       Like the above, but allows selection of a specific TODO
+       keyword. You can also do this by specifying a prefix argument
+       to */C-c a t/*. You are prompted for a keyword, and you may
+       also specify several keywords by separating them with ‘|' as
+       the boolean OR operator. With a numeric prefix, the Nth keyword
+       in =org-todo-keywords= is selected. The r key in the agenda
+       buffer regenerates it, and you can give a prefix argument to
+       this command to change the selected TODO keyword, for example 3
+       r. If you often need a search for a specific keyword, define a
+       custom command for it (see [[@Agenda-dispatcher][Agenda dispatcher]]).
 
-Remote editing of TODO items means that you can change the state of a
-TODO entry with a single key press. The commands available in the TODO
-list are described in [[@Agenda-commands][Agenda commands]].
+       Matching specific TODO keywords can also be done as part of a
+       tags search (see [[@Tag-searches][Tag searches]]).
 
-Normally the global TODO list simply shows all headlines with TODO
-keywords. This list can become very long. There are two ways to keep it
-more compact:
+    Remote editing of TODO items means that you can change the state
+    of a TODO entry with a single key press. The commands available in
+    the TODO list are described in [[@Agenda-commands][Agenda commands]].
 
--  - Some people view a TODO item that has been /scheduled/ for
-   execution or have a /deadline/ (see [[@Timestamps][Timestamps]]) as
-   no longer /open/. Configure the variables
-   =org-agenda-todo-ignore-scheduled=,
-   =org-agenda-todo-ignore-deadlines=,
-   =org-agenda-todo-ignore-timestamp= and/or
-   =org-agenda-todo-ignore-with-date= to exclude such items from the
-   global TODO list.
--  - TODO items may have sublevels to break up the task into subtasks.
-   In such cases it may be enough to list only the highest level TODO
-   headline and omit the sublevels from the global list. Configure the
-   variable =org-agenda-todo-list-sublevels= to get this behavior.
+    Normally the global TODO list simply shows all headlines with TODO
+    keywords. This list can become very long. There are two ways to
+    keep it more compact:
+
+     - Some people view a TODO item that has been /scheduled/ for
+       execution or have a /deadline/ (see [[@Timestamps][Timestamps]]) as no longer
+       /open/. Configure the variables
+       =org-agenda-todo-ignore-scheduled=,
+       =org-agenda-todo-ignore-deadlines=,
+       =org-agenda-todo-ignore-timestamp= and/or
+       =org-agenda-todo-ignore-with-date= to exclude such items from
+       the global TODO list.
+
+     - TODO items may have sublevels to break up the task into
+       subtasks.  In such cases it may be enough to list only the
+       highest level TODO headline and omit the sublevels from the
+       global list. Configure the variable
+       =org-agenda-todo-list-sublevels= to get this behavior.
 
 *** 10.3.3 Matching tags and properties                               <<@Matching-tags-and-properties>>
 
-If headlines in the agenda files are marked with /tags/ (see
-[[@Tags][Tags]]), or have properties (see
-[[@Properties-and-columns][Properties and columns]]), you can select
-headlines based on this metadata and collect them into an agenda buffer.
-The match syntax described here also applies when creating sparse trees
-with C-c / m.
+    If headlines in the agenda files are marked with /tags/ (see
+    [[@Tags][Tags]]), or have properties (see [[@Properties-and-columns][Properties and columns]]), you can
+    select headlines based on this metadata and collect them into an
+    agenda buffer.  The match syntax described here also applies when
+    creating sparse trees with */C-c / m/*.
 
-C-c a m (=org-tags-view=)
+     - */C-c a m/* (=org-tags-view=)
 
-Produce a list of all headlines that match a given set of tags. The
-command prompts for a selection criterion, which is a boolean logic
-expression with tags, like ‘+work+urgent-withboss' or ‘work|home' (see
-[[@Tags][Tags]]). If you often need a specific search, define a custom
-command for it (see [[@Agenda-dispatcher][Agenda dispatcher]]).
+       Produce a list of all headlines that match a given set of
+       tags. The command prompts for a selection criterion, which is a
+       boolean logic expression with tags, like
+       ‘+work+urgent-withboss' or ‘work|home' (see [[@Tags][Tags]]). If you often
+       need a specific search, define a custom command for it (see
+       [[@Agenda-dispatcher][Agenda dispatcher]]).
 
-C-c a M (=org-tags-view=)
+     - */C-c a M/* (=org-tags-view=)
 
-Like C-c a m, but only select headlines that are also TODO items in a
-not-DONE state and force checking subitems (see variable
-=org-tags-match-list-sublevels=). To exclude scheduled/deadline items,
-see the variable =org-agenda-tags-todo-honor-ignore-options=. Matching
-specific TODO keywords together with a tags match is also possible, see
-[[@Tag-searches][Tag searches]].
+       Like */C-c a m/*, but only select headlines that are also TODO
+       items in a not-DONE state and force checking subitems (see
+       variable =org-tags-match-list-sublevels=). To exclude
+       scheduled/deadline items, see the variable
+       =org-agenda-tags-todo-honor-ignore-options=. Matching specific
+       TODO keywords together with a tags match is also possible, see
+       [[@Tag-searches][Tag searches]].
 
-The commands available in the tags list are described in
-[[@Agenda-commands][Agenda commands]].
+    The commands available in the tags list are described in [[@Agenda-commands][Agenda
+    commands]].
 
-*** Match syntax
+**** Match syntax
 
-A search string can use Boolean operators ‘&' for =AND= and ‘|' for
-=OR=. ‘&' binds more strongly than ‘|'. Parentheses are not implemented.
-Each element in the search is either a tag, a regular expression
-matching tags, or an expression like =PROPERTY OPERATOR VALUE= with a
-comparison operator, accessing a property value. Each element may be
-preceded by ‘-', to select against it, and ‘+' is syntactic sugar for
-positive selection. The =AND= operator ‘&' is optional when ‘+' or ‘-'
-is present. Here are some examples, using only tags.
+     A search string can use Boolean operators ‘&' for =AND= and ‘|'
+     for =OR=. ‘&' binds more strongly than ‘|'. Parentheses are not
+     implemented.  Each element in the search is either a tag, a
+     regular expression matching tags, or an expression like =PROPERTY
+     OPERATOR VALUE= with a comparison operator, accessing a property
+     value. Each element may be preceded by ‘-', to select against it,
+     and ‘+' is syntactic sugar for positive selection. The =AND=
+     operator ‘&' is optional when ‘+' or ‘-' is present. Here are
+     some examples, using only tags.
 
--  ‘work' :: Select headlines tagged ‘:work:'.
+      - ‘work'
 
--  ‘work&boss' :: Select headlines tagged ‘:work:' and ‘:boss:'.
+        Select headlines tagged ‘:work:'.
 
--  ‘+work-boss' :: Select headlines tagged ‘:work:', but discard those
-   also tagged ‘:boss:'.
+      - ‘work&boss'
 
--  ‘work|laptop' :: Selects lines tagged ‘:work:' or ‘:laptop:'.
+        Select headlines tagged ‘:work:' and ‘:boss:'.
 
--  ‘work|laptop+night' :: Like before, but require the ‘:laptop:' lines
-   to be tagged also ‘:night:'.
+      - ‘+work-boss'
 
-Instead of a tag, you may also specify a regular expression enclosed in
-curly braces. For example, ‘work+{\^boss.*}' matches headlines that
-contain the tag ‘:work:' and any tag /starting/ with ‘boss'.
+        Select headlines tagged ‘:work:', but discard those also
+        tagged ‘:boss:'.
 
-Group tags (see [[@Tag-hierarchy][Tag hierarchy]]) are expanded as
-regular expressions. E.g., if ‘:work:' is a group tag for the group
-‘:work:lab:conf:', then searching for ‘work' will search for
-‘{\(?:work\|lab\|conf\)}' and searching for ‘-work' will search for all
-headlines but those with one of the tags in the group (i.e.,
-‘-{\(?:work\|lab\|conf\)}').
+      - ‘work|laptop'
 
-You may also test for properties (see
-[[@Properties-and-columns][Properties and columns]]) at the same time as
-matching tags. The properties may be real properties, or special
-properties that represent other metadata (see
-[[@Special-properties][Special properties]]). For example, the
-“property” =TODO= represents the TODO keyword of the entry and the
-“property” =PRIORITY= represents the PRIORITY keyword of the entry.
+        Selects lines tagged ‘:work:' or ‘:laptop:'.
 
-In addition to the [[@Special-properties][Special properties]], one
-other “property” can also be used. =LEVEL= represents the level of an
-entry. So a search ‘+LEVEL=3+boss-TODO="DONE"' lists all level three
-headlines that have the tag ‘boss' and are /not/ marked with the TODO
-keyword DONE. In buffers with =org-odd-levels-only= set, ‘LEVEL' does
-not count the number of stars, but ‘LEVEL=2' will correspond to 3 stars
-etc.
+      - ‘work|laptop+night'
 
-Here are more examples:
+        Like before, but require the ‘:laptop:' lines to be tagged
+        also ‘:night:'.
 
--  ‘work+TODO="WAITING"' :: Select ‘:work:'-tagged TODO lines with the
-   specific TODO keyword ‘WAITING'.
+     Instead of a tag, you may also specify a regular expression
+     enclosed in curly braces. For example, ‘work+{^boss.*}' matches
+     headlines that contain the tag ‘:work:' and any tag /starting/
+     with ‘boss'.
 
--  ‘work+TODO="WAITING"|home+TODO="WAITING"' :: Waiting tasks both at
-   work and at home.
+     Group tags (see [[@Tag-hierarchy][Tag hierarchy]]) are expanded as regular
+     expressions. E.g., if ‘:work:' is a group tag for the group
+     ‘:work:lab:conf:', then searching for ‘work' will search for
+     ={\(?:work\|lab\|conf\)}= and searching for ‘-work' will search
+     for all headlines but those with one of the tags in the group
+     (i.e., =-{\(?:work\|lab\|conf\)}=).
 
-When matching properties, a number of different operators can be used to
-test the value of a property. Here is a complex example:
+     You may also test for properties (see [[@Properties-and-columns][Properties and columns]]) at
+     the same time as matching tags. The properties may be real
+     properties, or special properties that represent other metadata
+     (see [[@Special-properties][Special properties]]). For example, the “property” =TODO=
+     represents the TODO keyword of the entry and the “property”
+     =PRIORITY= represents the PRIORITY keyword of the entry.
 
-#+BEGIN_EXAMPLE
-    +work-boss+PRIORITY="A"+Coffee="unlimited"+Effort<2         \
-             +With={Sarah\|Denny}+SCHEDULED>="<2008-10-11>"
-#+END_EXAMPLE
+     In addition to the [[@Special-properties][Special properties]], one other “property” can
+     also be used. =LEVEL= represents the level of an entry. So a
+     search ‘+LEVEL=3+boss-TODO="DONE"' lists all level three
+     headlines that have the tag ‘boss' and are /not/ marked with the
+     TODO keyword DONE. In buffers with =org-odd-levels-only= set,
+     ‘LEVEL' does not count the number of stars, but ‘LEVEL=2' will
+     correspond to 3 stars etc.
 
-The type of comparison will depend on how the comparison value is
-written:
+     Here are more examples:
 
--  - If the comparison value is a plain number, a numerical comparison
-   is done, and the allowed operators are ‘<', ‘=', ‘>', ‘<=', ‘>=', and
-   ‘<>'.
--  - If the comparison value is enclosed in double-quotes, a string
-   comparison is done, and the same operators are allowed.
--  - If the comparison value is enclosed in double-quotes /and/ angular
-   brackets (like ‘DEADLINE<="<2008-12-24 18:30>"'), both values are
-   assumed to be date/time specifications in the standard Org way, and
-   the comparison will be done accordingly. Special values that will be
-   recognized are ="<now>"= for now (including time), and ="<today>"=,
-   and ="<tomorrow>"= for these days at 00:00 hours, i.e., without a
-   time specification. Also strings like ="<+5d>"= or ="<-2m>"= with
-   units =d=, =w=, =m=, and =y= for day, week, month, and year,
-   respectively, can be used.
--  - If the comparison value is enclosed in curly braces, a regexp match
-   is performed, with ‘=' meaning that the regexp matches the property
-   value, and ‘<>' meaning that it does not match.
+      - ‘work+TODO="WAITING"'
 
-So the search string in the example finds entries tagged ‘:work:' but
-not ‘:boss:', which also have a priority value ‘A', a ‘:Coffee:'
-property with the value ‘unlimited', an ‘Effort' property that is
-numerically smaller than 2, a ‘:With:' property that is matched by the
-regular expression ‘Sarah\|Denny', and that are scheduled on or after
-October 11, 2008.
+        Select ‘:work:'-tagged TODO lines with the specific TODO
+        keyword ‘WAITING'.
 
-You can configure Org mode to use property inheritance during a search,
-but beware that this can slow down searches considerably. See
-[[@Property-inheritance][Property inheritance]], for details.
+      - ‘work+TODO="WAITING"|home+TODO="WAITING"'
 
-For backward compatibility, and also for typing speed, there is also a
-different way to test TODO states in a search. For this, terminate the
-tags/property part of the search string (which may include several terms
-connected with ‘|') with a ‘/' and then specify a Boolean expression
-just for TODO keywords. The syntax is then similar to that for tags, but
-should be applied with care: for example, a positive selection on
-several TODO keywords cannot meaningfully be combined with boolean AND.
-However, /negative selection/ combined with AND can be meaningful. To
-make sure that only lines are checked that actually have any TODO
-keyword (resulting in a speed-up), use C-c a M, or equivalently start
-the TODO part after the slash with ‘!'. Using C-c a M or ‘/!' will not
-match TODO keywords in a DONE state. Examples:
+        Waiting tasks both at work and at home.
 
--  ‘work/WAITING' :: Same as ‘work+TODO="WAITING"'
+     When matching properties, a number of different operators can be
+     used to test the value of a property. Here is a complex example:
 
--  ‘work/!-WAITING-NEXT' :: Select ‘:work:'-tagged TODO lines that are
-   neither ‘WAITING' nor ‘NEXT'
+     #+BEGIN_EXAMPLE
+       +work-boss+PRIORITY="A"+Coffee="unlimited"+Effort<2         \
+                +With={Sarah\|Denny}+SCHEDULED>="<2008-10-11>"
+     #+END_EXAMPLE
 
--  ‘work/!+WAITING|+NEXT' :: Select ‘:work:'-tagged TODO lines that are
-   either ‘WAITING' or ‘NEXT'.
+    The type of comparison will depend on how the comparison value is
+    written:
+
+    - If the comparison value is a plain number, a numerical
+      comparison is done, and the allowed operators are ‘<', ‘=', ‘>',
+      ‘<=', ‘>=', and ‘<>'.
+
+    - If the comparison value is enclosed in double-quotes, a string
+      comparison is done, and the same operators are allowed.
+
+    - If the comparison value is enclosed in double-quotes /and/
+      angular brackets (like 'DEADLINE<="<\2008-12-24 18:30>"'), both
+      values are assumed to be date/time specifications in the
+      standard Org way, and the comparison will be done
+      accordingly. Special values that will be recognized are
+      ="<now>"= for now (including time), and ="<today>"=, and
+      ="<tomorrow>"= for these days at 00:00 hours, i.e., without a
+      time specification. Also strings like ="<+5d>"= or ="<-2m>"=
+      with units =d=, =w=, =m=, and =y= for day, week, month, and
+      year, respectively, can be used.
+
+    - If the comparison value is enclosed in curly braces, a regexp
+      match is performed, with ‘=' meaning that the regexp matches the
+      property value, and ‘<>' meaning that it does not match.
+
+    So the search string in the example finds entries tagged ‘:work:'
+    but not ‘:boss:', which also have a priority value ‘A', a
+    ‘:Coffee:' property with the value ‘unlimited', an ‘Effort'
+    property that is numerically smaller than 2, a ‘:With:' property
+    that is matched by the regular expression =Sarah\|Denny=, and that
+    are scheduled on or after October 11, 2008.
+
+    You can configure Org mode to use property inheritance during a
+    search, but beware that this can slow down searches
+    considerably. See Property inheritance]], for details.
+
+    For backward compatibility, and also for typing speed, there is
+    also a different way to test TODO states in a search. For this,
+    terminate the tags/property part of the search string (which may
+    include several terms connected with ‘|') with a ‘/' and then
+    specify a Boolean expression just for TODO keywords. The syntax is
+    then similar to that for tags, but should be applied with care:
+    for example, a positive selection on several TODO keywords cannot
+    meaningfully be combined with boolean AND.  However, /negative
+    selection/ combined with AND can be meaningful. To make sure that
+    only lines are checked that actually have any TODO keyword
+    (resulting in a speed-up), use */C-c a M/*, or equivalently start
+    the TODO part after the slash with ‘!'. Using */C-c a M/* or ‘/!'
+    will not match TODO keywords in a DONE state. Examples:
+
+     - ‘work/WAITING'
+
+       Same as ‘work+TODO="WAITING"'
+
+     - ‘work/!-WAITING-NEXT'
+
+       Select ‘:work:'-tagged TODO lines that are neither ‘WAITING'
+       nor ‘NEXT'
+
+     - ‘work/!+WAITING|+NEXT'
+
+       Select ‘:work:'-tagged TODO lines that are either ‘WAITING' or
+       ‘NEXT'.
 
 *** 10.3.4 Timeline for a single file                                 <<@Timeline>>
 
-The timeline summarizes all time-stamped items from a single Org mode
-file in a /time-sorted view/. The main purpose of this command is to
-give an overview over events in a project.
+    The timeline summarizes all time-stamped items from a single Org
+    mode file in a /time-sorted view/. The main purpose of this
+    command is to give an overview over events in a project.
 
-C-c a L (=org-timeline=)
+     - */C-c a L/* (=org-timeline=)
 
-Show a time-sorted view of the Org file, with all time-stamped items.
-When called with a C-u prefix, all unfinished TODO entries (scheduled or
-not) are also listed under the current date.
+       Show a time-sorted view of the Org file, with all time-stamped
+       items.  When called with a */C-u/* prefix, all unfinished TODO
+       entries (scheduled or not) are also listed under the current
+       date.
 
-The commands available in the timeline buffer are listed in
-[[@Agenda-commands][Agenda commands]].
+    The commands available in the timeline buffer are listed in [[@Agenda-commands][Agenda
+    commands]].
 
-*** 10.3.5 Search view
+*** 10.3.5 Search view                                                <<@Search-view>>
 
-This agenda view is a general text search facility for Org mode entries.
-It is particularly useful to find notes.
+    This agenda view is a general text search facility for Org mode
+    entries.  It is particularly useful to find notes.
 
-C-c a s (=org-search-view=)
+     - */C-c a s/* (=org-search-view=)
 
-This is a special search that lets you select entries by matching a
-substring or specific words using a boolean logic.
+       This is a special search that lets you select entries by
+       matching a substring or specific words using a boolean logic.
 
-For example, the search string ‘computer equipment' will find entries
-that contain ‘computer equipment' as a substring. If the two words are
-separated by more space or a line break, the search will still match.
-Search view can also search for specific keywords in the entry, using
-Boolean logic. The search string ‘+computer +wifi -ethernet
--{8\.11[bg]}' will search for note entries that contain the keywords
-=computer= and =wifi=, but not the keyword =ethernet=, and which are
-also not matched by the regular expression =8\.11[bg]=, meaning to
-exclude both 8.11b and 8.11g. The first ‘+' is necessary to turn on word
-search, other ‘+' characters are optional. For more details, see the
-docstring of the command =org-search-view=.
+    For example, the search string ‘computer equipment' will find
+    entries that contain ‘computer equipment' as a substring. If the
+    two words are separated by more space or a line break, the search
+    will still match.  Search view can also search for specific
+    keywords in the entry, using Boolean logic. The search string
+    ‘+computer +wifi -ethernet -{8\.11[bg]}' will search for note
+    entries that contain the keywords =computer= and =wifi=, but not
+    the keyword =ethernet=, and which are also not matched by the
+    regular expression =8\.11[bg]=, meaning to exclude both 8.11b and
+    8.11g. The first ‘+' is necessary to turn on word search, other
+    ‘+' characters are optional. For more details, see the docstring
+    of the command =org-search-view=.
 
-Note that in addition to the agenda files, this command will also search
-the files listed in =org-agenda-text-search-extra-files=.
+    Note that in addition to the agenda files, this command will also
+    search the files listed in =org-agenda-text-search-extra-files=.
 
-*** 10.3.6 Stuck projects
+*** 10.3.6 Stuck projects                                             <<@Stuck-projects>>
 
-If you are following a system like David Allen's GTD to organize your
-work, one of the “duties” you have is a regular review to make sure that
-all projects move along. A /stuck/ project is a project that has no
-defined next actions, so it will never show up in the TODO lists Org
-mode produces. During the review, you need to identify such projects and
-define next actions for them.
+    If you are following a system like David Allen's GTD to organize
+    your work, one of the “duties” you have is a regular review to
+    make sure that all projects move along. A /stuck/ project is a
+    project that has no defined next actions, so it will never show up
+    in the TODO lists Org mode produces. During the review, you need
+    to identify such projects and define next actions for them.
 
-C-c a # (=org-agenda-list-stuck-projects=)
+     - */C-c a #/* (=org-agenda-list-stuck-projects=)
 
-List projects that are stuck.
+       List projects that are stuck.
 
-C-c a !
+     - */C-c a !/*
 
-Customize the variable =org-stuck-projects= to define what a stuck
-project is and how to find it.
+       Customize the variable =org-stuck-projects= to define what a
+       stuck project is and how to find it.
 
-You almost certainly will have to configure this view before it will
-work for you. The built-in default assumes that all your projects are
-level-2 headlines, and that a project is not stuck if it has at least
-one entry marked with a TODO keyword TODO or NEXT or NEXTACTION.
+    You almost certainly will have to configure this view before it
+    will work for you. The built-in default assumes that all your
+    projects are level-2 headlines, and that a project is not stuck if
+    it has at least one entry marked with a TODO keyword TODO or NEXT
+    or NEXTACTION.
 
-Let's assume that you, in your own way of using Org mode, identify
-projects with a tag PROJECT, and that you use a TODO keyword MAYBE to
-indicate a project that should not be considered yet. Let's further
-assume that the TODO keyword DONE marks finished projects, and that NEXT
-and TODO indicate next actions. The tag @SHOP indicates shopping and is
-a next action even without the NEXT tag. Finally, if the project
-contains the special word IGNORE anywhere, it should not be listed
-either. In this case you would start by identifying eligible projects
-with a tags/todo match[fn:FOOT101] ‘+PROJECT/-MAYBE-DONE', and
-then check for TODO, NEXT, @SHOP, and IGNORE in the subtree to identify
-projects that are not stuck. The correct customization for this is
+    Let's assume that you, in your own way of using Org mode, identify
+    projects with a tag PROJECT, and that you use a TODO keyword MAYBE
+    to indicate a project that should not be considered yet. Let's
+    further assume that the TODO keyword DONE marks finished projects,
+    and that NEXT and TODO indicate next actions. The tag @SHOP
+    indicates shopping and is a next action even without the NEXT
+    tag. Finally, if the project contains the special word IGNORE
+    anywhere, it should not be listed either. In this case you would
+    start by identifying eligible projects with a tags/todo
+    match[fn:FOOT101] ‘+PROJECT/-MAYBE-DONE', and then check for TODO,
+    NEXT, @SHOP, and IGNORE in the subtree to identify projects that
+    are not stuck. The correct customization for this is
 
-#+BEGIN_SRC lisp
-    (setq org-stuck-projects
-          '("+PROJECT/-MAYBE-DONE" ("NEXT" "TODO") ("@SHOP")
-                                   "\\<IGNORE\\>"))
-#+END_SRC
+    #+BEGIN_SRC lisp
+      (setq org-stuck-projects
+            '("+PROJECT/-MAYBE-DONE" ("NEXT" "TODO") ("@SHOP")
+                                     "\\<IGNORE\\>"))
+    #+END_SRC
 
-Note that if a project is identified as non-stuck, the subtree of this
-entry will still be searched for stuck projects.
+    Note that if a project is identified as non-stuck, the subtree of
+    this entry will still be searched for stuck projects.
 
-** 10.4 Presentation and sorting
+** 10.4 Presentation and sorting                                      <<@Presentation-and-sorting>>
 
-Before displaying items in an agenda view, Org mode visually prepares
-the items and sorts them. Each item occupies a single line. The line
-starts with a /prefix/ that contains the /category/ (see
-[[@Categories][Categories]]) of the item and other important
-information. You can customize in which column tags will be displayed
-through =org-agenda-tags-column=. You can also customize the prefix
-using the option =org-agenda-prefix-format=. This prefix is followed by
-a cleaned-up version of the outline headline associated with the item.
+   Before displaying items in an agenda view, Org mode visually
+   prepares the items and sorts them. Each item occupies a single
+   line. The line starts with a /prefix/ that contains the /category/
+   (see [[@Categories][Categories]]) of the item and other important information. You
+   can customize in which column tags will be displayed through
+   =org-agenda-tags-column=. You can also customize the prefix using
+   the option =org-agenda-prefix-format=. This prefix is followed by a
+   cleaned-up version of the outline headline associated with the
+   item.
 
-*** 10.4.1 Categories
+   | • [[@Categories][Categories]]:                      | Not all tasks are equal       |
+   | • [[@Time_of_day-specifications][Time-of-day specifications]]:      | How the agenda knows the time |
+   | • [[@Sorting-agenda-items][Sorting agenda items]]:            | The order of things           |
+   | • [[@Filtering_limiting-agenda-items][Filtering/limiting agenda items]]: | Dynamically narrow the agenda |
 
-The category is a broad label assigned to each agenda item. By default,
-the category is simply derived from the file name, but you can also
-specify it with a special line in the buffer, like this:
 
-#+BEGIN_EXAMPLE
-    #+CATEGORY: Thesis
-#+END_EXAMPLE
+*** 10.4.1 Categories                                                 <<@Categories>>
 
-If you would like to have a special CATEGORY for a single entry or a
-(sub)tree, give the entry a =:CATEGORY:= property with the special
-category you want to apply as the value.
+    The category is a broad label assigned to each agenda item. By
+    default, the category is simply derived from the file name, but
+    you can also specify it with a special line in the buffer, like
+    this:
 
-The display in the agenda buffer looks best if the category is not
-longer than 10 characters.
+    #+BEGIN_EXAMPLE
+      #+CATEGORY: Thesis
+    #+END_EXAMPLE
 
-You can set up icons for category by customizing the
-=org-agenda-category-icon-alist= variable.
+    If you would like to have a special CATEGORY for a single entry or
+    a (sub)tree, give the entry a =:CATEGORY:= property with the
+    special category you want to apply as the value.
 
-*** 10.4.2 Time-of-day specifications
+    The display in the agenda buffer looks best if the category is not
+    longer than 10 characters.
 
-Org mode checks each agenda item for a time-of-day specification. The
-time can be part of the timestamp that triggered inclusion into the
-agenda, for example as in ‘<2005-05-10Tue19:00>'. Time ranges can be
-specified with two timestamps, like
-‘<2005-05-10Tue20:30>--<2005-05-10Tue22:15>'.
+    You can set up icons for category by customizing the
+    =org-agenda-category-icon-alist= variable.
 
-In the headline of the entry itself, a time(range) may also appear as
-plain text (like ‘12:45' or a ‘8:30-1pm'). If the agenda integrates the
-Emacs diary (see [[@Weekly_daily-agenda][Weekly/daily agenda]]),
-time specifications in diary entries are recognized as well.
+*** 10.4.2 Time-of-day specifications                                 <<@Time_of_day-specifications>>
 
-For agenda display, Org mode extracts the time and displays it in a
-standard 24 hour format as part of the prefix. The example times in the
-previous paragraphs would end up in the agenda like this:
+    Org mode checks each agenda item for a time-of-day
+    specification. The time can be part of the timestamp that
+    triggered inclusion into the agenda, for example as in
+    ‘<\2005-05-10Tue19:00>'. Time ranges can be specified with two
+    timestamps, like ‘<\2005-05-10Tue20:30>--<\2005-05-10Tue22:15>'.
 
-#+BEGIN_EXAMPLE
+    In the headline of the entry itself, a time(range) may also appear
+    as plain text (like ‘12:45' or a ‘8:30-1pm'). If the agenda
+    integrates the Emacs diary (see [[@Weekly_daily-agenda][Weekly/daily agenda]]), time
+    specifications in diary entries are recognized as well.
+
+    For agenda display, Org mode extracts the time and displays it in
+    a standard 24 hour format as part of the prefix. The example times
+    in the previous paragraphs would end up in the agenda like this:
+
+    #+BEGIN_EXAMPLE
         8:30-13:00 Arthur Dent lies in front of the bulldozer
        12:45...... Ford Prefect arrives and takes Arthur to the pub
        19:00...... The Vogon reads his poem
        20:30-22:15 Marvin escorts the Hitchhikers to the bridge
-#+END_EXAMPLE
+    #+END_EXAMPLE
 
-If the agenda is in single-day mode, or for the display of today, the
-timed entries are embedded in a time grid, like
+    If the agenda is in single-day mode, or for the display of today,
+    the timed entries are embedded in a time grid, like
 
-#+BEGIN_EXAMPLE
+    #+BEGIN_EXAMPLE
         8:00...... ------------------
         8:30-13:00 Arthur Dent lies in front of the bulldozer
        10:00...... ------------------
@@ -7355,1010 +7444,1235 @@ timed entries are embedded in a time grid, like
        19:00...... The Vogon reads his poem
        20:00...... ------------------
        20:30-22:15 Marvin escorts the Hitchhikers to the bridge
-#+END_EXAMPLE
+    #+END_EXAMPLE
 
-The time grid can be turned on and off with the variable
-=org-agenda-use-time-grid=, and can be configured with
-=org-agenda-time-grid=.
+    The time grid can be turned on and off with the variable
+    =org-agenda-use-time-grid=, and can be configured with
+    =org-agenda-time-grid=.
 
-*** 10.4.3 Sorting agenda items
+*** 10.4.3 Sorting agenda items                                       <<@Sorting-agenda-items>>
 
-Before being inserted into a view, the items are sorted. How this is
-done depends on the type of view.
+    Before being inserted into a view, the items are sorted. How this
+    is done depends on the type of view.
 
--  For the daily/weekly agenda, the items for each day are sorted. The
-   default order is to first collect all items containing an explicit
-   time-of-day specification. These entries will be shown at the
-   beginning of the list, as a /schedule/ for the day. After that, items
-   remain grouped in categories, in the sequence given by
-   =org-agenda-files=. Within each category, items are sorted by
-   priority (see [[@Priorities][Priorities]]), which is composed of the
-   base priority (2000 for priority ‘A', 1000 for ‘B', and 0 for ‘C'),
-   plus additional increments for overdue scheduled or deadline items.
--  For the TODO list, items remain in the order of categories, but
-   within each category, sorting takes place according to priority (see
-   [[@Priorities][Priorities]]). The priority used for sorting derives
-   from the priority cookie, with additions depending on how close an
-   item is to its due or scheduled date.
--  For tags matches, items are not sorted at all, but just appear in the
-   sequence in which they are found in the agenda files.
+     - For the daily/weekly agenda, the items for each day are
+       sorted. The default order is to first collect all items
+       containing an explicit time-of-day specification. These entries
+       will be shown at the beginning of the list, as a /schedule/ for
+       the day. After that, items remain grouped in categories, in the
+       sequence given by =org-agenda-files=. Within each category,
+       items are sorted by priority (see [[@Priorities][Priorities]]), which is
+       composed of the base priority (2000 for priority ‘A', 1000 for
+       ‘B', and 0 for ‘C'), plus additional increments for overdue
+       scheduled or deadline items.
 
-Sorting can be customized using the variable
-=org-agenda-sorting-strategy=, and may also include criteria based on
-the estimated effort of an entry (see [[@Effort-estimates][Effort
-estimates]]).
+     - For the TODO list, items remain in the order of categories, but
+       within each category, sorting takes place according to priority
+       (see [[@Priorities][Priorities]]). The priority used for sorting derives from
+       the priority cookie, with additions depending on how close an
+       item is to its due or scheduled date.
 
-*** 10.4.4 Filtering/limiting agenda items
+     - For tags matches, items are not sorted at all, but just appear
+       in the sequence in which they are found in the agenda files.
 
-Agenda built-in or customized commands are statically defined. Agenda
-filters and limits provide two ways of dynamically narrowing down the
-list of agenda entries: /filters/ and /limits/. Filters only act on the
-display of the items, while limits take effect before the list of agenda
-entries is built. Filters are more often used interactively, while
-limits are mostly useful when defined as local variables within custom
-agenda commands.
+    Sorting can be customized using the variable
+    =org-agenda-sorting-strategy=, and may also include criteria based
+    on the estimated effort of an entry (see [[@Effort-estimates][Effort estimates]]).
 
-*** Filtering in the agenda
+*** 10.4.4 Filtering/limiting agenda items                            <<@Filtering_limiting-agenda-items>>
 
-/ (=org-agenda-filter-by-tag=)
+    Agenda built-in or customized commands are statically
+    defined. Agenda filters and limits provide two ways of dynamically
+    narrowing down the list of agenda entries: /filters/ and
+    /limits/. Filters only act on the display of the items, while
+    limits take effect before the list of agenda entries is
+    built. Filters are more often used interactively, while limits are
+    mostly useful when defined as local variables within custom agenda
+    commands.-
+**** Filtering in the agenda
 
-Filter the agenda view with respect to a tag and/or effort estimates.
-The difference between this and a custom agenda command is that
-filtering is very fast, so that you can switch quickly between different
-filters without having to recreate the agenda.[fn:FOOT102]
+      - / (=org-agenda-filter-by-tag=)
 
-You will be prompted for a tag selection letter; =SPC= will mean any tag
-at all. Pressing =TAB= at that prompt will offer use completion to
-select a tag (including any tags that do not have a selection
-character). The command then hides all entries that do not contain or
-inherit this tag. When called with prefix arg, remove the entries that
-/do/ have the tag. A second / at the prompt will turn off the filter and
-unhide any hidden entries. If the first key you press is either + or -,
-the previous filter will be narrowed by requiring or forbidding the
-selected additional tag. Instead of pressing + or - after /, you can
-also immediately use the \ command.
+        Filter the agenda view with respect to a tag and/or effort
+        estimates.  The difference between this and a custom agenda
+        command is that filtering is very fast, so that you can switch
+        quickly between different filters without having to recreate
+        the agenda.[fn:FOOT102]
 
-Org also supports automatic, context-aware tag filtering. If the
-variable =org-agenda-auto-exclude-function= is set to a user-defined
-function, that function can decide which tags should be excluded from
-the agenda automatically. Once this is set, the / command then accepts
-RET as a sub-option key and runs the auto exclusion logic. For example,
-let's say you use a =Net= tag to identify tasks which need network
-access, an =Errand= tag for errands in town, and a =Call= tag for making
-phone calls. You could auto-exclude these tags based on the availability
-of the Internet, and outside of business hours, with something like
-this:
+        You will be prompted for a tag selection letter; =SPC= will
+        mean any tag at all. Pressing =TAB= at that prompt will offer
+        use completion to select a tag (including any tags that do not
+        have a selection character). The command then hides all
+        entries that do not contain or inherit this tag. When called
+        with prefix arg, remove the entries that /do/ have the tag. A
+        second / at the prompt will turn off the filter and unhide any
+        hidden entries. If the first key you press is either + or -,
+        the previous filter will be narrowed by requiring or
+        forbidding the selected additional tag. Instead of pressing +
+        or - after /, you can also immediately use the \ command.
 
-#+BEGIN_EXAMPLE
-    (defun org-my-auto-exclude-function (tag)
-      (and (cond
-            ((string= tag "Net")
-             (/= 0 (call-process "/sbin/ping" nil nil nil
-                                 "-c1" "-q" "-t1" "mail.gnu.org")))
-            ((or (string= tag "Errand") (string= tag "Call"))
-             (let ((hour (nth 2 (decode-time))))
-               (or (< hour 8) (> hour 21)))))
-           (concat "-" tag)))
+        Org also supports automatic, context-aware tag filtering. If
+        the variable =org-agenda-auto-exclude-function= is set to a
+        user-defined function, that function can decide which tags
+        should be excluded from the agenda automatically. Once this is
+        set, the / command then accepts RET as a sub-option key and
+        runs the auto exclusion logic. For example, let's say you use
+        a =Net= tag to identify tasks which need network access, an
+        =Errand= tag for errands in town, and a =Call= tag for making
+        phone calls. You could auto-exclude these tags based on the
+        availability of the Internet, and outside of business hours,
+        with something like this:
 
-    (setq org-agenda-auto-exclude-function 'org-my-auto-exclude-function)
-#+END_EXAMPLE
+        #+BEGIN_EXAMPLE
+          (defun org-my-auto-exclude-function (tag)
+           (and (cond
+                 ((string= tag "Net")
+                  (/= 0 (call-process "/sbin/ping" nil nil nil
+                                      "-c1" "-q" "-t1" "mail.gnu.org")))
+                 ((or (string= tag "Errand") (string= tag "Call"))
+                  (let ((hour (nth 2 (decode-time))))
+                    (or (< hour 8) (> hour 21)))))
+                (concat "-" tag)))
 
-\ (=org-agenda-filter-by-tag-refine=)
+          (setq org-agenda-auto-exclude-function 'org-my-auto-exclude-function)
+        #+END_EXAMPLE
 
-Narrow the current agenda filter by an additional condition. When called
-with prefix arg, remove the entries that /do/ have the tag, or that do
-match the effort criterion. You can achieve the same effect by pressing
-+ or - as the first key after the / command.
+      - \ (=org-agenda-filter-by-tag-refine=)
 
-[ ] { }
+        Narrow the current agenda filter by an additional
+        condition. When called with prefix arg, remove the entries
+        that /do/ have the tag, or that do match the effort
+        criterion. You can achieve the same effect by pressing
+        + or - as the first key after the / command.
 
--  /in search view/ :: add new search words ([ and ]) or new regular
-   expressions ({ and }) to the query string. The opening bracket/brace
-   will add a positive search term prefixed by ‘+', indicating that this
-   search term /must/ occur/match in the entry. The closing
-   bracket/brace will add a negative search term which /must not/
-   occur/match in the entry for it to be selected.
+      - [ ] { }
 
-< (=org-agenda-filter-by-category=)
+         - /in search view/
 
-Filter the current agenda view with respect to the category of the item
-at point. Pressing =<= another time will remove this filter. You can add
-a filter preset through the option =org-agenda-category-filter-preset=
-(see below.)
+           add new search words ([ and ]) or new regular expressions
+           ({ and }) to the query string. The opening bracket/brace
+           will add a positive search term prefixed by ‘+', indicating
+           that this search term /must/ occur/match in the entry. The
+           closing bracket/brace will add a negative search term which
+           /must not/ occur/match in the entry for it to be selected.
 
-\^ (=org-agenda-filter-by-top-headline=)
+      - < (=org-agenda-filter-by-category=)
 
-Filter the current agenda view and only display the siblings and the
-parent headline of the one at point.
+        Filter the current agenda view with respect to the category of
+        the item at point. Pressing =<= another time will remove this
+        filter. You can add a filter preset through the option
+        =org-agenda-category-filter-preset= (see below.)
 
-= (=org-agenda-filter-by-regexp=)
+      - ^ (=org-agenda-filter-by-top-headline=)
 
-Filter the agenda view by a regular expression: only show agenda entries
-matching the regular expression the user entered. When called with a
-prefix argument, it will filter /out/ entries matching the regexp. With
-two universal prefix arguments, it will remove all the regexp filters,
-which can be accumulated. You can add a filter preset through the option
-=org-agenda-category-filter-preset= (see below.)
+        Filter the current agenda view and only display the siblings
+        and the parent headline of the one at point.
 
-\_ (=org-agenda-filter-by-effort=)
+      - = (=org-agenda-filter-by-regexp=)
 
-Filter the agenda view with respect to effort estimates. You first need
-to set up allowed efforts globally, for example
+        Filter the agenda view by a regular expression: only show
+        agenda entries matching the regular expression the user
+        entered. When called with a prefix argument, it will filter
+        /out/ entries matching the regexp. With two universal prefix
+        arguments, it will remove all the regexp filters, which can be
+        accumulated. You can add a filter preset through the option
+        =org-agenda-category-filter-preset= (see below.)
 
-#+BEGIN_SRC lisp
-    (setq org-global-properties
-        '(("Effort_ALL". "0 0:10 0:30 1:00 2:00 3:00 4:00")))
-#+END_SRC
+      - _ (=org-agenda-filter-by-effort=)
 
-You can then filter for an effort by first typing an operator, one of <,
->, and =, and then the one-digit index of an effort estimate in your
-array of allowed values, where 0 means the 10th value. The filter will
-then restrict to entries with effort smaller-or-equal, equal, or
-larger-or-equal than the selected value. For application of the
-operator, entries without a defined effort will be treated according to
-the value of =org-sort-agenda-noeffort-is-high=.
+        Filter the agenda view with respect to effort estimates. You
+        first need to set up allowed efforts globally, for example
 
-| (=org-agenda-filter-remove-all=)
+        #+BEGIN_SRC lisp
+          (setq org-global-properties
+                '(("Effort_ALL". "0 0:10 0:30 1:00 2:00 3:00 4:00")))
+        #+END_SRC
 
-Remove all filters in the current agenda view.
+        You can then filter for an effort by first typing an operator,
+        one of <, >, and =, and then the one-digit index of an effort
+        estimate in your array of allowed values, where 0 means the
+        10th value. The filter will then restrict to entries with
+        effort smaller-or-equal, equal, or larger-or-equal than the
+        selected value. For application of the operator, entries
+        without a defined effort will be treated according to the
+        value of =org-sort-agenda-noeffort-is-high=.
 
-*** Setting limits for the agenda
+      - | (=org-agenda-filter-remove-all=)
 
-Here is a list of options that you can set, either globally, or locally
-in your custom agenda views (see [[@Custom-agenda-views][Custom agenda
-views]]).
+        Remove all filters in the current agenda view.
 
--  =org-agenda-max-entries= :: Limit the number of entries.
+**** Setting limits for the agenda
 
--  =org-agenda-max-effort= :: Limit the duration of accumulated efforts
-   (as minutes).
+     Here is a list of options that you can set, either globally, or
+     locally in your custom agenda views (see [[@Custom-agenda-views][Custom agenda views]]).
 
--  =org-agenda-max-todos= :: Limit the number of entries with TODO
-   keywords.
+      - =org-agenda-max-entries=
 
--  =org-agenda-max-tags= :: Limit the number of tagged entries.
+        Limit the number of entries.
 
-When set to a positive integer, each option will exclude entries from
-other categories: for example, =(setq org-agenda-max-effort 100)= will
-limit the agenda to 100 minutes of effort and exclude any entry that has
-no effort property. If you want to include entries with no effort
-property, use a negative value for =org-agenda-max-effort=.
+      - =org-agenda-max-effort=
 
-One useful setup is to use =org-agenda-max-entries= locally in a custom
-command. For example, this custom command will display the next five
-entries with a =NEXT= TODO keyword.
+        Limit the duration of accumulated efforts (as minutes).
 
-#+BEGIN_EXAMPLE
-    (setq org-agenda-custom-commands
-          '(("n" todo "NEXT"
-             ((org-agenda-max-entries 5)))))
-#+END_EXAMPLE
+      - =org-agenda-max-todos=
 
-Once you mark one of these five entry as =DONE=, rebuilding the agenda
-will again the next five entries again, including the first entry that
-was excluded so far.
+        Limit the number of entries with TODO keywords.
 
-You can also dynamically set temporary limits, which will be lost when
-rebuilding the agenda:
+      - =org-agenda-max-tags=
 
-~ (=org-agenda-limit-interactively=)
+        Limit the number of tagged entries.
 
-This prompts for the type of limit to apply and its value.
+     When set to a positive integer, each option will exclude entries
+     from other categories: for example, =(setq org-agenda-max-effort
+     100)= will limit the agenda to 100 minutes of effort and exclude
+     any entry that has no effort property. If you want to include
+     entries with no effort property, use a negative value for
+     =org-agenda-max-effort=.
+
+     One useful setup is to use =org-agenda-max-entries= locally in a
+     custom command. For example, this custom command will display the
+     next five entries with a =NEXT= TODO keyword.
+
+     #+BEGIN_EXAMPLE
+       (setq org-agenda-custom-commands
+             '(("n" todo "NEXT"
+                ((org-agenda-max-entries 5)))))
+     #+END_EXAMPLE
+
+     Once you mark one of these five entry as =DONE=, rebuilding the
+     agenda will again the next five entries again, including the
+     first entry that was excluded so far.
+
+     You can also dynamically set temporary limits, which will be lost
+     when rebuilding the agenda:
+
+      - ~ (=org-agenda-limit-interactively=)
+
+        This prompts for the type of limit to apply and its value.
 
 ** 10.5 Commands in the agenda buffer                                 <<@Agenda-commands>>
 
-Entries in the agenda buffer are linked back to the Org file or diary
-file where they originate. You are not allowed to edit the agenda buffer
-itself, but commands are provided to show and jump to the original entry
-location, and to edit the Org files “remotely” from the agenda buffer.
-In this way, all information is stored only once, removing the risk that
-your agenda and note files may diverge.
-
-Some commands can be executed with mouse clicks on agenda lines. For the
-other commands, the cursor needs to be in the desired line.
-
--  *Motion* ::
--  n (=org-agenda-next-line=) :: Next line (same as =down= and C-n).
-
--  p (=org-agenda-previous-line=) :: Previous line (same as =up= and
-   C-p).
-
--  N (=org-agenda-next-item=) :: Next item: same as next line, but
-   only consider items.
-
--  P (=org-agenda-previous-item=) :: Previous item: same as previous
-   line, but only consider items.
-
--  *View/Go to Org file* ::
--  SPC or mouse-3 (=org-agenda-show-and-scroll-up=) :: Display the
-   original location of the item in another window. With prefix arg,
-   make sure that the entire entry is made visible in the outline, not
-   only the heading.
-
--  L (=org-agenda-recenter=) :: Display original location and
-   recenter that window.
-
--  TAB or mouse-2 (=org-agenda-goto=) :: Go to the original
-   location of the item in another window.
-
--  RET (=org-agenda-switch-to=) :: Go to the original location of
-   the item and delete other windows.
-
--  F (=org-agenda-follow-mode=) :: Toggle Follow mode. In Follow
-   mode, as you move the cursor through the agenda buffer, the other
-   window always shows the corresponding location in the Org file. The
-   initial setting for this mode in new agenda buffers can be set with
-   the variable =org-agenda-start-with-follow-mode=.
-
--  C-c C-x b (=org-agenda-tree-to-indirect-buffer=) :: Display the
-   entire subtree of the current item in an indirect buffer. With a
-   numeric prefix argument N, go up to level N and then take that tree.
-   If N is negative, go up that many levels. With a C-u prefix, do not
-   remove the previously used indirect buffer.
-
--  C-c C-o (=org-agenda-open-link=) :: Follow a link in the entry.
-   This will offer a selection of any links in the text belonging to the
-   referenced Org node. If there is only one link, it will be followed
-   without a selection prompt.
-
--  *Change display* ::
--  A :: Interactively select another agenda view and append it to the
-   current view.
-
--  o :: Delete other windows.
-
--  v d or short d (=org-agenda-day-view=) ::
--  v w or short w (=org-agenda-week-view=) ::
--  v t (=org-agenda-fortnight-view=) ::
--  v m (=org-agenda-month-view=) ::
--  v y (=org-agenda-year-view=) ::
--  v SPC (=org-agenda-reset-view=) :: Switch to day/week/month/year
-   view. When switching to day or week view, this setting becomes the
-   default for subsequent agenda refreshes. Since month and year views
-   are slow to create, they do not become the default. A numeric prefix
-   argument may be used to jump directly to a specific day of the year,
-   ISO week, month, or year, respectively. For example, 32 d jumps to
-   February 1st, 9 w to ISO week number 9. When setting day, week, or
-   month view, a year may be encoded in the prefix argument as well. For
-   example, 200712 w will jump to week 12 in 2007. If such a year
-   specification has only one or two digits, it will be mapped to the
-   interval 1938--2037. v SPC will reset to what is set in
-   =org-agenda-span=.
-
--  f (=org-agenda-later=) :: Go forward in time to display the
-   following =org-agenda-current-span= days. For example, if the display
-   covers a week, switch to the following week. With prefix arg, go
-   forward that many times =org-agenda-current-span= days.
-
--  b (=org-agenda-earlier=) :: Go backward in time to display
-   earlier dates.
-
--  . (=org-agenda-goto-today=) :: Go to today.
-
--  j (=org-agenda-goto-date=) :: Prompt for a date and go there.
-
--  J (=org-agenda-clock-goto=) :: Go to the currently clocked-in
-   task /in the agenda buffer/.
-
--  D (=org-agenda-toggle-diary=) :: Toggle the inclusion of diary
-   entries. See [[@Weekly_daily-agenda][Weekly/daily agenda]].
-
--  v l or short l (=org-agenda-log-mode=) :: Toggle Logbook mode.
-   In Logbook mode, entries that were marked DONE while logging was on
-   (variable =org-log-done=) are shown in the agenda, as are entries
-   that have been clocked on that day. You can configure the entry types
-   that should be included in log mode using the variable
-   =org-agenda-log-mode-items=. When called with a C-u prefix, show all
-   possible logbook entries, including state changes. When called with
-   two prefix arguments C-u C-u, show only logging information, nothing
-   else. v L is equivalent to C-u v l.
-
--  v [ or short [ (=org-agenda-manipulate-query-add=) :: Include
-   inactive timestamps into the current view. Only for weekly/daily
-   agenda and timeline views.
-
--  v a (=org-agenda-archives-mode=) ::
--  v A (=org-agenda-archives-mode 'files=) :: Toggle Archives mode.
-   In Archives mode, trees that are marked =ARCHIVED= are also scanned
-   when producing the agenda. When you use the capital A, even all
-   archive files are included. To exit archives mode, press v a again.
-
--  v R or short R (=org-agenda-clockreport-mode=) :: Toggle
-   Clockreport mode. In Clockreport mode, the daily/weekly agenda will
-   always show a table with the clocked times for the time span and file
-   scope covered by the current agenda view. The initial setting for
-   this mode in new agenda buffers can be set with the variable
-   =org-agenda-start-with-clockreport-mode=. By using a prefix argument
-   when toggling this mode (i.e., C-u R), the clock table will not show
-   contributions from entries that are hidden by agenda
-   filtering[fn:FOOT103]. See also the variable
-   =org-clock-report-include-clocking-task=.
-
--  v c :: Show overlapping clock entries, clocking gaps, and other
-   clocking problems in the current agenda range. You can then visit
-   clocking lines and fix them manually. See the variable
-   =org-agenda-clock-consistency-checks= for information on how to
-   customize the definition of what constituted a clocking problem. To
-   return to normal agenda display, press l to exit Logbook mode.
-
--  v E or short E (=org-agenda-entry-text-mode=) :: Toggle entry
-   text mode. In entry text mode, a number of lines from the Org outline
-   node referenced by an agenda line will be displayed below the line.
-   The maximum number of lines is given by the variable
-   =org-agenda-entry-text-maxlines=. Calling this command with a numeric
-   prefix argument will temporarily modify that number to the prefix
-   value.
-
--  G (=org-agenda-toggle-time-grid=) :: Toggle the time grid on and
-   off. See also the variables =org-agenda-use-time-grid= and
-   =org-agenda-time-grid=.
-
--  r (=org-agenda-redo=) :: Recreate the agenda buffer, for example
-   to reflect the changes after modification of the timestamps of items
-   with S-left and S-right. When the buffer is the global TODO list, a
-   prefix argument is interpreted to create a selective list for a
-   specific TODO keyword.
-
--  g (=org-agenda-redo=) :: Same as r.
-
--  C-x C-s or short s (=org-save-all-org-buffers=) :: Save all Org
-   buffers in the current Emacs session, and also the locations of IDs.
-
--  C-c C-x C-c (=org-agenda-columns=) :: Invoke column view (see
-   [[@Column-view][Column view]]) in the agenda buffer. The column view
-   format is taken from the entry at point, or (if there is no entry at
-   point), from the first entry in the agenda view. So whatever the
-   format for that entry would be in the original buffer (taken from a
-   property, from a =#+COLUMNS= line, or from the default variable
-   =org-columns-default-format=), will be used in the agenda.
-
--  C-c C-x > (=org-agenda-remove-restriction-lock=) :: Remove the
-   restriction lock on the agenda, if it is currently restricted to a
-   file or subtree (see [[@Agenda-files][Agenda files]]).
-
--  *Secondary filtering and query editing* :: For a detailed description
-   of these commands, see see
-   [[@Filtering_002flimiting-agenda-items][Filtering/limiting agenda
-   items]].
-
--  / (=org-agenda-filter-by-tag=) :: Filter the agenda view with
-   respect to a tag and/or effort estimates.
-
--  \ (=org-agenda-filter-by-tag-refine=) :: Narrow the current
-   agenda filter by an additional condition.
-
--  < (=org-agenda-filter-by-category=) :: Filter the current agenda
-   view with respect to the category of the item at point. Pressing =<=
-   another time will remove this filter.
-
--  \^ (=org-agenda-filter-by-top-headline=) :: Filter the current
-   agenda view and only display the siblings and the parent headline of
-   the one at point.
-
--  = (=org-agenda-filter-by-regexp=) :: Filter the agenda view by a
-   regular expression: only show agenda entries matching the regular
-   expression the user entered. When called with a prefix argument, it
-   will filter /out/ entries matching the regexp. With two universal
-   prefix arguments, it will remove all the regexp filters, which can be
-   accumulated. You can add a filter preset through the option
-   =org-agenda-category-filter-preset= (see below.)
-
--  | (=org-agenda-filter-remove-all=) :: Remove all filters in the
-   current agenda view.
-
--  *Remote editing* ::
--  0--9 :: Digit argument.
-
--  C-\_ (=org-agenda-undo=) :: Undo a change due to a remote editing
-   command. The change is undone both in the agenda buffer and in the
-   remote buffer.
-
--  t (=org-agenda-todo=) :: Change the TODO state of the item, both
-   in the agenda and in the original org file.
-
--  C-S-right (=org-agenda-todo-nextset=) ::
--  C-S-left (=org-agenda-todo-previousset=) :: Switch to the
-   next/previous set of TODO keywords.
-
--  C-k (=org-agenda-kill=) :: Delete the current agenda item along
-   with the entire subtree belonging to it in the original Org file. If
-   the text to be deleted remotely is longer than one line, the kill
-   needs to be confirmed by the user. See variable
-   =org-agenda-confirm-kill=.
-
--  C-c C-w (=org-agenda-refile=) :: Refile the entry at point.
-
--  C-c C-x C-a or short a
-   (=org-agenda-archive-default-with-confirmation=) :: Archive the
-   subtree corresponding to the entry at point using the default
-   archiving command set in =org-archive-default-command=. When using
-   the =a= key, confirmation will be required.
-
--  C-c C-x a (=org-agenda-toggle-archive-tag=) :: Toggle the ARCHIVE
-   tag for the current headline.
-
--  C-c C-x A (=org-agenda-archive-to-archive-sibling=) :: Move the
-   subtree corresponding to the current entry to its /archive sibling/.
-
--  C-c C-x C-s or short $ (=org-agenda-archive=) :: Archive the
-   subtree corresponding to the current headline. This means the entry
-   will be moved to the configured archive location, most likely a
-   different file.
-
--  T (=org-agenda-show-tags=) :: Show all tags associated with the
-   current item. This is useful if you have turned off
-   =org-agenda-show-inherited-tags=, but still want to see all tags of a
-   headline occasionally.
-
--  : (=org-agenda-set-tags=) :: Set tags for the current headline.
-   If there is an active region in the agenda, change a tag for all
-   headings in the region.
-
--  , :: Set the priority for the current item (=org-agenda-priority=).
-   Org mode prompts for the priority character. If you reply with =SPC=,
-   the priority cookie is removed from the entry.
-
--  P (=org-agenda-show-priority=) :: Display weighted priority of
-   current item.
-
--  + or S-up (=org-agenda-priority-up=) :: Increase the priority
-   of the current item. The priority is changed in the original buffer,
-   but the agenda is not resorted. Use the r key for this.
-
--  - or S-down (=org-agenda-priority-down=) :: Decrease the
-   priority of the current item.
-
--  z or C-c C-z (=org-agenda-add-note=) :: Add a note to the
-   entry. This note will be recorded, and then filed to the same
-   location where state change notes are put. Depending on
-   =org-log-into-drawer=, this may be inside a drawer.
-
--  C-c C-a (=org-attach=) :: Dispatcher for all command related to
-   attachments.
-
--  C-c C-s (=org-agenda-schedule=) :: Schedule this item. With
-   prefix arg remove the scheduling timestamp
-
--  C-c C-d (=org-agenda-deadline=) :: Set a deadline for this item.
-   With prefix arg remove the deadline.
-
--  S-right (=org-agenda-do-date-later=) :: Change the timestamp
-   associated with the current line by one day into the future. If the
-   date is in the past, the first call to this command will move it to
-   today.\\
-    With a numeric prefix argument, change it by that many days. For
-   example, 3 6 5 S-right will change it by a year. With a C-u prefix,
-   change the time by one hour. If you immediately repeat the command,
-   it will continue to change hours even without the prefix arg. With a
-   double C-u C-u prefix, do the same for changing minutes.\\
-    The stamp is changed in the original Org file, but the change is not
-   directly reflected in the agenda buffer. Use r or g to update the
-   buffer.
-
--  S-left (=org-agenda-do-date-earlier=) :: Change the timestamp
-   associated with the current line by one day into the past.
-
--  > (=org-agenda-date-prompt=) :: Change the timestamp associated
-   with the current line. The key > has been chosen, because it is the
-   same as S-. on my keyboard.
-
--  I (=org-agenda-clock-in=) :: Start the clock on the current item.
-   If a clock is running already, it is stopped first.
-
--  O (=org-agenda-clock-out=) :: Stop the previously started clock.
-
--  X (=org-agenda-clock-cancel=) :: Cancel the currently running
-   clock.
-
--  J (=org-agenda-clock-goto=) :: Jump to the running clock in
-   another window.
-
--  k (=org-agenda-capture=) :: Like =org-capture=, but use the date
-   at point as the default date for the capture template. See
-   =org-capture-use-agenda-date= to make this the default behavior of
-   =org-capture=.
-
--  *Dragging agenda lines forward/backward* ::
--  M-<up> (=org-agenda-drag-line-backward=) :: Drag the line at
-   point backward one line[fn:FOOT104]. With a numeric prefix
-   argument, drag backward by that many lines.
-
--  M-<down> (=org-agenda-drag-line-forward=) :: Drag the line at
-   point forward one line. With a numeric prefix argument, drag forward
-   by that many lines.
-
--  *Bulk remote editing selected entries* ::
--  m (=org-agenda-bulk-mark=) :: Mark the entry at point for bulk
-   action. With numeric prefix argument, mark that many successive
-   entries.
-
--  * (=org-agenda-bulk-mark-all=) :: Mark all visible agenda entries
-   for bulk action.
-
--  u (=org-agenda-bulk-unmark=) :: Unmark entry at point for bulk
-   action.
-
--  U (=org-agenda-bulk-remove-all-marks=) :: Unmark all marked
-   entries for bulk action.
-
--  M-m (=org-agenda-bulk-toggle=) :: Toggle mark of the entry at
-   point for bulk action.
-
--  M-* (=org-agenda-bulk-toggle-all=) :: Toggle marks of all visible
-   entries for bulk action.
-
--  % (=org-agenda-bulk-mark-regexp=) :: Mark entries matching a
-   regular expression for bulk action.
-
--  B (=org-agenda-bulk-action=) :: Bulk action: act on all marked
-   entries in the agenda. This will prompt for another key to select the
-   action to be applied. The prefix arg to B will be passed through to
-   the s and d commands, to bulk-remove these special timestamps. By
-   default, marks are removed after the bulk. If you want them to
-   persist, set =org-agenda-persistent-marks= to =t= or hit p at the
-   prompt.
-
-   -  * :: Toggle persistent marks.
-
-   -  $ :: Archive all selected entries.
-
-   -  A :: Archive entries by moving them to their respective archive
-      siblings.
-
-   -  t :: Change TODO state. This prompts for a single TODO keyword and
-      changes the state of all selected entries, bypassing blocking and
-      suppressing logging notes (but not timestamps).
-
-   -  + :: Add a tag to all selected entries.
-
-   -  - :: Remove a tag from all selected entries.
-
-   -  s :: Schedule all items to a new date. To shift existing schedule
-      dates by a fixed number of days, use something starting with
-      double plus at the prompt, for example ‘++8d' or ‘++2w'.
-
-   -  d :: Set deadline to a specific date.
-
-   -  r :: Prompt for a single refile target and move all entries. The
-      entries will no longer be in the agenda; refresh (g) to bring them
-      back.
-
-   -  S :: Reschedule randomly into the coming N days. N will be
-      prompted for. With prefix arg (C-u B S), scatter only across
-      weekdays.
-
-   -  f :: Apply a function[fn:FOOT105] to marked entries. For
-      example, the function below sets the CATEGORY property of the
-      entries to web.
+   Entries in the agenda buffer are linked back to the Org file or
+   diary file where they originate. You are not allowed to edit the
+   agenda buffer itself, but commands are provided to show and jump to
+   the original entry location, and to edit the Org files “remotely”
+   from the agenda buffer.  In this way, all information is stored
+   only once, removing the risk that your agenda and note files may
+   diverge.
+
+   Some commands can be executed with mouse clicks on agenda
+   lines. For the other commands, the cursor needs to be in the
+   desired line.
+
+*** Motion
+     - n (=org-agenda-next-line=)
+
+       Next line (same as =down= and C-n).
+
+     - p (=org-agenda-previous-line=)
+
+       Previous line (same as =up= and C-p).
+
+     - N (=org-agenda-next-item=)
+
+       Next item: same as next line, but only consider items.
+
+     - P (=org-agenda-previous-item=)
+
+       Previous item: same as previous line, but only consider items.
+
+*** View/Go to Org file
+
+     - SPC or mouse-3 (=org-agenda-show-and-scroll-up=)
+
+       Display the original location of the item in another
+       window. With prefix arg, make sure that the entire entry is
+       made visible in the outline, not only the heading.
+
+     - L (=org-agenda-recenter=)
+
+       Display original location and recenter that window.
+
+     - TAB or mouse-2 (=org-agenda-goto=)
+
+       Go to the original location of the item in another window.
+
+     - RET (=org-agenda-switch-to=)
+
+       Go to the original location of the item and delete other
+       windows.
+
+     - F (=org-agenda-follow-mode=)
+
+       Toggle Follow mode. In Follow mode, as you move the cursor
+       through the agenda buffer, the other window always shows the
+       corresponding location in the Org file. The initial setting for
+       this mode in new agenda buffers can be set with the variable
+       =org-agenda-start-with-follow-mode=.
+
+     - C-c C-x b (=org-agenda-tree-to-indirect-buffer=)
+
+       Display the entire subtree of the current item in an indirect
+       buffer. With a numeric prefix argument N, go up to level N and
+       then take that tree.  If N is negative, go up that many
+       levels. With a C-u prefix, do not remove the previously used
+       indirect buffer.
+
+     - C-c C-o (=org-agenda-open-link=)
+
+       Follow a link in the entry.  This will offer a selection of any
+       links in the text belonging to the referenced Org node. If
+       there is only one link, it will be followed without a selection
+       prompt.
+
+*** Change display
+
+     - A
+
+       Interactively select another agenda view and append it to the
+       current view.
+
+     - o
+
+       Delete other windows.
+
+     - v d or short d (=org-agenda-day-view=)
+     - v w or short w (=org-agenda-week-view=)
+     - v t (=org-agenda-fortnight-view=)
+     - v m (=org-agenda-month-view=)
+     - v y (=org-agenda-year-view=)
+     - v SPC (=org-agenda-reset-view=)
+
+       Switch to day/week/month/year view. When switching to day or
+       week view, this setting becomes the default for subsequent
+       agenda refreshes. Since month and year views are slow to
+       create, they do not become the default. A numeric prefix
+       argument may be used to jump directly to a specific day of the
+       year, ISO week, month, or year, respectively. For example, 32 d
+       jumps to February 1st, 9 w to ISO week number 9. When setting
+       day, week, or month view, a year may be encoded in the prefix
+       argument as well. For example, 200712 w will jump to week 12
+       in 2007. If such a year specification has only one or two
+       digits, it will be mapped to the interval 1938--2037. v SPC
+       will reset to what is set in =org-agenda-span=.
+
+     - f (=org-agenda-later=)
+
+       Go forward in time to display the following
+       =org-agenda-current-span= days. For example, if the display
+       covers a week, switch to the following week. With prefix arg,
+       go forward that many times =org-agenda-current-span= days.
+
+     - b (=org-agenda-earlier=)
+
+       Go backward in time to display earlier dates.
+
+     - . (=org-agenda-goto-today=)
+
+       Go to today.
+
+     - j (=org-agenda-goto-date=)
+
+       Prompt for a date and go there.
+
+     - J (=org-agenda-clock-goto=)
+
+       Go to the currently clocked-in task /in the agenda buffer/.
+
+     - D (=org-agenda-toggle-diary=)
+
+       Toggle the inclusion of diary entries. See [[@Weekly_daily-agenda][Weekly/daily agenda]].
+
+     - v l or short l (=org-agenda-log-mode=)
+
+       Toggle Logbook mode.  In Logbook mode, entries that were marked
+       DONE while logging was on (variable =org-log-done=) are shown
+       in the agenda, as are entries that have been clocked on that
+       day. You can configure the entry types that should be included
+       in log mode using the variable
+       =org-agenda-log-mode-items=. When called with a */C-u/* prefix,
+       show all possible logbook entries, including state
+       changes. When called with two prefix arguments */C-u C-u/*,
+       show only logging information, nothing else. v L is equivalent
+       to */C-u v l/*.
+
+     - v [ or short [ (=org-agenda-manipulate-query-add=)
+
+       Include inactive timestamps into the current view. Only for
+       weekly/daily agenda and timeline views.
+
+     - v a (=org-agenda-archives-mode=)
+     - v A (=org-agenda-archives-mode 'files=)
+
+       Toggle Archives mode.  In Archives mode, trees that are marked
+       =ARCHIVED= are also scanned when producing the agenda. When you
+       use the capital A, even all archive files are included. To exit
+       archives mode, press v a again.
+
+     - v R or short R (=org-agenda-clockreport-mode=)
+
+       Toggle Clockreport mode. In Clockreport mode, the daily/weekly
+       agenda will always show a table with the clocked times for the
+       time span and file scope covered by the current agenda
+       view. The initial setting for this mode in new agenda buffers
+       can be set with the variable
+       =org-agenda-start-with-clockreport-mode=. By using a prefix
+       argument when toggling this mode (i.e., C-u R), the clock table
+       will not show contributions from entries that are hidden by
+       agenda filtering[fn:FOOT103]. See also the variable
+       =org-clock-report-include-clocking-task=.
+
+     - v c
+
+       Show overlapping clock entries, clocking gaps, and other
+       clocking problems in the current agenda range. You can then
+       visit clocking lines and fix them manually. See the variable
+       =org-agenda-clock-consistency-checks= for information on how to
+       customize the definition of what constituted a clocking
+       problem. To return to normal agenda display, press l to exit
+       Logbook mode.
+
+     - v E or short E (=org-agenda-entry-text-mode=)
+
+       Toggle entry text mode. In entry text mode, a number of lines
+       from the Org outline node referenced by an agenda line will be
+       displayed below the line.  The maximum number of lines is given
+       by the variable =org-agenda-entry-text-maxlines=. Calling this
+       command with a numeric prefix argument will temporarily modify
+       that number to the prefix value.
+
+     - G (=org-agenda-toggle-time-grid=)
+
+       Toggle the time grid on and off. See also the variables
+       =org-agenda-use-time-grid= and =org-agenda-time-grid=.
+
+     - r (=org-agenda-redo=)
+
+       Recreate the agenda buffer, for example to reflect the changes
+       after modification of the timestamps of items with S-left and
+       S-right. When the buffer is the global TODO list, a prefix
+       argument is interpreted to create a selective list for a
+       specific TODO keyword.
+
+     - g (=org-agenda-redo=)
+
+       Same as r.
+
+     - C-x C-s or short s (=org-save-all-org-buffers=)
+
+       Save all Org buffers in the current Emacs session, and also the
+       locations of IDs.
+
+     - C-c C-x C-c (=org-agenda-columns=)
+
+       Invoke column view (see [[@Column-view][Column view]]) in the agenda buffer. The
+       column view format is taken from the entry at point, or (if
+       there is no entry at point), from the first entry in the agenda
+       view. So whatever the format for that entry would be in the
+       original buffer (taken from a property, from a =#+COLUMNS=
+       line, or from the default variable
+       =org-columns-default-format=), will be used in the agenda.
+
+     - C-c C-x > (=org-agenda-remove-restriction-lock=)
+
+       Remove the restriction lock on the agenda, if it is currently
+       restricted to a file or subtree (see [[@Agenda-files][Agenda files]]).
+
+*** Secondary filtering and query editing
+
+    For a detailed description of these commands, see see
+    [[@Filtering_limiting-agenda-items][Filtering/limiting agenda items]].
+
+     - / (=org-agenda-filter-by-tag=)
+
+       Filter the agenda view with respect to a tag and/or effort
+       estimates.
+
+     - \ (=org-agenda-filter-by-tag-refine=)
+
+       Narrow the current agenda filter by an additional condition.
+
+     - < (=org-agenda-filter-by-category=)
+
+       Filter the current agenda view with respect to the category of
+       the item at point. Pressing =<= another time will remove this
+       filter.
+
+     - \^ (=org-agenda-filter-by-top-headline=)
+
+       Filter the current agenda view and only display the siblings
+       and the parent headline of the one at point.
+
+     - = (=org-agenda-filter-by-regexp=)
+
+       Filter the agenda view by a regular expression: only show
+       agenda entries matching the regular expression the user
+       entered. When called with a prefix argument, it will filter
+       /out/ entries matching the regexp. With two universal prefix
+       arguments, it will remove all the regexp filters, which can be
+       accumulated. You can add a filter preset through the option
+       =org-agenda-category-filter-preset= (see below.)
+
+     - | (=org-agenda-filter-remove-all=)
+
+       Remove all filters in the current agenda view.
+
+*** Remote editing
+
+     - 0--9
+
+       Digit argument.
+
+     - C-_ (=org-agenda-undo=)
+
+       Undo a change due to a remote editing command. The change is
+       undone both in the agenda buffer and in the remote buffer.
+
+     - t (=org-agenda-todo=)
+
+       Change the TODO state of the item, both in the agenda and in
+       the original org file.
+
+     - C-S-right (=org-agenda-todo-nextset=)
+     - C-S-left (=org-agenda-todo-previousset=)
+
+       Switch to the next/previous set of TODO keywords.
+
+     - C-k (=org-agenda-kill=)
+
+       Delete the current agenda item along with the entire subtree
+       belonging to it in the original Org file. If the text to be
+       deleted remotely is longer than one line, the kill needs to be
+       confirmed by the user. See variable =org-agenda-confirm-kill=.
+
+     - C-c C-w (=org-agenda-refile=)
+
+       Refile the entry at point.
+
+     - C-c C-x C-a or short a
+       (=org-agenda-archive-default-with-confirmation=)
+
+       Archive the subtree corresponding to the entry at point using
+       the default archiving command set in
+       =org-archive-default-command=. When using the =a= key,
+       confirmation will be required.
+
+     - C-c C-x a (=org-agenda-toggle-archive-tag=)
+
+       Toggle the ARCHIVE tag for the current headline.
+
+     - C-c C-x A (=org-agenda-archive-to-archive-sibling=)
+
+       Move the subtree corresponding to the current entry to its
+       /archive sibling/.
+
+     - C-c C-x C-s or short $ (=org-agenda-archive=)
+
+       Archive the subtree corresponding to the current headline. This
+       means the entry will be moved to the configured archive
+       location, most likely a different file.
+
+     - T (=org-agenda-show-tags=)
+
+       Show all tags associated with the current item. This is useful
+       if you have turned off =org-agenda-show-inherited-tags=, but
+       still want to see all tags of a headline occasionally.
+
+     - : (=org-agenda-set-tags=)
+
+       Set tags for the current headline.  If there is an active
+       region in the agenda, change a tag for all headings in the
+       region.
+
+     - ,
+
+       Set the priority for the current item (=org-agenda-priority=).
+       Org mode prompts for the priority character. If you reply with
+       =SPC=, the priority cookie is removed from the entry.
+
+     - P (=org-agenda-show-priority=)
+
+       Display weighted priority of current item.
+
+     - + or S-up (=org-agenda-priority-up=)
+
+       Increase the priority of the current item. The priority is
+       changed in the original buffer, but the agenda is not
+       resorted. Use the r key for this.
+
+     - =-= or S-down (=org-agenda-priority-down=)
+
+       Decrease the priority of the current item.
+
+     - z or C-c C-z (=org-agenda-add-note=)
+
+       Add a note to the entry. This note will be recorded, and then
+       filed to the same location where state change notes are
+       put. Depending on =org-log-into-drawer=, this may be inside a
+       drawer.
+
+     - C-c C-a (=org-attach=)
+
+       Dispatcher for all command related to attachments.
+
+     - C-c C-s (=org-agenda-schedule=)
+
+       Schedule this item. With prefix arg remove the scheduling
+       timestamp
+
+     - C-c C-d (=org-agenda-deadline=)
+
+       Set a deadline for this item.  With prefix arg remove the
+       deadline.
+
+     - S-right (=org-agenda-do-date-later=)
+
+       Change the timestamp associated with the current line by one
+       day into the future. If the date is in the past, the first call
+       to this command will move it to today.
+
+       With a numeric prefix argument, change it by that many
+       days. For example, 3 6 5 S-right will change it by a year. With
+       a C-u prefix, change the time by one hour. If you immediately
+       repeat the command, it will continue to change hours even
+       without the prefix arg. With a double */C-u C-u/* prefix, do
+       the same for changing minutes.
+
+       The stamp is changed in the original Org file, but the change
+       is not directly reflected in the agenda buffer. Use r or g to
+       update the buffer.
+
+     - S-left (=org-agenda-do-date-earlier=)
+
+       Change the timestamp associated with the current line by one
+       day into the past.
+
+     - > (=org-agenda-date-prompt=)
+
+       Change the timestamp associated with the current line. The key
+       > has been chosen, because it is the same as S-. on my
+       keyboard.
+
+     - I (=org-agenda-clock-in=)
+
+       Start the clock on the current item.  If a clock is running
+       already, it is stopped first.
+
+     - O (=org-agenda-clock-out=)
+
+       Stop the previously started clock.
+
+     - X (=org-agenda-clock-cancel=)
+
+       Cancel the currently running clock.
+
+     - J (=org-agenda-clock-goto=)
+
+       Jump to the running clock in another window.
+
+     - k (=org-agenda-capture=)
+
+       Like =org-capture=, but use the date at point as the default
+       date for the capture template. See
+       =org-capture-use-agenda-date= to make this the default behavior
+       of =org-capture=.
+
+*** Dragging agenda lines forward/backward
+
+     - M-<up> (=org-agenda-drag-line-backward=)
+
+       Drag the line at point backward one line[fn:FOOT104]. With a
+       numeric prefix argument, drag backward by that many lines.
+
+     - M-<down> (=org-agenda-drag-line-forward=)
+
+       Drag the line at point forward one line. With a numeric prefix
+       argument, drag forward by that many lines.
+
+*** COMMENT Bulk remote editing selected entries
+
+     - m (=org-agenda-bulk-mark=)
+
+       Mark the entry at point for bulk action. With numeric prefix
+       argument, mark that many successive entries.
+
+     - * (=org-agenda-bulk-mark-all=)
+
+       Mark all visible agenda entries for bulk action.
+
+     - u (=org-agenda-bulk-unmark=)
+
+       Unmark entry at point for bulk action.
+
+     - U (=org-agenda-bulk-remove-all-marks=)
+
+       Unmark all marked entries for bulk action.
+
+     - M-m (=org-agenda-bulk-toggle=)
+
+       Toggle mark of the entry at point for bulk action.
+
+     - M-* (=org-agenda-bulk-toggle-all=)
+
+       Toggle marks of all visible entries for bulk action.
+
+     - % (=org-agenda-bulk-mark-regexp=)
+
+       Mark entries matching a regular expression for bulk action.
+
+     - B (=org-agenda-bulk-action=)
+
+       Bulk action: act on all marked entries in the agenda. This will
+       prompt for another key to select the action to be applied. The
+       prefix arg to B will be passed through to the s and d commands,
+       to bulk-remove these special timestamps. By default, marks are
+       removed after the bulk. If you want them to persist, set
+       =org-agenda-persistent-marks= to =t= or hit p at the prompt.
+
+        - *
+
+          Toggle persistent marks.
+
+        - $
+
+          Archive all selected entries.
+
+        - A
+
+          Archive entries by moving them to their respective archive
+          siblings.
+
+        - t
+
+          Change TODO state. This prompts for a single TODO keyword
+          and changes the state of all selected entries, bypassing
+          blocking and suppressing logging notes (but not timestamps).
+
+        - =+=
+
+          Add a tag to all selected entries.
+
+        - =-=
+
+          Remove a tag from all selected entries.
+
+        - s
+
+          Schedule all items to a new date. To shift existing schedule
+          dates by a fixed number of days, use something starting with
+          double plus at the prompt, for example ‘++8d' or ‘++2w'.
+
+        - d
+
+          Set deadline to a specific date.
+
+        - r
+
+          Prompt for a single refile target and move all entries. The
+          entries will no longer be in the agenda; refresh (g) to
+          bring them back.
+
+        - S
+
+          Reschedule randomly into the coming N days. N will be
+          prompted for. With prefix arg (*/C-u B S/*), scatter only
+          across weekdays.
+
+        - f
+
+          Apply a function[fn:FOOT105] to marked entries. For example,
+          the function below sets the CATEGORY property of the entries
+          to web.
+
+          #+BEGIN_SRC lisp
+            (defun set-category ()
+              (interactive "P")
+              (let* ((marker (or (org-get-at-bol 'org-hd-marker)
+                                 (org-agenda-error)))
+                     (buffer (marker-buffer marker)))
+                (with-current-buffer buffer
+                  (save-excursion
+                    (save-restriction
+                      (widen)
+                      (goto-char marker)
+                      (org-back-to-heading t)
+                      (org-set-property "CATEGORY" "web"))))))
+          #+END_SRC
+
+*** Calendar commands
+
+     - c (=org-agenda-goto-calendar=)
+
+       Open the Emacs calendar and move to the date at the agenda
+       cursor.
+
+     - c (=org-calendar-goto-agenda=)
+
+       When in the calendar, compute and show the Org mode agenda for
+       the date at the cursor.
+
+     - i (=org-agenda-diary-entry=)
+
+       Insert a new entry into the diary, using the date at the cursor
+       and (for block entries) the date at the mark. This will add to
+       the Emacs diary file[fn:FOOT106], in a way similar to the i
+       command in the calendar. The diary file will pop up in another
+       window, where you can add the entry.
+
+       If you configure =org-agenda-diary-file= to point to an Org
+       mode file, Org will create entries (in Org mode syntax) in that
+       file instead. Most entries will be stored in a date-based
+       outline tree that will later make it easy to archive
+       appointments from previous months/years. The tree will be built
+       under an entry with a =DATE_TREE= property, or else with years
+       as top-level entries. Emacs will prompt you for the entry
+       text---if you specify it, the entry will be created in
+       =org-agenda-diary-file= without further interaction. If you
+       directly press =RET= at the prompt without typing text, the
+       target file will be shown in another window for you to finish
+       the entry there. See also the k r command.
+
+     - M (=org-agenda-phases-of-moon=)
+
+       Show the phases of the moon for the three months around current
+       date.
+
+     - S (=org-agenda-sunrise-sunset=)
+
+       Show sunrise and sunset times.  The geographical location must
+       be set with calendar variables, see the documentation for the
+       Emacs calendar.
+
+     - C (=org-agenda-convert-date=)
+
+       Convert the date at cursor into many other cultural and
+       historic calendars.
+
+     - H (=org-agenda-holidays=)
+
+       Show holidays for three months around the cursor date.
+
+     - M-x org-icalendar-combine-agenda-files RET
+
+       Export a single iCalendar file containing entries from all
+       agenda files. This is a globally available command, and also
+       available in the agenda menu.
+
+*** Exporting to a file
+
+     - C-x C-w (=org-agenda-write=)
+
+       Write the agenda view to a file.  Depending on the extension of
+       the selected file name, the view will be exported as HTML
+       (.html or .htm), Postscript (.ps), PDF (.pdf), Org (.org) and
+       plain text (any other extension). When exporting to Org, only
+       the body of original headlines are exported, not subtrees or
+       inherited tags. When called with a */C-u/* prefix argument,
+       immediately open the newly created file. Use the variable
+       =org-agenda-exporter-settings= to set options for ps-print and
+       for htmlize to be used during export.
+
+*** Quit and Exit
+
+     - q (=org-agenda-quit=)
+
+       Quit agenda, remove the agenda buffer.
+
+     - x (=org-agenda-exit=)
+
+       Exit agenda, remove the agenda buffer and all buffers loaded by
+       Emacs for the compilation of the agenda.  Buffers created by
+       the user to visit Org files will not be removed.
+
+** 10.6 Custom agenda views                                           <<@Custom-agenda-views>>
+
+   Custom agenda commands serve two purposes: to store and quickly
+   access frequently used TODO and tags searches, and to create
+   special composite agenda buffers. Custom agenda commands will be
+   accessible through the dispatcher (see [[@Agenda-dispatcher][Agenda dispatcher]]), just
+   like the default commands.
+
+   | • [[@Storing-searches][Storing searches]]: | Type once, use often                      |
+   | • [[@Block-agenda][Block agenda]]:     | All the stuff you need in a single buffer |
+   | • [[@Setting-options][Setting options]]:  | Changing the rules                        |
+
+*** 10.6.1 Storing searches                                           <<@Storing-searches>>
+
+    The first application of custom searches is the definition of
+    keyboard shortcuts for frequently used searches, either creating
+    an agenda buffer, or a sparse tree (the latter covering of course
+    only the current buffer).
+
+    Custom commands are configured in the variable
+    =org-agenda-custom-commands=. You can customize this variable, for
+    example by pressing */C-c a C/*. You can also directly set it with
+    Emacs Lisp in .emacs. The following example contains all valid
+    agenda views:
+
+    #+BEGIN_SRC lisp
+      (setq org-agenda-custom-commands
+            '(("x" agenda)
+              ("y" agenda*)
+              ("w" todo "WAITING")
+              ("W" todo-tree "WAITING")
+              ("u" tags "+boss-urgent")
+              ("v" tags-todo "+boss-urgent")
+              ("U" tags-tree "+boss-urgent")
+              ("f" occur-tree "\\<FIXME\\>")
+              ("h" . "HOME+Name tags searches") ; description for "h" prefix
+              ("hl" tags "+home+Lisa")
+              ("hp" tags "+home+Peter")
+              ("hk" tags "+home+Kim")))
+    #+END_SRC
+
+    The initial string in each entry defines the keys you have to
+    press after the dispatcher command */C-c a/* in order to access
+    the command.  Usually this will be just a single character, but if
+    you have many similar commands, you can also define two-letter
+    combinations where the first character is the same in several
+    combinations and serves as a prefix key[fn:FOOT107]. The second
+    parameter is the search type, followed by the string or regular
+    expression to be used for the matching. The example above will
+    therefore define:
+
+     - C-c a x
+
+       as a global search for agenda entries planned[fn:FOOT108] this
+       week/day.
+
+     - C-c a y
+
+       as a global search for agenda entries planned this week/day,
+       but only those with an hour specification like
+       =[h]h:mm=---think of them as appointments.
+
+     - C-c a w
+
+       as a global search for TODO entries with ‘WAITING' as the TODO
+       keyword
+
+     - C-c a W
+
+       as the same search, but only in the current buffer and
+       displaying the results as a sparse tree
+
+     - C-c a u
+
+       as a global tags search for headlines marked ‘:boss:' but not
+       ‘:urgent:'
+
+     - C-c a v
+
+       as the same search as */C-c a u/*, but limiting the search to
+       headlines that are also TODO items
+
+     - C-c a U
+
+       as the same search as */C-c a u/*, but only in the current
+       buffer and displaying the result as a sparse tree
+
+     - C-c a f
+
+       to create a sparse tree (again: current buffer only) with all
+       entries containing the word ‘FIXME'
+
+     - C-c a h
+
+       as a prefix command for a HOME tags search where you have to
+       press an additional key (l, p or k) to select a name (Lisa,
+       Peter, or Kim) as additional tag to match.
+
+    Note that the =*-tree= agenda views need to be called from an Org
+    buffer as they operate on the current buffer only.
+
+*** 10.6.2 Block agenda                                               <<@Block-agenda>>
+
+    Another possibility is the construction of agenda views that
+    comprise the results of /several/ commands, each of which creates
+    a block in the agenda buffer. The available commands include
+    =agenda= for the daily or weekly agenda (as created with */C-c a
+    a/*), =alltodo= for the global TODO list (as constructed with
+    */C-c a t/*), and the matching commands discussed above: =todo=,
+    =tags=, and =tags-todo=. Here are two examples:
+
+    #+BEGIN_SRC lisp
+      (setq org-agenda-custom-commands
+            '(("h" "Agenda and Home-related tasks"
+               ((agenda "")
+                (tags-todo "home")
+                (tags "garden")))
+              ("o" "Agenda and Office-related tasks"
+               ((agenda "")
+                (tags-todo "work")
+                (tags "office")))))
+    #+END_SRC
+
+    This will define */C-c a h/* to create a multi-block view for
+    stuff you need to attend to at home. The resulting agenda buffer
+    will contain your agenda for the current week, all TODO items that
+    carry the tag ‘home', and also all lines tagged with
+    ‘garden'. Finally the command */C-c a o/* provides a similar view
+    for office tasks.
+
+*** 10.6.3 Setting options for custom commands                        <<@Setting-options>>
+
+    Org mode contains a number of variables regulating agenda
+    construction and display. The global variables define the behavior
+    for all agenda commands, including the custom commands. However,
+    if you want to change some settings just for a single custom view,
+    you can do so. Setting options requires inserting a list of
+    variable names and values at the right spot in
+    =org-agenda-custom-commands=. For example:
+
+    #+BEGIN_SRC lisp
+      (setq org-agenda-custom-commands
+            '(("w" todo "WAITING"
+               ((org-agenda-sorting-strategy '(priority-down))
+                (org-agenda-prefix-format "  Mixed: ")))
+              ("U" tags-tree "+boss-urgent"
+               ((org-show-context-detail 'minimal)))
+              ("N" search ""
+               ((org-agenda-files '("~org/notes.org"))
+                (org-agenda-text-search-extra-files nil)))))
+    #+END_SRC
+
+    Now the */C-c a w/* command will sort the collected entries only
+    by priority, and the prefix format is modified to just say ‘
+    Mixed: ' instead of giving the category of the entry. The sparse
+    tags tree of */C-c a U/* will now turn out ultra-compact, because
+    neither the headline hierarchy above the match, nor the headline
+    following the match will be shown. The command */C-c a N/* will do
+    a text search limited to only a single file.
+
+    For command sets creating a block agenda,
+    =org-agenda-custom-commands= has two separate spots for setting
+    options. You can add options that should be valid for just a
+    single command in the set, and options that should be valid for
+    all commands in the set. The former are just added to the command
+    entry; the latter must come after the list of command
+    entries. Going back to the block agenda example (see [[@Block-agenda][Block
+    agenda]]), let's change the sorting strategy for the */C-c a h/*
+    commands to =priority-down=, but let's sort the results for GARDEN
+    tags query in the opposite order, =priority-up=. This would look
+    like this:
+
+    #+BEGIN_SRC lisp
+      (setq org-agenda-custom-commands
+            '(("h" "Agenda and Home-related tasks"
+               ((agenda)
+                (tags-todo "home")
+                (tags "garden"
+                      ((org-agenda-sorting-strategy '(priority-up)))))
+               ((org-agenda-sorting-strategy '(priority-down))))
+              ("o" "Agenda and Office-related tasks"
+               ((agenda)
+                (tags-todo "work")
+                (tags "office")))))
+    #+END_SRC
+
+    As you see, the values and parentheses setting is a little
+    complex. When in doubt, use the customize interface to set this
+    variable -- it fully supports its structure. Just one caveat: when
+    setting options in this interface, the /values/ are just Lisp
+    expressions. So if the value is a string, you need to add the
+    double-quotes around the value yourself.
+
+    To control whether an agenda command should be accessible from a
+    specific context, you can customize
+    =org-agenda-custom-commands-contexts=. Let's say for example that
+    you have an agenda command ="o"= displaying a view that you only
+    need when reading emails. Then you would configure this option
+    like this:
+
+    #+BEGIN_SRC lisp
+      (setq org-agenda-custom-commands-contexts
+            '(("o" (in-mode . "message-mode"))))
+    #+END_SRC
+
+    You can also tell that the command key "o" should refer to another
+    command key "r". In that case, add this command key like this:
+
+    #+BEGIN_SRC lisp
+      (setq org-agenda-custom-commands-contexts
+            '(("o" "r" (in-mode . "message-mode"))))
+    #+END_SRC
+
+    See the docstring of the variable for more information.
+
+** 10.7 Exporting agenda views                                        <<@Exporting-agenda-views>>
+
+   If you are away from your computer, it can be very useful to have a
+   printed version of some agenda views to carry around. Org mode can
+   export custom agenda views as plain text, HTML[fn:FOOT109],
+   Postscript, PDF[fn:FOOT110], and iCalendar files. If you want to do
+   this only occasionally, use the command
+
+    - */C-x C-w/* (=org-agenda-write=)
+
+      Write the agenda view to a file. Depending on the extension of
+      the selected file name, the view will be exported as HTML
+      (extension .html or .htm), Postscript (extension .ps), iCalendar
+      (extension .ics), or plain text (any other extension). Use the
+      variable =org-agenda-exporter-settings= to set options for
+      ps-print and for htmlize to be used during export, for example
 
       #+BEGIN_SRC lisp
-          (defun set-category ()
-            (interactive "P")
-            (let* ((marker (or (org-get-at-bol 'org-hd-marker)
-                               (org-agenda-error)))
-                   (buffer (marker-buffer marker)))
-              (with-current-buffer buffer
-                (save-excursion
-                  (save-restriction
-                    (widen)
-                    (goto-char marker)
-                    (org-back-to-heading t)
-                    (org-set-property "CATEGORY" "web"))))))
+        (setq org-agenda-exporter-settings
+              '((ps-number-of-columns 2)
+                (ps-landscape-mode t)
+                (org-agenda-add-entry-text-maxlines 5)
+                (htmlize-output-type 'css)))
       #+END_SRC
 
--  *Calendar commands* ::
--  c (=org-agenda-goto-calendar=) :: Open the Emacs calendar and
-   move to the date at the agenda cursor.
-
--  c (=org-calendar-goto-agenda=) :: When in the calendar, compute
-   and show the Org mode agenda for the date at the cursor.
-
--  i (=org-agenda-diary-entry=) :: Insert a new entry into the
-   diary, using the date at the cursor and (for block entries) the date
-   at the mark. This will add to the Emacs diary
-   file[fn:FOOT106], in a way similar to the i command in the
-   calendar. The diary file will pop up in another window, where you can
-   add the entry.
-
-   If you configure =org-agenda-diary-file= to point to an Org mode
-   file, Org will create entries (in Org mode syntax) in that file
-   instead. Most entries will be stored in a date-based outline tree
-   that will later make it easy to archive appointments from previous
-   months/years. The tree will be built under an entry with a
-   =DATE_TREE= property, or else with years as top-level entries. Emacs
-   will prompt you for the entry text---if you specify it, the entry
-   will be created in =org-agenda-diary-file= without further
-   interaction. If you directly press =RET= at the prompt without typing
-   text, the target file will be shown in another window for you to
-   finish the entry there. See also the k r command.
-
--  M (=org-agenda-phases-of-moon=) :: Show the phases of the moon
-   for the three months around current date.
-
--  S (=org-agenda-sunrise-sunset=) :: Show sunrise and sunset times.
-   The geographical location must be set with calendar variables, see
-   the documentation for the Emacs calendar.
-
--  C (=org-agenda-convert-date=) :: Convert the date at cursor into
-   many other cultural and historic calendars.
-
--  H (=org-agenda-holidays=) :: Show holidays for three months
-   around the cursor date.
-
--  M-x org-icalendar-combine-agenda-files RET :: Export a single
-   iCalendar file containing entries from all agenda files. This is a
-   globally available command, and also available in the agenda menu.
-
--  *Exporting to a file* ::
--  C-x C-w (=org-agenda-write=) :: Write the agenda view to a file.
-   Depending on the extension of the selected file name, the view will
-   be exported as HTML (.html or .htm), Postscript (.ps), PDF (.pdf),
-   Org (.org) and plain text (any other extension). When exporting to
-   Org, only the body of original headlines are exported, not subtrees
-   or inherited tags. When called with a C-u prefix argument,
-   immediately open the newly created file. Use the variable
-   =org-agenda-exporter-settings= to set options for ps-print and for
-   htmlize to be used during export.
-
--  *Quit and Exit* ::
--  q (=org-agenda-quit=) :: Quit agenda, remove the agenda buffer.
-
--  x (=org-agenda-exit=) :: Exit agenda, remove the agenda buffer
-   and all buffers loaded by Emacs for the compilation of the agenda.
-   Buffers created by the user to visit Org files will not be removed.
-
-** 10.6 Custom agenda views
-
-Custom agenda commands serve two purposes: to store and quickly access
-frequently used TODO and tags searches, and to create special composite
-agenda buffers. Custom agenda commands will be accessible through the
-dispatcher (see [[@Agenda-dispatcher][Agenda dispatcher]]), just like
-the default commands.
-
-*** 10.6.1 Storing searches
-
-The first application of custom searches is the definition of keyboard
-shortcuts for frequently used searches, either creating an agenda
-buffer, or a sparse tree (the latter covering of course only the current
-buffer).
-
-Custom commands are configured in the variable
-=org-agenda-custom-commands=. You can customize this variable, for
-example by pressing C-c a C. You can also directly set it with Emacs
-Lisp in .emacs. The following example contains all valid agenda views:
-
-#+BEGIN_SRC lisp
-    (setq org-agenda-custom-commands
-          '(("x" agenda)
-            ("y" agenda*)
-            ("w" todo "WAITING")
-            ("W" todo-tree "WAITING")
-            ("u" tags "+boss-urgent")
-            ("v" tags-todo "+boss-urgent")
-            ("U" tags-tree "+boss-urgent")
-            ("f" occur-tree "\\<FIXME\\>")
-            ("h" . "HOME+Name tags searches") ; description for "h" prefix
-            ("hl" tags "+home+Lisa")
-            ("hp" tags "+home+Peter")
-            ("hk" tags "+home+Kim")))
-#+END_SRC
-
-The initial string in each entry defines the keys you have to press
-after the dispatcher command C-c a in order to access the command.
-Usually this will be just a single character, but if you have many
-similar commands, you can also define two-letter combinations where the
-first character is the same in several combinations and serves as a
-prefix key[fn:FOOT107]. The second parameter is the search type,
-followed by the string or regular expression to be used for the
-matching. The example above will therefore define:
-
--  C-c a x :: as a global search for agenda entries
-   planned[fn:FOOT108] this week/day.
-
--  C-c a y :: as a global search for agenda entries planned this
-   week/day, but only those with an hour specification like
-   =[h]h:mm=---think of them as appointments.
-
--  C-c a w :: as a global search for TODO entries with ‘WAITING' as the
-   TODO keyword
-
--  C-c a W :: as the same search, but only in the current buffer and
-   displaying the results as a sparse tree
-
--  C-c a u :: as a global tags search for headlines marked ‘:boss:' but
-   not ‘:urgent:'
-
--  C-c a v :: as the same search as C-c a u, but limiting the search to
-   headlines that are also TODO items
-
--  C-c a U :: as the same search as C-c a u, but only in the current
-   buffer and displaying the result as a sparse tree
-
--  C-c a f :: to create a sparse tree (again: current buffer only) with
-   all entries containing the word ‘FIXME'
-
--  C-c a h :: as a prefix command for a HOME tags search where you have
-   to press an additional key (l, p or k) to select a name (Lisa, Peter,
-   or Kim) as additional tag to match.
-
-Note that the =*-tree= agenda views need to be called from an Org buffer
-as they operate on the current buffer only.
-
-*** 10.6.2 Block agenda
-
-Another possibility is the construction of agenda views that comprise
-the results of /several/ commands, each of which creates a block in the
-agenda buffer. The available commands include =agenda= for the daily or
-weekly agenda (as created with C-c a a), =alltodo= for the global TODO
-list (as constructed with C-c a t), and the matching commands discussed
-above: =todo=, =tags=, and =tags-todo=. Here are two examples:
-
-#+BEGIN_SRC lisp
-    (setq org-agenda-custom-commands
-          '(("h" "Agenda and Home-related tasks"
-             ((agenda "")
-              (tags-todo "home")
-              (tags "garden")))
-            ("o" "Agenda and Office-related tasks"
-             ((agenda "")
-              (tags-todo "work")
-              (tags "office")))))
-#+END_SRC
-
-This will define C-c a h to create a multi-block view for stuff you need
-to attend to at home. The resulting agenda buffer will contain your
-agenda for the current week, all TODO items that carry the tag ‘home',
-and also all lines tagged with ‘garden'. Finally the command C-c a o
-provides a similar view for office tasks.
-
-*** 10.6.3 Setting options for custom commands
-
-Org mode contains a number of variables regulating agenda construction
-and display. The global variables define the behavior for all agenda
-commands, including the custom commands. However, if you want to change
-some settings just for a single custom view, you can do so. Setting
-options requires inserting a list of variable names and values at the
-right spot in =org-agenda-custom-commands=. For example:
-
-#+BEGIN_SRC lisp
-    (setq org-agenda-custom-commands
-          '(("w" todo "WAITING"
-             ((org-agenda-sorting-strategy '(priority-down))
-              (org-agenda-prefix-format "  Mixed: ")))
-            ("U" tags-tree "+boss-urgent"
-             ((org-show-context-detail 'minimal)))
-            ("N" search ""
-             ((org-agenda-files '("~org/notes.org"))
-              (org-agenda-text-search-extra-files nil)))))
-#+END_SRC
-
-Now the C-c a w command will sort the collected entries only by
-priority, and the prefix format is modified to just say ‘ Mixed: '
-instead of giving the category of the entry. The sparse tags tree of C-c
-a U will now turn out ultra-compact, because neither the headline
-hierarchy above the match, nor the headline following the match will be
-shown. The command C-c a N will do a text search limited to only a
-single file.
-
-For command sets creating a block agenda, =org-agenda-custom-commands=
-has two separate spots for setting options. You can add options that
-should be valid for just a single command in the set, and options that
-should be valid for all commands in the set. The former are just added
-to the command entry; the latter must come after the list of command
-entries. Going back to the block agenda example (see
-[[@Block-agenda][Block agenda]]), let's change the sorting strategy for
-the C-c a h commands to =priority-down=, but let's sort the results for
-GARDEN tags query in the opposite order, =priority-up=. This would look
-like this:
-
-#+BEGIN_SRC lisp
-    (setq org-agenda-custom-commands
-          '(("h" "Agenda and Home-related tasks"
-             ((agenda)
-              (tags-todo "home")
-              (tags "garden"
-                    ((org-agenda-sorting-strategy '(priority-up)))))
-             ((org-agenda-sorting-strategy '(priority-down))))
-            ("o" "Agenda and Office-related tasks"
-             ((agenda)
-              (tags-todo "work")
-              (tags "office")))))
-#+END_SRC
-
-As you see, the values and parentheses setting is a little complex. When
-in doubt, use the customize interface to set this variable---it fully
-supports its structure. Just one caveat: when setting options in this
-interface, the /values/ are just Lisp expressions. So if the value is a
-string, you need to add the double-quotes around the value yourself.
-
-To control whether an agenda command should be accessible from a
-specific context, you can customize
-=org-agenda-custom-commands-contexts=. Let's say for example that you
-have an agenda command ="o"= displaying a view that you only need when
-reading emails. Then you would configure this option like this:
-
-#+BEGIN_SRC lisp
-    (setq org-agenda-custom-commands-contexts
-          '(("o" (in-mode . "message-mode"))))
-#+END_SRC
-
-You can also tell that the command key ="o"= should refer to another
-command key ="r"=. In that case, add this command key like this:
-
-#+BEGIN_SRC lisp
-    (setq org-agenda-custom-commands-contexts
-          '(("o" "r" (in-mode . "message-mode"))))
-#+END_SRC
-
-See the docstring of the variable for more information.
-
-** 10.7 Exporting agenda views
-
-If you are away from your computer, it can be very useful to have a
-printed version of some agenda views to carry around. Org mode can
-export custom agenda views as plain text, HTML[fn:FOOT109],
-Postscript, PDF[fn:FOOT110], and iCalendar files. If you want to
-do this only occasionally, use the command
-
-C-x C-w (=org-agenda-write=)
-
-Write the agenda view to a file. Depending on the extension of the
-selected file name, the view will be exported as HTML (extension .html
-or .htm), Postscript (extension .ps), iCalendar (extension .ics), or
-plain text (any other extension). Use the variable
-=org-agenda-exporter-settings= to set options for ps-print and for
-htmlize to be used during export, for example
-
-#+BEGIN_SRC lisp
-    (setq org-agenda-exporter-settings
-          '((ps-number-of-columns 2)
-            (ps-landscape-mode t)
-            (org-agenda-add-entry-text-maxlines 5)
-            (htmlize-output-type 'css)))
-#+END_SRC
-
-If you need to export certain agenda views frequently, you can associate
-any custom agenda command with a list of output file names
-[fn:FOOT111]. Here is an example that first defines custom
-commands for the agenda and the global TODO list, together with a number
-of files to which to export them. Then we define two block agenda
-commands and specify file names for them as well. File names can be
-relative to the current working directory, or absolute.
-
-#+BEGIN_SRC lisp
-    (setq org-agenda-custom-commands
-          '(("X" agenda "" nil ("agenda.html" "agenda.ps"))
-            ("Y" alltodo "" nil ("todo.html" "todo.txt" "todo.ps"))
-            ("h" "Agenda and Home-related tasks"
-             ((agenda "")
-              (tags-todo "home")
-              (tags "garden"))
-             nil
-             ("~/views/home.html"))
-            ("o" "Agenda and Office-related tasks"
-             ((agenda)
-              (tags-todo "work")
-              (tags "office"))
-             nil
-             ("~/views/office.ps" "~/calendars/office.ics"))))
-#+END_SRC
-
-The extension of the file name determines the type of export. If it is
-.html, Org mode will use the htmlize.el package to convert the buffer to
-HTML and save it to this file name. If the extension is .ps,
-=ps-print-buffer-with-faces= is used to produce Postscript output. If
-the extension is .ics, iCalendar export is run export over all files
-that were used to construct the agenda, and limit the export to entries
-listed in the agenda. Any other extension produces a plain ASCII file.
-
-The export files are /not/ created when you use one of those commands
-interactively because this might use too much overhead. Instead, there
-is a special command to produce /all/ specified files in one step:
-
-C-c a e (=org-store-agenda-views=)
-
-Export all agenda views that have export file names associated with
-them.
-
-You can use the options section of the custom agenda commands to also
-set options for the export commands. For example:
-
-#+BEGIN_SRC lisp
-    (setq org-agenda-custom-commands
-          '(("X" agenda ""
-             ((ps-number-of-columns 2)
-              (ps-landscape-mode t)
-              (org-agenda-prefix-format " [ ] ")
-              (org-agenda-with-colors nil)
-              (org-agenda-remove-tags t))
-             ("theagenda.ps"))))
-#+END_SRC
-
-This command sets two options for the Postscript exporter, to make it
-print in two columns in landscape format---the resulting page can be cut
-in two and then used in a paper agenda. The remaining settings modify
-the agenda prefix to omit category and scheduling information, and
-instead include a checkbox to check off items. We also remove the tags
-to make the lines compact, and we don't want to use colors for the
-black-and-white printer. Settings specified in
-=org-agenda-exporter-settings= will also apply, but the settings in
-=org-agenda-custom-commands= take precedence.
-
-From the command line you may also use
-
-#+BEGIN_EXAMPLE
-    emacs -eval (org-batch-store-agenda-views) -kill
-#+END_EXAMPLE
-
-or, if you need to modify some parameters[fn:FOOT112]
-
-#+BEGIN_EXAMPLE
-    emacs -eval '(org-batch-store-agenda-views                      \
-                  org-agenda-span (quote month)                     \
-                  org-agenda-start-day "2007-11-01"                 \
-                  org-agenda-include-diary nil                      \
-                  org-agenda-files (quote ("~/org/project.org")))'  \
-          -kill
-#+END_EXAMPLE
-
-which will create the agenda views restricted to the file
-~/org/project.org, without diary entries and with a 30-day extent.
-
-You can also extract agenda information in a way that allows further
-processing by other programs. See
-[[@Extracting-agenda-information][Extracting agenda information]], for
-more information.
-
-** 10.8 Using column view in the agenda
-
-Column view (see [[@Column-view][Column view]]) is normally used to view
-and edit properties embedded in the hierarchical structure of an Org
-file. It can be quite useful to use column view also from the agenda,
-where entries are collected by certain criteria.
-
-C-c C-x C-c (=org-agenda-columns=)
-
-Turn on column view in the agenda.
-
-To understand how to use this properly, it is important to realize that
-the entries in the agenda are no longer in their proper outline
-environment. This causes the following issues:
-
-1. Org needs to make a decision which =COLUMNS= format to use. Since the
-   entries in the agenda are collected from different files, and
-   different files may have different =COLUMNS= formats, this is a
-   non-trivial problem. Org first checks if the variable
-   =org-agenda-overriding-columns-format= is currently set, and if so,
-   takes the format from there. Otherwise it takes the format associated
-   with the first item in the agenda, or, if that item does not have a
-   specific format (defined in a property, or in its file), it uses
-   =org-columns-default-format=.
-2. If any of the columns has a summary type defined (see
-   [[@Column-attributes][Column attributes]]), turning on column view in
-   the agenda will visit all relevant agenda files and make sure that
-   the computations of this property are up to date. This is also true
-   for the special =CLOCKSUM= property. Org will then sum the values
-   displayed in the agenda. In the daily/weekly agenda, the sums will
-   cover a single day; in all other views they cover the entire block.
-   It is vital to realize that the agenda may show the same entry
-   /twice/ (for example as scheduled and as a deadline), and it may show
-   two entries from the same hierarchy (for example a /parent/ and its
-   /child/). In these cases, the summation in the agenda will lead to
-   incorrect results because some values will count double.
-3. When the column view in the agenda shows the =CLOCKSUM=, that is
-   always the entire clocked time for this item. So even in the
-   daily/weekly agenda, the clocksum listed in column view may originate
-   from times outside the current view. This has the advantage that you
-   can compare these values with a column listing the planned total
-   effort for a task---one of the major applications for column view in
-   the agenda. If you want information about clocked time in the
-   displayed period use clock table mode (press R in the agenda).
-4. When the column view in the agenda shows the =CLOCKSUM_T=, that is
-   always today's clocked time for this item. So even in the weekly
-   agenda, the clocksum listed in column view only originates from
-   today. This lets you compare the time you spent on a task for today,
-   with the time already spent (via =CLOCKSUM=) and with the planned
-   total effort for it.
+   If you need to export certain agenda views frequently, you can
+   associate any custom agenda command with a list of output file
+   names [fn:FOOT111]. Here is an example that first defines custom
+   commands for the agenda and the global TODO list, together with a
+   number of files to which to export them. Then we define two block
+   agenda commands and specify file names for them as well. File names
+   can be relative to the current working directory, or absolute.
+
+   #+BEGIN_SRC lisp
+     (setq org-agenda-custom-commands
+           '(("X" agenda "" nil ("agenda.html" "agenda.ps"))
+             ("Y" alltodo "" nil ("todo.html" "todo.txt" "todo.ps"))
+             ("h" "Agenda and Home-related tasks"
+              ((agenda "")
+               (tags-todo "home")
+               (tags "garden"))
+              nil
+              ("~/views/home.html"))
+             ("o" "Agenda and Office-related tasks"
+              ((agenda)
+               (tags-todo "work")
+               (tags "office"))
+              nil
+              ("~/views/office.ps" "~/calendars/office.ics"))))
+   #+END_SRC
+
+   The extension of the file name determines the type of export. If it
+   is .html, Org mode will use the htmlize.el package to convert the
+   buffer to HTML and save it to this file name. If the extension is
+   .ps, =ps-print-buffer-with-faces= is used to produce Postscript
+   output. If the extension is .ics, iCalendar export is run export
+   over all files that were used to construct the agenda, and limit
+   the export to entries listed in the agenda. Any other extension
+   produces a plain ASCII file.
+
+   The export files are /not/ created when you use one of those
+   commands interactively because this might use too much
+   overhead. Instead, there is a special command to produce /all/
+   specified files in one step:
+
+    - */C-c a e/* (=org-store-agenda-views=)
+
+      Export all agenda views that have export file names associated
+      with them.
+
+   You can use the options section of the custom agenda commands to
+   also set options for the export commands. For example:
+
+   #+BEGIN_SRC lisp
+     (setq org-agenda-custom-commands
+           '(("X" agenda ""
+              ((ps-number-of-columns 2)
+               (ps-landscape-mode t)
+               (org-agenda-prefix-format " [ ] ")
+               (org-agenda-with-colors nil)
+               (org-agenda-remove-tags t))
+              ("theagenda.ps"))))
+   #+END_SRC
+
+   This command sets two options for the Postscript exporter, to make
+   it print in two columns in landscape format -- the resulting page
+   can be cut in two and then used in a paper agenda. The remaining
+   settings modify the agenda prefix to omit category and scheduling
+   information, and instead include a checkbox to check off items. We
+   also remove the tags to make the lines compact, and we don't want
+   to use colors for the black-and-white printer. Settings specified
+   in =org-agenda-exporter-settings= will also apply, but the settings
+   in =org-agenda-custom-commands= take precedence.
+
+   From the command line you may also use
+
+   #+BEGIN_EXAMPLE
+     emacs -eval (org-batch-store-agenda-views) -kill
+   #+END_EXAMPLE
+
+   or, if you need to modify some parameters[fn:FOOT112]
+
+   #+BEGIN_EXAMPLE
+     emacs -eval '(org-batch-store-agenda-views                      \
+                   org-agenda-span (quote month)                     \
+                   org-agenda-start-day "2007-11-01"                 \
+                   org-agenda-include-diary nil                      \
+                   org-agenda-files (quote ("~/org/project.org")))'  \
+           -kill
+   #+END_EXAMPLE
+
+   which will create the agenda views restricted to the file
+   ~/org/project.org, without diary entries and with a 30-day extent.
+
+   You can also extract agenda information in a way that allows
+   further processing by other programs. See [[@Extracting-agenda-information][Extracting agenda
+   information]], for more information.
+
+** 10.8 Using column view in the agenda                               <<@Agenda-column-view>>
+
+   Column view (see [[@Column-view][Column view]]) is normally used to view and edit
+   properties embedded in the hierarchical structure of an Org
+   file. It can be quite useful to use column view also from the
+   agenda, where entries are collected by certain criteria.
+
+    - */C-c C-x C-c/* (=org-agenda-columns=)
+
+      Turn on column view in the agenda.
+
+   To understand how to use this properly, it is important to realize
+   that the entries in the agenda are no longer in their proper
+   outline environment. This causes the following issues:
+
+    1. Org needs to make a decision which =COLUMNS= format to
+       use. Since the entries in the agenda are collected from
+       different files, and different files may have different
+       =COLUMNS= formats, this is a non-trivial problem. Org first
+       checks if the variable =org-agenda-overriding-columns-format=
+       is currently set, and if so, takes the format from
+       there. Otherwise it takes the format associated with the first
+       item in the agenda, or, if that item does not have a specific
+       format (defined in a property, or in its file), it uses
+       =org-columns-default-format=.
+
+    2. If any of the columns has a summary type defined (see [[@Column-attributes][Column
+       attributes]]), turning on column view in the agenda will visit
+       all relevant agenda files and make sure that the computations
+       of this property are up to date. This is also true for the
+       special =CLOCKSUM= property. Org will then sum the values
+       displayed in the agenda. In the daily/weekly agenda, the sums
+       will cover a single day; in all other views they cover the
+       entire block.  It is vital to realize that the agenda may show
+       the same entry /twice/ (for example as scheduled and as a
+       deadline), and it may show two entries from the same hierarchy
+       (for example a /parent/ and its /child/). In these cases, the
+       summation in the agenda will lead to incorrect results because
+       some values will count double.
+
+    3. When the column view in the agenda shows the =CLOCKSUM=, that
+       is always the entire clocked time for this item. So even in the
+       daily/weekly agenda, the clocksum listed in column view may
+       originate from times outside the current view. This has the
+       advantage that you can compare these values with a column
+       listing the planned total effort for a task---one of the major
+       applications for column view in the agenda. If you want
+       information about clocked time in the displayed period use
+       clock table mode (press R in the agenda).
+
+    4. When the column view in the agenda shows the =CLOCKSUM_T=, that
+       is always today's clocked time for this item. So even in the
+       weekly agenda, the clocksum listed in column view only
+       originates from today. This lets you compare the time you spent
+       on a task for today, with the time already spent (via
+       =CLOCKSUM=) and with the planned total effort for it.
 
 * 11 Markup for rich export
 
@@ -9135,7 +9449,7 @@ Other back-ends might be found in the =contrib/= directory (see
 
 Export options can be set: globally with variables; for an individual
 file by making variables buffer-local with in-buffer settings (see
-[[@In_002dbuffer-settings][In-buffer settings]]), by setting individual
+[[@In_buffer-settings][In-buffer settings]]), by setting individual
 keywords, or by specifying them in a compact form with the =#+OPTIONS=
 keyword; or for a tree by setting properties (see
 [[@Properties-and-columns][Properties and columns]]). Options set at a
@@ -10497,7 +10811,7 @@ Export as OpenDocument Text file.
 
 If =org-odt-preferred-output-format= is specified, automatically convert
 the exported file to that format. See
-[[@x_002dexport_002dto_002dother_002dformats][Automatically exporting to
+[[@x_export_to_other_formats][Automatically exporting to
 other formats]].
 
 For an Org file myfile.org, the ODT file will be myfile.odt. The file
@@ -10512,7 +10826,7 @@ file.
 
 If =org-odt-preferred-output-format= is specified, open the converted
 file instead. See
-[[@x_002dexport_002dto_002dother_002dformats][Automatically exporting to
+[[@x_export_to_other_formats][Automatically exporting to
 other formats]].
 
 *** 12.9.3 ODT specific export settings
@@ -10556,7 +10870,7 @@ immediately save the exported document to other formats like ‘doc',
 ‘docx', ‘rtf', ‘pdf' etc. In such cases, you can specify your preferred
 output format by customizing the variable
 =org-odt-preferred-output-format=. This way, the export commands (see
-[[@x_002dexport_002dto_002dodt][Exporting to ODT]]) can be extended to
+[[@x_export_to_odt][Exporting to ODT]]) can be extended to
 export to a format that is of immediate interest to you.
 
 *** Converting between document formats
@@ -10598,7 +10912,7 @@ described here.
    file.
 3. Customize the variable =org-odt-styles-file= and point it to the
    newly created file. For additional configuration options see
-   [[@x_002doverriding_002dfactory_002dstyles][Overriding factory
+   [[@x_overriding_factory_styles][Overriding factory
    styles]].
 
    If you would like to choose a style on a per-file basis, you can use
@@ -11034,7 +11348,7 @@ examples.
    #+END_EXAMPLE
 
    *Hint:* To see the above example in action, edit your styles.xml (see
-   [[@x_002dorgodtstyles_002dxml][Factory styles]]) and add a custom
+   [[@x_orgodtstyles_xml][Factory styles]]) and add a custom
    ‘Highlight' style as shown below.
 
    #+BEGIN_EXAMPLE
@@ -11053,7 +11367,7 @@ examples.
    #+END_EXAMPLE
 
    *Hint:* To see the above example in action, edit your styles.xml (see
-   [[@x_002dorgodtstyles_002dxml][Factory styles]]) and add a custom
+   [[@x_orgodtstyles_xml][Factory styles]]) and add a custom
    ‘PageBreak' style as shown below.
 
    #+BEGIN_EXAMPLE
@@ -11116,7 +11430,7 @@ two table styles with the names ‘TableWithHeaderRowAndColumn' and
 needed for producing the above template have been pre-defined for you.
 These styles are available under the section marked ‘Custom Table
 Template' in OrgOdtContentTemplate.xml (see
-[[@x_002dorgodtcontenttemplate_002dxml][Factory styles]]). If you need
+[[@x_orgodtcontenttemplate_xml][Factory styles]]). If you need
 additional templates you have to define these styles yourselves.
 
 To use this feature proceed as follows:
@@ -11159,7 +11473,7 @@ To use this feature proceed as follows:
    styles in the
    =<office:automatic-styles>=...=</office:automatic-styles>= element of
    the content template file (see
-   [[@x_002dorgodtcontenttemplate_002dxml][Factory styles]]).
+   [[@x_orgodtcontenttemplate_xml][Factory styles]]).
 
 2. Define a table style[fn:FOOT157]
 
@@ -12837,27 +13151,27 @@ evaluation of the =factorial= code block.
     | [[@var][var]]:         | Pass arguments to code blocks                                            |
     | [[@Results][Results]]:     | Specify the type of results and how they will be collected and handled   |
     | [[@file][file]]:        | Specify a path for file output                                           |
-    | [[@file_002ddesc][file-desc]]:   | Specify a description for file results                                   |
-    | [[@file_002dext][file-ext]]:    | Specify an extension for file output                                     |
-    | [[@output_002ddir][output-dir]]:  | Specify a directory to write file output to                              |
+    | [[@file_desc][file-desc]]:   | Specify a description for file results                                   |
+    | [[@file_ext][file-ext]]:    | Specify an extension for file output                                     |
+    | [[@output_dir][output-dir]]:  | Specify a directory to write file output to                              |
     | [[@dir][dir]]:         | Specify the default (possibly remote) directory for code block execution |
     | [[@exports][exports]]:     | Export code and/or results                                               |
     | [[@tangle][tangle]]:      | Toggle tangling and specify file name                                    |
     | [[@mkdirp][mkdirp]]:      | Toggle creation of parent directories of target files during tangling    |
     | [[@comments][comments]]:    | Toggle insertion of comments in tangled code files                       |
     | [[@padline][padline]]:     | Control insertion of padding lines in tangled code files                 |
-    | [[@no_002dexpand][no-expand]]:   | Turn off variable assignment and noweb expansion during tangling         |
+    | [[@no_expand][no-expand]]:   | Turn off variable assignment and noweb expansion during tangling         |
     | [[@session][session]]:     | Preserve the state of code evaluation                                    |
     | [[@noweb][noweb]]:       | Toggle expansion of noweb references                                     |
-    | [[@noweb_002dref][noweb-ref]]:   | Specify block's noweb reference resolution target                        |
-    | [[@noweb_002dsep][noweb-sep]]:   | String used to separate noweb references                                 |
+    | [[@noweb_ref][noweb-ref]]:   | Specify block's noweb reference resolution target                        |
+    | [[@noweb_sep][noweb-sep]]:   | String used to separate noweb references                                 |
     | [[@cache][cache]]:       | Avoid re-evaluating unchanged code blocks                                |
     | [[@sep][sep]]:         | Delimiter for writing tabular results outside Org                        |
     | [[@hlines][hlines]]:      | Handle horizontal lines in tables                                        |
     | [[@colnames][colnames]]:    | Handle column names in tables                                            |
     | [[@rownames][rownames]]:    | Handle row names in tables                                               |
     | [[@shebang][shebang]]:     | Make tangled files executable                                            |
-    | [[@tangle_002dmode][tangle-mode]]: | Set permission of tangled files                                          |
+    | [[@tangle_mode][tangle-mode]]: | Set permission of tangled files                                          |
     | [[@eval][eval]]:        | Limit evaluation of specific code blocks                                 |
     | [[@wrap][wrap]]:        | Mark source block evaluation results                                     |
     | [[@post][post]]:        | Post processing of code block results                                    |
@@ -13239,7 +13553,7 @@ argument is given with no value the link path will be placed in both the
 
 The value of the =:file-ext= header argument is used to provide an
 extension to write the file output to. It is combined with the =#+NAME:=
-of the source block and the value of the [[@output_002ddir][output-dir]]
+of the source block and the value of the [[@output_dir][output-dir]]
 header argument to generate a complete file name.
 
 This header arg will be overridden by =:file=, and thus has no effect
@@ -13251,7 +13565,7 @@ The value of the =:output-dir= header argument is used to provide a
 directory to write the file output to. It may specify an absolute
 directory (beginning with =/=) or a relative directory (without =/=). It
 can be combined with the =#+NAME:= of the source block and the value of
-the [[@file_002dext][file-ext]] header argument to generate a complete
+the [[@file_ext][file-ext]] header argument to generate a complete
 file name, or used along with a [[@file][file]] header arg.
 
 *** 14.8.2.7 =:dir= and remote execution
@@ -13507,14 +13821,14 @@ into the resulting pure code file[fn:FOOT170].
      #+END_SRC
 #+END_EXAMPLE
 
-The =:noweb-sep= (see [[@noweb_002dsep][noweb-sep]]) header argument
+The =:noweb-sep= (see [[@noweb_sep][noweb-sep]]) header argument
 holds the string used to separate accumulate noweb references like those
 above. By default a newline is used.
 
 *** 14.8.2.17 =:noweb-sep=
 
 The =:noweb-sep= header argument holds the string used to separate
-accumulate noweb references (see [[@noweb_002dref][noweb-ref]]). By
+accumulate noweb references (see [[@noweb_ref][noweb-ref]]). By
 default a newline is used.
 
 *** 14.8.2.18 =:cache=
@@ -13935,7 +14249,7 @@ When a code block is tangled or evaluated, whether or not “noweb”
 references are expanded depends upon the value of the =:noweb= header
 argument. If =:noweb yes=, then a Noweb reference is expanded before
 evaluation. If =:noweb no=, the default, then the reference is not
-expanded before evaluation. See the [[@noweb_002dref][noweb-ref]] header
+expanded before evaluation. See the [[@noweb_ref][noweb-ref]] header
 argument for a more flexible way to resolve noweb references.
 
 It is possible to include the /results/ of a code block rather than the
@@ -14256,7 +14570,7 @@ here. A structured overview of customization variables is available with
 M-x org-customize RET. Or select =Browse Org Group= from the
 =Org->Customization= menu. Many settings can also be activated on a
 per-file basis, by putting special lines into the buffer (see
-[[@In_002dbuffer-settings][In-buffer settings]]).
+[[@In_buffer-settings][In-buffer settings]]).
 
 ** 15.6 Summary of in-buffer settings
 
@@ -15038,7 +15352,7 @@ Reference on Worg]].
 
 Org has several commands that act differently depending on context. The
 most important example is the C-c C-c (see
-[[@The-very-busy-C_002dc-C_002dc-key][The very busy C-c C-c key]]). Also
+[[@The-very-busy-C_c-C_c-key][The very busy C-c C-c key]]). Also
 the M-cursor and M-S-cursor keys have this property.
 
 Add-ons can tap into this functionality by providing a function that
@@ -15241,7 +15555,7 @@ Orgtbl mode has several translator functions built-in: =orgtbl-to-csv=
 =orgtbl-to-unicode= and =orgtbl-to-orgtbl=. These all use a generic
 translator, =orgtbl-to-generic=, which, in turn, can delegate
 translations to various export back-ends (see
-[[@Export-back_002dends][Export back-ends]]).
+[[@Export-back_ends][Export back-ends]]).
 
 In particular, properties passed into the function (i.e., the ones set
 by the ‘ORGTBL SEND' line) take precedence over translations defined in
@@ -15513,7 +15827,7 @@ generation, and this
 [[http://orgmode.org/worg/agenda-optimization.html][dedicated Worg
 page]] for further explanations.
 
-** A.10 Extracting agenda information
+** A.10 Extracting agenda information                                 <<@Extracting-agenda-information>>
 
 Org provides commands to access agenda information for the command line
 in Emacs batch mode. This extracted information can be sent directly to
@@ -17061,7 +17375,8 @@ and =nologrefile=
 
 [fn:FOOT95]
 If the value of that variable is not a list, but a single file name,
-then the list of agenda files will be maintained in that external file.
+then the list of agenda files will be maintained in that external
+file.
 
 [fn:FOOT96]
 When using the dispatcher, pressing < before selecting a command will
@@ -17077,15 +17392,15 @@ For backward compatibility, you can also press 0 to restrict to the
 current region/subtree.
 
 [fn:FOOT99]
-For backward compatibility, the universal prefix C-u causes all TODO
-entries to be listed before the agenda. This feature is deprecated, use
-the dedicated TODO list, or a block agenda instead (see
-[[@Block-agenda][Block agenda]]).
+For backward compatibility, the universal prefix */C-u/* causes all
+TODO entries to be listed before the agenda. This feature is
+deprecated, use the dedicated TODO list, or a block agenda instead
+(see [[@Block-agenda][Block agenda]]).
 
 [fn:FOOT100]
 =org-anniversary= is just like =diary-anniversary=, but the argument
-order is always according to ISO and therefore independent of the value
-of =calendar-date-style=.
+order is always according to ISO and therefore independent of the
+value of =calendar-date-style=.
 
 [fn:FOOT101]
 See [[@Tag-searches][Tag searches]].
@@ -17093,10 +17408,10 @@ See [[@Tag-searches][Tag searches]].
 [fn:FOOT102]
 Custom commands can preset a filter by binding the variable
 =org-agenda-tag-filter-preset= as an option. This filter will then be
-applied to the view and persist as a basic filter through refreshes and
-more secondary filtering. The filter is a global property of the entire
-agenda view---in a block agenda, you should only set this in the global
-options section, not in the section of an individual block.
+applied to the view and persist as a basic filter through refreshes
+and more secondary filtering. The filter is a global property of the
+entire agenda view -- in a block agenda, you should only set this in
+the global options section, not in the section of an individual block.
 
 [fn:FOOT103]
 Only tags filtering will be respected here, effort filtering is ignored.
@@ -17114,8 +17429,8 @@ This file is parsed for the agenda when =org-agenda-include-diary= is
 set.
 
 [fn:FOOT107]
-You can provide a description for a prefix key by inserting a cons cell
-with the prefix and the description.
+You can provide a description for a prefix key by inserting a cons
+cell with the prefix and the description.
 
 [fn:FOOT108]
 /Planned/ means here that these entries have some planning information
@@ -17132,9 +17447,9 @@ on the system. Selecting a PDF file will also create the postscript
 file.
 
 [fn:FOOT111]
-If you want to store standard views like the weekly agenda or the global
-TODO list as well, you need to define custom commands for them in order
-to be able to specify file names.
+If you want to store standard views like the weekly agenda or the
+global TODO list as well, you need to define custom commands for them
+in order to be able to specify file names.
 
 [fn:FOOT112]
 Quoting depends on the system you use, please check the FAQ for
