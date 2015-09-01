@@ -352,7 +352,7 @@ modify this GNU manual.”
     prefer, you can compile the manual without the command names by
     unsetting the flag =cmdnames= in org.texi.
 
-* 2 Document structure                                                <<@Document_structure>>
+* 2 Document structure                                                <<@Document-structure>>
 
   Org is based on Outline mode and provides flexible commands to edit
   the structure of the document.
@@ -3258,7 +3258,6 @@ modify this GNU manual.”
    | • [[@Faces-for-TODO-keywords][Faces for TODO keywords]]:    | Highlighting states                       |
    | • [[@TODO-dependencies][TODO dependencies]]:          | When one task needs to wait for others    |
 
-
 *** 5.2.1 TODO keywords as workflow states                            <<@Workflow-states>>
 
     You can use TODO keywords to indicate different /sequential/
@@ -3513,7 +3512,6 @@ modify this GNU manual.”
    | • [[@Closing-items][Closing items]]:               | When was this entry marked DONE? |
    | • [[@Tracking-TODO-state-changes][Tracking TODO state changes]]: | When did the status change?      |
    | • [[@Tracking-your-habits][Tracking your habits]]:        | How consistent have you been?    |
-
 
 *** 5.3.1 Closing items                                               <<@Closing-items>>
 
@@ -4336,7 +4334,6 @@ modify this GNU manual.”
   | • [[@Column-view][Column view]]:          | Tabular viewing and editing       |
   | • [[@Property-API][Property API]]:         | Properties for Lisp programmers   |
 
-
 ** 7.1 Property syntax                                                <<@Property-syntax>>
 
    Properties are key-value pairs. When they are associated with a
@@ -4600,7 +4597,6 @@ modify this GNU manual.”
    | • [[@Using-column-view][Using column view]]:     | How to create and use column view |
    | • [[@Capturing-column-view][Capturing column view]]: | A dynamic block for column view   |
 
-
 *** 7.5.1 Defining columns                                            <<@Defining-columns>>
 
     Setting up a column view first requires defining the columns. This
@@ -4608,7 +4604,6 @@ modify this GNU manual.”
 
     | • [[@Scope-of-column-definitions][Scope of column definitions]]: | Where defined, where valid?        |
     | • [[@Column-attributes][Column attributes]]:           | Appearance and content of a column |
-
 
 **** 7.5.1.1 Scope of column definitions                              <<@Scope-of-column-definitions>>
 
@@ -4931,7 +4926,6 @@ modify this GNU manual.”
   | • [[@Clocking-work-time][Clocking work time]]:       | Tracking how long you spend on a task |
   | • [[@Effort-estimates][Effort estimates]]:         | Planning work effort in advance       |
   | • [[@Timers][Timers]]:                   | Notes with a running timer            |
-
 
 ** 8.1 Timestamps, deadlines, and scheduling                          <<@Timestamps>>
 
@@ -5457,7 +5451,6 @@ modify this GNU manual.”
    | • [[@Clocking-commands][Clocking commands]]:   | Starting and stopping a clock        |
    | • [[@The-clock-table][The clock table]]:     | Detailed reports                     |
    | • [[@Resolving-idle-time][Resolving idle time]]: | Resolving time when you've been idle |
-
 
 *** 8.4.1 Clocking commands                                           <<@Clocking-commands>>
 
@@ -7383,7 +7376,6 @@ modify this GNU manual.”
    | • [[@Sorting-agenda-items][Sorting agenda items]]:            | The order of things           |
    | • [[@Filtering_limiting-agenda-items][Filtering/limiting agenda items]]: | Dynamically narrow the agenda |
 
-
 *** 10.4.1 Categories                                                 <<@Categories>>
 
     The category is a broad label assigned to each agenda item. By
@@ -8676,681 +8668,724 @@ modify this GNU manual.”
 
 * 11 Markup for rich export
 
-When exporting Org mode documents, the exporter tries to reflect the
-structure of the document as accurately as possible in the back-end.
-Since export targets like HTML and LaTeX allow much richer formatting,
-Org mode has rules on how to prepare text for rich export. This section
-summarizes the markup rules used in an Org mode buffer.
+  When exporting Org mode documents, the exporter tries to reflect the
+  structure of the document as accurately as possible in the back-end.
+  Since export targets like HTML and LaTeX allow much richer
+  formatting, Org mode has rules on how to prepare text for rich
+  export. This section summarizes the markup rules used in an Org mode
+  buffer.
 
-** 11.1 Structural markup elements
-*** Document title
+  | • [[@Structural-markup-elements][Structural markup elements]]: | The basic structure as seen by the exporter   |
+  | • [[@Images-and-tables][Images and tables]]:          | Images, tables and caption mechanism          |
+  | • [[@Literal-examples][Literal examples]]:           | Source code examples with special formatting  |
+  | • [[@Include-files][Include files]]:              | Include additional files into a document      |
+  | • [[@Index-entries][Index entries]]:              | Making an index                               |
+  | • [[@Macro-replacement][Macro replacement]]:          | Use macros to create templates                |
+  | • [[@Embedded-LaTeX][Embedded LaTeX]]:             | LaTeX can be freely used inside Org documents |
+  | • [[@Special-blocks][Special blocks]]:             | Containers targeted at export back-ends       |
 
-The title of the exported document is taken from the special line
+** 11.1 Structural markup elements                                    <<@Structural-markup-elements>>
 
-#+BEGIN_EXAMPLE
-    #+TITLE: This is the title of the document
-#+END_EXAMPLE
+   | • [[@Document-title][Document title]]:         | Where the title is taken from                  |
+   | • [[@Headings-and-sections][Headings and sections]]:  | The document structure as seen by the exporter |
+   | • [[@Table-of-contents][Table of contents]]:      | The if and where of the table of contents      |
+   | • [[@Lists][Lists]]:                  | Lists                                          |
+   | • [[@Paragraphs][Paragraphs]]:             | Paragraphs                                     |
+   | • [[@Footnote-markup][Footnote markup]]:        | Footnotes                                      |
+   | • [[@Emphasis-and-monospace][Emphasis and monospace]]: | Bold, italic, etc.                             |
+   | • [[@Horizontal-rules][Horizontal rules]]:       | Make a line                                    |
+   | • [[@Comment-lines][Comment lines]]:          | What will *not* be exported                    |
 
-If you are exporting only a subtree, its heading will become the title
-of the document. If the subtree has a property =EXPORT_TITLE=, that will
-take precedence.
+*** Document title                                                    <<@Document-title>>
 
-*** Headings and sections
+    The title of the exported document is taken from the special line
 
-*** Headings and sections
+    #+BEGIN_EXAMPLE
+      #+TITLE: This is the title of the document
+    #+END_EXAMPLE
 
-The outline structure of the document as described in
-[[@Document-structure][Document structure]], forms the basis for
-defining sections of the exported document. However, since the outline
-structure is also used for (for example) lists of tasks, only the first
-three outline levels will be used as headings. Deeper levels will become
-itemized lists. You can change the location of this switch globally by
-setting the variable =org-export-headline-levels=, or on a per-file
-basis with a line
+    If you are exporting only a subtree, its heading will become the
+    title of the document. If the subtree has a property
+    =EXPORT_TITLE=, that will take precedence.
 
-#+BEGIN_EXAMPLE
-    #+OPTIONS: H:4
-#+END_EXAMPLE
+*** Headings and sections                                             <<@Headings-and-sections>>
 
-*** Table of contents
+    The outline structure of the document as described in [[@Document-structure][Document
+    structure]], forms the basis for defining sections of the exported
+    document. However, since the outline structure is also used for
+    (for example) lists of tasks, only the first three outline levels
+    will be used as headings. Deeper levels will become itemized
+    lists. You can change the location of this switch globally by
+    setting the variable =org-export-headline-levels=, or on a
+    per-file basis with a line
 
-*** Table of contents
+    #+BEGIN_EXAMPLE
+      #+OPTIONS: H:4
+    #+END_EXAMPLE
 
-The table of contents is normally inserted directly before the first
-headline of the file. The depth of the table is by default the same as
-the number of headline levels, but you can choose a smaller number, or
-turn off the table of contents entirely, by configuring the variable
-=org-export-with-toc=, or on a per-file basis with a line like
+*** Table of contents                                                 <<@Table-of-contents>>
 
-#+BEGIN_EXAMPLE
-    #+OPTIONS: toc:2          only inlcude two levels in TOC
-    #+OPTIONS: toc:nil        no default TOC at all
-#+END_EXAMPLE
+    The table of contents is normally inserted directly before the
+    first headline of the file. The depth of the table is by default
+    the same as the number of headline levels, but you can choose a
+    smaller number, or turn off the table of contents entirely, by
+    configuring the variable =org-export-with-toc=, or on a per-file
+    basis with a line like
 
-If you would like to move the table of contents to a different location,
-you should turn off the default table using =org-export-with-toc= or
-=#+OPTIONS= and insert =#+TOC: headlines N= at the desired location(s).
+    #+BEGIN_EXAMPLE
+      #+OPTIONS: toc:2          only inlcude two levels in TOC
+      #+OPTIONS: toc:nil        no default TOC at all
+    #+END_EXAMPLE
 
-#+BEGIN_EXAMPLE
-    #+OPTIONS: toc:nil        no default TOC
-    ...
-    #+TOC: headlines 2        insert TOC here, with two headline levels
-#+END_EXAMPLE
+    If you would like to move the table of contents to a different
+    location, you should turn off the default table using
+    =org-export-with-toc= or =#+OPTIONS= and insert =#+TOC: headlines
+    N= at the desired location(s).
 
-Moreover, if you append ‘local' parameter, the table contains only
-entries for the children of the current section[fn:FOOT113]. In
-this case, any depth parameter becomes relative to the current level.
+    #+BEGIN_EXAMPLE
+      #+OPTIONS: toc:nil        no default TOC
+      ...
+      #+TOC: headlines 2        insert TOC here, with two headline levels
+    #+END_EXAMPLE
 
-#+BEGIN_EXAMPLE
-    * Section
-    #+TOC: headlines 1 local  insert local TOC, with direct children only
-#+END_EXAMPLE
+    Moreover, if you append ‘local' parameter, the table contains only
+    entries for the children of the current section[fn:FOOT113]. In
+    this case, any depth parameter becomes relative to the current
+    level.
 
-The same =TOC= keyword can also generate a list of all tables (resp. all
-listings) with a caption in the document.
+    #+BEGIN_EXAMPLE
+      * Section
+      #+TOC: headlines 1 local  insert local TOC, with direct children only
+    #+END_EXAMPLE
 
-#+BEGIN_EXAMPLE
-    #+TOC: listings           build a list of listings
-    #+TOC: tables             build a list of tables
-#+END_EXAMPLE
+    The same =TOC= keyword can also generate a list of all tables
+    (resp. all listings) with a caption in the document.
 
-The headline's title usually determines its corresponding entry in a
-table of contents. However, it is possible to specify an alternative
-title by setting =ALT_TITLE= property accordingly. It will then be used
-when building the table.
+    #+BEGIN_EXAMPLE
+      #+TOC: listings           build a list of listings
+      #+TOC: tables             build a list of tables
+    #+END_EXAMPLE
 
-*** Lists
+    The headline's title usually determines its corresponding entry in
+    a table of contents. However, it is possible to specify an
+    alternative title by setting =ALT_TITLE= property accordingly. It
+    will then be used when building the table.
 
-*** Lists
+*** Lists                                                             <<@Lists>>
 
-Plain lists as described in [[@Plain-lists][Plain lists]], are
-translated to the back-end's syntax for such lists. Most back-ends
-support unordered, ordered, and description lists.
+    Plain lists as described in [[@Plain-lists][Plain lists]], are translated to the
+    back-end's syntax for such lists. Most back-ends support
+    unordered, ordered, and description lists.
 
-*** Paragraphs
+*** Paragraphs, line breaks, and quoting                              <<@Paragraphs>>
 
-*** Paragraphs, line breaks, and quoting
+    Paragraphs are separated by at least one empty line. If you need
+    to enforce a line break within a paragraph, use ‘\\' at the end of
+    a line.
 
-Paragraphs are separated by at least one empty line. If you need to
-enforce a line break within a paragraph, use ‘\\' at the end of a line.
+    To keep the line breaks in a region, but otherwise use normal
+    formatting, you can use this construct, which can also be used to
+    format poetry.
 
-To keep the line breaks in a region, but otherwise use normal
-formatting, you can use this construct, which can also be used to format
-poetry.
+    #+BEGIN_EXAMPLE
+      #+BEGIN_VERSE
+      Great clouds overhead
+      Tiny black birds rise and fall
+      Snow covers Emacs
 
-#+BEGIN_EXAMPLE
-    #+BEGIN_VERSE
-     Great clouds overhead
-     Tiny black birds rise and fall
-     Snow covers Emacs
+      -- AlexSchroeder
+      #+END_VERSE
+    #+END_EXAMPLE
 
-         -- AlexSchroeder
-    #+END_VERSE
-#+END_EXAMPLE
+    When quoting a passage from another document, it is customary to
+    format this as a paragraph that is indented on both the left and
+    the right margin. You can include quotations in Org mode documents
+    like this:
 
-When quoting a passage from another document, it is customary to format
-this as a paragraph that is indented on both the left and the right
-margin. You can include quotations in Org mode documents like this:
+    #+BEGIN_EXAMPLE
+      #+BEGIN_QUOTE
+      Everything should be made as simple as possible,
+      but not any simpler -- Albert Einstein
+      #+END_QUOTE
+    #+END_EXAMPLE
 
-#+BEGIN_EXAMPLE
-    #+BEGIN_QUOTE
-    Everything should be made as simple as possible,
-    but not any simpler -- Albert Einstein
-    #+END_QUOTE
-#+END_EXAMPLE
+    If you would like to center some text, do it like this:
 
-If you would like to center some text, do it like this:
-
-#+BEGIN_EXAMPLE
+    #+BEGIN_EXAMPLE
     #+BEGIN_CENTER
     Everything should be made as simple as possible, \\
     but not any simpler
     #+END_CENTER
-#+END_EXAMPLE
+    #+END_EXAMPLE
 
-*** Footnote markup
+*** Footnote markup                                                   <<@Footnote-markup>>
 
-*** Footnote markup
+    Footnotes defined in the way described in [[@Footnotes][Footnotes]], will be
+    exported by all back-ends. Org allows multiple references to the
+    same note, and multiple footnotes side by side.
 
-Footnotes defined in the way described in [[@Footnotes][Footnotes]],
-will be exported by all back-ends. Org allows multiple references to the
-same note, and multiple footnotes side by side.
+*** Emphasis and monospace                                            <<@Emphasis-and-monospace>>
 
-*** Emphasis and monospace
+    You can make words **bold**, //italic//, =_underlined_=,
+    ==verbatim== and =~code~=, and, if you must,
+    ‘+strike-through+'. Text in the code and verbatim string is not
+    processed for Org mode specific syntax, it is exported verbatim.
 
-*** Emphasis and monospace
+    To turn off fontification for marked up text, you can set
+    =org-fontify-emphasized-text= to =nil=. To narrow down the list of
+    available markup syntax, you can customize
+    =org-emphasis-alist=. To fine tune what characters are allowed
+    before and after the markup characters, you can tweak
+    =org-emphasis-regexp-components=. Beware that changing one of the
+    above variables will no take effect until you reload Org, for
+    which you may need to restart Emacs.
 
-You can make words **bold**, //italic//, \_underlined\_, ==verbatim==
-and =~code~=, and, if you must, ‘+strike-through+'. Text in the code and
-verbatim string is not processed for Org mode specific syntax, it is
-exported verbatim.
+*** Horizontal rules                                                  <<@Horizontal-rules>>
 
-To turn off fontification for marked up text, you can set
-=org-fontify-emphasized-text= to =nil=. To narrow down the list of
-available markup syntax, you can customize =org-emphasis-alist=. To fine
-tune what characters are allowed before and after the markup characters,
-you can tweak =org-emphasis-regexp-components=. Beware that changing one
-of the above variables will no take effect until you reload Org, for
-which you may need to restart Emacs.
+    A line consisting of only dashes, and at least 5 of them, will be
+    exported as a horizontal line.
 
-*** Horizontal rules
+*** Comment lines                                                     <<@Comment-lines>>
 
-*** Horizontal rules
+    Lines starting with zero or more whitespace characters followed by
+    one ‘#' and a whitespace are treated as comments and, as such, are
+    not exported.
 
-A line consisting of only dashes, and at least 5 of them, will be
-exported as a horizontal line.
+    Likewise, regions surrounded by ‘#+BEGIN_COMMENT'
+    ... ‘#+END_COMMENT' are not exported.
 
-*** Comment lines
+    Finally, a ‘COMMENT' keyword at the beginning of an entry, but
+    after any other keyword or priority cookie, comments out the
+    entire subtree. In this case, the subtree is not exported and no
+    code block within it is executed either[fn:FOOT114]. The command
+    below helps changing the comment status of a headline.
 
-*** Comment lines
+    C-c ;
 
-Lines starting with zero or more whitespace characters followed by one
-‘#' and a whitespace are treated as comments and, as such, are not
-exported.
-
-Likewise, regions surrounded by ‘#+BEGIN\_COMMENT' ... ‘#+END\_COMMENT'
-are not exported.
-
-Finally, a ‘COMMENT' keyword at the beginning of an entry, but after any
-other keyword or priority cookie, comments out the entire subtree. In
-this case, the subtree is not exported and no code block within it is
-executed either[fn:FOOT114]. The command below helps changing
-the comment status of a headline.
-
-C-c ;
-
-Toggle the ‘COMMENT' keyword at the beginning of an entry.
+    Toggle the ‘COMMENT' keyword at the beginning of an entry.
 
 ** 11.2 Images and Tables                                             <<@Images-and-tables>>
 
-Both the native Org mode tables (see [[@Tables][Tables]]) and tables
-formatted with the table.el package will be exported properly. For Org
-mode tables, the lines before the first horizontal separator line will
-become table header lines. You can use the following lines somewhere
-before the table to assign a caption and a label for cross references,
-and in the text you can refer to the object with =[[tab:basic-data]]=
-(see [[@Internal-links][Internal links]]):
+   Both the native Org mode tables (see [[@Tables][Tables]]) and tables formatted
+   with the table.el package will be exported properly. For Org mode
+   tables, the lines before the first horizontal separator line will
+   become table header lines. You can use the following lines
+   somewhere before the table to assign a caption and a label for
+   cross references, and in the text you can refer to the object with
+   =[[tab:basic-data]]= (see [[@Internal-links][Internal links]]):
 
-#+BEGIN_EXAMPLE
-    #+CAPTION: This is the caption for the next table (or link)
-    #+NAME:   tab:basic-data
-       | ... | ...|
-       |-----|----|
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     #+CAPTION: This is the caption for the next table (or link)
+     #+NAME:   tab:basic-data
+        | ... | ...|
+        |-----|----|
+   #+END_EXAMPLE
 
-Optionally, the caption can take the form:
+   Optionally, the caption can take the form:
 
-#+BEGIN_EXAMPLE
-    #+CAPTION[Caption for list of tables]: Caption for table.
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     #+CAPTION[Caption for list of tables]: Caption for table.
+   #+END_EXAMPLE
 
-Some back-ends allow you to directly include images into the exported
-document. Org does this, if a link to an image files does not have a
-description part, for example =[[./img/a.jpg]]=. If you wish to define a
-caption for the image and maybe a label for internal cross references,
-make sure that the link is on a line by itself and precede it with
-=#+CAPTION= and =#+NAME= as follows:
+   Some back-ends allow you to directly include images into the
+   exported document. Org does this, if a link to an image files does
+   not have a description part, for example =[[./img/a.jpg]]=. If you wish
+   to define a caption for the image and maybe a label for internal
+   cross references, make sure that the link is on a line by itself
+   and precede it with =#+CAPTION= and =#+NAME= as follows:
 
-#+BEGIN_EXAMPLE
-    #+CAPTION: This is the caption for the next figure link (or table)
-    #+NAME:   fig:SED-HR4049
-    [[./img/a.jpg]]
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     #+CAPTION: This is the caption for the next figure link (or table)
+     #+NAME:   fig:SED-HR4049
+     [[./img/a.jpg]]
+   #+END_EXAMPLE
 
-Such images can be displayed within the buffer. See
-[[@Handling-links][the discussion of image links]].
+   Such images can be displayed within the buffer. See [[@Handling-links][the discussion
+   of image links]].
 
-Even though images and tables are prominent examples of captioned
-structures, the same caption mechanism can apply to many others (e.g.,
-LaTeX equations, source code blocks). Depending on the export back-end,
-those may or may not be handled.
+   Even though images and tables are prominent examples of captioned
+   structures, the same caption mechanism can apply to many others
+   (e.g., LaTeX equations, source code blocks). Depending on the
+   export back-end, those may or may not be handled.
 
 ** 11.3 Literal examples                                              <<@Literal-examples>>
 
-You can include literal examples that should not be subjected to markup.
-Such examples will be typeset in monospace, so this is well suited for
-source code and similar examples.
+   You can include literal examples that should not be subjected to
+   markup.  Such examples will be typeset in monospace, so this is
+   well suited for source code and similar examples.
 
-#+BEGIN_EXAMPLE
-    #+BEGIN_EXAMPLE
-    Some example from a text file.
-    #+END_EXAMPLE
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+    \#+BEGIN_EXAMPLE
+     Some example from a text file.
+    \#+END_EXAMPLE
+   #+END_EXAMPLE
 
-Note that such blocks may be /indented/ in order to align nicely with
-indented text and in particular with plain list structure (see
-[[@Plain-lists][Plain lists]]). For simplicity when using small
-examples, you can also start the example lines with a colon followed by
-a space. There may also be additional whitespace before the colon:
+   Note that such blocks may be /indented/ in order to align nicely
+   with indented text and in particular with plain list structure (see
+   [[@Plain-lists][Plain lists]]). For simplicity when using small examples, you can
+   also start the example lines with a colon followed by a
+   space. There may also be additional whitespace before the colon:
 
-#+BEGIN_EXAMPLE
-    Here is an example
-       : Some example from a text file.
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     Here is an example
+        : Some example from a text file.
+   #+END_EXAMPLE
 
-If the example is source code from a programming language, or any other
-text that can be marked up by font-lock in Emacs, you can ask for the
-example to look like the fontified Emacs buffer[fn:FOOT115].
-This is done with the ‘src' block, where you also need to specify the
-name of the major mode that should be used to fontify the
-example[fn:FOOT116], see [[@Easy-templates][Easy templates]] for
-shortcuts to easily insert code blocks.
+   If the example is source code from a programming language, or any
+   other text that can be marked up by font-lock in Emacs, you can ask
+   for the example to look like the fontified Emacs
+   buffer[fn:FOOT115].  This is done with the ‘src' block, where you
+   also need to specify the name of the major mode that should be used
+   to fontify the example[fn:FOOT116], see [[@Easy-templates][Easy templates]] for
+   shortcuts to easily insert code blocks.
 
-#+BEGIN_EXAMPLE
-    #+BEGIN_SRC emacs-lisp
-      (defun org-xor (a b)
-         "Exclusive or."
-         (if a (not b) b))
-    #+END_SRC
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     #+BEGIN_SRC emacs-lisp
+        (defun org-xor (a b)
+           "Exclusive or."
+           (if a (not b) b))
+     #+END_SRC
+   #+END_EXAMPLE
 
-Both in =example= and in =src= snippets, you can add a =-n= switch to
-the end of the =BEGIN= line, to get the lines of the example numbered.
-If you use a =+n= switch, the numbering from the previous numbered
-snippet will be continued in the current one. In literal examples, Org
-will interpret strings like ‘(ref:name)' as labels, and use them as
-targets for special hyperlinks like =[[(name)]]= (i.e., the reference
-name enclosed in single parenthesis). In HTML, hovering the mouse over
-such a link will remote-highlight the corresponding code line, which is
-kind of cool.
+   Both in =example= and in =src= snippets, you can add a =-n= switch
+   to the end of the =BEGIN= line, to get the lines of the example
+   numbered.  If you use a =+n= switch, the numbering from the
+   previous numbered snippet will be continued in the current one. In
+   literal examples, Org will interpret strings like ‘(ref:name)' as
+   labels, and use them as targets for special hyperlinks like
+   =[[(name)]]= (i.e., the reference name enclosed in single
+   parenthesis). In HTML, hovering the mouse over such a link will
+   remote-highlight the corresponding code line, which is kind of
+   cool.
 
-You can also add a =-r= switch which /removes/ the labels from the
-source code[fn:FOOT117]. With the =-n= switch, links to these
-references will be labeled by the line numbers from the code listing,
-otherwise links will use the labels with no parentheses. Here is an
-example:
+   You can also add a =-r= switch which /removes/ the labels from the
+   source code[fn:FOOT117]. With the =-n= switch, links to these
+   references will be labeled by the line numbers from the code
+   listing, otherwise links will use the labels with no
+   parentheses. Here is an example:
 
-#+BEGIN_EXAMPLE
-    #+BEGIN_SRC emacs-lisp -n -r
-    (save-excursion                  (ref:sc)
-       (goto-char (point-min)))      (ref:jump)
-    #+END_SRC
-    In line [[(sc)]] we remember the current position.  [[(jump)][Line (jump)]]
-    jumps to point-min.
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     #+BEGIN_SRC emacs-lisp -n -r
+      (save-excursion                  (ref:sc)
+         (goto-char (point-min)))      (ref:jump)
+     #+END_SRC
+     In line [[(sc)]] we remember the current position.  [[(jump)][Line (jump)]]
+     jumps to point-min.
+   #+END_EXAMPLE
 
-Finally, you can use =-i= to preserve the indentation of a specific code
-block (see [[@Editing-source-code][Editing source code]]).
+   Finally, you can use =-i= to preserve the indentation of a specific
+   code block (see [[@Editing-source-code][Editing source code]]).
 
-If the syntax for the label format conflicts with the language syntax,
-use a =-l= switch to change the format, for example ‘#+BEGIN\_SRC pascal
--n -r -l "((%s))"'. See also the variable =org-coderef-label-format=.
+   If the syntax for the label format conflicts with the language
+   syntax, use a =-l= switch to change the format, for example
+   ‘#+BEGIN_SRC pascal -n -r -l "((%s))"'. See also the variable
+   =org-coderef-label-format=.
 
-HTML export also allows examples to be published as text areas (see
-[[@Text-areas-in-HTML-export][Text areas in HTML export]]).
+   HTML export also allows examples to be published as text areas (see
+   [[@Text-areas-in-HTML-export][Text areas in HTML export]]).
 
-Because the =#+BEGIN_...= and =#+END_...= patterns need to be added so
-often, shortcuts are provided using the Easy templates facility (see
-[[@Easy-templates][Easy templates]]).
+   Because the =#+BEGIN_...= and =#+END_...= patterns need to be added
+   so often, shortcuts are provided using the Easy templates facility
+   (see [[@Easy-templates][Easy templates]]).
 
-C-c '
+    - */C-c '/*
 
-Edit the source code example at point in its native mode. This works by
-switching to a temporary buffer with the source code. You need to exit
-by pressing C-c ' again[fn:FOOT118]. The edited version will
-then replace the old version in the Org buffer. Fixed-width regions
-(where each line starts with a colon followed by a space) will be edited
-using =artist-mode=[fn:FOOT119] to allow creating ASCII drawings
-easily. Using this command in an empty line will create a new
-fixed-width region.
+      Edit the source code example at point in its native mode. This
+      works by switching to a temporary buffer with the source
+      code. You need to exit by pressing C-c ' again[fn:FOOT118]. The
+      edited version will then replace the old version in the Org
+      buffer. Fixed-width regions (where each line starts with a colon
+      followed by a space) will be edited using
+      =artist-mode= [fn:FOOT119] to allow creating ASCII drawings
+      easily. Using this command in an empty line will create a new
+      fixed-width region.
 
-C-c l
+    - */C-c l/*
 
-Calling =org-store-link= while editing a source code example in a
-temporary buffer created with C-c ' will prompt for a label. Make sure
-that it is unique in the current buffer, and insert it with the proper
-formatting like ‘(ref:label)' at the end of the current line. Then the
-label is stored as a link ‘(label)', for retrieval with C-c C-l.
+      Calling =org-store-link= while editing a source code example in
+      a temporary buffer created with */C-c '/* will prompt for a
+      label. Make sure that it is unique in the current buffer, and
+      insert it with the proper formatting like ‘(ref:label)' at the
+      end of the current line. Then the label is stored as a link
+      ‘(label)', for retrieval with */C-c C-l/*.
 
-** 11.4 Include files
+** 11.4 Include files                                                 <<@Include-files>>
 
-During export, you can include the content of another file. For example,
-to include your .emacs file, you could use:
+   During export, you can include the content of another file. For
+   example, to include your .emacs file, you could use:
 
-#+BEGIN_EXAMPLE
-    #+INCLUDE: "~/.emacs" src emacs-lisp
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     #+INCLUDE: "~/.emacs" src emacs-lisp
+   #+END_EXAMPLE
 
-The first parameter names the the file to include. The optional second
-and third parameter specify the markup (i.e., ‘example' or ‘src'), and,
-if the markup is ‘src', the language for formatting the contents.
+   The first parameter names the the file to include. The optional
+   second and third parameter specify the markup (i.e., ‘example' or
+   ‘src'), and, if the markup is ‘src', the language for formatting
+   the contents.
 
-If markup is requested, the included content will be placed within an
-appropriate block[fn:FOOT120]. No changes to the included
-content are made and it is the responsibility of the user to ensure that
-the result is valid Org syntax. For markup ‘example' and ‘src', which is
-requesting a literal example, the content will be code-escaped before
-inclusion.
+   If markup is requested, the included content will be placed within
+   an appropriate block[fn:FOOT120]. No changes to the included
+   content are made and it is the responsibility of the user to ensure
+   that the result is valid Org syntax. For markup ‘example' and
+   ‘src', which is requesting a literal example, the content will be
+   code-escaped before inclusion.
 
-If no markup is requested, the text will be assumed to be in Org mode
-format and will be processed normally. However, footnote labels (see
-[[@Footnotes][Footnotes]]) in the file will be made local to that file.
-Contents of the included file will belong to the same structure
-(headline, item) containing the =INCLUDE= keyword. In particular,
-headlines within the file will become children of the current section.
-That behavior can be changed by providing an additional keyword
-parameter, =:minlevel=. In that case, all headlines in the included file
-will be shifted so the one with the lowest level reaches that specified
-level. For example, to make a file become a sibling of the current
-top-level headline, use
+   If no markup is requested, the text will be assumed to be in Org
+   mode format and will be processed normally. However, footnote
+   labels (see [[@Footnotes][Footnotes]]) in the file will be made local to that file.
+   Contents of the included file will belong to the same structure
+   (headline, item) containing the =INCLUDE= keyword. In particular,
+   headlines within the file will become children of the current
+   section.  That behavior can be changed by providing an additional
+   keyword parameter, =:minlevel=. In that case, all headlines in the
+   included file will be shifted so the one with the lowest level
+   reaches that specified level. For example, to make a file become a
+   sibling of the current top-level headline, use
 
-#+BEGIN_EXAMPLE
-    #+INCLUDE: "~/my-book/chapter2.org" :minlevel 1
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     #+INCLUDE: "~/my-book/chapter2.org" :minlevel 1
+   #+END_EXAMPLE
 
-You can also include a portion of a file by specifying a lines range
-using the =:lines= keyword parameter. The line at the upper end of the
-range will not be included. The start and/or the end of the range may be
-omitted to use the obvious defaults.
+   You can also include a portion of a file by specifying a lines
+   range using the =:lines= keyword parameter. The line at the upper
+   end of the range will not be included. The start and/or the end of
+   the range may be omitted to use the obvious defaults.
 
-#+BEGIN_EXAMPLE
-    #+INCLUDE: "~/.emacs" :lines "5-10"   Include lines 5 to 10, 10 excluded
-    #+INCLUDE: "~/.emacs" :lines "-10"    Include lines 1 to 10, 10 excluded
-    #+INCLUDE: "~/.emacs" :lines "10-"    Include lines from 10 to EOF
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     #+INCLUDE: "~/.emacs" :lines "5-10"   Include lines 5 to 10, 10 excluded
+     #+INCLUDE: "~/.emacs" :lines "-10"    Include lines 1 to 10, 10 excluded
+     #+INCLUDE: "~/.emacs" :lines "10-"    Include lines from 10 to EOF
+   #+END_EXAMPLE
 
-Finally, you may use a file-link to extract an object as matched by
-=org-link-search=[fn:FOOT121] (see [[@Search-options][Search
-options]]). If the =:only-contents= property is non-=nil=, only the
-contents of the requested element will be included, omitting properties
-drawer and planning-line if present. The =:lines= keyword operates
-locally with respect to the requested element. Some examples:
+   Finally, you may use a file-link to extract an object as matched by
+   =org-link-search= [fn:FOOT121] (see [[@Search-options][Search options]]). If the
+   =:only-contents= property is non- =nil=, only the contents of the
+   requested element will be included, omitting properties drawer and
+   planning-line if present. The =:lines= keyword operates locally
+   with respect to the requested element. Some examples:
 
-#+BEGIN_EXAMPLE
-    #+INCLUDE: "./paper.org::#theory" :only-contents t
-       Include the body of the heading with the custom id theory
-    #+INCLUDE: "./paper.org::mytable"  Include named element.
-    #+INCLUDE: "./paper.org::*conclusion" :lines 1-20
-       Include the first 20 lines of the headline named conclusion.
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     #+INCLUDE: "./paper.org::#theory" :only-contents t
+        Include the body of the heading with the custom id theory
+     #+INCLUDE: "./paper.org::mytable"  Include named element.
+     #+INCLUDE: "./paper.org::*conclusion" :lines 1-20
+        Include the first 20 lines of the headline named conclusion.
+   #+END_EXAMPLE
 
-C-c '
+    - */C-c '/*
 
-Visit the include file at point.
+      Visit the include file at point.
 
-** 11.5 Index entries
+** 11.5 Index entries                                                 <<@Index-entries>>
 
-You can specify entries that will be used for generating an index during
-publishing. This is done by lines starting with =#+INDEX=. An entry the
-contains an exclamation mark will create a sub item. See
-[[@Generating-an-index][Generating an index]] for more information.
+   You can specify entries that will be used for generating an index
+   during publishing. This is done by lines starting with
+   =#+INDEX=. An entry the contains an exclamation mark will create a
+   sub item. See [[@Generating-an-index][Generating an index]] for more information.
 
-#+BEGIN_EXAMPLE
-    * Curriculum Vitae
-    #+INDEX: CV
-    #+INDEX: Application!CV
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+      * Curriculum Vitae
+      #+INDEX: CV
+      #+INDEX: Application!CV
+   #+END_EXAMPLE
 
-** 11.6 Macro replacement
+** 11.6 Macro replacement                                             <<@Macro-replacement>>
 
-You can define text snippets with
+   You can define text snippets with
 
-#+BEGIN_EXAMPLE
-    #+MACRO: name   replacement text $1, $2 are arguments
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     #+MACRO: name   replacement text $1, $2 are arguments
+   #+END_EXAMPLE
 
-which can be referenced ={{{name(arg1, arg2)}}}=[fn:FOOT122].
+   which can be referenced ={{{name(arg1, arg2)}}}= [fn:FOOT122].
 
-These references, called macros, can be inserted anywhere Org markup is
-recognized: paragraphs, headlines, verse blocks, tables cells and lists.
-They can also be used in keywords accepting Org syntax, e.g.,
-=#+CAPTION=, =#+TITLE=, =#+AUTHOR=, =#+DATE= and some others, export
-back-end specific, ones.
+   These references, called macros, can be inserted anywhere Org
+   markup is recognized: paragraphs, headlines, verse blocks, tables
+   cells and lists.  They can also be used in keywords accepting Org
+   syntax, e.g., =#+CAPTION=, =#+TITLE=, =#+AUTHOR=, =#+DATE= and some
+   others, export back-end specific, ones.
 
-In addition to user-defined macros, a set of predefined macros can be
-used:
+   In addition to user-defined macros, a set of predefined macros can
+   be used:
 
--  ={{{title}}}=\\
-   ={{{author}}}=\\
-   ={{{email}}}= :: These macros are replaced with the information
-   available at the time of export.
+    - ={{{title}}}=
+    - ={{{author}}}=
+    - ={{{email}}}=
 
--  ={{{date}}}=\\
-   ={{{date(FORMAT)}}}= :: This macro refers to the =#+DATE= keyword.
-   FORMAT is an optional argument to the ={{{date}}}= macro that will be
-   used only if =#+DATE= is a single timestamp. FORMAT should be a
-   format string understood by =format-time-string=.
+      These macros are replaced with the information available at the
+      time of export.
 
--  ={{{time(FORMAT)}}}=\\
-   ={{{modification-time(FORMAT)}}}= :: These macros refer to the date
-   and time when the document is exported and to the modification date
-   and time of the file being exported, respectively. FORMAT should be a
-   format string understood by =format-time-string=.
+    - ={{{date}}}=
+    - ={{{date(FORMAT)}}}=
 
--  ={{{input-file}}}= :: This macro refers to the filename of the
-   exported file, if any.
+      This macro refers to the =#+DATE= keyword.  FORMAT is an
+      optional argument to the ={{{date}}}= macro that will be used
+      only if =#+DATE= is a single timestamp. FORMAT should be a
+      format string understood by =format-time-string=.
 
--  ={{{property(PROPERTY-NAME)}}}=\\
-   ={{{property(PROPERTY-NAME,SEARCH-OPTION)}}}= :: This macro returns
-   the value of property PROPERTY-NAME in current entry. If
-   SEARCH-OPTION (see [[@Search-options][Search options]]) refers to a
-   remote entry, it will be used instead.
+    - ={{{time(FORMAT)}}}=
+    - ={{{modification-time(FORMAT)}}}=
 
-The surrounding brackets can be made invisible by setting
-=org-hide-macro-markers= non-=nil=.
+      These macros refer to the date and time when the document is
+      exported and to the modification date and time of the file being
+      exported, respectively. FORMAT should be a format string
+      understood by =format-time-string=.
 
-Macro expansion takes place during the very beginning of the export
-process.
+    - ={{{input-file}}}=
+
+      This macro refers to the filename of the exported file, if any.
+
+    - ={{{property(PROPERTY-NAME)}}}=
+    - ={{{property(PROPERTY-NAME,SEARCH-OPTION)}}}=
+
+      This macro returns the value of property PROPERTY-NAME in
+      current entry. If SEARCH-OPTION (see [[@Search-options][Search options]]) refers to a
+      remote entry, it will be used instead.
+
+   The surrounding brackets can be made invisible by setting
+   =org-hide-macro-markers= non- =nil=.
+
+   Macro expansion takes place during the very beginning of the export
+   process.
 
 ** 11.7 Embedded LaTeX                                                <<@Embedded-LaTeX>>
 
-Plain ASCII is normally sufficient for almost all note taking.
-Exceptions include scientific notes, which often require mathematical
-symbols and the occasional formula. LaTeX[fn:FOOT123] is widely
-used to typeset scientific documents. Org mode supports embedding LaTeX
-code into its files, because many academics are used to writing and
-reading LaTeX source code, and because it can be readily processed to
-produce pretty output for a number of export back-ends.
+   Plain ASCII is normally sufficient for almost all note taking.
+   Exceptions include scientific notes, which often require
+   mathematical symbols and the occasional formula. LaTeX[fn:FOOT123]
+   is widely used to typeset scientific documents. Org mode supports
+   embedding LaTeX code into its files, because many academics are
+   used to writing and reading LaTeX source code, and because it can
+   be readily processed to produce pretty output for a number of
+   export back-ends.
 
-*** 11.7.1 Special symbols
+   | • [[@Special-symbols][Special symbols]]:             | Greek letters and other symbols         |
+   | • [[@Subscripts-and-superscripts][Subscripts and superscripts]]: | Simple syntax for raising/lowering text |
+   | • [[@LaTeX-fragments][LaTeX fragments]]:             | Complex formulas made easy              |
+   | • [[@Previewing-LaTeX-fragments][Previewing LaTeX fragments]]:  | What will this snippet look like?       |
+   | • [[@CDLaTeX-mode][CDLaTeX mode]]:                | Speed up entering of formulas           |
 
-You can use LaTeX-like syntax to insert special symbols like ‘\alpha' to
-indicate the Greek letter, or ‘\to' to indicate an arrow. Completion for
-these symbols is available, just type ‘\' and maybe a few letters, and
-press M-TAB to see possible completions. Unlike LaTeX code, Org mode
-allows these symbols to be present without surrounding math delimiters,
-for example:
+*** 11.7.1 Special symbols                                            <<@Special-symbols>>
 
-#+BEGIN_EXAMPLE
-    Angles are written as Greek letters \alpha, \beta and \gamma.
-#+END_EXAMPLE
+    You can use LaTeX-like syntax to insert special symbols like
+    ‘\alpha' to indicate the Greek letter, or ‘\to' to indicate an
+    arrow. Completion for these symbols is available, just type ‘\'
+    and maybe a few letters, and press M-TAB to see possible
+    completions. Unlike LaTeX code, Org mode allows these symbols to
+    be present without surrounding math delimiters, for example:
 
-During export, these symbols will be transformed into the native format
-of the exporter back-end. Strings like =\alpha= will be exported as
-=&alpha;= in the HTML output, and as =\(\alpha\)= in the LaTeX output.
-Similarly, =\nbsp= will become =&nbsp;= in HTML and =~= in LaTeX. If you
-need such a symbol inside a word, terminate it like this:
-‘\Aacute{}stor'.
+    #+BEGIN_EXAMPLE
+      Angles are written as Greek letters \alpha, \beta and \gamma.
+    #+END_EXAMPLE
 
-A large number of entities is provided, with names taken from both HTML
-and LaTeX; see the variable =org-entities= for the complete list. ‘\-'
-is treated as a shy hyphen, and ‘--', ‘---', and ‘...' are all converted
-into special commands creating hyphens of different lengths or a compact
-set of dots.
+    During export, these symbols will be transformed into the native
+    format of the exporter back-end. Strings like =\alpha= will be
+    exported as =&alpha;= in the HTML output, and as =\(\alpha\)= in
+    the LaTeX output.  Similarly, =\nbsp= will become =&nbsp;= in HTML
+    and =~= in LaTeX. If you need such a symbol inside a word,
+    terminate it like this: ‘\Aacute{}stor'.
 
-If you would like to see entities displayed as UTF-8 characters, use the
-following command[fn:FOOT124]:
+    A large number of entities is provided, with names taken from both
+    HTML and LaTeX; see the variable =org-entities= for the complete
+    list. ‘\-' is treated as a shy hyphen, and ‘--', ‘---', and ‘...'
+    are all converted into special commands creating hyphens of
+    different lengths or a compact set of dots.
 
-C-c C-x \
+    If you would like to see entities displayed as UTF-8 characters,
+    use the following command[fn:FOOT124]:
 
-Toggle display of entities as UTF-8 characters. This does not change the
-buffer content which remains plain ASCII, but it overlays the UTF-8
-character for display purposes only.
+     - */C-c C-x \ /*
 
-*** 11.7.2 Subscripts and superscripts
+       Toggle display of entities as UTF-8 characters. This does not
+       change the buffer content which remains plain ASCII, but it
+       overlays the UTF-8 character for display purposes only.
 
-Just like in LaTeX, ‘\^' and ‘\_' are used to indicate super- and
-subscripts. Again, these can be used without embedding them in math-mode
-delimiters. To increase the readability of ASCII text, it is not
-necessary (but OK) to surround multi-character sub- and superscripts
-with curly braces. For example
+*** 11.7.2 Subscripts and superscripts                                <<@Subscripts-and-superscripts>>
 
-#+BEGIN_EXAMPLE
-    The mass of the sun is M_sun = 1.989 x 10^30 kg.  The radius of
-    the sun is R_{sun} = 6.96 x 10^8 m.
-#+END_EXAMPLE
+    Just like in LaTeX, ‘^' and ‘_' are used to indicate super- and
+    subscripts. Again, these can be used without embedding them in
+    math-mode delimiters. To increase the readability of ASCII text,
+    it is not necessary (but OK) to surround multi-character sub- and
+    superscripts with curly braces. For example
 
-If you write a text where the underscore is often used in a different
-context, Org's convention to always interpret these as subscripts can
-get in your way. Configure the variable =org-use-sub-superscripts= to
-change this convention. For example, when setting this variable to ={}=,
-‘a\_b' will not be interpreted as a subscript, but ‘a\_{b}' will.
+    #+BEGIN_EXAMPLE
+      The mass of the sun is M_sun = 1.989 x 10^30 kg.  The radius of
+      the sun is R_{sun} = 6.96 x 10^8 m.
+    #+END_EXAMPLE
 
-C-c C-x \
+    If you write a text where the underscore is often used in a
+    different context, Org's convention to always interpret these as
+    subscripts can get in your way. Configure the variable
+    =org-use-sub-superscripts= to change this convention. For example,
+    when setting this variable to ={}=, ‘a_b' will not be interpreted
+    as a subscript, but ‘a_{b}' will.
 
-In addition to showing entities as UTF-8 characters, this command will
-also format sub- and superscripts in a WYSIWYM way.
+     - */C-c C-x \ /*
 
-*** 11.7.3 LaTeX fragments
+       In addition to showing entities as UTF-8 characters, this
+       command will also format sub- and superscripts in a WYSIWYM
+       way.
 
-Going beyond symbols and sub- and superscripts, a full formula language
-is needed. Org mode can contain LaTeX math fragments, and it supports
-ways to process these for several export back-ends. When exporting to
-LaTeX, the code is left as it is. When exporting to HTML, Org can use
-either [[http://www.mathjax.org][MathJax]] (see
-[[@Math-formatting-in-HTML-export][Math formatting in HTML export]]) or
-transcode the math into images (see see
-[[@Previewing-LaTeX-fragments][Previewing LaTeX fragments]]).
+*** 11.7.3 LaTeX fragments                                            <<@LaTeX-fragments>>
 
-LaTeX fragments don't need any special marking at all. The following
-snippets will be identified as LaTeX source code:
+    Going beyond symbols and sub- and superscripts, a full formula
+    language is needed. Org mode can contain LaTeX math fragments, and
+    it supports ways to process these for several export
+    back-ends. When exporting to LaTeX, the code is left as it
+    is. When exporting to HTML, Org can use either [[http://www.mathjax.org][MathJax]] (see [[@Math-formatting-in-HTML-export][Math
+    formatting in HTML export]]) or transcode the math into images (see
+    see [[@Previewing-LaTeX-fragments][Previewing LaTeX fragments]]).
 
--  Environments of any kind[fn:FOOT125]. The only requirement is
-   that the =\begin= statement appears on a new line, at the beginning
-   of the line or after whitespaces only.
--  Text within the usual LaTeX math delimiters. To avoid conflicts with
-   currency specifications, single ‘$' characters are only recognized as
-   math delimiters if the enclosed text contains at most two line
-   breaks, is directly attached to the ‘$' characters with no whitespace
-   in between, and if the closing ‘$' is followed by whitespace or
-   punctuation (parentheses and quotes are considered to be punctuation
-   in this context). For the other delimiters, there is no such
-   restriction, so when in doubt, use ‘\(...\)' as inline math
-   delimiters.
+    LaTeX fragments don't need any special marking at all. The
+    following snippets will be identified as LaTeX source code:
 
-For example:
+     - Environments of any kind[fn:FOOT125]. The only requirement is
+       that the =\begin= statement appears on a new line, at the
+       beginning of the line or after whitespaces only.
 
-#+BEGIN_EXAMPLE
-    \begin{equation}
-    x=\sqrt{b}
-    \end{equation}
+     - Text within the usual LaTeX math delimiters. To avoid conflicts
+       with currency specifications, single ‘$' characters are only
+       recognized as math delimiters if the enclosed text contains at
+       most two line breaks, is directly attached to the ‘$'
+       characters with no whitespace in between, and if the closing
+       ‘$' is followed by whitespace or punctuation (parentheses and
+       quotes are considered to be punctuation in this context). For
+       the other delimiters, there is no such restriction, so when in
+       doubt, use ‘\(...\)' as inline math delimiters.
 
-    If $a^2=b$ and \( b=2 \), then the solution must be
-    either $$ a=+\sqrt{2} $$ or \[ a=-\sqrt{2} \].
-#+END_EXAMPLE
+    For example:
 
-LaTeX processing can be configured with the variable
-=org-export-with-latex=. The default setting is =t= which means MathJax
-for HTML, and no processing for ASCII and LaTeX back-ends. You can also
-set this variable on a per-file basis using one of these lines:
+    #+BEGIN_EXAMPLE
+      \begin{equation}
+      x=\sqrt{b}
+      \end{equation}
 
-#+BEGIN_EXAMPLE
-    #+OPTIONS: tex:t          Do the right thing automatically (MathJax)
-    #+OPTIONS: tex:nil        Do not process LaTeX fragments at all
-    #+OPTIONS: tex:verbatim   Verbatim export, for jsMath or so
-#+END_EXAMPLE
+      If $a^2=b$ and \( b=2 \), then the solution must be
+      either $$ a=+\sqrt{2} $$ or \[ a=-\sqrt{2} \].
+    #+END_EXAMPLE
 
-*** 11.7.4 Previewing LaTeX fragments
+    LaTeX processing can be configured with the variable
+    =org-export-with-latex=. The default setting is =t= which means
+    MathJax for HTML, and no processing for ASCII and LaTeX
+    back-ends. You can also set this variable on a per-file basis
+    using one of these lines:
 
-If you have a working LaTeX installation and either dvipng or convert
-installed[fn:FOOT126], LaTeX fragments can be processed to
-produce images of the typeset expressions to be used for inclusion while
-exporting to HTML (see see [[@LaTeX-fragments][LaTeX fragments]]), or
-for inline previewing within Org mode.
+    #+BEGIN_EXAMPLE
+      #+OPTIONS: tex:t          Do the right thing automatically (MathJax)
+      #+OPTIONS: tex:nil        Do not process LaTeX fragments at all
+      #+OPTIONS: tex:verbatim   Verbatim export, for jsMath or so
+    #+END_EXAMPLE
 
-You can customize the variables =org-format-latex-options= and
-=org-format-latex-header= to influence some aspects of the preview. In
-particular, the =:scale= (and for HTML export, =:html-scale=) property
-of the former can be used to adjust the size of the preview images.
+*** 11.7.4 Previewing LaTeX fragments                                 <<@Previewing-LaTeX-fragments>>
 
-C-c C-x C-l
+    If you have a working LaTeX installation and either dvipng or
+    convert installed[fn:FOOT126], LaTeX fragments can be processed to
+    produce images of the typeset expressions to be used for inclusion
+    while exporting to HTML (see see [[@LaTeX-fragments][LaTeX fragments]]), or for inline
+    previewing within Org mode.
 
-Produce a preview image of the LaTeX fragment at point and overlay it
-over the source code. If there is no fragment at point, process all
-fragments in the current entry (between two headlines). When called with
-a prefix argument, process the entire subtree. When called with two
-prefix arguments, or when the cursor is before the first headline,
-process the entire buffer.
+    You can customize the variables =org-format-latex-options= and
+    =org-format-latex-header= to influence some aspects of the
+    preview. In particular, the =:scale= (and for HTML export,
+    =:html-scale=) property of the former can be used to adjust the
+    size of the preview images.
 
-C-c C-c
+     - */C-c C-x C-l/*
 
-Remove the overlay preview images.
+       Produce a preview image of the LaTeX fragment at point and
+       overlay it over the source code. If there is no fragment at
+       point, process all fragments in the current entry (between two
+       headlines). When called with a prefix argument, process the
+       entire subtree. When called with two prefix arguments, or when
+       the cursor is before the first headline, process the entire
+       buffer.
 
-You can turn on the previewing of all LaTeX fragments in a file with
+     - */C-c C-c/*
 
-#+BEGIN_EXAMPLE
-    #+STARTUP: latexpreview
-#+END_EXAMPLE
+       Remove the overlay preview images.
 
-To disable it, simply use
+    You can turn on the previewing of all LaTeX fragments in a file
+    with
 
-#+BEGIN_EXAMPLE
-    #+STARTUP: nolatexpreview
-#+END_EXAMPLE
+    #+BEGIN_EXAMPLE
+      #+STARTUP: latexpreview
+    #+END_EXAMPLE
 
-*** 11.7.5 Using CDLaTeX to enter math
+    To disable it, simply use
 
-CDLaTeX mode is a minor mode that is normally used in combination with a
-major LaTeX mode like AUCTeX in order to speed-up insertion of
-environments and math templates. Inside Org mode, you can make use of
-some of the features of CDLaTeX mode. You need to install cdlatex.el and
-texmathp.el (the latter comes also with AUCTeX) from
-[[http://www.astro.uva.nl/~dominik/Tools/cdlatex]]. Don't use CDLaTeX
-mode itself under Org mode, but use the light version =org-cdlatex-mode=
-that comes as part of Org mode. Turn it on for the current buffer with
-M-x org-cdlatex-mode RET, or for all Org files with
+    #+BEGIN_EXAMPLE
+      #+STARTUP: nolatexpreview
+    #+END_EXAMPLE
 
-#+BEGIN_SRC lisp
-    (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
-#+END_SRC
+*** 11.7.5 Using CDLaTeX to enter math                                <<@CDLaTeX-mode>>
 
-When this mode is enabled, the following features are present (for more
-details see the documentation of CDLaTeX mode):
+    CDLaTeX mode is a minor mode that is normally used in combination
+    with a major LaTeX mode like AUCTeX in order to speed-up insertion
+    of environments and math templates. Inside Org mode, you can make
+    use of some of the features of CDLaTeX mode. You need to install
+    cdlatex.el and texmathp.el (the latter comes also with AUCTeX)
+    from [[http://www.astro.uva.nl/~dominik/Tools/cdlatex]]. Don't use
+    CDLaTeX mode itself under Org mode, but use the light version
+    =org-cdlatex-mode= that comes as part of Org mode. Turn it on for
+    the current buffer with */M-x org-cdlatex-mode RET/*, or for all
+    Org files with
 
--  Environment templates can be inserted with C-c {.
--  The =TAB= key will do template expansion if the cursor is inside a
-   LaTeX fragment[fn:FOOT127]. For example, =TAB= will expand
-   =fr= to =\frac{}{}= and position the cursor correctly inside the
-   first brace. Another =TAB= will get you into the second brace. Even
-   outside fragments, =TAB= will expand environment abbreviations at the
-   beginning of a line. For example, if you write ‘equ' at the beginning
-   of a line and press =TAB=, this abbreviation will be expanded to an
-   =equation= environment. To get a list of all abbreviations, type M-x
-   cdlatex-command-help RET.
--  Pressing \_ and \^ inside a LaTeX fragment will insert these
-   characters together with a pair of braces. If you use =TAB= to move
-   out of the braces, and if the braces surround only a single character
-   or macro, they are removed again (depending on the variable
-   =cdlatex-simplify-sub-super-scripts=).
--  Pressing the grave accent ` followed by a character inserts math
-   macros, also outside LaTeX fragments. If you wait more than 1.5
-   seconds after the grave accent, a help window will pop up.
--  Pressing the apostrophe ' followed by another character modifies the
-   symbol before point with an accent or a font. If you wait more than
-   1.5 seconds after the apostrophe, a help window will pop up.
-   Character modification will work only inside LaTeX fragments; outside
-   the quote is normal.
+    #+BEGIN_SRC lisp
+      (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+    #+END_SRC
 
-** 11.8 Special blocks
+    When this mode is enabled, the following features are present (for
+    more details see the documentation of CDLaTeX mode):
 
-Org syntax includes pre-defined blocks (see [[@Paragraphs][Paragraphs]]
-and [[@Literal-examples][Literal examples]]). It is also possible to
-create blocks containing raw code targeted at a specific back-end (e.g.,
-‘#+BEGIN\_LATEX').
+     - Environment templates can be inserted with */C-c {/*.
 
-Any other block is a /special block/. Its name is case-sensitive.
+     - The =TAB= key will do template expansion if the cursor is
+       inside a LaTeX fragment[fn:FOOT127]. For example, =TAB= will
+       expand =fr= to =\frac{}{}= and position the cursor correctly
+       inside the first brace. Another =TAB= will get you into the
+       second brace. Even outside fragments, =TAB= will expand
+       environment abbreviations at the beginning of a line. For
+       example, if you write ‘equ' at the beginning of a line and
+       press =TAB=, this abbreviation will be expanded to an
+       =equation= environment. To get a list of all abbreviations,
+       type */M-x cdlatex-command-help RET/*.
 
-For example, ‘#+BEGIN\_abstract' and ‘#+BEGIN\_video' are special
-blocks. The first one is useful when exporting to LaTeX, the second one
-when exporting to HTML5.
+     - Pressing =_= and =^= inside a LaTeX fragment will insert these
+       characters together with a pair of braces. If you use =TAB= to
+       move out of the braces, and if the braces surround only a
+       single character or macro, they are removed again (depending on
+       the variable =cdlatex-simplify-sub-super-scripts=).
 
-Each export back-end decides if they should be exported, and how. When
-the block is ignored, its contents are still exported, as if the opening
-and closing block lines were not there. For example, when exporting a
-‘#+BEGIN\_test' block, HTML back-end wraps its contents within a ‘<div
-name="test">' tag.
+     - Pressing the grave accent =`= followed by a character inserts
+       math macros, also outside LaTeX fragments. If you wait more
+       than 1.5 seconds after the grave accent, a help window will pop
+       up.
 
-Refer to back-end specific documentation for more information.
+     - Pressing the apostrophe ='= followed by another character
+       modifies the symbol before point with an accent or a font. If
+       you wait more than 1.5 seconds after the apostrophe, a help
+       window will pop up.  Character modification will work only
+       inside LaTeX fragments; outside the quote is normal.
+
+** 11.8 Special blocks                                                <<@Special-blocks>>
+
+   Org syntax includes pre-defined blocks (see [[@Paragraphs][Paragraphs]] and [[@Literal-examples][Literal
+   examples]]). It is also possible to create blocks containing raw code
+   targeted at a specific back-end (e.g., ‘#+BEGIN_LATEX').
+
+   Any other block is a /special block/. Its name is case-sensitive.
+
+   For example, ‘#+BEGIN_abstract' and ‘#+BEGIN_video' are special
+   blocks. The first one is useful when exporting to LaTeX, the second
+   one when exporting to HTML5.
+
+   Each export back-end decides if they should be exported, and
+   how. When the block is ignored, its contents are still exported, as
+   if the opening and closing block lines were not there. For example,
+   when exporting a ‘#+BEGIN_test' block, HTML back-end wraps its
+   contents within a ‘<div name="test">' tag.
+
+   Refer to back-end specific documentation for more information.
 
 * 12 Exporting                                                        <<@Exporting>>
 
@@ -10186,7 +10221,7 @@ support text viewers and accessibility, and align it to the right.
 
 You could use =http= addresses just as well.
 
-*** 12.6.9 Math formatting in HTML export
+*** 12.6.9 Math formatting in HTML export                             <<@Math-formatting-in-HTML-export>>
 
 LaTeX math snippets (see [[@LaTeX-fragments][LaTeX fragments]]) can be
 displayed in two different ways on HTML pages. The default is to use
@@ -10222,7 +10257,7 @@ or:
     #+OPTIONS: tex:imagemagick
 #+END_EXAMPLE
 
-*** 12.6.10 Text areas in HTML export
+*** 12.6.10 Text areas in HTML export                                 <<@Text-areas-in-HTML-export>>
 
 An alternative way to publish literal code examples in HTML is to use
 text areas, where the example can even be edited before pasting it into
@@ -12444,7 +12479,7 @@ files for a given project.
 | =:sitemap-date-format=         | Format string for the =format-time-string= function that tells how a sitemap entry's date is to be formatted. This property bypasses =org-publish-sitemap-date-format= which defaults to =%Y-%m-%d=.                                                                                                                                                                                               |
 | =:sitemap-sans-extension=      | When non-=nil=, remove filenames' extensions from the generated sitemap. Useful to have cool URIs (see [[http://www.w3.org/Provider/Style/URI]]). Defaults to =nil=.                                                                                                                                                                                                                               |
 
-*** 13.1.8 Generating an index
+*** 13.1.8 Generating an index                                        <<@Generating-an-index>>
 
 Org mode can generate an index across the files of a publishing project.
 
@@ -12586,7 +12621,7 @@ commands above, or by customizing the variable
 =org-publish-use-timestamps-flag=. This may be necessary in particular
 if files include other files via =#+SETUPFILE:= or =#+INCLUDE:=.
 
-* 14 Working with source code
+* 14 Working with source code                                         <<@Working-with-source-code>>
 
 Source code can be included in Org mode documents using a ‘src' block,
 e.g.:
@@ -12660,7 +12695,7 @@ or
 -  =source code, header arguments=\\
    =<body>= :: Source code in the specified language.
 
-** 14.2 Editing source code
+** 14.2 Editing source code                                           <<@Editing-source-code>>
 
 Use C-c ' to edit the current code block. This brings up a language
 major-mode edit buffer containing the body of the code block. Manually
@@ -14455,7 +14490,7 @@ Complete word at point
    valid keys for this line.
 -  Elsewhere, complete dictionary words using Ispell.
 
-** 15.2 Easy templates
+** 15.2 Easy templates                                                <<@Easy-templates>>
 
 Org mode supports insertion of empty structural elements (like
 =#+BEGIN_SRC= and =#+END_SRC= pairs) with just a few key strokes. This
@@ -17465,49 +17500,49 @@ For a less drastic behavior, consider using a select tag (see
 [[@Export-settings][Export settings]]) instead.
 
 [fn:FOOT115]
-This works automatically for the HTML back-end (it requires version 1.34
-of the htmlize.el package, which is distributed with Org). Fontified
-code chunks in LaTeX can be achieved using either the
-[[https://www.ctan.org/tex-archive/macros/latex/contrib/listings/?lang=en][listings]]
-or the [[https://github.com/gpoore/minted][minted]] package. If you use
-minted or listing, you must load the packages manually, for example by
-adding the desired package to =org-latex-packages-alist=. Refer to
-=org-latex-listings= for details.
+This works automatically for the HTML back-end (it requires version
+1.34 of the htmlize.el package, which is distributed with
+Org). Fontified code chunks in LaTeX can be achieved using either the
+[[https://www.ctan.org/tex-archive/macros/latex/contrib/listings/?lang=en][listings]] or the [[https://github.com/gpoore/minted][minted]] package. If you use minted or listing, you must
+load the packages manually, for example by adding the desired package
+to =org-latex-packages-alist=. Refer to =org-latex-listings= for
+details.
 
 [fn:FOOT116]
 Code in ‘src' blocks may also be evaluated either interactively or on
-export. See see [[@Working-with-source-code][Working with source code]]
-for more information on evaluating code blocks.
+export. See see [[@Working-with-source-code][Working with source code]] for more information on
+evaluating code blocks.
 
 [fn:FOOT117]
 Adding =-k= to =-n -r= will /keep/ the labels in the source code while
-using line numbers for the links, which might be useful to explain those
-in an Org mode example code.
+using line numbers for the links, which might be useful to explain
+those in an Org mode example code.
 
 [fn:FOOT118]
 Upon exit, lines starting with ‘*', ‘,*', ‘#+' and ‘,#+' will get a
 comma prepended, to keep them from being interpreted by Org as outline
-nodes or special syntax. These commas will be stripped for editing with
-C-c ', and also for export.
+nodes or special syntax. These commas will be stripped for editing
+with */C-c '/*, and also for export.
 
 [fn:FOOT119]
 You may select a different-mode with the variable
 =org-edit-fixed-width-region-mode=.
 
 [fn:FOOT120]
-While you can request paragraphs (‘verse', ‘quote', ‘center'), but this
-places severe restrictions on the type of content that is permissible
+While you can request paragraphs (‘verse', ‘quote', ‘center'), but
+this places severe restrictions on the type of content that is
+permissible
 
 [fn:FOOT121]
 Note that =org-link-search-must-match-exact-headline= is locally bound
-to non-=nil=. Therefore, =org-link-search= only matches headlines and
+to non- =nil=. Therefore, =org-link-search= only matches headlines and
 named elements.
 
 [fn:FOOT122]
 Since commas separate arguments, commas within arguments have to be
 escaped with a backslash character. Conversely, backslash characters
-before a comma, and only them, need to be escaped with another backslash
-character.
+before a comma, and only them, need to be escaped with another
+backslash character.
 
 [fn:FOOT123]
 LaTeX is a macro system based on Donald E. Knuth's TeX system. Many of
@@ -17516,13 +17551,13 @@ simplicity I am blurring this distinction.
 
 [fn:FOOT124]
 You can turn this on by default by setting the variable
-=org-pretty-entities=, or on a per-file base with the =#+STARTUP= option
-=entitiespretty=.
+=org-pretty-entities=, or on a per-file base with the =#+STARTUP=
+option =entitiespretty=.
 
 [fn:FOOT125]
 When MathJax is used, only the environments recognized by MathJax will
-be processed. When dvipng program or imagemagick suite is used to create
-images, any LaTeX environment will be handled.
+be processed. When dvipng program or imagemagick suite is used to
+create images, any LaTeX environment will be handled.
 
 [fn:FOOT126]
 These are respectively available at
