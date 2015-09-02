@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>The Org Manual</title>
-<!-- 2015-09-01 mar 19:55 -->
+<!-- 2015-09-02 mié 17:23 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Carsten Dominik with contributiond by Bastien Guerry, Nicolas Goazion, Eric Schulte, Jambunathan K. Dan Davison, Thomas O`Thoole, and Philip Rooke." />
@@ -457,11 +457,11 @@
 <li><a href="#sec-12-9">12.9 OpenDocument Text export                                      </a>
 <ul>
 <li><a href="#sec-12-9-1">12.9.1 Pre-requisites for ODT export                              </a></li>
-<li><a href="#sec-12-9-2">12.9.2 ODT export commands                                        @ODT-export-commands</a></li>
+<li><a href="#sec-12-9-2">12.9.2 ODT export commands                                        </a></li>
 <li><a href="#sec-12-9-3">12.9.3 ODT specific export settings                               </a></li>
 <li><a href="#sec-12-9-4">12.9.4 Extending ODT export                                       </a>
 <ul>
-<li><a href="#sec-12-9-4-1">Automatically exporting to other formats</a></li>
+<li><a href="#sec-12-9-4-1">Automatically exporting to other formats                         </a></li>
 <li><a href="#sec-12-9-4-2">Converting between document formats</a></li>
 </ul>
 </li>
@@ -493,8 +493,8 @@
 <ul>
 <li><a href="#sec-12-9-12-1">Configuring a document converter                                 </a></li>
 <li><a href="#sec-12-9-12-2">Working with OpenDocument style files                            </a></li>
-<li><a href="#sec-12-9-12-3">a) Factory styles</a></li>
-<li><a href="#sec-12-9-12-4">b) Overriding factory styles</a></li>
+<li><a href="#sec-12-9-12-3">a) Factory styles                                                </a></li>
+<li><a href="#sec-12-9-12-4">b) Overriding factory styles                                     </a></li>
 <li><a href="#sec-12-9-12-5">Creating one-off styles                                          </a></li>
 <li><a href="#sec-12-9-12-6">Customizing tables in ODT export                                 </a></li>
 <li><a href="#sec-12-9-12-7">Validating OpenDocument XML                                      </a></li>
@@ -593,7 +593,7 @@
 <li><a href="#sec-14-4-4">Jumping between code and Org</a></li>
 </ul>
 </li>
-<li><a href="#sec-14-5">14.5 Evaluating code blocks</a></li>
+<li><a href="#sec-14-5">14.5 Evaluating code blocks                                        </a></li>
 <li><a href="#sec-14-6">14.6 Library of Babel</a></li>
 <li><a href="#sec-14-7">14.7 Languages</a></li>
 <li><a href="#sec-14-8">14.8 Header arguments</a>
@@ -17738,45 +17738,44 @@ with, respectively, <code>:width</code> and <code>:thickness</code> attributes:
 <h3 id="sec-12-8">12.8 Markdown export                                               <a id="Markdown-export" name="Markdown-export"></a></h3>
 <div class="outline-text-3" id="text-12-8">
 <p>
-<code>md</code> export back-end generates Markdown syntax<sup><a id="fnr.138" name="fnr.138" class="footref" href="#fn.138">138</a></sup> for
-an Org mode buffer.
+<code>md</code> export back-end generates Markdown syntax<sup><a id="fnr.138" name="fnr.138" class="footref" href="#fn.138">138</a></sup> for an
+Org mode buffer.
 </p>
 
 <p>
-It is built over HTML back-end: any construct not supported by Markdown
-syntax (e.g., tables) will be controlled and translated by <code>html</code>
-back-end (see <a href="#HTML-export">HTML export</a>).
+It is built over HTML back-end: any construct not supported by
+Markdown syntax (e.g., tables) will be controlled and translated by
+<code>html</code> back-end (see <a href="#HTML-export">HTML export</a>).
 </p>
 </div>
 
 <div id="outline-container-sec-12-8-1" class="outline-4">
 <h4 id="sec-12-8-1">Markdown export commands</h4>
 <div class="outline-text-4" id="text-12-8-1">
-<p>
-C-c C-e m m (<code>org-md-export-to-markdown</code>)
-</p>
+<ul class="org-ul">
+<li><b><i>C-c C-e m m</i></b> (<code>org-md-export-to-markdown</code>)
 
 <p>
-Export as a text file written in Markdown syntax. For an Org file,
-myfile.org, the resulting file will be myfile.md. The file will be
-overwritten without warning.
+Export as a text file written in Markdown syntax. For an Org
+file, myfile.org, the resulting file will be myfile.md. The
+file will be overwritten without warning.
 </p>
+</li>
 
-<p>
-C-c C-e m M (<code>org-md-export-as-markdown</code>)
-</p>
+<li><b><i>C-c C-e m M</i></b> (<code>org-md-export-as-markdown</code>)
 
 <p>
 Export to a temporary buffer. Do not create a file.
 </p>
+</li>
 
-<p>
-C-c C-e m o
-</p>
+<li><b><i>C-c C-e m o</i></b>
 
 <p>
 Export as a text file with Markdown syntax, then open it.
 </p>
+</li>
+</ul>
 </div>
 </div>
 
@@ -17785,10 +17784,10 @@ Export as a text file with Markdown syntax, then open it.
 <div class="outline-text-4" id="text-12-8-2">
 <p>
 Markdown export can generate both <code>atx</code> and <code>setext</code> types for
-headlines, according to <code>org-md-headline-style</code>. The former introduces a
-hard limit of two levels, whereas the latter pushes it to six. Headlines
-below that limit are exported as lists. You can also set a soft limit
-before that one (see <a href="#Export-settings">Export settings</a>).
+headlines, according to <code>org-md-headline-style</code>. The former
+introduces a hard limit of two levels, whereas the latter pushes
+it to six. Headlines below that limit are exported as lists. You
+can also set a soft limit before that one (see <a href="#Export-settings">Export settings</a>).
 </p>
 </div>
 </div>
@@ -17799,9 +17798,9 @@ before that one (see <a href="#Export-settings">Export settings</a>).
 <div class="outline-text-3" id="text-12-9">
 <p>
 Org mode<sup><a id="fnr.139" name="fnr.139" class="footref" href="#fn.139">139</a></sup> supports export to OpenDocument Text (ODT)
-format. Documents created by this exporter use the OpenDocument-v1.2
-specification<sup><a id="fnr.140" name="fnr.140" class="footref" href="#fn.140">140</a></sup> and are compatible with LibreOffice
-3.4.
+format. Documents created by this exporter use the
+OpenDocument-v1.2 specification<sup><a id="fnr.140" name="fnr.140" class="footref" href="#fn.140">140</a></sup> and are compatible with
+LibreOffice 3.4.
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -17819,7 +17818,7 @@ specification<sup><a id="fnr.140" name="fnr.140" class="footref" href="#fn.140">
 </tr>
 
 <tr>
-<td class="left">• <i>ODT export commands</i>:</td>
+<td class="left">• <a href="#ODT-export-commands">ODT export commands</a>:</td>
 <td class="left">How to invoke ODT export</td>
 </tr>
 
@@ -17880,50 +17879,51 @@ specification<sup><a id="fnr.140" name="fnr.140" class="footref" href="#fn.140">
 <h4 id="sec-12-9-1">12.9.1 Pre-requisites for ODT export                              <a id="Pre_requisites-for-ODT-export" name="Pre_requisites-for-ODT-export"></a></h4>
 <div class="outline-text-4" id="text-12-9-1">
 <p>
-The ODT exporter relies on the zip program to create the final output.
-Check the availability of this program before proceeding further.
+The ODT exporter relies on the zip program to create the final
+output.  Check the availability of this program before proceeding
+further.
 </p>
 </div>
 </div>
 
 <div id="outline-container-sec-12-9-2" class="outline-4">
-<h4 id="sec-12-9-2">12.9.2 ODT export commands                                        @ODT-export-commands</h4>
+<h4 id="sec-12-9-2">12.9.2 ODT export commands                                        <a id="ODT-export-commands" name="ODT-export-commands"></a></h4>
 <div class="outline-text-4" id="text-12-9-2">
-<p>
-C-c C-e o o (<code>org-odt-export-to-odt</code>)
-</p>
+<ul class="org-ul">
+<li><b><i>C-c C-e o o</i></b> (<code>org-odt-export-to-odt</code>)
 
 <p>
 Export as OpenDocument Text file.
 </p>
 
 <p>
-If <code>org-odt-preferred-output-format</code> is specified, automatically convert
-the exported file to that format. See
-<i>Automatically exporting to
-other formats</i>.
+If <code>org-odt-preferred-output-format</code> is specified,
+automatically convert the exported file to that format. See
+<a href="#x_export_to_other_formats">Automatically exporting to other formats</a>.
 </p>
 
 <p>
-For an Org file myfile.org, the ODT file will be myfile.odt. The file
-will be overwritten without warning. If there is an active
-region,<sup><a id="fnr.141" name="fnr.141" class="footref" href="#fn.141">141</a></sup> only the region will be exported. If the
-selected region is a single tree,<sup><a id="fnr.142" name="fnr.142" class="footref" href="#fn.142">142</a></sup> the tree head will
-become the document title. If the tree head entry has, or inherits, an
-<code>EXPORT_FILE_NAME</code> property, that name will be used for the export.
+For an Org file myfile.org, the ODT file will be
+myfile.odt. The file will be overwritten without warning. If
+there is an active region,<sup><a id="fnr.141" name="fnr.141" class="footref" href="#fn.141">141</a></sup> only the region will be
+exported. If the selected region is a single tree,<sup><a id="fnr.142" name="fnr.142" class="footref" href="#fn.142">142</a></sup>
+the tree head will become the document title. If the tree head
+entry has, or inherits, an <code>EXPORT_FILE_NAME</code> property, that
+name will be used for the export.
 </p>
 
 <p>
-C-c C-e o O Export as an OpenDocument Text file and open the resulting
-file.
+<b><i>C-c C-e o O</i></b> Export as an OpenDocument Text file and open the
+resulting file.
 </p>
 
 <p>
-If <code>org-odt-preferred-output-format</code> is specified, open the converted
-file instead. See
-<i>Automatically exporting to
-other formats</i>.
+If <code>org-odt-preferred-output-format</code> is specified, open the
+converted file instead. See <a href="#x_export_to_other_formats">Automatically exporting to other
+formats</a>.
 </p>
+</li>
+</ul>
 </div>
 </div>
 
@@ -17931,29 +17931,44 @@ other formats</i>.
 <h4 id="sec-12-9-3">12.9.3 ODT specific export settings                               <a id="ODT-specific-export-settings" name="ODT-specific-export-settings"></a></h4>
 <div class="outline-text-4" id="text-12-9-3">
 <p>
-The ODT exporter introduces a number of keywords, similar to the general
-options settings described in <a href="#Export-settings">Export settings</a>.
+The ODT exporter introduces a number of keywords, similar to the
+general options settings described in <a href="#Export-settings">Export settings</a>.
 </p>
 
-<dl class="org-dl">
-<dt> ‘DESCRIPTION' </dt><dd>The document description. These are inserted as
-document metadata. You can use several such keywords if the list is
+<ul class="org-ul">
+<li>‘DESCRIPTION'
+
+<p>
+The document description. These are inserted as document
+metadata. You can use several such keywords if the list is
 long.
-</dd>
+</p>
+</li>
 
-<dt> ‘KEYWORDS' </dt><dd>The keywords defining the contents of the document.
-These are inserted as document metadata. You can use several such
+<li>‘KEYWORDS'
+
+<p>
+The keywords defining the contents of the document.  These are
+inserted as document metadata. You can use several such
 keywords if the list is long.
-</dd>
+</p>
+</li>
 
-<dt> ‘ODT<sub>STYLES</sub><sub>FILE'</sub> </dt><dd>The style file of the document
-(<code>org-odt-styles-file</code>). See <a href="#Applying-custom-styles">Applying
-custom styles</a> for details.
-</dd>
+<li>‘ODT<sub>STYLES</sub><sub>FILE'</sub>
 
-<dt> ‘SUBTITLE' </dt><dd>The document subtitle.
-</dd>
-</dl>
+<p>
+The style file of the document (<code>org-odt-styles-file</code>). See
+<a href="#Applying-custom-styles">Applying custom styles</a> for details.
+</p>
+</li>
+
+<li>‘SUBTITLE'
+
+<p>
+The document subtitle.
+</p>
+</li>
+</ul>
 </div>
 </div>
 
@@ -17961,34 +17976,35 @@ custom styles</a> for details.
 <h4 id="sec-12-9-4">12.9.4 Extending ODT export                                       <a id="Extending-ODT-export" name="Extending-ODT-export"></a></h4>
 <div class="outline-text-4" id="text-12-9-4">
 <p>
-The ODT exporter can interface with a variety of document converters and
-supports popular converters out of the box. As a result, you can use it
-to export to formats like ‘doc' or convert a document from one format
-(say ‘csv') to another format (say ‘ods' or ‘xls').
+The ODT exporter can interface with a variety of document
+converters and supports popular converters out of the box. As a
+result, you can use it to export to formats like ‘doc' or convert
+a document from one format (say ‘csv') to another format (say
+‘ods' or ‘xls').
 </p>
 
 <p>
-If you have a working installation of LibreOffice, a document converter
-is pre-configured for you and you can use it right away. If you would
-like to use unoconv as your preferred converter, customize the variable
-<code>org-odt-convert-process</code> to point to <code>unoconv</code>. You can also use your
-own favorite converter or tweak the default settings of the LibreOffice
-and ‘unoconv' converters. See
-<a href="#Configuring-a-document-converter">Configuring a document converter</a>.
+If you have a working installation of LibreOffice, a document
+converter is pre-configured for you and you can use it right
+away. If you would like to use unoconv as your preferred
+converter, customize the variable <code>org-odt-convert-process</code> to
+point to <code>unoconv</code>. You can also use your own favorite converter
+or tweak the default settings of the LibreOffice and ‘unoconv'
+converters. See <a href="#Configuring-a-document-converter">Configuring a document converter</a>.
 </p>
 </div>
 
 <div id="outline-container-sec-12-9-4-1" class="outline-5">
-<h5 id="sec-12-9-4-1">Automatically exporting to other formats</h5>
+<h5 id="sec-12-9-4-1">Automatically exporting to other formats                         <a id="x_export_to_other_formats" name="x_export_to_other_formats"></a></h5>
 <div class="outline-text-5" id="text-12-9-4-1">
 <p>
-Very often, you will find yourself exporting to ODT format, only to
-immediately save the exported document to other formats like ‘doc',
-‘docx', ‘rtf', ‘pdf' etc. In such cases, you can specify your preferred
-output format by customizing the variable
-<code>org-odt-preferred-output-format</code>. This way, the export commands (see
-<i>Exporting to ODT</i>) can be extended to
-export to a format that is of immediate interest to you.
+Very often, you will find yourself exporting to ODT format, only
+to immediately save the exported document to other formats like
+‘doc', ‘docx', ‘rtf', ‘pdf' etc. In such cases, you can specify
+your preferred output format by customizing the variable
+<code>org-odt-preferred-output-format</code>. This way, the export commands
+(see <a href="#ODT-export-commands">Exporting to ODT</a>) can be extended to export to a format that
+is of immediate interest to you.
 </p>
 </div>
 </div>
@@ -17997,19 +18013,22 @@ export to a format that is of immediate interest to you.
 <h5 id="sec-12-9-4-2">Converting between document formats</h5>
 <div class="outline-text-5" id="text-12-9-4-2">
 <p>
-There are many document converters in the wild which support conversion
-to and from various file formats, including, but not limited to the ODT
-format. LibreOffice converter, mentioned above, is one such converter.
-Once a converter is configured, you can interact with it using the
-following command.
+There are many document converters in the wild which support
+conversion to and from various file formats, including, but not
+limited to the ODT format. LibreOffice converter, mentioned
+above, is one such converter.  Once a converter is configured,
+you can interact with it using the following command.
 </p>
 
-<dl class="org-dl">
-<dt> M-x org-odt-convert RET </dt><dd>Convert an existing document from one
-format to another. With a prefix argument, also open the newly
-produced file.
-</dd>
-</dl>
+<ul class="org-ul">
+<li>M-x org-odt-convert RET
+
+<p>
+Convert an existing document from one format to another. With
+a prefix argument, also open the newly produced file.
+</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -18019,12 +18038,12 @@ produced file.
 <div class="outline-text-4" id="text-12-9-5">
 <p>
 The ODT exporter ships with a set of OpenDocument styles (see
-<a href="#Working-with-OpenDocument-style-files">Working with OpenDocument
-style files</a>) that ensure a well-formatted output. These factory
-styles, however, may not cater to your specific tastes. To customize the
-output, you can either modify the above styles files directly, or
-generate the required styles using an application like LibreOffice. The
-latter method is suitable for expert and non-expert users alike, and is
+<a href="#Working-with-OpenDocument-style-files">Working with OpenDocument style files</a>) that ensure a
+well-formatted output. These factory styles, however, may not
+cater to your specific tastes. To customize the output, you can
+either modify the above styles files directly, or generate the
+required styles using an application like LibreOffice. The latter
+method is suitable for expert and non-expert users alike, and is
 described here.
 </p>
 </div>
@@ -18033,28 +18052,29 @@ described here.
 <h5 id="sec-12-9-5-1">Applying custom styles: the easy way</h5>
 <div class="outline-text-5" id="text-12-9-5-1">
 <ol class="org-ol">
-<li>Create a sample example.org file with the below settings and export
-it to ODT format.
+<li>Create a sample example.org file with the below settings and
+export it to ODT format.
 
 <pre class="example">
 #+OPTIONS: H:10 num:t
 </pre>
 </li>
 
-<li>Open the above example.odt using LibreOffice. Use the Stylist to
-locate the target styles&#x2014;these typically have the ‘Org'
-prefix&#x2014;and modify those to your taste. Save the modified file
-either as an OpenDocument Text (.odt) or OpenDocument Template (.ott)
-file.
+<li>Open the above example.odt using LibreOffice. Use the Stylist
+to locate the target styles&#x2014;these typically have the ‘Org'
+prefix&#x2014;and modify those to your taste. Save the modified
+file either as an OpenDocument Text (.odt) or OpenDocument
+Template (.ott) file.
 </li>
-<li>Customize the variable <code>org-odt-styles-file</code> and point it to the
-newly created file. For additional configuration options see
-<i>Overriding factory
-styles</i>.
+
+<li>Customize the variable <code>org-odt-styles-file</code> and point it to
+the newly created file. For additional configuration options
+see <a href="#x_overriding_factory_styles">Overriding factory styles</a>.
 
 <p>
-If you would like to choose a style on a per-file basis, you can use
-the <code>#+ODT_STYLES_FILE</code> option. A typical setting will look like
+If you would like to choose a style on a per-file basis, you
+can use the <code>#+ODT_STYLES_FILE</code> option. A typical setting
+will look like
 </p>
 
 <pre class="example">
@@ -18079,10 +18099,11 @@ or
 <p>
 You can use third-party styles and templates for customizing your
 output. This will produce the desired output only if the template
-provides all style names that the ‘ODT' exporter relies on. Unless this
-condition is met, the output is going to be less than satisfactory. So
-it is highly recommended that you only work with templates that are
-directly derived from the factory settings.
+provides all style names that the ‘ODT' exporter relies
+on. Unless this condition is met, the output is going to be less
+than satisfactory. So it is highly recommended that you only work
+with templates that are directly derived from the factory
+settings.
 </p>
 </div>
 </div>
@@ -18092,21 +18113,20 @@ directly derived from the factory settings.
 <h4 id="sec-12-9-6">12.9.6 Links in ODT export                                        <a id="Links-in-ODT-export" name="Links-in-ODT-export"></a></h4>
 <div class="outline-text-4" id="text-12-9-6">
 <p>
-ODT exporter creates native cross-references for internal links. It
-creates Internet-style links for all other links.
+ODT exporter creates native cross-references for internal
+links. It creates Internet-style links for all other links.
 </p>
 
 <p>
 A link with no description and destined to a regular (un-itemized)
-outline heading is replaced with a cross-reference and section number of
-the heading.
+outline heading is replaced with a cross-reference and section
+number of the heading.
 </p>
 
 <p>
-A ‘\ref{label}'-style reference to an image, table etc. is replaced with
-a cross-reference and sequence number of the labeled entity. See
-<a href="#Labels-and-captions-in-ODT-export">Labels and captions in ODT
-export</a>.
+A ‘\ref{label}'-style reference to an image, table etc. is
+replaced with a cross-reference and sequence number of the labeled
+entity. See <a href="#Labels-and-captions-in-ODT-export">Labels and captions in ODT export</a>.
 </p>
 </div>
 </div>
@@ -18115,19 +18135,19 @@ export</a>.
 <h4 id="sec-12-9-7">12.9.7 Tables in ODT export                                       <a id="Tables-in-ODT-export" name="Tables-in-ODT-export"></a></h4>
 <div class="outline-text-4" id="text-12-9-7">
 <p>
-Export of native Org mode tables (see <a href="#Tables">Tables</a>) and simple
-table.el tables is supported. However, export of complex table.el
-tables&#x2014;tables that have column or row spans&#x2014;is not supported. Such
-tables are stripped from the exported document.
+Export of native Org mode tables (see <a href="#Tables">Tables</a>) and simple table.el
+tables is supported. However, export of complex table.el
+tables&#x2014;tables that have column or row spans &#x2013; is not
+supported. Such tables are stripped from the exported document.
 </p>
 
 <p>
-By default, a table is exported with top and bottom frames and with
-rules separating row and column groups (see <a href="#Column-groups">Column
-groups</a>). Furthermore, all tables are typeset to occupy the same width.
-If the table specifies alignment and relative width for its columns (see
-<a href="#Column-width-and-alignment">Column width and alignment</a>) then these
-are honored on export.<sup><a id="fnr.143" name="fnr.143" class="footref" href="#fn.143">143</a></sup>
+By default, a table is exported with top and bottom frames and
+with rules separating row and column groups (see <a href="#Column-groups">Column
+groups</a>). Furthermore, all tables are typeset to occupy the same
+width.  If the table specifies alignment and relative width for
+its columns (see <a href="#Column-width-and-alignment">Column width and alignment</a>) then these are
+honored on export.<sup><a id="fnr.143" name="fnr.143" class="footref" href="#fn.143">143</a></sup>
 </p>
 
 <p>
@@ -18136,8 +18156,8 @@ property using an <code>#+ATTR_ODT</code> line.
 </p>
 
 <p>
-For example, consider the following table which makes use of all the
-rules mentioned above.
+For example, consider the following table which makes use of all
+the rules mentioned above.
 </p>
 
 <pre class="example">
@@ -18154,19 +18174,19 @@ rules mentioned above.
 </pre>
 
 <p>
-On export, the table will occupy 50% of text area. The columns will be
-sized (roughly) in the ratio of 13:5:5:5:6. The first column will be
-left-aligned and rest of the columns will be right-aligned. There will
-be vertical rules after separating the header and last columns from
-other columns. There will be horizontal rules separating the header and
-last rows from other rows.
+On export, the table will occupy 50% of text area. The columns
+will be sized (roughly) in the ratio of 13:5:5:5:6. The first
+column will be left-aligned and rest of the columns will be
+right-aligned. There will be vertical rules after separating the
+header and last columns from other columns. There will be
+horizontal rules separating the header and last rows from other
+rows.
 </p>
 
 <p>
-If you are not satisfied with the above formatting options, you can
-create custom table styles and associate them with a table using the
-<code>#+ATTR_ODT</code> line. See <a href="#Customizing-tables-in-ODT-export">Customizing
-tables in ODT export</a>.
+If you are not satisfied with the above formatting options, you
+can create custom table styles and associate them with a table
+using the <code>#+ATTR_ODT</code> line. See <a href="#Customizing-tables-in-ODT-export">Customizing tables in ODT export</a>.
 </p>
 </div>
 </div>
@@ -18178,9 +18198,9 @@ tables in ODT export</a>.
 <h5 id="sec-12-9-8-1">Embedding images</h5>
 <div class="outline-text-5" id="text-12-9-8-1">
 <p>
-You can embed images within the exported document by providing a link to
-the desired image file with no link description. For example, to embed
-‘img.png' do either of the following:
+You can embed images within the exported document by providing a
+link to the desired image file with no link description. For
+example, to embed ‘img.png' do either of the following:
 </p>
 
 <pre class="example">
@@ -18197,10 +18217,10 @@ the desired image file with no link description. For example, to embed
 <h5 id="sec-12-9-8-2">Embedding clickable images</h5>
 <div class="outline-text-5" id="text-12-9-8-2">
 <p>
-You can create clickable images by providing a link whose description is
-a link to an image file. For example, to embed a image
-org-mode-unicorn.png which when clicked jumps to <a href="http://Orgmode.org">http://Orgmode.org</a>
-website, do the following
+You can create clickable images by providing a link whose
+description is a link to an image file. For example, to embed a
+image org-mode-unicorn.png which when clicked jumps to
+<a href="http://Orgmode.org">http://Orgmode.org</a> website, do the following
 </p>
 
 <pre class="example">
@@ -18213,65 +18233,77 @@ website, do the following
 <h5 id="sec-12-9-8-3">Sizing and scaling of embedded images</h5>
 <div class="outline-text-5" id="text-12-9-8-3">
 <p>
-You can control the size and scale of the embedded images using the
-<code>#+ATTR_ODT</code> attribute.
+You can control the size and scale of the embedded images using
+the <code>#+ATTR_ODT</code> attribute.
 </p>
 
 <p>
 The exporter specifies the desired size of the image in the final
-document in units of centimeters. In order to scale the embedded images,
-the exporter queries for pixel dimensions of the images using one of a)
-ImageMagick's identify program or b) Emacs <code>create-image</code> and
-<code>image-size</code> APIs<sup><a id="fnr.144" name="fnr.144" class="footref" href="#fn.144">144</a></sup>. The pixel dimensions are
-subsequently converted in to units of centimeters using
-<code>org-odt-pixels-per-inch</code>. The default value of this variable is set to
-<code>display-pixels-per-inch</code>. You can tweak this variable to achieve the
-best results.
+document in units of centimeters. In order to scale the embedded
+images, the exporter queries for pixel dimensions of the images
+using one of a) ImageMagick's identify program or b) Emacs
+<code>create-image</code> and <code>image-size</code> APIs<sup><a id="fnr.144" name="fnr.144" class="footref" href="#fn.144">144</a></sup>. The pixel
+dimensions are subsequently converted in to units of centimeters
+using <code>org-odt-pixels-per-inch</code>. The default value of this
+variable is set to <code>display-pixels-per-inch</code>. You can tweak this
+variable to achieve the best results.
 </p>
 
 <p>
 The examples below illustrate the various possibilities.
 </p>
 
-<dl class="org-dl">
-<dt> Explicitly size the image </dt><dd>To embed img.png as a 10 cm x 10 cm
-image, do the following:
+<ul class="org-ul">
+<li>Explicitly size the image
+
+<p>
+To embed img.png as a 10 cm x 10 cm image, do the following:
+</p>
 
 <pre class="example">
 #+ATTR_ODT: :width 10 :height 10
 [[./img.png]]
 </pre>
-</dd>
+</li>
 
-<dt> Scale the image </dt><dd>To embed img.png at half its size, do the
-following:
+<li>Scale the image
+
+<p>
+To embed img.png at half its size, do the following:
+</p>
 
 <pre class="example">
 #+ATTR_ODT: :scale 0.5
 [[./img.png]]
 </pre>
-</dd>
+</li>
 
-<dt> Scale the image to a specific width </dt><dd>To embed img.png with a width
-of 10 cm while retaining the original height:width ratio, do the
-following:
+<li>Scale the image to a specific width
+
+<p>
+To embed img.png with a width of 10 cm while retaining the
+original height:width ratio, do the following:
+</p>
 
 <pre class="example">
 #+ATTR_ODT: :width 10
 [[./img.png]]
 </pre>
-</dd>
+</li>
 
-<dt> Scale the image to a specific height </dt><dd>To embed img.png with a
-height of 10 cm while retaining the original height:width ratio, do
-the following
+<li>Scale the image to a specific height
+
+<p>
+To embed img.png with a height of 10 cm while retaining the
+original height:width ratio, do the following
+</p>
 
 <pre class="example">
 #+ATTR_ODT: :height 10
 [[./img.png]]
 </pre>
-</dd>
-</dl>
+</li>
+</ul>
 </div>
 </div>
 
@@ -18279,10 +18311,10 @@ the following
 <h5 id="sec-12-9-8-4">Anchoring of images</h5>
 <div class="outline-text-5" id="text-12-9-8-4">
 <p>
-You can control the manner in which an image is anchored by setting the
-<code>:anchor</code> property of it's <code>#+ATTR_ODT</code> line. You can specify one of the
-following three values for the <code>:anchor</code> property: ‘"as-char"',
-‘"paragraph"' and ‘"page"'.
+You can control the manner in which an image is anchored by
+setting the <code>:anchor</code> property of it's <code>#+ATTR_ODT</code> line. You can
+specify one of the following three values for the <code>:anchor</code>
+property: ‘"as-char"', ‘"paragraph"' and ‘"page"'.
 </p>
 
 <p>
@@ -18330,8 +18362,8 @@ The ODT exporter has special support for handling math.
 <h5 id="sec-12-9-9-1">Working with LaTeX math snippets                                 <a id="Working-with-LaTeX-math-snippets" name="Working-with-LaTeX-math-snippets"></a></h5>
 <div class="outline-text-5" id="text-12-9-9-1">
 <p>
-LaTeX math snippets (see <a href="#LaTeX-fragments">LaTeX fragments</a>) can be
-embedded in the ODT document in one of the following ways:
+LaTeX math snippets (see <a href="#LaTeX-fragments">LaTeX fragments</a>) can be embedded in the
+ODT document in one of the following ways:
 </p>
 
 <ol class="org-ol">
@@ -18346,15 +18378,15 @@ This option is activated on a per-file basis with
 </pre>
 
 <p>
-With this option, LaTeX fragments are first converted into MathML
-fragments using an external LaTeX-to-MathML converter program. The
-resulting MathML fragments are then embedded as an OpenDocument
-Formula in the exported document.
+With this option, LaTeX fragments are first converted into
+MathML fragments using an external LaTeX-to-MathML converter
+program. The resulting MathML fragments are then embedded as
+an OpenDocument Formula in the exported document.
 </p>
 
 <p>
-You can specify the LaTeX-to-MathML converter by customizing the
-variables <code>org-latex-to-mathml-convert-command</code> and
+You can specify the LaTeX-to-MathML converter by customizing
+the variables <code>org-latex-to-mathml-convert-command</code> and
 <code>org-latex-to-mathml-jar-file</code>.
 </p>
 
@@ -18384,20 +18416,28 @@ To use LaTeXML<sup><a id="fnr.146" name="fnr.146" class="footref" href="#fn.146"
 </div>
 
 <p>
-You can use the following commands to quickly verify the reliability
-of the LaTeX-to-MathML converter.
+You can use the following commands to quickly verify the
+reliability of the LaTeX-to-MathML converter.
 </p>
 
-<dl class="org-dl">
-<dt> M-x org-odt-export-as-odf RET </dt><dd>Convert a LaTeX math snippet to
-an OpenDocument formula (.odf) file.
-</dd>
+<ul class="org-ul">
+<li>M-x org-odt-export-as-odf RET
 
-<dt> M-x org-odt-export-as-odf-and-open RET </dt><dd>Convert a LaTeX math
-snippet to an OpenDocument formula (.odf) file and open the
-formula file with the system-registered application.
-</dd>
-</dl>
+<p>
+Convert a LaTeX math snippet to an OpenDocument formula
+(.odf) file.
+</p>
+</li>
+
+<li>M-x org-odt-export-as-odf-and-open RET
+
+<p>
+Convert a LaTeX math snippet to an OpenDocument formula
+(.odf) file and open the formula file with the
+system-registered application.
+</p>
+</li>
+</ul>
 </li>
 
 <li>PNG images
@@ -18419,10 +18459,10 @@ or:
 </pre>
 
 <p>
-With this option, LaTeX fragments are processed into PNG images and
-the resulting images are embedded in the exported document. This
-method requires that the dvipng program or imagemagick suite be
-available on your system.
+With this option, LaTeX fragments are processed into PNG
+images and the resulting images are embedded in the exported
+document. This method requires that the dvipng program or
+imagemagick suite be available on your system.
 </p>
 </li>
 </ol>
@@ -18433,10 +18473,10 @@ available on your system.
 <h5 id="sec-12-9-9-2">Working with MathML or OpenDocument formula files                <a id="Working-with-MathML-or-OpenDocument-formula-files" name="Working-with-MathML-or-OpenDocument-formula-files"></a></h5>
 <div class="outline-text-5" id="text-12-9-9-2">
 <p>
-For various reasons, you may find embedding LaTeX math snippets in an
-ODT document less than reliable. In that case, you can embed a math
-equation by linking to its MathML (.mml) source or its OpenDocument
-formula (.odf) file as shown below:
+For various reasons, you may find embedding LaTeX math snippets
+in an ODT document less than reliable. In that case, you can
+embed a math equation by linking to its MathML (.mml) source or
+its OpenDocument formula (.odf) file as shown below:
 </p>
 
 <pre class="example">
@@ -18458,18 +18498,18 @@ or
 <h4 id="sec-12-9-10">12.9.10 Labels and captions in ODT export                         <a id="Labels-and-captions-in-ODT-export" name="Labels-and-captions-in-ODT-export"></a></h4>
 <div class="outline-text-4" id="text-12-9-10">
 <p>
-You can label and caption various category of objects&#x2014;an inline image,
-a table, a LaTeX fragment or a Math formula&#x2014;using <code>#+LABEL</code> and
-<code>#+CAPTION</code> lines. See <a href="#Images-and-tables">Images and tables</a>. ODT
-exporter enumerates each labeled or captioned object of a given category
-separately. As a result, each such object is assigned a sequence number
-based on order of it's appearance in the Org file.
+You can label and caption various category of objects &#x2013; an inline
+image, a table, a LaTeX fragment or a Math formula &#x2013; using
+<code>#+LABEL</code> and <code>#+CAPTION</code> lines. See <a href="#Images-and-tables">Images and tables</a>. ODT
+exporter enumerates each labeled or captioned object of a given
+category separately. As a result, each such object is assigned a
+sequence number based on order of it's appearance in the Org file.
 </p>
 
 <p>
-In the exported document, a user-provided caption is augmented with the
-category and sequence number. Consider the following inline image in an
-Org file.
+In the exported document, a user-provided caption is augmented
+with the category and sequence number. Consider the following
+inline image in an Org file.
 </p>
 
 <pre class="example">
@@ -18487,10 +18527,10 @@ Figure 2: Bell curve
 </pre>
 
 <p>
-You can modify the category component of the caption by customizing the
-option <code>org-odt-category-map-alist</code>. For example, to tag all embedded
-images with the string ‘Illustration' (instead of the default ‘Figure')
-use the following setting:
+You can modify the category component of the caption by
+customizing the option <code>org-odt-category-map-alist</code>. For example,
+to tag all embedded images with the string ‘Illustration' (instead
+of the default ‘Figure') use the following setting:
 </p>
 
 <div class="org-src-container">
@@ -18501,8 +18541,8 @@ use the following setting:
 </div>
 
 <p>
-With this, previous image will be captioned as below in the exported
-document.
+With this, previous image will be captioned as below in the
+exported document.
 </p>
 
 <pre class="example">
@@ -18515,23 +18555,23 @@ Illustration 2: Bell curve
 <h4 id="sec-12-9-11">12.9.11 Literal examples in ODT export                            <a id="Literal-examples-in-ODT-export" name="Literal-examples-in-ODT-export"></a></h4>
 <div class="outline-text-4" id="text-12-9-11">
 <p>
-Export of literal examples (see <a href="#Literal-examples">Literal examples</a>)
-with full fontification is supported. Internally, the exporter relies on
-htmlfontify.el to generate all style definitions needed for a fancy
-listing.<sup><a id="fnr.147" name="fnr.147" class="footref" href="#fn.147">147</a></sup> The auto-generated styles have ‘OrgSrc' as
-prefix and inherit their color from the faces used by Emacs <code>font-lock</code>
-library for the source language.
+Export of literal examples (see <a href="#Literal-examples">Literal examples</a>) with full
+fontification is supported. Internally, the exporter relies on
+htmlfontify.el to generate all style definitions needed for a
+fancy listing.<sup><a id="fnr.147" name="fnr.147" class="footref" href="#fn.147">147</a></sup> The auto-generated styles have ‘OrgSrc'
+as prefix and inherit their color from the faces used by Emacs
+<code>font-lock</code> library for the source language.
 </p>
 
 <p>
-If you prefer to use your own custom styles for fontification, you can
-do so by customizing the option
+If you prefer to use your own custom styles for fontification, you
+can do so by customizing the option
 <code>org-odt-create-custom-styles-for-srcblocks</code>.
 </p>
 
 <p>
-You can turn off fontification of literal examples by customizing the
-option <code>org-odt-fontify-srcblocks</code>.
+You can turn off fontification of literal examples by customizing
+the option <code>org-odt-fontify-srcblocks</code>.
 </p>
 </div>
 </div>
@@ -18540,9 +18580,9 @@ option <code>org-odt-fontify-srcblocks</code>.
 <h4 id="sec-12-9-12">12.9.12 Advanced topics in ODT export                             <a id="Advanced-topics-in-ODT-export" name="Advanced-topics-in-ODT-export"></a></h4>
 <div class="outline-text-4" id="text-12-9-12">
 <p>
-If you rely heavily on ODT export, you may want to exploit the full set
-of features that the exporter offers. This section describes features
-that would be of interest to power users.
+If you rely heavily on ODT export, you may want to exploit the
+full set of features that the exporter offers. This section
+describes features that would be of interest to power users.
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -18586,42 +18626,42 @@ that would be of interest to power users.
 <h5 id="sec-12-9-12-1">Configuring a document converter                                 <a id="Configuring-a-document-converter" name="Configuring-a-document-converter"></a></h5>
 <div class="outline-text-5" id="text-12-9-12-1">
 <p>
-The ODT exporter can work with popular converters with little or no
-extra configuration from your side. See
-<a href="#Extending-ODT-export">Extending ODT export</a>. If you are using a
-converter that is not supported by default or if you would like to tweak
-the default converter settings, proceed as below.
+The ODT exporter can work with popular converters with little or
+no extra configuration from your side. See <a href="#Extending-ODT-export">Extending ODT
+export</a>. If you are using a converter that is not supported by
+default or if you would like to tweak the default converter
+settings, proceed as below.
 </p>
 
 <ol class="org-ol">
-<li>Register the converter
+<li><b>Register the converter</b>
 
 <p>
-Name your converter and add it to the list of known converters by
-customizing the option <code>org-odt-convert-processes</code>. Also specify how
-the converter can be invoked via command-line to effect the
-conversion.
+Name your converter and add it to the list of known converters
+by customizing the option <code>org-odt-convert-processes</code>. Also
+specify how the converter can be invoked via command-line to
+effect the conversion.
 </p>
 </li>
 
-<li>Configure its capabilities
+<li><b>Configure its capabilities</b>
 
 <p>
-Specify the set of formats the converter can handle by customizing
-the variable <code>org-odt-convert-capabilities</code>. Use the default value
-for this variable as a guide for configuring your converter. As
-suggested by the default setting, you can specify the full set of
-formats supported by the converter and not limit yourself to
-specifying formats that are related to just the OpenDocument Text
-format.
+Specify the set of formats the converter can handle by
+customizing the variable <code>org-odt-convert-capabilities</code>. Use
+the default value for this variable as a guide for configuring
+your converter. As suggested by the default setting, you can
+specify the full set of formats supported by the converter and
+not limit yourself to specifying formats that are related to
+just the OpenDocument Text format.
 </p>
 </li>
 
-<li>Choose the converter
+<li><b>Choose the converter</b>
 
 <p>
-Select the newly added converter as the preferred one by customizing
-the option <code>org-odt-convert-process</code>.
+Select the newly added converter as the preferred one by
+customizing the option <code>org-odt-convert-process</code>.
 </p>
 </li>
 </ol>
@@ -18632,61 +18672,66 @@ the option <code>org-odt-convert-process</code>.
 <h5 id="sec-12-9-12-2">Working with OpenDocument style files                            <a id="Working-with-OpenDocument-style-files" name="Working-with-OpenDocument-style-files"></a></h5>
 <div class="outline-text-5" id="text-12-9-12-2">
 <p>
-This section explores the internals of the ODT exporter and the means by
-which it produces styled documents. Read this section if you are
-interested in exploring the automatic and custom OpenDocument styles
-used by the exporter.
+This section explores the internals of the ODT exporter and the
+means by which it produces styled documents. Read this section if
+you are interested in exploring the automatic and custom
+OpenDocument styles used by the exporter.
 </p>
 </div>
 </div>
 
 <div id="outline-container-sec-12-9-12-3" class="outline-5">
-<h5 id="sec-12-9-12-3">a) Factory styles</h5>
+<h5 id="sec-12-9-12-3">a) Factory styles                                                <a id="Factory-styles" name="Factory-styles"></a></h5>
 <div class="outline-text-5" id="text-12-9-12-3">
 <p>
-The ODT exporter relies on two files for generating its output. These
-files are bundled with the distribution under the directory pointed to
-by the variable <code>org-odt-styles-dir</code>. The two files are:
+The ODT exporter relies on two files for generating its
+output. These files are bundled with the distribution under the
+directory pointed to by the variable <code>org-odt-styles-dir</code>. The
+two files are:
 </p>
 
 <ul class="org-ul">
-<li></li>
-<li>OrgOdtStyles.xml
+<li><b>OrgOdtStyles.xml</b>                                            <a id="x_orgodtstyles_xml" name="x_orgodtstyles_xml"></a>
 
 <p>
-This file contributes to the styles.xml file of the final ‘ODT'
-document. This file gets modified for the following purposes:
+This file contributes to the styles.xml file of the final
+‘ODT' document. This file gets modified for the following
+purposes:
 </p>
 
 <ol class="org-ol">
 <li>To control outline numbering based on user settings.
 </li>
-<li>To add styles generated by htmlfontify.el for fontification of
-code blocks.
+
+<li>To add styles generated by htmlfontify.el for
+fontification of code blocks.
 </li>
 </ol>
 </li>
 
-<li>OrgOdtContentTemplate.xml
+<li><b>OrgOdtContentTemplate.xml</b>                                   <a id="x_orgodtcontenttemplate_xml" name="x_orgodtcontenttemplate_xml"></a>
 
 <p>
-This file contributes to the content.xml file of the final ‘ODT'
-document. The contents of the Org outline are inserted between the
-‘&lt;office:text&gt;'&#x2026;‘&lt;/office:text&gt;' elements of this file.
+This file contributes to the content.xml file of the final
+‘ODT' document. The contents of the Org outline are inserted
+between the ‘&lt;office:text&gt;'&#x2026;‘&lt;/office:text&gt;' elements of
+this file.
 </p>
 
 <p>
-Apart from serving as a template file for the final content.xml, the
-file serves the following purposes:
+Apart from serving as a template file for the final
+content.xml, the file serves the following purposes:
 </p>
 
 <ol class="org-ol">
-<li>It contains automatic styles for formatting of tables which are
-referenced by the exporter.
+<li>It contains automatic styles for formatting of tables
+which are referenced by the exporter.
 </li>
-<li>It contains ‘&lt;text:sequence-decl&gt;'&#x2026;‘&lt;/text:sequence-decl&gt;'
-elements that control how various entities&#x2014;tables, images,
-equations, etc.&#x2014;are numbered.
+
+<li>It contains ‘&lt;text:sequence-decl&gt;'
+&#x2026; ‘&lt;/text:sequence-decl&gt;' elements that control how
+various entities &#x2013; tables, images, equations, etc. &#x2013; are
+numbered.
 </li>
 </ol>
 </li>
@@ -18695,22 +18740,22 @@ equations, etc.&#x2014;are numbered.
 </div>
 
 <div id="outline-container-sec-12-9-12-4" class="outline-5">
-<h5 id="sec-12-9-12-4">b) Overriding factory styles</h5>
+<h5 id="sec-12-9-12-4">b) Overriding factory styles                                     <a id="x_overriding_factory_styles" name="x_overriding_factory_styles"></a></h5>
 <div class="outline-text-5" id="text-12-9-12-4">
 <p>
-The following two variables control the location from which the ODT
-exporter picks up the custom styles and content template files. You can
-customize these variables to override the factory styles used by the
-exporter.
+The following two variables control the location from which the
+ODT exporter picks up the custom styles and content template
+files. You can customize these variables to override the factory
+styles used by the exporter.
 </p>
 
 <ul class="org-ul">
-<li></li>
 <li><code>org-odt-styles-file</code>
 
 <p>
-Use this variable to specify the styles.xml that will be used in the
-final output. You can specify one of the following values:
+Use this variable to specify the styles.xml that will be used
+in the final output. You can specify one of the following
+values:
 </p>
 
 <ol class="org-ol">
@@ -18724,22 +18769,24 @@ Use this file instead of the default styles.xml
 <li>A .odt or .ott file
 
 <p>
-Use the styles.xml contained in the specified OpenDocument Text or
-Template file
+Use the styles.xml contained in the specified OpenDocument
+Text or Template file
 </p>
 </li>
 
-<li>A .odt or .ott file and a subset of files contained within them
+<li>A .odt or .ott file and a subset of files contained within
+them
 
 <p>
-Use the styles.xml contained in the specified OpenDocument Text or
-Template file. Additionally extract the specified member files and
-embed those within the final ‘ODT' document.
+Use the styles.xml contained in the specified OpenDocument
+Text or Template file. Additionally extract the specified
+member files and embed those within the final ‘ODT'
+document.
 </p>
 
 <p>
-Use this option if the styles.xml file references additional files
-like header and footer images.
+Use this option if the styles.xml file references
+additional files like header and footer images.
 </p>
 </li>
 
@@ -18755,8 +18802,8 @@ Use the default styles.xml
 <li><code>org-odt-content-template-file</code>
 
 <p>
-Use this variable to specify the blank content.xml that will be used
-in the final output.
+Use this variable to specify the blank content.xml that will
+be used in the final output.
 </p>
 </li>
 </ul>
@@ -18767,10 +18814,10 @@ in the final output.
 <h5 id="sec-12-9-12-5">Creating one-off styles                                          <a id="Creating-one_off-styles" name="Creating-one_off-styles"></a></h5>
 <div class="outline-text-5" id="text-12-9-12-5">
 <p>
-There are times when you would want one-off formatting in the exported
-document. You can achieve this by embedding raw OpenDocument XML in the
-Org file. The use of this feature is better illustrated with couple of
-examples.
+There are times when you would want one-off formatting in the
+exported document. You can achieve this by embedding raw
+OpenDocument XML in the Org file. The use of this feature is
+better illustrated with couple of examples.
 </p>
 
 <ol class="org-ol">
@@ -18778,8 +18825,8 @@ examples.
 
 <p>
 You can inline OpenDocument syntax by enclosing it within
-‘' markup. For example, to highlight a region of text do
-the following:
+‘' markup. For example, to highlight a region of
+text do the following:
 </p>
 
 <pre class="example">
@@ -18788,9 +18835,9 @@ text&lt;/text:span&gt;@@.  But this is a regular text.
 </pre>
 
 <p>
-<b>Hint:</b> To see the above example in action, edit your styles.xml (see
-<i>Factory styles</i>) and add a custom
-‘Highlight' style as shown below.
+<b>Hint:</b> To see the above example in action, edit your
+styles.xml (see <a href="#x_orgodtstyles_xml">Factory styles</a>) and add a custom ‘Highlight'
+style as shown below.
 </p>
 
 <pre class="example">
@@ -18803,8 +18850,9 @@ text&lt;/text:span&gt;@@.  But this is a regular text.
 <li>Embedding a one-line OpenDocument XML
 
 <p>
-You can add a simple OpenDocument one-liner using the <code>#+ODT:</code>
-directive. For example, to force a page break do the following:
+You can add a simple OpenDocument one-liner using the
+<code>#+ODT:</code> directive. For example, to force a page break do the
+following:
 </p>
 
 <pre class="example">
@@ -18812,9 +18860,9 @@ directive. For example, to force a page break do the following:
 </pre>
 
 <p>
-<b>Hint:</b> To see the above example in action, edit your styles.xml (see
-<i>Factory styles</i>) and add a custom
-‘PageBreak' style as shown below.
+<b>Hint:</b> To see the above example in action, edit your
+styles.xml (see <a href="#x_orgodtstyles_xml">Factory styles</a>) and add a custom ‘PageBreak'
+style as shown below.
 </p>
 
 <pre class="example">
@@ -18833,8 +18881,8 @@ You can add a large block of OpenDocument XML using the
 </p>
 
 <p>
-For example, to create a one-off paragraph that uses bold text, do
-the following:
+For example, to create a one-off paragraph that uses bold
+text, do the following:
 </p>
 
 <pre class="example">
@@ -18853,20 +18901,20 @@ This paragraph is specially formatted and uses bold text.
 <h5 id="sec-12-9-12-6">Customizing tables in ODT export                                 <a id="Customizing-tables-in-ODT-export" name="Customizing-tables-in-ODT-export"></a></h5>
 <div class="outline-text-5" id="text-12-9-12-6">
 <p>
-You can override the default formatting of the table by specifying a
-custom table style with the <code>#+ATTR_ODT</code> line. For a discussion on
-default formatting of tables see <a href="#Tables-in-ODT-export">Tables in ODT
+You can override the default formatting of the table by
+specifying a custom table style with the <code>#+ATTR_ODT</code> line. For a
+discussion on default formatting of tables see <a href="#Tables-in-ODT-export">Tables in ODT
 export</a>.
 </p>
 
 <p>
-This feature closely mimics the way table templates are defined in the
-OpenDocument-v1.2 specification.<sup><a id="fnr.148" name="fnr.148" class="footref" href="#fn.148">148</a></sup>
+This feature closely mimics the way table templates are defined
+in the OpenDocument-v1.2 specification.<sup><a id="fnr.148" name="fnr.148" class="footref" href="#fn.148">148</a></sup>
 </p>
 
 <p>
-To have a quick preview of this feature, install the below setting and
-export the table that follows:
+To have a quick preview of this feature, install the below
+setting and export the table that follows:
 </p>
 
 <div class="org-src-container">
@@ -18890,13 +18938,14 @@ export the table that follows:
 </pre>
 
 <p>
-In the above example, you used a template named ‘Custom' and installed
-two table styles with the names ‘TableWithHeaderRowAndColumn' and
-‘TableWithFirstRowandLastRow'. (<b>Important:</b> The OpenDocument styles
-needed for producing the above template have been pre-defined for you.
-These styles are available under the section marked ‘Custom Table
-Template' in OrgOdtContentTemplate.xml (see
-<i>Factory styles</i>). If you need
+In the above example, you used a template named ‘Custom' and
+installed two table styles with the names
+‘TableWithHeaderRowAndColumn' and
+‘TableWithFirstRowandLastRow'. (<b>Important:</b> The OpenDocument
+styles needed for producing the above template have been
+pre-defined for you.  These styles are available under the
+section marked ‘Custom Table Template' in
+OrgOdtContentTemplate.xml (see <a href="#x_orgodtcontenttemplate_xml">Factory styles</a>). If you need
 additional templates you have to define these styles yourselves.
 </p>
 
@@ -18908,39 +18957,40 @@ To use this feature proceed as follows:
 <li>Create a table template<sup><a id="fnr.149" name="fnr.149" class="footref" href="#fn.149">149</a></sup>
 
 <p>
-A table template is nothing but a set of ‘table-cell' and ‘paragraph'
-styles for each of the following table cell categories:
+A table template is nothing but a set of ‘table-cell' and
+‘paragraph' styles for each of the following table cell
+categories:
 </p>
 
 <ul class="org-ul">
-<li>- Body
+<li>Body
 </li>
-<li>- First column
+<li>First column
 </li>
-<li>- Last column
+<li>Last column
 </li>
-<li>- First row
+<li>First row
 </li>
-<li>- Last row
+<li>Last row
 </li>
-<li>- Even row
+<li>Even row
 </li>
-<li>- Odd row
+<li>Odd row
 </li>
-<li>- Even column
+<li>Even column
 </li>
-<li>- Odd Column
+<li>Odd Column
 </li>
 </ul>
 <p>
-The names for the above styles must be chosen based on the name of
-the table template using a well-defined convention.
+The names for the above styles must be chosen based on the
+name of the table template using a well-defined convention.
 </p>
 
 <p>
-The naming convention is better illustrated with an example. For a
-table template with the name ‘Custom', the needed style names are
-listed in the following table.
+The naming convention is better illustrated with an
+example. For a table template with the name ‘Custom', the
+needed style names are listed in the following table.
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -19018,11 +19068,10 @@ listed in the following table.
 </table>
 
 <p>
-To create a table template with the name ‘Custom', define the above
-styles in the
-<code>&lt;office:automatic-styles&gt;</code>&#x2026;=&lt;/office:automatic-styles&gt;= element of
-the content template file (see
-<i>Factory styles</i>).
+To create a table template with the name ‘Custom', define the
+above styles in the
+<code>&lt;office:automatic-styles&gt;</code>&#x2026;=&lt;/office:automatic-styles&gt;=
+element of the content template file (see <a href="#x_orgodtcontenttemplate_xml">Factory styles</a>).
 </p>
 </li>
 
@@ -19034,16 +19083,19 @@ variable <code>org-odt-table-styles</code> and specify the following:
 </p>
 
 <ul class="org-ul">
-<li>- the name of the table template created in step (1)
+<li>the name of the table template created in step (1)
 </li>
-<li>- the set of cell styles in that template that are to be activated
+
+<li>the set of cell styles in that template that are to be
+activated
 </li>
 </ul>
 <p>
-For example, the entry below defines two different table styles
-‘TableWithHeaderRowAndColumn' and ‘TableWithFirstRowandLastRow' based
-on the same template ‘Custom'. The styles achieve their intended
-effect by selectively activating the individual cell styles in that
+For example, the entry below defines two different table
+styles ‘TableWithHeaderRowAndColumn' and
+‘TableWithFirstRowandLastRow' based on the same template
+‘Custom'. The styles achieve their intended effect by
+selectively activating the individual cell styles in that
 template.
 </p>
 
@@ -19064,8 +19116,8 @@ template.
 <li>Associate a table with the table style
 
 <p>
-To do this, specify the table style created in step (2) as part of
-the <code>ATTR_ODT</code> line as shown below.
+To do this, specify the table style created in step (2) as
+part of the <code>ATTR_ODT</code> line as shown below.
 </p>
 
 <pre class="example">
@@ -19083,26 +19135,25 @@ the <code>ATTR_ODT</code> line as shown below.
 <h5 id="sec-12-9-12-7">Validating OpenDocument XML                                      <a id="Validating-OpenDocument-XML" name="Validating-OpenDocument-XML"></a></h5>
 <div class="outline-text-5" id="text-12-9-12-7">
 <p>
-Occasionally, you will discover that the document created by the ODT
-exporter cannot be opened by your favorite application. One of the
-common reasons for this is that the .odt file is corrupt. In such cases,
-you may want to validate the document against the OpenDocument RELAX NG
-Compact Syntax (RNC) schema.
+Occasionally, you will discover that the document created by the
+ODT exporter cannot be opened by your favorite application. One
+of the common reasons for this is that the .odt file is
+corrupt. In such cases, you may want to validate the document
+against the OpenDocument RELAX NG Compact Syntax (RNC) schema.
 </p>
 
 <p>
-For de-compressing the .odt file<sup><a id="fnr.151" name="fnr.151" class="footref" href="#fn.151">151</a></sup>: See
-<a href="http://www.gnu.org/software/emacs/manual/html_mono/emacs.html#File-Archives">(emacs)File
+For de-compressing the .odt file<sup><a id="fnr.151" name="fnr.151" class="footref" href="#fn.151">151</a></sup>: See <a href="http://www.gnu.org/software/emacs/manual/html_mono/emacs.html#File-Archives">(emacs)File
 Archives</a>. For general help with validation (and schema-sensitive
-editing) of XML files: See
-<a href="http://www.gnu.org/software/emacs/manual/html_mono/nxml-mode.html#Introduction">(nxml-mode)Introduction</a>.
+editing) of XML files: See <a href="http://www.gnu.org/software/emacs/manual/html_mono/nxml-mode.html#Introduction">(nxml-mode)Introduction</a>.
 </p>
 
 <p>
-If you have ready access to OpenDocument .rnc files and the needed
-schema-locating rules in a single folder, you can customize the variable
-<code>org-odt-schema-dir</code> to point to that directory. The ODT exporter will
-take care of updating the <code>rng-schema-locating-files</code> for you.
+If you have ready access to OpenDocument .rnc files and the
+needed schema-locating rules in a single folder, you can
+customize the variable <code>org-odt-schema-dir</code> to point to that
+directory. The ODT exporter will take care of updating the
+<code>rng-schema-locating-files</code> for you.
 </p>
 </div>
 </div>
@@ -19113,41 +19164,40 @@ take care of updating the <code>rng-schema-locating-files</code> for you.
 <h3 id="sec-12-10">12.10 Org export                                                   <a id="Org-export" name="Org-export"></a></h3>
 <div class="outline-text-3" id="text-12-10">
 <p>
-<code>org</code> export back-end creates a normalized version of the Org document
-in current buffer. In particular, it evaluates Babel code (see
-<i>Evaluating code blocks</i>) and removes other
-back-ends specific contents.
+<code>org</code> export back-end creates a normalized version of the Org
+document in current buffer. In particular, it evaluates Babel code
+(see <a href="#Evaluating-code-blocks">Evaluating code blocks</a>) and removes other back-ends specific
+contents.
 </p>
 </div>
 
 <div id="outline-container-sec-12-10-1" class="outline-4">
 <h4 id="sec-12-10-1">Org export commands</h4>
 <div class="outline-text-4" id="text-12-10-1">
-<p>
-C-c C-e O o (<code>org-org-export-to-org</code>)
-</p>
+<ul class="org-ul">
+<li><b><i>C-c C-e O o</i></b> (<code>org-org-export-to-org</code>)
 
 <p>
-Export as an Org document. For an Org file, myfile.org, the resulting
-file will be myfile.org.org. The file will be overwritten without
-warning.
+Export as an Org document. For an Org file, myfile.org, the
+resulting file will be myfile.org.org. The file will be
+overwritten without warning.
 </p>
+</li>
 
-<p>
-C-c C-e O O (<code>org-org-export-as-org</code>)
-</p>
+<li><b><i>C-c C-e O O</i></b> (<code>org-org-export-as-org</code>)
 
 <p>
 Export to a temporary buffer. Do not create a file.
 </p>
+</li>
 
-<p>
-C-c C-e O v
-</p>
+<li><b><i>C-c C-e O v</i></b>
 
 <p>
 Export to an Org file, then open it.
 </p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -19156,8 +19206,8 @@ Export to an Org file, then open it.
 <h3 id="sec-12-11">12.11 Texinfo export                                               <a id="Texinfo-export" name="Texinfo-export"></a></h3>
 <div class="outline-text-3" id="text-12-11">
 <p>
-‘texinfo' export back-end generates Texinfo code and can compile it into
-an Info file.
+‘texinfo' export back-end generates Texinfo code and can compile it
+into an Info file.
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -19215,22 +19265,23 @@ an Info file.
 <div id="outline-container-sec-12-11-1" class="outline-4">
 <h4 id="sec-12-11-1">12.11.1 Texinfo export commands                                   <a id="Texinfo-export-commands" name="Texinfo-export-commands"></a></h4>
 <div class="outline-text-4" id="text-12-11-1">
-<p>
-C-c C-e i t (<code>org-texinfo-export-to-texinfo</code>)
-</p>
+<ul class="org-ul">
+<li><b><i>C-c C-e i t</i></b> (<code>org-texinfo-export-to-texinfo</code>)
 
 <p>
-Export as a Texinfo file. For an Org file, myfile.org, the resulting
-file will be myfile.texi. The file will be overwritten without warning.
+Export as a Texinfo file. For an Org file, myfile.org, the
+resulting file will be myfile.texi. The file will be
+overwritten without warning.
 </p>
+</li>
 
-<p>
-C-c C-e i i (<code>org-texinfo-export-to-info</code>)
-</p>
+<li><b><i>C-c C-e i i</i></b> (<code>org-texinfo-export-to-info</code>)
 
 <p>
 Export to Texinfo and then process to an Info file<sup><a id="fnr.152" name="fnr.152" class="footref" href="#fn.152">152</a></sup>.
 </p>
+</li>
+</ul>
 </div>
 </div>
 
@@ -19238,46 +19289,83 @@ Export to Texinfo and then process to an Info file<sup><a id="fnr.152" name="fnr
 <h4 id="sec-12-11-2">12.11.2 Texinfo specific export settings                          <a id="Texinfo-specific-export-settings" name="Texinfo-specific-export-settings"></a></h4>
 <div class="outline-text-4" id="text-12-11-2">
 <p>
-The Texinfo exporter introduces a number of keywords, similar to the
-general options settings described in <a href="#Export-settings">Export
-settings</a>.
+The Texinfo exporter introduces a number of keywords, similar to
+the general options settings described in
+<a href="#Export-settings">Export settings</a>.
 </p>
 
-<dl class="org-dl">
-<dt> ‘SUBTITLE' </dt><dd>The document subtitle.
-</dd>
+<ul class="org-ul">
+<li>‘SUBTITLE'
 
-<dt> ‘SUBAUTHOR' </dt><dd>The document subauthor.
-</dd>
+<p>
+The document subtitle.
+</p>
+</li>
 
-<dt> ‘TEXINFO<sub>FILENAME'</sub> </dt><dd>The Texinfo filename.
-</dd>
+<li>‘SUBAUTHOR'
 
-<dt> ‘TEXINFO<sub>CLASS'</sub> </dt><dd>The class of the document
-(<code>org-texinfo-default-class</code>). This must be a member of
-<code>org-texinfo-classes</code>.
-</dd>
+<p>
+The document subauthor.
+</p>
+</li>
 
-<dt> ‘TEXINFO<sub>HEADER'</sub> </dt><dd>Arbitrary lines inserted at the end of the
-preamble.
-</dd>
+<li>‘TEXINFO<sub>FILENAME'</sub>
 
-<dt> ‘TEXINFO<sub>POST</sub><sub>HEADER'</sub> </dt><dd>Arbitrary lines inserted at the end of the
-preamble.
-</dd>
+<p>
+The Texinfo filename.
+</p>
+</li>
 
-<dt> ‘TEXINFO<sub>DIR</sub><sub>CATEGORY'</sub> </dt><dd>The directory category of the document.
-</dd>
+<li>‘TEXINFO<sub>CLASS'</sub>
 
-<dt> ‘TEXINFO<sub>DIR</sub><sub>TITLE'</sub> </dt><dd>The directory title of the document.
-</dd>
+<p>
+The class of the document (<code>org-texinfo-default-class</code>). This
+must be a member of <code>org-texinfo-classes</code>.
+</p>
+</li>
 
-<dt> ‘TEXINFO<sub>DIR</sub><sub>DESC'</sub> </dt><dd>The directory description of the document.
-</dd>
+<li>‘TEXINFO<sub>HEADER'</sub>
 
-<dt> ‘TEXINFO<sub>PRINTED</sub><sub>TITLE'</sub> </dt><dd>The printed title of the document.
-</dd>
-</dl>
+<p>
+Arbitrary lines inserted at the end of the preamble.
+</p>
+</li>
+
+<li>‘TEXINFO<sub>POST</sub><sub>HEADER'</sub>
+
+<p>
+Arbitrary lines inserted at the end of the preamble.
+</p>
+</li>
+
+<li>‘TEXINFO<sub>DIR</sub><sub>CATEGORY'</sub>
+
+<p>
+The directory category of the document.
+</p>
+</li>
+
+<li>‘TEXINFO<sub>DIR</sub><sub>TITLE'</sub>
+
+<p>
+The directory title of the document.
+</p>
+</li>
+
+<li>‘TEXINFO<sub>DIR</sub><sub>DESC'</sub>
+
+<p>
+The directory description of the document.
+</p>
+</li>
+
+<li>‘TEXINFO<sub>PRINTED</sub><sub>TITLE'</sub>
+
+<p>
+The printed title of the document.
+</p>
+</li>
+</ul>
 
 <p>
 These keywords are treated in details in the following sections.
@@ -19289,13 +19377,12 @@ These keywords are treated in details in the following sections.
 <h4 id="sec-12-11-3">12.11.3 Document preamble                                         <a id="Document-preamble" name="Document-preamble"></a></h4>
 <div class="outline-text-4" id="text-12-11-3">
 <p>
-When processing a document, ‘texinfo' back-end generates a minimal file
-header along with a title page, a copyright page, and a menu. You
-control the latter through the structure of the document (see
-<a href="#Headings-and-sectioning-structure">Headings and sectioning
-structure</a>). Various keywords allow to tweak the other parts. It is
-also possible to give directions to install the document in the ‘Top'
-node.
+When processing a document, ‘texinfo' back-end generates a minimal
+file header along with a title page, a copyright page, and a
+menu. You control the latter through the structure of the document
+(see <a href="#Headings-and-sectioning-structure">Headings and sectioning structure</a>). Various keywords allow to
+tweak the other parts. It is also possible to give directions to
+install the document in the ‘Top' node.
 </p>
 </div>
 
@@ -19303,24 +19390,25 @@ node.
 <h5 id="sec-12-11-3-1">File header</h5>
 <div class="outline-text-5" id="text-12-11-3-1">
 <p>
-Upon creating the header of a Texinfo file, the back-end guesses a name
-for the Info file to be compiled. This may not be a sensible choice,
-e.g., if you want to produce the final document in a different
-directory. Specify an alternate path with <code>#+TEXINFO_FILENAME</code> keyword
-to override the default destination.
+Upon creating the header of a Texinfo file, the back-end guesses
+a name for the Info file to be compiled. This may not be a
+sensible choice, e.g., if you want to produce the final document
+in a different directory. Specify an alternate path with
+<code>#+TEXINFO_FILENAME</code> keyword to override the default destination.
 </p>
 
 <p>
-Along with the output file name, the header contains information about
-the language (see <a href="#Export-settings">Export settings</a>) and current
-encoding used<sup><a id="fnr.153" name="fnr.153" class="footref" href="#fn.153">153</a></sup>. Insert a <code>#+TEXINFO_HEADER</code> keyword
-for each additional command needed, e.g., @code{@synindex}.
+Along with the output file name, the header contains information
+about the language (see <a href="#Export-settings">Export settings</a>) and current encoding
+used<sup><a id="fnr.153" name="fnr.153" class="footref" href="#fn.153">153</a></sup>. Insert a <code>#+TEXINFO_HEADER</code> keyword for each
+additional command needed, e.g., @code{@synindex}.
 </p>
 
 <p>
-If you happen to regularly install the same set of commands, it may be
-easier to define your own class in <code>org-texinfo-classes</code>, which see. Set
-<code>#+TEXINFO_CLASS</code> keyword accordingly in your document to activate it.
+If you happen to regularly install the same set of commands, it
+may be easier to define your own class in <code>org-texinfo-classes</code>,
+which see. Set <code>#+TEXINFO_CLASS</code> keyword accordingly in your
+document to activate it.
 </p>
 </div>
 </div>
@@ -19329,19 +19417,19 @@ easier to define your own class in <code>org-texinfo-classes</code>, which see. 
 <h5 id="sec-12-11-3-2">Title and copyright page</h5>
 <div class="outline-text-5" id="text-12-11-3-2">
 <p>
-The default template includes a title page for hard copy output. The
-title and author displayed on this page are extracted from,
-respectively, <code>#+TITLE</code> and <code>#+AUTHOR</code> keywords (see
-<a href="#Export-settings">Export settings</a>). It is also possible to print a
-different, more specific, title with <code>#+TEXINFO_PRINTED_TITLE</code> keyword,
-and add subtitles with <code>#+SUBTITLE</code> keyword. Both expect raw Texinfo
-code in their value.
+The default template includes a title page for hard copy
+output. The title and author displayed on this page are extracted
+from, respectively, <code>#+TITLE</code> and <code>#+AUTHOR</code> keywords (see <a href="#Export-settings">Export
+settings</a>). It is also possible to print a different, more
+specific, title with <code>#+TEXINFO_PRINTED_TITLE</code> keyword, and add
+subtitles with <code>#+SUBTITLE</code> keyword. Both expect raw Texinfo code
+in their value.
 </p>
 
 <p>
-Likewise, information brought by <code>#+AUTHOR</code> may not be enough. You can
-include other authors with several <code>#+SUBAUTHOR</code> keywords. Values are
-also expected to be written in Texinfo code.
+Likewise, information brought by <code>#+AUTHOR</code> may not be
+enough. You can include other authors with several <code>#+SUBAUTHOR</code>
+keywords. Values are also expected to be written in Texinfo code.
 </p>
 
 <pre class="example">
@@ -19351,10 +19439,10 @@ also expected to be written in Texinfo code.
 </pre>
 
 <p>
-Copying material is defined in a dedicated headline with a non-=nil=
-<code>:COPYING:</code> property. The contents are inserted within a <code>@copying</code>
-command at the beginning of the document whereas the heading itself does
-not appear in the structure of the document.
+Copying material is defined in a dedicated headline with a
+non-=nil= <code>:COPYING:</code> property. The contents are inserted within
+a <code>@copying</code> command at the beginning of the document whereas the
+heading itself does not appear in the structure of the document.
 </p>
 
 <p>
@@ -19378,12 +19466,13 @@ Copyright information is printed on the back of the title page.
 <h5 id="sec-12-11-3-3">The Top node</h5>
 <div class="outline-text-5" id="text-12-11-3-3">
 <p>
-You may ultimately want to install your new Info file in your system.
-You can write an appropriate entry in the top level directory specifying
-its category and title with, respectively, <code>#+TEXINFO_DIR_CATEGORY</code> and
-<code>#+TEXINFO_DIR_TITLE</code>. Optionally, you can add a short description using
-<code>#+TEXINFO_DIR_DESC</code>. The following example would write an entry similar
-to Org's in the ‘Top' node.
+You may ultimately want to install your new Info file in your
+system.  You can write an appropriate entry in the top level
+directory specifying its category and title with, respectively,
+<code>#+TEXINFO_DIR_CATEGORY</code> and <code>#+TEXINFO_DIR_TITLE</code>. Optionally,
+you can add a short description using <code>#+TEXINFO_DIR_DESC</code>. The
+following example would write an entry similar to Org's in the
+‘Top' node.
 </p>
 
 <pre class="example">
@@ -19399,31 +19488,33 @@ to Org's in the ‘Top' node.
 <h4 id="sec-12-11-4">12.11.4 Headings and sectioning structure                         <a id="Headings-and-sectioning-structure" name="Headings-and-sectioning-structure"></a></h4>
 <div class="outline-text-4" id="text-12-11-4">
 <p>
-‘texinfo' uses a pre-defined scheme, or class, to convert headlines into
-Texinfo structuring commands. For example, a top level headline appears
-as <code>@chapter</code> if it should be numbered or as <code>@unnumbered</code> otherwise. If
-you need to use a different set of commands, e.g., to start with <code>@part</code>
-instead of <code>@chapter</code>, install a new class in <code>org-texinfo-classes</code>,
-then activate it with <code>#+TEXINFO_CLASS</code> keyword. Export process defaults
-to <code>org-texinfo-default-class</code> when there is no such keyword in the
+‘texinfo' uses a pre-defined scheme, or class, to convert
+headlines into Texinfo structuring commands. For example, a top
+level headline appears as <code>@chapter</code> if it should be numbered or
+as <code>@unnumbered</code> otherwise. If you need to use a different set of
+commands, e.g., to start with <code>@part</code> instead of <code>@chapter</code>,
+install a new class in <code>org-texinfo-classes</code>, then activate it
+with <code>#+TEXINFO_CLASS</code> keyword. Export process defaults to
+<code>org-texinfo-default-class</code> when there is no such keyword in the
 document.
 </p>
 
 <p>
-If a headline's level has no associated structuring command, or is below
-a certain threshold (see <a href="#Export-settings">Export settings</a>), that
-headline becomes a list in Texinfo output.
+If a headline's level has no associated structuring command, or is
+below a certain threshold (see <a href="#Export-settings">Export settings</a>), that headline
+becomes a list in Texinfo output.
 </p>
 
 <p>
-As an exception, a headline with a non-=nil= <code>:APPENDIX:</code> property
-becomes an appendix, independently on its level and the class used.
+As an exception, a headline with a non- <code>nil</code> <code>:APPENDIX:</code>
+property becomes an appendix, independently on its level and the
+class used.
 </p>
 
 <p>
-Each regular sectioning structure creates a menu entry, named after the
-heading. You can provide a different, e.g., shorter, title in
-<code>:ALT_TITLE:</code> property (see <a href="#Table-of-contents">Table of contents</a>).
+Each regular sectioning structure creates a menu entry, named
+after the heading. You can provide a different, e.g., shorter,
+title in <code>:ALT_TITLE:</code> property (see <a href="#Table-of-contents">Table of contents</a>).
 Optionally, you can specify a description for the item in
 <code>:DESCRIPTION:</code> property. E.g.,
 </p>
@@ -19431,9 +19522,9 @@ Optionally, you can specify a description for the item in
 <pre class="example">
 * Controlling Screen Display
   :PROPERTIES:
-  :ALT_TITLE: Display
-  :DESCRIPTION: Controlling Screen Display
-  :END:
+    :ALT_TITLE: Display
+    :DESCRIPTION: Controlling Screen Display
+    :END:
 </pre>
 </div>
 </div>
@@ -19442,11 +19533,11 @@ Optionally, you can specify a description for the item in
 <h4 id="sec-12-11-5">12.11.5 Indices                                                   <a id="Indices" name="Indices"></a></h4>
 <div class="outline-text-4" id="text-12-11-5">
 <p>
-Index entries are created using dedicated keywords. ‘texinfo' back-end
-provides one for each predefined type: <code>#+CINDEX</code>, <code>#+FINDEX</code>,
-<code>#+KINDEX</code>, <code>#+PINDEX</code>, <code>#+TINDEX</code> and <code>#+VINDEX</code>. For custom indices,
-you can write raw Texinfo code (see <a href="#Quoting-Texinfo-code">Quoting
-Texinfo code</a>).
+Index entries are created using dedicated keywords. ‘texinfo'
+back-end provides one for each predefined type: <code>#+CINDEX</code>,
+<code>#+FINDEX</code>, <code>#+KINDEX</code>, <code>#+PINDEX</code>, <code>#+TINDEX</code> and <code>#+VINDEX</code>. For
+custom indices, you can write raw Texinfo code (see
+<a href="#Quoting-Texinfo-code">Quoting Texinfo code</a>).
 </p>
 
 <pre class="example">
@@ -19456,15 +19547,15 @@ Texinfo code</a>).
 <p>
 To generate an index, you need to set the <code>:INDEX:</code> property of a
 headline to an appropriate abbreviation (e.g., ‘cp' or ‘vr'). The
-headline is then exported as an unnumbered chapter or section command
-and the index is inserted after its contents.
+headline is then exported as an unnumbered chapter or section
+command and the index is inserted after its contents.
 </p>
 
 <pre class="example">
 * Concept Index
   :PROPERTIES:
-  :INDEX: cp
-  :END:
+:INDEX: cp
+:END:
 </pre>
 </div>
 </div>
@@ -19473,8 +19564,8 @@ and the index is inserted after its contents.
 <h4 id="sec-12-11-6">12.11.6 Quoting Texinfo code                                      <a id="Quoting-Texinfo-code" name="Quoting-Texinfo-code"></a></h4>
 <div class="outline-text-4" id="text-12-11-6">
 <p>
-It is possible to insert raw Texinfo code using any of the following
-constructs
+It is possible to insert raw Texinfo code using any of the
+following constructs
 </p>
 
 <pre class="example">
@@ -19495,9 +19586,10 @@ This paragraph is preceded by...
 <h4 id="sec-12-11-7">12.11.7 Texinfo specific attributes                               <a id="Texinfo-specific-attributes" name="Texinfo-specific-attributes"></a></h4>
 <div class="outline-text-4" id="text-12-11-7">
 <p>
-‘texinfo' back-end understands several attributes in plain lists, tables
-and images. They must be specified using an <code>#+ATTR_TEXINFO</code> keyword,
-written just above the list, table or image.
+‘texinfo' back-end understands several attributes in plain lists,
+tables and images. They must be specified using an
+<code>#+ATTR_TEXINFO</code> keyword, written just above the list, table or
+image.
 </p>
 </div>
 
@@ -19505,16 +19597,16 @@ written just above the list, table or image.
 <h5 id="sec-12-11-7-1">Plain lists</h5>
 <div class="outline-text-5" id="text-12-11-7-1">
 <p>
-In Texinfo output, description lists appear as two-column tables, using
-the default command <code>@table</code>. You can use <code>@ftable</code> or
+In Texinfo output, description lists appear as two-column tables,
+using the default command <code>@table</code>. You can use <code>@ftable</code> or
 <code>@vtable=[fn:FOOT161] instead with =:table-type</code> attribute.
 </p>
 
 <p>
-In any case, these constructs require a highlighting command for entries
-in the list. You can provide one with <code>:indic</code> attribute. If you do not,
-it defaults to the value stored in <code>org-texinfo-def-table-markup</code>, which
-see.
+In any case, these constructs require a highlighting command for
+entries in the list. You can provide one with <code>:indic</code>
+attribute. If you do not, it defaults to the value stored in
+<code>org-texinfo-def-table-markup</code>, which see.
 </p>
 
 <pre class="example">
@@ -19528,9 +19620,9 @@ see.
 <h5 id="sec-12-11-7-2">Tables</h5>
 <div class="outline-text-5" id="text-12-11-7-2">
 <p>
-When exporting a table, column widths are deduced from the longest cell
-in each column. You can also define them explicitly as fractions of the
-line length, using <code>:columns</code> attribute.
+When exporting a table, column widths are deduced from the
+longest cell in each column. You can also define them explicitly
+as fractions of the line length, using <code>:columns</code> attribute.
 </p>
 
 <pre class="example">
@@ -19562,9 +19654,8 @@ Texinfo code.
 <h4 id="sec-12-11-8">12.11.8 An example                                                <a id="An-example" name="An-example"></a></h4>
 <div class="outline-text-4" id="text-12-11-8">
 <p>
-Here is a thorough example. See
-<a href="http://www.gnu.org/software/texinfo/manual/texinfo/texinfo.html#GNU-Sample-Texts">(texinfo)GNU
-Sample Texts</a> for an equivalent Texinfo code.
+Here is a thorough example. See <a href="http://www.gnu.org/software/texinfo/manual/texinfo/texinfo.html#GNU-Sample-Texts">(texinfo)GNU Sample Texts</a> for an
+equivalent Texinfo code.
 </p>
 
 <pre class="example">
@@ -19587,7 +19678,7 @@ Sample Texts</a> for an equivalent Texinfo code.
 #+TEXINFO_PRINTED_TITLE: GNU Sample
 #+SUBTITLE: for version {{{version}}}, {{{updated}}}
 
-* Copying
+  * Copying
   :PROPERTIES:
   :COPYING:  t
   :END:
@@ -19607,7 +19698,7 @@ Sample Texts</a> for an equivalent Texinfo code.
   the section entitled "GNU Free Documentation License".
   #+END_QUOTE
 
-* Invoking sample
+  * Invoking sample
 
   #+PINDEX: sample
   #+CINDEX: invoking @command{sample}
@@ -19616,17 +19707,17 @@ Sample Texts</a> for an equivalent Texinfo code.
   if there were, you could see its basic usage and command line
   options here.
 
-* GNU Free Documentation License
+  * GNU Free Documentation License
   :PROPERTIES:
   :APPENDIX: t
   :END:
 
   #+TEXINFO: @include fdl.texi
 
-* Index
+  * Index
   :PROPERTIES:
-  :INDEX:    cp
-  :END:
+:INDEX:    cp
+:END:
 </pre>
 </div>
 </div>
@@ -19636,74 +19727,74 @@ Sample Texts</a> for an equivalent Texinfo code.
 <h3 id="sec-12-12">12.12 iCalendar export                                             <a id="iCalendar-export" name="iCalendar-export"></a></h3>
 <div class="outline-text-3" id="text-12-12">
 <p>
-Some people use Org mode for keeping track of projects, but still prefer
-a standard calendar application for anniversaries and appointments. In
-this case it can be useful to show deadlines and other time-stamped
-items in Org files in the calendar application. Org mode can export
-calendar information in the standard iCalendar format. If you also want
-to have TODO entries included in the export, configure the variable
-<code>org-icalendar-include-todo</code>. Plain timestamps are exported as VEVENT,
-and TODO items as VTODO. It will also create events from deadlines that
-are in non-TODO items. Deadlines and scheduling dates in TODO items will
-be used to set the start and due dates for the TODO
-entry<sup><a id="fnr.154" name="fnr.154" class="footref" href="#fn.154">154</a></sup>. As categories, it will use the tags locally
-defined in the heading, and the file/tree category<sup><a id="fnr.155" name="fnr.155" class="footref" href="#fn.155">155</a></sup>.
-See the variable <code>org-icalendar-alarm-time</code> for a way to assign alarms
-to entries with a time.
+Some people use Org mode for keeping track of projects, but still
+prefer a standard calendar application for anniversaries and
+appointments. In this case it can be useful to show deadlines and
+other time-stamped items in Org files in the calendar
+application. Org mode can export calendar information in the
+standard iCalendar format. If you also want to have TODO entries
+included in the export, configure the variable
+<code>org-icalendar-include-todo</code>. Plain timestamps are exported as
+VEVENT, and TODO items as VTODO. It will also create events from
+deadlines that are in non-TODO items. Deadlines and scheduling
+dates in TODO items will be used to set the start and due dates for
+the TODO entry<sup><a id="fnr.154" name="fnr.154" class="footref" href="#fn.154">154</a></sup>. As categories, it will use the tags
+locally defined in the heading, and the file/tree
+category<sup><a id="fnr.155" name="fnr.155" class="footref" href="#fn.155">155</a></sup>.  See the variable <code>org-icalendar-alarm-time</code>
+for a way to assign alarms to entries with a time.
 </p>
 
 <p>
-The iCalendar standard requires each entry to have a globally unique
-identifier (UID). Org creates these identifiers during export. If you
-set the variable <code>org-icalendar-store-UID</code>, the UID will be stored in
-the <code>:ID:</code> property of the entry and re-used next time you report this
-entry. Since a single entry can give rise to multiple iCalendar entries
-(as a timestamp, a deadline, a scheduled item, and as a TODO item), Org
-adds prefixes to the UID, depending on what triggered the inclusion of
-the entry. In this way the UID remains unique, but a synchronization
-program can still figure out from which entry all the different
-instances originate.
+The iCalendar standard requires each entry to have a globally
+unique identifier (UID). Org creates these identifiers during
+export. If you set the variable <code>org-icalendar-store-UID</code>, the UID
+will be stored in the <code>:ID:</code> property of the entry and re-used next
+time you report this entry. Since a single entry can give rise to
+multiple iCalendar entries (as a timestamp, a deadline, a scheduled
+item, and as a TODO item), Org adds prefixes to the UID, depending
+on what triggered the inclusion of the entry. In this way the UID
+remains unique, but a synchronization program can still figure out
+from which entry all the different instances originate.
 </p>
 
-<p>
-C-c C-e c f (<code>org-icalendar-export-to-ics</code>)
-</p>
+<ul class="org-ul">
+<li><b><i>C-c C-e c f</i></b> (<code>org-icalendar-export-to-ics</code>)
 
 <p>
-Create iCalendar entries for the current buffer and store them in the
-same directory, using a file extension .ics.
+Create iCalendar entries for the current buffer and store them
+in the same directory, using a file extension .ics.
 </p>
+</li>
+
+<li><b><i>C-c C-e c a</i></b> (<code>org-icalendar-export-agenda-files</code>)
 
 <p>
-C-c C-e c a (<code>org-icalendar-export-agenda-files</code>)
+Like <b><i>C-c C-e c f</i></b>, but do this for all files in
+<code>org-agenda-files</code>. For each of these files, a separate
+iCalendar file will be written.
 </p>
+</li>
 
-<p>
-Like C-c C-e c f, but do this for all files in <code>org-agenda-files</code>. For
-each of these files, a separate iCalendar file will be written.
-</p>
-
-<p>
-C-c C-e c c (<code>org-icalendar-combine-agenda-files</code>)
-</p>
+<li><b><i>C-c C-e c c</i></b> (<code>org-icalendar-combine-agenda-files</code>)
 
 <p>
 Create a single large iCalendar file from all files in
 <code>org-agenda-files</code> and write it to the file given by
 <code>org-icalendar-combined-agenda-file</code>.
 </p>
+</li>
+</ul>
 
 <p>
-The export will honor SUMMARY, DESCRIPTION and
-LOCATION<sup><a id="fnr.156" name="fnr.156" class="footref" href="#fn.156">156</a></sup> properties if the selected entries have
-them. If not, the summary will be derived from the headline, and the
-description from the body (limited to <code>org-icalendar-include-body</code>
-characters).
+The export will honor SUMMARY, DESCRIPTION and LOCATION<sup><a id="fnr.156" name="fnr.156" class="footref" href="#fn.156">156</a></sup>
+properties if the selected entries have them. If not, the summary
+will be derived from the headline, and the description from the
+body (limited to <code>org-icalendar-include-body</code> characters).
 </p>
 
 <p>
-How this calendar is best read and updated, depends on the application
-you are using. The FAQ covers this issue.
+How this calendar is best read and updated, depends on the
+application you are using. The FAQ covers this issue.
 </p>
 </div>
 </div>
@@ -19712,8 +19803,8 @@ you are using. The FAQ covers this issue.
 <h3 id="sec-12-13">12.13 Other built-in back-ends                                     <a id="Other-built_in-back_ends" name="Other-built_in-back_ends"></a></h3>
 <div class="outline-text-3" id="text-12-13">
 <p>
-On top of the aforementioned back-ends, Org comes with other built-in
-ones:
+On top of the aforementioned back-ends, Org comes with other
+built-in ones:
 </p>
 
 <ul class="org-ul">
@@ -19722,15 +19813,14 @@ ones:
 </ul>
 
 <p>
-To activate these export back-end, customize <code>org-export-backends</code> or
-load them directly with e.g., <code>(require 'ox-man)</code>. This will add new
-keys in the export dispatcher (see <a href="#The-export-dispatcher">The export
-dispatcher</a>).
+To activate these export back-end, customize <code>org-export-backends</code>
+or load them directly with e.g., <code>(require 'ox-man)</code>. This will add
+new keys in the export dispatcher (see <a href="#The-export-dispatcher">The export dispatcher</a>).
 </p>
 
 <p>
-See the comment section of these files for more information on how to
-use them.
+See the comment section of these files for more information on how
+to use them.
 </p>
 </div>
 </div>
@@ -19740,33 +19830,30 @@ use them.
 <div class="outline-text-3" id="text-12-14">
 <p>
 Most built-in back-ends come with a command to convert the selected
-region into a selected format and replace this region by the exported
-output. Here is a list of such conversion commands:
+region into a selected format and replace this region by the
+exported output. Here is a list of such conversion commands:
 </p>
 
 <dl class="org-dl">
-<dt> <code>org-html-convert-region-to-html</code> </dt><dd>Convert the selected region into
-HTML.
+<dt> <code>org-html-convert-region-to-html</code> </dt><dd>      Convert the selected region into HTML.
 </dd>
 
-<dt> <code>org-latex-convert-region-to-latex</code> </dt><dd>Convert the selected region
-into LaTeX.
+<dt> <code>org-latex-convert-region-to-latex</code> </dt><dd>      Convert the selected region into LaTeX.
 </dd>
 
-<dt> <code>org-texinfo-convert-region-to-texinfo</code> </dt><dd>Convert the selected
-region into <code>Texinfo</code>.
+<dt> <code>org-texinfo-convert-region-to-texinfo</code> </dt><dd>      Convert the selected region into <code>Texinfo</code>.
 </dd>
 
-<dt> <code>org-md-convert-region-to-md</code> </dt><dd>Convert the selected region into
-<code>MarkDown</code>.
+<dt> <code>org-md-convert-region-to-md</code> </dt><dd>      Convert the selected region into <code>MarkDown</code>.
 </dd>
 </dl>
 
 <p>
-This is particularly useful for converting tables and lists in foreign
-buffers. E.g., in an HTML buffer, you can turn on <code>orgstruct-mode</code>, then
-use Org commands for editing a list, and finally select and convert the
-list with <code>M-x org-html-convert-region-to-html RET</code>.
+This is particularly useful for converting tables and lists in
+foreign buffers. E.g., in an HTML buffer, you can turn on
+<code>orgstruct-mode</code>, then use Org commands for editing a list, and
+finally select and convert the list with <code>M-x
+   org-html-convert-region-to-html RET</code>.
 </p>
 </div>
 </div>
@@ -19778,14 +19865,15 @@ list with <code>M-x org-html-convert-region-to-html RET</code>.
 <h4 id="sec-12-15-1">Hooks</h4>
 <div class="outline-text-4" id="text-12-15-1">
 <p>
-Two hooks are run during the first steps of the export process. The
-first one, <code>org-export-before-processing-hook</code> is called before
-expanding macros, Babel code and include keywords in the buffer. The
-second one, <code>org-export-before-parsing-hook</code>, as its name suggests,
-happens just before parsing the buffer. Their main use is for heavy
-duties, that is duties involving structural modifications of the
-document. For example, one may want to remove every headline in the
-buffer during export. The following code can achieve this:
+Two hooks are run during the first steps of the export
+process. The first one, <code>org-export-before-processing-hook</code> is
+called before expanding macros, Babel code and include keywords in
+the buffer. The second one, <code>org-export-before-parsing-hook</code>, as
+its name suggests, happens just before parsing the buffer. Their
+main use is for heavy duties, that is duties involving structural
+modifications of the document. For example, one may want to remove
+every headline in the buffer during export. The following code can
+achieve this:
 </p>
 
 <div class="org-src-container">
@@ -19801,8 +19889,8 @@ BACKEND is the export back-end being used, as a symbol."
 </div>
 
 <p>
-Note that functions used in these hooks require a mandatory argument, a
-symbol representing the back-end used.
+Note that functions used in these hooks require a mandatory
+argument, a symbol representing the back-end used.
 </p>
 </div>
 </div>
@@ -19811,19 +19899,20 @@ symbol representing the back-end used.
 <h4 id="sec-12-15-2">Filters</h4>
 <div class="outline-text-4" id="text-12-15-2">
 <p>
-Filters are lists of functions applied on a specific part of the output
-from a given back-end. More explicitly, each time a back-end transforms
-an Org object or element into another language, all functions within a
-given filter type are called in turn on the string produced. The string
-returned by the last function will be the one used in the final output.
+Filters are lists of functions applied on a specific part of the
+output from a given back-end. More explicitly, each time a
+back-end transforms an Org object or element into another
+language, all functions within a given filter type are called in
+turn on the string produced. The string returned by the last
+function will be the one used in the final output.
 </p>
 
 <p>
-There are filter sets for each type of element or object, for plain
-text, for the parse tree, for the export options and for the final
-output. They are all named after the same scheme:
-<code>org-export-filter-TYPE-functions</code>, where <code>TYPE</code> is the type targeted by
-the filter. Valid types are:
+There are filter sets for each type of element or object, for
+plain text, for the parse tree, for the export options and for the
+final output. They are all named after the same scheme:
+<code>org-export-filter-TYPE-functions</code>, where <code>TYPE</code> is the type
+targeted by the filter. Valid types are:
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -19948,9 +20037,10 @@ the filter. Valid types are:
 </table>
 
 <p>
-For example, the following snippet allows me to use non-breaking spaces
-in the Org buffer and get them translated into LaTeX without using the
-<code>\nbsp</code> macro (where <code>_</code> stands for the non-breaking space):
+For example, the following snippet allows me to use non-breaking
+spaces in the Org buffer and get them translated into LaTeX
+without using the <code>\nbsp</code> macro (where <code>_</code> stands for the
+non-breaking space):
 </p>
 
 <div class="org-src-container">
@@ -19966,12 +20056,12 @@ in the Org buffer and get them translated into LaTeX without using the
 </div>
 
 <p>
-Three arguments must be provided to a filter: the code being changed,
-the back-end used, and some information about the export process. You
-can safely ignore the third argument for most purposes. Note the use of
-<code>org-export-derived-backend-p</code>, which ensures that the filter will only
-be applied when using <code>latex</code> back-end or any other back-end derived
-from it (e.g., <code>beamer</code>).
+Three arguments must be provided to a filter: the code being
+changed, the back-end used, and some information about the export
+process. You can safely ignore the third argument for most
+purposes. Note the use of <code>org-export-derived-backend-p</code>, which
+ensures that the filter will only be applied when using <code>latex</code>
+back-end or any other back-end derived from it (e.g., <code>beamer</code>).
 </p>
 </div>
 </div>
@@ -19980,13 +20070,13 @@ from it (e.g., <code>beamer</code>).
 <h4 id="sec-12-15-3">Defining filters for individual files</h4>
 <div class="outline-text-4" id="text-12-15-3">
 <p>
-You can customize the export for just a specific file by binding export
-filter variables using <code>#+BIND</code>. Here is an example where we introduce
-two filters, one to remove brackets from time stamps, and one to
-entirely remove any strike-through text. The functions doing the
-filtering are defined in an src block that allows the filter function
-definitions to exist in the file itself and ensures that the functions
-will be there when needed.
+You can customize the export for just a specific file by binding
+export filter variables using <code>#+BIND</code>. Here is an example where
+we introduce two filters, one to remove brackets from time stamps,
+and one to entirely remove any strike-through text. The functions
+doing the filtering are defined in an src block that allows the
+filter function definitions to exist in the file itself and
+ensures that the functions will be there when needed.
 </p>
 
 <pre class="example">
@@ -20005,10 +20095,10 @@ will be there when needed.
 <h4 id="sec-12-15-4">Extending an existing back-end</h4>
 <div class="outline-text-4" id="text-12-15-4">
 <p>
-This is obviously the most powerful customization, since the changes
-happen at the parser level. Indeed, some export back-ends are built as
-extensions of other ones (e.g., Markdown back-end an extension of HTML
-back-end).
+This is obviously the most powerful customization, since the
+changes happen at the parser level. Indeed, some export back-ends
+are built as extensions of other ones (e.g., Markdown back-end an
+extension of HTML back-end).
 </p>
 
 <p>
@@ -20028,8 +20118,8 @@ some attribute is non-=nil=, like the following:
 </pre>
 
 <p>
-Because that back-end is lacking in that area, we are going to create a
-new back-end, <code>my-ascii</code> that will do the job.
+Because that back-end is lacking in that area, we are going to
+create a new back-end, <code>my-ascii</code> that will do the job.
 </p>
 
 <div class="org-src-container">
@@ -20057,9 +20147,10 @@ channel."
 The <code>my-ascii-src-block</code> function looks at the attribute above the
 element. If it isn't true, it gives hand to the <code>ascii</code> back-end.
 Otherwise, it creates a box around the code, leaving room for the
-language. A new back-end is then created. It only changes its behavior
-when translating <code>src-block</code> type element. Now, all it takes to use the
-new back-end is calling the following from an Org buffer:
+language. A new back-end is then created. It only changes its
+behavior when translating <code>src-block</code> type element. Now, all it
+takes to use the new back-end is calling the following from an Org
+buffer:
 </p>
 
 <pre class="example">
@@ -20067,8 +20158,8 @@ new back-end is calling the following from an Org buffer:
 </pre>
 
 <p>
-It is obviously possible to write an interactive function for this,
-install it in the export dispatcher menu, and so on.
+It is obviously possible to write an interactive function for
+this, install it in the export dispatcher menu, and so on.
 </p>
 </div>
 </div>
@@ -21914,7 +22005,7 @@ original Org-mode file.
 </div>
 
 <div id="outline-container-sec-14-5" class="outline-3">
-<h3 id="sec-14-5">14.5 Evaluating code blocks</h3>
+<h3 id="sec-14-5">14.5 Evaluating code blocks                                        <a id="Evaluating-code-blocks" name="Evaluating-code-blocks"></a></h3>
 <div class="outline-text-3" id="text-14-5">
 <p>
 Code blocks can be evaluated<sup><a id="fnr.159" name="fnr.159" class="footref" href="#fn.159">159</a></sup> and the results of
@@ -22016,7 +22107,7 @@ calls</i>.
 The “Library of Babel” consists of code blocks that can be called from
 any Org mode file. Code blocks defined in the “Library of Babel” can be
 called remotely as if they were in the current Org mode buffer (see
-<i>Evaluating code blocks</i> for information on
+<a href="#Evaluating-code-blocks">Evaluating code blocks</a> for information on
 the syntax of remote code block evaluation).
 </p>
 
@@ -22480,7 +22571,7 @@ Multi-line header arguments on a named code block:
 At the most specific level, header arguments for “Library of Babel” or
 <code>#+CALL:</code> lines can be set as shown in the two examples below. For more
 information on the structure of <code>#+CALL:</code> lines see
-<i>Evaluating code blocks</i>.
+<a href="#Evaluating-code-blocks">Evaluating code blocks</a>.
 </p>
 
 <p>
@@ -28859,8 +28950,7 @@ Versions 7.8 or later
 </p></div>
 
 <div class="footdef"><sup><a id="fn.140" name="fn.140" class="footnum" href="#fnr.140">140</a></sup> <p class="footpara">
-<a href="http://docs.oasis-open.org/office/v1.2/OpenDocument-v1.2.html">Open
-Document Format for Office Applications (OpenDocument) Version 1.2</a>
+<a href="http://docs.oasis-open.org/office/v1.2/OpenDocument-v1.2.html">Open Document Format for Office Applications (OpenDocument) Version 1.2</a>
 </p></div>
 
 <div class="footdef"><sup><a id="fn.141" name="fn.141" class="footnum" href="#fnr.141">141</a></sup> <p class="footpara">
@@ -28868,7 +28958,7 @@ This requires <code>transient-mark-mode</code> to be turned on
 </p></div>
 
 <div class="footdef"><sup><a id="fn.142" name="fn.142" class="footnum" href="#fnr.142">142</a></sup> <p class="footpara">
-To select the current subtree, use C-c @
+To select the current subtree, use <b><i>C-c @</i></b>
 </p></div>
 
 <div class="footdef"><sup><a id="fn.143" name="fn.143" class="footnum" href="#fnr.143">143</a></sup> <p class="footpara">
@@ -28877,10 +28967,10 @@ weight being 1
 </p></div>
 
 <div class="footdef"><sup><a id="fn.144" name="fn.144" class="footnum" href="#fnr.144">144</a></sup> <p class="footpara">
-Use of ImageMagick is only desirable. However, if you routinely produce
-documents that have large images or you export your Org files that has
-images using a Emacs batch script, then the use of ImageMagick is
-mandatory.
+Use of ImageMagick is only desirable. However, if you routinely
+produce documents that have large images or you export your Org files
+that has images using a Emacs batch script, then the use of
+ImageMagick is mandatory.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.145" name="fn.145" class="footnum" href="#fnr.145">145</a></sup> <p class="footpara">
@@ -28892,13 +28982,12 @@ See <a href="http://dlmf.nist.gov/LaTeXML/">http://dlmf.nist.gov/LaTeXML/</a>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.147" name="fn.147" class="footnum" href="#fnr.147">147</a></sup> <p class="footpara">
-Your htmlfontify.el library must at least be at Emacs 24.1 levels for
-fontification to be turned on.
+Your <code>htmlfontify.el</code> library must at least be at Emacs 24.1 levels
+for fontification to be turned on.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.148" name="fn.148" class="footnum" href="#fnr.148">148</a></sup> <p class="footpara">
-<a href="http://docs.oasis-open.org/office/v1.2/OpenDocument-v1.2.html">OpenDocument-v1.2
-Specification</a>
+<a href="http://docs.oasis-open.org/office/v1.2/OpenDocument-v1.2.html">OpenDocument-v1.2 Specification</a>
 </p></div>
 
 <div class="footdef"><sup><a id="fn.149" name="fn.149" class="footnum" href="#fnr.149">149</a></sup> <p class="footpara">
@@ -28907,11 +28996,11 @@ specification
 </p></div>
 
 <div class="footdef"><sup><a id="fn.150" name="fn.150" class="footnum" href="#fnr.150">150</a></sup> <p class="footpara">
-See the attributes <code>table:template-name</code>, <code>table:use-first-row-styles</code>,
-<code>table:use-last-row-styles</code>, <code>table:use-first-column-styles</code>,
-<code>table:use-last-column-styles</code>, <code>table:use-banding-rows-styles</code>, and
-<code>table:use-banding-column-styles</code> of the <code>&lt;table:table&gt;</code> element in the
-OpenDocument-v1.2 specification
+See the attributes <code>table:template-name</code>,
+<code>table:use-first-row-styles</code>, <code>table:use-last-row-styles</code>,
+<code>table:use-first-column-styles</code>, <code>table:use-last-column-styles</code>,
+<code>table:use-banding-rows-styles</code>, and <code>table:use-banding-column-styles</code>
+of the <code>&lt;table:table&gt;</code> element in the OpenDocument-v1.2 specification
 </p></div>
 
 <div class="footdef"><sup><a id="fn.151" name="fn.151" class="footnum" href="#fnr.151">151</a></sup> <p class="footpara">
@@ -28919,8 +29008,8 @@ OpenDocument-v1.2 specification
 </p></div>
 
 <div class="footdef"><sup><a id="fn.152" name="fn.152" class="footnum" href="#fnr.152">152</a></sup> <p class="footpara">
-By setting <code>org-texinfo-info-process</code>, it is possible to generate other
-formats, including DocBook.
+By setting <code>org-texinfo-info-process</code>, it is possible to generate
+other formats, including DocBook.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.153" name="fn.153" class="footnum" href="#fnr.153">153</a></sup> <p class="footpara">

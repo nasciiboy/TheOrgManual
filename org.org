@@ -11075,43 +11075,43 @@ modify this GNU manual.”
 
 ** 12.8 Markdown export                                               <<@Markdown-export>>
 
-   =md= export back-end generates Markdown syntax[fn:FOOT145] for
-   an Org mode buffer.
+   =md= export back-end generates Markdown syntax[fn:FOOT145] for an
+   Org mode buffer.
 
-   It is built over HTML back-end: any construct not supported by Markdown
-   syntax (e.g., tables) will be controlled and translated by =html=
-   back-end (see [[@HTML-export][HTML export]]).
+   It is built over HTML back-end: any construct not supported by
+   Markdown syntax (e.g., tables) will be controlled and translated by
+   =html= back-end (see [[@HTML-export][HTML export]]).
 
 *** Markdown export commands
 
-    C-c C-e m m (=org-md-export-to-markdown=)
+     - */C-c C-e m m/* (=org-md-export-to-markdown=)
 
-    Export as a text file written in Markdown syntax. For an Org file,
-    myfile.org, the resulting file will be myfile.md. The file will be
-    overwritten without warning.
+       Export as a text file written in Markdown syntax. For an Org
+       file, myfile.org, the resulting file will be myfile.md. The
+       file will be overwritten without warning.
 
-    C-c C-e m M (=org-md-export-as-markdown=)
+     - */C-c C-e m M/* (=org-md-export-as-markdown=)
 
-    Export to a temporary buffer. Do not create a file.
+       Export to a temporary buffer. Do not create a file.
 
-    C-c C-e m o
+     - */C-c C-e m o/*
 
-    Export as a text file with Markdown syntax, then open it.
+       Export as a text file with Markdown syntax, then open it.
 
 *** Header and sectioning structure
 
     Markdown export can generate both =atx= and =setext= types for
-    headlines, according to =org-md-headline-style=. The former introduces a
-    hard limit of two levels, whereas the latter pushes it to six. Headlines
-    below that limit are exported as lists. You can also set a soft limit
-    before that one (see [[@Export-settings][Export settings]]).
+    headlines, according to =org-md-headline-style=. The former
+    introduces a hard limit of two levels, whereas the latter pushes
+    it to six. Headlines below that limit are exported as lists. You
+    can also set a soft limit before that one (see [[@Export-settings][Export settings]]).
 
 ** 12.9 OpenDocument Text export                                      <<@OpenDocument-Text-export>>
 
    Org mode[fn:FOOT146] supports export to OpenDocument Text (ODT)
-   format. Documents created by this exporter use the OpenDocument-v1.2
-   specification[fn:FOOT147] and are compatible with LibreOffice
-   3.4.
+   format. Documents created by this exporter use the
+   OpenDocument-v1.2 specification[fn:FOOT147] and are compatible with
+   LibreOffice 3.4.
 
    | • [[@Pre_requisites-for-ODT-export][Pre-requisites for ODT export]]:     | What packages ODT exporter relies on        |
    | • [[@ODT-export-commands][ODT export commands]]:               | How to invoke ODT export                    |
@@ -11128,292 +11128,306 @@ modify this GNU manual.”
 
 *** 12.9.1 Pre-requisites for ODT export                              <<@Pre_requisites-for-ODT-export>>
 
-    The ODT exporter relies on the zip program to create the final output.
-    Check the availability of this program before proceeding further.
+    The ODT exporter relies on the zip program to create the final
+    output.  Check the availability of this program before proceeding
+    further.
 
-*** 12.9.2 ODT export commands                                        @ODT-export-commands
+*** 12.9.2 ODT export commands                                        <<@ODT-export-commands>>
 
-    C-c C-e o o (=org-odt-export-to-odt=)
+     - */C-c C-e o o/* (=org-odt-export-to-odt=)
 
-    Export as OpenDocument Text file.
+       Export as OpenDocument Text file.
 
-    If =org-odt-preferred-output-format= is specified, automatically convert
-    the exported file to that format. See
-    [[@x_export_to_other_formats][Automatically exporting to
-    other formats]].
+       If =org-odt-preferred-output-format= is specified,
+       automatically convert the exported file to that format. See
+       [[@x_export_to_other_formats][Automatically exporting to other formats]].
 
-    For an Org file myfile.org, the ODT file will be myfile.odt. The file
-    will be overwritten without warning. If there is an active
-    region,[fn:FOOT148] only the region will be exported. If the
-    selected region is a single tree,[fn:FOOT149] the tree head will
-    become the document title. If the tree head entry has, or inherits, an
-    =EXPORT_FILE_NAME= property, that name will be used for the export.
+       For an Org file myfile.org, the ODT file will be
+       myfile.odt. The file will be overwritten without warning. If
+       there is an active region,[fn:FOOT148] only the region will be
+       exported. If the selected region is a single tree,[fn:FOOT149]
+       the tree head will become the document title. If the tree head
+       entry has, or inherits, an =EXPORT_FILE_NAME= property, that
+       name will be used for the export.
 
-    C-c C-e o O Export as an OpenDocument Text file and open the resulting
-    file.
+       */C-c C-e o O/* Export as an OpenDocument Text file and open the
+       resulting file.
 
-    If =org-odt-preferred-output-format= is specified, open the converted
-    file instead. See
-    [[@x_export_to_other_formats][Automatically exporting to
-    other formats]].
+       If =org-odt-preferred-output-format= is specified, open the
+       converted file instead. See [[@x_export_to_other_formats][Automatically exporting to other
+       formats]].
 
 *** 12.9.3 ODT specific export settings                               <<@ODT-specific-export-settings>>
 
-    The ODT exporter introduces a number of keywords, similar to the general
-    options settings described in [[@Export-settings][Export settings]].
+    The ODT exporter introduces a number of keywords, similar to the
+    general options settings described in [[@Export-settings][Export settings]].
 
--  ‘DESCRIPTION' :: The document description. These are inserted as
-                    document metadata. You can use several such keywords if the list is
-                    long.
+     - ‘DESCRIPTION'
 
--  ‘KEYWORDS' :: The keywords defining the contents of the document.
-                 These are inserted as document metadata. You can use several such
-                 keywords if the list is long.
+       The document description. These are inserted as document
+       metadata. You can use several such keywords if the list is
+       long.
 
--  ‘ODT_STYLES_FILE' :: The style file of the document
-     (=org-odt-styles-file=). See [[@Applying-custom-styles][Applying
-     custom styles]] for details.
+     - ‘KEYWORDS'
 
--  ‘SUBTITLE' :: The document subtitle.
+       The keywords defining the contents of the document.  These are
+       inserted as document metadata. You can use several such
+       keywords if the list is long.
+
+     - ‘ODT_STYLES_FILE'
+
+       The style file of the document (=org-odt-styles-file=). See
+       [[@Applying-custom-styles][Applying custom styles]] for details.
+
+     - ‘SUBTITLE'
+
+       The document subtitle.
 
 *** 12.9.4 Extending ODT export                                       <<@Extending-ODT-export>>
 
-    The ODT exporter can interface with a variety of document converters and
-    supports popular converters out of the box. As a result, you can use it
-    to export to formats like ‘doc' or convert a document from one format
-    (say ‘csv') to another format (say ‘ods' or ‘xls').
+    The ODT exporter can interface with a variety of document
+    converters and supports popular converters out of the box. As a
+    result, you can use it to export to formats like ‘doc' or convert
+    a document from one format (say ‘csv') to another format (say
+    ‘ods' or ‘xls').
 
-    If you have a working installation of LibreOffice, a document converter
-    is pre-configured for you and you can use it right away. If you would
-    like to use unoconv as your preferred converter, customize the variable
-    =org-odt-convert-process= to point to =unoconv=. You can also use your
-    own favorite converter or tweak the default settings of the LibreOffice
-    and ‘unoconv' converters. See
-    [[@Configuring-a-document-converter][Configuring a document converter]].
+    If you have a working installation of LibreOffice, a document
+    converter is pre-configured for you and you can use it right
+    away. If you would like to use unoconv as your preferred
+    converter, customize the variable =org-odt-convert-process= to
+    point to =unoconv=. You can also use your own favorite converter
+    or tweak the default settings of the LibreOffice and ‘unoconv'
+    converters. See [[@Configuring-a-document-converter][Configuring a document converter]].
 
-**** Automatically exporting to other formats
+**** Automatically exporting to other formats                         <<@x_export_to_other_formats>>
 
-     Very often, you will find yourself exporting to ODT format, only to
-     immediately save the exported document to other formats like ‘doc',
-     ‘docx', ‘rtf', ‘pdf' etc. In such cases, you can specify your preferred
-     output format by customizing the variable
-     =org-odt-preferred-output-format=. This way, the export commands (see
-     [[@x_export_to_odt][Exporting to ODT]]) can be extended to
-     export to a format that is of immediate interest to you.
+     Very often, you will find yourself exporting to ODT format, only
+     to immediately save the exported document to other formats like
+     ‘doc', ‘docx', ‘rtf', ‘pdf' etc. In such cases, you can specify
+     your preferred output format by customizing the variable
+     =org-odt-preferred-output-format=. This way, the export commands
+     (see [[@ODT-export-commands][Exporting to ODT]]) can be extended to export to a format that
+     is of immediate interest to you.
 
 **** Converting between document formats
 
-    There are many document converters in the wild which support conversion
-    to and from various file formats, including, but not limited to the ODT
-    format. LibreOffice converter, mentioned above, is one such converter.
-    Once a converter is configured, you can interact with it using the
-    following command.
+     There are many document converters in the wild which support
+     conversion to and from various file formats, including, but not
+     limited to the ODT format. LibreOffice converter, mentioned
+     above, is one such converter.  Once a converter is configured,
+     you can interact with it using the following command.
 
--  M-x org-odt-convert RET :: Convert an existing document from one
-     format to another. With a prefix argument, also open the newly
-     produced file.
+      - M-x org-odt-convert RET
+
+        Convert an existing document from one format to another. With
+        a prefix argument, also open the newly produced file.
 
 *** 12.9.5 Applying custom styles                                     <<@Applying-custom-styles>>
 
     The ODT exporter ships with a set of OpenDocument styles (see
-    [[@Working-with-OpenDocument-style-files][Working with OpenDocument
-    style files]]) that ensure a well-formatted output. These factory
-    styles, however, may not cater to your specific tastes. To customize the
-    output, you can either modify the above styles files directly, or
-    generate the required styles using an application like LibreOffice. The
-    latter method is suitable for expert and non-expert users alike, and is
+    [[@Working-with-OpenDocument-style-files][Working with OpenDocument style files]]) that ensure a
+    well-formatted output. These factory styles, however, may not
+    cater to your specific tastes. To customize the output, you can
+    either modify the above styles files directly, or generate the
+    required styles using an application like LibreOffice. The latter
+    method is suitable for expert and non-expert users alike, and is
     described here.
 
 **** Applying custom styles: the easy way
 
-1. Create a sample example.org file with the below settings and export
-   it to ODT format.
+      1. Create a sample example.org file with the below settings and
+         export it to ODT format.
 
-   #+BEGIN_EXAMPLE
-       #+OPTIONS: H:10 num:t
-   #+END_EXAMPLE
+         #+BEGIN_EXAMPLE
+           #+OPTIONS: H:10 num:t
+         #+END_EXAMPLE
 
-2. Open the above example.odt using LibreOffice. Use the Stylist to
-   locate the target styles---these typically have the ‘Org'
-   prefix---and modify those to your taste. Save the modified file
-   either as an OpenDocument Text (.odt) or OpenDocument Template (.ott)
-   file.
-3. Customize the variable =org-odt-styles-file= and point it to the
-   newly created file. For additional configuration options see
-   [[@x_overriding_factory_styles][Overriding factory
-   styles]].
+      2. Open the above example.odt using LibreOffice. Use the Stylist
+         to locate the target styles---these typically have the ‘Org'
+         prefix---and modify those to your taste. Save the modified
+         file either as an OpenDocument Text (.odt) or OpenDocument
+         Template (.ott) file.
 
-   If you would like to choose a style on a per-file basis, you can use
-   the =#+ODT_STYLES_FILE= option. A typical setting will look like
+      3. Customize the variable =org-odt-styles-file= and point it to
+         the newly created file. For additional configuration options
+         see [[@x_overriding_factory_styles][Overriding factory styles]].
 
-   #+BEGIN_EXAMPLE
-       #+ODT_STYLES_FILE: "/path/to/example.ott"
-   #+END_EXAMPLE
+         If you would like to choose a style on a per-file basis, you
+         can use the =#+ODT_STYLES_FILE= option. A typical setting
+         will look like
 
-   or
+         #+BEGIN_EXAMPLE
+           #+ODT_STYLES_FILE: "/path/to/example.ott"
+         #+END_EXAMPLE
 
-   #+BEGIN_EXAMPLE
-       #+ODT_STYLES_FILE: ("/path/to/file.ott" ("styles.xml" "image/hdr.png"))
-   #+END_EXAMPLE
+         or
+
+         #+BEGIN_EXAMPLE
+           #+ODT_STYLES_FILE: ("/path/to/file.ott" ("styles.xml" "image/hdr.png"))
+         #+END_EXAMPLE
 
 **** Using third-party styles and templates
 
      You can use third-party styles and templates for customizing your
      output. This will produce the desired output only if the template
-     provides all style names that the ‘ODT' exporter relies on. Unless this
-     condition is met, the output is going to be less than satisfactory. So
-     it is highly recommended that you only work with templates that are
-     directly derived from the factory settings.
+     provides all style names that the ‘ODT' exporter relies
+     on. Unless this condition is met, the output is going to be less
+     than satisfactory. So it is highly recommended that you only work
+     with templates that are directly derived from the factory
+     settings.
 
 *** 12.9.6 Links in ODT export                                        <<@Links-in-ODT-export>>
 
-    ODT exporter creates native cross-references for internal links. It
-    creates Internet-style links for all other links.
+    ODT exporter creates native cross-references for internal
+    links. It creates Internet-style links for all other links.
 
     A link with no description and destined to a regular (un-itemized)
-    outline heading is replaced with a cross-reference and section number of
-    the heading.
+    outline heading is replaced with a cross-reference and section
+    number of the heading.
 
-    A ‘\ref{label}'-style reference to an image, table etc. is replaced with
-    a cross-reference and sequence number of the labeled entity. See
-    [[@Labels-and-captions-in-ODT-export][Labels and captions in ODT
-    export]].
+    A ‘\ref{label}'-style reference to an image, table etc. is
+    replaced with a cross-reference and sequence number of the labeled
+    entity. See [[@Labels-and-captions-in-ODT-export][Labels and captions in ODT export]].
 
 *** 12.9.7 Tables in ODT export                                       <<@Tables-in-ODT-export>>
 
-    Export of native Org mode tables (see [[@Tables][Tables]]) and simple
-    table.el tables is supported. However, export of complex table.el
-    tables---tables that have column or row spans---is not supported. Such
-    tables are stripped from the exported document.
+    Export of native Org mode tables (see [[@Tables][Tables]]) and simple table.el
+    tables is supported. However, export of complex table.el
+    tables---tables that have column or row spans -- is not
+    supported. Such tables are stripped from the exported document.
 
-    By default, a table is exported with top and bottom frames and with
-    rules separating row and column groups (see [[@Column-groups][Column
-    groups]]). Furthermore, all tables are typeset to occupy the same width.
-    If the table specifies alignment and relative width for its columns (see
-    [[@Column-width-and-alignment][Column width and alignment]]) then these
-    are honored on export.[fn:FOOT150]
+    By default, a table is exported with top and bottom frames and
+    with rules separating row and column groups (see [[@Column-groups][Column
+    groups]]). Furthermore, all tables are typeset to occupy the same
+    width.  If the table specifies alignment and relative width for
+    its columns (see [[@Column-width-and-alignment][Column width and alignment]]) then these are
+    honored on export.[fn:FOOT150]
 
     You can control the width of the table by specifying =:rel-width=
     property using an =#+ATTR_ODT= line.
 
-    For example, consider the following table which makes use of all the
-    rules mentioned above.
+    For example, consider the following table which makes use of all
+    the rules mentioned above.
 
-#+BEGIN_EXAMPLE
-    #+ATTR_ODT: :rel-width 50
-    | Area/Month    |   Jan |   Feb |   Mar |   Sum |
-    |---------------+-------+-------+-------+-------|
-    | /             |     < |       |       |     < |
-    | <l13>         |  <r5> |  <r5> |  <r5> |  <r6> |
-    | North America |     1 |    21 |   926 |   948 |
-    | Middle East   |     6 |    75 |   844 |   925 |
-    | Asia Pacific  |     9 |    27 |   790 |   826 |
-    |---------------+-------+-------+-------+-------|
-    | Sum           |    16 |   123 |  2560 |  2699 |
-#+END_EXAMPLE
+    #+BEGIN_EXAMPLE
+      #+ATTR_ODT: :rel-width 50
+      | Area/Month    |   Jan |   Feb |   Mar |   Sum |
+      |---------------+-------+-------+-------+-------|
+      | /             |     < |       |       |     < |
+      | <l13>         |  <r5> |  <r5> |  <r5> |  <r6> |
+      | North America |     1 |    21 |   926 |   948 |
+      | Middle East   |     6 |    75 |   844 |   925 |
+      | Asia Pacific  |     9 |    27 |   790 |   826 |
+      |---------------+-------+-------+-------+-------|
+      | Sum           |    16 |   123 |  2560 |  2699 |
+    #+END_EXAMPLE
 
-On export, the table will occupy 50% of text area. The columns will be
-sized (roughly) in the ratio of 13:5:5:5:6. The first column will be
-left-aligned and rest of the columns will be right-aligned. There will
-be vertical rules after separating the header and last columns from
-other columns. There will be horizontal rules separating the header and
-last rows from other rows.
+    On export, the table will occupy 50% of text area. The columns
+    will be sized (roughly) in the ratio of 13:5:5:5:6. The first
+    column will be left-aligned and rest of the columns will be
+    right-aligned. There will be vertical rules after separating the
+    header and last columns from other columns. There will be
+    horizontal rules separating the header and last rows from other
+    rows.
 
-If you are not satisfied with the above formatting options, you can
-create custom table styles and associate them with a table using the
-=#+ATTR_ODT= line. See [[@Customizing-tables-in-ODT-export][Customizing
-tables in ODT export]].
+    If you are not satisfied with the above formatting options, you
+    can create custom table styles and associate them with a table
+    using the =#+ATTR_ODT= line. See [[@Customizing-tables-in-ODT-export][Customizing tables in ODT export]].
 
 *** 12.9.8 Images in ODT export                                       <<@Images-in-ODT-export>>
 
 **** Embedding images
 
-     You can embed images within the exported document by providing a link to
-     the desired image file with no link description. For example, to embed
-     ‘img.png' do either of the following:
+     You can embed images within the exported document by providing a
+     link to the desired image file with no link description. For
+     example, to embed ‘img.png' do either of the following:
 
      #+BEGIN_EXAMPLE
-     [[file:img.png]]
+       [[file:img.png]]
      #+END_EXAMPLE
 
      #+BEGIN_EXAMPLE
-     [[./img.png]]
+       [[./img.png]]
      #+END_EXAMPLE
 
 **** Embedding clickable images
 
-     You can create clickable images by providing a link whose description is
-     a link to an image file. For example, to embed a image
-     org-mode-unicorn.png which when clicked jumps to [[http://Orgmode.org]]
-     website, do the following
+     You can create clickable images by providing a link whose
+     description is a link to an image file. For example, to embed a
+     image org-mode-unicorn.png which when clicked jumps to
+     [[http://Orgmode.org]] website, do the following
 
      #+BEGIN_EXAMPLE
-     [[http://orgmode.org][./org-mode-unicorn.png]]
+       [[http://orgmode.org][./org-mode-unicorn.png]]
      #+END_EXAMPLE
 
 **** Sizing and scaling of embedded images
 
-    You can control the size and scale of the embedded images using the
-    =#+ATTR_ODT= attribute.
+     You can control the size and scale of the embedded images using
+     the =#+ATTR_ODT= attribute.
 
-    The exporter specifies the desired size of the image in the final
-    document in units of centimeters. In order to scale the embedded images,
-    the exporter queries for pixel dimensions of the images using one of a)
-    ImageMagick's identify program or b) Emacs =create-image= and
-    =image-size= APIs[fn:FOOT151]. The pixel dimensions are
-    subsequently converted in to units of centimeters using
-    =org-odt-pixels-per-inch=. The default value of this variable is set to
-    =display-pixels-per-inch=. You can tweak this variable to achieve the
-    best results.
+     The exporter specifies the desired size of the image in the final
+     document in units of centimeters. In order to scale the embedded
+     images, the exporter queries for pixel dimensions of the images
+     using one of a) ImageMagick's identify program or b) Emacs
+     =create-image= and =image-size= APIs[fn:FOOT151]. The pixel
+     dimensions are subsequently converted in to units of centimeters
+     using =org-odt-pixels-per-inch=. The default value of this
+     variable is set to =display-pixels-per-inch=. You can tweak this
+     variable to achieve the best results.
 
-    The examples below illustrate the various possibilities.
+     The examples below illustrate the various possibilities.
 
--  Explicitly size the image :: To embed img.png as a 10 cm x 10 cm
-     image, do the following:
+      - Explicitly size the image
 
-     #+BEGIN_EXAMPLE
-       #+ATTR_ODT: :width 10 :height 10
-       [[./img.png]]
-     #+END_EXAMPLE
+        To embed img.png as a 10 cm x 10 cm image, do the following:
 
--  Scale the image :: To embed img.png at half its size, do the
-     following:
+        #+BEGIN_EXAMPLE
+          #+ATTR_ODT: :width 10 :height 10
+          [[./img.png]]
+        #+END_EXAMPLE
 
-     #+BEGIN_EXAMPLE
-       #+ATTR_ODT: :scale 0.5
-       [[./img.png]]
-     #+END_EXAMPLE
+      - Scale the image
 
--  Scale the image to a specific width :: To embed img.png with a width
-     of 10 cm while retaining the original height:width ratio, do the
-     following:
+        To embed img.png at half its size, do the following:
 
-     #+BEGIN_EXAMPLE
-       #+ATTR_ODT: :width 10
-       [[./img.png]]
-     #+END_EXAMPLE
+          #+BEGIN_EXAMPLE
+            #+ATTR_ODT: :scale 0.5
+            [[./img.png]]
+          #+END_EXAMPLE
 
--  Scale the image to a specific height :: To embed img.png with a
-     height of 10 cm while retaining the original height:width ratio, do
-     the following
+      - Scale the image to a specific width
 
-     #+BEGIN_EXAMPLE
-       #+ATTR_ODT: :height 10
-       [[./img.png]]
-     #+END_EXAMPLE
+        To embed img.png with a width of 10 cm while retaining the
+        original height:width ratio, do the following:
+
+          #+BEGIN_EXAMPLE
+            #+ATTR_ODT: :width 10
+            [[./img.png]]
+          #+END_EXAMPLE
+
+      - Scale the image to a specific height
+
+        To embed img.png with a height of 10 cm while retaining the
+        original height:width ratio, do the following
+
+        #+BEGIN_EXAMPLE
+          #+ATTR_ODT: :height 10
+          [[./img.png]]
+        #+END_EXAMPLE
 
 **** Anchoring of images
 
-     You can control the manner in which an image is anchored by setting the
-     =:anchor= property of it's =#+ATTR_ODT= line. You can specify one of the
-     following three values for the =:anchor= property: ‘"as-char"',
-     ‘"paragraph"' and ‘"page"'.
+     You can control the manner in which an image is anchored by
+     setting the =:anchor= property of it's =#+ATTR_ODT= line. You can
+     specify one of the following three values for the =:anchor=
+     property: ‘"as-char"', ‘"paragraph"' and ‘"page"'.
 
      To create an image that is anchored to a page, do the following:
 
      #+BEGIN_EXAMPLE
-     #+ATTR_ODT: :anchor "page"
-     [[./img.png]]
+       #+ATTR_ODT: :anchor "page"
+       [[./img.png]]
      #+END_EXAMPLE
 
 *** 12.9.9 Math formatting in ODT export                              <<@Math-formatting-in-ODT-export>>
@@ -11425,106 +11439,110 @@ tables in ODT export]].
 
 **** Working with LaTeX math snippets                                 <<@Working-with-LaTeX-math-snippets>>
 
-    LaTeX math snippets (see [[@LaTeX-fragments][LaTeX fragments]]) can be
-    embedded in the ODT document in one of the following ways:
+     LaTeX math snippets (see [[@LaTeX-fragments][LaTeX fragments]]) can be embedded in the
+     ODT document in one of the following ways:
 
-1. MathML
+      1. MathML
 
-   This option is activated on a per-file basis with
+         This option is activated on a per-file basis with
 
-   #+BEGIN_EXAMPLE
-       #+OPTIONS: LaTeX:t
-   #+END_EXAMPLE
+         #+BEGIN_EXAMPLE
+           #+OPTIONS: LaTeX:t
+         #+END_EXAMPLE
 
-   With this option, LaTeX fragments are first converted into MathML
-   fragments using an external LaTeX-to-MathML converter program. The
-   resulting MathML fragments are then embedded as an OpenDocument
-   Formula in the exported document.
+         With this option, LaTeX fragments are first converted into
+         MathML fragments using an external LaTeX-to-MathML converter
+         program. The resulting MathML fragments are then embedded as
+         an OpenDocument Formula in the exported document.
 
-   You can specify the LaTeX-to-MathML converter by customizing the
-   variables =org-latex-to-mathml-convert-command= and
-   =org-latex-to-mathml-jar-file=.
+         You can specify the LaTeX-to-MathML converter by customizing
+         the variables =org-latex-to-mathml-convert-command= and
+         =org-latex-to-mathml-jar-file=.
 
-   To use MathToWeb[fn:FOOT152] as your converter, you can
-   configure the above variables as
+         To use MathToWeb[fn:FOOT152] as your converter, you can
+         configure the above variables as
 
-   #+BEGIN_SRC lisp
-       (setq org-latex-to-mathml-convert-command
-             "java -jar %j -unicode -force -df %o %I"
-             org-latex-to-mathml-jar-file
-             "/path/to/mathtoweb.jar")
-   #+END_SRC
+         #+BEGIN_SRC lisp
+           (setq org-latex-to-mathml-convert-command
+                 "java -jar %j -unicode -force -df %o %I"
+                 org-latex-to-mathml-jar-file
+                 "/path/to/mathtoweb.jar")
+         #+END_SRC
 
-   To use LaTeXML[fn:FOOT153] use
+         To use LaTeXML[fn:FOOT153] use
 
-   #+BEGIN_SRC lisp
-       (setq org-latex-to-mathml-convert-command
-             "latexmlmath \"%i\" --presentationmathml=%o")
-   #+END_SRC
+         #+BEGIN_SRC lisp
+           (setq org-latex-to-mathml-convert-command
+                 "latexmlmath \"%i\" --presentationmathml=%o")
+         #+END_SRC
 
-   You can use the following commands to quickly verify the reliability
-   of the LaTeX-to-MathML converter.
+         You can use the following commands to quickly verify the
+         reliability of the LaTeX-to-MathML converter.
 
-   -  M-x org-odt-export-as-odf RET :: Convert a LaTeX math snippet to
-        an OpenDocument formula (.odf) file.
+          - M-x org-odt-export-as-odf RET
 
-   -  M-x org-odt-export-as-odf-and-open RET :: Convert a LaTeX math
-        snippet to an OpenDocument formula (.odf) file and open the
-        formula file with the system-registered application.
+            Convert a LaTeX math snippet to an OpenDocument formula
+            (.odf) file.
 
-2. PNG images
+          - M-x org-odt-export-as-odf-and-open RET
 
-   This option is activated on a per-file basis with
+            Convert a LaTeX math snippet to an OpenDocument formula
+            (.odf) file and open the formula file with the
+            system-registered application.
 
-   #+BEGIN_EXAMPLE
-       #+OPTIONS: tex:dvipng
-   #+END_EXAMPLE
+      2. PNG images
 
-   or:
+         This option is activated on a per-file basis with
 
-   #+BEGIN_EXAMPLE
-       #+OPTIONS: tex:imagemagick
-   #+END_EXAMPLE
+         #+BEGIN_EXAMPLE
+           #+OPTIONS: tex:dvipng
+         #+END_EXAMPLE
 
-   With this option, LaTeX fragments are processed into PNG images and
-   the resulting images are embedded in the exported document. This
-   method requires that the dvipng program or imagemagick suite be
-   available on your system.
+         or:
+
+         #+BEGIN_EXAMPLE
+           #+OPTIONS: tex:imagemagick
+         #+END_EXAMPLE
+
+         With this option, LaTeX fragments are processed into PNG
+         images and the resulting images are embedded in the exported
+         document. This method requires that the dvipng program or
+         imagemagick suite be available on your system.
 
 **** Working with MathML or OpenDocument formula files                <<@Working-with-MathML-or-OpenDocument-formula-files>>
 
-     For various reasons, you may find embedding LaTeX math snippets in an
-     ODT document less than reliable. In that case, you can embed a math
-     equation by linking to its MathML (.mml) source or its OpenDocument
-     formula (.odf) file as shown below:
+     For various reasons, you may find embedding LaTeX math snippets
+     in an ODT document less than reliable. In that case, you can
+     embed a math equation by linking to its MathML (.mml) source or
+     its OpenDocument formula (.odf) file as shown below:
 
      #+BEGIN_EXAMPLE
-     [[./equation.mml]]
+       [[./equation.mml]]
      #+END_EXAMPLE
 
      or
 
      #+BEGIN_EXAMPLE
-     [[./equation.odf]]
+       [[./equation.odf]]
      #+END_EXAMPLE
 
 *** 12.9.10 Labels and captions in ODT export                         <<@Labels-and-captions-in-ODT-export>>
 
-    You can label and caption various category of objects---an inline image,
-    a table, a LaTeX fragment or a Math formula---using =#+LABEL= and
-    =#+CAPTION= lines. See [[@Images-and-tables][Images and tables]]. ODT
-    exporter enumerates each labeled or captioned object of a given category
-    separately. As a result, each such object is assigned a sequence number
-    based on order of it's appearance in the Org file.
+    You can label and caption various category of objects -- an inline
+    image, a table, a LaTeX fragment or a Math formula -- using
+    =#+LABEL= and =#+CAPTION= lines. See [[@Images-and-tables][Images and tables]]. ODT
+    exporter enumerates each labeled or captioned object of a given
+    category separately. As a result, each such object is assigned a
+    sequence number based on order of it's appearance in the Org file.
 
-    In the exported document, a user-provided caption is augmented with the
-    category and sequence number. Consider the following inline image in an
-    Org file.
+    In the exported document, a user-provided caption is augmented
+    with the category and sequence number. Consider the following
+    inline image in an Org file.
 
     #+BEGIN_EXAMPLE
-    #+CAPTION: Bell curve
-    #+LABEL:   fig:SED-HR4049
-    [[./img/a.png]]
+      #+CAPTION: Bell curve
+      #+LABEL:   fig:SED-HR4049
+      [[./img/a.png]]
     #+END_EXAMPLE
 
     It could be rendered as shown below in the exported document.
@@ -11533,44 +11551,44 @@ tables in ODT export]].
     Figure 2: Bell curve
     #+END_EXAMPLE
 
-    You can modify the category component of the caption by customizing the
-    option =org-odt-category-map-alist=. For example, to tag all embedded
-    images with the string ‘Illustration' (instead of the default ‘Figure')
-    use the following setting:
+    You can modify the category component of the caption by
+    customizing the option =org-odt-category-map-alist=. For example,
+    to tag all embedded images with the string ‘Illustration' (instead
+    of the default ‘Figure') use the following setting:
 
     #+BEGIN_SRC lisp
-    (setq org-odt-category-map-alist
-          (("__Figure__" "Illustration" "value" "Figure" org-odt--enumerable-image-p)))
+      (setq org-odt-category-map-alist
+            (("__Figure__" "Illustration" "value" "Figure" org-odt--enumerable-image-p)))
     #+END_SRC
 
-    With this, previous image will be captioned as below in the exported
-    document.
+    With this, previous image will be captioned as below in the
+    exported document.
 
     #+BEGIN_EXAMPLE
-    Illustration 2: Bell curve
+      Illustration 2: Bell curve
     #+END_EXAMPLE
 
 *** 12.9.11 Literal examples in ODT export                            <<@Literal-examples-in-ODT-export>>
 
-    Export of literal examples (see [[@Literal-examples][Literal examples]])
-    with full fontification is supported. Internally, the exporter relies on
-    htmlfontify.el to generate all style definitions needed for a fancy
-    listing.[fn:FOOT154] The auto-generated styles have ‘OrgSrc' as
-    prefix and inherit their color from the faces used by Emacs =font-lock=
-    library for the source language.
+    Export of literal examples (see [[@Literal-examples][Literal examples]]) with full
+    fontification is supported. Internally, the exporter relies on
+    htmlfontify.el to generate all style definitions needed for a
+    fancy listing.[fn:FOOT154] The auto-generated styles have ‘OrgSrc'
+    as prefix and inherit their color from the faces used by Emacs
+    =font-lock= library for the source language.
 
-    If you prefer to use your own custom styles for fontification, you can
-    do so by customizing the option
+    If you prefer to use your own custom styles for fontification, you
+    can do so by customizing the option
     =org-odt-create-custom-styles-for-srcblocks=.
 
-    You can turn off fontification of literal examples by customizing the
-    option =org-odt-fontify-srcblocks=.
+    You can turn off fontification of literal examples by customizing
+    the option =org-odt-fontify-srcblocks=.
 
 *** 12.9.12 Advanced topics in ODT export                             <<@Advanced-topics-in-ODT-export>>
 
-    If you rely heavily on ODT export, you may want to exploit the full set
-    of features that the exporter offers. This section describes features
-    that would be of interest to power users.
+    If you rely heavily on ODT export, you may want to exploit the
+    full set of features that the exporter offers. This section
+    describes features that would be of interest to power users.
 
     | • [[@Configuring-a-document-converter][Configuring a document converter]]:      | How to register a document converter    |
     | • [[@Working-with-OpenDocument-style-files][Working with OpenDocument style files]]: | Explore the internals                   |
@@ -11580,341 +11598,352 @@ tables in ODT export]].
 
 **** Configuring a document converter                                 <<@Configuring-a-document-converter>>
 
-    The ODT exporter can work with popular converters with little or no
-    extra configuration from your side. See
-    [[@Extending-ODT-export][Extending ODT export]]. If you are using a
-    converter that is not supported by default or if you would like to tweak
-    the default converter settings, proceed as below.
+    The ODT exporter can work with popular converters with little or
+    no extra configuration from your side. See [[@Extending-ODT-export][Extending ODT
+    export]]. If you are using a converter that is not supported by
+    default or if you would like to tweak the default converter
+    settings, proceed as below.
 
-1. Register the converter
+     1. *Register the converter*
 
-   Name your converter and add it to the list of known converters by
-   customizing the option =org-odt-convert-processes=. Also specify how
-   the converter can be invoked via command-line to effect the
-   conversion.
+        Name your converter and add it to the list of known converters
+        by customizing the option =org-odt-convert-processes=. Also
+        specify how the converter can be invoked via command-line to
+        effect the conversion.
 
-2. Configure its capabilities
+     2. *Configure its capabilities*
 
-   Specify the set of formats the converter can handle by customizing
-   the variable =org-odt-convert-capabilities=. Use the default value
-   for this variable as a guide for configuring your converter. As
-   suggested by the default setting, you can specify the full set of
-   formats supported by the converter and not limit yourself to
-   specifying formats that are related to just the OpenDocument Text
-   format.
+        Specify the set of formats the converter can handle by
+        customizing the variable =org-odt-convert-capabilities=. Use
+        the default value for this variable as a guide for configuring
+        your converter. As suggested by the default setting, you can
+        specify the full set of formats supported by the converter and
+        not limit yourself to specifying formats that are related to
+        just the OpenDocument Text format.
 
-3. Choose the converter
+     3. *Choose the converter*
 
-   Select the newly added converter as the preferred one by customizing
-   the option =org-odt-convert-process=.
+        Select the newly added converter as the preferred one by
+        customizing the option =org-odt-convert-process=.
 
 **** Working with OpenDocument style files                            <<@Working-with-OpenDocument-style-files>>
 
-     This section explores the internals of the ODT exporter and the means by
-     which it produces styled documents. Read this section if you are
-     interested in exploring the automatic and custom OpenDocument styles
-     used by the exporter.
+     This section explores the internals of the ODT exporter and the
+     means by which it produces styled documents. Read this section if
+     you are interested in exploring the automatic and custom
+     OpenDocument styles used by the exporter.
 
-**** a) Factory styles
+**** a) Factory styles                                                <<@Factory-styles>>
 
-    The ODT exporter relies on two files for generating its output. These
-    files are bundled with the distribution under the directory pointed to
-    by the variable =org-odt-styles-dir=. The two files are:
+     The ODT exporter relies on two files for generating its
+     output. These files are bundled with the distribution under the
+     directory pointed to by the variable =org-odt-styles-dir=. The
+     two files are:
 
--
--  OrgOdtStyles.xml
+      - *OrgOdtStyles.xml*                                            <<@x_orgodtstyles_xml>>
 
-   This file contributes to the styles.xml file of the final ‘ODT'
-   document. This file gets modified for the following purposes:
+        This file contributes to the styles.xml file of the final
+        ‘ODT' document. This file gets modified for the following
+        purposes:
 
-   1. To control outline numbering based on user settings.
-   2. To add styles generated by htmlfontify.el for fontification of
-      code blocks.
+         1. To control outline numbering based on user settings.
 
--  OrgOdtContentTemplate.xml
+         2. To add styles generated by htmlfontify.el for
+            fontification of code blocks.
 
-   This file contributes to the content.xml file of the final ‘ODT'
-   document. The contents of the Org outline are inserted between the
-   ‘<office:text>'...‘</office:text>' elements of this file.
+      - *OrgOdtContentTemplate.xml*                                   <<@x_orgodtcontenttemplate_xml>>
 
-   Apart from serving as a template file for the final content.xml, the
-   file serves the following purposes:
+        This file contributes to the content.xml file of the final
+        ‘ODT' document. The contents of the Org outline are inserted
+        between the ‘<office:text>'...‘</office:text>' elements of
+        this file.
 
-   1. It contains automatic styles for formatting of tables which are
-      referenced by the exporter.
-   2. It contains ‘<text:sequence-decl>'...‘</text:sequence-decl>'
-      elements that control how various entities---tables, images,
-      equations, etc.---are numbered.
+        Apart from serving as a template file for the final
+        content.xml, the file serves the following purposes:
 
-**** b) Overriding factory styles
+         1. It contains automatic styles for formatting of tables
+            which are referenced by the exporter.
 
-    The following two variables control the location from which the ODT
-    exporter picks up the custom styles and content template files. You can
-    customize these variables to override the factory styles used by the
-    exporter.
+         2. It contains ‘<text:sequence-decl>'
+            ... ‘</text:sequence-decl>' elements that control how
+            various entities -- tables, images, equations, etc. -- are
+            numbered.
 
--
--  =org-odt-styles-file=
+**** b) Overriding factory styles                                     <<@x_overriding_factory_styles>>
 
-   Use this variable to specify the styles.xml that will be used in the
-   final output. You can specify one of the following values:
+     The following two variables control the location from which the
+     ODT exporter picks up the custom styles and content template
+     files. You can customize these variables to override the factory
+     styles used by the exporter.
 
-   1. A styles.xml file
+      - =org-odt-styles-file=
 
-      Use this file instead of the default styles.xml
+        Use this variable to specify the styles.xml that will be used
+        in the final output. You can specify one of the following
+        values:
 
-   2. A .odt or .ott file
+         1. A styles.xml file
 
-      Use the styles.xml contained in the specified OpenDocument Text or
-      Template file
+            Use this file instead of the default styles.xml
 
-   3. A .odt or .ott file and a subset of files contained within them
+         2. A .odt or .ott file
 
-      Use the styles.xml contained in the specified OpenDocument Text or
-      Template file. Additionally extract the specified member files and
-      embed those within the final ‘ODT' document.
+            Use the styles.xml contained in the specified OpenDocument
+            Text or Template file
 
-      Use this option if the styles.xml file references additional files
-      like header and footer images.
+         3. A .odt or .ott file and a subset of files contained within
+            them
 
-   4. =nil=
+            Use the styles.xml contained in the specified OpenDocument
+            Text or Template file. Additionally extract the specified
+            member files and embed those within the final ‘ODT'
+            document.
 
-      Use the default styles.xml
+            Use this option if the styles.xml file references
+            additional files like header and footer images.
 
--  =org-odt-content-template-file=
+         4. =nil=
 
-   Use this variable to specify the blank content.xml that will be used
-   in the final output.
+            Use the default styles.xml
+
+      - =org-odt-content-template-file=
+
+        Use this variable to specify the blank content.xml that will
+        be used in the final output.
 
 **** Creating one-off styles                                          <<@Creating-one_off-styles>>
 
-    There are times when you would want one-off formatting in the exported
-    document. You can achieve this by embedding raw OpenDocument XML in the
-    Org file. The use of this feature is better illustrated with couple of
-    examples.
+     There are times when you would want one-off formatting in the
+     exported document. You can achieve this by embedding raw
+     OpenDocument XML in the Org file. The use of this feature is
+     better illustrated with couple of examples.
 
-1. Embedding ODT tags as part of regular text
+      1. Embedding ODT tags as part of regular text
 
-   You can inline OpenDocument syntax by enclosing it within
-   ‘@@odt:...@@' markup. For example, to highlight a region of text do
-   the following:
+         You can inline OpenDocument syntax by enclosing it within
+         ‘@@odt:...@@' markup. For example, to highlight a region of
+         text do the following:
 
-   #+BEGIN_EXAMPLE
-       @@odt:<text:span text:style-name="Highlight">This is a highlighted
-       text</text:span>@@.  But this is a regular text.
-   #+END_EXAMPLE
+         #+BEGIN_EXAMPLE
+           @@odt:<text:span text:style-name="Highlight">This is a highlighted
+           text</text:span>@@.  But this is a regular text.
+         #+END_EXAMPLE
 
-   *Hint:* To see the above example in action, edit your styles.xml (see
-   [[@x_orgodtstyles_xml][Factory styles]]) and add a custom
-   ‘Highlight' style as shown below.
+         *Hint:* To see the above example in action, edit your
+         styles.xml (see [[@x_orgodtstyles_xml][Factory styles]]) and add a custom ‘Highlight'
+         style as shown below.
 
-   #+BEGIN_EXAMPLE
-       <style:style style:name="Highlight" style:family="text">
-         <style:text-properties fo:background-color="#ff0000"/>
-       </style:style>
-   #+END_EXAMPLE
+         #+BEGIN_EXAMPLE
+           <style:style style:name="Highlight" style:family="text">
+             <style:text-properties fo:background-color="#ff0000"/>
+           </style:style>
+         #+END_EXAMPLE
 
-2. Embedding a one-line OpenDocument XML
+      2. Embedding a one-line OpenDocument XML
 
-   You can add a simple OpenDocument one-liner using the =#+ODT:=
-   directive. For example, to force a page break do the following:
+         You can add a simple OpenDocument one-liner using the
+         =#+ODT:= directive. For example, to force a page break do the
+         following:
 
-   #+BEGIN_EXAMPLE
-       #+ODT: <text:p text:style-name="PageBreak"/>
-   #+END_EXAMPLE
+         #+BEGIN_EXAMPLE
+           #+ODT: <text:p text:style-name="PageBreak"/>
+         #+END_EXAMPLE
 
-   *Hint:* To see the above example in action, edit your styles.xml (see
-   [[@x_orgodtstyles_xml][Factory styles]]) and add a custom
-   ‘PageBreak' style as shown below.
+         *Hint:* To see the above example in action, edit your
+         styles.xml (see [[@x_orgodtstyles_xml][Factory styles]]) and add a custom ‘PageBreak'
+         style as shown below.
 
-   #+BEGIN_EXAMPLE
-       <style:style style:name="PageBreak" style:family="paragraph"
-                    style:parent-style-name="Text_20_body">
-         <style:paragraph-properties fo:break-before="page"/>
-       </style:style>
-   #+END_EXAMPLE
+         #+BEGIN_EXAMPLE
+           <style:style style:name="PageBreak" style:family="paragraph"
+                        style:parent-style-name="Text_20_body">
+             <style:paragraph-properties fo:break-before="page"/>
+           </style:style>
+         #+END_EXAMPLE
 
-3. Embedding a block of OpenDocument XML
+      3. Embedding a block of OpenDocument XML
 
-   You can add a large block of OpenDocument XML using the
-   =#+BEGIN_ODT=...=#+END_ODT= construct.
+         You can add a large block of OpenDocument XML using the
+         =#+BEGIN_ODT=...=#+END_ODT= construct.
 
-   For example, to create a one-off paragraph that uses bold text, do
-   the following:
+         For example, to create a one-off paragraph that uses bold
+         text, do the following:
 
-   #+BEGIN_EXAMPLE
-   #+BEGIN_ODT
-   <text:p text:style-name="Text_20_body_20_bold">
-   This paragraph is specially formatted and uses bold text.
-   </text:p>
-   #+END_ODT
-   #+END_EXAMPLE
+         #+BEGIN_EXAMPLE
+           #+BEGIN_ODT
+           <text:p text:style-name="Text_20_body_20_bold">
+           This paragraph is specially formatted and uses bold text.
+           </text:p>
+           #+END_ODT
+         #+END_EXAMPLE
 
 **** Customizing tables in ODT export                                 <<@Customizing-tables-in-ODT-export>>
 
-    You can override the default formatting of the table by specifying a
-    custom table style with the =#+ATTR_ODT= line. For a discussion on
-    default formatting of tables see [[@Tables-in-ODT-export][Tables in ODT
-    export]].
+     You can override the default formatting of the table by
+     specifying a custom table style with the =#+ATTR_ODT= line. For a
+     discussion on default formatting of tables see [[@Tables-in-ODT-export][Tables in ODT
+     export]].
 
-    This feature closely mimics the way table templates are defined in the
-    OpenDocument-v1.2 specification.[fn:FOOT155]
+     This feature closely mimics the way table templates are defined
+     in the OpenDocument-v1.2 specification.[fn:FOOT155]
 
-    To have a quick preview of this feature, install the below setting and
-    export the table that follows:
+     To have a quick preview of this feature, install the below
+     setting and export the table that follows:
 
-    #+BEGIN_SRC lisp
-    (setq org-odt-table-styles
-          (append org-odt-table-styles
-                '(("TableWithHeaderRowAndColumn" "Custom"
-                    ((use-first-row-styles . t)
-                     (use-first-column-styles . t)))
-                    ("TableWithFirstRowandLastRow" "Custom"
-                     ((use-first-row-styles . t)
-                     (use-last-row-styles . t))))))
-    #+END_SRC
-
-    #+BEGIN_EXAMPLE
-    #+ATTR_ODT: :style TableWithHeaderRowAndColumn
-    | Name  | Phone | Age |
-    | Peter |  1234 |  17 |
-    | Anna  |  4321 |  25 |
-    #+END_EXAMPLE
-
-    In the above example, you used a template named ‘Custom' and installed
-    two table styles with the names ‘TableWithHeaderRowAndColumn' and
-    ‘TableWithFirstRowandLastRow'. (*Important:* The OpenDocument styles
-    needed for producing the above template have been pre-defined for you.
-    These styles are available under the section marked ‘Custom Table
-    Template' in OrgOdtContentTemplate.xml (see
-    [[@x_orgodtcontenttemplate_xml][Factory styles]]). If you need
-    additional templates you have to define these styles yourselves.
-
-    To use this feature proceed as follows:
-
-1. Create a table template[fn:FOOT156]
-
-   A table template is nothing but a set of ‘table-cell' and ‘paragraph'
-   styles for each of the following table cell categories:
-
-   -  - Body
-   -  - First column
-   -  - Last column
-   -  - First row
-   -  - Last row
-   -  - Even row
-   -  - Odd row
-   -  - Even column
-   -  - Odd Column
-
-   The names for the above styles must be chosen based on the name of
-   the table template using a well-defined convention.
-
-   The naming convention is better illustrated with an example. For a
-   table template with the name ‘Custom', the needed style names are
-   listed in the following table.
-
-   | Table cell type   | =table-cell= style             | =paragraph= style                   |
-   |-------------------+--------------------------------+-------------------------------------|
-   | Body              | ‘CustomTableCell'              | ‘CustomTableParagraph'              |
-   | First column      | ‘CustomFirstColumnTableCell'   | ‘CustomFirstColumnTableParagraph'   |
-   | Last column       | ‘CustomLastColumnTableCell'    | ‘CustomLastColumnTableParagraph'    |
-   | First row         | ‘CustomFirstRowTableCell'      | ‘CustomFirstRowTableParagraph'      |
-   | Last row          | ‘CustomLastRowTableCell'       | ‘CustomLastRowTableParagraph'       |
-   | Even row          | ‘CustomEvenRowTableCell'       | ‘CustomEvenRowTableParagraph'       |
-   | Odd row           | ‘CustomOddRowTableCell'        | ‘CustomOddRowTableParagraph'        |
-   | Even column       | ‘CustomEvenColumnTableCell'    | ‘CustomEvenColumnTableParagraph'    |
-   | Odd column        | ‘CustomOddColumnTableCell'     | ‘CustomOddColumnTableParagraph'     |
-
-   To create a table template with the name ‘Custom', define the above
-   styles in the
-   =<office:automatic-styles>=...=</office:automatic-styles>= element of
-   the content template file (see
-   [[@x_orgodtcontenttemplate_xml][Factory styles]]).
-
-2. Define a table style[fn:FOOT157]
-
-   To define a table style, create an entry for the style in the
-   variable =org-odt-table-styles= and specify the following:
-
-   -  - the name of the table template created in step (1)
-   -  - the set of cell styles in that template that are to be activated
-
-   For example, the entry below defines two different table styles
-   ‘TableWithHeaderRowAndColumn' and ‘TableWithFirstRowandLastRow' based
-   on the same template ‘Custom'. The styles achieve their intended
-   effect by selectively activating the individual cell styles in that
-   template.
-
-   #+BEGIN_SRC lisp
+     #+BEGIN_SRC lisp
        (setq org-odt-table-styles
              (append org-odt-table-styles
-                     '(("TableWithHeaderRowAndColumn" "Custom"
-                        ((use-first-row-styles . t)
-                         (use-first-column-styles . t)))
+                   '(("TableWithHeaderRowAndColumn" "Custom"
+                       ((use-first-row-styles . t)
+                        (use-first-column-styles . t)))
                        ("TableWithFirstRowandLastRow" "Custom"
                         ((use-first-row-styles . t)
-                         (use-last-row-styles . t))))))
-   #+END_SRC
+                        (use-last-row-styles . t))))))
+     #+END_SRC
 
-3. Associate a table with the table style
-
-   To do this, specify the table style created in step (2) as part of
-   the =ATTR_ODT= line as shown below.
-
-   #+BEGIN_EXAMPLE
-       #+ATTR_ODT: :style "TableWithHeaderRowAndColumn"
+     #+BEGIN_EXAMPLE
+       #+ATTR_ODT: :style TableWithHeaderRowAndColumn
        | Name  | Phone | Age |
        | Peter |  1234 |  17 |
        | Anna  |  4321 |  25 |
-   #+END_EXAMPLE
+     #+END_EXAMPLE
+
+     In the above example, you used a template named ‘Custom' and
+     installed two table styles with the names
+     ‘TableWithHeaderRowAndColumn' and
+     ‘TableWithFirstRowandLastRow'. (*Important:* The OpenDocument
+     styles needed for producing the above template have been
+     pre-defined for you.  These styles are available under the
+     section marked ‘Custom Table Template' in
+     OrgOdtContentTemplate.xml (see [[@x_orgodtcontenttemplate_xml][Factory styles]]). If you need
+     additional templates you have to define these styles yourselves.
+
+     To use this feature proceed as follows:
+
+      1. Create a table template[fn:FOOT156]
+
+         A table template is nothing but a set of ‘table-cell' and
+         ‘paragraph' styles for each of the following table cell
+         categories:
+
+          - Body
+          - First column
+          - Last column
+          - First row
+          - Last row
+          - Even row
+          - Odd row
+          - Even column
+          - Odd Column
+
+         The names for the above styles must be chosen based on the
+         name of the table template using a well-defined convention.
+
+         The naming convention is better illustrated with an
+         example. For a table template with the name ‘Custom', the
+         needed style names are listed in the following table.
+
+         | Table cell type | =table-cell= style           | =paragraph= style                 |
+         |-----------------+------------------------------+-----------------------------------|
+         | Body            | ‘CustomTableCell'            | ‘CustomTableParagraph'            |
+         | First column    | ‘CustomFirstColumnTableCell' | ‘CustomFirstColumnTableParagraph' |
+         | Last column     | ‘CustomLastColumnTableCell'  | ‘CustomLastColumnTableParagraph'  |
+         | First row       | ‘CustomFirstRowTableCell'    | ‘CustomFirstRowTableParagraph'    |
+         | Last row        | ‘CustomLastRowTableCell'     | ‘CustomLastRowTableParagraph'     |
+         | Even row        | ‘CustomEvenRowTableCell'     | ‘CustomEvenRowTableParagraph'     |
+         | Odd row         | ‘CustomOddRowTableCell'      | ‘CustomOddRowTableParagraph'      |
+         | Even column     | ‘CustomEvenColumnTableCell'  | ‘CustomEvenColumnTableParagraph'  |
+         | Odd column      | ‘CustomOddColumnTableCell'   | ‘CustomOddColumnTableParagraph'   |
+
+         To create a table template with the name ‘Custom', define the
+         above styles in the
+         =<office:automatic-styles>=...=</office:automatic-styles>=
+         element of the content template file (see [[@x_orgodtcontenttemplate_xml][Factory styles]]).
+
+      2. Define a table style[fn:FOOT157]
+
+         To define a table style, create an entry for the style in the
+         variable =org-odt-table-styles= and specify the following:
+
+          - the name of the table template created in step (1)
+
+          - the set of cell styles in that template that are to be
+            activated
+
+         For example, the entry below defines two different table
+         styles ‘TableWithHeaderRowAndColumn' and
+         ‘TableWithFirstRowandLastRow' based on the same template
+         ‘Custom'. The styles achieve their intended effect by
+         selectively activating the individual cell styles in that
+         template.
+
+         #+BEGIN_SRC lisp
+           (setq org-odt-table-styles
+                 (append org-odt-table-styles
+                         '(("TableWithHeaderRowAndColumn" "Custom"
+                            ((use-first-row-styles . t)
+                             (use-first-column-styles . t)))
+                           ("TableWithFirstRowandLastRow" "Custom"
+                            ((use-first-row-styles . t)
+                             (use-last-row-styles . t))))))
+         #+END_SRC
+
+      3. Associate a table with the table style
+
+         To do this, specify the table style created in step (2) as
+         part of the =ATTR_ODT= line as shown below.
+
+         #+BEGIN_EXAMPLE
+           #+ATTR_ODT: :style "TableWithHeaderRowAndColumn"
+           | Name  | Phone | Age |
+           | Peter |  1234 |  17 |
+           | Anna  |  4321 |  25 |
+         #+END_EXAMPLE
 
 **** Validating OpenDocument XML                                      <<@Validating-OpenDocument-XML>>
 
-     Occasionally, you will discover that the document created by the ODT
-     exporter cannot be opened by your favorite application. One of the
-     common reasons for this is that the .odt file is corrupt. In such cases,
-     you may want to validate the document against the OpenDocument RELAX NG
-     Compact Syntax (RNC) schema.
+     Occasionally, you will discover that the document created by the
+     ODT exporter cannot be opened by your favorite application. One
+     of the common reasons for this is that the .odt file is
+     corrupt. In such cases, you may want to validate the document
+     against the OpenDocument RELAX NG Compact Syntax (RNC) schema.
 
-     For de-compressing the .odt file[fn:FOOT158]: See
-     [[http://www.gnu.org/software/emacs/manual/html_mono/emacs.html#File-Archives][(emacs)File
+     For de-compressing the .odt file[fn:FOOT158]: See [[http://www.gnu.org/software/emacs/manual/html_mono/emacs.html#File-Archives][(emacs)File
      Archives]]. For general help with validation (and schema-sensitive
-     editing) of XML files: See
-     [[http://www.gnu.org/software/emacs/manual/html_mono/nxml-mode.html#Introduction][(nxml-mode)Introduction]].
+     editing) of XML files: See [[http://www.gnu.org/software/emacs/manual/html_mono/nxml-mode.html#Introduction][(nxml-mode)Introduction]].
 
-     If you have ready access to OpenDocument .rnc files and the needed
-     schema-locating rules in a single folder, you can customize the variable
-     =org-odt-schema-dir= to point to that directory. The ODT exporter will
-     take care of updating the =rng-schema-locating-files= for you.
+     If you have ready access to OpenDocument .rnc files and the
+     needed schema-locating rules in a single folder, you can
+     customize the variable =org-odt-schema-dir= to point to that
+     directory. The ODT exporter will take care of updating the
+     =rng-schema-locating-files= for you.
 
 ** 12.10 Org export                                                   <<@Org-export>>
 
-   =org= export back-end creates a normalized version of the Org document
-   in current buffer. In particular, it evaluates Babel code (see
-   [[@Evaluating-code-blocks][Evaluating code blocks]]) and removes other
-   back-ends specific contents.
+   =org= export back-end creates a normalized version of the Org
+   document in current buffer. In particular, it evaluates Babel code
+   (see [[@Evaluating-code-blocks][Evaluating code blocks]]) and removes other back-ends specific
+   contents.
 
 *** Org export commands
 
-    C-c C-e O o (=org-org-export-to-org=)
+     - */C-c C-e O o/* (=org-org-export-to-org=)
 
-    Export as an Org document. For an Org file, myfile.org, the resulting
-    file will be myfile.org.org. The file will be overwritten without
-    warning.
+       Export as an Org document. For an Org file, myfile.org, the
+       resulting file will be myfile.org.org. The file will be
+       overwritten without warning.
 
-    C-c C-e O O (=org-org-export-as-org=)
+     - */C-c C-e O O/* (=org-org-export-as-org=)
 
-    Export to a temporary buffer. Do not create a file.
+       Export to a temporary buffer. Do not create a file.
 
-    C-c C-e O v
+     - */C-c C-e O v/*
 
-    Export to an Org file, then open it.
+       Export to an Org file, then open it.
 
 ** 12.11 Texinfo export                                               <<@Texinfo-export>>
 
-   ‘texinfo' export back-end generates Texinfo code and can compile it into
-   an Info file.
+   ‘texinfo' export back-end generates Texinfo code and can compile it
+   into an Info file.
 
    | • [[@Texinfo-export-commands][Texinfo export commands]]:           | How to invoke Texinfo export          |
    | • [[@Texinfo-specific-export-settings][Texinfo specific export settings]]:  | Export settings for Texinfo           |
@@ -11927,558 +11956,588 @@ tables in ODT export]].
 
 *** 12.11.1 Texinfo export commands                                   <<@Texinfo-export-commands>>
 
-    C-c C-e i t (=org-texinfo-export-to-texinfo=)
+     - */C-c C-e i t/* (=org-texinfo-export-to-texinfo=)
 
-    Export as a Texinfo file. For an Org file, myfile.org, the resulting
-    file will be myfile.texi. The file will be overwritten without warning.
+       Export as a Texinfo file. For an Org file, myfile.org, the
+       resulting file will be myfile.texi. The file will be
+       overwritten without warning.
 
-    C-c C-e i i (=org-texinfo-export-to-info=)
+     - */C-c C-e i i/* (=org-texinfo-export-to-info=)
 
-    Export to Texinfo and then process to an Info file[fn:FOOT159].
+       Export to Texinfo and then process to an Info file[fn:FOOT159].
 
 *** 12.11.2 Texinfo specific export settings                          <<@Texinfo-specific-export-settings>>
 
-    The Texinfo exporter introduces a number of keywords, similar to the
-    general options settings described in [[@Export-settings][Export
-    settings]].
+    The Texinfo exporter introduces a number of keywords, similar to
+    the general options settings described in
+    [[@Export-settings][Export settings]].
 
--  ‘SUBTITLE' :: The document subtitle.
+     - ‘SUBTITLE'
 
--  ‘SUBAUTHOR' :: The document subauthor.
+       The document subtitle.
 
--  ‘TEXINFO_FILENAME' :: The Texinfo filename.
+     - ‘SUBAUTHOR'
 
--  ‘TEXINFO_CLASS' :: The class of the document
-     (=org-texinfo-default-class=). This must be a member of
-     =org-texinfo-classes=.
+       The document subauthor.
 
--  ‘TEXINFO_HEADER' :: Arbitrary lines inserted at the end of the
-     preamble.
+     - ‘TEXINFO_FILENAME'
 
--  ‘TEXINFO_POST_HEADER' :: Arbitrary lines inserted at the end of the
-     preamble.
+       The Texinfo filename.
 
--  ‘TEXINFO_DIR_CATEGORY' :: The directory category of the document.
+     - ‘TEXINFO_CLASS'
 
--  ‘TEXINFO_DIR_TITLE' :: The directory title of the document.
+       The class of the document (=org-texinfo-default-class=). This
+       must be a member of =org-texinfo-classes=.
 
--  ‘TEXINFO_DIR_DESC' :: The directory description of the document.
+     - ‘TEXINFO_HEADER'
 
--  ‘TEXINFO_PRINTED_TITLE' :: The printed title of the document.
+       Arbitrary lines inserted at the end of the preamble.
 
-These keywords are treated in details in the following sections.
+     - ‘TEXINFO_POST_HEADER'
+
+       Arbitrary lines inserted at the end of the preamble.
+
+     - ‘TEXINFO_DIR_CATEGORY'
+
+       The directory category of the document.
+
+     - ‘TEXINFO_DIR_TITLE'
+
+       The directory title of the document.
+
+     - ‘TEXINFO_DIR_DESC'
+
+       The directory description of the document.
+
+     - ‘TEXINFO_PRINTED_TITLE'
+
+       The printed title of the document.
+
+    These keywords are treated in details in the following sections.
 
 *** 12.11.3 Document preamble                                         <<@Document-preamble>>
 
-    When processing a document, ‘texinfo' back-end generates a minimal file
-    header along with a title page, a copyright page, and a menu. You
-    control the latter through the structure of the document (see
-    [[@Headings-and-sectioning-structure][Headings and sectioning
-    structure]]). Various keywords allow to tweak the other parts. It is
-    also possible to give directions to install the document in the ‘Top'
-    node.
+    When processing a document, ‘texinfo' back-end generates a minimal
+    file header along with a title page, a copyright page, and a
+    menu. You control the latter through the structure of the document
+    (see [[@Headings-and-sectioning-structure][Headings and sectioning structure]]). Various keywords allow to
+    tweak the other parts. It is also possible to give directions to
+    install the document in the ‘Top' node.
 
 **** File header
 
-     Upon creating the header of a Texinfo file, the back-end guesses a name
-     for the Info file to be compiled. This may not be a sensible choice,
-     e.g., if you want to produce the final document in a different
-     directory. Specify an alternate path with =#+TEXINFO_FILENAME= keyword
-     to override the default destination.
+     Upon creating the header of a Texinfo file, the back-end guesses
+     a name for the Info file to be compiled. This may not be a
+     sensible choice, e.g., if you want to produce the final document
+     in a different directory. Specify an alternate path with
+     =#+TEXINFO_FILENAME= keyword to override the default destination.
 
-     Along with the output file name, the header contains information about
-     the language (see [[@Export-settings][Export settings]]) and current
-     encoding used[fn:FOOT160]. Insert a =#+TEXINFO_HEADER= keyword
-     for each additional command needed, e.g., @code{@synindex}.
+     Along with the output file name, the header contains information
+     about the language (see [[@Export-settings][Export settings]]) and current encoding
+     used[fn:FOOT160]. Insert a =#+TEXINFO_HEADER= keyword for each
+     additional command needed, e.g., @code{@synindex}.
 
-     If you happen to regularly install the same set of commands, it may be
-     easier to define your own class in =org-texinfo-classes=, which see. Set
-     =#+TEXINFO_CLASS= keyword accordingly in your document to activate it.
+     If you happen to regularly install the same set of commands, it
+     may be easier to define your own class in =org-texinfo-classes=,
+     which see. Set =#+TEXINFO_CLASS= keyword accordingly in your
+     document to activate it.
 
 **** Title and copyright page
 
-     The default template includes a title page for hard copy output. The
-     title and author displayed on this page are extracted from,
-     respectively, =#+TITLE= and =#+AUTHOR= keywords (see
-     [[@Export-settings][Export settings]]). It is also possible to print a
-     different, more specific, title with =#+TEXINFO_PRINTED_TITLE= keyword,
-     and add subtitles with =#+SUBTITLE= keyword. Both expect raw Texinfo
-     code in their value.
+     The default template includes a title page for hard copy
+     output. The title and author displayed on this page are extracted
+     from, respectively, =#+TITLE= and =#+AUTHOR= keywords (see [[@Export-settings][Export
+     settings]]). It is also possible to print a different, more
+     specific, title with =#+TEXINFO_PRINTED_TITLE= keyword, and add
+     subtitles with =#+SUBTITLE= keyword. Both expect raw Texinfo code
+     in their value.
 
-     Likewise, information brought by =#+AUTHOR= may not be enough. You can
-     include other authors with several =#+SUBAUTHOR= keywords. Values are
-     also expected to be written in Texinfo code.
+     Likewise, information brought by =#+AUTHOR= may not be
+     enough. You can include other authors with several =#+SUBAUTHOR=
+     keywords. Values are also expected to be written in Texinfo code.
 
      #+BEGIN_EXAMPLE
-     #+AUTHOR: Jane Smith
-     #+SUBAUTHOR: John Doe
-     #+TEXINFO_PRINTED_TITLE: This Long Title@inlinefmt{tex,@*} Is Broken in @TeX{}
+       #+AUTHOR: Jane Smith
+       #+SUBAUTHOR: John Doe
+       #+TEXINFO_PRINTED_TITLE: This Long Title@inlinefmt{tex,@*} Is Broken in @TeX{}
      #+END_EXAMPLE
 
-     Copying material is defined in a dedicated headline with a non-=nil=
-     =:COPYING:= property. The contents are inserted within a =@copying=
-     command at the beginning of the document whereas the heading itself does
-     not appear in the structure of the document.
+     Copying material is defined in a dedicated headline with a
+     non-=nil= =:COPYING:= property. The contents are inserted within
+     a =@copying= command at the beginning of the document whereas the
+     heading itself does not appear in the structure of the document.
 
      Copyright information is printed on the back of the title page.
 
      #+BEGIN_EXAMPLE
-     * Copying
-       :PROPERTIES:
-       :COPYING: t
-       :END:
+       * Copying
+         :PROPERTIES:
+         :COPYING: t
+         :END:
 
-       This is a short example of a complete Texinfo file, version 1.0.
+         This is a short example of a complete Texinfo file, version 1.0.
 
-       Copyright \copy 2015 Free Software Foundation, Inc.
+         Copyright \copy 2015 Free Software Foundation, Inc.
      #+END_EXAMPLE
 
 **** The Top node
 
-    You may ultimately want to install your new Info file in your system.
-    You can write an appropriate entry in the top level directory specifying
-    its category and title with, respectively, =#+TEXINFO_DIR_CATEGORY= and
-    =#+TEXINFO_DIR_TITLE=. Optionally, you can add a short description using
-    =#+TEXINFO_DIR_DESC=. The following example would write an entry similar
-    to Org's in the ‘Top' node.
+    You may ultimately want to install your new Info file in your
+    system.  You can write an appropriate entry in the top level
+    directory specifying its category and title with, respectively,
+    =#+TEXINFO_DIR_CATEGORY= and =#+TEXINFO_DIR_TITLE=. Optionally,
+    you can add a short description using =#+TEXINFO_DIR_DESC=. The
+    following example would write an entry similar to Org's in the
+    ‘Top' node.
 
-#+BEGIN_EXAMPLE
-    #+TEXINFO_DIR_CATEGORY: Emacs
-    #+TEXINFO_DIR_TITLE: Org Mode: (org)
-    #+TEXINFO_DIR_DESC: Outline-based notes management and organizer
-#+END_EXAMPLE
+    #+BEGIN_EXAMPLE
+      #+TEXINFO_DIR_CATEGORY: Emacs
+      #+TEXINFO_DIR_TITLE: Org Mode: (org)
+      #+TEXINFO_DIR_DESC: Outline-based notes management and organizer
+    #+END_EXAMPLE
 
 *** 12.11.4 Headings and sectioning structure                         <<@Headings-and-sectioning-structure>>
 
-‘texinfo' uses a pre-defined scheme, or class, to convert headlines into
-Texinfo structuring commands. For example, a top level headline appears
-as =@chapter= if it should be numbered or as =@unnumbered= otherwise. If
-you need to use a different set of commands, e.g., to start with =@part=
-instead of =@chapter=, install a new class in =org-texinfo-classes=,
-then activate it with =#+TEXINFO_CLASS= keyword. Export process defaults
-to =org-texinfo-default-class= when there is no such keyword in the
-document.
+    ‘texinfo' uses a pre-defined scheme, or class, to convert
+    headlines into Texinfo structuring commands. For example, a top
+    level headline appears as =@chapter= if it should be numbered or
+    as =@unnumbered= otherwise. If you need to use a different set of
+    commands, e.g., to start with =@part= instead of =@chapter=,
+    install a new class in =org-texinfo-classes=, then activate it
+    with =#+TEXINFO_CLASS= keyword. Export process defaults to
+    =org-texinfo-default-class= when there is no such keyword in the
+    document.
 
-If a headline's level has no associated structuring command, or is below
-a certain threshold (see [[@Export-settings][Export settings]]), that
-headline becomes a list in Texinfo output.
+    If a headline's level has no associated structuring command, or is
+    below a certain threshold (see [[@Export-settings][Export settings]]), that headline
+    becomes a list in Texinfo output.
 
-As an exception, a headline with a non-=nil= =:APPENDIX:= property
-becomes an appendix, independently on its level and the class used.
+    As an exception, a headline with a non- =nil= =:APPENDIX:=
+    property becomes an appendix, independently on its level and the
+    class used.
 
-Each regular sectioning structure creates a menu entry, named after the
-heading. You can provide a different, e.g., shorter, title in
-=:ALT_TITLE:= property (see [[@Table-of-contents][Table of contents]]).
-Optionally, you can specify a description for the item in
-=:DESCRIPTION:= property. E.g.,
+    Each regular sectioning structure creates a menu entry, named
+    after the heading. You can provide a different, e.g., shorter,
+    title in =:ALT_TITLE:= property (see [[@Table-of-contents][Table of contents]]).
+    Optionally, you can specify a description for the item in
+    =:DESCRIPTION:= property. E.g.,
 
-#+BEGIN_EXAMPLE
-    * Controlling Screen Display
-      :PROPERTIES:
-      :ALT_TITLE: Display
-      :DESCRIPTION: Controlling Screen Display
-      :END:
-#+END_EXAMPLE
+    #+BEGIN_EXAMPLE
+      * Controlling Screen Display
+        :PROPERTIES:
+          :ALT_TITLE: Display
+          :DESCRIPTION: Controlling Screen Display
+          :END:
+    #+END_EXAMPLE
 
 *** 12.11.5 Indices                                                   <<@Indices>>
 
-Index entries are created using dedicated keywords. ‘texinfo' back-end
-provides one for each predefined type: =#+CINDEX=, =#+FINDEX=,
-=#+KINDEX=, =#+PINDEX=, =#+TINDEX= and =#+VINDEX=. For custom indices,
-you can write raw Texinfo code (see [[@Quoting-Texinfo-code][Quoting
-Texinfo code]]).
+    Index entries are created using dedicated keywords. ‘texinfo'
+    back-end provides one for each predefined type: =#+CINDEX=,
+    =#+FINDEX=, =#+KINDEX=, =#+PINDEX=, =#+TINDEX= and =#+VINDEX=. For
+    custom indices, you can write raw Texinfo code (see
+    [[@Quoting-Texinfo-code][Quoting Texinfo code]]).
 
-#+BEGIN_EXAMPLE
-    #+CINDEX: Defining indexing entries
-#+END_EXAMPLE
+    #+BEGIN_EXAMPLE
+      #+CINDEX: Defining indexing entries
+    #+END_EXAMPLE
 
-To generate an index, you need to set the =:INDEX:= property of a
-headline to an appropriate abbreviation (e.g., ‘cp' or ‘vr'). The
-headline is then exported as an unnumbered chapter or section command
-and the index is inserted after its contents.
+    To generate an index, you need to set the =:INDEX:= property of a
+    headline to an appropriate abbreviation (e.g., ‘cp' or ‘vr'). The
+    headline is then exported as an unnumbered chapter or section
+    command and the index is inserted after its contents.
 
-#+BEGIN_EXAMPLE
-    * Concept Index
-      :PROPERTIES:
+    #+BEGIN_EXAMPLE
+      * Concept Index
+        :PROPERTIES:
       :INDEX: cp
       :END:
-#+END_EXAMPLE
+    #+END_EXAMPLE
 
 *** 12.11.6 Quoting Texinfo code                                      <<@Quoting-Texinfo-code>>
 
-It is possible to insert raw Texinfo code using any of the following
-constructs
+    It is possible to insert raw Texinfo code using any of the
+    following constructs
 
-#+BEGIN_EXAMPLE
-    Richard @@texinfo:@sc{@@Stallman@@texinfo:}@@ commence' GNU.
+    #+BEGIN_EXAMPLE
+      Richard @@texinfo:@sc{@@Stallman@@texinfo:}@@ commence' GNU.
 
-    #+TEXINFO: @need800
-    This paragraph is preceded by...
+      #+TEXINFO: @need800
+      This paragraph is preceded by...
 
-    #+BEGIN_TEXINFO
-    @auindex Johnson, Mark
-    @auindex Lakoff, George
-    #+END_TEXINFO
-#+END_EXAMPLE
+      #+BEGIN_TEXINFO
+      @auindex Johnson, Mark
+      @auindex Lakoff, George
+      #+END_TEXINFO
+    #+END_EXAMPLE
 
 *** 12.11.7 Texinfo specific attributes                               <<@Texinfo-specific-attributes>>
 
-‘texinfo' back-end understands several attributes in plain lists, tables
-and images. They must be specified using an =#+ATTR_TEXINFO= keyword,
-written just above the list, table or image.
+    ‘texinfo' back-end understands several attributes in plain lists,
+    tables and images. They must be specified using an
+    =#+ATTR_TEXINFO= keyword, written just above the list, table or
+    image.
 
 **** Plain lists
 
-In Texinfo output, description lists appear as two-column tables, using
-the default command =@table=. You can use =@ftable= or
-=@vtable=[fn:FOOT161] instead with =:table-type= attribute.
+     In Texinfo output, description lists appear as two-column tables,
+     using the default command =@table=. You can use =@ftable= or
+     =@vtable=[fn:FOOT161] instead with =:table-type= attribute.
 
-In any case, these constructs require a highlighting command for entries
-in the list. You can provide one with =:indic= attribute. If you do not,
-it defaults to the value stored in =org-texinfo-def-table-markup=, which
-see.
+     In any case, these constructs require a highlighting command for
+     entries in the list. You can provide one with =:indic=
+     attribute. If you do not, it defaults to the value stored in
+     =org-texinfo-def-table-markup=, which see.
 
-#+BEGIN_EXAMPLE
-    #+ATTR_TEXINFO: :indic @asis
-    - foo :: This is the text for /foo/, with no highlighting.
-#+END_EXAMPLE
+     #+BEGIN_EXAMPLE
+       #+ATTR_TEXINFO: :indic @asis
+       - foo :: This is the text for /foo/, with no highlighting.
+     #+END_EXAMPLE
 
 **** Tables
 
-When exporting a table, column widths are deduced from the longest cell
-in each column. You can also define them explicitly as fractions of the
-line length, using =:columns= attribute.
+     When exporting a table, column widths are deduced from the
+     longest cell in each column. You can also define them explicitly
+     as fractions of the line length, using =:columns= attribute.
 
-#+BEGIN_EXAMPLE
-    #+ATTR_TEXINFO: :columns .5 .5
-    | a cell | another cell |
-#+END_EXAMPLE
+     #+BEGIN_EXAMPLE
+       #+ATTR_TEXINFO: :columns .5 .5
+       | a cell | another cell |
+     #+END_EXAMPLE
 
 **** Images
 
-Images are links to files with a supported image extension and no
-description. Image scaling is set with =:width= and =:height=
-attributes. You can also use =:alt= to specify alternate text, as
-Texinfo code.
+     Images are links to files with a supported image extension and no
+     description. Image scaling is set with =:width= and =:height=
+     attributes. You can also use =:alt= to specify alternate text, as
+     Texinfo code.
 
-#+BEGIN_EXAMPLE
-    #+ATTR_TEXINFO: :width 1in :alt Alternate @i{text}
-    [[ridt.pdf]]
-#+END_EXAMPLE
+     #+BEGIN_EXAMPLE
+       #+ATTR_TEXINFO: :width 1in :alt Alternate @i{text}
+       [[ridt.pdf]]
+     #+END_EXAMPLE
 
 *** 12.11.8 An example                                                <<@An-example>>
 
-Here is a thorough example. See
-[[http://www.gnu.org/software/texinfo/manual/texinfo/texinfo.html#GNU-Sample-Texts][(texinfo)GNU
-Sample Texts]] for an equivalent Texinfo code.
+    Here is a thorough example. See [[http://www.gnu.org/software/texinfo/manual/texinfo/texinfo.html#GNU-Sample-Texts][(texinfo)GNU Sample Texts]] for an
+    equivalent Texinfo code.
 
-#+BEGIN_EXAMPLE
-    #+MACRO: version 2.0
-    #+MACRO: updated last updated 4 March 2014
+    #+BEGIN_EXAMPLE
+      #+MACRO: version 2.0
+      #+MACRO: updated last updated 4 March 2014
 
-    #+OPTIONS: ':t toc:t author:t email:t
-    #+TITLE: GNU Sample {{{version}}}
-    #+AUTHOR: A.U. Thor
-    #+EMAIL: bug-sample@gnu.org
-    #+LANGUAGE: en
+      #+OPTIONS: ':t toc:t author:t email:t
+      #+TITLE: GNU Sample {{{version}}}
+      #+AUTHOR: A.U. Thor
+      #+EMAIL: bug-sample@gnu.org
+      #+LANGUAGE: en
 
-    #+TEXINFO_FILENAME: sample.info
-    #+TEXINFO_HEADER: @syncodeindex pg cp
+      #+TEXINFO_FILENAME: sample.info
+      #+TEXINFO_HEADER: @syncodeindex pg cp
 
-    #+TEXINFO_DIR_CATEGORY: Texinfo documentation system
-    #+TEXINFO_DIR_TITLE: sample: (sample)
-    #+TEXINFO_DIR_DESC: Invoking sample
+      #+TEXINFO_DIR_CATEGORY: Texinfo documentation system
+      #+TEXINFO_DIR_TITLE: sample: (sample)
+      #+TEXINFO_DIR_DESC: Invoking sample
 
-    #+TEXINFO_PRINTED_TITLE: GNU Sample
-    #+SUBTITLE: for version {{{version}}}, {{{updated}}}
+      #+TEXINFO_PRINTED_TITLE: GNU Sample
+      #+SUBTITLE: for version {{{version}}}, {{{updated}}}
 
-    * Copying
-      :PROPERTIES:
-      :COPYING:  t
-      :END:
+        * Copying
+        :PROPERTIES:
+        :COPYING:  t
+        :END:
 
-      This manual is for GNU Sample (version {{{version}}},
-      {{{updated}}}), which is an example in the Texinfo documentation.
+        This manual is for GNU Sample (version {{{version}}},
+        {{{updated}}}), which is an example in the Texinfo documentation.
 
-      Copyright @@texinfo:@copyright{}@@ 2013 Free Software Foundation,
-      Inc.
+        Copyright @@texinfo:@copyright{}@@ 2013 Free Software Foundation,
+        Inc.
 
-      #+BEGIN_QUOTE
-      Permission is granted to copy, distribute and/or modify this
-      document under the terms of the GNU Free Documentation License,
-      Version 1.3 or any later version published by the Free Software
-      Foundation; with no Invariant Sections, with no Front-Cover Texts,
-      and with no Back-Cover Texts.  A copy of the license is included in
-      the section entitled "GNU Free Documentation License".
-      #+END_QUOTE
+        #+BEGIN_QUOTE
+        Permission is granted to copy, distribute and/or modify this
+        document under the terms of the GNU Free Documentation License,
+        Version 1.3 or any later version published by the Free Software
+        Foundation; with no Invariant Sections, with no Front-Cover Texts,
+        and with no Back-Cover Texts.  A copy of the license is included in
+        the section entitled "GNU Free Documentation License".
+        #+END_QUOTE
 
-    * Invoking sample
+        * Invoking sample
 
-      #+PINDEX: sample
-      #+CINDEX: invoking @command{sample}
+        #+PINDEX: sample
+        #+CINDEX: invoking @command{sample}
 
-      This is a sample manual.  There is no sample program to invoke, but
-      if there were, you could see its basic usage and command line
-      options here.
+        This is a sample manual.  There is no sample program to invoke, but
+        if there were, you could see its basic usage and command line
+        options here.
 
-    * GNU Free Documentation License
-      :PROPERTIES:
-      :APPENDIX: t
-      :END:
+        * GNU Free Documentation License
+        :PROPERTIES:
+        :APPENDIX: t
+        :END:
 
-      #+TEXINFO: @include fdl.texi
+        #+TEXINFO: @include fdl.texi
 
-    * Index
-      :PROPERTIES:
+        * Index
+        :PROPERTIES:
       :INDEX:    cp
       :END:
-#+END_EXAMPLE
+    #+END_EXAMPLE
 
 ** 12.12 iCalendar export                                             <<@iCalendar-export>>
 
-Some people use Org mode for keeping track of projects, but still prefer
-a standard calendar application for anniversaries and appointments. In
-this case it can be useful to show deadlines and other time-stamped
-items in Org files in the calendar application. Org mode can export
-calendar information in the standard iCalendar format. If you also want
-to have TODO entries included in the export, configure the variable
-=org-icalendar-include-todo=. Plain timestamps are exported as VEVENT,
-and TODO items as VTODO. It will also create events from deadlines that
-are in non-TODO items. Deadlines and scheduling dates in TODO items will
-be used to set the start and due dates for the TODO
-entry[fn:FOOT162]. As categories, it will use the tags locally
-defined in the heading, and the file/tree category[fn:FOOT163].
-See the variable =org-icalendar-alarm-time= for a way to assign alarms
-to entries with a time.
+   Some people use Org mode for keeping track of projects, but still
+   prefer a standard calendar application for anniversaries and
+   appointments. In this case it can be useful to show deadlines and
+   other time-stamped items in Org files in the calendar
+   application. Org mode can export calendar information in the
+   standard iCalendar format. If you also want to have TODO entries
+   included in the export, configure the variable
+   =org-icalendar-include-todo=. Plain timestamps are exported as
+   VEVENT, and TODO items as VTODO. It will also create events from
+   deadlines that are in non-TODO items. Deadlines and scheduling
+   dates in TODO items will be used to set the start and due dates for
+   the TODO entry[fn:FOOT162]. As categories, it will use the tags
+   locally defined in the heading, and the file/tree
+   category[fn:FOOT163].  See the variable =org-icalendar-alarm-time=
+   for a way to assign alarms to entries with a time.
 
-The iCalendar standard requires each entry to have a globally unique
-identifier (UID). Org creates these identifiers during export. If you
-set the variable =org-icalendar-store-UID=, the UID will be stored in
-the =:ID:= property of the entry and re-used next time you report this
-entry. Since a single entry can give rise to multiple iCalendar entries
-(as a timestamp, a deadline, a scheduled item, and as a TODO item), Org
-adds prefixes to the UID, depending on what triggered the inclusion of
-the entry. In this way the UID remains unique, but a synchronization
-program can still figure out from which entry all the different
-instances originate.
+   The iCalendar standard requires each entry to have a globally
+   unique identifier (UID). Org creates these identifiers during
+   export. If you set the variable =org-icalendar-store-UID=, the UID
+   will be stored in the =:ID:= property of the entry and re-used next
+   time you report this entry. Since a single entry can give rise to
+   multiple iCalendar entries (as a timestamp, a deadline, a scheduled
+   item, and as a TODO item), Org adds prefixes to the UID, depending
+   on what triggered the inclusion of the entry. In this way the UID
+   remains unique, but a synchronization program can still figure out
+   from which entry all the different instances originate.
 
-C-c C-e c f (=org-icalendar-export-to-ics=)
+    - */C-c C-e c f/* (=org-icalendar-export-to-ics=)
 
-Create iCalendar entries for the current buffer and store them in the
-same directory, using a file extension .ics.
+      Create iCalendar entries for the current buffer and store them
+      in the same directory, using a file extension .ics.
 
-C-c C-e c a (=org-icalendar-export-agenda-files=)
+    - */C-c C-e c a/* (=org-icalendar-export-agenda-files=)
 
-Like C-c C-e c f, but do this for all files in =org-agenda-files=. For
-each of these files, a separate iCalendar file will be written.
+      Like */C-c C-e c f/*, but do this for all files in
+      =org-agenda-files=. For each of these files, a separate
+      iCalendar file will be written.
 
-C-c C-e c c (=org-icalendar-combine-agenda-files=)
+    - */C-c C-e c c/* (=org-icalendar-combine-agenda-files=)
 
-Create a single large iCalendar file from all files in
-=org-agenda-files= and write it to the file given by
-=org-icalendar-combined-agenda-file=.
+      Create a single large iCalendar file from all files in
+      =org-agenda-files= and write it to the file given by
+      =org-icalendar-combined-agenda-file=.
 
-The export will honor SUMMARY, DESCRIPTION and
-LOCATION[fn:FOOT164] properties if the selected entries have
-them. If not, the summary will be derived from the headline, and the
-description from the body (limited to =org-icalendar-include-body=
-characters).
+   The export will honor SUMMARY, DESCRIPTION and LOCATION[fn:FOOT164]
+   properties if the selected entries have them. If not, the summary
+   will be derived from the headline, and the description from the
+   body (limited to =org-icalendar-include-body= characters).
 
-How this calendar is best read and updated, depends on the application
-you are using. The FAQ covers this issue.
+   How this calendar is best read and updated, depends on the
+   application you are using. The FAQ covers this issue.
 
 ** 12.13 Other built-in back-ends                                     <<@Other-built_in-back_ends>>
 
-On top of the aforementioned back-ends, Org comes with other built-in
-ones:
+   On top of the aforementioned back-ends, Org comes with other
+   built-in ones:
 
--  ox-man.el: export to a man page.
+    - ox-man.el: export to a man page.
 
-To activate these export back-end, customize =org-export-backends= or
-load them directly with e.g., =(require 'ox-man)=. This will add new
-keys in the export dispatcher (see [[@The-export-dispatcher][The export
-dispatcher]]).
+   To activate these export back-end, customize =org-export-backends=
+   or load them directly with e.g., =(require 'ox-man)=. This will add
+   new keys in the export dispatcher (see [[@The-export-dispatcher][The export dispatcher]]).
 
-See the comment section of these files for more information on how to
-use them.
+   See the comment section of these files for more information on how
+   to use them.
 
 ** 12.14 Export in foreign buffers                                    <<@Export-in-foreign-buffers>>
 
-Most built-in back-ends come with a command to convert the selected
-region into a selected format and replace this region by the exported
-output. Here is a list of such conversion commands:
+   Most built-in back-ends come with a command to convert the selected
+   region into a selected format and replace this region by the
+   exported output. Here is a list of such conversion commands:
 
--  =org-html-convert-region-to-html= :: Convert the selected region into
-   HTML.
+    - =org-html-convert-region-to-html= ::
 
--  =org-latex-convert-region-to-latex= :: Convert the selected region
-   into LaTeX.
+      Convert the selected region into HTML.
 
--  =org-texinfo-convert-region-to-texinfo= :: Convert the selected
-   region into =Texinfo=.
+    - =org-latex-convert-region-to-latex= ::
 
--  =org-md-convert-region-to-md= :: Convert the selected region into
-   =MarkDown=.
+      Convert the selected region into LaTeX.
 
-This is particularly useful for converting tables and lists in foreign
-buffers. E.g., in an HTML buffer, you can turn on =orgstruct-mode=, then
-use Org commands for editing a list, and finally select and convert the
-list with =M-x org-html-convert-region-to-html RET=.
+    - =org-texinfo-convert-region-to-texinfo= ::
+
+      Convert the selected region into =Texinfo=.
+
+    - =org-md-convert-region-to-md= ::
+
+      Convert the selected region into =MarkDown=.
+
+   This is particularly useful for converting tables and lists in
+   foreign buffers. E.g., in an HTML buffer, you can turn on
+   =orgstruct-mode=, then use Org commands for editing a list, and
+   finally select and convert the list with =M-x
+   org-html-convert-region-to-html RET=.
 
 ** 12.15 Advanced configuration                                       <<@Advanced-configuration>>
 
 *** Hooks
 
-Two hooks are run during the first steps of the export process. The
-first one, =org-export-before-processing-hook= is called before
-expanding macros, Babel code and include keywords in the buffer. The
-second one, =org-export-before-parsing-hook=, as its name suggests,
-happens just before parsing the buffer. Their main use is for heavy
-duties, that is duties involving structural modifications of the
-document. For example, one may want to remove every headline in the
-buffer during export. The following code can achieve this:
+    Two hooks are run during the first steps of the export
+    process. The first one, =org-export-before-processing-hook= is
+    called before expanding macros, Babel code and include keywords in
+    the buffer. The second one, =org-export-before-parsing-hook=, as
+    its name suggests, happens just before parsing the buffer. Their
+    main use is for heavy duties, that is duties involving structural
+    modifications of the document. For example, one may want to remove
+    every headline in the buffer during export. The following code can
+    achieve this:
 
-#+BEGIN_SRC lisp
-    (defun my-headline-removal (backend)
-      "Remove all headlines in the current buffer.
-    BACKEND is the export back-end being used, as a symbol."
-      (org-map-entries
-       (lambda () (delete-region (point) (progn (forward-line) (point))))))
+    #+BEGIN_SRC lisp
+      (defun my-headline-removal (backend)
+        "Remove all headlines in the current buffer.
+      BACKEND is the export back-end being used, as a symbol."
+        (org-map-entries
+         (lambda () (delete-region (point) (progn (forward-line) (point))))))
 
-    (add-hook 'org-export-before-parsing-hook 'my-headline-removal)
-#+END_SRC
+      (add-hook 'org-export-before-parsing-hook 'my-headline-removal)
+    #+END_SRC
 
-Note that functions used in these hooks require a mandatory argument, a
-symbol representing the back-end used.
+    Note that functions used in these hooks require a mandatory
+    argument, a symbol representing the back-end used.
 
 *** Filters
 
-Filters are lists of functions applied on a specific part of the output
-from a given back-end. More explicitly, each time a back-end transforms
-an Org object or element into another language, all functions within a
-given filter type are called in turn on the string produced. The string
-returned by the last function will be the one used in the final output.
+    Filters are lists of functions applied on a specific part of the
+    output from a given back-end. More explicitly, each time a
+    back-end transforms an Org object or element into another
+    language, all functions within a given filter type are called in
+    turn on the string produced. The string returned by the last
+    function will be the one used in the final output.
 
-There are filter sets for each type of element or object, for plain
-text, for the parse tree, for the export options and for the final
-output. They are all named after the same scheme:
-=org-export-filter-TYPE-functions=, where =TYPE= is the type targeted by
-the filter. Valid types are:
+    There are filter sets for each type of element or object, for
+    plain text, for the parse tree, for the export options and for the
+    final output. They are all named after the same scheme:
+    =org-export-filter-TYPE-functions=, where =TYPE= is the type
+    targeted by the filter. Valid types are:
 
-| body                  | bold                 | babel-call         |
-| center-block          | clock                | code               |
-| diary-sexp            | drawer               | dynamic-block      |
-| entity                | example-block        | export-block       |
-| export-snippet        | final-output         | fixed-width        |
-| footnote-definition   | footnote-reference   | headline           |
-| horizontal-rule       | inline-babel-call    | inline-src-block   |
-| inlinetask            | italic               | item               |
-| keyword               | latex-environment    | latex-fragment     |
-| line-break            | link                 | node-property      |
-| options               | paragraph            | parse-tree         |
-| plain-list            | plain-text           | planning           |
-| property-drawer       | quote-block          | radio-target       |
-| section               | special-block        | src-block          |
-| statistics-cookie     | strike-through       | subscript          |
-| superscript           | table                | table-cell         |
-| table-row             | target               | timestamp          |
-| underline             | verbatim             | verse-block        |
+    | body                | bold               | babel-call       |
+    | center-block        | clock              | code             |
+    | diary-sexp          | drawer             | dynamic-block    |
+    | entity              | example-block      | export-block     |
+    | export-snippet      | final-output       | fixed-width      |
+    | footnote-definition | footnote-reference | headline         |
+    | horizontal-rule     | inline-babel-call  | inline-src-block |
+    | inlinetask          | italic             | item             |
+    | keyword             | latex-environment  | latex-fragment   |
+    | line-break          | link               | node-property    |
+    | options             | paragraph          | parse-tree       |
+    | plain-list          | plain-text         | planning         |
+    | property-drawer     | quote-block        | radio-target     |
+    | section             | special-block      | src-block        |
+    | statistics-cookie   | strike-through     | subscript        |
+    | superscript         | table              | table-cell       |
+    | table-row           | target             | timestamp        |
+    | underline           | verbatim           | verse-block      |
 
-For example, the following snippet allows me to use non-breaking spaces
-in the Org buffer and get them translated into LaTeX without using the
-=\nbsp= macro (where =_= stands for the non-breaking space):
+    For example, the following snippet allows me to use non-breaking
+    spaces in the Org buffer and get them translated into LaTeX
+    without using the =\nbsp= macro (where =_= stands for the
+    non-breaking space):
 
-#+BEGIN_SRC lisp
-    (defun my-latex-filter-nobreaks (text backend info)
-      "Ensure \"_\" are properly handled in LaTeX export."
-      (when (org-export-derived-backend-p backend 'latex)
-            (replace-regexp-in-string "_" "~" text)))
+    #+BEGIN_SRC lisp
+      (defun my-latex-filter-nobreaks (text backend info)
+        "Ensure \"_\" are properly handled in LaTeX export."
+        (when (org-export-derived-backend-p backend 'latex)
+              (replace-regexp-in-string "_" "~" text)))
 
-    (add-to-list 'org-export-filter-plain-text-functions
-                 'my-latex-filter-nobreaks)
-#+END_SRC
+      (add-to-list 'org-export-filter-plain-text-functions
+                   'my-latex-filter-nobreaks)
+    #+END_SRC
 
-Three arguments must be provided to a filter: the code being changed,
-the back-end used, and some information about the export process. You
-can safely ignore the third argument for most purposes. Note the use of
-=org-export-derived-backend-p=, which ensures that the filter will only
-be applied when using =latex= back-end or any other back-end derived
-from it (e.g., =beamer=).
+    Three arguments must be provided to a filter: the code being
+    changed, the back-end used, and some information about the export
+    process. You can safely ignore the third argument for most
+    purposes. Note the use of =org-export-derived-backend-p=, which
+    ensures that the filter will only be applied when using =latex=
+    back-end or any other back-end derived from it (e.g., =beamer=).
 
 *** Defining filters for individual files
 
-You can customize the export for just a specific file by binding export
-filter variables using =#+BIND=. Here is an example where we introduce
-two filters, one to remove brackets from time stamps, and one to
-entirely remove any strike-through text. The functions doing the
-filtering are defined in an src block that allows the filter function
-definitions to exist in the file itself and ensures that the functions
-will be there when needed.
+    You can customize the export for just a specific file by binding
+    export filter variables using =#+BIND=. Here is an example where
+    we introduce two filters, one to remove brackets from time stamps,
+    and one to entirely remove any strike-through text. The functions
+    doing the filtering are defined in an src block that allows the
+    filter function definitions to exist in the file itself and
+    ensures that the functions will be there when needed.
 
-#+BEGIN_EXAMPLE
-    #+BIND: org-export-filter-timestamp-functions (tmp-f-timestamp)
-    #+BIND: org-export-filter-strike-through-functions (tmp-f-strike-through)
-    #+begin_src emacs-lisp :exports results :results none
-      (defun tmp-f-timestamp (s backend info)
-        (replace-regexp-in-string "&[lg]t;\\|[][]" "" s))
-      (defun tmp-f-strike-through (s backend info) "")
-    #+end_src
-#+END_EXAMPLE
+    #+BEGIN_EXAMPLE
+      #+BIND: org-export-filter-timestamp-functions (tmp-f-timestamp)
+      #+BIND: org-export-filter-strike-through-functions (tmp-f-strike-through)
+      #+begin_src emacs-lisp :exports results :results none
+        (defun tmp-f-timestamp (s backend info)
+          (replace-regexp-in-string "&[lg]t;\\|[][]" "" s))
+        (defun tmp-f-strike-through (s backend info) "")
+      #+end_src
+    #+END_EXAMPLE
 
 *** Extending an existing back-end
 
-This is obviously the most powerful customization, since the changes
-happen at the parser level. Indeed, some export back-ends are built as
-extensions of other ones (e.g., Markdown back-end an extension of HTML
-back-end).
+    This is obviously the most powerful customization, since the
+    changes happen at the parser level. Indeed, some export back-ends
+    are built as extensions of other ones (e.g., Markdown back-end an
+    extension of HTML back-end).
 
-Extending a back-end means that if an element type is not transcoded by
-the new back-end, it will be handled by the original one. Hence you can
-extend specific parts of a back-end without too much work.
+    Extending a back-end means that if an element type is not transcoded by
+    the new back-end, it will be handled by the original one. Hence you can
+    extend specific parts of a back-end without too much work.
 
-As an example, imagine we want the =ascii= back-end to display the
-language used in a source block, when it is available, but only when
-some attribute is non-=nil=, like the following:
+    As an example, imagine we want the =ascii= back-end to display the
+    language used in a source block, when it is available, but only when
+    some attribute is non-=nil=, like the following:
 
-#+BEGIN_EXAMPLE
-    #+ATTR_ASCII: :language t
-#+END_EXAMPLE
+    #+BEGIN_EXAMPLE
+      #+ATTR_ASCII: :language t
+    #+END_EXAMPLE
 
-Because that back-end is lacking in that area, we are going to create a
-new back-end, =my-ascii= that will do the job.
+    Because that back-end is lacking in that area, we are going to
+    create a new back-end, =my-ascii= that will do the job.
 
-#+BEGIN_SRC lisp
-    (defun my-ascii-src-block (src-block contents info)
-      "Transcode a SRC-BLOCK element from Org to ASCII.
-    CONTENTS is nil.  INFO is a plist used as a communication
-    channel."
-      (if (not (org-export-read-attribute :attr_ascii src-block :language))
-        (org-export-with-backend 'ascii src-block contents info)
-      (concat
-       (format ",--[ %s ]--\n%s`----"
-               (org-element-property :language src-block)
-               (replace-regexp-in-string
-                "^" "| "
-                (org-element-normalize-string
-                 (org-export-format-code-default src-block info)))))))
+    #+BEGIN_SRC lisp
+      (defun my-ascii-src-block (src-block contents info)
+        "Transcode a SRC-BLOCK element from Org to ASCII.
+      CONTENTS is nil.  INFO is a plist used as a communication
+      channel."
+        (if (not (org-export-read-attribute :attr_ascii src-block :language))
+          (org-export-with-backend 'ascii src-block contents info)
+        (concat
+         (format ",--[ %s ]--\n%s`----"
+                 (org-element-property :language src-block)
+                 (replace-regexp-in-string
+                  "^" "| "
+                  (org-element-normalize-string
+                   (org-export-format-code-default src-block info)))))))
 
-    (org-export-define-derived-backend 'my-ascii 'ascii
-      :translate-alist '((src-block . my-ascii-src-block)))
-#+END_SRC
+      (org-export-define-derived-backend 'my-ascii 'ascii
+        :translate-alist '((src-block . my-ascii-src-block)))
+    #+END_SRC
 
-The =my-ascii-src-block= function looks at the attribute above the
-element. If it isn't true, it gives hand to the =ascii= back-end.
-Otherwise, it creates a box around the code, leaving room for the
-language. A new back-end is then created. It only changes its behavior
-when translating =src-block= type element. Now, all it takes to use the
-new back-end is calling the following from an Org buffer:
+    The =my-ascii-src-block= function looks at the attribute above the
+    element. If it isn't true, it gives hand to the =ascii= back-end.
+    Otherwise, it creates a box around the code, leaving room for the
+    language. A new back-end is then created. It only changes its
+    behavior when translating =src-block= type element. Now, all it
+    takes to use the new back-end is calling the following from an Org
+    buffer:
 
-#+BEGIN_EXAMPLE
-    (org-export-to-buffer 'my-ascii "*Org MY-ASCII Export*")
-#+END_EXAMPLE
+    #+BEGIN_EXAMPLE
+      (org-export-to-buffer 'my-ascii "*Org MY-ASCII Export*")
+    #+END_EXAMPLE
 
-It is obviously possible to write an interactive function for this,
-install it in the export dispatcher menu, and so on.
+    It is obviously possible to write an interactive function for
+    this, install it in the export dispatcher menu, and so on.
 
 * 13 Publishing
 
@@ -13176,7 +13235,7 @@ be set to true (the default setting), second the =comments=
 will insert comments into the source code buffer which point back to the
 original Org-mode file.
 
-** 14.5 Evaluating code blocks
+** 14.5 Evaluating code blocks                                        <<@Evaluating-code-blocks>>
 
 Code blocks can be evaluated[fn:FOOT167] and the results of
 evaluation optionally placed in the Org mode buffer. The results of
@@ -17984,24 +18043,23 @@ Vanilla flavor, as defined at
 Versions 7.8 or later
 
 [fn:FOOT147]
-[[http://docs.oasis-open.org/office/v1.2/OpenDocument-v1.2.html][Open
-Document Format for Office Applications (OpenDocument) Version 1.2]]
+[[http://docs.oasis-open.org/office/v1.2/OpenDocument-v1.2.html][Open Document Format for Office Applications (OpenDocument) Version 1.2]]
 
 [fn:FOOT148]
 This requires =transient-mark-mode= to be turned on
 
 [fn:FOOT149]
-To select the current subtree, use C-c @
+To select the current subtree, use */C-c @/*
 
 [fn:FOOT150]
 The column widths are interpreted as weighted ratios with the default
 weight being 1
 
 [fn:FOOT151]
-Use of ImageMagick is only desirable. However, if you routinely produce
-documents that have large images or you export your Org files that has
-images using a Emacs batch script, then the use of ImageMagick is
-mandatory.
+Use of ImageMagick is only desirable. However, if you routinely
+produce documents that have large images or you export your Org files
+that has images using a Emacs batch script, then the use of
+ImageMagick is mandatory.
 
 [fn:FOOT152]
 See [[http://www.mathtoweb.com/cgi-bin/mathtoweb_home.pl][MathToWeb]].
@@ -18010,30 +18068,29 @@ See [[http://www.mathtoweb.com/cgi-bin/mathtoweb_home.pl][MathToWeb]].
 See [[http://dlmf.nist.gov/LaTeXML/]].
 
 [fn:FOOT154]
-Your htmlfontify.el library must at least be at Emacs 24.1 levels for
-fontification to be turned on.
+Your =htmlfontify.el= library must at least be at Emacs 24.1 levels
+for fontification to be turned on.
 
 [fn:FOOT155]
-[[http://docs.oasis-open.org/office/v1.2/OpenDocument-v1.2.html][OpenDocument-v1.2
-Specification]]
+[[http://docs.oasis-open.org/office/v1.2/OpenDocument-v1.2.html][OpenDocument-v1.2 Specification]]
 
 [fn:FOOT156]
 See the =<table:table-template>= element of the OpenDocument-v1.2
 specification
 
 [fn:FOOT157]
-See the attributes =table:template-name=, =table:use-first-row-styles=,
-=table:use-last-row-styles=, =table:use-first-column-styles=,
-=table:use-last-column-styles=, =table:use-banding-rows-styles=, and
-=table:use-banding-column-styles= of the =<table:table>= element in the
-OpenDocument-v1.2 specification
+See the attributes =table:template-name=,
+=table:use-first-row-styles=, =table:use-last-row-styles=,
+=table:use-first-column-styles=, =table:use-last-column-styles=,
+=table:use-banding-rows-styles=, and =table:use-banding-column-styles=
+of the =<table:table>= element in the OpenDocument-v1.2 specification
 
 [fn:FOOT158]
 .odt files are nothing but ‘zip' archives
 
 [fn:FOOT159]
-By setting =org-texinfo-info-process=, it is possible to generate other
-formats, including DocBook.
+By setting =org-texinfo-info-process=, it is possible to generate
+other formats, including DocBook.
 
 [fn:FOOT160]
 See =org-texinfo-coding-system= for more information.
