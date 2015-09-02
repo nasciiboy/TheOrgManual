@@ -9389,1549 +9389,1842 @@ modify this GNU manual.”
 
 * 12 Exporting                                                        <<@Exporting>>
 
-The Org mode export facilities can be used to export Org documents or
-parts of Org documents to a variety of other formats. In addition, these
-facilities can be used with =orgtbl-mode= and/or =orgstruct-mode= in
-foreign buffers so you can author tables and lists in Org syntax and
-convert them in place to the target language.
-
-ASCII export produces a readable and simple version of an Org file for
-printing and sharing notes. HTML export allows you to easily publish
-notes on the web, or to build full-fledged websites. LaTeX export lets
-you use Org mode and its structured editing functions to create
-arbitrarily complex LaTeX files for any kind of document. OpenDocument
-Text (ODT) export allows seamless collaboration across organizational
-boundaries. Markdown export lets you seamlessly collaborate with other
-developers. Finally, iCal export can extract entries with deadlines or
-appointments to produce a file in the iCalendar format.
-
-** 12.1 The export dispatcher
-
-The main entry point for export related tasks is the dispatcher, a
-hierarchical menu from which it is possible to select an export format
-and toggle export options[fn:FOOT128] from which it is possible
-to select an export format and to toggle export options.
-
-C-c C-e (=org-export-dispatch=)
-
-Dispatch for export and publishing commands. When called with a C-u
-prefix argument, repeat the last export command on the current buffer
-while preserving toggled options. If the current buffer hasn't changed
-and subtree export was activated, the command will affect that same
-subtree.
-
-Normally the entire buffer is exported, but if there is an active region
-only that part of the buffer will be exported.
-
-Several export options (see [[@Export-settings][Export settings]]) can
-be toggled from the export dispatcher with the following key
-combinations:
-
--  C-a :: Toggle asynchronous export. Asynchronous export uses an
-   external Emacs process that is configured with a specified
-   initialization file.
-
-   While exporting asynchronously, the output is not displayed, but
-   stored in a place called “the export stack”. This stack can be
-   displayed by calling the dispatcher with a double C-u prefix
-   argument, or with & key from the dispatcher menu.
-
-   To make this behavior the default, customize the variable
-   =org-export-in-background=.
-
--  C-b :: Toggle body-only export. Its effect depends on the back-end
-   used. Typically, if the back-end has a header section (like
-   =<head>...</head>= in the HTML back-end), a body-only export will not
-   include this header.
-
--  C-s :: Toggle subtree export. The top heading becomes the document
-   title.
-
-   You can change the default state of this option by setting
-   =org-export-initial-scope=.
-
--  C-v :: Toggle visible-only export. Only export the text that is
-   currently visible, i.e., not hidden by outline visibility in the
-   buffer.
-
-** 12.2 Export back-ends
-
-An export back-end is a library that translates Org syntax into a
-foreign format. An export format is not available until the proper
-back-end has been loaded.
-
-By default, the following four back-ends are loaded: =ascii=, =html=,
-=icalendar= and =latex=. It is possible to add more (or remove some) by
-customizing =org-export-backends=.
-
-Built-in back-ends include:
+  The Org mode export facilities can be used to export Org documents
+  or parts of Org documents to a variety of other formats. In
+  addition, these facilities can be used with =orgtbl-mode= and/or
+  =orgstruct-mode= in foreign buffers so you can author tables and
+  lists in Org syntax and convert them in place to the target
+  language.
+
+  ASCII export produces a readable and simple version of an Org file
+  for printing and sharing notes. HTML export allows you to easily
+  publish notes on the web, or to build full-fledged websites. LaTeX
+  export lets you use Org mode and its structured editing functions to
+  create arbitrarily complex LaTeX files for any kind of
+  document. OpenDocument Text (ODT) export allows seamless
+  collaboration across organizational boundaries. Markdown export lets
+  you seamlessly collaborate with other developers. Finally, iCal
+  export can extract entries with deadlines or appointments to produce
+  a file in the iCalendar format.
+
+  | • [[@The-export-dispatcher][The export dispatcher]]:      | The main exporter interface               |
+  | • [[@Export-back_ends][Export back-ends]]:           | Built-in export formats                   |
+  | • [[@Export-settings][Export settings]]:            | Generic export settings                   |
+  | • [[@ASCII_Latin_1_UTF_8-export][ASCII/Latin-1/UTF-8 export]]: | Exporting to flat files with encoding     |
+  | • [[@Beamer-export][Beamer export]]:              | Exporting as a Beamer presentation        |
+  | • [[@HTML-export][HTML export]]:                | Exporting to HTML                         |
+  | • [[@LaTeX-and-PDF-export][LaTeX and PDF export]]:       | Exporting to LaTeX, and processing to PDF |
+  | • [[@Markdown-export][Markdown export]]:            | Exporting to Markdown                     |
+  | • [[@OpenDocument-Text-export][OpenDocument Text export]]:   | Exporting to OpenDocument Text            |
+  | • [[@Org-export][Org export]]:                 | Exporting to Org                          |
+  | • [[@Texinfo-export][Texinfo export]]:             | Exporting to Texinfo                      |
+  | • [[@iCalendar-export][iCalendar export]]:           | Exporting to iCalendar                    |
+  | • [[@Other-built_in-back_ends][Other built-in back-ends]]:   | Exporting to a man page                   |
+  | • [[@Export-in-foreign-buffers][Export in foreign buffers]]:  | Author tables and lists in Org syntax     |
+  | • [[@Advanced-configuration][Advanced configuration]]:     | Fine-tuning the export output             |
+
+** 12.1 The export dispatcher                                         <<@The-export-dispatcher>>
+
+   The main entry point for export related tasks is the dispatcher, a
+   hierarchical menu from which it is possible to select an export
+   format and toggle export options[fn:FOOT128] from which it is
+   possible to select an export format and to toggle export options.
+
+    - */C-c C-e/* (=org-export-dispatch=)
+
+      Dispatch for export and publishing commands. When called with a
+      C-u prefix argument, repeat the last export command on the
+      current buffer while preserving toggled options. If the current
+      buffer hasn't changed and subtree export was activated, the
+      command will affect that same subtree.
+
+   Normally the entire buffer is exported, but if there is an active
+   region only that part of the buffer will be exported.
+
+   Several export options (see [[@Export-settings][Export settings]]) can be toggled from
+   the export dispatcher with the following key combinations:
+
+    - */C-a/*
 
--  ascii (ASCII format)
--  beamer (LaTeX Beamer format)
--  html (HTML format)
--  icalendar (iCalendar format)
--  latex (LaTeX format)
--  man (Man page format)
--  md (Markdown format)
--  odt (OpenDocument Text format)
--  org (Org format)
--  texinfo (Texinfo format)
+      Toggle asynchronous export. Asynchronous export uses an external
+      Emacs process that is configured with a specified initialization
+      file.
+
+      While exporting asynchronously, the output is not displayed, but
+      stored in a place called “the export stack”. This stack can be
+      displayed by calling the dispatcher with a double C-u prefix
+      argument, or with & key from the dispatcher menu.
+
+      To make this behavior the default, customize the variable
+      =org-export-in-background=.
+
+    - */C-b/*
+
+      Toggle body-only export. Its effect depends on the back-end
+      used. Typically, if the back-end has a header section (like
+      =<head>...</head>= in the HTML back-end), a body-only export
+      will not include this header.
+
+    - */C-s/*
+
+      Toggle subtree export. The top heading becomes the document
+      title.
+
+      You can change the default state of this option by setting
+      =org-export-initial-scope=.
+
+    - */C-v/*
+
+      Toggle visible-only export. Only export the text that is
+      currently visible, i.e., not hidden by outline visibility in the
+      buffer.
 
-Other back-ends might be found in the =contrib/= directory (see
-[[@Installation][Installation]]).
+** 12.2 Export back-ends                                              <<@Export-back_ends>>
 
-** 12.3 Export settings
+   An export back-end is a library that translates Org syntax into a
+   foreign format. An export format is not available until the proper
+   back-end has been loaded.
 
-Export options can be set: globally with variables; for an individual
-file by making variables buffer-local with in-buffer settings (see
-[[@In_buffer-settings][In-buffer settings]]), by setting individual
-keywords, or by specifying them in a compact form with the =#+OPTIONS=
-keyword; or for a tree by setting properties (see
-[[@Properties-and-columns][Properties and columns]]). Options set at a
-specific level override options set at a more general level.
+   By default, the following four back-ends are loaded: =ascii=,
+   =html=, =icalendar= and =latex=. It is possible to add more (or
+   remove some) by customizing =org-export-backends=.
 
-In-buffer settings may appear anywhere in the file, either directly or
-indirectly through a file included using ‘#+SETUPFILE: filename' syntax.
-Option keyword sets tailored to a particular back-end can be inserted
-from the export dispatcher (see [[@The-export-dispatcher][The export
-dispatcher]]) using the =Insert template= command by pressing =#=. To
-insert keywords individually, a good way to make sure the keyword is
-correct is to type =#+= and then to use M-<TAB> for completion.
+   Built-in back-ends include:
 
-The export keywords available for every back-end, and their equivalent
-global variables, include:
+    - ascii (ASCII format)
+    - beamer (LaTeX Beamer format)
+    - html (HTML format)
+    - icalendar (iCalendar format)
+    - latex (LaTeX format)
+    - man (Man page format)
+    - md (Markdown format)
+    - odt (OpenDocument Text format)
+    - org (Org format)
+    - texinfo (Texinfo format)
 
--  ‘AUTHOR' :: The document author (=user-full-name=).
+   Other back-ends might be found in the =contrib/= directory (see
+   [[@Installation][Installation]]).
 
--  ‘CREATOR' :: Entity responsible for output generation
-   (=org-export-creator-string=).
+** 12.3 Export settings                                               <<@Export-settings>>
 
--  ‘DATE' :: A date or a time-stamp[fn:FOOT129].
+   Export options can be set: globally with variables; for an
+   individual file by making variables buffer-local with in-buffer
+   settings (see [[@In_buffer-settings][In-buffer settings]]), by setting individual keywords,
+   or by specifying them in a compact form with the =#+OPTIONS=
+   keyword; or for a tree by setting properties (see [[@Properties-and-columns][Properties and
+   columns]]). Options set at a specific level override options set at a
+   more general level.
 
--  ‘EMAIL' :: The email address (=user-mail-address=).
+   In-buffer settings may appear anywhere in the file, either directly
+   or indirectly through a file included using ‘#+SETUPFILE: filename'
+   syntax.  Option keyword sets tailored to a particular back-end can
+   be inserted from the export dispatcher (see [[@The-export-dispatcher][The export dispatcher]])
+   using the =Insert template= command by pressing =#=. To insert
+   keywords individually, a good way to make sure the keyword is
+   correct is to type =#+= and then to use */M-<TAB>/* for completion.
 
--  ‘LANGUAGE' :: The language used for translating some strings
-   (=org-export-default-language=). E.g., ‘#+LANGUAGE: fr' will tell Org
-   to translate /File/ (english) into /Fichier/ (french) in the
-   clocktable.
+   The export keywords available for every back-end, and their
+   equivalent global variables, include:
 
--  ‘SELECT\_TAGS' :: The tags that select a tree for export
-   (=org-export-select-tags=). The default value is =:export:=. Within a
-   subtree tagged with =:export:=, you can still exclude entries with
-   =:noexport:= (see below). When headlines are selectively exported
-   with =:export:= anywhere in a file, text before the first headline is
-   ignored.
+    - ‘AUTHOR'
 
--  ‘EXCLUDE\_TAGS' :: The tags that exclude a tree from export
-   (=org-export-exclude-tags=). The default value is =:noexport:=.
-   Entries with the =:noexport:= tag will be unconditionally excluded
-   from the export, even if they have an =:export:= tag. Code blocks
-   contained in excluded subtrees will still be executed during export
-   even though the subtree is not exported.
+      The document author (=user-full-name=).
 
--  ‘TITLE' :: The title to be shown. You can use several such keywords
-   for long titles.
+    - ‘CREATOR'
 
-The =#+OPTIONS= keyword is a compact[fn:FOOT130] form that
-recognizes the following arguments:
+      Entity responsible for output generation
+      (=org-export-creator-string=).
 
--  =':= :: Toggle smart quotes (=org-export-with-smart-quotes=).
+    - ‘DATE'
 
--  =*:= :: Toggle emphasized text (=org-export-with-emphasize=).
+      A date or a time-stamp[fn:FOOT129].
 
--  =-:= :: Toggle conversion of special strings
-   (=org-export-with-special-strings=).
+    - ‘EMAIL'
 
--  =::= :: Toggle fixed-width sections (=org-export-with-fixed-width=).
+      The email address (=user-mail-address=).
 
--  =<:= :: Toggle inclusion of any time/date active/inactive stamps
-   (=org-export-with-timestamps=).
+    - ‘LANGUAGE'
 
--  =\n:= :: Toggle line-break-preservation
-   (=org-export-preserve-breaks=).
+      The language used for translating some strings
+      (=org-export-default-language=). E.g., ‘#+LANGUAGE: fr' will
+      tell Org to translate /File/ (english) into /Fichier/ (french)
+      in the clocktable.
 
--  =^:= :: Toggle TeX-like syntax for sub- and superscripts. If you
-   write "\^:{}", ‘a\_{b}' will be interpreted, but the simple ‘a\_b'
-   will be left as it is (=org-export-with-sub-superscripts=).
+    - ‘SELECT\_TAGS'
 
--  =arch:= :: Configure export of archived trees. Can be set to
-   =headline= to only process the headline, skipping its contents
-   (=org-export-with-archived-trees=).
+      The tags that select a tree for export
+      (=org-export-select-tags=). The default value is
+      =:export:=. Within a subtree tagged with =:export:=, you can
+      still exclude entries with =:noexport:= (see below). When
+      headlines are selectively exported with =:export:= anywhere in a
+      file, text before the first headline is ignored.
 
--  =author:= :: Toggle inclusion of author name into exported file
-   (=org-export-with-author=).
+    - ‘EXCLUDE\_TAGS'
 
--  =c:= :: Toggle inclusion of CLOCK keywords
-   (=org-export-with-clocks=).
+      The tags that exclude a tree from export
+      (=org-export-exclude-tags=). The default value is =:noexport:=.
+      Entries with the =:noexport:= tag will be unconditionally
+      excluded from the export, even if they have an =:export:=
+      tag. Code blocks contained in excluded subtrees will still be
+      executed during export even though the subtree is not exported.
 
--  =creator:= :: Toggle inclusion of creator info into exported file
-   (=org-export-with-creator=).
+    - ‘TITLE'
 
--  =d:= :: Toggle inclusion of drawers, or list drawers to include
-   (=org-export-with-drawers=).
+      The title to be shown. You can use several such keywords for
+      long titles.
 
--  =date:= :: Toggle inclusion of a date into exported file
-   (=org-export-with-date=).
+   The =#+OPTIONS= keyword is a compact[fn:FOOT130] form that
+   recognizes the following arguments:
 
--  =e:= :: Toggle inclusion of entities (=org-export-with-entities=).
+    - =':=
 
--  =email:= :: Toggle inclusion of the author's e-mail into exported
-   file (=org-export-with-email=).
+      Toggle smart quotes (=org-export-with-smart-quotes=).
 
--  =f:= :: Toggle the inclusion of footnotes
-   (=org-export-with-footnotes=).
+    - =*:=
 
--  =H:= :: Set the number of headline levels for export
-   (=org-export-headline-levels=). Below that level, headlines are
-   treated differently. In most back-ends, they become list items.
+      Toggle emphasized text (=org-export-with-emphasize=).
 
--  =inline:= :: Toggle inclusion of inlinetasks
-   (=org-export-with-inlinetasks=).
+    - =-:=
 
--  =num:= :: Toggle section-numbers (=org-export-with-section-numbers=).
-   It can also be set to a number ‘n', so only headlines at that level
-   or above will be numbered. Finally, irrespective of the level of a
-   specific headline, the numbering of it can be disabled by setting the
-   =UNNUMBERED= property to non-=nil=. This also affects subheadings.
+      Toggle conversion of special strings
+      (=org-export-with-special-strings=).
 
--  =p:= :: Toggle export of planning information
-   (=org-export-with-planning=). “Planning information” is the line
-   containing the =SCHEDULED:=, the =DEADLINE:= or the =CLOSED:= cookies
-   or a combination of them.
+    - =::=
 
--  =pri:= :: Toggle inclusion of priority cookies
-   (=org-export-with-priority=).
+      Toggle fixed-width sections (=org-export-with-fixed-width=).
 
--  =prop:= :: Toggle inclusion of property drawers, or list properties
-   to include (=org-export-with-properties=).
+    - =<:=
 
--  =stat:= :: Toggle inclusion of statistics cookies
-   (=org-export-with-statistics-cookies=).
+      Toggle inclusion of any time/date active/inactive stamps
+      (=org-export-with-timestamps=).
 
--  =tags:= :: Toggle inclusion of tags, may also be =not-in-toc=
-   (=org-export-with-tags=).
+    - =\n:=
 
--  =tasks:= :: Toggle inclusion of tasks (TODO items), can be =nil= to
-   remove all tasks, =todo= to remove DONE tasks, or a list of keywords
-   to keep (=org-export-with-tasks=).
+      Toggle line-break-preservation (=org-export-preserve-breaks=).
 
--  =tex:= :: Configure export of LaTeX fragments and environments. It
-   may be set to =verbatim= (=org-export-with-latex=).
+    - =^:=
 
--  =timestamp:= :: Toggle inclusion of the creation time into exported
-   file (=org-export-time-stamp-file=).
+      Toggle TeX-like syntax for sub- and superscripts. If you write
+      "^:{}", =a_{b}= will be interpreted, but the simple =a_b=
+      will be left as it is (=org-export-with-sub-superscripts=).
 
--  =title:= :: Toggle inclusion of title (=org-export-with-title=).
+    - =arch:=
 
--  =toc:= :: Toggle inclusion of the table of contents, or set the level
-   limit (=org-export-with-toc=).
+      Configure export of archived trees. Can be set to =headline= to
+      only process the headline, skipping its contents
+      (=org-export-with-archived-trees=).
 
--  =todo:= :: Toggle inclusion of TODO keywords into exported text
-   (=org-export-with-todo-keywords=).
+    - =author:=
 
--  =|:= :: Toggle inclusion of tables (=org-export-with-tables=).
+      Toggle inclusion of author name into exported file
+      (=org-export-with-author=).
 
-When exporting only a subtree, each of the previous
-keywords[fn:FOOT131] can be overridden locally by special node
-properties. These begin with ‘EXPORT\_', followed by the name of the
-keyword they supplant. For example, ‘DATE' and ‘OPTIONS' keywords
-become, respectively, ‘EXPORT\_DATE' and ‘EXPORT\_OPTIONS' properties.
+    - =c:=
 
-If =org-export-allow-bind-keywords= is non-=nil=, Emacs variables can
-become buffer-local during export by using the BIND keyword. Its syntax
-is ‘#+BIND: variable value'. This is particularly useful for in-buffer
-settings that cannot be changed using specific keywords.
+      Toggle inclusion of CLOCK keywords (=org-export-with-clocks=).
 
-The name of the output file to be generated is taken from the file
-associated to the buffer, when possible, or asked to you otherwise. For
-subtree export, you can also set =EXPORT_FILE_NAME= property. In all
-cases, only the base name of the file is retained, and a back-end
-specific extension is added.
+    - =creator:=
 
-** 12.4 ASCII/Latin-1/UTF-8 export
+      Toggle inclusion of creator info into exported file
+      (=org-export-with-creator=).
 
-ASCII export produces a simple and very readable version of an Org mode
-file, containing only plain ASCII. Latin-1 and UTF-8 export augment the
-file with special characters and symbols available in these encodings.
+    - =d:=
 
-Upon exporting, text is filled and justified, when appropriate,
-according the text width set in =org-ascii-text-width=.
+      Toggle inclusion of drawers, or list drawers to include
+      (=org-export-with-drawers=).
 
-Links are exported in a footnote-like style, with the descriptive part
-in the text and the link in a note before the next heading. See the
-variable =org-ascii-links-to-notes= for details and other options.
+    - =date:=
+
+      Toggle inclusion of a date into exported file
+      (=org-export-with-date=).
+
+    - =e:=
+
+      Toggle inclusion of entities (=org-export-with-entities=).
+
+    - =email:=
+
+      Toggle inclusion of the author's e-mail into exported file
+      (=org-export-with-email=).
+
+    - =f:=
+
+      Toggle the inclusion of footnotes (=org-export-with-footnotes=).
+
+    - =H:=
+
+      Set the number of headline levels for export
+      (=org-export-headline-levels=). Below that level, headlines are
+      treated differently. In most back-ends, they become list items.
+
+    - =inline:=
+
+      Toggle inclusion of inlinetasks (=org-export-with-inlinetasks=).
+
+    - =num:=
+
+      Toggle section-numbers (=org-export-with-section-numbers=).  It
+      can also be set to a number ‘n', so only headlines at that level
+      or above will be numbered. Finally, irrespective of the level of
+      a specific headline, the numbering of it can be disabled by
+      setting the =UNNUMBERED= property to non-=nil=. This also
+      affects subheadings.
+
+    - =p:=
+
+      Toggle export of planning information
+      (=org-export-with-planning=). “Planning information” is the line
+      containing the =SCHEDULED:=, the =DEADLINE:= or the =CLOSED:=
+      cookies or a combination of them.
+
+    - =pri:=
+
+      Toggle inclusion of priority cookies
+      (=org-export-with-priority=).
+
+    - =prop:=
+
+      Toggle inclusion of property drawers, or list properties to
+      include (=org-export-with-properties=).
+
+    - =stat:=
+
+      Toggle inclusion of statistics cookies
+      (=org-export-with-statistics-cookies=).
+
+    - =tags:=
+
+      Toggle inclusion of tags, may also be =not-in-toc=
+      (=org-export-with-tags=).
+
+    - =tasks:=
+
+      Toggle inclusion of tasks (TODO items), can be =nil= to remove
+      all tasks, =todo= to remove DONE tasks, or a list of keywords to
+      keep (=org-export-with-tasks=).
+
+    - =tex:=
+
+      Configure export of LaTeX fragments and environments. It may be
+      set to =verbatim= (=org-export-with-latex=).
+
+    - =timestamp:=
+
+      Toggle inclusion of the creation time into exported file
+      (=org-export-time-stamp-file=).
+
+    - =title:=
+
+      Toggle inclusion of title (=org-export-with-title=).
+
+    - =toc:=
+
+      Toggle inclusion of the table of contents, or set the level
+      limit (=org-export-with-toc=).
+
+    - =todo:=
+
+      Toggle inclusion of TODO keywords into exported text
+      (=org-export-with-todo-keywords=).
+
+    - =|:=
+
+      Toggle inclusion of tables (=org-export-with-tables=).
+
+   When exporting only a subtree, each of the previous
+   keywords[fn:FOOT131] can be overridden locally by special node
+   properties. These begin with =EXPORT_=, followed by the name of the
+   keyword they supplant. For example, =DATE= and =OPTIONS= keywords
+   become, respectively, =EXPORT_DATE= and =EXPORT_OPTIONS=
+   properties.
+
+   If =org-export-allow-bind-keywords= is non- =nil=, Emacs variables
+   can become buffer-local during export by using the BIND
+   keyword. Its syntax is ‘#+BIND: variable value'. This is
+   particularly useful for in-buffer settings that cannot be changed
+   using specific keywords.
+
+   The name of the output file to be generated is taken from the file
+   associated to the buffer, when possible, or asked to you
+   otherwise. For subtree export, you can also set =EXPORT_FILE_NAME=
+   property. In all cases, only the base name of the file is retained,
+   and a back-end specific extension is added.
+
+** 12.4 ASCII/Latin-1/UTF-8 export                                    <<@ASCII_Latin_1_UTF_8-export>>
+
+   ASCII export produces a simple and very readable version of an Org
+   mode file, containing only plain ASCII. Latin-1 and UTF-8 export
+   augment the file with special characters and symbols available in
+   these encodings.
+
+   Upon exporting, text is filled and justified, when appropriate,
+   according the text width set in =org-ascii-text-width=.
+
+   Links are exported in a footnote-like style, with the descriptive
+   part in the text and the link in a note before the next
+   heading. See the variable =org-ascii-links-to-notes= for details
+   and other options.
 
 *** ASCII export commands
 
-C-c C-e t a/l/u (=org-ascii-export-to-ascii=)
+     - */C-c C-e t a/l/u/* (=org-ascii-export-to-ascii=)
 
-Export as an ASCII file. For an Org file, myfile.org, the ASCII file
-will be myfile.txt. The file will be overwritten without warning. When
-the original file is myfile.txt, the resulting file becomes
-myfile.txt.txt in order to prevent data loss.
+       Export as an ASCII file. For an Org file, myfile.org, the ASCII
+       file will be myfile.txt. The file will be overwritten without
+       warning. When the original file is myfile.txt, the resulting
+       file becomes myfile.txt.txt in order to prevent data loss.
 
-C-c C-e t A/L/U (=org-ascii-export-as-ascii=)
+     - */C-c C-e t A/L/U/* (=org-ascii-export-as-ascii=)
 
-Export to a temporary buffer. Do not create a file.
+       Export to a temporary buffer. Do not create a file.
 
 *** ASCII specific export settings
 
-ASCII export introduces a single of keywords, similar to the general
-options settings described in [[@Export-settings][Export settings]].
+    ASCII export introduces a single of keywords, similar to the
+    general options settings described in [[@Export-settings][Export settings]].
 
--  ‘SUBTITLE' :: The document subtitle.
+     - ‘SUBTITLE'
+
+       The document subtitle.
 
 *** Header and sectioning structure
 
-In the exported version, the first three outline levels become
-headlines, defining a general document structure. Additional levels are
-exported as lists. The transition can also occur at a different level
-(see [[@Export-settings][Export settings]]).
+    In the exported version, the first three outline levels become
+    headlines, defining a general document structure. Additional
+    levels are exported as lists. The transition can also occur at a
+    different level (see [[@Export-settings][Export settings]]).
 
 *** Quoting ASCII text
 
-You can insert text that will only appear when using =ASCII= back-end
-with the following constructs:
+    You can insert text that will only appear when using =ASCII=
+    back-end with the following constructs:
 
-#+BEGIN_EXAMPLE
-    Text @@ascii:and additional text@@ within a paragraph.
+    #+BEGIN_EXAMPLE
+      Text @@ascii:and additional text@@ within a paragraph.
 
-    #+ASCII: Some text
+      #+ASCII: Some text
 
-    #+BEGIN_ASCII
-    All lines in this block will appear only when using this back-end.
-    #+END_ASCII
-#+END_EXAMPLE
+      #+BEGIN_ASCII
+      All lines in this block will appear only when using this back-end.
+      #+END_ASCII
+    #+END_EXAMPLE
 
 *** ASCII specific attributes
 
-=ASCII= back-end only understands one attribute, =:width=, which
-specifies the length, in characters, of a given horizontal rule. It must
-be specified using an =ATTR_ASCII= line, directly preceding the rule.
+    =ASCII= back-end only understands one attribute, =:width=, which
+    specifies the length, in characters, of a given horizontal
+    rule. It must be specified using an =ATTR_ASCII= line, directly
+    preceding the rule.
 
-#+BEGIN_EXAMPLE
-    #+ATTR_ASCII: :width 10
-    -----
-#+END_EXAMPLE
+    #+BEGIN_EXAMPLE
+      #+ATTR_ASCII: :width 10
+      -----
+    #+END_EXAMPLE
 
 *** ASCII special blocks
 
-In addition to =#+BEGIN_CENTER= blocks (see
-[[@Paragraphs][Paragraphs]]), it is possible to justify contents to the
-left or the right of the page with the following dedicated blocks.
+    In addition to =#+BEGIN_CENTER= blocks (see [[@Paragraphs][Paragraphs]]), it is
+    possible to justify contents to the left or the right of the page
+    with the following dedicated blocks.
 
-#+BEGIN_EXAMPLE
-    #+BEGIN_JUSTIFYLEFT
-    It's just a jump to the left...
-    #+END_JUSTIFYLEFT
+    #+BEGIN_EXAMPLE
+      #+BEGIN_JUSTIFYLEFT
+      It's just a jump to the left...
+      #+END_JUSTIFYLEFT
 
-    #+BEGIN_JUSTIFYRIGHT
-    ...and then a step to the right.
-    #+END_JUSTIFYRIGHT
-#+END_EXAMPLE
+      #+BEGIN_JUSTIFYRIGHT
+      ...and then a step to the right.
+      #+END_JUSTIFYRIGHT
+    #+END_EXAMPLE
 
-** 12.5 Beamer export
+** 12.5 Beamer export                                                 <<@Beamer-export>>
 
-The LaTeX class /Beamer/ allows production of high quality presentations
-using LaTeX and pdf processing. Org mode has special support for turning
-an Org mode file or tree into a Beamer presentation.
+   The LaTeX class /Beamer/ allows production of high quality
+   presentations using LaTeX and pdf processing. Org mode has special
+   support for turning an Org mode file or tree into a Beamer
+   presentation.
 
-*** 12.5.1 Beamer export commands
+   | • [[@Beamer-export-commands][Beamer export commands]]:                 | How to export Beamer documents.         |
+   | • [[@Beamer-specific-export-settings][Beamer specific export settings]]:        | Export settings for Beamer export.      |
+   | • [[@Sectioning-Frames-and-Blocks-in-Beamer][Sectioning Frames and Blocks in Beamer]]: | Blocks and sections in Beamer.          |
+   | • [[@Beamer-specific-syntax][Beamer specific syntax]]:                 | Syntax specific to Beamer.              |
+   | • [[@Editing-support][Editing support]]:                        | Helper functions for Org Beamer export. |
+   | • [[@A-Beamer-Example][A Beamer Example]]:                       | An complete Beamer example.             |
 
-C-c C-e l b (=org-beamer-export-to-latex=)
+*** 12.5.1 Beamer export commands                                     <<@Beamer-export-commands>>
 
-Export as a LaTeX file. For an Org file myfile.org, the LaTeX file will
-be myfile.tex. The file will be overwritten without warning.
+     - */C-c C-e l b/* (=org-beamer-export-to-latex=)
 
-C-c C-e l B (=org-beamer-export-as-latex=)
+       Export as a LaTeX file. For an Org file myfile.org, the LaTeX
+       file will be myfile.tex. The file will be overwritten without
+       warning.
 
-Export to a temporary buffer. Do not create a file.
+     - */C-c C-e l B/* (=org-beamer-export-as-latex=)
 
-C-c C-e l P (=org-beamer-export-to-pdf=)
+       Export to a temporary buffer. Do not create a file.
 
-Export as LaTeX and then process to PDF.
+     - */C-c C-e l P/* (=org-beamer-export-to-pdf=)
 
-C-c C-e l O
+       Export as LaTeX and then process to PDF.
 
-Export as LaTeX and then process to PDF, then open the resulting PDF
-file.
+     - */C-c C-e l O/*
 
-*** 12.5.2 Beamer specific export settings
+       Export as LaTeX and then process to PDF, then open the
+       resulting PDF file.
 
-Beamer export introduces a number of keywords, similar to the general
-options settings described in [[@Export-settings][Export settings]].
+*** 12.5.2 Beamer specific export settings                            <<@Beamer-specific-export-settings>>
 
--  ‘BEAMER\_THEME' :: The Beamer theme (=org-beamer-theme=). Options can
-   be specified via brackets, for example:
+    Beamer export introduces a number of keywords, similar to the
+    general options settings described in [[@Export-settings][Export settings]].
 
-   #+BEGIN_EXAMPLE
-       #+BEAMER_THEME: Rochester [height=20pt]
-   #+END_EXAMPLE
+     - =BEAMER\_THEME=
 
--  ‘BEAMER\_FONT\_THEME' :: The Beamer font theme.
+       The Beamer theme (=org-beamer-theme=). Options can be specified
+       via brackets, for example:
 
--  ‘BEAMER\_INNER\_THEME' :: The Beamer inner theme.
+       #+BEGIN_EXAMPLE
+         #+BEAMER_THEME: Rochester [height=20pt]
+       #+END_EXAMPLE
 
--  ‘BEAMER\_OUTER\_THEME' :: The Beamer outer theme.
+     - =BEAMER_FONT_THEME=
 
--  ‘BEAMER\_HEADER' :: Arbitrary lines inserted into the preamble, just
-   before the ‘hyperref' settings.
+       The Beamer font theme.
 
--  ‘DESCRIPTION' :: The document description. By default these are
-   inserted as metadata using ‘hyperref'. Document metadata can be
-   configured via =org-latex-hyperref-template=. Description can also be
-   typeset as part of the front matter via =org-latex-title-command=.
-   You can use several =#+DESCRIPTION= keywords if the description is is
-   long.
+     - =BEAMER_INNER_THEME=
 
--  ‘KEYWORDS' :: The keywords defining the contents of the document. By
-   default these are inserted as metadata using ‘hyperref'. Document
-   metadata can be configured via =org-latex-hyperref-template=.
-   Description can also be typeset as part of the front matter via
-   =org-latex-title-command=. You can use several =#+KEYWORDS= if the
-   description is is long.
+       The Beamer inner theme.
 
--  ‘SUBTITLE' :: The document subtitle. This is typeset using the format
-   string =org-beamer-subtitle-format=. It can also access via
-   =org-latex-hyperref-template= or typeset as part of the front matter
-   via =org-latex-title-command=.
+     - =BEAMER_OUTER_THEME=
 
-*** 12.5.3 Sectioning, Frames and Blocks in Beamer
+       The Beamer outer theme.
 
-Any tree with not-too-deep level nesting should in principle be
-exportable as a Beamer presentation. Headlines fall into three
-categories: sectioning elements, frames and blocks.
+     - =BEAMER_HEADER=
 
--  - Headlines become frames when their level is equal to
-   =org-beamer-frame-level= or =H= value in an =OPTIONS= line (see
-   [[@Export-settings][Export settings]]).
+       Arbitrary lines inserted into the preamble, just before the
+       ‘hyperref' settings.
 
-   Though, if a headline in the current tree has a =BEAMER_ENV= property
-   set to either to =frame= or =fullframe=, its level overrides the
-   variable. A =fullframe= is a frame with an empty (ignored) title.
+     - =DESCRIPTION=
 
--  - All frame's children become =block= environments. Special block
-   types can be enforced by setting headline's =BEAMER_ENV=
-   property[fn:FOOT132] to an appropriate value (see
-   =org-beamer-environments-default= for supported values and
-   =org-beamer-environments-extra= for adding more).
--  - As a special case, if the =BEAMER_ENV= property is set to either
-   =appendix=, =note=, =noteNH= or =againframe=, the headline will
-   become, respectively, an appendix, a note (within frame or between
-   frame, depending on its level), a note with its title ignored or an
-   =\againframe= command. In the latter case, a =BEAMER_REF= property is
-   mandatory in order to refer to the frame being resumed, and contents
-   are ignored.
+       The document description. By default these are inserted as
+       metadata using ‘hyperref'. Document metadata can be configured
+       via =org-latex-hyperref-template=. Description can also be
+       typeset as part of the front matter via
+       =org-latex-title-command=.  You can use several =#+DESCRIPTION=
+       keywords if the description is is long.
 
-   Also, a headline with an =ignoreheading= environment will have its
-   contents only inserted in the output. This special value is useful to
-   have data between frames, or to properly close a =column=
-   environment.
+     - =KEYWORDS=
 
-Headlines also support =BEAMER_ACT= and =BEAMER_OPT= properties. The
-former is translated as an overlay/action specification, or a default
-overlay specification when enclosed within square brackets. The latter
-specifies options[fn:FOOT133] for the current frame or block.
-The export back-end will automatically wrap properties within angular or
-square brackets when appropriate.
+       The keywords defining the contents of the document. By default
+       these are inserted as metadata using ‘hyperref'. Document
+       metadata can be configured via =org-latex-hyperref-template=.
+       Description can also be typeset as part of the front matter via
+       =org-latex-title-command=. You can use several =#+KEYWORDS= if
+       the description is is long.
 
-Moreover, headlines handle the =BEAMER_COL= property. Its value should
-be a decimal number representing the width of the column as a fraction
-of the total text width. If the headline has no specific environment,
-its title will be ignored and its contents will fill the column created.
-Otherwise, the block will fill the whole column and the title will be
-preserved. Two contiguous headlines with a non-=nil= =BEAMER_COL= value
-share the same =columns= LaTeX environment. It will end before the next
-headline without such a property. This environment is generated
-automatically. Although, it can also be explicitly created, with a
-special =columns= value for =BEAMER_ENV= property (if it needs to be set
-up with some specific options, for example).
+     - =SUBTITLE=
 
-*** 12.5.4 Beamer specific syntax
+       The document subtitle. This is typeset using the format string
+       =org-beamer-subtitle-format=. It can also access via
+       =org-latex-hyperref-template= or typeset as part of the front
+       matter via =org-latex-title-command=.
 
-The Beamer back-end is an extension of the LaTeX back-end. As such, all
-LaTeX specific syntax (e.g., ‘#+LATEX:' or ‘#+ATTR\_LATEX:') is
-recognized. See [[@LaTeX-and-PDF-export][LaTeX and PDF export]] for more
-information.
+*** 12.5.3 Sectioning, Frames and Blocks in Beamer                    <<@Sectioning-Frames-and-Blocks-in-Beamer>>
 
-Table of contents generated from =toc:t= =OPTION= keyword are wrapped
-within a =frame= environment. Those generated from a =TOC= keyword (see
-[[@Table-of-contents][Table of contents]]) are not. In that case, it is
-also possible to specify options, enclosed within square brackets.
+    Any tree with not-too-deep level nesting should in principle be
+    exportable as a Beamer presentation. Headlines fall into three
+    categories: sectioning elements, frames and blocks.
 
-#+BEGIN_EXAMPLE
-    #+TOC: headlines [currentsection]
-#+END_EXAMPLE
+     - Headlines become frames when their level is equal to
+       =org-beamer-frame-level= or =H= value in an =OPTIONS= line (see
+       [[@Export-settings][Export settings]]).
 
-Beamer specific code can be inserted with the following constructs:
+       Though, if a headline in the current tree has a =BEAMER_ENV=
+       property set to either to =frame= or =fullframe=, its level
+       overrides the variable. A =fullframe= is a frame with an empty
+       (ignored) title.
 
-#+BEGIN_EXAMPLE
-    #+BEAMER: \pause
+     - All frame's children become =block= environments. Special block
+       types can be enforced by setting headline's =BEAMER_ENV=
+       property[fn:FOOT132] to an appropriate value (see
+       =org-beamer-environments-default= for supported values and
+       =org-beamer-environments-extra= for adding more).
 
-    #+BEGIN_BEAMER
-    All lines in this block will appear only when using this back-end.
-    #+END_BEAMER
+     - As a special case, if the =BEAMER_ENV= property is set to
+       either =appendix=, =note=, =noteNH= or =againframe=, the
+       headline will become, respectively, an appendix, a note (within
+       frame or between frame, depending on its level), a note with
+       its title ignored or an =\againframe= command. In the latter
+       case, a =BEAMER_REF= property is mandatory in order to refer to
+       the frame being resumed, and contents are ignored.
 
-    Text @@beamer:some code@@ within a paragraph.
-#+END_EXAMPLE
+       Also, a headline with an =ignoreheading= environment will have
+       its contents only inserted in the output. This special value is
+       useful to have data between frames, or to properly close a
+       =column= environment.
 
-In particular, this last example can be used to add overlay
-specifications to objects whose type is among =bold=, =item=, =link=,
-=radio-target= and =target=, when the value is enclosed within angular
-brackets and put at the beginning the object.
+    Headlines also support =BEAMER_ACT= and =BEAMER_OPT=
+    properties. The former is translated as an overlay/action
+    specification, or a default overlay specification when enclosed
+    within square brackets. The latter specifies options[fn:FOOT133]
+    for the current frame or block.  The export back-end will
+    automatically wrap properties within angular or square brackets
+    when appropriate.
 
-#+BEGIN_EXAMPLE
-    A *@@beamer:<2->@@useful* feature
-#+END_EXAMPLE
+    Moreover, headlines handle the =BEAMER_COL= property. Its value
+    should be a decimal number representing the width of the column as
+    a fraction of the total text width. If the headline has no
+    specific environment, its title will be ignored and its contents
+    will fill the column created.  Otherwise, the block will fill the
+    whole column and the title will be preserved. Two contiguous
+    headlines with a non-=nil= =BEAMER_COL= value share the same
+    =columns= LaTeX environment. It will end before the next headline
+    without such a property. This environment is generated
+    automatically. Although, it can also be explicitly created, with a
+    special =columns= value for =BEAMER_ENV= property (if it needs to
+    be set up with some specific options, for example).
 
-Eventually, every plain list has support for =:environment=, =:overlay=
-and =:options= attributes through =ATTR_BEAMER= affiliated keyword. The
-first one allows the use of a different environment, the second sets
-overlay specifications and the last one inserts optional arguments in
-current list environment.
+*** 12.5.4 Beamer specific syntax                                     <<@Beamer-specific-syntax>>
 
-#+BEGIN_EXAMPLE
-    #+ATTR_BEAMER: :overlay +-
-    - item 1
-    - item 2
-#+END_EXAMPLE
+    The Beamer back-end is an extension of the LaTeX back-end. As
+    such, all LaTeX specific syntax (e.g., ‘#+LATEX:' or
+    ‘#+ATTR\_LATEX:') is recognized. See [[@LaTeX-and-PDF-export][LaTeX and PDF export]] for more
+    information.
 
-*** 12.5.5 Editing support
+    Table of contents generated from =toc:t= =OPTION= keyword are
+    wrapped within a =frame= environment. Those generated from a =TOC=
+    keyword (see [[@Table-of-contents][Table of contents]]) are not. In that case, it is also
+    possible to specify options, enclosed within square brackets.
 
-You can turn on a special minor mode =org-beamer-mode= for faster
-editing with:
+    #+BEGIN_EXAMPLE
+      #+TOC: headlines [currentsection]
+    #+END_EXAMPLE
 
-#+BEGIN_EXAMPLE
-    #+STARTUP: beamer
-#+END_EXAMPLE
+    Beamer specific code can be inserted with the following
+    constructs:
 
-C-c C-b (=org-beamer-select-environment=)
+    #+BEGIN_EXAMPLE
+      #+BEAMER: \pause
 
-In =org-beamer-mode=, this key offers fast selection of a Beamer
-environment or the =BEAMER_COL= property.
+      #+BEGIN_BEAMER
+      All lines in this block will appear only when using this back-end.
+      #+END_BEAMER
 
-*** 12.5.6 A Beamer example
+      Text @@beamer:some code@@ within a paragraph.
+    #+END_EXAMPLE
 
-Here is a simple example Org document that is intended for Beamer
-export.
+    In particular, this last example can be used to add overlay
+    specifications to objects whose type is among =bold=, =item=,
+    =link=, =radio-target= and =target=, when the value is enclosed
+    within angular brackets and put at the beginning the object.
 
-#+BEGIN_EXAMPLE
-    #+TITLE: Example Presentation
-    #+AUTHOR: Carsten Dominik
-    #+OPTIONS: H:2 toc:t num:t
-    #+LATEX_CLASS: beamer
-    #+LATEX_CLASS_OPTIONS: [presentation]
-    #+BEAMER_THEME: Madrid
-    #+COLUMNS: %45ITEM %10BEAMER_ENV(Env) %10BEAMER_ACT(Act) %4BEAMER_COL(Col) %8BEAMER_OPT(Opt)
+    #+BEGIN_EXAMPLE
+      A *@@beamer:<2->@@useful* feature
+    #+END_EXAMPLE
 
-    * This is the first structural section
+    Eventually, every plain list has support for =:environment=,
+    =:overlay= and =:options= attributes through =ATTR_BEAMER=
+    affiliated keyword. The first one allows the use of a different
+    environment, the second sets overlay specifications and the last
+    one inserts optional arguments in current list environment.
 
-    ** Frame 1
-    *** Thanks to Eric Fraga                                           :B_block:
-        :PROPERTIES:
-        :BEAMER_COL: 0.48
-        :BEAMER_ENV: block
-        :END:
-        for the first viable Beamer setup in Org
-    *** Thanks to everyone else                                        :B_block:
-        :PROPERTIES:
-        :BEAMER_COL: 0.48
-        :BEAMER_ACT: <2->
-        :BEAMER_ENV: block
-        :END:
-        for contributing to the discussion
-    **** This will be formatted as a beamer note                       :B_note:
-         :PROPERTIES:
-         :BEAMER_env: note
-         :END:
-    ** Frame 2 (where we will not use columns)
-    *** Request
-        Please test this stuff!
-#+END_EXAMPLE
+    #+BEGIN_EXAMPLE
+      #+ATTR_BEAMER: :overlay +-
+      - item 1
+      - item 2
+    #+END_EXAMPLE
+
+*** 12.5.5 Editing support                                            <<@Editing-support>>
+
+    You can turn on a special minor mode =org-beamer-mode= for faster
+    editing with:
+
+    #+BEGIN_EXAMPLE
+      #+STARTUP: beamer
+    #+END_EXAMPLE
+
+      - */C-c C-b/* (=org-beamer-select-environment=)
+
+        In =org-beamer-mode=, this key offers fast selection of a
+        Beamer environment or the =BEAMER_COL= property.
+
+*** 12.5.6 A Beamer example                                           <<@A-Beamer-Example>>
+
+    Here is a simple example Org document that is intended for Beamer
+    export.
+
+    #+BEGIN_EXAMPLE
+      #+TITLE: Example Presentation
+      #+AUTHOR: Carsten Dominik
+      #+OPTIONS: H:2 toc:t num:t
+      #+LATEX_CLASS: beamer
+      #+LATEX_CLASS_OPTIONS: [presentation]
+      #+BEAMER_THEME: Madrid
+      #+COLUMNS: %45ITEM %10BEAMER_ENV(Env) %10BEAMER_ACT(Act) %4BEAMER_COL(Col) %8BEAMER_OPT(Opt)
+
+      * This is the first structural section
+
+      ** Frame 1
+      *** Thanks to Eric Fraga                                           :B_block:
+          :PROPERTIES:
+          :BEAMER_COL: 0.48
+          :BEAMER_ENV: block
+          :END:
+          for the first viable Beamer setup in Org
+      *** Thanks to everyone else                                        :B_block:
+          :PROPERTIES:
+          :BEAMER_COL: 0.48
+          :BEAMER_ACT: <2->
+          :BEAMER_ENV: block
+          :END:
+          for contributing to the discussion
+      **** This will be formatted as a beamer note                       :B_note:
+           :PROPERTIES:
+           :BEAMER_env: note
+           :END:
+      ** Frame 2 (where we will not use columns)
+      *** Request
+          Please test this stuff!
+    #+END_EXAMPLE
 
 ** 12.6 HTML export                                                   <<@HTML-export>>
 
-Org mode contains an HTML (XHTML 1.0 strict) exporter with extensive
-HTML formatting, in ways similar to John Gruber's /markdown/ language,
-but with additional support for tables.
+   Org mode contains an HTML (XHTML 1.0 strict) exporter with
+   extensive HTML formatting, in ways similar to John Gruber's
+   /markdown/ language, but with additional support for tables.
 
-*** 12.6.1 HTML export commands
+   | • [[@HTML-Export-commands][HTML Export commands]]:           | How to invoke HTML export                   |
+   | • [[@HTML-Specific-export-settings][HTML Specific export settings]]:  | Export settings for HTML export.            |
+   | • [[@HTML-doctypes][HTML doctypes]]:                  | Org can export to various (X)HTML flavors   |
+   | • [[@HTML-preamble-and-postamble][HTML preamble and postamble]]:    | How to insert a preamble and a postamble    |
+   | • [[@Quoting-HTML-tags][Quoting HTML tags]]:              | Using direct HTML in Org mode               |
+   | • [[@Links-in-HTML-export][Links in HTML export]]:           | How links will be interpreted and formatted |
+   | • [[@Tables-in-HTML-export][Tables in HTML export]]:          | How to modify the formatting of tables      |
+   | • [[@Images-in-HTML-export][Images in HTML export]]:          | How to insert figures into HTML output      |
+   | • [[@Math-formatting-in-HTML-export][Math formatting in HTML export]]: | Beautiful math also on the web              |
+   | • [[@Text-areas-in-HTML-export][Text areas in HTML export]]:      | An alternative way to show an example       |
+   | • [[@CSS-support][CSS support]]:                    | Changing the appearance of the output       |
+   | • [[@JavaScript-support][JavaScript support]]:             | Info and Folding in a web browser           |
 
-C-c C-e h h (=org-html-export-to-html=)
+*** 12.6.1 HTML export commands                                       <<@HTML-Export-commands>>
 
-Export as an HTML file. For an Org file myfile.org, the HTML file will
-be myfile.html. The file will be overwritten without warning. C-c C-e h
-o Export as an HTML file and immediately open it with a browser.
+     - */C-c C-e h h/* (=org-html-export-to-html=)
 
-C-c C-e h H (=org-html-export-as-html=)
+       Export as an HTML file. For an Org file myfile.org, the HTML
+       file will be myfile.html. The file will be overwritten without
+       warning. */C-c C-e h o/* Export as an HTML file and immediately
+       open it with a browser.
 
-Export to a temporary buffer. Do not create a file.
+     - */C-c C-e h H/* (=org-html-export-as-html=)
 
-*** 12.6.2 HTML Specific export settings
+       Export to a temporary buffer. Do not create a file.
 
-HTML export introduces a number of keywords, similar to the general
-options settings described in [[@Export-settings][Export settings]].
+*** 12.6.2 HTML Specific export settings                              <<@HTML-Specific-export-settings>>
 
--  ‘DESCRIPTION' :: The document description. This description is
-   inserted as a HTML meta tag. You can use several such keywords if the
-   list is long.
+    HTML export introduces a number of keywords, similar to the
+    general options settings described in [[@Export-settings][Export settings]].
 
--  ‘HTML\_DOCTYPE' :: The document type, e.g. HTML5,
-   (=org-html-doctype=).
+     - =DESCRIPTION=
 
--  ‘HTML\_CONTAINER' :: The container, e.g. ‘div', used to wrap sections
-   and elements (=org-html-container-element=).
+       The document description. This description is inserted as a
+       HTML meta tag. You can use several such keywords if the list is
+       long.
 
--  ‘HTML\_LINK\_HOME' :: The home link URL (=org-html-link-home=).
+     - =HTML_DOCTYPE=
 
--  ‘HTML\_LINK\_UP' :: The up link URL (=org-html-link-up=).
+       The document type, e.g. HTML5, (=org-html-doctype=).
 
--  ‘HTML\_MATHJAX' :: Options for the MathJax
-   (=org-html-mathjax-options=). MathJax is used to typeset LaTeX math
-   in HTML documents. [[@Math-formatting-in-HTML-export][Math formatting
-   in HTML export]] contains an example.
+     - =HTML_CONTAINER=
 
--  ‘HTML\_HEAD' :: Arbitrary lines appended to the end of the head of
-   the document (=org-html-head=).
+       The container, e.g. ‘div', used to wrap sections and elements
+       (=org-html-container-element=).
 
--  ‘HTML\_HEAD\_EXTRA' :: Arbitrary lines appended to the end of the
-   header of the document (=org-html-head-extra=).
+     - =HTML_LINK_HOME=
 
--  ‘KEYWORDS' :: The keywords defining the contents of the document.
-   This description is inserted as a HTML meta tag. You can use several
-   such keywords if the list is long.
+       The home link URL (=org-html-link-home=).
 
--  ‘LATEX\_HEADER' :: Arbitrary lines appended to the preamble used when
-   transcoding LaTeX fragments to images. See
-   [[@Math-formatting-in-HTML-export][Math formatting in HTML export]]
-   for details.
+     - =HTML_LINK_UP=
 
--  ‘SUBTITLE' :: The document subtitle. The formatting depends on
-   whether HTML5 in used and on the ‘subtitle' CSS class.
+       The up link URL (=org-html-link-up=).
 
-These keywords are treated in details in the following sections.
+     - =HTML_MATHJAX=
 
-*** 12.6.3 HTML doctypes
+       Options for the MathJax (=org-html-mathjax-options=). MathJax
+       is used to typeset LaTeX math in HTML documents. [[@Math-formatting-in-HTML-export][Math
+       formatting in HTML export]] contains an example.
 
-Org can export to various (X)HTML flavors.
+     - =HTML_HEAD=
 
-Setting the variable =org-html-doctype= allows you to export to
-different (X)HTML variants. The exported HTML will be adjusted according
-to the syntax requirements of that variant. You can either set this
-variable to a doctype string directly, in which case the exporter will
-try to adjust the syntax automatically, or you can use a ready-made
-doctype. The ready-made options are:
+       Arbitrary lines appended to the end of the head of the document
+       (=org-html-head=).
 
--  “html4-strict”
--  “html4-transitional”
--  “html4-frameset”
--  “xhtml-strict”
--  “xhtml-transitional”
--  “xhtml-frameset”
--  “xhtml-11”
--  “html5”
--  “xhtml5”
+     - =HTML_HEAD_EXTRA=
 
-See the variable =org-html-doctype-alist= for details. The default is
-“xhtml-strict”.
+       Arbitrary lines appended to the end of the header of the
+       document (=org-html-head-extra=).
 
-*** Fancy HTML5 export
+     - =KEYWORDS=
 
-HTML5 introduces several new element types. By default, Org will not
-make use of these element types, but you can set =org-html-html5-fancy=
-to =t= (or set =html5-fancy= item in an =OPTIONS= line), to enable a few
-new block-level elements. These are created using arbitrary #+BEGIN and
-#+END blocks. For instance:
+       The keywords defining the contents of the document.  This
+       description is inserted as a HTML meta tag. You can use several
+       such keywords if the list is long.
 
-#+BEGIN_EXAMPLE
-    #+BEGIN_ASIDE
-    Lorem ipsum
-    #+END_ASIDE
-#+END_EXAMPLE
+     - =LATEX_HEADER=
 
-Will export to:
+       Arbitrary lines appended to the preamble used when transcoding
+       LaTeX fragments to images. See [[@Math-formatting-in-HTML-export][Math formatting in HTML export]]
+       for details.
 
-#+BEGIN_EXAMPLE
-    <aside>
-      <p>Lorem ipsum</p>
-    </aside>
-#+END_EXAMPLE
-
-While this:
-
-#+BEGIN_EXAMPLE
-    #+ATTR_HTML: :controls controls :width 350
-    #+BEGIN_VIDEO
-    #+HTML: <source src="movie.mp4" type="video/mp4">
-    #+HTML: <source src="movie.ogg" type="video/ogg">
-    Your browser does not support the video tag.
-    #+END_VIDEO
-#+END_EXAMPLE
-
-Becomes:
-
-#+BEGIN_EXAMPLE
-    <video controls="controls" width="350">
-      <source src="movie.mp4" type="video/mp4">
-      <source src="movie.ogg" type="video/ogg">
-      <p>Your browser does not support the video tag.</p>
-    </video>
-#+END_EXAMPLE
-
-Special blocks that do not correspond to HTML5 elements (see
-its contents in e.g., ‘<section>' or ‘<article>' tags, set the
-=HTML_CONTAINER= property on the headline itself.
+     - =SUBTITLE=
 
-*** 12.6.4 HTML preamble and postamble
+       The document subtitle. The formatting depends on whether HTML5
+       in used and on the ‘subtitle' CSS class.
 
-The HTML exporter lets you define a preamble and a postamble.
+    These keywords are treated in details in the following sections.
 
-The default value for =org-html-preamble= is =t=, which means that the
-preamble is inserted depending on the relevant format string in
-=org-html-preamble-format=.
+*** 12.6.3 HTML doctypes                                              <<@HTML-doctypes>>
 
-Setting =org-html-preamble= to a string will override the default format
-string. If you set it to a function, it will insert the output of the
-function, which must be a string. Setting to =nil= will not insert any
-preamble.
+    Org can export to various (X)HTML flavors.
 
-The default value for =org-html-postamble= is ='auto=, which means that
-the HTML exporter will look for information about the author, the email,
-the creator and the date, and build the postamble from these values.
-Setting =org-html-postamble= to =t= will insert the postamble from the
-relevant format string found in =org-html-postamble-format=. Setting it
-to =nil= will not insert any postamble.
+    Setting the variable =org-html-doctype= allows you to export to
+    different (X)HTML variants. The exported HTML will be adjusted
+    according to the syntax requirements of that variant. You can
+    either set this variable to a doctype string directly, in which
+    case the exporter will try to adjust the syntax automatically, or
+    you can use a ready-made doctype. The ready-made options are:
+
+     - “html4-strict”
+     - “html4-transitional”
+     - “html4-frameset”
+     - “xhtml-strict”
+     - “xhtml-transitional”
+     - “xhtml-frameset”
+     - “xhtml-11”
+     - “html5”
+     - “xhtml5”
+
+    See the variable =org-html-doctype-alist= for details. The default
+    is “xhtml-strict”.
+
+**** Fancy HTML5 export
+
+     HTML5 introduces several new element types. By default, Org will
+     not make use of these element types, but you can set
+     =org-html-html5-fancy= to =t= (or set =html5-fancy= item in an
+     =OPTIONS= line), to enable a few new block-level elements. These
+     are created using arbitrary =#+BEGIN= and =#+END= blocks. For
+     instance:
+
+     #+BEGIN_EXAMPLE
+       #+BEGIN_ASIDE
+       Lorem ipsum
+       #+END_ASIDE
+     #+END_EXAMPLE
+
+     Will export to:
+
+     #+BEGIN_EXAMPLE
+     <aside>
+       <p>Lorem ipsum</p>
+     </aside>
+     #+END_EXAMPLE
+
+     While this:
+
+     #+BEGIN_EXAMPLE
+       #+ATTR_HTML: :controls controls :width 350
+       #+BEGIN_VIDEO
+       #+HTML: <source src="movie.mp4" type="video/mp4">
+       #+HTML: <source src="movie.ogg" type="video/ogg">
+       Your browser does not support the video tag.
+       #+END_VIDEO
+     #+END_EXAMPLE
+
+     Becomes:
+
+     #+BEGIN_EXAMPLE
+       <video controls="controls" width="350">
+         <source src="movie.mp4" type="video/mp4">
+         <source src="movie.ogg" type="video/ogg">
+         <p>Your browser does not support the video tag.</p>
+       </video>
+     #+END_EXAMPLE
+
+     Special blocks that do not correspond to HTML5 elements (see
+     =org-html-html5-elements=) will revert to the usual behavior,
+     i.e., =#+BEGIN_lederhosen= will still export to ‘<div
+     class="lederhosen">'.
+
+     Headlines cannot appear within special blocks. To wrap a headline
+     and its contents in e.g., ‘<section>' or ‘<article>' tags, set
+     the =HTML_CONTAINER= property on the headline itself.
+
+*** 12.6.4 HTML preamble and postamble                                <<@HTML-preamble-and-postamble>>
+
+    The HTML exporter lets you define a preamble and a postamble.
+
+    The default value for =org-html-preamble= is =t=, which means that
+    the preamble is inserted depending on the relevant format string
+    in =org-html-preamble-format=.
+
+    Setting =org-html-preamble= to a string will override the default
+    format string. If you set it to a function, it will insert the
+    output of the function, which must be a string. Setting to =nil=
+    will not insert any preamble.
 
-*** 12.6.5 Quoting HTML tags
+    The default value for =org-html-postamble= is ='auto=, which means
+    that the HTML exporter will look for information about the author,
+    the email, the creator and the date, and build the postamble from
+    these values.  Setting =org-html-postamble= to =t= will insert the
+    postamble from the relevant format string found in
+    =org-html-postamble-format=. Setting it to =nil= will not insert
+    any postamble.
 
-Plain ‘<' and ‘>' are always transformed to ‘&lt;' and ‘&gt;' in HTML
-export. If you want to include raw HTML code, which should only appear
-in HTML export, mark it with ‘@@html:' as in ‘@@html:<b>@@bold
-text@@html:</b>@@'. For more extensive HTML that should be copied
-verbatim to the exported file use either
+*** 12.6.5 Quoting HTML tags                                          <<@Quoting-HTML-tags>>
 
-#+BEGIN_EXAMPLE
-    #+HTML: Literal HTML code for export
-#+END_EXAMPLE
+    Plain ‘<' and ‘>' are always transformed to ‘&lt;' and ‘&gt;' in
+    HTML export. If you want to include raw HTML code, which should
+    only appear in HTML export, mark it with ‘@@html:' as in
+    ‘@@html:<b>@@bold text@@html:</b>@@'. For more extensive HTML that
+    should be copied verbatim to the exported file use either
 
-or
+    #+BEGIN_EXAMPLE
+      #+HTML: Literal HTML code for export
+    #+END_EXAMPLE
 
-#+BEGIN_EXAMPLE
-    #+BEGIN_HTML
-    All lines between these markers are exported literally
-    #+END_HTML
-#+END_EXAMPLE
+    or
 
-*** 12.6.6 Links in HTML export
+    #+BEGIN_EXAMPLE
+      #+BEGIN_HTML
+      All lines between these markers are exported literally
+      #+END_HTML
+    #+END_EXAMPLE
 
-Internal links (see [[@Internal-links][Internal links]]) will continue
-to work in HTML. This includes automatic links created by radio targets
-(see [[@Radio-targets][Radio targets]]). Links to external files will
-still work if the target file is on the same /relative/ path as the
-published Org file. Links to other .org files will be translated into
-HTML links under the assumption that an HTML version also exists of the
-linked file, at the same relative path; setting
-=org-html-link-org-files-as-html= to =nil= disables this translation.
-‘id:' links can then be used to jump to specific entries across files.
-For information related to linking files while publishing them to a
-publishing directory see [[@Publishing-links][Publishing links]].
+*** 12.6.6 Links in HTML export                                       <<@Links-in-HTML-export>>
 
-If you want to specify attributes for links, you can do so using a
-special =#+ATTR_HTML= line to define attributes that will be added to
-the =<a>= or =<img>= tags. Here is an example that sets =title= and
-=style= attributes for a link:
-
-#+BEGIN_EXAMPLE
-    #+ATTR_HTML: :title The Org mode homepage :style color:red;
-    [[http://orgmode.org]]
-#+END_EXAMPLE
-
-*** 12.6.7 Tables in HTML export
-
-Org mode tables are exported to HTML using the table attributes defined
-in =org-html-table-default-attributes=. The default setting makes tables
-without cell borders and frame. If you would like to change this for
-individual tables, place something like the following before the table:
-
-#+BEGIN_EXAMPLE
-    #+CAPTION: This is a table with lines around and between cells
-    #+ATTR_HTML: :border 2 :rules all :frame border
-#+END_EXAMPLE
-
-You can also group columns in the HTML output (see
-[[@Column-groups][Column groups]]).
-
-Below is a list of options for customizing tables HTML export.
-
-=org-html-table-align-individual-fields=
-
-Non-=nil= means attach style attributes for alignment to each table
-field.
-
-=org-html-table-caption-above=
-
-When non-=nil=, place caption string at the beginning of the table.
-
-=org-html-table-data-tags=
-
-The opening and ending tags for table data fields.
-
-=org-html-table-default-attributes=
-
-Default attributes and values which will be used in table tags.
-
-=org-html-table-header-tags=
-
-The opening and ending tags for table header fields.
-
-=org-html-table-row-tags=
-
-The opening and ending tags for table rows.
-
-=org-html-table-use-header-tags-for-first-column=
-
-Non-=nil= means format column one in tables with header tags.
-
-*** 12.6.8 Images in HTML export
-
-HTML export can inline images given as links in the Org file, and it can
-make an image the clickable part of a link. By
-default[fn:FOOT134], images are inlined if a link does not have
-a description. So ‘[[file:myimg.jpg]]' will be inlined, while
-‘[[file:myimg.jpg][the image]]' will just produce a link ‘the image'
-that points to the image. If the description part itself is a =file:=
-link or a =http:= URL pointing to an image, this image will be inlined
-and activated so that clicking on the image will activate the link. For
-example, to include a thumbnail that will link to a high resolution
-version of the image, you could use:
-
-#+BEGIN_EXAMPLE
-    [[file:highres.jpg][file:thumb.jpg]]
-#+END_EXAMPLE
-
-If you need to add attributes to an inlined image, use a =#+ATTR_HTML=.
-In the example below we specify the =alt= and =title= attributes to
-support text viewers and accessibility, and align it to the right.
-
-#+BEGIN_EXAMPLE
-    #+CAPTION: A black cat stalking a spider
-    #+ATTR_HTML: :alt cat/spider image :title Action! :align right
-    [[./img/a.jpg]]
-#+END_EXAMPLE
-
-You could use =http= addresses just as well.
+    Internal links (see [[@Internal-links][Internal links]]) will continue to work in
+    HTML. This includes automatic links created by radio targets (see
+    [[@Radio-targets][Radio targets]]). Links to external files will still work if the
+    target file is on the same /relative/ path as the published Org
+    file. Links to other .org files will be translated into HTML links
+    under the assumption that an HTML version also exists of the
+    linked file, at the same relative path; setting
+    =org-html-link-org-files-as-html= to =nil= disables this
+    translation.  ‘id:' links can then be used to jump to specific
+    entries across files.  For information related to linking files
+    while publishing them to a publishing directory see [[@Publishing-links][Publishing
+    links]].
+
+    If you want to specify attributes for links, you can do so using a
+    special =#+ATTR_HTML= line to define attributes that will be added
+    to the =<a>= or =<img>= tags. Here is an example that sets =title=
+    and =style= attributes for a link:
+
+    #+BEGIN_EXAMPLE
+      #+ATTR_HTML: :title The Org mode homepage :style color:red;
+      [[http://orgmode.org]]
+    #+END_EXAMPLE
+
+*** 12.6.7 Tables in HTML export                                      <<@Tables-in-HTML-export>>
+
+    Org mode tables are exported to HTML using the table attributes
+    defined in =org-html-table-default-attributes=. The default
+    setting makes tables without cell borders and frame. If you would
+    like to change this for individual tables, place something like
+    the following before the table:
+
+    #+BEGIN_EXAMPLE
+      #+CAPTION: This is a table with lines around and between cells
+      #+ATTR_HTML: :border 2 :rules all :frame border
+    #+END_EXAMPLE
+
+    You can also group columns in the HTML output (see [[@Column-groups][Column groups]]).
+
+    Below is a list of options for customizing tables HTML export.
+
+     - =org-html-table-align-individual-fields=
+
+       Non- =nil= means attach style attributes for alignment to each
+       table field.
+
+     - =org-html-table-caption-above=
+
+       When non- =nil=, place caption string at the beginning of the
+       table.
+
+     - =org-html-table-data-tags=
+
+       The opening and ending tags for table data fields.
+
+     - =org-html-table-default-attributes=
+
+       Default attributes and values which will be used in table tags.
+
+     - =org-html-table-header-tags=
+
+       The opening and ending tags for table header fields.
+
+     - =org-html-table-row-tags=
+
+       The opening and ending tags for table rows.
+
+     - =org-html-table-use-header-tags-for-first-column=
+
+       Non- =nil= means format column one in tables with header tags.
+
+*** 12.6.8 Images in HTML export                                      <<@Images-in-HTML-export>>
+
+    HTML export can inline images given as links in the Org file, and
+    it can make an image the clickable part of a link. By
+    default[fn:FOOT134], images are inlined if a link does not have a
+    description. So =[[file:myimg.jpg]]= will be inlined, while
+
+    #+BEGIN_EXAMPLE
+      [[file:myimg.jpg][the image]]
+    #+END_EXAMPLE
+
+    will just produce a link ‘the image' that points to the image. If
+    the description part itself is a =file:= link or a =http:= URL
+    pointing to an image, this image will be inlined and activated so
+    that clicking on the image will activate the link. For example, to
+    include a thumbnail that will link to a high resolution version of
+    the image, you could use:
+
+    #+BEGIN_EXAMPLE
+      [[file:highres.jpg][file:thumb.jpg]]
+    #+END_EXAMPLE
+
+    If you need to add attributes to an inlined image, use a
+    =#+ATTR_HTML=.  In the example below we specify the =alt= and
+    =title= attributes to support text viewers and accessibility, and
+    align it to the right.
+
+    #+BEGIN_EXAMPLE
+      #+CAPTION: A black cat stalking a spider
+      #+ATTR_HTML: :alt cat/spider image :title Action! :align right
+      [[./img/a.jpg]]
+    #+END_EXAMPLE
+
+    You could use =http= addresses just as well.
 
 *** 12.6.9 Math formatting in HTML export                             <<@Math-formatting-in-HTML-export>>
 
-LaTeX math snippets (see [[@LaTeX-fragments][LaTeX fragments]]) can be
-displayed in two different ways on HTML pages. The default is to use
-[[http://www.mathjax.org][MathJax]] which should work out of the box
-with Org[fn:FOOT135]. Some MathJax display options can be
-configured via =org-html-mathjax-options=, or in the buffer. For
-example, with the following settings,
+    LaTeX math snippets (see [[@LaTeX-fragments][LaTeX fragments]]) can be displayed in two
+    different ways on HTML pages. The default is to use [[http://www.mathjax.org][MathJax]] which
+    should work out of the box with Org[fn:FOOT135]. Some MathJax
+    display options can be configured via =org-html-mathjax-options=,
+    or in the buffer. For example, with the following settings,
 
-#+BEGIN_EXAMPLE
-    #+HTML_MATHJAX: align: left indent: 5em tagside: left font: Neo-Euler
-#+END_EXAMPLE
+    #+BEGIN_EXAMPLE
+      #+HTML_MATHJAX: align: left indent: 5em tagside: left font: Neo-Euler
+    #+END_EXAMPLE
 
-equation labels will be displayed on the left marign and equations will
-be five ems from the left margin.
+    equation labels will be displayed on the left marign and equations
+    will be five ems from the left margin.
 
-See the docstring of =org-html-mathjax-options= for all supported
-variables. The MathJax template can be configure via
-=org-html-mathjax-template=.
+    See the docstring of =org-html-mathjax-options= for all supported
+    variables. The MathJax template can be configure via
+    =org-html-mathjax-template=.
 
-If you prefer, you can also request that LaTeX fragments are processed
-into small images that will be inserted into the browser page. Before
-the availability of MathJax, this was the default method for Org files.
-This method requires that the dvipng program or imagemagick suite is
-available on your system. You can still get this processing with
+    If you prefer, you can also request that LaTeX fragments are
+    processed into small images that will be inserted into the browser
+    page. Before the availability of MathJax, this was the default
+    method for Org files.  This method requires that the dvipng
+    program or imagemagick suite is available on your system. You can
+    still get this processing with
 
-#+BEGIN_EXAMPLE
-    #+OPTIONS: tex:dvipng
-#+END_EXAMPLE
+    #+BEGIN_EXAMPLE
+      #+OPTIONS: tex:dvipng
+    #+END_EXAMPLE
 
-or:
+    or:
 
-#+BEGIN_EXAMPLE
-    #+OPTIONS: tex:imagemagick
-#+END_EXAMPLE
+    #+BEGIN_EXAMPLE
+      #+OPTIONS: tex:imagemagick
+    #+END_EXAMPLE
 
 *** 12.6.10 Text areas in HTML export                                 <<@Text-areas-in-HTML-export>>
 
-An alternative way to publish literal code examples in HTML is to use
-text areas, where the example can even be edited before pasting it into
-an application. It is triggered by =:textarea= attribute at an =example=
-or =src= block.
+    An alternative way to publish literal code examples in HTML is to
+    use text areas, where the example can even be edited before
+    pasting it into an application. It is triggered by =:textarea=
+    attribute at an =example= or =src= block.
 
-You may also use =:height= and =:width= attributes to specify the height
-and width of the text area, which default to the number of lines in the
-example, and 80, respectively. For example
+    You may also use =:height= and =:width= attributes to specify the
+    height and width of the text area, which default to the number of
+    lines in the example, and 80, respectively. For example
 
-#+BEGIN_EXAMPLE
-    #+ATTR_HTML: :textarea t :width 40
     #+BEGIN_EXAMPLE
-      (defun org-xor (a b)
-         "Exclusive or."
-         (if a (not b) b))
+      #+ATTR_HTML: :textarea t :width 40
+     \#+BEGIN_EXAMPLE
+        (defun org-xor (a b)
+           "Exclusive or."
+           (if a (not b) b))
+     \#+END_EXAMPLE
     #+END_EXAMPLE
-#+END_EXAMPLE
 
-*** 12.6.11 CSS support
+*** 12.6.11 CSS support                                               <<@CSS-support>>
+
+    You can modify the CSS style definitions for the exported
+    file. The HTML exporter assigns the following special CSS
+    classes[fn:FOOT136] to appropriate parts of the document -- your
+    style specifications may change these, in addition to any of the
+    standard classes like for headlines, tables, etc.
+
+    | p.author           | author information, including email                    |
+    | p.date             | publishing date                                        |
+    | p.creator          | creator info, about org mode version                   |
+    | .title             | document title                                         |
+    | .subtitle          | document subtitle                                      |
+    | .todo              | TODO keywords, all not-done states                     |
+    | .done              | the DONE keywords, all states that count as done       |
+    | .WAITING           | each TODO keyword also uses a class named after itself |
+    | .timestamp         | timestamp                                              |
+    | .timestamp-kwd     | keyword associated with a timestamp, like SCHEDULED    |
+    | .timestamp-wrapper | span around keyword plus timestamp                     |
+    | .tag               | tag in a headline                                      |
+    | ._HOME             | each tag uses itself as a class, "@" replaced by "_"   |
+    | .target            | target for links                                       |
+    | .linenr            | the line number in a code example                      |
+    | .code-highlighted  | for highlighting referenced code lines                 |
+    | div.outline-N      | div for outline level N (headline plus text))          |
+    | div.outline-text-N | extra div for text at outline level N                  |
+    | .section-number-N  | section number in headlines, different for each level  |
+    | .figure-number     | label like "Figure 1:"                                 |
+    | .table-number      | label like "Table 1:"                                  |
+    | .listing-number    | label like "Listing 1:"                                |
+    | div.figure         | how to format an inlined image                         |
+    | pre.src            | formatted source code                                  |
+    | pre.example        | normal example                                         |
+    | p.verse            | verse paragraph                                        |
+    | div.footnotes      | footnote section headline                              |
+    | p.footnote         | footnote definition paragraph, containing a footnote   |
+    | .footref           | a footnote reference number (always a <sup>)           |
+    | .footnum           | footnote number in footnote definition (always <sup>)  |
+
+    Each exported file contains a compact default style that defines
+    these classes in a basic way[fn:FOOT137]. You may overwrite these
+    settings, or add to them by using the variables =org-html-head=
+    and =org-html-head-extra=. You can override the global values of
+    these variables for each file by using these keywords:
 
-You can modify the CSS style definitions for the exported file. The HTML
-exporter assigns the following special CSS classes[fn:FOOT136]
-to appropriate parts of the document---your style specifications may
-change these, in addition to any of the standard classes like for
-headlines, tables, etc.
-
-#+BEGIN_EXAMPLE
-    p.author            author information, including email
-    p.date              publishing date
-    p.creator           creator info, about org mode version
-    .title              document title
-    .subtitle           document subtitle
-    .todo               TODO keywords, all not-done states
-    .done               the DONE keywords, all states that count as done
-    .WAITING            each TODO keyword also uses a class named after itself
-    .timestamp          timestamp
-    .timestamp-kwd      keyword associated with a timestamp, like SCHEDULED
-    .timestamp-wrapper  span around keyword plus timestamp
-    .tag                tag in a headline
-    ._HOME              each tag uses itself as a class, "@" replaced by "_"
-    .target             target for links
-    .linenr             the line number in a code example
-    .code-highlighted   for highlighting referenced code lines
-    div.outline-N       div for outline level N (headline plus text))
-    div.outline-text-N  extra div for text at outline level N
-    .section-number-N   section number in headlines, different for each level
-    .figure-number      label like "Figure 1:"
-    .table-number       label like "Table 1:"
-    .listing-number     label like "Listing 1:"
-    div.figure          how to format an inlined image
-    pre.src             formatted source code
-    pre.example         normal example
-    p.verse             verse paragraph
-    div.footnotes       footnote section headline
-    p.footnote          footnote definition paragraph, containing a footnote
-    .footref            a footnote reference number (always a <sup>)
-    .footnum            footnote number in footnote definition (always <sup>)
-#+END_EXAMPLE
-
-Each exported file contains a compact default style that defines these
-classes in a basic way[fn:FOOT137]. You may overwrite these
-settings, or add to them by using the variables =org-html-head= and
-=org-html-head-extra=. You can override the global values of these
-variables for each file by using these keywords:
-
-#+BEGIN_EXAMPLE
-    #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="style1.css" />
-    #+HTML_HEAD_EXTRA: <link rel="alternate stylesheet" type="text/css" href="style2.css" />
-#+END_EXAMPLE
-
-For longer style definitions, you can use several such lines. You could
-also directly write a =<style>= =</style>= section in this way, without
-referring to an external file.
-
-In order to add styles to a subtree, use the =:HTML_CONTAINER_CLASS:=
-property to assign a class to the tree. In order to specify CSS styles
-for a particular headline, you can use the id specified in a
-=:CUSTOM_ID:= property.
-
-*** 12.6.12 JavaScript supported display of web pages
-
-Sebastian Rose has written a JavaScript program especially designed to
-enhance the web viewing experience of HTML files created with Org. This
-program allows you to view large files in two different ways. The first
-one is an /Info/-like mode where each section is displayed separately
-and navigation can be done with the n and p keys (and some other keys as
-well, press ? for an overview of the available keys). The second view
-type is a /folding/ view much like Org provides inside Emacs. The script
-is available at [[http://orgmode.org/org-info.js]] and you can find the
-documentation for it at [[http://orgmode.org/worg/code/org-info-js/]].
-We host the script at our site, but if you use it a lot, you might not
-want to be dependent on [[http://orgmode.org]] and prefer to install a
-local copy on your own web server.
-
-All it then takes to use this program is adding a single line to the Org
-file:
-
-#+BEGIN_EXAMPLE
-    #+INFOJS_OPT: view:info toc:nil
-#+END_EXAMPLE
-
-If this line is found, the HTML header will automatically contain the
-code needed to invoke the script. Using the line above, you can set the
-following viewing options:
-
-#+BEGIN_EXAMPLE
-    path:    The path to the script.  The default is to grab the script from
-             http://orgmode.org/org-info.js, but you might want to have
-             a local copy and use a path like ‘../scripts/org-info.js’.
-    view:    Initial view when the website is first shown.  Possible values are:
-             info      Info-like interface with one section per page.
-             overview  Folding interface, initially showing only top-level.
-             content   Folding interface, starting with all headlines visible.
-             showall   Folding interface, all headlines and text visible.
-    sdepth:  Maximum headline level that will still become an independent
-             section for info and folding modes.  The default is taken from
-             org-export-headline-levels (= the H switch in #+OPTIONS).
-             If this is smaller than in org-export-headline-levels, each
-             info/folding section can still contain child headlines.
-    toc:     Should the table of contents initially be visible?
-             Even when nil, you can always get to the "toc" with i.
-    tdepth:  The depth of the table of contents.  The defaults are taken from
-             the variables org-export-headline-levels and org-export-with-toc.
-    ftoc:    Does the CSS of the page specify a fixed position for the "toc"?
-             If yes, the toc will never be displayed as a section.
-    ltoc:    Should there be short contents (children) in each section?
-             Make this above if the section should be above initial text.
-    mouse:   Headings are highlighted when the mouse is over them.  Should be
-             ‘underline’ (default) or a background color like ‘#cccccc’.
-    buttons: Should view-toggle buttons be everywhere?  When nil (the
-             default), only one such button will be present.
-#+END_EXAMPLE
-
-You can choose default values for these options by customizing the
-variable =org-html-infojs-options=. If you always want to apply the
-script to your pages, configure the variable =org-html-use-infojs=.
-
-** 12.7 LaTeX and PDF export
-
-LaTeX export can produce an arbitrarily complex LaTeX document of any
-standard or custom document class. With further
-processing[fn:FOOT138], which the LaTeX exporter is able to
-control, this back-end is able to produce PDF output. Because the LaTeX
-exporter can be configured to use the =hyperref= package, the default
-setup produces fully-linked PDF output.
-
-As in LaTeX, blank lines are meaningful for this back-end: a paragraph
-will not be started if two contiguous syntactical elements are not
-separated by an empty line.
-
-This back-end also offers enhanced support for footnotes. Thus, it
-handles nested footnotes, footnotes in tables and footnotes in a list
-item's description.
-
-*** 12.7.1 LaTeX export commands
-
-C-c C-e l l (=org-latex-export-to-latex=)
-
-Export as a LaTeX file. For an Org file myfile.org, the LaTeX file will
-be myfile.tex. The file will be overwritten without warning.
-
-C-c C-e l L (=org-latex-export-as-latex=)
-
-Export to a temporary buffer. Do not create a file.
-
-C-c C-e l p (=org-latex-export-to-pdf=)
-
-Export as LaTeX and then process to PDF.
-
-C-c C-e l o
-
-Export as LaTeX and then process to PDF, then open the resulting PDF
-file.
-
-*** 12.7.2 LaTeX specific export settings
-
-The LaTeX exporter introduces a number of keywords, similar to the
-general options settings described in [[@Export-settings][Export
-settings]].
-
--  ‘DESCRIPTION' :: The document description. By default these are
-   inserted as metadata using ‘hyperref'. Document metadata can be
-   configured via =org-latex-hyperref-template=. Description can also be
-   typeset as part of the front matter via =org-latex-title-command=.
-   You can use several =#+DESCRIPTION= keywords if the description is is
-   long.
-
--  ‘LATEX\_CLASS' :: The predefined preamble and headline level mapping
-   to use (=org-latex-default-class=). Must be an element in
-   =org-latex-classes=.
-
--  ‘LATEX\_CLASS\_OPTIONS' :: Options given to the LaTeX document class.
-
--  ‘LATEX\_HEADER' :: Arbitrary lines added to the preamble of the
-   document, before the ‘hyperref' settings. The location can be
-   controlled via =org-latex-classes=.
-
--  ‘LATEX\_HEADER\_EXTRA' :: Arbitrary lines added to the preamble of
-   the document, before the ‘hyperref' settings. The location can be
-   controlled via =org-latex-classes=.
-
--  ‘KEYWORDS' :: The keywords defining the contents of the document. By
-   default these are inserted as metadata using ‘hyperref'. Document
-   metadata can be configured via =org-latex-hyperref-template=.
-   Description can also be typeset as part of the front matter via
-   =org-latex-title-command=. You can use several =#+KEYWORDS= if the
-   description is is long.
-
--  ‘SUBTITLE' :: The document subtitle. This is typeset according to
-   =org-latex-subtitle-format=. If =org-latex-subtitle-separate= is
-   non-=nil= it is typed as part of the ‘\title'-macro. It can also
-   access via =org-latex-hyperref-template= or typeset as part of the
-   front matter via =org-latex-title-command=.
-
-These keywords are treated in details in the following sections.
-
-*** 12.7.3 Header and sectioning structure
-
-By default, the first three outline levels become headlines, defining a
-general document structure. Additional levels are exported as =itemize=
-or =enumerate= lists. The transition can also occur at a different level
-(see [[@Export-settings][Export settings]]).
-
-By default, the LaTeX output uses the class =article=.
-
-You can change this globally by setting a different value for
-=org-latex-default-class= or locally by adding an option like
-=#+LATEX_CLASS: myclass= in your file, or with a =EXPORT_LATEX_CLASS=
-property that applies when exporting a region containing only this
-(sub)tree. The class must be listed in =org-latex-classes=. This
-variable defines a header template for each class[fn:FOOT139],
-and allows you to define the sectioning structure for each class. You
-can also define your own classes there.
-
-The =LATEX_CLASS_OPTIONS= keyword or =EXPORT_LATEX_CLASS_OPTIONS=
-property can specify the options for the =\documentclass= macro. These
-options have to be provided, as expected by LaTeX, within square
-brackets.
-
-You can also use the =LATEX_HEADER= and
-=LATEX_HEADER_EXTRA=[fn:FOOT140] keywords in order to add lines
-to the header. See the docstring of =org-latex-classes= for more
-information.
-
-An example is shown below.
-
-#+BEGIN_EXAMPLE
-    #+LATEX_CLASS: article
-    #+LATEX_CLASS_OPTIONS: [a4paper]
-    #+LATEX_HEADER: \usepackage{xyz}
-
-    * Headline 1
-      some text
-#+END_EXAMPLE
-
-*** 12.7.4 Quoting LaTeX code
-
-Embedded LaTeX as described in [[@Embedded-LaTeX][Embedded LaTeX]], will
-be correctly inserted into the LaTeX file. Furthermore, you can add
-special code that should only be present in LaTeX export with the
-following constructs:
-
-#+BEGIN_EXAMPLE
-    Code within @@latex:some code@@ a paragraph.
-
-    #+LATEX: Literal LaTeX code for export
-
-    #+BEGIN_LATEX
-    All lines between these markers are exported literally
-    #+END_LATEX
-#+END_EXAMPLE
-
-*** 12.7.5 LaTeX specific attributes
-
-LaTeX understands attributes specified in an =ATTR_LATEX= line. They
-affect tables, images, plain lists, source blocks, example blocks and
-special blocks.
-
-*** Tables in LaTeX export
-
-For LaTeX export of a table, you can specify a label and a caption (see
-[[@Images-and-tables][Images and tables]]). You can also use attributes
-to control table layout and contents. Valid LaTeX attributes include:
-
--  =:mode= :: Nature of table's contents. It can be set to =table=,
-   =math=, =inline-math= or =verbatim=. In particular, when in =math= or
-   =inline-math= mode, every cell is exported as-is, horizontal rules
-   are ignored and the table will be wrapped in a math environment.
-   Also, contiguous tables sharing the same math mode will be wrapped
-   within the same environment. Default mode is determined in
-   =org-latex-default-table-mode=.
-
--  =:environment= :: Environment used for the table. It can be set to
-   any LaTeX table environment, like =tabularx=[fn:FOOT141],
-   =longtable=, =array=, =tabu=[fn:FOOT142], =bmatrix=... It
-   defaults to =org-latex-default-table-environment= value.
-
--  =:caption= :: =#+CAPTION= keyword is the simplest way to set a
-   caption for a table (see [[@Images-and-tables][Images and tables]]).
-   If you need more advanced commands for that task, you can use
-   =:caption= attribute instead. Its value should be raw LaTeX code. It
-   has precedence over =#+CAPTION=.
-
--  =:float=\\
-   =:placement= :: The =:float= specifies the float environment for the
-   table. Possible values are =sideways=[fn:FOOT143],
-   =multicolumn=, =t= and =nil=. When unspecified, a table with a
-   caption will have a =table= environment. Moreover, the =:placement=
-   attribute can specify the positioning of the float. Note:
-   =:placement= is ignored for =:float sideways= tables.
-
--  =:align=\\
-   =:font=\\
-   =:width= :: Set, respectively, the alignment string of the table, its
-   font size and its width. They only apply on regular tables.
-
--  =:spread= :: Boolean specific to the =tabu= and =longtabu=
-   environments, and only takes effect when used in conjunction with the
-   =:width= attribute. When =:spread= is non-=nil=, the table will be
-   spread or shrunk by the value of =:width=.
-
--  =:booktabs=\\
-   =:center=\\
-   =:rmlines= :: They toggle, respectively, =booktabs= usage (assuming
-   the package is properly loaded), table centering and removal of every
-   horizontal rule but the first one (in a "table.el" table only). In
-   particular, =org-latex-tables-booktabs= (respectively
-   =org-latex-tables-centered=) activates the first (respectively
-   second) attribute globally.
-
--  =:math-prefix=\\
-   =:math-suffix=\\
-   =:math-arguments= :: A string that will be inserted, respectively,
-   before the table within the math environment, after the table within
-   the math environment, and between the macro name and the contents of
-   the table. The =:math-arguments= attribute is used for matrix macros
-   that require more than one argument (e.g., =qbordermatrix=).
-
-Thus, attributes can be used in a wide array of situations, like writing
-a table that will span over multiple pages, or a matrix product:
-
-#+BEGIN_EXAMPLE
-    #+ATTR_LATEX: :environment longtable :align l|lp{3cm}r|l
-    | ..... | ..... |
-    | ..... | ..... |
-
-    #+ATTR_LATEX: :mode math :environment bmatrix :math-suffix \times
-    | a | b |
-    | c | d |
-    #+ATTR_LATEX: :mode math :environment bmatrix
-    | 1 | 2 |
-    | 3 | 4 |
-#+END_EXAMPLE
-
-In the example below, LaTeX command =\bicaption{HeadingA}{HeadingB}=
-will set the caption.
-
-#+BEGIN_EXAMPLE
-    #+ATTR_LATEX: :caption \bicaption{HeadingA}{HeadingB}
-    | ..... | ..... |
-    | ..... | ..... |
-#+END_EXAMPLE
-
-*** Images in LaTeX export
-
-Images that are linked to without a description part in the link, like
-‘[[file:img.jpg]]' or ‘[[./img.jpg]]' will be inserted into the PDF
-output file resulting from LaTeX processing. Org will use an
-=\includegraphics= macro to insert the image[fn:FOOT144].
-
-You can specify specify image width or height with, respectively,
-=:width= and =:height= attributes. It is also possible to add any other
-option with the =:options= attribute, as shown in the following example:
-
-#+BEGIN_EXAMPLE
-    #+ATTR_LATEX: :width 5cm :options angle=90
-    [[./img/sed-hr4049.pdf]]
-#+END_EXAMPLE
-
-If you need a specific command for the caption, use =:caption=
-attribute. It will override standard =#+CAPTION= value, if any.
-
-#+BEGIN_EXAMPLE
-    #+ATTR_LATEX: :caption \bicaption{HeadingA}{HeadingB}
-    [[./img/sed-hr4049.pdf]]
-#+END_EXAMPLE
-
-If you have specified a caption as described in
-[[@Images-and-tables][Images and tables]], the picture will be wrapped
-into a =figure= environment and thus become a floating element. You can
-also ask Org to export an image as a float without specifying caption by
-setting the =:float= attribute. You may also set it to:
-
--  - =t=: if you want to use the standard ‘figure' environment. It is
-   used by default if you provide a caption to the image.
--  - =multicolumn=: if you wish to include an image which spans multiple
-   columns in a page. This will export the image wrapped in a =figure*=
-   environment.
--  - =wrap=: if you would like to let text flow around the image. It
-   will make the figure occupy the left half of the page.
--  - =sideways=: if you would like the image to appear alone on a
-   separate page rotated ninety degrees using the =sidewaysfigure=
-   environment. Setting this =:float= option will ignore the
-   =:placement= setting.
--  - =nil=: if you need to avoid any floating environment, even when a
-   caption is provided.
-
-To modify the placement option of any floating environment, set the
-=placement= attribute.
-
-#+BEGIN_EXAMPLE
-    #+ATTR_LATEX: :float wrap :width 0.38\textwidth :placement {r}{0.4\textwidth}
-    [[./img/hst.png]]
-#+END_EXAMPLE
-
-If the =:comment-include= attribute is set to a non-=nil= value, the
-LaTeX =\includegraphics= macro will be commented out.
-
-*** Plain lists in LaTeX export
-
-Plain lists accept two optional attributes: =:environment= and
-=:options=. The first one allows the use of a non-standard environment
-(e.g., ‘inparaenum'). The second one specifies additional arguments for
-that environment.
-
-#+BEGIN_EXAMPLE
-    #+ATTR_LATEX: :environment compactitem :options [$\circ$]
-    - you need ``paralist'' package to reproduce this example.
-#+END_EXAMPLE
-
-*** Source blocks in LaTeX export
-
-In addition to syntax defined in [[@Literal-examples][Literal
-examples]], names and captions (see [[@Images-and-tables][Images and
-tables]]), source blocks also accept two additional attributes: =:float=
-and =:options=.
-
-You may set the former to
-
--  - =t=: if you want to make the source block a float. It is the
-   default value when a caption is provided.
--  - =multicolumn=: if you wish to include a source block which spans
-   multiple columns in a page.
--  - =nil=: if you need to avoid any floating environment, even when a
-   caption is provided. It is useful for source code that may not fit in
-   a single page.
-
-#+BEGIN_EXAMPLE
-    #+ATTR_LATEX: :float nil
-    #+BEGIN_SRC emacs-lisp
-    Code that may not fit in a single page.
-    #+END_SRC
-#+END_EXAMPLE
-
-The latter allows to specify options relative to the package used to
-highlight code in the output (e.g., =listings=). This is the local
-counterpart to =org-latex-listings-options= and
-=org-latex-minted-options= variables, which see.
-
-#+BEGIN_EXAMPLE
-    #+ATTR_LATEX: :options commentstyle=\bfseries
-    #+BEGIN_SRC emacs-lisp
-      (defun Fib (n)                          ; Count rabbits.
-        (if (< n 2) n (+ (Fib (- n 1)) (Fib (- n 2)))))
-    #+END_SRC
-#+END_EXAMPLE
-
-*** Example blocks in LaTeX export
-
-By default, when exporting to LaTeX, example blocks contents are wrapped
-in a ‘verbatim' environment. It is possible to use a different
-environment globally using an appropriate export filter (see
-[[@Advanced-configuration][Advanced configuration]]). You can also
-change this per block using =:environment= parameter.
-
-#+BEGIN_EXAMPLE
-    #+ATTR_LATEX: :environment myverbatim
     #+BEGIN_EXAMPLE
-    This sentence is false.
+      #+HTML_HEAD: <link rel="stylesheet" type="text/css" href="style1.css" />
+      #+HTML_HEAD_EXTRA: <link rel="alternate stylesheet" type="text/css" href="style2.css" />
     #+END_EXAMPLE
-#+END_EXAMPLE
 
-*** Special blocks in LaTeX export
+    For longer style definitions, you can use several such lines. You
+    could also directly write a =<style>= =</style>= section in this
+    way, without referring to an external file.
 
-In LaTeX back-end, special blocks become environments of the same name.
-Value of =:options= attribute will be appended as-is to that
-environment's opening string. For example:
+    In order to add styles to a subtree, use the
+    =:HTML_CONTAINER_CLASS:= property to assign a class to the
+    tree. In order to specify CSS styles for a particular headline,
+    you can use the id specified in a =:CUSTOM_ID:= property.
 
-#+BEGIN_EXAMPLE
-    #+BEGIN_abstract
-    We demonstrate how to solve the Syracuse problem.
-    #+END_abstract
+*** 12.6.12 JavaScript supported display of web pages                 <<@JavaScript-support>>
 
-    #+ATTR_LATEX: :options [Proof of important theorem]
-    #+BEGIN_proof
-    ...
-    Therefore, any even number greater than 2 is the sum of two primes.
-    #+END_proof
-#+END_EXAMPLE
+    Sebastian Rose has written a JavaScript program especially
+    designed to enhance the web viewing experience of HTML files
+    created with Org. This program allows you to view large files in
+    two different ways. The first one is an /Info/-like mode where
+    each section is displayed separately and navigation can be done
+    with the n and p keys (and some other keys as well, press ? for an
+    overview of the available keys). The second view type is a
+    /folding/ view much like Org provides inside Emacs. The script is
+    available at [[http://orgmode.org/org-info.js]] and you can find the
+    documentation for it at [[http://orgmode.org/worg/code/org-info-js/]].
+    We host the script at our site, but if you use it a lot, you might
+    not want to be dependent on [[http://orgmode.org]] and prefer to
+    install a local copy on your own web server.
 
-becomes
+    All it then takes to use this program is adding a single line to
+    the Org file:
 
-#+BEGIN_EXAMPLE
-    \begin{abstract}
-    We demonstrate how to solve the Syracuse problem.
-    \end{abstract}
+    #+BEGIN_EXAMPLE
+      #+INFOJS_OPT: view:info toc:nil
+    #+END_EXAMPLE
 
-    \begin{proof}[Proof of important theorem]
-    ...
-    Therefore, any even number greater than 2 is the sum of two primes.
-    \end{proof}
-#+END_EXAMPLE
+    If this line is found, the HTML header will automatically contain
+    the code needed to invoke the script. Using the line above, you
+    can set the following viewing options:
 
-If you need to insert a specific caption command, use =:caption=
-attribute. It will override standard =#+CAPTION= value, if any. For
-example:
 
-#+BEGIN_EXAMPLE
-    #+ATTR_LATEX: :caption \MyCaption{HeadingA}
-    #+BEGIN_proof
-    ...
-    #+END_proof
-#+END_EXAMPLE
+     - =path:=
 
-*** Horizontal rules
+       The path to the script.  The default is to grab the script from
+       http://orgmode.org/org-info.js, but you might want to have a
+       local copy and use a path like ‘../scripts/org-info.js’.
 
-Width and thickness of a given horizontal rule can be controlled with,
-respectively, =:width= and =:thickness= attributes:
+     - =view:=
 
-#+BEGIN_EXAMPLE
-    #+ATTR_LATEX: :width .6\textwidth :thickness 0.8pt
-    -----
-#+END_EXAMPLE
+       Initial view when the website is first shown.  Possible values
+       are:
 
-** 12.8 Markdown export
+        - info
 
-=md= export back-end generates Markdown syntax[fn:FOOT145] for
-an Org mode buffer.
+          Info-like interface with one section per page.
 
-It is built over HTML back-end: any construct not supported by Markdown
-syntax (e.g., tables) will be controlled and translated by =html=
-back-end (see [[@HTML-export][HTML export]]).
+        - overview
+
+          Folding interface, initially showing only top-level.
+
+        - content
+
+          Folding interface, starting with all headlines visible.
+
+        - showall
+
+          Folding interface, all headlines and text visible.
+
+     - =sdepth:=
+
+       Maximum headline level that will still become an independent
+       section for info and folding modes.  The default is taken from
+       org-export-headline-levels (= the H switch in #+OPTIONS).  If
+       this is smaller than in org-export-headline-levels, each
+       info/folding section can still contain child headlines.
+
+     - =toc:=
+
+       Should the table of contents initially be visible?  Even when
+       nil, you can always get to the "toc" with i.
+     - =tdepth:=
+
+       The depth of the table of contents.  The defaults are taken
+       from the variables org-export-headline-levels and
+       org-export-with-toc.
+
+     - =ftoc:=
+
+       Does the CSS of the page specify a fixed position for the
+       "toc"?  If yes, the toc will never be displayed as a section.
+
+     - =ltoc:=
+
+       Should there be short contents (children) in each section?
+       Make this above if the section should be above initial text.
+
+     - =mouse:=
+
+       Headings are highlighted when the mouse is over them.  Should
+       be ‘underline’ (default) or a background color like ‘#cccccc’.
+
+     - =buttons:=
+
+       Should view-toggle buttons be everywhere?  When nil (the
+       default), only one such button will be present.
+
+    You can choose default values for these options by customizing the
+    variable =org-html-infojs-options=. If you always want to apply
+    the script to your pages, configure the variable
+    =org-html-use-infojs=.
+
+** 12.7 LaTeX and PDF export                                          <<@LaTeX-and-PDF-export>>
+
+   LaTeX export can produce an arbitrarily complex LaTeX document of
+   any standard or custom document class. With further
+   processing[fn:FOOT138], which the LaTeX exporter is able to
+   control, this back-end is able to produce PDF output. Because the
+   LaTeX exporter can be configured to use the =hyperref= package, the
+   default setup produces fully-linked PDF output.
+
+   As in LaTeX, blank lines are meaningful for this back-end: a
+   paragraph will not be started if two contiguous syntactical
+   elements are not separated by an empty line.
+
+   This back-end also offers enhanced support for footnotes. Thus, it
+   handles nested footnotes, footnotes in tables and footnotes in a
+   list item's description.
+
+   | • [[@LaTeX-export-commands][LaTeX export commands]]:          | How to export to LaTeX and PDF       |
+   | • [[@LaTeX-specific-export-settings][LaTeX specific export settings]]: | Export settings for LaTeX            |
+   | • [[@Header-and-sectioning][Header and sectioning]]:          | Setting up the export file structure |
+   | • [[@Quoting-LaTeX-code][Quoting LaTeX code]]:             | Incorporating literal LaTeX code     |
+   | • [[@LaTeX-specific-attributes][LaTeX specific attributes]]:      | Controlling LaTeX output             |
+
+*** 12.7.1 LaTeX export commands                                      <<@LaTeX-export-commands>>
+
+     - */C-c C-e l l/* (=org-latex-export-to-latex=)
+
+       Export as a LaTeX file. For an Org file myfile.org, the LaTeX
+       file will be myfile.tex. The file will be overwritten without
+       warning.
+
+     - */C-c C-e l L/* (=org-latex-export-as-latex=)
+
+       Export to a temporary buffer. Do not create a file.
+
+     - */C-c C-e l p/* (=org-latex-export-to-pdf=)
+
+       Export as LaTeX and then process to PDF.
+
+     - */C-c C-e l o/*
+
+       Export as LaTeX and then process to PDF, then open the
+       resulting PDF file.
+
+*** 12.7.2 LaTeX specific export settings                             <<@LaTeX-specific-export-settings>>
+
+    The LaTeX exporter introduces a number of keywords, similar to the
+    general options settings described in [[@Export-settings][Export settings]].
+
+     - ‘DESCRIPTION'
+
+       The document description. By default these are inserted as
+       metadata using ‘hyperref'. Document metadata can be configured
+       via =org-latex-hyperref-template=. Description can also be
+       typeset as part of the front matter via
+       =org-latex-title-command=.  You can use several =#+DESCRIPTION=
+       keywords if the description is is long.
+
+     - ‘LATEX_CLASS'
+
+       The predefined preamble and headline level mapping to use
+       (=org-latex-default-class=). Must be an element in
+       =org-latex-classes=.
+
+     - ‘LATEX_CLASS_OPTIONS'
+
+       Options given to the LaTeX document class.
+
+     - ‘LATEX_HEADER'
+
+       Arbitrary lines added to the preamble of the document, before
+       the ‘hyperref' settings. The location can be controlled via
+       =org-latex-classes=.
+
+     - ‘LATEX_HEADER_EXTRA'
+
+       Arbitrary lines added to the preamble of the document, before
+       the ‘hyperref' settings. The location can be controlled via
+       =org-latex-classes=.
+
+     - ‘KEYWORDS'
+
+       The keywords defining the contents of the document. By default
+       these are inserted as metadata using ‘hyperref'. Document
+       metadata can be configured via =org-latex-hyperref-template=.
+       Description can also be typeset as part of the front matter via
+       =org-latex-title-command=. You can use several =#+KEYWORDS= if
+       the description is is long.
+
+     - ‘SUBTITLE'
+
+       The document subtitle. This is typeset according to
+       =org-latex-subtitle-format=. If =org-latex-subtitle-separate=
+       is non-=nil= it is typed as part of the ‘\title'-macro. It can
+       also access via =org-latex-hyperref-template= or typeset as
+       part of the front matter via =org-latex-title-command=.
+
+    These keywords are treated in details in the following sections.
+
+*** 12.7.3 Header and sectioning structure                            <<@Header-and-sectioning>>
+
+    By default, the first three outline levels become headlines,
+    defining a general document structure. Additional levels are
+    exported as =itemize= or =enumerate= lists. The transition can
+    also occur at a different level (see [[@Export-settings][Export settings]]).
+
+    By default, the LaTeX output uses the class =article=.
+
+    You can change this globally by setting a different value for
+    =org-latex-default-class= or locally by adding an option like
+    =#+LATEX_CLASS: myclass= in your file, or with a
+    =EXPORT_LATEX_CLASS= property that applies when exporting a region
+    containing only this (sub)tree. The class must be listed in
+    =org-latex-classes=. This variable defines a header template for
+    each class[fn:FOOT139], and allows you to define the sectioning
+    structure for each class. You can also define your own classes
+    there.
+
+    The =LATEX_CLASS_OPTIONS= keyword or =EXPORT_LATEX_CLASS_OPTIONS=
+    property can specify the options for the =\documentclass=
+    macro. These options have to be provided, as expected by LaTeX,
+    within square brackets.
+
+    You can also use the =LATEX_HEADER= and
+    =LATEX_HEADER_EXTRA= [fn:FOOT140] keywords in order to add lines
+    to the header. See the docstring of =org-latex-classes= for more
+    information.
+
+    An example is shown below.
+
+    #+BEGIN_EXAMPLE
+      #+LATEX_CLASS: article
+      #+LATEX_CLASS_OPTIONS: [a4paper]
+      #+LATEX_HEADER: \usepackage{xyz}
+
+      * Headline 1
+        some text
+    #+END_EXAMPLE
+
+*** 12.7.4 Quoting LaTeX code                                         <<@Quoting-LaTeX-code>>
+
+    Embedded LaTeX as described in [[@Embedded-LaTeX][Embedded LaTeX]], will be correctly
+    inserted into the LaTeX file. Furthermore, you can add special
+    code that should only be present in LaTeX export with the
+    following constructs:
+
+    #+BEGIN_EXAMPLE
+      Code within @@latex:some code@@ a paragraph.
+
+      #+LATEX: Literal LaTeX code for export
+
+      #+BEGIN_LATEX
+      All lines between these markers are exported literally
+      #+END_LATEX
+    #+END_EXAMPLE
+
+*** 12.7.5 LaTeX specific attributes                                  <<@LaTeX-specific-attributes>>
+
+    LaTeX understands attributes specified in an =ATTR_LATEX=
+    line. They affect tables, images, plain lists, source blocks,
+    example blocks and special blocks.
+
+**** Tables in LaTeX export
+
+     For LaTeX export of a table, you can specify a label and a
+     caption (see [[@Images-and-tables][Images and tables]]). You can also use attributes to
+     control table layout and contents. Valid LaTeX attributes
+     include:
+
+      - =:mode=
+
+        Nature of table's contents. It can be set to =table=, =math=,
+        =inline-math= or =verbatim=. In particular, when in =math= or
+        =inline-math= mode, every cell is exported as-is, horizontal
+        rules are ignored and the table will be wrapped in a math
+        environment.  Also, contiguous tables sharing the same math
+        mode will be wrapped within the same environment. Default mode
+        is determined in =org-latex-default-table-mode=.
+
+      - =:environment=
+
+        Environment used for the table. It can be set to any LaTeX
+        table environment, like =tabularx= [fn:FOOT141], =longtable=,
+        =array=, =tabu= [fn:FOOT142], =bmatrix=... It defaults to
+        =org-latex-default-table-environment= value.
+
+      - =:caption=
+
+        =#+CAPTION= keyword is the simplest way to set a caption for a
+        table (see [[@Images-and-tables][Images and tables]]).  If you need more advanced
+        commands for that task, you can use =:caption= attribute
+        instead. Its value should be raw LaTeX code. It has precedence
+        over =#+CAPTION=.
+
+      - =:float=
+      - =:placement=
+
+        The =:float= specifies the float environment for the
+        table. Possible values are =sideways=[fn:FOOT143],
+        =multicolumn=, =t= and =nil=. When unspecified, a table with a
+        caption will have a =table= environment. Moreover, the
+        =:placement= attribute can specify the positioning of the
+        float. Note: =:placement= is ignored for =:float sideways=
+        tables.
+
+      - =:align=
+      - =:font=
+      - =:width=
+
+        Set, respectively, the alignment string of the table, its font
+        size and its width. They only apply on regular tables.
+
+      - =:spread=
+
+        Boolean specific to the =tabu= and =longtabu= environments,
+        and only takes effect when used in conjunction with the
+        =:width= attribute. When =:spread= is non-=nil=, the table
+        will be spread or shrunk by the value of =:width=.
+
+      - =:booktabs=
+      - =:center=
+      - =:rmlines=
+
+        They toggle, respectively, =booktabs= usage (assuming the
+        package is properly loaded), table centering and removal of
+        every horizontal rule but the first one (in a "table.el" table
+        only). In particular, =org-latex-tables-booktabs=
+        (respectively =org-latex-tables-centered=) activates the first
+        (respectively second) attribute globally.
+
+      - =:math-prefix=
+      - =:math-suffix=
+      - =:math-arguments=
+
+        A string that will be inserted, respectively, before the table
+        within the math environment, after the table within the math
+        environment, and between the macro name and the contents of
+        the table. The =:math-arguments= attribute is used for matrix
+        macros that require more than one argument (e.g.,
+        =qbordermatrix=).
+
+     Thus, attributes can be used in a wide array of situations, like
+     writing a table that will span over multiple pages, or a matrix
+     product:
+
+     #+BEGIN_EXAMPLE
+       #+ATTR_LATEX: :environment longtable :align l|lp{3cm}r|l
+       | ..... | ..... |
+       | ..... | ..... |
+
+       #+ATTR_LATEX: :mode math :environment bmatrix :math-suffix \times
+       | a | b |
+       | c | d |
+       #+ATTR_LATEX: :mode math :environment bmatrix
+       | 1 | 2 |
+       | 3 | 4 |
+     #+END_EXAMPLE
+
+     In the example below, LaTeX command
+     =\bicaption{HeadingA}{HeadingB}= will set the caption.
+
+     #+BEGIN_EXAMPLE
+       #+ATTR_LATEX: :caption \bicaption{HeadingA}{HeadingB}
+       | ..... | ..... |
+       | ..... | ..... |
+     #+END_EXAMPLE
+
+**** Images in LaTeX export
+
+     Images that are linked to without a description part in the link,
+     like =[[file:img.jpg]]= or =[[./img.jpg]]= will be inserted into the PDF
+     output file resulting from LaTeX processing. Org will use an
+     =\includegraphics= macro to insert the image[fn:FOOT144].
+
+     You can specify specify image width or height with, respectively,
+     =:width= and =:height= attributes. It is also possible to add any
+     other option with the =:options= attribute, as shown in the
+     following example:
+
+     #+BEGIN_EXAMPLE
+       #+ATTR_LATEX: :width 5cm :options angle=90
+       [[./img/sed-hr4049.pdf]]
+     #+END_EXAMPLE
+
+     If you need a specific command for the caption, use =:caption=
+     attribute. It will override standard =#+CAPTION= value, if any.
+
+     #+BEGIN_EXAMPLE
+       #+ATTR_LATEX: :caption \bicaption{HeadingA}{HeadingB}
+       [[./img/sed-hr4049.pdf]]
+     #+END_EXAMPLE
+
+     If you have specified a caption as described in [[@Images-and-tables][Images and
+     tables]], the picture will be wrapped into a =figure= environment
+     and thus become a floating element. You can also ask Org to
+     export an image as a float without specifying caption by setting
+     the =:float= attribute. You may also set it to:
+
+      - =t=:
+
+        if you want to use the standard ‘figure' environment. It is
+        used by default if you provide a caption to the image.
+
+      - =multicolumn=:
+
+        if you wish to include an image which spans multiple columns
+        in a page. This will export the image wrapped in a =figure*=
+        environment.
+
+      - =wrap=:
+
+        if you would like to let text flow around the image. It will
+        make the figure occupy the left half of the page.
+
+      - =sideways=:
+
+        if you would like the image to appear alone on a separate page
+        rotated ninety degrees using the =sidewaysfigure=
+        environment. Setting this =:float= option will ignore the
+        =:placement= setting.
+
+      - =nil=:
+
+        if you need to avoid any floating environment, even when a
+        caption is provided.
+
+     To modify the placement option of any floating environment, set
+     the =placement= attribute.
+
+     #+BEGIN_EXAMPLE
+       #+ATTR_LATEX: :float wrap :width 0.38\textwidth :placement {r}{0.4\textwidth}
+       [[./img/hst.png]]
+     #+END_EXAMPLE
+
+     If the =:comment-include= attribute is set to a non-=nil= value,
+     the LaTeX =\includegraphics= macro will be commented out.
+
+**** Plain lists in LaTeX export
+
+     Plain lists accept two optional attributes: =:environment= and
+     =:options=. The first one allows the use of a non-standard
+     environment (e.g., ‘inparaenum'). The second one specifies
+     additional arguments for that environment.
+
+     #+BEGIN_EXAMPLE
+       #+ATTR_LATEX: :environment compactitem :options [$\circ$]
+       - you need ``paralist'' package to reproduce this example.
+     #+END_EXAMPLE
+
+**** Source blocks in LaTeX export
+
+     In addition to syntax defined in [[@Literal-examples][Literal examples]], names and
+     captions (see [[@Images-and-tables][Images and tables]]), source blocks also accept two
+     additional attributes: =:float= and =:options=.
+
+     You may set the former to
+
+      - =t=: if you want to make the source block a float. It is the
+        default value when a caption is provided.
+
+      - =multicolumn=: if you wish to include a source block which
+        spans multiple columns in a page.
+
+      - =nil=: if you need to avoid any floating environment, even
+        when a caption is provided. It is useful for source code that
+        may not fit in a single page.
+
+        #+BEGIN_EXAMPLE
+          #+ATTR_LATEX: :float nil
+          #+BEGIN_SRC emacs-lisp
+              Code that may not fit in a single page.
+          #+END_SRC
+        #+END_EXAMPLE
+
+        The latter allows to specify options relative to the package
+        used to highlight code in the output (e.g., =listings=). This
+        is the local counterpart to =org-latex-listings-options= and
+        =org-latex-minted-options= variables, which see.
+
+        #+BEGIN_EXAMPLE
+          #+ATTR_LATEX: :options commentstyle=\bfseries
+          #+BEGIN_SRC emacs-lisp
+                (defun Fib (n)                          ; Count rabbits.
+                  (if (< n 2) n (+ (Fib (- n 1)) (Fib (- n 2)))))
+          #+END_SRC
+        #+END_EXAMPLE
+
+**** Example blocks in LaTeX export
+
+     By default, when exporting to LaTeX, example blocks contents are
+     wrapped in a ‘verbatim' environment. It is possible to use a
+     different environment globally using an appropriate export filter
+     (see [[@Advanced-configuration][Advanced configuration]]). You can also change this per block
+     using =:environment= parameter.
+
+     #+BEGIN_EXAMPLE
+       #+ATTR_LATEX: :environment myverbatim
+      \#+BEGIN_EXAMPLE
+       This sentence is false.
+      \#+END_EXAMPLE
+     #+END_EXAMPLE
+
+**** Special blocks in LaTeX export
+
+     In LaTeX back-end, special blocks become environments of the same
+     name.  Value of =:options= attribute will be appended as-is to
+     that environment's opening string. For example:
+
+     #+BEGIN_EXAMPLE
+       #+BEGIN_abstract
+       We demonstrate how to solve the Syracuse problem.
+       #+END_abstract
+
+       #+ATTR_LATEX: :options [Proof of important theorem]
+       #+BEGIN_proof
+       ...
+       Therefore, any even number greater than 2 is the sum of two primes.
+       #+END_proof
+     #+END_EXAMPLE
+
+     becomes
+
+     #+BEGIN_EXAMPLE
+       \begin{abstract}
+       We demonstrate how to solve the Syracuse problem.
+       \end{abstract}
+
+       \begin{proof}[Proof of important theorem]
+       ...
+       Therefore, any even number greater than 2 is the sum of two primes.
+       \end{proof}
+     #+END_EXAMPLE
+
+     If you need to insert a specific caption command, use =:caption=
+     attribute. It will override standard =#+CAPTION= value, if
+     any. For example:
+
+     #+BEGIN_EXAMPLE
+       #+ATTR_LATEX: :caption \MyCaption{HeadingA}
+       #+BEGIN_proof
+       ...
+       #+END_proof
+     #+END_EXAMPLE
+
+**** Horizontal rules
+
+     Width and thickness of a given horizontal rule can be controlled
+     with, respectively, =:width= and =:thickness= attributes:
+
+     #+BEGIN_EXAMPLE
+       #+ATTR_LATEX: :width .6\textwidth :thickness 0.8pt
+       -----
+     #+END_EXAMPLE
+
+** 12.8 Markdown export                                               <<@Markdown-export>>
+
+   =md= export back-end generates Markdown syntax[fn:FOOT145] for
+   an Org mode buffer.
+
+   It is built over HTML back-end: any construct not supported by Markdown
+   syntax (e.g., tables) will be controlled and translated by =html=
+   back-end (see [[@HTML-export][HTML export]]).
 
 *** Markdown export commands
 
-C-c C-e m m (=org-md-export-to-markdown=)
+    C-c C-e m m (=org-md-export-to-markdown=)
 
-Export as a text file written in Markdown syntax. For an Org file,
-myfile.org, the resulting file will be myfile.md. The file will be
-overwritten without warning.
+    Export as a text file written in Markdown syntax. For an Org file,
+    myfile.org, the resulting file will be myfile.md. The file will be
+    overwritten without warning.
 
-C-c C-e m M (=org-md-export-as-markdown=)
+    C-c C-e m M (=org-md-export-as-markdown=)
 
-Export to a temporary buffer. Do not create a file.
+    Export to a temporary buffer. Do not create a file.
 
-C-c C-e m o
+    C-c C-e m o
 
-Export as a text file with Markdown syntax, then open it.
+    Export as a text file with Markdown syntax, then open it.
 
 *** Header and sectioning structure
 
-Markdown export can generate both =atx= and =setext= types for
-headlines, according to =org-md-headline-style=. The former introduces a
-hard limit of two levels, whereas the latter pushes it to six. Headlines
-below that limit are exported as lists. You can also set a soft limit
-before that one (see [[@Export-settings][Export settings]]).
+    Markdown export can generate both =atx= and =setext= types for
+    headlines, according to =org-md-headline-style=. The former introduces a
+    hard limit of two levels, whereas the latter pushes it to six. Headlines
+    below that limit are exported as lists. You can also set a soft limit
+    before that one (see [[@Export-settings][Export settings]]).
 
-** 12.9 OpenDocument Text export
+** 12.9 OpenDocument Text export                                      <<@OpenDocument-Text-export>>
 
-Org mode[fn:FOOT146] supports export to OpenDocument Text (ODT)
-format. Documents created by this exporter use the OpenDocument-v1.2
-specification[fn:FOOT147] and are compatible with LibreOffice
-3.4.
+   Org mode[fn:FOOT146] supports export to OpenDocument Text (ODT)
+   format. Documents created by this exporter use the OpenDocument-v1.2
+   specification[fn:FOOT147] and are compatible with LibreOffice
+   3.4.
 
-*** 12.9.1 Pre-requisites for ODT export
+   | • [[@Pre_requisites-for-ODT-export][Pre-requisites for ODT export]]:     | What packages ODT exporter relies on        |
+   | • [[@ODT-export-commands][ODT export commands]]:               | How to invoke ODT export                    |
+   | • [[@ODT-specific-export-settings][ODT specific export settings]]:      | Export settings for ODT                     |
+   | • [[@Extending-ODT-export][Extending ODT export]]:              | How to produce ‘doc', ‘pdf' files           |
+   | • [[@Applying-custom-styles][Applying custom styles]]:            | How to apply custom styles to the output    |
+   | • [[@Links-in-ODT-export][Links in ODT export]]:               | How links will be interpreted and formatted |
+   | • [[@Tables-in-ODT-export][Tables in ODT export]]:              | How Tables are exported                     |
+   | • [[@Images-in-ODT-export][Images in ODT export]]:              | How to insert images                        |
+   | • [[@Math-formatting-in-ODT-export][Math formatting in ODT export]]:     | How LaTeX fragments are formatted           |
+   | • [[@Labels-and-captions-in-ODT-export][Labels and captions in ODT export]]: | How captions are rendered                   |
+   | • [[@Literal-examples-in-ODT-export][Literal examples in ODT export]]:    | How source and example blocks are formatted |
+   | • [[@Advanced-topics-in-ODT-export][Advanced topics in ODT export]]:     | Read this if you are a power user           |
 
-The ODT exporter relies on the zip program to create the final output.
-Check the availability of this program before proceeding further.
+*** 12.9.1 Pre-requisites for ODT export                              <<@Pre_requisites-for-ODT-export>>
 
-*** 12.9.2 ODT export commands
+    The ODT exporter relies on the zip program to create the final output.
+    Check the availability of this program before proceeding further.
 
-C-c C-e o o (=org-odt-export-to-odt=)
+*** 12.9.2 ODT export commands                                        @ODT-export-commands
 
-Export as OpenDocument Text file.
+    C-c C-e o o (=org-odt-export-to-odt=)
 
-If =org-odt-preferred-output-format= is specified, automatically convert
-the exported file to that format. See
-[[@x_export_to_other_formats][Automatically exporting to
-other formats]].
+    Export as OpenDocument Text file.
 
-For an Org file myfile.org, the ODT file will be myfile.odt. The file
-will be overwritten without warning. If there is an active
-region,[fn:FOOT148] only the region will be exported. If the
-selected region is a single tree,[fn:FOOT149] the tree head will
-become the document title. If the tree head entry has, or inherits, an
-=EXPORT_FILE_NAME= property, that name will be used for the export.
+    If =org-odt-preferred-output-format= is specified, automatically convert
+    the exported file to that format. See
+    [[@x_export_to_other_formats][Automatically exporting to
+    other formats]].
 
-C-c C-e o O Export as an OpenDocument Text file and open the resulting
-file.
+    For an Org file myfile.org, the ODT file will be myfile.odt. The file
+    will be overwritten without warning. If there is an active
+    region,[fn:FOOT148] only the region will be exported. If the
+    selected region is a single tree,[fn:FOOT149] the tree head will
+    become the document title. If the tree head entry has, or inherits, an
+    =EXPORT_FILE_NAME= property, that name will be used for the export.
 
-If =org-odt-preferred-output-format= is specified, open the converted
-file instead. See
-[[@x_export_to_other_formats][Automatically exporting to
-other formats]].
+    C-c C-e o O Export as an OpenDocument Text file and open the resulting
+    file.
 
-*** 12.9.3 ODT specific export settings
+    If =org-odt-preferred-output-format= is specified, open the converted
+    file instead. See
+    [[@x_export_to_other_formats][Automatically exporting to
+    other formats]].
 
-The ODT exporter introduces a number of keywords, similar to the general
-options settings described in [[@Export-settings][Export settings]].
+*** 12.9.3 ODT specific export settings                               <<@ODT-specific-export-settings>>
+
+    The ODT exporter introduces a number of keywords, similar to the general
+    options settings described in [[@Export-settings][Export settings]].
 
 -  ‘DESCRIPTION' :: The document description. These are inserted as
-   document metadata. You can use several such keywords if the list is
-   long.
+                    document metadata. You can use several such keywords if the list is
+                    long.
 
 -  ‘KEYWORDS' :: The keywords defining the contents of the document.
-   These are inserted as document metadata. You can use several such
-   keywords if the list is long.
+                 These are inserted as document metadata. You can use several such
+                 keywords if the list is long.
 
--  ‘ODT\_STYLES\_FILE' :: The style file of the document
-   (=org-odt-styles-file=). See [[@Applying-custom-styles][Applying
-   custom styles]] for details.
+-  ‘ODT_STYLES_FILE' :: The style file of the document
+     (=org-odt-styles-file=). See [[@Applying-custom-styles][Applying
+     custom styles]] for details.
 
 -  ‘SUBTITLE' :: The document subtitle.
 
-*** 12.9.4 Extending ODT export
+*** 12.9.4 Extending ODT export                                       <<@Extending-ODT-export>>
 
-The ODT exporter can interface with a variety of document converters and
-supports popular converters out of the box. As a result, you can use it
-to export to formats like ‘doc' or convert a document from one format
-(say ‘csv') to another format (say ‘ods' or ‘xls').
+    The ODT exporter can interface with a variety of document converters and
+    supports popular converters out of the box. As a result, you can use it
+    to export to formats like ‘doc' or convert a document from one format
+    (say ‘csv') to another format (say ‘ods' or ‘xls').
 
-If you have a working installation of LibreOffice, a document converter
-is pre-configured for you and you can use it right away. If you would
-like to use unoconv as your preferred converter, customize the variable
-=org-odt-convert-process= to point to =unoconv=. You can also use your
-own favorite converter or tweak the default settings of the LibreOffice
-and ‘unoconv' converters. See
-[[@Configuring-a-document-converter][Configuring a document converter]].
+    If you have a working installation of LibreOffice, a document converter
+    is pre-configured for you and you can use it right away. If you would
+    like to use unoconv as your preferred converter, customize the variable
+    =org-odt-convert-process= to point to =unoconv=. You can also use your
+    own favorite converter or tweak the default settings of the LibreOffice
+    and ‘unoconv' converters. See
+    [[@Configuring-a-document-converter][Configuring a document converter]].
 
-*** Automatically exporting to other formats
+**** Automatically exporting to other formats
 
-Very often, you will find yourself exporting to ODT format, only to
-immediately save the exported document to other formats like ‘doc',
-‘docx', ‘rtf', ‘pdf' etc. In such cases, you can specify your preferred
-output format by customizing the variable
-=org-odt-preferred-output-format=. This way, the export commands (see
-[[@x_export_to_odt][Exporting to ODT]]) can be extended to
-export to a format that is of immediate interest to you.
+     Very often, you will find yourself exporting to ODT format, only to
+     immediately save the exported document to other formats like ‘doc',
+     ‘docx', ‘rtf', ‘pdf' etc. In such cases, you can specify your preferred
+     output format by customizing the variable
+     =org-odt-preferred-output-format=. This way, the export commands (see
+     [[@x_export_to_odt][Exporting to ODT]]) can be extended to
+     export to a format that is of immediate interest to you.
 
-*** Converting between document formats
+**** Converting between document formats
 
-There are many document converters in the wild which support conversion
-to and from various file formats, including, but not limited to the ODT
-format. LibreOffice converter, mentioned above, is one such converter.
-Once a converter is configured, you can interact with it using the
-following command.
+    There are many document converters in the wild which support conversion
+    to and from various file formats, including, but not limited to the ODT
+    format. LibreOffice converter, mentioned above, is one such converter.
+    Once a converter is configured, you can interact with it using the
+    following command.
 
 -  M-x org-odt-convert RET :: Convert an existing document from one
-   format to another. With a prefix argument, also open the newly
-   produced file.
+     format to another. With a prefix argument, also open the newly
+     produced file.
 
-*** 12.9.5 Applying custom styles
+*** 12.9.5 Applying custom styles                                     <<@Applying-custom-styles>>
 
-The ODT exporter ships with a set of OpenDocument styles (see
-[[@Working-with-OpenDocument-style-files][Working with OpenDocument
-style files]]) that ensure a well-formatted output. These factory
-styles, however, may not cater to your specific tastes. To customize the
-output, you can either modify the above styles files directly, or
-generate the required styles using an application like LibreOffice. The
-latter method is suitable for expert and non-expert users alike, and is
-described here.
+    The ODT exporter ships with a set of OpenDocument styles (see
+    [[@Working-with-OpenDocument-style-files][Working with OpenDocument
+    style files]]) that ensure a well-formatted output. These factory
+    styles, however, may not cater to your specific tastes. To customize the
+    output, you can either modify the above styles files directly, or
+    generate the required styles using an application like LibreOffice. The
+    latter method is suitable for expert and non-expert users alike, and is
+    described here.
 
-*** Applying custom styles: the easy way
+**** Applying custom styles: the easy way
 
 1. Create a sample example.org file with the below settings and export
    it to ODT format.
@@ -10963,152 +11256,177 @@ described here.
        #+ODT_STYLES_FILE: ("/path/to/file.ott" ("styles.xml" "image/hdr.png"))
    #+END_EXAMPLE
 
-*** Using third-party styles and templates
+**** Using third-party styles and templates
 
-You can use third-party styles and templates for customizing your
-output. This will produce the desired output only if the template
-provides all style names that the ‘ODT' exporter relies on. Unless this
-condition is met, the output is going to be less than satisfactory. So
-it is highly recommended that you only work with templates that are
-directly derived from the factory settings.
+     You can use third-party styles and templates for customizing your
+     output. This will produce the desired output only if the template
+     provides all style names that the ‘ODT' exporter relies on. Unless this
+     condition is met, the output is going to be less than satisfactory. So
+     it is highly recommended that you only work with templates that are
+     directly derived from the factory settings.
 
-*** 12.9.6 Links in ODT export
+*** 12.9.6 Links in ODT export                                        <<@Links-in-ODT-export>>
 
-ODT exporter creates native cross-references for internal links. It
-creates Internet-style links for all other links.
+    ODT exporter creates native cross-references for internal links. It
+    creates Internet-style links for all other links.
 
-A link with no description and destined to a regular (un-itemized)
-outline heading is replaced with a cross-reference and section number of
-the heading.
+    A link with no description and destined to a regular (un-itemized)
+    outline heading is replaced with a cross-reference and section number of
+    the heading.
 
-A ‘\ref{label}'-style reference to an image, table etc. is replaced with
-a cross-reference and sequence number of the labeled entity. See
-[[@Labels-and-captions-in-ODT-export][Labels and captions in ODT
-export]].
+    A ‘\ref{label}'-style reference to an image, table etc. is replaced with
+    a cross-reference and sequence number of the labeled entity. See
+    [[@Labels-and-captions-in-ODT-export][Labels and captions in ODT
+    export]].
 
-*** 12.9.7 Tables in ODT export
+*** 12.9.7 Tables in ODT export                                       <<@Tables-in-ODT-export>>
 
-Export of native Org mode tables (see [[@Tables][Tables]]) and simple
-table.el tables is supported. However, export of complex table.el
-tables---tables that have column or row spans---is not supported. Such
-tables are stripped from the exported document.
+    Export of native Org mode tables (see [[@Tables][Tables]]) and simple
+    table.el tables is supported. However, export of complex table.el
+    tables---tables that have column or row spans---is not supported. Such
+    tables are stripped from the exported document.
 
-By default, a table is exported with top and bottom frames and with
-rules separating row and column groups (see [[@Column-groups][Column
-groups]]). Furthermore, all tables are typeset to occupy the same width.
-If the table specifies alignment and relative width for its columns (see
-[[@Column-width-and-alignment][Column width and alignment]]) then these
-are honored on export.[fn:FOOT150]
+    By default, a table is exported with top and bottom frames and with
+    rules separating row and column groups (see [[@Column-groups][Column
+    groups]]). Furthermore, all tables are typeset to occupy the same width.
+    If the table specifies alignment and relative width for its columns (see
+    [[@Column-width-and-alignment][Column width and alignment]]) then these
+    are honored on export.[fn:FOOT150]
 
-You can control the width of the table by specifying =:rel-width=
-property using an =#+ATTR_ODT= line.
+    You can control the width of the table by specifying =:rel-width=
+    property using an =#+ATTR_ODT= line.
 
-For example, consider the following table which makes use of all the
-rules mentioned above.
+    For example, consider the following table which makes use of all the
+    rules mentioned above.
 
 #+BEGIN_EXAMPLE
     #+ATTR_ODT: :rel-width 50
     | Area/Month    |   Jan |   Feb |   Mar |   Sum |
-*** 12.9.8 Images in ODT export
-
-*** Embedding images
-
-You can embed images within the exported document by providing a link to
-the desired image file with no link description. For example, to embed
-‘img.png' do either of the following:
-
-#+BEGIN_EXAMPLE
-    [[file:img.png]]
+    |---------------+-------+-------+-------+-------|
+    | /             |     < |       |       |     < |
+    | <l13>         |  <r5> |  <r5> |  <r5> |  <r6> |
+    | North America |     1 |    21 |   926 |   948 |
+    | Middle East   |     6 |    75 |   844 |   925 |
+    | Asia Pacific  |     9 |    27 |   790 |   826 |
+    |---------------+-------+-------+-------+-------|
+    | Sum           |    16 |   123 |  2560 |  2699 |
 #+END_EXAMPLE
 
-#+BEGIN_EXAMPLE
-    [[./img.png]]
-#+END_EXAMPLE
+On export, the table will occupy 50% of text area. The columns will be
+sized (roughly) in the ratio of 13:5:5:5:6. The first column will be
+left-aligned and rest of the columns will be right-aligned. There will
+be vertical rules after separating the header and last columns from
+other columns. There will be horizontal rules separating the header and
+last rows from other rows.
 
-*** Embedding clickable images
+If you are not satisfied with the above formatting options, you can
+create custom table styles and associate them with a table using the
+=#+ATTR_ODT= line. See [[@Customizing-tables-in-ODT-export][Customizing
+tables in ODT export]].
 
-You can create clickable images by providing a link whose description is
-a link to an image file. For example, to embed a image
-org-mode-unicorn.png which when clicked jumps to [[http://Orgmode.org]]
-website, do the following
+*** 12.9.8 Images in ODT export                                       <<@Images-in-ODT-export>>
 
-#+BEGIN_EXAMPLE
-    [[http://orgmode.org][./org-mode-unicorn.png]]
-#+END_EXAMPLE
+**** Embedding images
 
-*** Sizing and scaling of embedded images
+     You can embed images within the exported document by providing a link to
+     the desired image file with no link description. For example, to embed
+     ‘img.png' do either of the following:
 
-You can control the size and scale of the embedded images using the
-=#+ATTR_ODT= attribute.
+     #+BEGIN_EXAMPLE
+     [[file:img.png]]
+     #+END_EXAMPLE
 
-The exporter specifies the desired size of the image in the final
-document in units of centimeters. In order to scale the embedded images,
-the exporter queries for pixel dimensions of the images using one of a)
-ImageMagick's identify program or b) Emacs =create-image= and
-=image-size= APIs[fn:FOOT151]. The pixel dimensions are
-subsequently converted in to units of centimeters using
-=org-odt-pixels-per-inch=. The default value of this variable is set to
-=display-pixels-per-inch=. You can tweak this variable to achieve the
-best results.
+     #+BEGIN_EXAMPLE
+     [[./img.png]]
+     #+END_EXAMPLE
 
-The examples below illustrate the various possibilities.
+**** Embedding clickable images
+
+     You can create clickable images by providing a link whose description is
+     a link to an image file. For example, to embed a image
+     org-mode-unicorn.png which when clicked jumps to [[http://Orgmode.org]]
+     website, do the following
+
+     #+BEGIN_EXAMPLE
+     [[http://orgmode.org][./org-mode-unicorn.png]]
+     #+END_EXAMPLE
+
+**** Sizing and scaling of embedded images
+
+    You can control the size and scale of the embedded images using the
+    =#+ATTR_ODT= attribute.
+
+    The exporter specifies the desired size of the image in the final
+    document in units of centimeters. In order to scale the embedded images,
+    the exporter queries for pixel dimensions of the images using one of a)
+    ImageMagick's identify program or b) Emacs =create-image= and
+    =image-size= APIs[fn:FOOT151]. The pixel dimensions are
+    subsequently converted in to units of centimeters using
+    =org-odt-pixels-per-inch=. The default value of this variable is set to
+    =display-pixels-per-inch=. You can tweak this variable to achieve the
+    best results.
+
+    The examples below illustrate the various possibilities.
 
 -  Explicitly size the image :: To embed img.png as a 10 cm x 10 cm
-   image, do the following:
+     image, do the following:
 
-   #+BEGIN_EXAMPLE
+     #+BEGIN_EXAMPLE
        #+ATTR_ODT: :width 10 :height 10
        [[./img.png]]
-   #+END_EXAMPLE
+     #+END_EXAMPLE
 
 -  Scale the image :: To embed img.png at half its size, do the
-   following:
+     following:
 
-   #+BEGIN_EXAMPLE
+     #+BEGIN_EXAMPLE
        #+ATTR_ODT: :scale 0.5
        [[./img.png]]
-   #+END_EXAMPLE
+     #+END_EXAMPLE
 
 -  Scale the image to a specific width :: To embed img.png with a width
-   of 10 cm while retaining the original height:width ratio, do the
-   following:
+     of 10 cm while retaining the original height:width ratio, do the
+     following:
 
-   #+BEGIN_EXAMPLE
+     #+BEGIN_EXAMPLE
        #+ATTR_ODT: :width 10
        [[./img.png]]
-   #+END_EXAMPLE
+     #+END_EXAMPLE
 
 -  Scale the image to a specific height :: To embed img.png with a
-   height of 10 cm while retaining the original height:width ratio, do
-   the following
+     height of 10 cm while retaining the original height:width ratio, do
+     the following
 
-   #+BEGIN_EXAMPLE
+     #+BEGIN_EXAMPLE
        #+ATTR_ODT: :height 10
        [[./img.png]]
-   #+END_EXAMPLE
+     #+END_EXAMPLE
 
-*** Anchoring of images
+**** Anchoring of images
 
-You can control the manner in which an image is anchored by setting the
-=:anchor= property of it's =#+ATTR_ODT= line. You can specify one of the
-following three values for the =:anchor= property: ‘"as-char"',
-‘"paragraph"' and ‘"page"'.
+     You can control the manner in which an image is anchored by setting the
+     =:anchor= property of it's =#+ATTR_ODT= line. You can specify one of the
+     following three values for the =:anchor= property: ‘"as-char"',
+     ‘"paragraph"' and ‘"page"'.
 
-To create an image that is anchored to a page, do the following:
+     To create an image that is anchored to a page, do the following:
 
-#+BEGIN_EXAMPLE
-    #+ATTR_ODT: :anchor "page"
-    [[./img.png]]
-#+END_EXAMPLE
+     #+BEGIN_EXAMPLE
+     #+ATTR_ODT: :anchor "page"
+     [[./img.png]]
+     #+END_EXAMPLE
 
-*** 12.9.9 Math formatting in ODT export
+*** 12.9.9 Math formatting in ODT export                              <<@Math-formatting-in-ODT-export>>
 
-The ODT exporter has special support for handling math.
+    The ODT exporter has special support for handling math.
 
-*** Working with LaTeX math snippets
+    | • [[@Working-with-LaTeX-math-snippets][Working with LaTeX math snippets]]:                  | How to embed LaTeX math fragments       |
+    | • [[@Working-with-MathML-or-OpenDocument-formula-files][Working with MathML or OpenDocument formula files]]: | How to embed equations in native format |
 
-LaTeX math snippets (see [[@LaTeX-fragments][LaTeX fragments]]) can be
-embedded in the ODT document in one of the following ways:
+**** Working with LaTeX math snippets                                 <<@Working-with-LaTeX-math-snippets>>
+
+    LaTeX math snippets (see [[@LaTeX-fragments][LaTeX fragments]]) can be
+    embedded in the ODT document in one of the following ways:
 
 1. MathML
 
@@ -11148,11 +11466,11 @@ embedded in the ODT document in one of the following ways:
    of the LaTeX-to-MathML converter.
 
    -  M-x org-odt-export-as-odf RET :: Convert a LaTeX math snippet to
-      an OpenDocument formula (.odf) file.
+        an OpenDocument formula (.odf) file.
 
    -  M-x org-odt-export-as-odf-and-open RET :: Convert a LaTeX math
-      snippet to an OpenDocument formula (.odf) file and open the
-      formula file with the system-registered application.
+        snippet to an OpenDocument formula (.odf) file and open the
+        formula file with the system-registered application.
 
 2. PNG images
 
@@ -11173,96 +11491,100 @@ embedded in the ODT document in one of the following ways:
    method requires that the dvipng program or imagemagick suite be
    available on your system.
 
-*** Working with MathML or OpenDocument formula files
+**** Working with MathML or OpenDocument formula files                <<@Working-with-MathML-or-OpenDocument-formula-files>>
 
-*** Working with MathML or OpenDocument formula files
+     For various reasons, you may find embedding LaTeX math snippets in an
+     ODT document less than reliable. In that case, you can embed a math
+     equation by linking to its MathML (.mml) source or its OpenDocument
+     formula (.odf) file as shown below:
 
-For various reasons, you may find embedding LaTeX math snippets in an
-ODT document less than reliable. In that case, you can embed a math
-equation by linking to its MathML (.mml) source or its OpenDocument
-formula (.odf) file as shown below:
+     #+BEGIN_EXAMPLE
+     [[./equation.mml]]
+     #+END_EXAMPLE
 
-#+BEGIN_EXAMPLE
-    [[./equation.mml]]
-#+END_EXAMPLE
+     or
 
-or
+     #+BEGIN_EXAMPLE
+     [[./equation.odf]]
+     #+END_EXAMPLE
 
-#+BEGIN_EXAMPLE
-    [[./equation.odf]]
-#+END_EXAMPLE
+*** 12.9.10 Labels and captions in ODT export                         <<@Labels-and-captions-in-ODT-export>>
 
-*** 12.9.10 Labels and captions in ODT export
+    You can label and caption various category of objects---an inline image,
+    a table, a LaTeX fragment or a Math formula---using =#+LABEL= and
+    =#+CAPTION= lines. See [[@Images-and-tables][Images and tables]]. ODT
+    exporter enumerates each labeled or captioned object of a given category
+    separately. As a result, each such object is assigned a sequence number
+    based on order of it's appearance in the Org file.
 
-You can label and caption various category of objects---an inline image,
-a table, a LaTeX fragment or a Math formula---using =#+LABEL= and
-=#+CAPTION= lines. See [[@Images-and-tables][Images and tables]]. ODT
-exporter enumerates each labeled or captioned object of a given category
-separately. As a result, each such object is assigned a sequence number
-based on order of it's appearance in the Org file.
+    In the exported document, a user-provided caption is augmented with the
+    category and sequence number. Consider the following inline image in an
+    Org file.
 
-In the exported document, a user-provided caption is augmented with the
-category and sequence number. Consider the following inline image in an
-Org file.
-
-#+BEGIN_EXAMPLE
+    #+BEGIN_EXAMPLE
     #+CAPTION: Bell curve
     #+LABEL:   fig:SED-HR4049
     [[./img/a.png]]
-#+END_EXAMPLE
+    #+END_EXAMPLE
 
-It could be rendered as shown below in the exported document.
+    It could be rendered as shown below in the exported document.
 
-#+BEGIN_EXAMPLE
+    #+BEGIN_EXAMPLE
     Figure 2: Bell curve
-#+END_EXAMPLE
+    #+END_EXAMPLE
 
-You can modify the category component of the caption by customizing the
-option =org-odt-category-map-alist=. For example, to tag all embedded
-images with the string ‘Illustration' (instead of the default ‘Figure')
-use the following setting:
+    You can modify the category component of the caption by customizing the
+    option =org-odt-category-map-alist=. For example, to tag all embedded
+    images with the string ‘Illustration' (instead of the default ‘Figure')
+    use the following setting:
 
-#+BEGIN_SRC lisp
+    #+BEGIN_SRC lisp
     (setq org-odt-category-map-alist
           (("__Figure__" "Illustration" "value" "Figure" org-odt--enumerable-image-p)))
-#+END_SRC
+    #+END_SRC
 
-With this, previous image will be captioned as below in the exported
-document.
+    With this, previous image will be captioned as below in the exported
+    document.
 
-#+BEGIN_EXAMPLE
+    #+BEGIN_EXAMPLE
     Illustration 2: Bell curve
-#+END_EXAMPLE
+    #+END_EXAMPLE
 
-*** 12.9.11 Literal examples in ODT export
+*** 12.9.11 Literal examples in ODT export                            <<@Literal-examples-in-ODT-export>>
 
-Export of literal examples (see [[@Literal-examples][Literal examples]])
-with full fontification is supported. Internally, the exporter relies on
-htmlfontify.el to generate all style definitions needed for a fancy
-listing.[fn:FOOT154] The auto-generated styles have ‘OrgSrc' as
-prefix and inherit their color from the faces used by Emacs =font-lock=
-library for the source language.
+    Export of literal examples (see [[@Literal-examples][Literal examples]])
+    with full fontification is supported. Internally, the exporter relies on
+    htmlfontify.el to generate all style definitions needed for a fancy
+    listing.[fn:FOOT154] The auto-generated styles have ‘OrgSrc' as
+    prefix and inherit their color from the faces used by Emacs =font-lock=
+    library for the source language.
 
-If you prefer to use your own custom styles for fontification, you can
-do so by customizing the option
-=org-odt-create-custom-styles-for-srcblocks=.
+    If you prefer to use your own custom styles for fontification, you can
+    do so by customizing the option
+    =org-odt-create-custom-styles-for-srcblocks=.
 
-You can turn off fontification of literal examples by customizing the
-option =org-odt-fontify-srcblocks=.
+    You can turn off fontification of literal examples by customizing the
+    option =org-odt-fontify-srcblocks=.
 
-*** 12.9.12 Advanced topics in ODT export
+*** 12.9.12 Advanced topics in ODT export                             <<@Advanced-topics-in-ODT-export>>
 
-If you rely heavily on ODT export, you may want to exploit the full set
-of features that the exporter offers. This section describes features
-that would be of interest to power users.
+    If you rely heavily on ODT export, you may want to exploit the full set
+    of features that the exporter offers. This section describes features
+    that would be of interest to power users.
 
-*** Configuring a document converter
+    | • [[@Configuring-a-document-converter][Configuring a document converter]]:      | How to register a document converter    |
+    | • [[@Working-with-OpenDocument-style-files][Working with OpenDocument style files]]: | Explore the internals                   |
+    | • [[@Creating-one_off-styles][Creating one-off styles]]:               | How to produce custom highlighting etc  |
+    | • [[@Customizing-tables-in-ODT-export][Customizing tables in ODT export]]:      | How to define and use Table templates   |
+    | • [[@Validating-OpenDocument-XML][Validating OpenDocument XML]]:           | How to debug corrupt OpenDocument files |
 
-The ODT exporter can work with popular converters with little or no
-extra configuration from your side. See
-[[@Extending-ODT-export][Extending ODT export]]. If you are using a
-converter that is not supported by default or if you would like to tweak
-the default converter settings, proceed as below.
+**** Configuring a document converter                                 <<@Configuring-a-document-converter>>
+
+    The ODT exporter can work with popular converters with little or no
+    extra configuration from your side. See
+    [[@Extending-ODT-export][Extending ODT export]]. If you are using a
+    converter that is not supported by default or if you would like to tweak
+    the default converter settings, proceed as below.
 
 1. Register the converter
 
@@ -11286,18 +11608,18 @@ the default converter settings, proceed as below.
    Select the newly added converter as the preferred one by customizing
    the option =org-odt-convert-process=.
 
-*** Working with OpenDocument style files
+**** Working with OpenDocument style files                            <<@Working-with-OpenDocument-style-files>>
 
-This section explores the internals of the ODT exporter and the means by
-which it produces styled documents. Read this section if you are
-interested in exploring the automatic and custom OpenDocument styles
-used by the exporter.
+     This section explores the internals of the ODT exporter and the means by
+     which it produces styled documents. Read this section if you are
+     interested in exploring the automatic and custom OpenDocument styles
+     used by the exporter.
 
-*** a) Factory styles
+**** a) Factory styles
 
-The ODT exporter relies on two files for generating its output. These
-files are bundled with the distribution under the directory pointed to
-by the variable =org-odt-styles-dir=. The two files are:
+    The ODT exporter relies on two files for generating its output. These
+    files are bundled with the distribution under the directory pointed to
+    by the variable =org-odt-styles-dir=. The two files are:
 
 -
 -  OrgOdtStyles.xml
@@ -11324,12 +11646,12 @@ by the variable =org-odt-styles-dir=. The two files are:
       elements that control how various entities---tables, images,
       equations, etc.---are numbered.
 
-*** b) Overriding factory styles
+**** b) Overriding factory styles
 
-The following two variables control the location from which the ODT
-exporter picks up the custom styles and content template files. You can
-customize these variables to override the factory styles used by the
-exporter.
+    The following two variables control the location from which the ODT
+    exporter picks up the custom styles and content template files. You can
+    customize these variables to override the factory styles used by the
+    exporter.
 
 -
 -  =org-odt-styles-file=
@@ -11364,12 +11686,12 @@ exporter.
    Use this variable to specify the blank content.xml that will be used
    in the final output.
 
-*** Creating one-off styles
+**** Creating one-off styles                                          <<@Creating-one_off-styles>>
 
-There are times when you would want one-off formatting in the exported
-document. You can achieve this by embedding raw OpenDocument XML in the
-Org file. The use of this feature is better illustrated with couple of
-examples.
+    There are times when you would want one-off formatting in the exported
+    document. You can achieve this by embedding raw OpenDocument XML in the
+    Org file. The use of this feature is better illustrated with couple of
+    examples.
 
 1. Embedding ODT tags as part of regular text
 
@@ -11421,27 +11743,27 @@ examples.
    the following:
 
    #+BEGIN_EXAMPLE
-       #+BEGIN_ODT
-       <text:p text:style-name="Text_20_body_20_bold">
-       This paragraph is specially formatted and uses bold text.
-       </text:p>
-       #+END_ODT
+   #+BEGIN_ODT
+   <text:p text:style-name="Text_20_body_20_bold">
+   This paragraph is specially formatted and uses bold text.
+   </text:p>
+   #+END_ODT
    #+END_EXAMPLE
 
-*** Customizing tables in ODT export
+**** Customizing tables in ODT export                                 <<@Customizing-tables-in-ODT-export>>
 
-You can override the default formatting of the table by specifying a
-custom table style with the =#+ATTR_ODT= line. For a discussion on
-default formatting of tables see [[@Tables-in-ODT-export][Tables in ODT
-export]].
+    You can override the default formatting of the table by specifying a
+    custom table style with the =#+ATTR_ODT= line. For a discussion on
+    default formatting of tables see [[@Tables-in-ODT-export][Tables in ODT
+    export]].
 
-This feature closely mimics the way table templates are defined in the
-OpenDocument-v1.2 specification.[fn:FOOT155]
+    This feature closely mimics the way table templates are defined in the
+    OpenDocument-v1.2 specification.[fn:FOOT155]
 
-To have a quick preview of this feature, install the below setting and
-export the table that follows:
+    To have a quick preview of this feature, install the below setting and
+    export the table that follows:
 
-#+BEGIN_SRC lisp
+    #+BEGIN_SRC lisp
     (setq org-odt-table-styles
           (append org-odt-table-styles
                 '(("TableWithHeaderRowAndColumn" "Custom"
@@ -11450,25 +11772,25 @@ export the table that follows:
                     ("TableWithFirstRowandLastRow" "Custom"
                      ((use-first-row-styles . t)
                      (use-last-row-styles . t))))))
-#+END_SRC
+    #+END_SRC
 
-#+BEGIN_EXAMPLE
+    #+BEGIN_EXAMPLE
     #+ATTR_ODT: :style TableWithHeaderRowAndColumn
     | Name  | Phone | Age |
     | Peter |  1234 |  17 |
     | Anna  |  4321 |  25 |
-#+END_EXAMPLE
+    #+END_EXAMPLE
 
-In the above example, you used a template named ‘Custom' and installed
-two table styles with the names ‘TableWithHeaderRowAndColumn' and
-‘TableWithFirstRowandLastRow'. (*Important:* The OpenDocument styles
-needed for producing the above template have been pre-defined for you.
-These styles are available under the section marked ‘Custom Table
-Template' in OrgOdtContentTemplate.xml (see
-[[@x_orgodtcontenttemplate_xml][Factory styles]]). If you need
-additional templates you have to define these styles yourselves.
+    In the above example, you used a template named ‘Custom' and installed
+    two table styles with the names ‘TableWithHeaderRowAndColumn' and
+    ‘TableWithFirstRowandLastRow'. (*Important:* The OpenDocument styles
+    needed for producing the above template have been pre-defined for you.
+    These styles are available under the section marked ‘Custom Table
+    Template' in OrgOdtContentTemplate.xml (see
+    [[@x_orgodtcontenttemplate_xml][Factory styles]]). If you need
+    additional templates you have to define these styles yourselves.
 
-To use this feature proceed as follows:
+    To use this feature proceed as follows:
 
 1. Create a table template[fn:FOOT156]
 
@@ -11547,169 +11869,178 @@ To use this feature proceed as follows:
        | Anna  |  4321 |  25 |
    #+END_EXAMPLE
 
-*** Validating OpenDocument XML
+**** Validating OpenDocument XML                                      <<@Validating-OpenDocument-XML>>
 
-Occasionally, you will discover that the document created by the ODT
-exporter cannot be opened by your favorite application. One of the
-common reasons for this is that the .odt file is corrupt. In such cases,
-you may want to validate the document against the OpenDocument RELAX NG
-Compact Syntax (RNC) schema.
+     Occasionally, you will discover that the document created by the ODT
+     exporter cannot be opened by your favorite application. One of the
+     common reasons for this is that the .odt file is corrupt. In such cases,
+     you may want to validate the document against the OpenDocument RELAX NG
+     Compact Syntax (RNC) schema.
 
-For de-compressing the .odt file[fn:FOOT158]: See
-[[http://www.gnu.org/software/emacs/manual/html_mono/emacs.html#File-Archives][(emacs)File
-Archives]]. For general help with validation (and schema-sensitive
-editing) of XML files: See
-[[http://www.gnu.org/software/emacs/manual/html_mono/nxml-mode.html#Introduction][(nxml-mode)Introduction]].
+     For de-compressing the .odt file[fn:FOOT158]: See
+     [[http://www.gnu.org/software/emacs/manual/html_mono/emacs.html#File-Archives][(emacs)File
+     Archives]]. For general help with validation (and schema-sensitive
+     editing) of XML files: See
+     [[http://www.gnu.org/software/emacs/manual/html_mono/nxml-mode.html#Introduction][(nxml-mode)Introduction]].
 
-If you have ready access to OpenDocument .rnc files and the needed
-schema-locating rules in a single folder, you can customize the variable
-=org-odt-schema-dir= to point to that directory. The ODT exporter will
-take care of updating the =rng-schema-locating-files= for you.
+     If you have ready access to OpenDocument .rnc files and the needed
+     schema-locating rules in a single folder, you can customize the variable
+     =org-odt-schema-dir= to point to that directory. The ODT exporter will
+     take care of updating the =rng-schema-locating-files= for you.
 
-** 12.10 Org export
+** 12.10 Org export                                                   <<@Org-export>>
 
-=org= export back-end creates a normalized version of the Org document
-in current buffer. In particular, it evaluates Babel code (see
-[[@Evaluating-code-blocks][Evaluating code blocks]]) and removes other
-back-ends specific contents.
+   =org= export back-end creates a normalized version of the Org document
+   in current buffer. In particular, it evaluates Babel code (see
+   [[@Evaluating-code-blocks][Evaluating code blocks]]) and removes other
+   back-ends specific contents.
 
 *** Org export commands
 
-C-c C-e O o (=org-org-export-to-org=)
+    C-c C-e O o (=org-org-export-to-org=)
 
-Export as an Org document. For an Org file, myfile.org, the resulting
-file will be myfile.org.org. The file will be overwritten without
-warning.
+    Export as an Org document. For an Org file, myfile.org, the resulting
+    file will be myfile.org.org. The file will be overwritten without
+    warning.
 
-C-c C-e O O (=org-org-export-as-org=)
+    C-c C-e O O (=org-org-export-as-org=)
 
-Export to a temporary buffer. Do not create a file.
+    Export to a temporary buffer. Do not create a file.
 
-C-c C-e O v
+    C-c C-e O v
 
-Export to an Org file, then open it.
+    Export to an Org file, then open it.
 
-** 12.11 Texinfo export
+** 12.11 Texinfo export                                               <<@Texinfo-export>>
 
-‘texinfo' export back-end generates Texinfo code and can compile it into
-an Info file.
+   ‘texinfo' export back-end generates Texinfo code and can compile it into
+   an Info file.
 
-*** 12.11.1 Texinfo export commands
+   | • [[@Texinfo-export-commands][Texinfo export commands]]:           | How to invoke Texinfo export          |
+   | • [[@Texinfo-specific-export-settings][Texinfo specific export settings]]:  | Export settings for Texinfo           |
+   | • [[@Document-preamble][Document preamble]]:                 | File header, title and copyright page |
+   | • [[@Headings-and-sectioning-structure][Headings and sectioning structure]]: | Building document structure           |
+   | • [[@Indices][Indices]]:                           | Creating indices                      |
+   | • [[@Quoting-Texinfo-code][Quoting Texinfo code]]:              | Incorporating literal Texinfo code    |
+   | • [[@Texinfo-specific-attributes][Texinfo specific attributes]]:       | Controlling Texinfo output            |
+   | • [[@An-example][An example]]:                        |                                       |
 
-C-c C-e i t (=org-texinfo-export-to-texinfo=)
+*** 12.11.1 Texinfo export commands                                   <<@Texinfo-export-commands>>
 
-Export as a Texinfo file. For an Org file, myfile.org, the resulting
-file will be myfile.texi. The file will be overwritten without warning.
+    C-c C-e i t (=org-texinfo-export-to-texinfo=)
 
-C-c C-e i i (=org-texinfo-export-to-info=)
+    Export as a Texinfo file. For an Org file, myfile.org, the resulting
+    file will be myfile.texi. The file will be overwritten without warning.
 
-Export to Texinfo and then process to an Info file[fn:FOOT159].
+    C-c C-e i i (=org-texinfo-export-to-info=)
 
-*** 12.11.2 Texinfo specific export settings
+    Export to Texinfo and then process to an Info file[fn:FOOT159].
 
-The Texinfo exporter introduces a number of keywords, similar to the
-general options settings described in [[@Export-settings][Export
-settings]].
+*** 12.11.2 Texinfo specific export settings                          <<@Texinfo-specific-export-settings>>
+
+    The Texinfo exporter introduces a number of keywords, similar to the
+    general options settings described in [[@Export-settings][Export
+    settings]].
 
 -  ‘SUBTITLE' :: The document subtitle.
 
 -  ‘SUBAUTHOR' :: The document subauthor.
 
--  ‘TEXINFO\_FILENAME' :: The Texinfo filename.
+-  ‘TEXINFO_FILENAME' :: The Texinfo filename.
 
--  ‘TEXINFO\_CLASS' :: The class of the document
-   (=org-texinfo-default-class=). This must be a member of
-   =org-texinfo-classes=.
+-  ‘TEXINFO_CLASS' :: The class of the document
+     (=org-texinfo-default-class=). This must be a member of
+     =org-texinfo-classes=.
 
--  ‘TEXINFO\_HEADER' :: Arbitrary lines inserted at the end of the
-   preamble.
+-  ‘TEXINFO_HEADER' :: Arbitrary lines inserted at the end of the
+     preamble.
 
--  ‘TEXINFO\_POST\_HEADER' :: Arbitrary lines inserted at the end of the
-   preamble.
+-  ‘TEXINFO_POST_HEADER' :: Arbitrary lines inserted at the end of the
+     preamble.
 
--  ‘TEXINFO\_DIR\_CATEGORY' :: The directory category of the document.
+-  ‘TEXINFO_DIR_CATEGORY' :: The directory category of the document.
 
--  ‘TEXINFO\_DIR\_TITLE' :: The directory title of the document.
+-  ‘TEXINFO_DIR_TITLE' :: The directory title of the document.
 
--  ‘TEXINFO\_DIR\_DESC' :: The directory description of the document.
+-  ‘TEXINFO_DIR_DESC' :: The directory description of the document.
 
--  ‘TEXINFO\_PRINTED\_TITLE' :: The printed title of the document.
+-  ‘TEXINFO_PRINTED_TITLE' :: The printed title of the document.
 
 These keywords are treated in details in the following sections.
 
-*** 12.11.3 Document preamble
+*** 12.11.3 Document preamble                                         <<@Document-preamble>>
 
-When processing a document, ‘texinfo' back-end generates a minimal file
-header along with a title page, a copyright page, and a menu. You
-control the latter through the structure of the document (see
-[[@Headings-and-sectioning-structure][Headings and sectioning
-structure]]). Various keywords allow to tweak the other parts. It is
-also possible to give directions to install the document in the ‘Top'
-node.
+    When processing a document, ‘texinfo' back-end generates a minimal file
+    header along with a title page, a copyright page, and a menu. You
+    control the latter through the structure of the document (see
+    [[@Headings-and-sectioning-structure][Headings and sectioning
+    structure]]). Various keywords allow to tweak the other parts. It is
+    also possible to give directions to install the document in the ‘Top'
+    node.
 
-*** File header
+**** File header
 
-Upon creating the header of a Texinfo file, the back-end guesses a name
-for the Info file to be compiled. This may not be a sensible choice,
-e.g., if you want to produce the final document in a different
-directory. Specify an alternate path with =#+TEXINFO_FILENAME= keyword
-to override the default destination.
+     Upon creating the header of a Texinfo file, the back-end guesses a name
+     for the Info file to be compiled. This may not be a sensible choice,
+     e.g., if you want to produce the final document in a different
+     directory. Specify an alternate path with =#+TEXINFO_FILENAME= keyword
+     to override the default destination.
 
-Along with the output file name, the header contains information about
-the language (see [[@Export-settings][Export settings]]) and current
-encoding used[fn:FOOT160]. Insert a =#+TEXINFO_HEADER= keyword
-for each additional command needed, e.g., @code{@synindex}.
+     Along with the output file name, the header contains information about
+     the language (see [[@Export-settings][Export settings]]) and current
+     encoding used[fn:FOOT160]. Insert a =#+TEXINFO_HEADER= keyword
+     for each additional command needed, e.g., @code{@synindex}.
 
-If you happen to regularly install the same set of commands, it may be
-easier to define your own class in =org-texinfo-classes=, which see. Set
-=#+TEXINFO_CLASS= keyword accordingly in your document to activate it.
+     If you happen to regularly install the same set of commands, it may be
+     easier to define your own class in =org-texinfo-classes=, which see. Set
+     =#+TEXINFO_CLASS= keyword accordingly in your document to activate it.
 
-*** Title and copyright page
+**** Title and copyright page
 
-The default template includes a title page for hard copy output. The
-title and author displayed on this page are extracted from,
-respectively, =#+TITLE= and =#+AUTHOR= keywords (see
-[[@Export-settings][Export settings]]). It is also possible to print a
-different, more specific, title with =#+TEXINFO_PRINTED_TITLE= keyword,
-and add subtitles with =#+SUBTITLE= keyword. Both expect raw Texinfo
-code in their value.
+     The default template includes a title page for hard copy output. The
+     title and author displayed on this page are extracted from,
+     respectively, =#+TITLE= and =#+AUTHOR= keywords (see
+     [[@Export-settings][Export settings]]). It is also possible to print a
+     different, more specific, title with =#+TEXINFO_PRINTED_TITLE= keyword,
+     and add subtitles with =#+SUBTITLE= keyword. Both expect raw Texinfo
+     code in their value.
 
-Likewise, information brought by =#+AUTHOR= may not be enough. You can
-include other authors with several =#+SUBAUTHOR= keywords. Values are
-also expected to be written in Texinfo code.
+     Likewise, information brought by =#+AUTHOR= may not be enough. You can
+     include other authors with several =#+SUBAUTHOR= keywords. Values are
+     also expected to be written in Texinfo code.
 
-#+BEGIN_EXAMPLE
-    #+AUTHOR: Jane Smith
-    #+SUBAUTHOR: John Doe
-    #+TEXINFO_PRINTED_TITLE: This Long Title@inlinefmt{tex,@*} Is Broken in @TeX{}
-#+END_EXAMPLE
+     #+BEGIN_EXAMPLE
+     #+AUTHOR: Jane Smith
+     #+SUBAUTHOR: John Doe
+     #+TEXINFO_PRINTED_TITLE: This Long Title@inlinefmt{tex,@*} Is Broken in @TeX{}
+     #+END_EXAMPLE
 
-Copying material is defined in a dedicated headline with a non-=nil=
-=:COPYING:= property. The contents are inserted within a =@copying=
-command at the beginning of the document whereas the heading itself does
-not appear in the structure of the document.
+     Copying material is defined in a dedicated headline with a non-=nil=
+     =:COPYING:= property. The contents are inserted within a =@copying=
+     command at the beginning of the document whereas the heading itself does
+     not appear in the structure of the document.
 
-Copyright information is printed on the back of the title page.
+     Copyright information is printed on the back of the title page.
 
-#+BEGIN_EXAMPLE
-    * Copying
-      :PROPERTIES:
-      :COPYING: t
-      :END:
+     #+BEGIN_EXAMPLE
+     * Copying
+       :PROPERTIES:
+       :COPYING: t
+       :END:
 
-      This is a short example of a complete Texinfo file, version 1.0.
+       This is a short example of a complete Texinfo file, version 1.0.
 
-      Copyright \copy 2015 Free Software Foundation, Inc.
-#+END_EXAMPLE
+       Copyright \copy 2015 Free Software Foundation, Inc.
+     #+END_EXAMPLE
 
-*** The Top node
+**** The Top node
 
-You may ultimately want to install your new Info file in your system.
-You can write an appropriate entry in the top level directory specifying
-its category and title with, respectively, =#+TEXINFO_DIR_CATEGORY= and
-=#+TEXINFO_DIR_TITLE=. Optionally, you can add a short description using
-=#+TEXINFO_DIR_DESC=. The following example would write an entry similar
-to Org's in the ‘Top' node.
+    You may ultimately want to install your new Info file in your system.
+    You can write an appropriate entry in the top level directory specifying
+    its category and title with, respectively, =#+TEXINFO_DIR_CATEGORY= and
+    =#+TEXINFO_DIR_TITLE=. Optionally, you can add a short description using
+    =#+TEXINFO_DIR_DESC=. The following example would write an entry similar
+    to Org's in the ‘Top' node.
 
 #+BEGIN_EXAMPLE
     #+TEXINFO_DIR_CATEGORY: Emacs
@@ -11717,7 +12048,7 @@ to Org's in the ‘Top' node.
     #+TEXINFO_DIR_DESC: Outline-based notes management and organizer
 #+END_EXAMPLE
 
-*** 12.11.4 Headings and sectioning structure
+*** 12.11.4 Headings and sectioning structure                         <<@Headings-and-sectioning-structure>>
 
 ‘texinfo' uses a pre-defined scheme, or class, to convert headlines into
 Texinfo structuring commands. For example, a top level headline appears
@@ -11749,7 +12080,7 @@ Optionally, you can specify a description for the item in
       :END:
 #+END_EXAMPLE
 
-*** 12.11.5 Indices
+*** 12.11.5 Indices                                                   <<@Indices>>
 
 Index entries are created using dedicated keywords. ‘texinfo' back-end
 provides one for each predefined type: =#+CINDEX=, =#+FINDEX=,
@@ -11773,7 +12104,7 @@ and the index is inserted after its contents.
       :END:
 #+END_EXAMPLE
 
-*** 12.11.6 Quoting Texinfo code
+*** 12.11.6 Quoting Texinfo code                                      <<@Quoting-Texinfo-code>>
 
 It is possible to insert raw Texinfo code using any of the following
 constructs
@@ -11790,13 +12121,13 @@ constructs
     #+END_TEXINFO
 #+END_EXAMPLE
 
-*** 12.11.7 Texinfo specific attributes
+*** 12.11.7 Texinfo specific attributes                               <<@Texinfo-specific-attributes>>
 
 ‘texinfo' back-end understands several attributes in plain lists, tables
 and images. They must be specified using an =#+ATTR_TEXINFO= keyword,
 written just above the list, table or image.
 
-*** Plain lists
+**** Plain lists
 
 In Texinfo output, description lists appear as two-column tables, using
 the default command =@table=. You can use =@ftable= or
@@ -11812,7 +12143,7 @@ see.
     - foo :: This is the text for /foo/, with no highlighting.
 #+END_EXAMPLE
 
-*** Tables
+**** Tables
 
 When exporting a table, column widths are deduced from the longest cell
 in each column. You can also define them explicitly as fractions of the
@@ -11823,7 +12154,7 @@ line length, using =:columns= attribute.
     | a cell | another cell |
 #+END_EXAMPLE
 
-*** Images
+**** Images
 
 Images are links to files with a supported image extension and no
 description. Image scaling is set with =:width= and =:height=
@@ -11835,7 +12166,7 @@ Texinfo code.
     [[ridt.pdf]]
 #+END_EXAMPLE
 
-*** 12.11.8 An example
+*** 12.11.8 An example                                                <<@An-example>>
 
 Here is a thorough example. See
 [[http://www.gnu.org/software/texinfo/manual/texinfo/texinfo.html#GNU-Sample-Texts][(texinfo)GNU
@@ -11903,7 +12234,7 @@ Sample Texts]] for an equivalent Texinfo code.
       :END:
 #+END_EXAMPLE
 
-** 12.12 iCalendar export
+** 12.12 iCalendar export                                             <<@iCalendar-export>>
 
 Some people use Org mode for keeping track of projects, but still prefer
 a standard calendar application for anniversaries and appointments. In
@@ -11956,7 +12287,7 @@ characters).
 How this calendar is best read and updated, depends on the application
 you are using. The FAQ covers this issue.
 
-** 12.13 Other built-in back-ends
+** 12.13 Other built-in back-ends                                     <<@Other-built_in-back_ends>>
 
 On top of the aforementioned back-ends, Org comes with other built-in
 ones:
@@ -11971,7 +12302,7 @@ dispatcher]]).
 See the comment section of these files for more information on how to
 use them.
 
-** 12.14 Export in foreign buffers
+** 12.14 Export in foreign buffers                                    <<@Export-in-foreign-buffers>>
 
 Most built-in back-ends come with a command to convert the selected
 region into a selected format and replace this region by the exported
@@ -11994,7 +12325,7 @@ buffers. E.g., in an HTML buffer, you can turn on =orgstruct-mode=, then
 use Org commands for editing a list, and finally select and convert the
 list with =M-x org-html-convert-region-to-html RET=.
 
-** 12.15 Advanced configuration
+** 12.15 Advanced configuration                                       <<@Advanced-configuration>>
 
 *** Hooks
 
@@ -12447,7 +12778,7 @@ during publishing. Options set within a file (see
 | =:texinfo-tables-verbatim=                 | =org-texinfo-tables-verbatim=                 |
 | =:texinfo-text-markup-alist=               | =org-texinfo-text-markup-alist=               |
 
-*** 13.1.6 Links between published files
+*** 13.1.6 Links between published files                              <<@Publishing-links>>
 
 To create a link from one Org file to another, you would use something
 like ‘[[file:foo.org][The foo]]' or simply ‘file:foo.org.' (see
@@ -14482,7 +14813,7 @@ Complete word at point
    buffer.
 -  After ‘[', complete link abbreviations (see
    [[@Link-abbreviations][Link abbreviations]]).
--  After ‘#+', complete the special keywords like ‘TYP\_TODO' or
+-  After ‘#+', complete the special keywords like ‘TYP_TODO' or
    ‘OPTIONS' which set file-specific options for Org mode. When the
    option keyword is already complete, pressing M-TAB again will insert
    example settings for this keyword.
@@ -14607,7 +14938,7 @@ M-x org-customize RET. Or select =Browse Org Group= from the
 per-file basis, by putting special lines into the buffer (see
 [[@In_buffer-settings][In-buffer settings]]).
 
-** 15.6 Summary of in-buffer settings
+** 15.6 Summary of in-buffer settings                                 <<@In_buffer-settings>>
 
 Org mode uses special lines in the buffer to define settings on a
 per-file basis. These lines start with a ‘#+' followed by a keyword, a
@@ -14649,7 +14980,7 @@ visited again in a new Emacs session.
    or numbers 0--9. The highest priority must have a lower ASCII number
    than the lowest priority.
 
--  #+PROPERTY: Property\_Name Value :: This line sets a default
+-  #+PROPERTY: Property_Name Value :: This line sets a default
    inheritance value for entries in the current buffer, most useful for
    specifying the allowed values of a property.
 
@@ -14821,11 +15152,11 @@ visited again in a new Emacs session.
 
 -  #+TITLE:, #+AUTHOR:, #+EMAIL:, #+LANGUAGE:, #+DATE:,\\
    #+OPTIONS:, #+BIND:,\\
-   #+SELECT\_TAGS:, #+EXCLUDE\_TAGS: :: These lines provide settings for
+   #+SELECT_TAGS:, #+EXCLUDE_TAGS: :: These lines provide settings for
    exporting files. For more details see [[@Export-settings][Export
    settings]].
 
--  #+TODO: #+SEQ\_TODO: #+TYP\_TODO: :: These lines set the TODO
+-  #+TODO: #+SEQ_TODO: #+TYP_TODO: :: These lines set the TODO
    keywords and their interpretation in the current file. The
    corresponding variable is =org-todo-keywords=.
 
@@ -17571,9 +17902,9 @@ see the documentation of the function =org-inside-LaTeX-fragment-p=.
 
 [fn:FOOT128]
 It is also possible to use a less intrusive interface by setting
-=org-export-dispatch-use-expert-ui= to a non-=nil= value. In that case,
-only a prompt is visible from the minibuffer. From there one can still
-switch back to regular menu by pressing =?=.
+=org-export-dispatch-use-expert-ui= to a non- =nil= value. In that
+case, only a prompt is visible from the minibuffer. From there one can
+still switch back to regular menu by pressing =?=.
 
 [fn:FOOT129]
 The variable =org-export-date-timestamp-format= defines how this
@@ -17587,9 +17918,9 @@ If you want to configure many options this way, you can use several
 With the exception of ‘SETUPFILE'.
 
 [fn:FOOT132]
-If this property is set, the entry will also get a =:B_environment:= tag
-to make this visible. This tag has no semantic meaning, it is only a
-visual aid.
+If this property is set, the entry will also get a =:B_environment:=
+tag to make this visible. This tag has no semantic meaning, it is only
+a visual aid.
 
 [fn:FOOT133]
 The =fragile= option is added automatically if it contains code that
@@ -17599,10 +17930,9 @@ requires a verbatim environment, though.
 But see the variable =org-html-inline-images=.
 
 [fn:FOOT135]
-By default Org loads MathJax from
-[[http://docs.mathjax.org/en/latest/start.html#using-the-mathjax-content-delivery-network-cdn][MathJax.org]].
-A link to the terms of service of the MathJax CDN can be found in the
-docstring of =org-html-mathjax-options=.
+By default Org loads MathJax from [[http://docs.mathjax.org/en/latest/start.html#using-the-mathjax-content-delivery-network-cdn][MathJax.org]].  A link to the terms of
+service of the MathJax CDN can be found in the docstring of
+=org-html-mathjax-options=.
 
 [fn:FOOT136]
 If the classes on TODO keywords and tags lead to conflicts, use the
@@ -17617,18 +17947,19 @@ customize =org-html-head-include-default-style= or set =html-style= to
 
 [fn:FOOT138]
 The default LaTeX output is designed for processing with =pdftex= or
-=latex=. The LaTeX exporter can be configured to support alternative TeX
-engines, see see =org-latex-pdf-process=, and alternative packages, see
-=org-latex-default-packages-alist= and =org-latex-packages-alist=.
+=latex=. The LaTeX exporter can be configured to support alternative
+TeX engines, see see =org-latex-pdf-process=, and alternative
+packages, see =org-latex-default-packages-alist= and
+=org-latex-packages-alist=.
 
 [fn:FOOT139]
 Into which the values of =org-latex-default-packages-alist= and
 =org-latex-packages-alist= are spliced.
 
 [fn:FOOT140]
-Unlike =LATEX_HEADER=, contents from =LATEX_HEADER_EXTRA= keywords will
-not be loaded when previewing LaTeX snippets (see
-[[@Previewing-LaTeX-fragments][Previewing LaTeX fragments]]).
+Unlike =LATEX_HEADER=, contents from =LATEX_HEADER_EXTRA= keywords
+will not be loaded when previewing LaTeX snippets (see [[@Previewing-LaTeX-fragments][Previewing
+LaTeX fragments]]).
 
 [fn:FOOT141]
 Requires adding the =tabularx= package to =org-latex-packages-alist=.
@@ -17641,8 +17972,8 @@ Formerly, the value was =sidewaystable=. This is deprecated since Org
 8.3.
 
 [fn:FOOT144]
-In the case of TikZ ([[http://sourceforge.net/projects/pgf/]]) images,
-it will become an =\input= macro wrapped within a =tikzpicture=
+In the case of TikZ ([[http://sourceforge.net/projects/pgf/]]) images, it
+will become an =\input= macro wrapped within a =tikzpicture=
 environment.
 
 [fn:FOOT145]
