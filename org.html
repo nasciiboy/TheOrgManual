@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>The Org Manual</title>
-<!-- 2015-09-02 mié 17:23 -->
+<!-- 2015-09-02 mié 20:37 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Carsten Dominik with contributiond by Bastien Guerry, Nicolas Goazion, Eric Schulte, Jambunathan K. Dan Davison, Thomas O`Thoole, and Philip Rooke." />
@@ -544,48 +544,51 @@
 </li>
 </ul>
 </li>
-<li><a href="#sec-13">13 Publishing</a>
+<li><a href="#sec-13">13 Publishing                                                       </a>
 <ul>
-<li><a href="#sec-13-1">13.1 Configuration</a>
+<li><a href="#sec-13-1">13.1 Configuration                                                 </a>
 <ul>
-<li><a href="#sec-13-1-1">13.1.1 The variable <code>org-publish-project-alist</code></a></li>
-<li><a href="#sec-13-1-2">13.1.2 Sources and destinations for files</a></li>
-<li><a href="#sec-13-1-3">13.1.3 Selecting files</a></li>
-<li><a href="#sec-13-1-4">13.1.4 Publishing action</a></li>
-<li><a href="#sec-13-1-5">13.1.5 Options for the exporters</a></li>
-<li><a href="#sec-13-1-6">Generic properties</a></li>
-<li><a href="#sec-13-1-7">ASCII specific properties</a></li>
-<li><a href="#sec-13-1-8">Beamer specific properties</a></li>
-<li><a href="#sec-13-1-9">HTML specific properties</a></li>
-<li><a href="#sec-13-1-10">LaTeX specific properties</a></li>
-<li><a href="#sec-13-1-11">Markdown specific properties</a></li>
-<li><a href="#sec-13-1-12">ODT specific properties</a></li>
-<li><a href="#sec-13-1-13">Texinfo specific properties</a></li>
-<li><a href="#sec-13-1-14">13.1.6 Links between published files                              </a></li>
-<li><a href="#sec-13-1-15">13.1.7 Generating a sitemap</a></li>
-<li><a href="#sec-13-1-16">13.1.8 Generating an index                                        </a></li>
+<li><a href="#sec-13-1-1">13.1.1 The variable <code>org-publish-project-alist</code>                   </a></li>
+<li><a href="#sec-13-1-2">13.1.2 Sources and destinations for files                         </a></li>
+<li><a href="#sec-13-1-3">13.1.3 Selecting files                                            </a></li>
+<li><a href="#sec-13-1-4">13.1.4 Publishing action                                          </a></li>
+<li><a href="#sec-13-1-5">13.1.5 Options for the exporters                                  </a>
+<ul>
+<li><a href="#sec-13-1-5-1">Generic properties</a></li>
+<li><a href="#sec-13-1-5-2">ASCII specific properties</a></li>
+<li><a href="#sec-13-1-5-3">Beamer specific properties</a></li>
+<li><a href="#sec-13-1-5-4">HTML specific properties</a></li>
+<li><a href="#sec-13-1-5-5">LaTeX specific properties</a></li>
+<li><a href="#sec-13-1-5-6">Markdown specific properties</a></li>
+<li><a href="#sec-13-1-5-7">ODT specific properties</a></li>
+<li><a href="#sec-13-1-5-8">Texinfo specific properties</a></li>
 </ul>
 </li>
-<li><a href="#sec-13-2">13.2 Uploading files</a></li>
-<li><a href="#sec-13-3">13.3 Sample configuration</a>
-<ul>
-<li><a href="#sec-13-3-1">13.3.1 Example: simple publishing configuration</a></li>
-<li><a href="#sec-13-3-2">13.3.2 Example: complex publishing configuration</a></li>
+<li><a href="#sec-13-1-6">13.1.6 Links between published files                              </a></li>
+<li><a href="#sec-13-1-7">13.1.7 Generating a sitemap                                       </a></li>
+<li><a href="#sec-13-1-8">13.1.8 Generating an index                                        </a></li>
 </ul>
 </li>
-<li><a href="#sec-13-4">13.4 Triggering publication</a></li>
+<li><a href="#sec-13-2">13.2 Uploading files                                               </a></li>
+<li><a href="#sec-13-3">13.3 Sample configuration                                          </a>
+<ul>
+<li><a href="#sec-13-3-1">13.3.1 Example: simple publishing configuration                   </a></li>
+<li><a href="#sec-13-3-2">13.3.2 Example: complex publishing configuration                  </a></li>
+</ul>
+</li>
+<li><a href="#sec-13-4">13.4 Triggering publication                                        </a></li>
 </ul>
 </li>
 <li><a href="#sec-14">14 Working with source code                                         </a>
 <ul>
-<li><a href="#sec-14-1">14.1 Structure of code blocks</a></li>
+<li><a href="#sec-14-1">14.1 Structure of code blocks                                      </a></li>
 <li><a href="#sec-14-2">14.2 Editing source code                                           </a></li>
-<li><a href="#sec-14-3">14.3 Exporting code blocks</a>
+<li><a href="#sec-14-3">14.3 Exporting code blocks                                         </a>
 <ul>
 <li><a href="#sec-14-3-1">Header arguments:</a></li>
 </ul>
 </li>
-<li><a href="#sec-14-4">14.4 Extracting source code</a>
+<li><a href="#sec-14-4">14.4 Extracting source code                                        </a>
 <ul>
 <li><a href="#sec-14-4-1">Header arguments</a></li>
 <li><a href="#sec-14-4-2">Functions</a></li>
@@ -594,59 +597,74 @@
 </ul>
 </li>
 <li><a href="#sec-14-5">14.5 Evaluating code blocks                                        </a></li>
-<li><a href="#sec-14-6">14.6 Library of Babel</a></li>
-<li><a href="#sec-14-7">14.7 Languages</a></li>
-<li><a href="#sec-14-8">14.8 Header arguments</a>
+<li><a href="#sec-14-6">14.6 Library of Babel                                              </a></li>
+<li><a href="#sec-14-7">14.7 Languages                                                     </a></li>
+<li><a href="#sec-14-8">14.8 Header arguments                                              </a>
 <ul>
-<li><a href="#sec-14-8-1">14.8.1 Using header arguments</a></li>
-<li><a href="#sec-14-8-2">System-wide header arguments</a></li>
-<li><a href="#sec-14-8-3">Language-specific header arguments</a></li>
-<li><a href="#sec-14-8-4">Header arguments in Org mode properties</a></li>
-<li><a href="#sec-14-8-5">Language-specific header arguments in Org mode properties</a></li>
-<li><a href="#sec-14-8-6">Code block specific header arguments</a></li>
-<li><a href="#sec-14-8-7">Header arguments in function calls</a></li>
-<li><a href="#sec-14-8-8">14.8.2 Specific header arguments</a></li>
-<li><a href="#sec-14-8-9">14.8.2.1 <code>:var</code></a></li>
-<li><a href="#sec-14-8-10">Indexable variable values</a></li>
-<li><a href="#sec-14-8-11">Emacs Lisp evaluation of variables</a></li>
-<li><a href="#sec-14-8-12">14.8.2.2 <code>:results</code></a></li>
-<li><a href="#sec-14-8-13">Collection</a></li>
-<li><a href="#sec-14-8-14">Type</a></li>
-<li><a href="#sec-14-8-15">Format</a></li>
-<li><a href="#sec-14-8-16">Handling</a></li>
-<li><a href="#sec-14-8-17">14.8.2.3 <code>:file</code></a></li>
-<li><a href="#sec-14-8-18">14.8.2.4 <code>:file-desc</code></a></li>
-<li><a href="#sec-14-8-19">14.8.2.5 <code>:file-ext</code></a></li>
-<li><a href="#sec-14-8-20">14.8.2.6 <code>:output-dir</code></a></li>
-<li><a href="#sec-14-8-21">14.8.2.7 <code>:dir</code> and remote execution</a></li>
-<li><a href="#sec-14-8-22">Remote execution</a></li>
-<li><a href="#sec-14-8-23">Further points</a></li>
-<li><a href="#sec-14-8-24">14.8.2.8 <code>:exports</code></a></li>
-<li><a href="#sec-14-8-25">14.8.2.9 <code>:tangle</code></a></li>
-<li><a href="#sec-14-8-26">14.8.2.10 <code>:mkdirp</code></a></li>
-<li><a href="#sec-14-8-27">14.8.2.11 <code>:comments</code></a></li>
-<li><a href="#sec-14-8-28">14.8.2.12 <code>:padline</code></a></li>
-<li><a href="#sec-14-8-29">14.8.2.13 <code>:no-expand</code></a></li>
-<li><a href="#sec-14-8-30">14.8.2.14 <code>:session</code></a></li>
-<li><a href="#sec-14-8-31">14.8.2.15 <code>:noweb</code></a></li>
-<li><a href="#sec-14-8-32">Noweb prefix lines</a></li>
-<li><a href="#sec-14-8-33">14.8.2.16 <code>:noweb-ref</code></a></li>
-<li><a href="#sec-14-8-34">14.8.2.17 <code>:noweb-sep</code></a></li>
-<li><a href="#sec-14-8-35">14.8.2.18 <code>:cache</code></a></li>
-<li><a href="#sec-14-8-36">14.8.2.19 <code>:sep</code></a></li>
-<li><a href="#sec-14-8-37">14.8.2.20 <code>:hlines</code></a></li>
-<li><a href="#sec-14-8-38">14.8.2.21 <code>:colnames</code></a></li>
-<li><a href="#sec-14-8-39">14.8.2.22 <code>:rownames</code></a></li>
-<li><a href="#sec-14-8-40">14.8.2.23 <code>:shebang</code></a></li>
-<li><a href="#sec-14-8-41">14.8.2.24 <code>:tangle-mode</code></a></li>
-<li><a href="#sec-14-8-42">14.8.2.25 <code>:eval</code></a></li>
-<li><a href="#sec-14-8-43">14.8.2.26 <code>:wrap</code></a></li>
-<li><a href="#sec-14-8-44">14.8.2.27 <code>:post</code></a></li>
-<li><a href="#sec-14-8-45">14.8.2.28 <code>:prologue</code></a></li>
-<li><a href="#sec-14-8-46">14.8.2.29 <code>:epilogue</code></a></li>
+<li><a href="#sec-14-8-1">14.8.1 Using header arguments                                     </a>
+<ul>
+<li><a href="#sec-14-8-1-1">System-wide header arguments                                     </a></li>
+<li><a href="#sec-14-8-1-2">Language-specific header arguments                               </a></li>
+<li><a href="#sec-14-8-1-3">Header arguments in Org mode properties                          </a></li>
+<li><a href="#sec-14-8-1-4">Language-specific header arguments in Org mode properties        </a></li>
+<li><a href="#sec-14-8-1-5">Code block specific header arguments                             </a></li>
+<li><a href="#sec-14-8-1-6">Header arguments in function calls                               </a></li>
 </ul>
 </li>
-<li><a href="#sec-14-9">14.9 Results of evaluation</a>
+<li><a href="#sec-14-8-2">14.8.2 Specific header arguments                                  </a></li>
+<li><a href="#sec-14-8-3">14.8.2.1 <code>:var</code>                                                   </a>
+<ul>
+<li><a href="#sec-14-8-3-1">Indexable variable values</a></li>
+<li><a href="#sec-14-8-3-2">Emacs Lisp evaluation of variables</a></li>
+</ul>
+</li>
+<li><a href="#sec-14-8-4">14.8.2.2 <code>:results</code>                                               </a>
+<ul>
+<li><a href="#sec-14-8-4-1">Collection</a></li>
+<li><a href="#sec-14-8-4-2">Type</a></li>
+<li><a href="#sec-14-8-4-3">Format</a></li>
+<li><a href="#sec-14-8-4-4">Handling</a></li>
+</ul>
+</li>
+<li><a href="#sec-14-8-5">14.8.2.3 <code>:file</code>                                                  </a></li>
+<li><a href="#sec-14-8-6">14.8.2.4 <code>:file-desc</code>                                             </a></li>
+<li><a href="#sec-14-8-7">14.8.2.5 <code>:file-ext</code>                                              </a></li>
+<li><a href="#sec-14-8-8">14.8.2.6 <code>:output-dir</code>                                            </a></li>
+<li><a href="#sec-14-8-9">14.8.2.7 <code>:dir</code> and remote execution                              </a>
+<ul>
+<li><a href="#sec-14-8-9-1">Remote execution</a></li>
+<li><a href="#sec-14-8-9-2">Further points</a></li>
+</ul>
+</li>
+<li><a href="#sec-14-8-10">14.8.2.8 <code>:exports</code>                                               </a></li>
+<li><a href="#sec-14-8-11">14.8.2.9 <code>:tangle</code>                                                </a></li>
+<li><a href="#sec-14-8-12">14.8.2.10 <code>:mkdirp</code>                                               </a></li>
+<li><a href="#sec-14-8-13">14.8.2.11 <code>:comments</code>                                             </a></li>
+<li><a href="#sec-14-8-14">14.8.2.12 <code>:padline</code>                                              </a></li>
+<li><a href="#sec-14-8-15">14.8.2.13 <code>:no-expand</code>                                            </a></li>
+<li><a href="#sec-14-8-16">14.8.2.14 <code>:session</code>                                              </a></li>
+<li><a href="#sec-14-8-17">14.8.2.15 <code>:noweb</code>                                                </a>
+<ul>
+<li><a href="#sec-14-8-17-1">Noweb prefix lines</a></li>
+</ul>
+</li>
+<li><a href="#sec-14-8-18">14.8.2.16 <code>:noweb-ref</code>                                            </a></li>
+<li><a href="#sec-14-8-19">14.8.2.17 <code>:noweb-sep</code>                                            </a></li>
+<li><a href="#sec-14-8-20">14.8.2.18 <code>:cache</code>                                                </a></li>
+<li><a href="#sec-14-8-21">14.8.2.19 <code>:sep</code>                                                  </a></li>
+<li><a href="#sec-14-8-22">14.8.2.20 <code>:hlines</code>                                               </a></li>
+<li><a href="#sec-14-8-23">14.8.2.21 <code>:colnames</code>                                             </a></li>
+<li><a href="#sec-14-8-24">14.8.2.22 <code>:rownames</code>                                             </a></li>
+<li><a href="#sec-14-8-25">14.8.2.23 <code>:shebang</code>                                              </a></li>
+<li><a href="#sec-14-8-26">14.8.2.24 <code>:tangle-mode</code>                                          </a></li>
+<li><a href="#sec-14-8-27">14.8.2.25 <code>:eval</code>                                                 </a></li>
+<li><a href="#sec-14-8-28">14.8.2.26 <code>:wrap</code>                                                 </a></li>
+<li><a href="#sec-14-8-29">14.8.2.27 <code>:post</code>                                                 </a></li>
+<li><a href="#sec-14-8-30">14.8.2.28 <code>:prologue</code>                                             </a></li>
+<li><a href="#sec-14-8-31">14.8.2.29 <code>:epilogue</code>                                             </a></li>
+</ul>
+</li>
+<li><a href="#sec-14-9">14.9 Results of evaluation                                         </a>
 <ul>
 <li><a href="#sec-14-9-1">14.9.1 Non-session</a></li>
 <li><a href="#sec-14-9-2">14.9.1.1 <code>:results value</code></a></li>
@@ -656,59 +674,59 @@
 <li><a href="#sec-14-9-6">14.9.2.2 <code>:results output</code></a></li>
 </ul>
 </li>
-<li><a href="#sec-14-10">14.10 Noweb reference syntax</a></li>
-<li><a href="#sec-14-11">14.11 Key bindings and useful functions</a></li>
-<li><a href="#sec-14-12">14.12 Batch execution</a></li>
+<li><a href="#sec-14-10">14.10 Noweb reference syntax                                       </a></li>
+<li><a href="#sec-14-11">14.11 Key bindings and useful functions                            </a></li>
+<li><a href="#sec-14-12">14.12 Batch execution                                              </a></li>
 </ul>
 </li>
 <li><a href="#sec-15">15 Miscellaneous</a>
 <ul>
 <li><a href="#sec-15-1">15.1 Completion                                                    </a></li>
 <li><a href="#sec-15-2">15.2 Easy templates                                                </a></li>
-<li><a href="#sec-15-3">15.3 Speed keys</a></li>
-<li><a href="#sec-15-4">15.4 Code evaluation and security issues</a></li>
-<li><a href="#sec-15-5">15.5 Customization</a></li>
+<li><a href="#sec-15-3">15.3 Speed keys                                                    </a></li>
+<li><a href="#sec-15-4">15.4 Code evaluation and security issues                           </a></li>
+<li><a href="#sec-15-5">15.5 Customization                                                 </a></li>
 <li><a href="#sec-15-6">15.6 Summary of in-buffer settings                                 </a></li>
-<li><a href="#sec-15-7">15.7 The very busy C-c C-c key</a></li>
+<li><a href="#sec-15-7">15.7 The very busy C-c C-c key                                     </a></li>
 <li><a href="#sec-15-8">15.8 A cleaner outline view                                        </a></li>
-<li><a href="#sec-15-9">15.9 Using Org on a tty</a></li>
-<li><a href="#sec-15-10">15.10 Interaction with other packages</a>
+<li><a href="#sec-15-9">15.9 Using Org on a tty                                            </a></li>
+<li><a href="#sec-15-10">15.10 Interaction with other packages                              </a>
 <ul>
-<li><a href="#sec-15-10-1">15.10.1 Packages that Org cooperates with</a></li>
+<li><a href="#sec-15-10-1">15.10.1 Packages that Org cooperates with                         </a></li>
 <li><a href="#sec-15-10-2">15.10.2 Packages that lead to conflicts with Org mode             </a></li>
 </ul>
 </li>
-<li><a href="#sec-15-11">15.11 org-crypt.el</a></li>
+<li><a href="#sec-15-11">15.11 org-crypt.el                                                 </a></li>
 </ul>
 </li>
 <li><a href="#sec-16">Appendix A Hacking</a>
 <ul>
-<li><a href="#sec-16-1">A.1 Hooks</a></li>
-<li><a href="#sec-16-2">A.2 Add-on packages</a></li>
+<li><a href="#sec-16-1">A.1 Hooks                                                          </a></li>
+<li><a href="#sec-16-2">A.2 Add-on packages                                                </a></li>
 <li><a href="#sec-16-3">A.3 Adding hyperlink types                                         </a></li>
-<li><a href="#sec-16-4">A.4 Adding export back-ends</a></li>
-<li><a href="#sec-16-5">A.5 Context-sensitive commands</a></li>
+<li><a href="#sec-16-4">A.4 Adding export back-ends                                        </a></li>
+<li><a href="#sec-16-5">A.5 Context-sensitive commands                                     </a></li>
 <li><a href="#sec-16-6">A.6 Tables and lists in arbitrary syntax                           </a>
 <ul>
-<li><a href="#sec-16-6-1">A.6.1 Radio tables</a></li>
-<li><a href="#sec-16-6-2">A.6.2 A LaTeX example of radio tables</a></li>
+<li><a href="#sec-16-6-1">A.6.1 Radio tables                                                </a></li>
+<li><a href="#sec-16-6-2">A.6.2 A LaTeX example of radio tables                             </a></li>
 <li><a href="#sec-16-6-3">A.6.3 Translator functions                                        </a></li>
-<li><a href="#sec-16-6-4">A.6.4 Radio lists</a></li>
+<li><a href="#sec-16-6-4">A.6.4 Radio lists                                                 </a></li>
 </ul>
 </li>
 <li><a href="#sec-16-7">A.7 Dynamic blocks                                                 </a></li>
-<li><a href="#sec-16-8">A.8 Special agenda views</a></li>
+<li><a href="#sec-16-8">A.8 Special agenda views                                           </a></li>
 <li><a href="#sec-16-9">A.9 Speeding up your agendas                                       </a></li>
 <li><a href="#sec-16-10">A.10 Extracting agenda information                                 </a></li>
 <li><a href="#sec-16-11">A.11 Using the property API                                        </a></li>
-<li><a href="#sec-16-12">A.12 Using the mapping API</a></li>
+<li><a href="#sec-16-12">A.12 Using the mapping API                                         </a></li>
 </ul>
 </li>
 <li><a href="#sec-17">Appendix B MobileOrg</a>
 <ul>
-<li><a href="#sec-17-1">B.1 Setting up the staging area</a></li>
-<li><a href="#sec-17-2">B.2 Pushing to MobileOrg</a></li>
-<li><a href="#sec-17-3">B.3 Pulling from MobileOrg</a></li>
+<li><a href="#sec-17-1">B.1 Setting up the staging area                                    </a></li>
+<li><a href="#sec-17-2">B.2 Pushing to MobileOrg                                           </a></li>
+<li><a href="#sec-17-3">B.3 Pulling from MobileOrg                                         </a></li>
 </ul>
 </li>
 <li><a href="#sec-18">Appendix C History and acknowledgments</a>
@@ -20167,7 +20185,7 @@ this, install it in the export dispatcher menu, and so on.
 </div>
 
 <div id="outline-container-sec-13" class="outline-2">
-<h2 id="sec-13">13 Publishing</h2>
+<h2 id="sec-13">13 Publishing                                                       <a id="Publishing" name="Publishing"></a></h2>
 <div class="outline-text-2" id="text-13">
 <p>
 Org includes a publishing management system that allows you to configure
@@ -20186,19 +20204,101 @@ server.
 <p>
 Publishing has been contributed to Org by David O'Toole.
 </p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">• <a href="#Configuration">Configuration</a>:</td>
+<td class="left">Defining projects</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Uploading-files">Uploading files</a>:</td>
+<td class="left">How to get files up on the server</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Sample-configuration">Sample configuration</a>:</td>
+<td class="left">Example projects</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Triggering-publication">Triggering publication</a>:</td>
+<td class="left">Publication commands</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 <div id="outline-container-sec-13-1" class="outline-3">
-<h3 id="sec-13-1">13.1 Configuration</h3>
+<h3 id="sec-13-1">13.1 Configuration                                                 <a id="Configuration" name="Configuration"></a></h3>
 <div class="outline-text-3" id="text-13-1">
 <p>
 Publishing needs significant configuration to specify files, destination
 and many other properties of a project.
 </p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">• <a href="#Project-alist">Project alist</a>:</td>
+<td class="left">The central configuration variable</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Sources-and-destinations">Sources and destinations</a>:</td>
+<td class="left">From here to there</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Selecting-files">Selecting files</a>:</td>
+<td class="left">What files are part of the project?</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Publishing-action">Publishing action</a>:</td>
+<td class="left">Setting the function doing the publishing</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Publishing-options">Publishing options</a>:</td>
+<td class="left">Tweaking HTML/LaTeX export</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Publishing-links">Publishing links</a>:</td>
+<td class="left">Which links keep working after publishing?</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Sitemap">Sitemap</a>:</td>
+<td class="left">Generating a list of all pages</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Generating-an-index">Generating an index</a>:</td>
+<td class="left">An index that reaches across pages</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 <div id="outline-container-sec-13-1-1" class="outline-4">
-<h4 id="sec-13-1-1">13.1.1 The variable <code>org-publish-project-alist</code></h4>
+<h4 id="sec-13-1-1">13.1.1 The variable <code>org-publish-project-alist</code>                   <a id="Project-alist" name="Project-alist"></a></h4>
 <div class="outline-text-4" id="text-13-1-1">
 <p>
 Publishing is configured almost entirely through setting the value of
@@ -20230,7 +20330,7 @@ sequence given.
 </div>
 
 <div id="outline-container-sec-13-1-2" class="outline-4">
-<h4 id="sec-13-1-2">13.1.2 Sources and destinations for files</h4>
+<h4 id="sec-13-1-2">13.1.2 Sources and destinations for files                         <a id="Sources-and-destinations" name="Sources-and-destinations"></a></h4>
 <div class="outline-text-4" id="text-13-1-2">
 <p>
 Most properties are optional, but some should always be set. In
@@ -20254,7 +20354,7 @@ to put published files.
 
 <tr>
 <td class="left"><code>:publishing-directory</code></td>
-<td class="left">Directory where output files will be published. You can directly publish to a web server using a file name syntax appropriate for the Emacs tramp package. Or you can publish to a local directory and use external tools to upload your website (see <i>Uploading files</i>).</td>
+<td class="left">Directory where output files will be published. You can directly publish to a web server using a file name syntax appropriate for the Emacs tramp package. Or you can publish to a local directory and use external tools to upload your website (see <a href="#Uploading-files">Uploading files</a>).</td>
 </tr>
 
 <tr>
@@ -20272,7 +20372,7 @@ to put published files.
 </div>
 
 <div id="outline-container-sec-13-1-3" class="outline-4">
-<h4 id="sec-13-1-3">13.1.3 Selecting files</h4>
+<h4 id="sec-13-1-3">13.1.3 Selecting files                                            <a id="Selecting-files" name="Selecting-files"></a></h4>
 <div class="outline-text-4" id="text-13-1-3">
 <p>
 By default, all files with extension .org in the base directory are
@@ -20314,7 +20414,7 @@ properties
 </div>
 
 <div id="outline-container-sec-13-1-4" class="outline-4">
-<h4 id="sec-13-1-4">13.1.4 Publishing action</h4>
+<h4 id="sec-13-1-4">13.1.4 Publishing action                                          <a id="Publishing-action" name="Publishing-action"></a></h4>
 <div class="outline-text-4" id="text-13-1-4">
 <p>
 Publishing means that a file is copied to the destination directory and
@@ -20373,7 +20473,7 @@ any) and place the result into the destination folder.
 </div>
 
 <div id="outline-container-sec-13-1-5" class="outline-4">
-<h4 id="sec-13-1-5">13.1.5 Options for the exporters</h4>
+<h4 id="sec-13-1-5">13.1.5 Options for the exporters                                  <a id="Publishing-options" name="Publishing-options"></a></h4>
 <div class="outline-text-4" id="text-13-1-5">
 <p>
 The property list can be used to set export options during the
@@ -20391,11 +20491,10 @@ during publishing. Options set within a file (see
 <a href="#Export-settings">Export settings</a>), however, override everything.
 </p>
 </div>
-</div>
 
-<div id="outline-container-sec-13-1-6" class="outline-4">
-<h4 id="sec-13-1-6">Generic properties</h4>
-<div class="outline-text-4" id="text-13-1-6">
+<div id="outline-container-sec-13-1-5-1" class="outline-5">
+<h5 id="sec-13-1-5-1">Generic properties</h5>
+<div class="outline-text-5" id="text-13-1-5-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -20549,9 +20648,9 @@ during publishing. Options set within a file (see
 </div>
 </div>
 
-<div id="outline-container-sec-13-1-7" class="outline-4">
-<h4 id="sec-13-1-7">ASCII specific properties</h4>
-<div class="outline-text-4" id="text-13-1-7">
+<div id="outline-container-sec-13-1-5-2" class="outline-5">
+<h5 id="sec-13-1-5-2">ASCII specific properties</h5>
+<div class="outline-text-5" id="text-13-1-5-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -20665,9 +20764,9 @@ during publishing. Options set within a file (see
 </div>
 </div>
 
-<div id="outline-container-sec-13-1-8" class="outline-4">
-<h4 id="sec-13-1-8">Beamer specific properties</h4>
-<div class="outline-text-4" id="text-13-1-8">
+<div id="outline-container-sec-13-1-5-3" class="outline-5">
+<h5 id="sec-13-1-5-3">Beamer specific properties</h5>
+<div class="outline-text-5" id="text-13-1-5-3">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -20716,9 +20815,9 @@ during publishing. Options set within a file (see
 </div>
 </div>
 
-<div id="outline-container-sec-13-1-9" class="outline-4">
-<h4 id="sec-13-1-9">HTML specific properties</h4>
-<div class="outline-text-4" id="text-13-1-9">
+<div id="outline-container-sec-13-1-5-4" class="outline-5">
+<h5 id="sec-13-1-5-4">HTML specific properties</h5>
+<div class="outline-text-5" id="text-13-1-5-4">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -20982,9 +21081,9 @@ during publishing. Options set within a file (see
 </div>
 </div>
 
-<div id="outline-container-sec-13-1-10" class="outline-4">
-<h4 id="sec-13-1-10">LaTeX specific properties</h4>
-<div class="outline-text-4" id="text-13-1-10">
+<div id="outline-container-sec-13-1-5-5" class="outline-5">
+<h5 id="sec-13-1-5-5">LaTeX specific properties</h5>
+<div class="outline-text-5" id="text-13-1-5-5">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -21163,9 +21262,9 @@ during publishing. Options set within a file (see
 </div>
 </div>
 
-<div id="outline-container-sec-13-1-11" class="outline-4">
-<h4 id="sec-13-1-11">Markdown specific properties</h4>
-<div class="outline-text-4" id="text-13-1-11">
+<div id="outline-container-sec-13-1-5-6" class="outline-5">
+<h5 id="sec-13-1-5-6">Markdown specific properties</h5>
+<div class="outline-text-5" id="text-13-1-5-6">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -21184,9 +21283,9 @@ during publishing. Options set within a file (see
 </div>
 </div>
 
-<div id="outline-container-sec-13-1-12" class="outline-4">
-<h4 id="sec-13-1-12">ODT specific properties</h4>
-<div class="outline-text-4" id="text-13-1-12">
+<div id="outline-container-sec-13-1-5-7" class="outline-5">
+<h5 id="sec-13-1-5-7">ODT specific properties</h5>
+<div class="outline-text-5" id="text-13-1-5-7">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -21260,9 +21359,9 @@ during publishing. Options set within a file (see
 </div>
 </div>
 
-<div id="outline-container-sec-13-1-13" class="outline-4">
-<h4 id="sec-13-1-13">Texinfo specific properties</h4>
-<div class="outline-text-4" id="text-13-1-13">
+<div id="outline-container-sec-13-1-5-8" class="outline-5">
+<h5 id="sec-13-1-5-8">Texinfo specific properties</h5>
+<div class="outline-text-5" id="text-13-1-5-8">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -21350,10 +21449,11 @@ during publishing. Options set within a file (see
 </table>
 </div>
 </div>
+</div>
 
-<div id="outline-container-sec-13-1-14" class="outline-4">
-<h4 id="sec-13-1-14">13.1.6 Links between published files                              <a id="Publishing-links" name="Publishing-links"></a></h4>
-<div class="outline-text-4" id="text-13-1-14">
+<div id="outline-container-sec-13-1-6" class="outline-4">
+<h4 id="sec-13-1-6">13.1.6 Links between published files                              <a id="Publishing-links" name="Publishing-links"></a></h4>
+<div class="outline-text-4" id="text-13-1-6">
 <p>
 To create a link from one Org file to another, you would use something
 like ‘<a href="foo.html">The foo</a>' or simply ‘<a href="foo.html">foo.html</a>.' (see
@@ -21369,14 +21469,14 @@ converted to link to the corresponding html file.
 You may also link to related files, such as images. Provided you are
 careful with relative file names, and provided you have also configured
 Org to upload the related files, these links will work too. See
-<i>Complex example</i>, for an example of this usage.
+<a href="#Complex-example">Complex example</a>, for an example of this usage.
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-13-1-15" class="outline-4">
-<h4 id="sec-13-1-15">13.1.7 Generating a sitemap</h4>
-<div class="outline-text-4" id="text-13-1-15">
+<div id="outline-container-sec-13-1-7" class="outline-4">
+<h4 id="sec-13-1-7">13.1.7 Generating a sitemap                                       <a id="Sitemap" name="Sitemap"></a></h4>
+<div class="outline-text-4" id="text-13-1-7">
 <p>
 The following properties may be used to control publishing of a map of
 files for a given project.
@@ -21445,9 +21545,9 @@ files for a given project.
 </div>
 </div>
 
-<div id="outline-container-sec-13-1-16" class="outline-4">
-<h4 id="sec-13-1-16">13.1.8 Generating an index                                        <a id="Generating-an-index" name="Generating-an-index"></a></h4>
-<div class="outline-text-4" id="text-13-1-16">
+<div id="outline-container-sec-13-1-8" class="outline-4">
+<h4 id="sec-13-1-8">13.1.8 Generating an index                                        <a id="Generating-an-index" name="Generating-an-index"></a></h4>
+<div class="outline-text-4" id="text-13-1-8">
 <p>
 Org mode can generate an index across the files of a publishing project.
 </p>
@@ -21479,7 +21579,7 @@ statement by adding a title, style information, etc.
 </div>
 
 <div id="outline-container-sec-13-2" class="outline-3">
-<h3 id="sec-13-2">13.2 Uploading files</h3>
+<h3 id="sec-13-2">13.2 Uploading files                                               <a id="Uploading-files" name="Uploading-files"></a></h3>
 <div class="outline-text-3" id="text-13-2">
 <p>
 For those people already utilizing third party sync tools such as
@@ -21522,17 +21622,38 @@ been modified.
 </div>
 
 <div id="outline-container-sec-13-3" class="outline-3">
-<h3 id="sec-13-3">13.3 Sample configuration</h3>
+<h3 id="sec-13-3">13.3 Sample configuration                                          <a id="Sample-configuration" name="Sample-configuration"></a></h3>
 <div class="outline-text-3" id="text-13-3">
 <p>
 Below we provide two example configurations. The first one is a simple
 project publishing only a set of Org files. The second example is more
 complex, with a multi-component project.
 </p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">• <a href="#Simple-example">Simple example</a>:</td>
+<td class="left">One-component publishing</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Complex-example">Complex example</a>:</td>
+<td class="left">A multi-component publishing example</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 <div id="outline-container-sec-13-3-1" class="outline-4">
-<h4 id="sec-13-3-1">13.3.1 Example: simple publishing configuration</h4>
+<h4 id="sec-13-3-1">13.3.1 Example: simple publishing configuration                   <a id="Simple-example" name="Simple-example"></a></h4>
 <div class="outline-text-4" id="text-13-3-1">
 <p>
 This example publishes a set of Org files to the public\<sub>html</sub> directory
@@ -21556,7 +21677,7 @@ on the local machine.
 </div>
 
 <div id="outline-container-sec-13-3-2" class="outline-4">
-<h4 id="sec-13-3-2">13.3.2 Example: complex publishing configuration</h4>
+<h4 id="sec-13-3-2">13.3.2 Example: complex publishing configuration                  <a id="Complex-example" name="Complex-example"></a></h4>
 <div class="outline-text-4" id="text-13-3-2">
 <p>
 This more complicated example publishes an entire website, including Org
@@ -21617,7 +21738,7 @@ place on the web server, and publishing images to it.
 </div>
 
 <div id="outline-container-sec-13-4" class="outline-3">
-<h3 id="sec-13-4">13.4 Triggering publication</h3>
+<h3 id="sec-13-4">13.4 Triggering publication                                        <a id="Triggering-publication" name="Triggering-publication"></a></h3>
 <div class="outline-text-3" id="text-13-4">
 <p>
 Once properly configured, Org can publish with the following commands:
@@ -21696,10 +21817,81 @@ by Eric Schulte and Dan Davison, and was originally named Org-babel.
 The following sections describe Org mode's code block handling
 facilities.
 </p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">• <a href="#Structure-of-code-blocks">Structure of code blocks</a>:</td>
+<td class="left">Code block syntax described</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Editing-source-code">Editing source code</a>:</td>
+<td class="left">Language major-mode editing</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Exporting-code-blocks">Exporting code blocks</a>:</td>
+<td class="left">Export contents and/or results</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Extracting-source-code">Extracting source code</a>:</td>
+<td class="left">Create pure source code files</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Evaluating-code-blocks">Evaluating code blocks</a>:</td>
+<td class="left">Place results of evaluation in the Org mode buffer</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Library-of-Babel">Library of Babel</a>:</td>
+<td class="left">Use and contribute to a library of useful code blocks</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Languages">Languages</a>:</td>
+<td class="left">List of supported code block languages</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Header-arguments">Header arguments</a>:</td>
+<td class="left">Configure code block functionality</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Results-of-evaluation">Results of evaluation</a>:</td>
+<td class="left">How evaluation results are handled</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Noweb-reference-syntax">Noweb reference syntax</a>:</td>
+<td class="left">Literate programming in Org mode</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Key-bindings-and-useful-functions">Key bindings and useful functions</a>:</td>
+<td class="left">Work quickly with code blocks</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Batch-execution">Batch execution</a>:</td>
+<td class="left">Call functions from the command line</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 <div id="outline-container-sec-14-1" class="outline-3">
-<h3 id="sec-14-1">14.1 Structure of code blocks</h3>
+<h3 id="sec-14-1">14.1 Structure of code blocks                                      <a id="Structure-of-code-blocks" name="Structure-of-code-blocks"></a></h3>
 <div class="outline-text-3" id="text-14-1">
 <p>
 Live code blocks can be specified with a ‘src' block or
@@ -21747,7 +21939,7 @@ same name is undefined.
 </dd>
 
 <dt> <code>&lt;language&gt;</code> </dt><dd>The language of the code in the block (see
-<i>Languages</i>).
+<a href="#Languages">Languages</a>).
 </dd>
 
 <dt> <code>&lt;switches&gt;</code> </dt><dd>Optional switches control code block export (see the
@@ -21756,7 +21948,7 @@ discussion of switches in <a href="#Literal-examples">Literal examples</a>)
 
 <dt> <code>&lt;header arguments&gt;</code> </dt><dd>Optional header arguments control many
 aspects of evaluation, export and tangling of code blocks (see
-<i>Header arguments</i>). Header arguments can also
+<a href="#Header-arguments">Header arguments</a>). Header arguments can also
 be set on a per-buffer or per-subtree basis using properties.
 </dd>
 
@@ -21823,7 +22015,7 @@ variable <code>org-src-fontify-natively</code>.
 </div>
 
 <div id="outline-container-sec-14-3" class="outline-3">
-<h3 id="sec-14-3">14.3 Exporting code blocks</h3>
+<h3 id="sec-14-3">14.3 Exporting code blocks                                         <a id="Exporting-code-blocks" name="Exporting-code-blocks"></a></h3>
 <div class="outline-text-3" id="text-14-3">
 <p>
 It is possible to export the <i>code</i> of code blocks, the <i>results</i> of
@@ -21906,15 +22098,15 @@ evaluated on export.
 </div>
 
 <div id="outline-container-sec-14-4" class="outline-3">
-<h3 id="sec-14-4">14.4 Extracting source code</h3>
+<h3 id="sec-14-4">14.4 Extracting source code                                        <a id="Extracting-source-code" name="Extracting-source-code"></a></h3>
 <div class="outline-text-3" id="text-14-4">
 <p>
 Creating pure source code files by extracting code from source blocks is
 referred to as “tangling”&#x2014;a term adopted from the literate programming
 community. During “tangling” of code blocks their bodies are expanded
 using <code>org-babel-expand-src-block</code> which can expand both variable and
-“noweb” style references (see <i>Noweb reference
-syntax</i>).
+“noweb” style references (see <a href="#Noweb-reference-syntax">Noweb reference
+syntax</a>).
 </p>
 </div>
 
@@ -21994,9 +22186,9 @@ which the code originated.
 <p>
 The <code>org-babel-tangle-jump-to-org</code> function provides this jumping from
 code to Org-mode functionality. Two header arguments are required for
-jumping to work, first the <code>padline</code> (<i>padline</i>) option must
+jumping to work, first the <code>padline</code> (<a href="#padline">padline</a>) option must
 be set to true (the default setting), second the <code>comments</code>
-(<i>comments</i>) header argument must be set to <code>links</code>, which
+(<a href="#comments">comments</a>) header argument must be set to <code>links</code>, which
 will insert comments into the source code buffer which point back to the
 original Org-mode file.
 </p>
@@ -22019,9 +22211,9 @@ with the customizable variable <code>org-babel-results-keyword</code>.
 <p>
 By default, the evaluation facility is only enabled for Lisp code blocks
 specified as <code>emacs-lisp</code>. However, source code blocks in many languages
-can be evaluated within Org mode (see <i>Languages</i> for a
-list of supported languages and <i>Structure
-of code blocks</i> for information on the syntax used to define a code
+can be evaluated within Org mode (see <a href="#Languages">Languages</a> for a
+list of supported languages and <a href="#Structure-of-code-blocks">Structure
+of code blocks</a> for information on the syntax used to define a code
 block).
 </p>
 
@@ -22037,7 +22229,7 @@ its results into the Org mode buffer.
 It is also possible to evaluate named code blocks from anywhere in an
 Org mode buffer or an Org mode table. These named code blocks can be
 located in the current Org mode buffer or in the “Library of Babel” (see
-<i>Library of Babel</i>). Named code blocks can be
+<a href="#Library-of-Babel">Library of Babel</a>). Named code blocks can be
 evaluated with a separate <code>#+CALL:</code> line or inline within a block of
 text. In both cases the result is wrapped according to the value of
 <code>org-babel-inline-result-wrap</code>, which by default is ="<code>%s</code>"= for markup
@@ -22064,7 +22256,7 @@ The syntax for inline evaluation of named code blocks is
 
 <dl class="org-dl">
 <dt> <code>&lt;name&gt;</code> </dt><dd>The name of the code block to be evaluated (see
-<i>Structure of code blocks</i>).
+<a href="#Structure-of-code-blocks">Structure of code blocks</a>).
 </dd>
 
 <dt> <code>&lt;arguments&gt;</code> </dt><dd>Arguments specified in this section will be passed
@@ -22092,8 +22284,8 @@ in the Org buffer, wrapped in a <code>BEGIN_HTML:</code> block.
 
 <p>
 For more examples of passing header arguments to <code>#+CALL:</code> lines see
-<i>Header arguments in function
-calls</i>.
+<a href="#Header-arguments-in-function-calls">Header arguments in function
+calls</a>.
 </p>
 </dd>
 </dl>
@@ -22101,7 +22293,7 @@ calls</i>.
 </div>
 
 <div id="outline-container-sec-14-6" class="outline-3">
-<h3 id="sec-14-6">14.6 Library of Babel</h3>
+<h3 id="sec-14-6">14.6 Library of Babel                                              <a id="Library-of-Babel" name="Library-of-Babel"></a></h3>
 <div class="outline-text-3" id="text-14-6">
 <p>
 The “Library of Babel” consists of code blocks that can be called from
@@ -22130,7 +22322,7 @@ of Babel” with the <code>org-babel-lob-ingest</code> function, bound to C-c C-
 </div>
 
 <div id="outline-container-sec-14-7" class="outline-3">
-<h3 id="sec-14-7">14.7 Languages</h3>
+<h3 id="sec-14-7">14.7 Languages                                                     <a id="Languages" name="Languages"></a></h3>
 <div class="outline-text-3" id="text-14-7">
 <p>
 Code blocks in the following languages are supported.
@@ -22344,17 +22536,38 @@ The following adds support for evaluating <code>clojure</code> code blocks.
 </div>
 
 <div id="outline-container-sec-14-8" class="outline-3">
-<h3 id="sec-14-8">14.8 Header arguments</h3>
+<h3 id="sec-14-8">14.8 Header arguments                                              <a id="Header-arguments" name="Header-arguments"></a></h3>
 <div class="outline-text-3" id="text-14-8">
 <p>
 Code block functionality can be configured with header arguments. This
 section provides an overview of the use of header arguments, and then
 describes each header argument in detail.
 </p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">• <a href="#Using-header-arguments">Using header arguments</a>:</td>
+<td class="left">Different ways to set header arguments</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Specific-header-arguments">Specific header arguments</a>:</td>
+<td class="left">List of header arguments</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 <div id="outline-container-sec-14-8-1" class="outline-4">
-<h4 id="sec-14-8-1">14.8.1 Using header arguments</h4>
+<h4 id="sec-14-8-1">14.8.1 Using header arguments                                     <a id="Using-header-arguments" name="Using-header-arguments"></a></h4>
 <div class="outline-text-4" id="text-14-8-1">
 <p>
 The values of header arguments can be set in several way. When the
@@ -22364,12 +22577,52 @@ to the last, most specific (having the highest priority). A header
 argument with a higher priority replaces the same header argument
 specified at lower priority.
 </p>
-</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">• <a href="#System_wide-header-arguments">System-wide header arguments</a>:</td>
+<td class="left">Set global default values</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Language_specific-header-arguments">Language-specific header arguments</a>:</td>
+<td class="left">Set default values by language</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Header-arguments-in-Org-mode-properties">Header arguments in Org mode properties</a>:</td>
+<td class="left">Set default values for a buffer or heading</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Language_specific-header-arguments-in-Org-mode-properties">Language-specific header arguments in Org mode properties</a>:</td>
+<td class="left">Set language-specific default values for a buffer or heading</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Code-block-specific-header-arguments">Code block specific header arguments</a>:</td>
+<td class="left">The most common way to set values</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Header-arguments-in-function-calls">Header arguments in function calls</a>:</td>
+<td class="left">The most specific level</td>
+</tr>
+</tbody>
+</table>
 </div>
 
-<div id="outline-container-sec-14-8-2" class="outline-4">
-<h4 id="sec-14-8-2">System-wide header arguments</h4>
-<div class="outline-text-4" id="text-14-8-2">
+<div id="outline-container-sec-14-8-1-1" class="outline-5">
+<h5 id="sec-14-8-1-1">System-wide header arguments                                     <a id="System_wide-header-arguments" name="System_wide-header-arguments"></a></h5>
+<div class="outline-text-5" id="text-14-8-1-1">
 <p>
 System-wide values of header arguments can be specified by adapting the
 <code>org-babel-default-header-args</code> variable:
@@ -22400,9 +22653,9 @@ blocks.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-3" class="outline-4">
-<h4 id="sec-14-8-3">Language-specific header arguments</h4>
-<div class="outline-text-4" id="text-14-8-3">
+<div id="outline-container-sec-14-8-1-2" class="outline-5">
+<h5 id="sec-14-8-1-2">Language-specific header arguments                               <a id="Language_specific-header-arguments" name="Language_specific-header-arguments"></a></h5>
+<div class="outline-text-5" id="text-14-8-1-2">
 <p>
 Each language can define its own set of default header arguments in
 variable <code>org-babel-default-header-args:&lt;lang&gt;</code>, where <code>&lt;lang&gt;</code> is the
@@ -22412,9 +22665,9 @@ online at <a href="http://orgmode.org/worg/org-contrib/babel">http://orgmode.org
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-4" class="outline-4">
-<h4 id="sec-14-8-4">Header arguments in Org mode properties</h4>
-<div class="outline-text-4" id="text-14-8-4">
+<div id="outline-container-sec-14-8-1-3" class="outline-5">
+<h5 id="sec-14-8-1-3">Header arguments in Org mode properties                          <a id="Header-arguments-in-Org-mode-properties" name="Header-arguments-in-Org-mode-properties"></a></h5>
+<div class="outline-text-5" id="text-14-8-1-3">
 <p>
 Buffer-wide header arguments may be specified as properties through the
 use of <code>#+PROPERTY:</code> lines placed anywhere in an Org mode file (see
@@ -22465,9 +22718,9 @@ to C-c C-x p to set properties in Org mode documents.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-5" class="outline-4">
-<h4 id="sec-14-8-5">Language-specific header arguments in Org mode properties</h4>
-<div class="outline-text-4" id="text-14-8-5">
+<div id="outline-container-sec-14-8-1-4" class="outline-5">
+<h5 id="sec-14-8-1-4">Language-specific header arguments in Org mode properties        <a id="Language_specific-header-arguments-in-Org-mode-properties" name="Language_specific-header-arguments-in-Org-mode-properties"></a></h5>
+<div class="outline-text-5" id="text-14-8-1-4">
 <p>
 Language-specific header arguments are also read from properties
 <code>header-args:&lt;lang&gt;</code> where <code>&lt;lang&gt;</code> is the name of the language
@@ -22496,9 +22749,9 @@ therefore unchanged.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-6" class="outline-4">
-<h4 id="sec-14-8-6">Code block specific header arguments</h4>
-<div class="outline-text-4" id="text-14-8-6">
+<div id="outline-container-sec-14-8-1-5" class="outline-5">
+<h5 id="sec-14-8-1-5">Code block specific header arguments                             <a id="Code-block-specific-header-arguments" name="Code-block-specific-header-arguments"></a></h5>
+<div class="outline-text-5" id="text-14-8-1-5">
 <p>
 The most common way to assign values to header arguments is at the code
 block level. This can be done by listing a sequence of header arguments
@@ -22564,9 +22817,9 @@ Multi-line header arguments on a named code block:
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-7" class="outline-4">
-<h4 id="sec-14-8-7">Header arguments in function calls</h4>
-<div class="outline-text-4" id="text-14-8-7">
+<div id="outline-container-sec-14-8-1-6" class="outline-5">
+<h5 id="sec-14-8-1-6">Header arguments in function calls                               <a id="Header-arguments-in-function-calls" name="Header-arguments-in-function-calls"></a></h5>
+<div class="outline-text-5" id="text-14-8-1-6">
 <p>
 At the most specific level, header arguments for “Library of Babel” or
 <code>#+CALL:</code> lines can be set as shown in the two examples below. For more
@@ -22593,10 +22846,11 @@ evaluation of the <code>factorial</code> code block.
 </pre>
 </div>
 </div>
+</div>
 
-<div id="outline-container-sec-14-8-8" class="outline-4">
-<h4 id="sec-14-8-8">14.8.2 Specific header arguments</h4>
-<div class="outline-text-4" id="text-14-8-8">
+<div id="outline-container-sec-14-8-2" class="outline-4">
+<h4 id="sec-14-8-2">14.8.2 Specific header arguments                                  <a id="Specific-header-arguments" name="Specific-header-arguments"></a></h4>
+<div class="outline-text-4" id="text-14-8-2">
 <p>
 Header arguments consist of an initial colon followed by the name of the
 argument in lowercase letters. The following header arguments are
@@ -22613,147 +22867,147 @@ defined:
 </colgroup>
 <tbody>
 <tr>
-<td class="left"><i>var</i>:</td>
+<td class="left">• <a href="#var">var</a>:</td>
 <td class="left">Pass arguments to code blocks</td>
 </tr>
 
 <tr>
-<td class="left"><i>Results</i>:</td>
+<td class="left">• <a href="#Results">Results</a>:</td>
 <td class="left">Specify the type of results and how they will be collected and handled</td>
 </tr>
 
 <tr>
-<td class="left"><i>file</i>:</td>
+<td class="left">• <a href="#file">file</a>:</td>
 <td class="left">Specify a path for file output</td>
 </tr>
 
 <tr>
-<td class="left"><i>file-desc</i>:</td>
+<td class="left">• <a href="#file_desc">file-desc</a>:</td>
 <td class="left">Specify a description for file results</td>
 </tr>
 
 <tr>
-<td class="left"><i>file-ext</i>:</td>
+<td class="left">• <a href="#file_ext">file-ext</a>:</td>
 <td class="left">Specify an extension for file output</td>
 </tr>
 
 <tr>
-<td class="left"><i>output-dir</i>:</td>
+<td class="left">• <a href="#output_dir">output-dir</a>:</td>
 <td class="left">Specify a directory to write file output to</td>
 </tr>
 
 <tr>
-<td class="left"><i>dir</i>:</td>
+<td class="left">• <a href="#dir">dir</a>:</td>
 <td class="left">Specify the default (possibly remote) directory for code block execution</td>
 </tr>
 
 <tr>
-<td class="left"><i>exports</i>:</td>
+<td class="left">• <a href="#exports">exports</a>:</td>
 <td class="left">Export code and/or results</td>
 </tr>
 
 <tr>
-<td class="left"><i>tangle</i>:</td>
+<td class="left">• <a href="#tangle">tangle</a>:</td>
 <td class="left">Toggle tangling and specify file name</td>
 </tr>
 
 <tr>
-<td class="left"><i>mkdirp</i>:</td>
+<td class="left">• <a href="#mkdirp">mkdirp</a>:</td>
 <td class="left">Toggle creation of parent directories of target files during tangling</td>
 </tr>
 
 <tr>
-<td class="left"><i>comments</i>:</td>
+<td class="left">• <a href="#comments">comments</a>:</td>
 <td class="left">Toggle insertion of comments in tangled code files</td>
 </tr>
 
 <tr>
-<td class="left"><i>padline</i>:</td>
+<td class="left">• <a href="#padline">padline</a>:</td>
 <td class="left">Control insertion of padding lines in tangled code files</td>
 </tr>
 
 <tr>
-<td class="left"><i>no-expand</i>:</td>
+<td class="left">• <a href="#no_expand">no-expand</a>:</td>
 <td class="left">Turn off variable assignment and noweb expansion during tangling</td>
 </tr>
 
 <tr>
-<td class="left"><i>session</i>:</td>
+<td class="left">• <a href="#session">session</a>:</td>
 <td class="left">Preserve the state of code evaluation</td>
 </tr>
 
 <tr>
-<td class="left"><i>noweb</i>:</td>
+<td class="left">• <a href="#noweb">noweb</a>:</td>
 <td class="left">Toggle expansion of noweb references</td>
 </tr>
 
 <tr>
-<td class="left"><i>noweb-ref</i>:</td>
+<td class="left">• <a href="#noweb_ref">noweb-ref</a>:</td>
 <td class="left">Specify block's noweb reference resolution target</td>
 </tr>
 
 <tr>
-<td class="left"><i>noweb-sep</i>:</td>
+<td class="left">• <a href="#noweb_sep">noweb-sep</a>:</td>
 <td class="left">String used to separate noweb references</td>
 </tr>
 
 <tr>
-<td class="left"><i>cache</i>:</td>
+<td class="left">• <a href="#cache">cache</a>:</td>
 <td class="left">Avoid re-evaluating unchanged code blocks</td>
 </tr>
 
 <tr>
-<td class="left"><i>sep</i>:</td>
+<td class="left">• <a href="#sep">sep</a>:</td>
 <td class="left">Delimiter for writing tabular results outside Org</td>
 </tr>
 
 <tr>
-<td class="left"><i>hlines</i>:</td>
+<td class="left">• <a href="#hlines">hlines</a>:</td>
 <td class="left">Handle horizontal lines in tables</td>
 </tr>
 
 <tr>
-<td class="left"><i>colnames</i>:</td>
+<td class="left">• <a href="#colnames">colnames</a>:</td>
 <td class="left">Handle column names in tables</td>
 </tr>
 
 <tr>
-<td class="left"><i>rownames</i>:</td>
+<td class="left">• <a href="#rownames">rownames</a>:</td>
 <td class="left">Handle row names in tables</td>
 </tr>
 
 <tr>
-<td class="left"><i>shebang</i>:</td>
+<td class="left">• <a href="#shebang">shebang</a>:</td>
 <td class="left">Make tangled files executable</td>
 </tr>
 
 <tr>
-<td class="left"><i>tangle-mode</i>:</td>
+<td class="left">• <a href="#tangle_mode">tangle-mode</a>:</td>
 <td class="left">Set permission of tangled files</td>
 </tr>
 
 <tr>
-<td class="left"><i>eval</i>:</td>
+<td class="left">• <a href="#eval">eval</a>:</td>
 <td class="left">Limit evaluation of specific code blocks</td>
 </tr>
 
 <tr>
-<td class="left"><i>wrap</i>:</td>
+<td class="left">• <a href="#wrap">wrap</a>:</td>
 <td class="left">Mark source block evaluation results</td>
 </tr>
 
 <tr>
-<td class="left"><i>post</i>:</td>
+<td class="left">• <a href="#post">post</a>:</td>
 <td class="left">Post processing of code block results</td>
 </tr>
 
 <tr>
-<td class="left"><i>prologue</i>:</td>
+<td class="left">• <a href="#prologue">prologue</a>:</td>
 <td class="left">Text to prepend to code block body</td>
 </tr>
 
 <tr>
-<td class="left"><i>epilogue</i>:</td>
+<td class="left">• <a href="#epilogue">epilogue</a>:</td>
 <td class="left">Text to append to code block body</td>
 </tr>
 </tbody>
@@ -22761,14 +23015,14 @@ defined:
 
 <p>
 Additional header arguments are defined on a language-specific basis,
-see <i>Languages</i>.
+see <a href="#Languages">Languages</a>.
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-9" class="outline-4">
-<h4 id="sec-14-8-9">14.8.2.1 <code>:var</code></h4>
-<div class="outline-text-4" id="text-14-8-9">
+<div id="outline-container-sec-14-8-3" class="outline-4">
+<h4 id="sec-14-8-3">14.8.2.1 <code>:var</code>                                                   <a id="var" name="var"></a></h4>
+<div class="outline-text-4" id="text-14-8-3">
 <p>
 The <code>:var</code> header argument is used to pass arguments to code blocks. The
 specifics of how arguments are included in a code block vary by
@@ -22780,7 +23034,7 @@ are declared.
 
 <p>
 The values passed to arguments can either be literal values, references,
-or Emacs Lisp code (see <i>Emacs Lisp evaluation of variables</i>).
+or Emacs Lisp code (see <a href="#var">Emacs Lisp evaluation of variables</a>).
 References include anything in the Org mode file that takes a <code>#+NAME:</code>
 or <code>#+RESULTS:</code> line: tables, lists, <code>#+BEGIN_EXAMPLE</code> blocks, other
 code blocks and the results of other code blocks.
@@ -22789,12 +23043,12 @@ code blocks and the results of other code blocks.
 <p>
 Note: When a reference is made to another code block, the referenced
 block will be evaluated unless it has current cached results (see
-<i>cache</i>).
+<a href="#cache">cache</a>).
 </p>
 
 <p>
 Argument values can be indexed in a manner similar to arrays (see
-<i>Indexable variable values</i>).
+<a href="#var">Indexable variable values</a>).
 </p>
 
 <p>
@@ -22914,11 +23168,10 @@ on two lines
 </dd>
 </dl>
 </div>
-</div>
 
-<div id="outline-container-sec-14-8-10" class="outline-4">
-<h4 id="sec-14-8-10">Indexable variable values</h4>
-<div class="outline-text-4" id="text-14-8-10">
+<div id="outline-container-sec-14-8-3-1" class="outline-5">
+<h5 id="sec-14-8-3-1">Indexable variable values</h5>
+<div class="outline-text-5" id="text-14-8-3-1">
 <p>
 It is possible to reference portions of variable values by “indexing”
 into the variables. Indexes are 0 based with negative values counting
@@ -23016,9 +23269,9 @@ separated from one another by commas, as shown in the following example.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-11" class="outline-4">
-<h4 id="sec-14-8-11">Emacs Lisp evaluation of variables</h4>
-<div class="outline-text-4" id="text-14-8-11">
+<div id="outline-container-sec-14-8-3-2" class="outline-5">
+<h5 id="sec-14-8-3-2">Emacs Lisp evaluation of variables</h5>
+<div class="outline-text-5" id="text-14-8-3-2">
 <p>
 Emacs lisp code can be used to initialize variable values. When a
 variable value starts with <code>(</code>, <code>[</code>, ='= or <code>`</code> it will be evaluated as
@@ -23055,10 +23308,11 @@ Emacs Lisp, as shown in the following example.
 </pre>
 </div>
 </div>
+</div>
 
-<div id="outline-container-sec-14-8-12" class="outline-4">
-<h4 id="sec-14-8-12">14.8.2.2 <code>:results</code></h4>
-<div class="outline-text-4" id="text-14-8-12">
+<div id="outline-container-sec-14-8-4" class="outline-4">
+<h4 id="sec-14-8-4">14.8.2.2 <code>:results</code>                                               <a id="Results" name="Results"></a></h4>
+<div class="outline-text-4" id="text-14-8-4">
 <p>
 There are four classes of <code>:results</code> header argument. Only one option
 per class may be supplied per code block.
@@ -23081,11 +23335,10 @@ code block should be handled.
 </li>
 </ul>
 </div>
-</div>
 
-<div id="outline-container-sec-14-8-13" class="outline-4">
-<h4 id="sec-14-8-13">Collection</h4>
-<div class="outline-text-4" id="text-14-8-13">
+<div id="outline-container-sec-14-8-4-1" class="outline-5">
+<h5 id="sec-14-8-4-1">Collection</h5>
+<div class="outline-text-5" id="text-14-8-4-1">
 <p>
 The following options are mutually exclusive, and specify how the
 results should be collected from the code block.
@@ -23107,9 +23360,9 @@ the evaluation in scripting mode. E.g., <code>:results output</code>.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-14" class="outline-4">
-<h4 id="sec-14-8-14">Type</h4>
-<div class="outline-text-4" id="text-14-8-14">
+<div id="outline-container-sec-14-8-4-2" class="outline-5">
+<h5 id="sec-14-8-4-2">Type</h5>
+<div class="outline-text-5" id="text-14-8-4-2">
 <p>
 The following options are mutually exclusive and specify what type of
 results the code block will return. By default, results are inserted as
@@ -23138,9 +23391,9 @@ will be inserted into the Org mode buffer as a file link. E.g.,
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-15" class="outline-4">
-<h4 id="sec-14-8-15">Format</h4>
-<div class="outline-text-4" id="text-14-8-15">
+<div id="outline-container-sec-14-8-4-3" class="outline-5">
+<h5 id="sec-14-8-4-3">Format</h5>
+<div class="outline-text-5" id="text-14-8-4-3">
 <p>
 The following options are mutually exclusive and specify what type of
 results the code block will return. By default, results are inserted
@@ -23179,9 +23432,9 @@ replaced.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-16" class="outline-4">
-<h4 id="sec-14-8-16">Handling</h4>
-<div class="outline-text-4" id="text-14-8-16">
+<div id="outline-container-sec-14-8-4-4" class="outline-5">
+<h5 id="sec-14-8-4-4">Handling</h5>
+<div class="outline-text-5" id="text-14-8-4-4">
 <p>
 The following results options indicate what happens with the results
 once they are collected.
@@ -23206,10 +23459,11 @@ the new results will be inserted as with <code>replace</code>.
 </ul>
 </div>
 </div>
+</div>
 
-<div id="outline-container-sec-14-8-17" class="outline-4">
-<h4 id="sec-14-8-17">14.8.2.3 <code>:file</code></h4>
-<div class="outline-text-4" id="text-14-8-17">
+<div id="outline-container-sec-14-8-5" class="outline-4">
+<h4 id="sec-14-8-5">14.8.2.3 <code>:file</code>                                                  <a id="file" name="file"></a></h4>
+<div class="outline-text-4" id="text-14-8-5">
 <p>
 The header argument <code>:file</code> is used to specify an external file in which
 to save code block results. After code block evaluation an Org mode
@@ -23230,9 +23484,9 @@ link.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-18" class="outline-4">
-<h4 id="sec-14-8-18">14.8.2.4 <code>:file-desc</code></h4>
-<div class="outline-text-4" id="text-14-8-18">
+<div id="outline-container-sec-14-8-6" class="outline-4">
+<h4 id="sec-14-8-6">14.8.2.4 <code>:file-desc</code>                                             <a id="file_desc" name="file_desc"></a></h4>
+<div class="outline-text-4" id="text-14-8-6">
 <p>
 The value of the <code>:file-desc</code> header argument is used to provide a
 description for file code block results which are inserted as Org mode
@@ -23243,13 +23497,13 @@ argument is given with no value the link path will be placed in both the
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-19" class="outline-4">
-<h4 id="sec-14-8-19">14.8.2.5 <code>:file-ext</code></h4>
-<div class="outline-text-4" id="text-14-8-19">
+<div id="outline-container-sec-14-8-7" class="outline-4">
+<h4 id="sec-14-8-7">14.8.2.5 <code>:file-ext</code>                                              <a id="file_ext" name="file_ext"></a></h4>
+<div class="outline-text-4" id="text-14-8-7">
 <p>
 The value of the <code>:file-ext</code> header argument is used to provide an
 extension to write the file output to. It is combined with the <code>#+NAME:</code>
-of the source block and the value of the <i>output-dir</i>
+of the source block and the value of the <a href="#output_dir">output-dir</a>
 header argument to generate a complete file name.
 </p>
 
@@ -23260,23 +23514,23 @@ when the latter is specified.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-20" class="outline-4">
-<h4 id="sec-14-8-20">14.8.2.6 <code>:output-dir</code></h4>
-<div class="outline-text-4" id="text-14-8-20">
+<div id="outline-container-sec-14-8-8" class="outline-4">
+<h4 id="sec-14-8-8">14.8.2.6 <code>:output-dir</code>                                            <a id="output_dir" name="output_dir"></a></h4>
+<div class="outline-text-4" id="text-14-8-8">
 <p>
 The value of the <code>:output-dir</code> header argument is used to provide a
 directory to write the file output to. It may specify an absolute
 directory (beginning with <code>/</code>) or a relative directory (without <code>/</code>). It
 can be combined with the <code>#+NAME:</code> of the source block and the value of
-the <i>file-ext</i> header argument to generate a complete
-file name, or used along with a <i>file</i> header arg.
+the <a href="#file_ext">file-ext</a> header argument to generate a complete
+file name, or used along with a <a href="#file">file</a> header arg.
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-21" class="outline-4">
-<h4 id="sec-14-8-21">14.8.2.7 <code>:dir</code> and remote execution</h4>
-<div class="outline-text-4" id="text-14-8-21">
+<div id="outline-container-sec-14-8-9" class="outline-4">
+<h4 id="sec-14-8-9">14.8.2.7 <code>:dir</code> and remote execution                              <a id="dir" name="dir"></a></h4>
+<div class="outline-text-4" id="text-14-8-9">
 <p>
 While the <code>:file</code> header argument can be used to specify the path to the
 output file, <code>:dir</code> specifies the default directory during code block
@@ -23304,11 +23558,10 @@ matplot(matrix(rnorm(100), 10), type="l")
 #+END_SRC
 </pre>
 </div>
-</div>
 
-<div id="outline-container-sec-14-8-22" class="outline-4">
-<h4 id="sec-14-8-22">Remote execution</h4>
-<div class="outline-text-4" id="text-14-8-22">
+<div id="outline-container-sec-14-8-9-1" class="outline-5">
+<h5 id="sec-14-8-9-1">Remote execution</h5>
+<div class="outline-text-5" id="text-14-8-9-1">
 <p>
 A directory on a remote machine can be specified using tramp file
 syntax, in which case the code will be evaluated on the remote machine.
@@ -23346,9 +23599,9 @@ install tramp separately in order for these features to work correctly.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-23" class="outline-4">
-<h4 id="sec-14-8-23">Further points</h4>
-<div class="outline-text-4" id="text-14-8-23">
+<div id="outline-container-sec-14-8-9-2" class="outline-5">
+<h5 id="sec-14-8-9-2">Further points</h5>
+<div class="outline-text-5" id="text-14-8-9-2">
 <ul class="org-ul">
 <li>If <code>:dir</code> is used in conjunction with <code>:session</code>, although it will
 determine the starting directory for a new session as expected, no
@@ -23366,10 +23619,11 @@ a location to which the link does not point.
 </ul>
 </div>
 </div>
+</div>
 
-<div id="outline-container-sec-14-8-24" class="outline-4">
-<h4 id="sec-14-8-24">14.8.2.8 <code>:exports</code></h4>
-<div class="outline-text-4" id="text-14-8-24">
+<div id="outline-container-sec-14-8-10" class="outline-4">
+<h4 id="sec-14-8-10">14.8.2.8 <code>:exports</code>                                               <a id="exports" name="exports"></a></h4>
+<div class="outline-text-4" id="text-14-8-10">
 <p>
 The <code>:exports</code> header argument specifies what should be included in HTML
 or LaTeX exports of the Org mode file. Note that the <code>:exports</code> option
@@ -23393,9 +23647,9 @@ E.g., <code>:exports both</code>.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-25" class="outline-4">
-<h4 id="sec-14-8-25">14.8.2.9 <code>:tangle</code></h4>
-<div class="outline-text-4" id="text-14-8-25">
+<div id="outline-container-sec-14-8-11" class="outline-4">
+<h4 id="sec-14-8-11">14.8.2.9 <code>:tangle</code>                                                <a id="tangle" name="tangle"></a></h4>
+<div class="outline-text-4" id="text-14-8-11">
 <p>
 The <code>:tangle</code> header argument specifies whether or not the code block
 should be included in tangled extraction of source code files.
@@ -23418,9 +23672,9 @@ E.g., <code>:tangle path</code>.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-26" class="outline-4">
-<h4 id="sec-14-8-26">14.8.2.10 <code>:mkdirp</code></h4>
-<div class="outline-text-4" id="text-14-8-26">
+<div id="outline-container-sec-14-8-12" class="outline-4">
+<h4 id="sec-14-8-12">14.8.2.10 <code>:mkdirp</code>                                               <a id="mkdirp" name="mkdirp"></a></h4>
+<div class="outline-text-4" id="text-14-8-12">
 <p>
 The <code>:mkdirp</code> header argument can be used to create parent directories
 of tangled files when missing. This can be set to <code>yes</code> to enable
@@ -23429,9 +23683,9 @@ directory creation or to <code>no</code> to inhibit directory creation.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-27" class="outline-4">
-<h4 id="sec-14-8-27">14.8.2.11 <code>:comments</code></h4>
-<div class="outline-text-4" id="text-14-8-27">
+<div id="outline-container-sec-14-8-13" class="outline-4">
+<h4 id="sec-14-8-13">14.8.2.11 <code>:comments</code>                                             <a id="comments" name="comments"></a></h4>
+<div class="outline-text-4" id="text-14-8-13">
 <p>
 By default code blocks are tangled to source-code files without any
 insertion of comments beyond those which may already exist in the body
@@ -23460,9 +23714,9 @@ expanded noweb references in the code block body in link comments.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-28" class="outline-4">
-<h4 id="sec-14-8-28">14.8.2.12 <code>:padline</code></h4>
-<div class="outline-text-4" id="text-14-8-28">
+<div id="outline-container-sec-14-8-14" class="outline-4">
+<h4 id="sec-14-8-14">14.8.2.12 <code>:padline</code>                                              <a id="padline" name="padline"></a></h4>
+<div class="outline-text-4" id="text-14-8-14">
 <p>
 Control in insertion of padding lines around code block bodies in
 tangled code files. The default value is <code>yes</code> which results in
@@ -23480,14 +23734,14 @@ tangled code files.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-29" class="outline-4">
-<h4 id="sec-14-8-29">14.8.2.13 <code>:no-expand</code></h4>
-<div class="outline-text-4" id="text-14-8-29">
+<div id="outline-container-sec-14-8-15" class="outline-4">
+<h4 id="sec-14-8-15">14.8.2.13 <code>:no-expand</code>                                            <a id="no_expand" name="no_expand"></a></h4>
+<div class="outline-text-4" id="text-14-8-15">
 <p>
 By default, code blocks are expanded with <code>org-babel-expand-src-block</code>
 during tangling. This has the effect of assigning values to variables
-specified with <code>:var</code> (see <i>var</i>), and of replacing “noweb”
-references (see <i>Noweb reference syntax</i>)
+specified with <code>:var</code> (see <a href="#var">var</a>), and of replacing “noweb”
+references (see <a href="#Noweb-reference-syntax">Noweb reference syntax</a>)
 with their targets. The <code>:no-expand</code> header argument can be used to turn
 off this behavior. Note: The <code>:no-expand</code> header argument has no impact
 on export, i.e. code blocks will irrespective of this header argument
@@ -23496,9 +23750,9 @@ expanded for execution.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-30" class="outline-4">
-<h4 id="sec-14-8-30">14.8.2.14 <code>:session</code></h4>
-<div class="outline-text-4" id="text-14-8-30">
+<div id="outline-container-sec-14-8-16" class="outline-4">
+<h4 id="sec-14-8-16">14.8.2.14 <code>:session</code>                                              <a id="session" name="session"></a></h4>
+<div class="outline-text-4" id="text-14-8-16">
 <p>
 The <code>:session</code> header argument starts a (possibly named) session for an
 interpreted language where the interpreter's state is preserved. All
@@ -23522,12 +23776,12 @@ language, if the language supports multiple sessions).
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-31" class="outline-4">
-<h4 id="sec-14-8-31">14.8.2.15 <code>:noweb</code></h4>
-<div class="outline-text-4" id="text-14-8-31">
+<div id="outline-container-sec-14-8-17" class="outline-4">
+<h4 id="sec-14-8-17">14.8.2.15 <code>:noweb</code>                                                <a id="noweb" name="noweb"></a></h4>
+<div class="outline-text-4" id="text-14-8-17">
 <p>
 The <code>:noweb</code> header argument controls expansion of “noweb” syntax
-references (see <i>Noweb reference syntax</i>)
+references (see <a href="#Noweb-reference-syntax">Noweb reference syntax</a>)
 when the code block is evaluated, tangled, or exported. The <code>:noweb</code>
 header argument can have one of the five values: <code>no</code>, <code>yes</code>, <code>tangle</code>,
 or <code>no-export</code> <code>strip-export</code>.
@@ -23561,11 +23815,10 @@ only be expanded before the block is evaluated.
 </li>
 </ul>
 </div>
-</div>
 
-<div id="outline-container-sec-14-8-32" class="outline-4">
-<h4 id="sec-14-8-32">Noweb prefix lines</h4>
-<div class="outline-text-4" id="text-14-8-32">
+<div id="outline-container-sec-14-8-17-1" class="outline-5">
+<h5 id="sec-14-8-17-1">Noweb prefix lines</h5>
+<div class="outline-text-5" id="text-14-8-17-1">
 <p>
 Noweb insertions are now placed behind the line prefix of the
 <code>&lt;&lt;reference&gt;&gt;</code>. This behavior is illustrated in the following example.
@@ -23597,10 +23850,11 @@ noweb references.
 </p>
 </div>
 </div>
+</div>
 
-<div id="outline-container-sec-14-8-33" class="outline-4">
-<h4 id="sec-14-8-33">14.8.2.16 <code>:noweb-ref</code></h4>
-<div class="outline-text-4" id="text-14-8-33">
+<div id="outline-container-sec-14-8-18" class="outline-4">
+<h4 id="sec-14-8-18">14.8.2.16 <code>:noweb-ref</code>                                            <a id="noweb_ref" name="noweb_ref"></a></h4>
+<div class="outline-text-4" id="text-14-8-18">
 <p>
 When expanding “noweb” style references, the bodies of all code block
 with <i>either</i> a block name matching the reference name <i>or</i> a
@@ -23646,27 +23900,27 @@ into the resulting pure code file<sup><a id="fnr.162" name="fnr.162" class="foot
 </pre>
 
 <p>
-The <code>:noweb-sep</code> (see <i>noweb-sep</i>) header argument
+The <code>:noweb-sep</code> (see <a href="#noweb_sep">noweb-sep</a>) header argument
 holds the string used to separate accumulate noweb references like those
 above. By default a newline is used.
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-34" class="outline-4">
-<h4 id="sec-14-8-34">14.8.2.17 <code>:noweb-sep</code></h4>
-<div class="outline-text-4" id="text-14-8-34">
+<div id="outline-container-sec-14-8-19" class="outline-4">
+<h4 id="sec-14-8-19">14.8.2.17 <code>:noweb-sep</code>                                            <a id="noweb_sep" name="noweb_sep"></a></h4>
+<div class="outline-text-4" id="text-14-8-19">
 <p>
 The <code>:noweb-sep</code> header argument holds the string used to separate
-accumulate noweb references (see <i>noweb-ref</i>). By
+accumulate noweb references (see <a href="#noweb_ref">noweb-ref</a>). By
 default a newline is used.
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-35" class="outline-4">
-<h4 id="sec-14-8-35">14.8.2.18 <code>:cache</code></h4>
-<div class="outline-text-4" id="text-14-8-35">
+<div id="outline-container-sec-14-8-20" class="outline-4">
+<h4 id="sec-14-8-20">14.8.2.18 <code>:cache</code>                                                <a id="cache" name="cache"></a></h4>
+<div class="outline-text-4" id="text-14-8-20">
 <p>
 The <code>:cache</code> header argument controls the use of in-buffer caching of
 the results of evaluating code blocks. It can be used to avoid
@@ -23717,15 +23971,15 @@ x
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-36" class="outline-4">
-<h4 id="sec-14-8-36">14.8.2.19 <code>:sep</code></h4>
-<div class="outline-text-4" id="text-14-8-36">
+<div id="outline-container-sec-14-8-21" class="outline-4">
+<h4 id="sec-14-8-21">14.8.2.19 <code>:sep</code>                                                  <a id="sep" name="sep"></a></h4>
+<div class="outline-text-4" id="text-14-8-21">
 <p>
 The <code>:sep</code> header argument can be used to control the delimiter used
 when writing tabular results out to files external to Org mode. This is
 used either when opening tabular results of a code block by calling the
 <code>org-open-at-point</code> function bound to C-c C-o on the code block, or when
-writing code block results to an external file (see <i>file</i>)
+writing code block results to an external file (see <a href="#file">file</a>)
 header argument.
 </p>
 
@@ -23736,9 +23990,9 @@ delimited.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-37" class="outline-4">
-<h4 id="sec-14-8-37">14.8.2.20 <code>:hlines</code></h4>
-<div class="outline-text-4" id="text-14-8-37">
+<div id="outline-container-sec-14-8-22" class="outline-4">
+<h4 id="sec-14-8-22">14.8.2.20 <code>:hlines</code>                                               <a id="hlines" name="hlines"></a></h4>
+<div class="outline-text-4" id="text-14-8-22">
 <p>
 Tables are frequently represented with one or more horizontal lines, or
 hlines. The <code>:hlines</code> argument to a code block accepts the values <code>yes</code>
@@ -23799,9 +24053,9 @@ effect.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-38" class="outline-4">
-<h4 id="sec-14-8-38">14.8.2.21 <code>:colnames</code></h4>
-<div class="outline-text-4" id="text-14-8-38">
+<div id="outline-container-sec-14-8-23" class="outline-4">
+<h4 id="sec-14-8-23">14.8.2.21 <code>:colnames</code>                                             <a id="colnames" name="colnames"></a></h4>
+<div class="outline-text-4" id="text-14-8-23">
 <p>
 The <code>:colnames</code> header argument accepts the values <code>yes</code>, <code>no</code>, or <code>nil</code>
 for unassigned. The default value is <code>nil</code>. Note that the behavior of
@@ -23834,8 +24088,8 @@ the table before processing, then reapplied to the results.
 
 <p>
 Please note that column names are not removed before the table is
-indexed using variable indexing See <i>Indexable variable
-values</i>.
+indexed using variable indexing See <a href="#var">Indexable variable
+values</a>.
 </p>
 </li>
 
@@ -23849,9 +24103,9 @@ row is not an hline)
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-39" class="outline-4">
-<h4 id="sec-14-8-39">14.8.2.22 <code>:rownames</code></h4>
-<div class="outline-text-4" id="text-14-8-39">
+<div id="outline-container-sec-14-8-24" class="outline-4">
+<h4 id="sec-14-8-24">14.8.2.22 <code>:rownames</code>                                             <a id="rownames" name="rownames"></a></h4>
+<div class="outline-text-4" id="text-14-8-24">
 <p>
 The <code>:rownames</code> header argument can take on the values <code>yes</code> or <code>no</code>,
 with a default value of <code>no</code>. Note that Emacs Lisp code blocks ignore
@@ -23882,17 +24136,17 @@ processing, and is then reapplied to the results.
 
 <p>
 Please note that row names are not removed before the table is
-indexed using variable indexing See <i>Indexable variable
-values</i>.
+indexed using variable indexing See <a href="#var">Indexable variable
+values</a>.
 </p>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-40" class="outline-4">
-<h4 id="sec-14-8-40">14.8.2.23 <code>:shebang</code></h4>
-<div class="outline-text-4" id="text-14-8-40">
+<div id="outline-container-sec-14-8-25" class="outline-4">
+<h4 id="sec-14-8-25">14.8.2.23 <code>:shebang</code>                                              <a id="shebang" name="shebang"></a></h4>
+<div class="outline-text-4" id="text-14-8-25">
 <p>
 Setting the <code>:shebang</code> header argument to a string value (e.g.,
 =:shebang "#!/bin/bash"=) causes the string to be inserted as the first
@@ -23902,16 +24156,16 @@ permissions of the tangled file are set to make it executable.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-41" class="outline-4">
-<h4 id="sec-14-8-41">14.8.2.24 <code>:tangle-mode</code></h4>
-<div class="outline-text-4" id="text-14-8-41">
+<div id="outline-container-sec-14-8-26" class="outline-4">
+<h4 id="sec-14-8-26">14.8.2.24 <code>:tangle-mode</code>                                          <a id="tangle_mode" name="tangle_mode"></a></h4>
+<div class="outline-text-4" id="text-14-8-26">
 <p>
 The <code>tangle-mode</code> header argument controls the permission set on tangled
 files. The value of this header argument will be passed to
 <code>set-file-modes</code>. For example, to set a tangled file as read only use
 <code>:tangle-mode (identity #o444)</code>, or to set a tangled file as executable
 use <code>:tangle-mode (identity #o755)</code>. Blocks with <code>shebang</code>
-(<i>shebang</i>) header arguments will automatically be made
+(<a href="#shebang">shebang</a>) header arguments will automatically be made
 executable unless the <code>tangle-mode</code> header argument is also used. The
 behavior is undefined if multiple code blocks with different values for
 the <code>tangle-mode</code> header argument are tangled to the same file.
@@ -23919,9 +24173,9 @@ the <code>tangle-mode</code> header argument are tangled to the same file.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-42" class="outline-4">
-<h4 id="sec-14-8-42">14.8.2.25 <code>:eval</code></h4>
-<div class="outline-text-4" id="text-14-8-42">
+<div id="outline-container-sec-14-8-27" class="outline-4">
+<h4 id="sec-14-8-27">14.8.2.25 <code>:eval</code>                                                 <a id="eval" name="eval"></a></h4>
+<div class="outline-text-4" id="text-14-8-27">
 <p>
 The <code>:eval</code> header argument can be used to limit the evaluation of
 specific code blocks. The <code>:eval</code> header argument can be useful for
@@ -23951,14 +24205,14 @@ require a query.
 <p>
 If this header argument is not set then evaluation is determined by the
 value of the <code>org-confirm-babel-evaluate</code> variable see
-<i>Code evaluation security</i>.
+<a href="#Code-evaluation-security">Code evaluation security</a>.
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-43" class="outline-4">
-<h4 id="sec-14-8-43">14.8.2.26 <code>:wrap</code></h4>
-<div class="outline-text-4" id="text-14-8-43">
+<div id="outline-container-sec-14-8-28" class="outline-4">
+<h4 id="sec-14-8-28">14.8.2.26 <code>:wrap</code>                                                 <a id="wrap" name="wrap"></a></h4>
+<div class="outline-text-4" id="text-14-8-28">
 <p>
 The <code>:wrap</code> header argument is used to mark the results of source block
 evaluation. The header argument can be passed a string that will be
@@ -23969,15 +24223,15 @@ a <code>#+BEGIN/END_RESULTS</code> block.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-44" class="outline-4">
-<h4 id="sec-14-8-44">14.8.2.27 <code>:post</code></h4>
-<div class="outline-text-4" id="text-14-8-44">
+<div id="outline-container-sec-14-8-29" class="outline-4">
+<h4 id="sec-14-8-29">14.8.2.27 <code>:post</code>                                                 <a id="post" name="post"></a></h4>
+<div class="outline-text-4" id="text-14-8-29">
 <p>
 The <code>:post</code> header argument is used to post-process the results of a
 code block execution. When a post argument is given, the results of the
 code block will temporarily be bound to the <code>*this*</code> variable. This
 variable may then be included in header argument forms such as those
-used in <i>var</i> header argument specifications allowing passing of
+used in <a href="#var">var</a> header argument specifications allowing passing of
 results to other code blocks, or direct execution via Emacs Lisp.
 Additional header arguments may be passed to the <code>:post</code>-function.
 </p>
@@ -24041,15 +24295,15 @@ data.frame(foo=rnorm(1))
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-45" class="outline-4">
-<h4 id="sec-14-8-45">14.8.2.28 <code>:prologue</code></h4>
-<div class="outline-text-4" id="text-14-8-45">
+<div id="outline-container-sec-14-8-30" class="outline-4">
+<h4 id="sec-14-8-30">14.8.2.28 <code>:prologue</code>                                             <a id="prologue" name="prologue"></a></h4>
+<div class="outline-text-4" id="text-14-8-30">
 <p>
 The value of the <code>prologue</code> header argument will be prepended to the
 code block body before execution. For example, =:prologue "reset"= may
 be used to reset a gnuplot session before execution of a particular code
 block, or the following configuration may be used to do this for all
-gnuplot code blocks. Also see <i>epilogue</i>.
+gnuplot code blocks. Also see <a href="#epilogue">epilogue</a>.
 </p>
 
 <div class="org-src-container">
@@ -24061,26 +24315,26 @@ gnuplot code blocks. Also see <i>epilogue</i>.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-46" class="outline-4">
-<h4 id="sec-14-8-46">14.8.2.29 <code>:epilogue</code></h4>
-<div class="outline-text-4" id="text-14-8-46">
+<div id="outline-container-sec-14-8-31" class="outline-4">
+<h4 id="sec-14-8-31">14.8.2.29 <code>:epilogue</code>                                             <a id="epilogue" name="epilogue"></a></h4>
+<div class="outline-text-4" id="text-14-8-31">
 <p>
 The value of the <code>epilogue</code> header argument will be appended to the code
-block body before execution. Also see <i>prologue</i>.
+block body before execution. Also see <a href="#prologue">prologue</a>.
 </p>
 </div>
 </div>
 </div>
 
 <div id="outline-container-sec-14-9" class="outline-3">
-<h3 id="sec-14-9">14.9 Results of evaluation</h3>
+<h3 id="sec-14-9">14.9 Results of evaluation                                         <a id="Results-of-evaluation" name="Results-of-evaluation"></a></h3>
 <div class="outline-text-3" id="text-14-9">
 <p>
 The way in which results are handled depends on whether a session is
 invoked, as well as on whether <code>:results value</code> or <code>:results output</code> is
 used. The following table shows the table possibilities. For a full
 listing of the possible results header arguments see
-<i>Results</i>.
+<a href="#Results">Results</a>.
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -24235,7 +24489,7 @@ unnecessary here).
 </div>
 
 <div id="outline-container-sec-14-10" class="outline-3">
-<h3 id="sec-14-10">14.10 Noweb reference syntax</h3>
+<h3 id="sec-14-10">14.10 Noweb reference syntax                                       <a id="Noweb-reference-syntax" name="Noweb-reference-syntax"></a></h3>
 <div class="outline-text-3" id="text-14-10">
 <p>
 The “noweb” (see <a href="http://www.cs.tufts.edu/~nr/noweb/">http://www.cs.tufts.edu/~nr/noweb/</a>) Literate
@@ -24252,7 +24506,7 @@ When a code block is tangled or evaluated, whether or not “noweb”
 references are expanded depends upon the value of the <code>:noweb</code> header
 argument. If <code>:noweb yes</code>, then a Noweb reference is expanded before
 evaluation. If <code>:noweb no</code>, the default, then the reference is not
-expanded before evaluation. See the <i>noweb-ref</i> header
+expanded before evaluation. See the <a href="#noweb_ref">noweb-ref</a> header
 argument for a more flexible way to resolve noweb references.
 </p>
 
@@ -24285,7 +24539,7 @@ argument.
 </div>
 
 <div id="outline-container-sec-14-11" class="outline-3">
-<h3 id="sec-14-11">14.11 Key bindings and useful functions</h3>
+<h3 id="sec-14-11">14.11 Key bindings and useful functions                            <a id="Key-bindings-and-useful-functions" name="Key-bindings-and-useful-functions"></a></h3>
 <div class="outline-text-3" id="text-14-11">
 <p>
 Many common Org mode key sequences are re-bound depending on the
@@ -24511,7 +24765,7 @@ C-c C-v x or C-c C-v C-x
 </div>
 
 <div id="outline-container-sec-14-12" class="outline-3">
-<h3 id="sec-14-12">14.12 Batch execution</h3>
+<h3 id="sec-14-12">14.12 Batch execution                                              <a id="Batch-execution" name="Batch-execution"></a></h3>
 <div class="outline-text-3" id="text-14-12">
 <p>
 It is possible to call functions from the command line. This shell
@@ -24553,7 +24807,74 @@ emacs -Q --batch \
 <div id="outline-container-sec-15" class="outline-2">
 <h2 id="sec-15">15 Miscellaneous</h2>
 <div class="outline-text-2" id="text-15">
-</div><div id="outline-container-sec-15-1" class="outline-3">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">• <a href="#Completion">Completion</a>:</td>
+<td class="left">M-TAB knows what you need</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Easy-templates">Easy templates</a>:</td>
+<td class="left">Quick insertion of structural elements</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Speed-keys">Speed keys</a>:</td>
+<td class="left">Electric commands at the beginning of a headline</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Code-evaluation-security">Code evaluation security</a>:</td>
+<td class="left">Org mode files evaluate inline code</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Customization">Customization</a>:</td>
+<td class="left">Adapting Org to your taste</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#In_buffer-settings">In-buffer settings</a>:</td>
+<td class="left">Overview of the #+KEYWORDS</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#The-very-busy-C_c-C_c-key">The very busy C-c C-c key</a>:</td>
+<td class="left">When in doubt, press C-c C-c</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Clean-view">Clean view</a>:</td>
+<td class="left">Getting rid of leading stars in the outline</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#TTY-keys">TTY keys</a>:</td>
+<td class="left">Using Org on a tty</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Interaction">Interaction</a>:</td>
+<td class="left">Other Emacs packages</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#org_crypt">org-crypt</a>:</td>
+<td class="left">Encrypting Org files</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div id="outline-container-sec-15-1" class="outline-3">
 <h3 id="sec-15-1">15.1 Completion                                                    <a id="Completion" name="Completion"></a></h3>
 <div class="outline-text-3" id="text-15-1">
 <p>
@@ -24723,7 +25044,7 @@ additional details.
 </div>
 
 <div id="outline-container-sec-15-3" class="outline-3">
-<h3 id="sec-15-3">15.3 Speed keys</h3>
+<h3 id="sec-15-3">15.3 Speed keys                                                    <a id="Speed-keys" name="Speed-keys"></a></h3>
 <div class="outline-text-3" id="text-15-3">
 <p>
 Single keys can be made to execute commands when the cursor is at the
@@ -24744,7 +25065,7 @@ with the cursor at the beginning of a headline.
 </div>
 
 <div id="outline-container-sec-15-4" class="outline-3">
-<h3 id="sec-15-4">15.4 Code evaluation and security issues</h3>
+<h3 id="sec-15-4">15.4 Code evaluation and security issues                           <a id="Code-evaluation-security" name="Code-evaluation-security"></a></h3>
 <div class="outline-text-3" id="text-15-4">
 <p>
 Org provides tools to work with code snippets, including evaluating
@@ -24830,7 +25151,7 @@ either by the <i>calc</i> interpreter, or by the <i>Emacs Lisp</i> interpreter.
 </div>
 
 <div id="outline-container-sec-15-5" class="outline-3">
-<h3 id="sec-15-5">15.5 Customization</h3>
+<h3 id="sec-15-5">15.5 Customization                                                 <a id="Customization" name="Customization"></a></h3>
 <div class="outline-text-3" id="text-15-5">
 <p>
 There are more than 500 variables that can be used to customize Org. For
@@ -25114,7 +25435,7 @@ corresponding variable is <code>org-todo-keywords</code>.
 </div>
 
 <div id="outline-container-sec-15-7" class="outline-3">
-<h3 id="sec-15-7">15.7 The very busy C-c C-c key</h3>
+<h3 id="sec-15-7">15.7 The very busy C-c C-c key                                     <a id="The-very-busy-C_c-C_c-key" name="The-very-busy-C_c-C_c-key"></a></h3>
 <div class="outline-text-3" id="text-15-7">
 <p>
 The key C-c C-c has many purposes in Org, which are all mentioned
@@ -25290,7 +25611,7 @@ org-convert-to-oddeven-levels.
 </div>
 
 <div id="outline-container-sec-15-9" class="outline-3">
-<h3 id="sec-15-9">15.9 Using Org on a tty</h3>
+<h3 id="sec-15-9">15.9 Using Org on a tty                                            <a id="TTY-keys" name="TTY-keys"></a></h3>
 <div class="outline-text-3" id="text-15-9">
 <p>
 Because Org contains a large number of commands, by default many of
@@ -25456,16 +25777,37 @@ whereas on a tty you would rather use C-c . to re-insert the timestamp.
 </div>
 
 <div id="outline-container-sec-15-10" class="outline-3">
-<h3 id="sec-15-10">15.10 Interaction with other packages</h3>
+<h3 id="sec-15-10">15.10 Interaction with other packages                              <a id="Interaction" name="Interaction"></a></h3>
 <div class="outline-text-3" id="text-15-10">
 <p>
 Org lives in the world of GNU Emacs and interacts in various ways with
 other code out there.
 </p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">• <a href="#Cooperation">Cooperation</a>:</td>
+<td class="left">Packages Org cooperates with</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Conflicts">Conflicts</a>:</td>
+<td class="left">Packages that lead to conflicts</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 <div id="outline-container-sec-15-10-1" class="outline-4">
-<h4 id="sec-15-10-1">15.10.1 Packages that Org cooperates with</h4>
+<h4 id="sec-15-10-1">15.10.1 Packages that Org cooperates with                         <a id="Cooperation" name="Cooperation"></a></h4>
 <div class="outline-text-4" id="text-15-10-1">
 <p>
 calc.el by Dave Gillespie
@@ -25764,7 +26106,7 @@ another key for this command, or override the key in
 </div>
 
 <div id="outline-container-sec-15-11" class="outline-3">
-<h3 id="sec-15-11">15.11 org-crypt.el</h3>
+<h3 id="sec-15-11">15.11 org-crypt.el                                                 <a id="org_crypt" name="org_crypt"></a></h3>
 <div class="outline-text-3" id="text-15-11">
 <p>
 Org-crypt will encrypt the text of an entry, but not the headline, or
@@ -25820,10 +26162,81 @@ being encrypted again.
 This appendix covers some areas where users can extend the functionality
 of Org.
 </p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">• <a href="#Hooks">Hooks</a>:</td>
+<td class="left">How to reach into Org's internals</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Add_on-packages">Add-on packages</a>:</td>
+<td class="left">Available extensions</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Adding-hyperlink-types">Adding hyperlink types</a>:</td>
+<td class="left">New custom link types</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Adding-export-back_ends">Adding export back-ends</a>:</td>
+<td class="left">How to write new export back-ends</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Context_sensitive-commands">Context-sensitive commands</a>:</td>
+<td class="left">How to add functionality to such commands</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Tables-in-arbitrary-syntax">Tables in arbitrary syntax</a>:</td>
+<td class="left">Orgtbl for LaTeX and other programs</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Dynamic-blocks">Dynamic blocks</a>:</td>
+<td class="left">Automatically filled blocks</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Special-agenda-views">Special agenda views</a>:</td>
+<td class="left">Customized views</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Speeding-up-your-agendas">Speeding up your agendas</a>:</td>
+<td class="left">Tips on how to speed up your agendas</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Extracting-agenda-information">Extracting agenda information</a>:</td>
+<td class="left">Post-processing of agenda information</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Using-the-property-API">Using the property API</a>:</td>
+<td class="left">Writing programs that use entry properties</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Using-the-mapping-API">Using the mapping API</a>:</td>
+<td class="left">Mapping over all or selected entries</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 <div id="outline-container-sec-16-1" class="outline-3">
-<h3 id="sec-16-1">A.1 Hooks</h3>
+<h3 id="sec-16-1">A.1 Hooks                                                          <a id="Hooks" name="Hooks"></a></h3>
 <div class="outline-text-3" id="text-16-1">
 <p>
 Org has a large number of hook variables that can be used to add
@@ -25836,7 +26249,7 @@ maintained by the Worg project and can be found at
 </div>
 
 <div id="outline-container-sec-16-2" class="outline-3">
-<h3 id="sec-16-2">A.2 Add-on packages</h3>
+<h3 id="sec-16-2">A.2 Add-on packages                                                <a id="Add_on-packages" name="Add_on-packages"></a></h3>
 <div class="outline-text-3" id="text-16-2">
 <p>
 A large number of add-on packages have been written by various authors.
@@ -25970,7 +26383,7 @@ prefix.
 </div>
 
 <div id="outline-container-sec-16-4" class="outline-3">
-<h3 id="sec-16-4">A.4 Adding export back-ends</h3>
+<h3 id="sec-16-4">A.4 Adding export back-ends                                        <a id="Adding-export-back_ends" name="Adding-export-back_ends"></a></h3>
 <div class="outline-text-3" id="text-16-4">
 <p>
 Org 8.0 comes with a completely rewritten export engine which makes it
@@ -26011,12 +26424,12 @@ Reference on Worg</a>.
 </div>
 
 <div id="outline-container-sec-16-5" class="outline-3">
-<h3 id="sec-16-5">A.5 Context-sensitive commands</h3>
+<h3 id="sec-16-5">A.5 Context-sensitive commands                                     <a id="Context_sensitive-commands" name="Context_sensitive-commands"></a></h3>
 <div class="outline-text-3" id="text-16-5">
 <p>
 Org has several commands that act differently depending on context. The
 most important example is the C-c C-c (see
-<i>The very busy C-c C-c key</i>). Also
+<a href="#The-very-busy-C_c-C_c-key">The very busy C-c C-c key</a>). Also
 the M-cursor and M-S-cursor keys have this property.
 </p>
 
@@ -26080,10 +26493,41 @@ You can use Org's facilities to edit and structure lists by turning
 <code>orgstruct-mode</code> on, then locally exporting such lists in another format
 (HTML, LaTeX or Texinfo.)
 </p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">• <a href="#Radio-tables">Radio tables</a>:</td>
+<td class="left">Sending and receiving radio tables</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#A-LaTeX-example">A LaTeX example</a>:</td>
+<td class="left">Step by step, almost a tutorial</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Translator-functions">Translator functions</a>:</td>
+<td class="left">Copy and modify</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Radio-lists">Radio lists</a>:</td>
+<td class="left">Sending and receiving lists</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 <div id="outline-container-sec-16-6-1" class="outline-4">
-<h4 id="sec-16-6-1">A.6.1 Radio tables</h4>
+<h4 id="sec-16-6-1">A.6.1 Radio tables                                                <a id="Radio-tables" name="Radio-tables"></a></h4>
 <div class="outline-text-4" id="text-16-6-1">
 <p>
 To define the location of the target table, you first need to create two
@@ -26157,7 +26601,7 @@ particular if you bind it to a key.
 </div>
 
 <div id="outline-container-sec-16-6-2" class="outline-4">
-<h4 id="sec-16-6-2">A.6.2 A LaTeX example of radio tables</h4>
+<h4 id="sec-16-6-2">A.6.2 A LaTeX example of radio tables                             <a id="A-LaTeX-example" name="A-LaTeX-example"></a></h4>
 <div class="outline-text-4" id="text-16-6-2">
 <p>
 The best way to wrap the source table in LaTeX is to use the <code>comment</code>
@@ -26267,7 +26711,7 @@ By default, no special formatting is applied.
 </div>
 
 <div id="outline-container-sec-16-6-3" class="outline-4">
-<h4 id="sec-16-6-3">A.6.3 Translator functions                                        <a id="Translator-functions" name="Translator-functions"></a></h4>
+<h4 id="sec-16-6-3">A.6.3 Translator functions                                        <a id="Translator-functions" name="Translator-functions"></a>                                           <a id="Translator-functions" name="Translator-functions"></a></h4>
 <div class="outline-text-4" id="text-16-6-3">
 <p>
 Orgtbl mode has several translator functions built-in: <code>orgtbl-to-csv</code>
@@ -26334,11 +26778,11 @@ others can benefit from your work.
 </div>
 
 <div id="outline-container-sec-16-6-4" class="outline-4">
-<h4 id="sec-16-6-4">A.6.4 Radio lists</h4>
+<h4 id="sec-16-6-4">A.6.4 Radio lists                                                 <a id="Radio-lists" name="Radio-lists"></a></h4>
 <div class="outline-text-4" id="text-16-6-4">
 <p>
 Sending and receiving radio lists works exactly the same way as sending
-and receiving radio tables (see <i>Radio tables</i>). As for
+and receiving radio tables (see <a href="#Radio-tables">Radio tables</a>). As for
 radio tables, you can insert radio list templates in HTML, LaTeX and
 Texinfo modes by calling <code>org-list-insert-radio-list</code>.
 </p>
@@ -26476,7 +26920,7 @@ other block) with <code>org-narrow-to-block</code>.
 </div>
 
 <div id="outline-container-sec-16-8" class="outline-3">
-<h3 id="sec-16-8">A.8 Special agenda views</h3>
+<h3 id="sec-16-8">A.8 Special agenda views                                           <a id="Special-agenda-views" name="Special-agenda-views"></a></h3>
 <div class="outline-text-3" id="text-16-8">
 <p>
 Org provides a special hook that can be used to narrow down the
@@ -26865,7 +27309,7 @@ for this property.
 </div>
 
 <div id="outline-container-sec-16-12" class="outline-3">
-<h3 id="sec-16-12">A.12 Using the mapping API</h3>
+<h3 id="sec-16-12">A.12 Using the mapping API                                         <a id="Using-the-mapping-API" name="Using-the-mapping-API"></a></h3>
 <div class="outline-text-3" id="text-16-12">
 <p>
 Org has sophisticated mapping capabilities to find all entries
@@ -27032,10 +27476,36 @@ state <i>sets</i> (see <a href="#Per_file-keywords">Per-file keywords</a>) and
 <i>mutually exclusive</i> tags (see <a href="#Setting-tags">Setting tags</a>) only for
 those set in these variables.
 </p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">• <a href="#Setting-up-the-staging-area">Setting up the staging area</a>:</td>
+<td class="left">Where to interact with the mobile device</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Pushing-to-MobileOrg">Pushing to MobileOrg</a>:</td>
+<td class="left">Uploading Org files and agendas</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Pulling-from-MobileOrg">Pulling from MobileOrg</a>:</td>
+<td class="left">Integrating captured and flagged items</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 <div id="outline-container-sec-17-1" class="outline-3">
-<h3 id="sec-17-1">B.1 Setting up the staging area</h3>
+<h3 id="sec-17-1">B.1 Setting up the staging area                                    <a id="Setting-up-the-staging-area" name="Setting-up-the-staging-area"></a></h3>
 <div class="outline-text-3" id="text-17-1">
 <p>
 MobileOrg needs to interact with Emacs through a directory on a server.
@@ -27069,7 +27539,7 @@ and to read captured notes from there.
 </div>
 
 <div id="outline-container-sec-17-2" class="outline-3">
-<h3 id="sec-17-2">B.2 Pushing to MobileOrg</h3>
+<h3 id="sec-17-2">B.2 Pushing to MobileOrg                                           <a id="Pushing-to-MobileOrg" name="Pushing-to-MobileOrg"></a></h3>
 <div class="outline-text-3" id="text-17-2">
 <p>
 This operation copies all files currently listed in <code>org-mobile-files</code>
@@ -27096,7 +27566,7 @@ checksums<sup><a id="fnr.178" name="fnr.178" class="footref" href="#fn.178">178<
 </div>
 
 <div id="outline-container-sec-17-3" class="outline-3">
-<h3 id="sec-17-3">B.3 Pulling from MobileOrg</h3>
+<h3 id="sec-17-3">B.3 Pulling from MobileOrg                                         <a id="Pulling-from-MobileOrg" name="Pulling-from-MobileOrg"></a></h3>
 <div class="outline-text-3" id="text-17-3">
 <p>
 When <i>MobileOrg</i> synchronizes with the server, it not only pulls the Org
@@ -29047,7 +29517,7 @@ Whenever code is evaluated there is a potential for that code to do
 harm. Org mode provides safeguards to ensure that code is only evaluated
 after explicit confirmation from the user. For information on these
 safeguards (and on how to disable them) see
-<i>Code evaluation security</i>.
+<a href="#Code-evaluation-security">Code evaluation security</a>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.160" name="fn.160" class="footnum" href="#fnr.160">160</a></sup> <p class="footpara">

@@ -12539,7 +12539,7 @@ modify this GNU manual.”
     It is obviously possible to write an interactive function for
     this, install it in the export dispatcher menu, and so on.
 
-* 13 Publishing
+* 13 Publishing                                                       <<Publishing>>
 
 Org includes a publishing management system that allows you to configure
 automatic HTML conversion of /projects/ composed of interlinked org
@@ -12553,12 +12553,26 @@ server.
 
 Publishing has been contributed to Org by David O'Toole.
 
-** 13.1 Configuration
+| • [[@Configuration][Configuration]]:          | Defining projects                 |
+| • [[@Uploading-files][Uploading files]]:        | How to get files up on the server |
+| • [[@Sample-configuration][Sample configuration]]:   | Example projects                  |
+| • [[@Triggering-publication][Triggering publication]]: | Publication commands              |
+
+** 13.1 Configuration                                                 <<@Configuration>>
 
 Publishing needs significant configuration to specify files, destination
 and many other properties of a project.
 
-*** 13.1.1 The variable =org-publish-project-alist=
+| • [[@Project-alist][Project alist]]:            | The central configuration variable         |
+| • [[@Sources-and-destinations][Sources and destinations]]: | From here to there                         |
+| • [[@Selecting-files][Selecting files]]:          | What files are part of the project?        |
+| • [[@Publishing-action][Publishing action]]:        | Setting the function doing the publishing  |
+| • [[@Publishing-options][Publishing options]]:       | Tweaking HTML/LaTeX export                 |
+| • [[@Publishing-links][Publishing links]]:         | Which links keep working after publishing? |
+| • [[@Sitemap][Sitemap]]:                  | Generating a list of all pages             |
+| • [[@Generating-an-index][Generating an index]]:      | An index that reaches across pages         |
+
+*** 13.1.1 The variable =org-publish-project-alist=                   <<@Project-alist>>
 
 Publishing is configured almost entirely through setting the value of
 one variable, called =org-publish-project-alist=. Each element of the
@@ -12581,7 +12595,7 @@ together files requiring different publishing options. When you publish
 such a “meta-project”, all the components will also be published, in the
 sequence given.
 
-*** 13.1.2 Sources and destinations for files
+*** 13.1.2 Sources and destinations for files                         <<@Sources-and-destinations>>
 
 Most properties are optional, but some should always be set. In
 particular, Org needs to know where to look for source files, and where
@@ -12592,7 +12606,7 @@ to put published files.
 | =:preparation-function=   | Function or list of functions to be called before starting the publishing process, for example, to run =make= for updating files to be published. The project property list is scoped into this call as the variable =project-plist=.                                                           |
 | =:completion-function=    | Function or list of functions called after finishing the publishing process, for example, to change permissions of the resulting files. The project property list is scoped into this call as the variable =project-plist=.                                                                     |
 
-*** 13.1.3 Selecting files
+*** 13.1.3 Selecting files                                            <<@Selecting-files>>
 
 By default, all files with extension .org in the base directory are
 considered part of the project. This can be modified by setting the
@@ -12603,7 +12617,7 @@ properties
 | =:include=          | List of files to be included regardless of =:base-extension= and =:exclude=.                                                                                                                   |
 | =:recursive=        | non-=nil= means, check base-directory recursively for files to publish.                                                                                                                        |
 
-*** 13.1.4 Publishing action
+*** 13.1.4 Publishing action                                          <<@Publishing-action>>
 
 Publishing means that a file is copied to the destination directory and
 possibly transformed in the process. The default transformation is to
@@ -12633,7 +12647,7 @@ published and the path to the publishing directory of the output file.
 It should take the specified file, make the necessary transformation (if
 any) and place the result into the destination folder.
 
-*** 13.1.5 Options for the exporters
+*** 13.1.5 Options for the exporters                                  <<@Publishing-options>>
 
 The property list can be used to set export options during the
 publishing process. In most cases, these properties correspond to user
@@ -12647,7 +12661,7 @@ setting overrides the value of the corresponding user variable (if any)
 during publishing. Options set within a file (see
 [[@Export-settings][Export settings]]), however, override everything.
 
-*** Generic properties
+**** Generic properties
 
 | =:archived-trees=         | =org-export-with-archived-trees=     |
 | =:exclude-tags=           | =org-export-exclude-tags=            |
@@ -12678,7 +12692,7 @@ during publishing. Options set within a file (see
 | =:with-toc=               | =org-export-with-toc=                |
 | =:with-todo-keywords=     | =org-export-with-todo-keywords=      |
 
-*** ASCII specific properties
+**** ASCII specific properties
 
 | =:ascii-bullets=                         | =org-ascii-bullets=                         |
 | =:ascii-caption-above=                   | =org-ascii-caption-above=                   |
@@ -12701,7 +12715,7 @@ during publishing. Options set within a file (see
 | =:ascii-underline=                       | =org-ascii-underline=                       |
 | =:ascii-verbatim-format=                 | =org-ascii-verbatim-format=                 |
 
-*** Beamer specific properties
+**** Beamer specific properties
 
 | =:beamer-theme=                   | =org-beamer-theme=                   |
 | =:beamer-column-view-format=      | =org-beamer-column-view-format=      |
@@ -12711,7 +12725,7 @@ during publishing. Options set within a file (see
 | =:beamer-outline-frame-title=     | =org-beamer-outline-frame-title=     |
 | =:beamer-subtitle-format=         | =org-beamer-subtitle-format=         |
 
-*** HTML specific properties
+**** HTML specific properties
 
 | =:html-allow-name-attribute-in-anchors=          | =org-html-allow-name-attribute-in-anchors=          |
 | =:html-checkbox-type=                            | =org-html-checkbox-type=                            |
@@ -12764,7 +12778,7 @@ during publishing. Options set within a file (see
 | =:html-viewport=                                 | =org-html-viewport=                                 |
 | =:html-xml-declaration=                          | =org-html-xml-declaration=                          |
 
-*** LaTeX specific properties
+**** LaTeX specific properties
 
 | =:latex-active-timestamp-format=         | =org-latex-active-timestamp-format=         |
 | =:latex-caption-above=                   | =org-latex-caption-above=                   |
@@ -12800,11 +12814,11 @@ during publishing. Options set within a file (see
 | =:latex-title-command=                   | =org-latex-title-command=                   |
 | =:latex-toc-command=                     | =org-latex-toc-command=                     |
 
-*** Markdown specific properties
+**** Markdown specific properties
 
 | =:md-headline-style=   | =org-md-headline-style=   |
 
-*** ODT specific properties
+**** ODT specific properties
 
 | =:odt-content-template-file=        | =org-odt-content-template-file=        |
 | =:odt-display-outline-level=        | =org-odt-display-outline-level=        |
@@ -12819,7 +12833,7 @@ during publishing. Options set within a file (see
 | =:odt-table-styles=                 | =org-odt-table-styles=                 |
 | =:odt-use-date-fields=              | =org-odt-use-date-fields=              |
 
-*** Texinfo specific properties
+**** Texinfo specific properties
 
 | =:texinfo-active-timestamp-format=         | =org-texinfo-active-timestamp-format=         |
 | =:texinfo-classes=                         | =org-texinfo-classes=                         |
@@ -12853,7 +12867,7 @@ careful with relative file names, and provided you have also configured
 Org to upload the related files, these links will work too. See
 [[@Complex-example][Complex example]], for an example of this usage.
 
-*** 13.1.7 Generating a sitemap
+*** 13.1.7 Generating a sitemap                                       <<@Sitemap>>
 
 The following properties may be used to control publishing of a map of
 files for a given project.
@@ -12880,7 +12894,7 @@ The file will be created when first publishing a project with the
 =#+INCLUDE: "theindex.inc"=. You can then build around this include
 statement by adding a title, style information, etc.
 
-** 13.2 Uploading files
+** 13.2 Uploading files                                               <<@Uploading-files>>
 
 For those people already utilizing third party sync tools such as
 =rsync= or =unison=, it might be preferable not to use the built in
@@ -12912,13 +12926,16 @@ example files you might include with =#+INCLUDE:=. The timestamp
 mechanism in Org is not smart enough to detect if included files have
 been modified.
 
-** 13.3 Sample configuration
+** 13.3 Sample configuration                                          <<@Sample-configuration>>
 
 Below we provide two example configurations. The first one is a simple
 project publishing only a set of Org files. The second example is more
 complex, with a multi-component project.
 
-*** 13.3.1 Example: simple publishing configuration
+| • [[@Simple-example][Simple example]]:  | One-component publishing             |
+| • [[@Complex-example][Complex example]]: | A multi-component publishing example |
+
+*** 13.3.1 Example: simple publishing configuration                   <<@Simple-example>>
 
 This example publishes a set of Org files to the public\_html directory
 on the local machine.
@@ -12935,7 +12952,7 @@ on the local machine.
                         type=\"text/css\"/>")))
 #+END_SRC
 
-*** 13.3.2 Example: complex publishing configuration
+*** 13.3.2 Example: complex publishing configuration                  <<@Complex-example>>
 
 This more complicated example publishes an entire website, including Org
 files converted to HTML, image files, Emacs Lisp source code, and style
@@ -12984,7 +13001,7 @@ place on the web server, and publishing images to it.
              ("website" :components ("orgfiles" "images" "other"))))
 #+END_SRC
 
-** 13.4 Triggering publication
+** 13.4 Triggering publication                                        <<@Triggering-publication>>
 
 Once properly configured, Org can publish with the following commands:
 
@@ -13034,7 +13051,20 @@ by Eric Schulte and Dan Davison, and was originally named Org-babel.
 The following sections describe Org mode's code block handling
 facilities.
 
-** 14.1 Structure of code blocks
+| • [[@Structure-of-code-blocks][Structure of code blocks]]:                        | Code block syntax described                             |
+| • [[@Editing-source-code][Editing source code]]:                                  | Language major-mode editing                             |
+| • [[@Exporting-code-blocks][Exporting code blocks]]:                              | Export contents and/or results                          |
+| • [[@Extracting-source-code][Extracting source code]]:                            | Create pure source code files                           |
+| • [[@Evaluating-code-blocks][Evaluating code blocks]]:                            | Place results of evaluation in the Org mode buffer      |
+| • [[@Library-of-Babel][Library of Babel]]:                                        | Use and contribute to a library of useful code blocks   |
+| • [[@Languages][Languages]]:                                                      | List of supported code block languages                  |
+| • [[@Header-arguments][Header arguments]]:                                        | Configure code block functionality                      |
+| • [[@Results-of-evaluation][Results of evaluation]]:                              | How evaluation results are handled                      |
+| • [[@Noweb-reference-syntax][Noweb reference syntax]]:                            | Literate programming in Org mode                        |
+| • [[@Key-bindings-and-useful-functions][Key bindings and useful functions]]:      | Work quickly with code blocks                           |
+| • [[@Batch-execution][Batch execution]]:                                          | Call functions from the command line                    |
+
+** 14.1 Structure of code blocks                                      <<@Structure-of-code-blocks>>
 
 Live code blocks can be specified with a ‘src' block or
 inline.[fn:FOOT166] The structure of a ‘src' block is
@@ -13125,7 +13155,7 @@ further configuration options.
 To turn on native code fontification in the /Org/ buffer, configure the
 variable =org-src-fontify-natively=.
 
-** 14.3 Exporting code blocks
+** 14.3 Exporting code blocks                                         <<@Exporting-code-blocks>>
 
 It is possible to export the /code/ of code blocks, the /results/ of
 code block evaluation, /both/ the code and the results of code block
@@ -13178,7 +13208,7 @@ lines]]) are never evaluated on export. However, code blocks in subtrees
 excluded from export (see [[@Export-settings][Export settings]]) may be
 evaluated on export.
 
-** 14.4 Extracting source code
+** 14.4 Extracting source code                                        <<@Extracting-source-code>>
 
 Creating pure source code files by extracting code from source blocks is
 referred to as “tangling”---a term adopted from the literate programming
@@ -13308,7 +13338,7 @@ The syntax for inline evaluation of named code blocks is
    [[@Header-arguments-in-function-calls][Header arguments in function
    calls]].
 
-** 14.6 Library of Babel
+** 14.6 Library of Babel                                              <<@Library-of-Babel>>
 
 The “Library of Babel” consists of code blocks that can be called from
 any Org mode file. Code blocks defined in the “Library of Babel” can be
@@ -13326,7 +13356,7 @@ and then loaded into the library with =org-babel-lob-ingest=.
 Code blocks located in any Org mode file can be loaded into the “Library
 of Babel” with the =org-babel-lob-ingest= function, bound to C-c C-v i.
 
-** 14.7 Languages
+** 14.7 Languages                                                     <<@Languages>>
 
 Code blocks in the following languages are supported.
 
@@ -13381,13 +13411,16 @@ The following adds support for evaluating =clojure= code blocks.
     (require 'ob-clojure)
 #+END_SRC
 
-** 14.8 Header arguments
+** 14.8 Header arguments                                              <<@Header-arguments>>
 
 Code block functionality can be configured with header arguments. This
 section provides an overview of the use of header arguments, and then
 describes each header argument in detail.
 
-*** 14.8.1 Using header arguments
+| • [[@Using-header-arguments][Using header arguments]]:    | Different ways to set header arguments |
+| • [[@Specific-header-arguments][Specific header arguments]]: | List of header arguments               |
+
+*** 14.8.1 Using header arguments                                     <<@Using-header-arguments>>
 
 The values of header arguments can be set in several way. When the
 header arguments in each layer have been determined, they are combined
@@ -13396,7 +13429,14 @@ to the last, most specific (having the highest priority). A header
 argument with a higher priority replaces the same header argument
 specified at lower priority.
 
-*** System-wide header arguments
+| • [[@System_wide-header-arguments][System-wide header arguments]]:                              | Set global default values                                    |
+| • [[@Language_specific-header-arguments][Language-specific header arguments]]:                        | Set default values by language                               |
+| • [[@Header-arguments-in-Org-mode-properties][Header arguments in Org mode properties]]:                   | Set default values for a buffer or heading                   |
+| • [[@Language_specific-header-arguments-in-Org-mode-properties][Language-specific header arguments in Org mode properties]]: | Set language-specific default values for a buffer or heading |
+| • [[@Code-block-specific-header-arguments][Code block specific header arguments]]:                      | The most common way to set values                            |
+| • [[@Header-arguments-in-function-calls][Header arguments in function calls]]:                        | The most specific level                                      |
+
+**** System-wide header arguments                                     <<@System_wide-header-arguments>>
 
 System-wide values of header arguments can be specified by adapting the
 =org-babel-default-header-args= variable:
@@ -13420,14 +13460,14 @@ blocks.
                 (assq-delete-all :noweb org-babel-default-header-args)))
 #+END_SRC
 
-*** Language-specific header arguments
+**** Language-specific header arguments                               <<@Language_specific-header-arguments>>
 
 Each language can define its own set of default header arguments in
 variable =org-babel-default-header-args:<lang>=, where =<lang>= is the
 name of the language. See the language-specific documentation available
 online at [[http://orgmode.org/worg/org-contrib/babel]].
 
-*** Header arguments in Org mode properties
+**** Header arguments in Org mode properties                          <<@Header-arguments-in-Org-mode-properties>>
 
 Buffer-wide header arguments may be specified as properties through the
 use of =#+PROPERTY:= lines placed anywhere in an Org mode file (see
@@ -13467,7 +13507,7 @@ Properties defined in this way override the properties set in
 languages. It is convenient to use the =org-set-property= function bound
 to C-c C-x p to set properties in Org mode documents.
 
-*** Language-specific header arguments in Org mode properties
+**** Language-specific header arguments in Org mode properties        <<@Language_specific-header-arguments-in-Org-mode-properties>>
 
 Language-specific header arguments are also read from properties
 =header-args:<lang>= where =<lang>= is the name of the language
@@ -13491,7 +13531,7 @@ to a different clojure setting for evaluations under subtree
 “Subheading”, while the R session is inherited from “Heading” and
 therefore unchanged.
 
-*** Code block specific header arguments
+**** Code block specific header arguments                             <<@Code-block-specific-header-arguments>>
 
 The most common way to assign values to header arguments is at the code
 block level. This can be done by listing a sequence of header arguments
@@ -13546,7 +13586,7 @@ Multi-line header arguments on a named code block:
        : data:2
 #+END_EXAMPLE
 
-*** Header arguments in function calls
+**** Header arguments in function calls                               <<@Header-arguments-in-function-calls>>
 
 At the most specific level, header arguments for “Library of Babel” or
 =#+CALL:= lines can be set as shown in the two examples below. For more
@@ -13567,46 +13607,46 @@ evaluation of the =factorial= code block.
     #+CALL: factorial[:session special](n=5)
 #+END_EXAMPLE
 
-*** 14.8.2 Specific header arguments
+*** 14.8.2 Specific header arguments                                  <<@Specific-header-arguments>>
 
     Header arguments consist of an initial colon followed by the name of the
     argument in lowercase letters. The following header arguments are
     defined:
 
-    | [[@var][var]]:         | Pass arguments to code blocks                                            |
-    | [[@Results][Results]]:     | Specify the type of results and how they will be collected and handled   |
-    | [[@file][file]]:        | Specify a path for file output                                           |
-    | [[@file_desc][file-desc]]:   | Specify a description for file results                                   |
-    | [[@file_ext][file-ext]]:    | Specify an extension for file output                                     |
-    | [[@output_dir][output-dir]]:  | Specify a directory to write file output to                              |
-    | [[@dir][dir]]:         | Specify the default (possibly remote) directory for code block execution |
-    | [[@exports][exports]]:     | Export code and/or results                                               |
-    | [[@tangle][tangle]]:      | Toggle tangling and specify file name                                    |
-    | [[@mkdirp][mkdirp]]:      | Toggle creation of parent directories of target files during tangling    |
-    | [[@comments][comments]]:    | Toggle insertion of comments in tangled code files                       |
-    | [[@padline][padline]]:     | Control insertion of padding lines in tangled code files                 |
-    | [[@no_expand][no-expand]]:   | Turn off variable assignment and noweb expansion during tangling         |
-    | [[@session][session]]:     | Preserve the state of code evaluation                                    |
-    | [[@noweb][noweb]]:       | Toggle expansion of noweb references                                     |
-    | [[@noweb_ref][noweb-ref]]:   | Specify block's noweb reference resolution target                        |
-    | [[@noweb_sep][noweb-sep]]:   | String used to separate noweb references                                 |
-    | [[@cache][cache]]:       | Avoid re-evaluating unchanged code blocks                                |
-    | [[@sep][sep]]:         | Delimiter for writing tabular results outside Org                        |
-    | [[@hlines][hlines]]:      | Handle horizontal lines in tables                                        |
-    | [[@colnames][colnames]]:    | Handle column names in tables                                            |
-    | [[@rownames][rownames]]:    | Handle row names in tables                                               |
-    | [[@shebang][shebang]]:     | Make tangled files executable                                            |
-    | [[@tangle_mode][tangle-mode]]: | Set permission of tangled files                                          |
-    | [[@eval][eval]]:        | Limit evaluation of specific code blocks                                 |
-    | [[@wrap][wrap]]:        | Mark source block evaluation results                                     |
-    | [[@post][post]]:        | Post processing of code block results                                    |
-    | [[@prologue][prologue]]:    | Text to prepend to code block body                                       |
-    | [[@epilogue][epilogue]]:    | Text to append to code block body                                        |
+    | • [[@var][var]]:         | Pass arguments to code blocks                                            |
+    | • [[@Results][Results]]:     | Specify the type of results and how they will be collected and handled   |
+    | • [[@file][file]]:        | Specify a path for file output                                           |
+    | • [[@file_desc][file-desc]]:   | Specify a description for file results                                   |
+    | • [[@file_ext][file-ext]]:    | Specify an extension for file output                                     |
+    | • [[@output_dir][output-dir]]:  | Specify a directory to write file output to                              |
+    | • [[@dir][dir]]:         | Specify the default (possibly remote) directory for code block execution |
+    | • [[@exports][exports]]:     | Export code and/or results                                               |
+    | • [[@tangle][tangle]]:      | Toggle tangling and specify file name                                    |
+    | • [[@mkdirp][mkdirp]]:      | Toggle creation of parent directories of target files during tangling    |
+    | • [[@comments][comments]]:    | Toggle insertion of comments in tangled code files                       |
+    | • [[@padline][padline]]:     | Control insertion of padding lines in tangled code files                 |
+    | • [[@no_expand][no-expand]]:   | Turn off variable assignment and noweb expansion during tangling         |
+    | • [[@session][session]]:     | Preserve the state of code evaluation                                    |
+    | • [[@noweb][noweb]]:       | Toggle expansion of noweb references                                     |
+    | • [[@noweb_ref][noweb-ref]]:   | Specify block's noweb reference resolution target                        |
+    | • [[@noweb_sep][noweb-sep]]:   | String used to separate noweb references                                 |
+    | • [[@cache][cache]]:       | Avoid re-evaluating unchanged code blocks                                |
+    | • [[@sep][sep]]:         | Delimiter for writing tabular results outside Org                        |
+    | • [[@hlines][hlines]]:      | Handle horizontal lines in tables                                        |
+    | • [[@colnames][colnames]]:    | Handle column names in tables                                            |
+    | • [[@rownames][rownames]]:    | Handle row names in tables                                               |
+    | • [[@shebang][shebang]]:     | Make tangled files executable                                            |
+    | • [[@tangle_mode][tangle-mode]]: | Set permission of tangled files                                          |
+    | • [[@eval][eval]]:        | Limit evaluation of specific code blocks                                 |
+    | • [[@wrap][wrap]]:        | Mark source block evaluation results                                     |
+    | • [[@post][post]]:        | Post processing of code block results                                    |
+    | • [[@prologue][prologue]]:    | Text to prepend to code block body                                       |
+    | • [[@epilogue][epilogue]]:    | Text to append to code block body                                        |
 
     Additional header arguments are defined on a language-specific basis,
     see [[@Languages][Languages]].
 
-*** 14.8.2.1 =:var=
+*** 14.8.2.1 =:var=                                                   <<@var>>
 
 The =:var= header argument is used to pass arguments to code blocks. The
 specifics of how arguments are included in a code block vary by
@@ -13733,7 +13773,7 @@ Here are examples of passing values by reference:
        : on two lines for you.
    #+END_EXAMPLE
 
-*** Indexable variable values
+**** Indexable variable values
 
 It is possible to reference portions of variable values by “indexing”
 into the variables. Indexes are 0 based with negative values counting
@@ -13822,7 +13862,7 @@ separated from one another by commas, as shown in the following example.
     | 11 | 14 | 17 |
 #+END_EXAMPLE
 
-*** Emacs Lisp evaluation of variables
+**** Emacs Lisp evaluation of variables
 
 Emacs lisp code can be used to initialize variable values. When a
 variable value starts with =(=, =[=, ='= or =`= it will be evaluated as
@@ -13855,7 +13895,7 @@ Emacs Lisp, as shown in the following example.
     : (a b c)
 #+END_EXAMPLE
 
-*** 14.8.2.2 =:results=
+*** 14.8.2.2 =:results=                                               <<@Results>>
 
 There are four classes of =:results= header argument. Only one option
 per class may be supplied per code block.
@@ -13871,7 +13911,7 @@ per class may be supplied per code block.
 -  *handling* header arguments specify how the results of evaluating the
    code block should be handled.
 
-*** Collection
+**** Collection
 
 The following options are mutually exclusive, and specify how the
 results should be collected from the code block.
@@ -13886,7 +13926,7 @@ results should be collected from the code block.
    during the execution of the code block. This header argument places
    the evaluation in scripting mode. E.g., =:results output=.
 
-*** Type
+**** Type
 
 The following options are mutually exclusive and specify what type of
 results the code block will return. By default, results are inserted as
@@ -13906,7 +13946,7 @@ either a table or scalar depending on their value.
    will be inserted into the Org mode buffer as a file link. E.g.,
    =:results value file=.
 
-*** Format
+**** Format
 
 The following options are mutually exclusive and specify what type of
 results the code block will return. By default, results are inserted
@@ -13933,7 +13973,7 @@ according to the type as specified above.
    their extent is known and they can be automatically removed or
    replaced.
 
-*** Handling
+**** Handling
 
 The following results options indicate what happens with the results
 once they are collected.
@@ -13950,7 +13990,7 @@ once they are collected.
    the new results will be prepended to the existing results. Otherwise
    the new results will be inserted as with =replace=.
 
-*** 14.8.2.3 =:file=
+*** 14.8.2.3 =:file=                                                  <<@file>>
 
 The header argument =:file= is used to specify an external file in which
 to save code block results. After code block evaluation an Org mode
@@ -13966,7 +14006,7 @@ a file, or a list of two strings in which case the first element of the
 list should be the path to a file and the second a description for the
 link.
 
-*** 14.8.2.4 =:file-desc=
+*** 14.8.2.4 =:file-desc=                                             <<@file_desc>>
 
 The value of the =:file-desc= header argument is used to provide a
 description for file code block results which are inserted as Org mode
@@ -13974,7 +14014,7 @@ links (see [[@Link-format][Link format]]). If the =:file-desc= header
 argument is given with no value the link path will be placed in both the
 “link” and the “description” portion of the Org mode link.
 
-*** 14.8.2.5 =:file-ext=
+*** 14.8.2.5 =:file-ext=                                              <<@file_ext>>
 
 The value of the =:file-ext= header argument is used to provide an
 extension to write the file output to. It is combined with the =#+NAME:=
@@ -13984,7 +14024,7 @@ header argument to generate a complete file name.
 This header arg will be overridden by =:file=, and thus has no effect
 when the latter is specified.
 
-*** 14.8.2.6 =:output-dir=
+*** 14.8.2.6 =:output-dir=                                            <<@output_dir>>
 
 The value of the =:output-dir= header argument is used to provide a
 directory to write the file output to. It may specify an absolute
@@ -13993,7 +14033,7 @@ can be combined with the =#+NAME:= of the source block and the value of
 the [[@file_ext][file-ext]] header argument to generate a complete
 file name, or used along with a [[@file][file]] header arg.
 
-*** 14.8.2.7 =:dir= and remote execution
+*** 14.8.2.7 =:dir= and remote execution                              <<@dir>>
 
 While the =:file= header argument can be used to specify the path to the
 output file, =:dir= specifies the default directory during code block
@@ -14016,7 +14056,7 @@ your home directory, you could use
     #+END_SRC
 #+END_EXAMPLE
 
-*** Remote execution
+**** Remote execution
 
 A directory on a remote machine can be specified using tramp file
 syntax, in which case the code will be evaluated on the remote machine.
@@ -14045,7 +14085,7 @@ sets the value of the Emacs variable =default-directory=, thanks to
 tramp. Those using XEmacs, or GNU Emacs prior to version 23 may need to
 install tramp separately in order for these features to work correctly.
 
-*** Further points
+**** Further points
 
 -  If =:dir= is used in conjunction with =:session=, although it will
    determine the starting directory for a new session as expected, no
@@ -14059,7 +14099,7 @@ install tramp separately in order for these features to work correctly.
    altered using =:dir=, it is probable that the file will be created in
    a location to which the link does not point.
 
-*** 14.8.2.8 =:exports=
+*** 14.8.2.8 =:exports=                                               <<@exports>>
 
 The =:exports= header argument specifies what should be included in HTML
 or LaTeX exports of the Org mode file. Note that the =:exports= option
@@ -14074,7 +14114,7 @@ is only relevant for code blocks, not inline code.
 -  =none= Nothing is included in the exported file. E.g.,
    =:exports none=.
 
-*** 14.8.2.9 =:tangle=
+*** 14.8.2.9 =:tangle=                                                <<@tangle>>
 
 The =:tangle= header argument specifies whether or not the code block
 should be included in tangled extraction of source code files.
@@ -14089,13 +14129,13 @@ should be included in tangled extraction of source code files.
    directory of the Org mode file) to which the block will be exported.
    E.g., =:tangle path=.
 
-*** 14.8.2.10 =:mkdirp=
+*** 14.8.2.10 =:mkdirp=                                               <<@mkdirp>>
 
 The =:mkdirp= header argument can be used to create parent directories
 of tangled files when missing. This can be set to =yes= to enable
 directory creation or to =no= to inhibit directory creation.
 
-*** 14.8.2.11 =:comments=
+*** 14.8.2.11 =:comments=                                             <<@comments>>
 
 By default code blocks are tangled to source-code files without any
 insertion of comments beyond those which may already exist in the body
@@ -14113,7 +14153,7 @@ to control the insertion of extra comments into the tangled code file.
 -  =noweb= Turns on the “link” comment option, and additionally wraps
    expanded noweb references in the code block body in link comments.
 
-*** 14.8.2.12 =:padline=
+*** 14.8.2.12 =:padline=                                              <<@padline>>
 
 Control in insertion of padding lines around code block bodies in
 tangled code files. The default value is =yes= which results in
@@ -14124,7 +14164,7 @@ following arguments are accepted.
    tangled code files.
 -  =no= Do not insert any newline padding in tangled output.
 
-*** 14.8.2.13 =:no-expand=
+*** 14.8.2.13 =:no-expand=                                            <<@no_expand>>
 
 By default, code blocks are expanded with =org-babel-expand-src-block=
 during tangling. This has the effect of assigning values to variables
@@ -14135,7 +14175,7 @@ off this behavior. Note: The =:no-expand= header argument has no impact
 on export, i.e. code blocks will irrespective of this header argument
 expanded for execution.
 
-*** 14.8.2.14 =:session=
+*** 14.8.2.14 =:session=                                              <<@session>>
 
 The =:session= header argument starts a (possibly named) session for an
 interpreted language where the interpreter's state is preserved. All
@@ -14152,7 +14192,7 @@ process. By default, a session is not started.
    names enables concurrent sessions (even for the same interpreted
    language, if the language supports multiple sessions).
 
-*** 14.8.2.15 =:noweb=
+*** 14.8.2.15 =:noweb=                                                <<@noweb>>
 
 The =:noweb= header argument controls expansion of “noweb” syntax
 references (see [[@Noweb-reference-syntax][Noweb reference syntax]])
@@ -14180,7 +14220,7 @@ or =no-export= =strip-export=.
 -  =eval= “Noweb” syntax references in the body of the code block will
    only be expanded before the block is evaluated.
 
-*** Noweb prefix lines
+**** Noweb prefix lines
 
 Noweb insertions are now placed behind the line prefix of the
 =<<reference>>=. This behavior is illustrated in the following example.
@@ -14204,7 +14244,7 @@ Note that noweb replacement text that does not contain any newlines will
 not be affected by this change, so it is still possible to use inline
 noweb references.
 
-*** 14.8.2.16 =:noweb-ref=
+*** 14.8.2.16 =:noweb-ref=                                            <<@noweb_ref>>
 
 When expanding “noweb” style references, the bodies of all code block
 with /either/ a block name matching the reference name /or/ a
@@ -14250,13 +14290,13 @@ The =:noweb-sep= (see [[@noweb_sep][noweb-sep]]) header argument
 holds the string used to separate accumulate noweb references like those
 above. By default a newline is used.
 
-*** 14.8.2.17 =:noweb-sep=
+*** 14.8.2.17 =:noweb-sep=                                            <<@noweb_sep>>
 
 The =:noweb-sep= header argument holds the string used to separate
 accumulate noweb references (see [[@noweb_ref][noweb-ref]]). By
 default a newline is used.
 
-*** 14.8.2.18 =:cache=
+*** 14.8.2.18 =:cache=                                                <<@cache>>
 
 The =:cache= header argument controls the use of in-buffer caching of
 the results of evaluating code blocks. It can be used to avoid
@@ -14298,7 +14338,7 @@ run.
      0.254227238707244
 #+END_EXAMPLE
 
-*** 14.8.2.19 =:sep=
+*** 14.8.2.19 =:sep=                                                  <<@sep>>
 
 The =:sep= header argument can be used to control the delimiter used
 when writing tabular results out to files external to Org mode. This is
@@ -14310,7 +14350,7 @@ header argument.
 By default, when =:sep= is not specified output tables are tab
 delimited.
 
-*** 14.8.2.20 =:hlines=
+*** 14.8.2.20 =:hlines=                                               <<@hlines>>
 
 Tables are frequently represented with one or more horizontal lines, or
 hlines. The =:hlines= argument to a code block accepts the values =yes=
@@ -14364,7 +14404,7 @@ or =no=, with a default value of =no=.
        | g | h | i |
    #+END_EXAMPLE
 
-*** 14.8.2.21 =:colnames=
+*** 14.8.2.21 =:colnames=                                             <<@colnames>>
 
 The =:colnames= header argument accepts the values =yes=, =no=, or =nil=
 for unassigned. The default value is =nil=. Note that the behavior of
@@ -14402,7 +14442,7 @@ the =:colnames= header argument may differ across languages.
    the table does not “look like” it has column names (i.e., the second
    row is not an hline)
 
-*** 14.8.2.22 =:rownames=
+*** 14.8.2.22 =:rownames=                                             <<@rownames>>
 
 The =:rownames= header argument can take on the values =yes= or =no=,
 with a default value of =no=. Note that Emacs Lisp code blocks ignore
@@ -14432,14 +14472,14 @@ tables with row names may be handled directly in Emacs Lisp.
    indexed using variable indexing See [[@var][Indexable variable
    values]].
 
-*** 14.8.2.23 =:shebang=
+*** 14.8.2.23 =:shebang=                                              <<@shebang>>
 
 Setting the =:shebang= header argument to a string value (e.g.,
 =:shebang "#!/bin/bash"=) causes the string to be inserted as the first
 line of any tangled file holding the code block, and the file
 permissions of the tangled file are set to make it executable.
 
-*** 14.8.2.24 =:tangle-mode=
+*** 14.8.2.24 =:tangle-mode=                                          <<@tangle_mode>>
 
 The =tangle-mode= header argument controls the permission set on tangled
 files. The value of this header argument will be passed to
@@ -14451,7 +14491,7 @@ executable unless the =tangle-mode= header argument is also used. The
 behavior is undefined if multiple code blocks with different values for
 the =tangle-mode= header argument are tangled to the same file.
 
-*** 14.8.2.25 =:eval=
+*** 14.8.2.25 =:eval=                                                 <<@eval>>
 
 The =:eval= header argument can be used to limit the evaluation of
 specific code blocks. The =:eval= header argument can be useful for
@@ -14475,7 +14515,7 @@ If this header argument is not set then evaluation is determined by the
 value of the =org-confirm-babel-evaluate= variable see
 [[@Code-evaluation-security][Code evaluation security]].
 
-*** 14.8.2.26 =:wrap=
+*** 14.8.2.26 =:wrap=                                                 <<@wrap>>
 
 The =:wrap= header argument is used to mark the results of source block
 evaluation. The header argument can be passed a string that will be
@@ -14483,7 +14523,7 @@ appended to =#+BEGIN_= and =#+END_=, which will then be used to wrap the
 results. If not string is specified then the results will be wrapped in
 a =#+BEGIN/END_RESULTS= block.
 
-*** 14.8.2.27 =:post=
+*** 14.8.2.27 =:post=                                                 <<@post>>
 
 The =:post= header argument is used to post-process the results of a
 code block execution. When a post argument is given, the results of the
@@ -14546,7 +14586,7 @@ The second examples shows how to use =:post= together with the
     | 1.371 |
 #+END_EXAMPLE
 
-*** 14.8.2.28 =:prologue=
+*** 14.8.2.28 =:prologue=                                             <<@prologue>>
 
 The value of the =prologue= header argument will be prepended to the
 code block body before execution. For example, =:prologue "reset"= may
@@ -14559,12 +14599,12 @@ gnuplot code blocks. Also see [[@epilogue][epilogue]].
                  '((:prologue . "reset")))
 #+END_SRC
 
-*** 14.8.2.29 =:epilogue=
+*** 14.8.2.29 =:epilogue=                                             <<@epilogue>>
 
 The value of the =epilogue= header argument will be appended to the code
 block body before execution. Also see [[@prologue][prologue]].
 
-** 14.9 Results of evaluation
+** 14.9 Results of evaluation                                         <<@Results-of-evaluation>>
 
 The way in which results are handled depends on whether a session is
 invoked, as well as on whether =:results value= or =:results output= is
@@ -14660,7 +14700,7 @@ But in =:session= mode, the interactive interpreter receives input “2”
 and prints out its value, “2”. (Indeed, the other print statements are
 unnecessary here).
 
-** 14.10 Noweb reference syntax
+** 14.10 Noweb reference syntax                                       <<@Noweb-reference-syntax>>
 
 The “noweb” (see [[http://www.cs.tufts.edu/~nr/noweb/]]) Literate
 Programming system allows named blocks of code to be referenced by using
@@ -14697,7 +14737,7 @@ This will result in faster noweb reference resolution at the expense of
 not correctly resolving inherited values of the =:noweb-ref= header
 argument.
 
-** 14.11 Key bindings and useful functions
+** 14.11 Key bindings and useful functions                            <<@Key-bindings-and-useful-functions>>
 
 Many common Org mode key sequences are re-bound depending on the
 context.
@@ -14810,7 +14850,7 @@ C-c C-v x or C-c C-v C-x
 
 =org-babel-do-key-sequence-in-edit-buffer=
 
-** 14.12 Batch execution
+** 14.12 Batch execution                                              <<@Batch-execution>>
 
 It is possible to call functions from the command line. This shell
 script calls =org-babel-tangle= on every one of its arguments.
@@ -14843,6 +14883,19 @@ Be sure to adjust the paths to fit your system.
 #+END_EXAMPLE
 
 * 15 Miscellaneous
+
+| • [[@Completion][Completion]]:                | M-TAB knows what you need                        |
+| • [[@Easy-templates][Easy templates]]:            | Quick insertion of structural elements           |
+| • [[@Speed-keys][Speed keys]]:                | Electric commands at the beginning of a headline |
+| • [[@Code-evaluation-security][Code evaluation security]]:  | Org mode files evaluate inline code              |
+| • [[@Customization][Customization]]:             | Adapting Org to your taste                       |
+| • [[@In_buffer-settings][In-buffer settings]]:        | Overview of the #+KEYWORDS                       |
+| • [[@The-very-busy-C_c-C_c-key][The very busy C-c C-c key]]: | When in doubt, press C-c C-c                     |
+| • [[@Clean-view][Clean view]]:                | Getting rid of leading stars in the outline      |
+| • [[@TTY-keys][TTY keys]]:                  | Using Org on a tty                               |
+| • [[@Interaction][Interaction]]:               | Other Emacs packages                             |
+| • [[@org_crypt][org-crypt]]:                 | Encrypting Org files                             |
+
 ** 15.1 Completion                                                    <<@Completion>>
 
 Emacs would not be Emacs without completion, and Org mode uses it
@@ -14915,7 +14968,7 @@ You can install additional templates by customizing the variable
 =org-structure-template-alist=. See the docstring of the variable for
 additional details.
 
-** 15.3 Speed keys
+** 15.3 Speed keys                                                    <<@Speed-keys>>
 
 Single keys can be made to execute commands when the cursor is at the
 beginning of a headline, i.e., before the first star. Configure the
@@ -14929,7 +14982,7 @@ on a TTY, or on a small mobile device with a limited keyboard.
 To see which commands are available, activate the feature and press ?
 with the cursor at the beginning of a headline.
 
-** 15.4 Code evaluation and security issues
+** 15.4 Code evaluation and security issues                           <<@Code-evaluation-security>>
 
 Org provides tools to work with code snippets, including evaluating
 them.
@@ -14987,7 +15040,7 @@ Code evaluation can happen under the following circumstances:
    [[@The-spreadsheet][The spreadsheet]]) are code that is evaluated
    either by the /calc/ interpreter, or by the /Emacs Lisp/ interpreter.
 
-** 15.5 Customization
+** 15.5 Customization                                                 <<@Customization>>
 
 There are more than 500 variables that can be used to customize Org. For
 the sake of compactness of the manual, I am not describing the variables
@@ -15219,7 +15272,7 @@ visited again in a new Emacs session.
    keywords and their interpretation in the current file. The
    corresponding variable is =org-todo-keywords=.
 
-** 15.7 The very busy C-c C-c key
+** 15.7 The very busy C-c C-c key                                     <<@The-very-busy-C_c-C_c-key>>
 
 The key C-c C-c has many purposes in Org, which are all mentioned
 scattered throughout this manual. One specific function of this key is
@@ -15353,7 +15406,7 @@ supports you in the following way:
    RET in that file. The reverse operation is M-x
    org-convert-to-oddeven-levels.
 
-** 15.9 Using Org on a tty
+** 15.9 Using Org on a tty                                            <<@TTY-keys>>
 
 Because Org contains a large number of commands, by default many of
 Org's core commands are bound to keys that are generally not accessible
@@ -15386,12 +15439,15 @@ whereas on a tty you would rather use C-c . to re-insert the timestamp.
 | C-S-left    | C-c C-x left      |               |                   |
 | C-S-right   | C-c C-x right     |               |                   |
 
-** 15.10 Interaction with other packages
+** 15.10 Interaction with other packages                              <<@Interaction>>
 
 Org lives in the world of GNU Emacs and interacts in various ways with
 other code out there.
 
-*** 15.10.1 Packages that Org cooperates with
+| • [[@Cooperation][Cooperation]]: | Packages Org cooperates with    |
+| • [[@Conflicts][Conflicts]]:   | Packages that lead to conflicts |
+
+*** 15.10.1 Packages that Org cooperates with                         <<@Cooperation>>
 
 calc.el by Dave Gillespie
 
@@ -15593,7 +15649,7 @@ another key for this command, or override the key in
     (define-key viper-vi-global-user-map "C-c /" 'org-sparse-tree)
 #+END_SRC
 
-** 15.11 org-crypt.el
+** 15.11 org-crypt.el                                                 <<@org_crypt>>
 
 Org-crypt will encrypt the text of an entry, but not the headline, or
 properties. Org-crypt uses the Emacs EasyPG library to encrypt and
@@ -15634,7 +15690,20 @@ being encrypted again.
 This appendix covers some areas where users can extend the functionality
 of Org.
 
-** A.1 Hooks
+| • [[@Hooks][Hooks]]:                         | How to reach into Org's internals          |
+| • [[@Add_on-packages][Add-on packages]]:               | Available extensions                       |
+| • [[@Adding-hyperlink-types][Adding hyperlink types]]:        | New custom link types                      |
+| • [[@Adding-export-back_ends][Adding export back-ends]]:       | How to write new export back-ends          |
+| • [[@Context_sensitive-commands][Context-sensitive commands]]:    | How to add functionality to such commands  |
+| • [[@Tables-in-arbitrary-syntax][Tables in arbitrary syntax]]:    | Orgtbl for LaTeX and other programs        |
+| • [[@Dynamic-blocks][Dynamic blocks]]:                | Automatically filled blocks                |
+| • [[@Special-agenda-views][Special agenda views]]:          | Customized views                           |
+| • [[@Speeding-up-your-agendas][Speeding up your agendas]]:      | Tips on how to speed up your agendas       |
+| • [[@Extracting-agenda-information][Extracting agenda information]]: | Post-processing of agenda information      |
+| • [[@Using-the-property-API][Using the property API]]:        | Writing programs that use entry properties |
+| • [[@Using-the-mapping-API][Using the mapping API]]:         | Mapping over all or selected entries       |
+
+** A.1 Hooks                                                          <<@Hooks>>
 
 Org has a large number of hook variables that can be used to add
 functionality. This appendix about hacking is going to illustrate the
@@ -15642,7 +15711,7 @@ use of some of them. A complete list of all hooks with documentation is
 maintained by the Worg project and can be found at
 [[http://orgmode.org/worg/org-configs/org-hooks.php]].
 
-** A.2 Add-on packages
+** A.2 Add-on packages                                                <<@Add_on-packages>>
 
 A large number of add-on packages have been written by various authors.
 
@@ -15745,7 +15814,7 @@ completion) support for inserting such a link with C-c C-l. Such a
 function should not accept any arguments, and return the full link with
 prefix.
 
-** A.4 Adding export back-ends
+** A.4 Adding export back-ends                                        <<@Adding-export-back_ends>>
 
 Org 8.0 comes with a completely rewritten export engine which makes it
 easy to write new export back-ends, either from scratch, or by deriving
@@ -15773,7 +15842,7 @@ For a complete reference documentation, see
 [[http://orgmode.org/worg/dev/org-export-reference.html][the Org Export
 Reference on Worg]].
 
-** A.5 Context-sensitive commands
+** A.5 Context-sensitive commands                                     <<@Context_sensitive-commands>>
 
 Org has several commands that act differently depending on context. The
 most important example is the C-c C-c (see
@@ -15826,7 +15895,12 @@ You can use Org's facilities to edit and structure lists by turning
 =orgstruct-mode= on, then locally exporting such lists in another format
 (HTML, LaTeX or Texinfo.)
 
-*** A.6.1 Radio tables
+| • [[@Radio-tables][Radio tables]]:         | Sending and receiving radio tables |
+| • [[@A-LaTeX-example][A LaTeX example]]:      | Step by step, almost a tutorial    |
+| • [[@Translator-functions][Translator functions]]: | Copy and modify                    |
+| • [[@Radio-lists][Radio lists]]:          | Sending and receiving lists        |
+
+*** A.6.1 Radio tables                                                <<@Radio-tables>>
 
 To define the location of the target table, you first need to create two
 lines that are comments in the current mode, but contain magic words
@@ -15880,7 +15954,7 @@ number of different solutions:
    orgtbl-toggle-comment RET makes this comment-toggling very easy, in
    particular if you bind it to a key.
 
-*** A.6.2 A LaTeX example of radio tables
+*** A.6.2 A LaTeX example of radio tables                             <<@A-LaTeX-example>>
 
 The best way to wrap the source table in LaTeX is to use the =comment=
 environment provided by comment.sty. It has to be activated by placing
@@ -15972,7 +16046,7 @@ following ones :
    =fmt=, functions of two arguments can be supplied instead of strings.
    By default, no special formatting is applied.
 
-*** A.6.3 Translator functions                                        <<@Translator-functions>>
+*** A.6.3 Translator functions                                        <<@Translator-functions>>                                           <<@Translator-functions>>
 
 Orgtbl mode has several translator functions built-in: =orgtbl-to-csv=
 (comma-separated values), =orgtbl-to-tsv= (TAB-separated values)
@@ -16024,7 +16098,7 @@ formatted table. If you write a generally useful translator, please post
 it on [[mailto:emacs-orgmode@gnu.org][emacs-orgmode@gnu.org]] so that
 others can benefit from your work.
 
-*** A.6.4 Radio lists
+*** A.6.4 Radio lists                                                 <<@Radio-lists>>
 
 Sending and receiving radio lists works exactly the same way as sending
 and receiving radio tables (see [[@Radio-tables][Radio tables]]). As for
@@ -16119,7 +16193,7 @@ such that it does nothing in buffers that are not in =org-mode=.
 You can narrow the current buffer to the current dynamic block (like any
 other block) with =org-narrow-to-block=.
 
-** A.8 Special agenda views
+** A.8 Special agenda views                                           <<@Special-agenda-views>>
 
 Org provides a special hook that can be used to narrow down the
 selection made by these agenda views: =agenda=,
@@ -16415,7 +16489,7 @@ properties.
    entered. The functions must return =nil= if they are not responsible
    for this property.
 
-** A.12 Using the mapping API
+** A.12 Using the mapping API                                         <<@Using-the-mapping-API>>
 
 Org has sophisticated mapping capabilities to find all entries
 satisfying certain criteria. Internally, this functionality is used to
@@ -16541,7 +16615,11 @@ state /sets/ (see [[@Per_file-keywords][Per-file keywords]]) and
 /mutually exclusive/ tags (see [[@Setting-tags][Setting tags]]) only for
 those set in these variables.
 
-** B.1 Setting up the staging area
+| • [[@Setting-up-the-staging-area][Setting up the staging area]]: | Where to interact with the mobile device |
+| • [[@Pushing-to-MobileOrg][Pushing to MobileOrg]]:        | Uploading Org files and agendas          |
+| • [[@Pulling-from-MobileOrg][Pulling from MobileOrg]]:      | Integrating captured and flagged items   |
+
+** B.1 Setting up the staging area                                    <<@Setting-up-the-staging-area>>
 
 MobileOrg needs to interact with Emacs through a directory on a server.
 If you are using a public server, you should consider encrypting the
@@ -16564,7 +16642,7 @@ tell Emacs about it:
 Org mode has commands to put files for /MobileOrg/ into that directory,
 and to read captured notes from there.
 
-** B.2 Pushing to MobileOrg
+** B.2 Pushing to MobileOrg                                           <<@Pushing-to-MobileOrg>>
 
 This operation copies all files currently listed in =org-mobile-files=
 to the directory =org-mobile-directory=. By default this list contains
@@ -16582,7 +16660,7 @@ downloads all agendas and Org files listed in it. To speed up the
 download, MobileOrg will only read files whose
 checksums[fn:FOOT187] have changed.
 
-** B.3 Pulling from MobileOrg
+** B.3 Pulling from MobileOrg                                         <<@Pulling-from-MobileOrg>>
 
 When /MobileOrg/ synchronizes with the server, it not only pulls the Org
 files for viewing. It also appends captured entries and pointers to
