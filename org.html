@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>The Org Manual</title>
-<!-- 2015-09-02 mié 20:37 -->
+<!-- 2015-09-06 dom 15:53 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Carsten Dominik with contributiond by Bastien Guerry, Nicolas Goazion, Eric Schulte, Jambunathan K. Dan Davison, Thomas O`Thoole, and Philip Rooke." />
@@ -20188,17 +20188,17 @@ this, install it in the export dispatcher menu, and so on.
 <h2 id="sec-13">13 Publishing                                                       <a id="Publishing" name="Publishing"></a></h2>
 <div class="outline-text-2" id="text-13">
 <p>
-Org includes a publishing management system that allows you to configure
-automatic HTML conversion of <i>projects</i> composed of interlinked org
-files. You can also configure Org to automatically upload your exported
-HTML pages and related attachments, such as images and source code
-files, to a web server.
+Org includes a publishing management system that allows you to
+configure automatic HTML conversion of <i>projects</i> composed of
+interlinked org files. You can also configure Org to automatically
+upload your exported HTML pages and related attachments, such as
+images and source code files, to a web server.
 </p>
 
 <p>
-You can also use Org to convert files into PDF, or even combine HTML and
-PDF conversion so that files are available in both formats on the
-server.
+You can also use Org to convert files into PDF, or even combine HTML
+and PDF conversion so that files are available in both formats on
+the server.
 </p>
 
 <p>
@@ -20241,8 +20241,8 @@ Publishing has been contributed to Org by David O'Toole.
 <h3 id="sec-13-1">13.1 Configuration                                                 <a id="Configuration" name="Configuration"></a></h3>
 <div class="outline-text-3" id="text-13-1">
 <p>
-Publishing needs significant configuration to specify files, destination
-and many other properties of a project.
+Publishing needs significant configuration to specify files,
+destination and many other properties of a project.
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -20301,30 +20301,38 @@ and many other properties of a project.
 <h4 id="sec-13-1-1">13.1.1 The variable <code>org-publish-project-alist</code>                   <a id="Project-alist" name="Project-alist"></a></h4>
 <div class="outline-text-4" id="text-13-1-1">
 <p>
-Publishing is configured almost entirely through setting the value of
-one variable, called <code>org-publish-project-alist</code>. Each element of the
-list configures one project, and may be in one of the two following
-forms:
+Publishing is configured almost entirely through setting the value
+of one variable, called <code>org-publish-project-alist</code>. Each element
+of the list configures one project, and may be in one of the two
+following forms:
 </p>
 
 <div class="org-src-container">
 
-<pre class="src src-lisp">   ("project-name" :property value :property value ...)
-     i.e., a well-formed property list with alternating keys and values
-or
-   ("project-name" :components ("project-name" "project-name" ...))
+<pre class="src src-lisp">("project-name" :property value :property value ...)
+  i.e., a well-formed property list with alternating keys and values
 </pre>
 </div>
 
 <p>
-In both cases, projects are configured by specifying property values. A
-project defines the set of files that will be published, as well as the
-publishing configuration to use when publishing those files. When a
-project takes the second form listed above, the individual members of
-the <code>:components</code> property are taken to be sub-projects, which group
-together files requiring different publishing options. When you publish
-such a “meta-project”, all the components will also be published, in the
-sequence given.
+or
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">("project-name" :components ("project-name" "project-name" ...))
+</pre>
+</div>
+
+<p>
+In both cases, projects are configured by specifying property
+values. A project defines the set of files that will be published,
+as well as the publishing configuration to use when publishing
+those files. When a project takes the second form listed above,
+the individual members of the <code>:components</code> property are taken to
+be sub-projects, which group together files requiring different
+publishing options. When you publish such a “meta-project”, all
+the components will also be published, in the sequence given.
 </p>
 </div>
 </div>
@@ -20334,8 +20342,8 @@ sequence given.
 <div class="outline-text-4" id="text-13-1-2">
 <p>
 Most properties are optional, but some should always be set. In
-particular, Org needs to know where to look for source files, and where
-to put published files.
+particular, Org needs to know where to look for source files, and
+where to put published files.
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -20375,9 +20383,9 @@ to put published files.
 <h4 id="sec-13-1-3">13.1.3 Selecting files                                            <a id="Selecting-files" name="Selecting-files"></a></h4>
 <div class="outline-text-4" id="text-13-1-3">
 <p>
-By default, all files with extension .org in the base directory are
-considered part of the project. This can be modified by setting the
-properties
+By default, all files with extension .org in the base directory
+are considered part of the project. This can be modified by
+setting the properties
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -20406,7 +20414,7 @@ properties
 
 <tr>
 <td class="left"><code>:recursive</code></td>
-<td class="left">non-=nil= means, check base-directory recursively for files to publish.</td>
+<td class="left">non- <code>nil</code> means, check base-directory recursively for files to publish.</td>
 </tr>
 </tbody>
 </table>
@@ -20417,28 +20425,28 @@ properties
 <h4 id="sec-13-1-4">13.1.4 Publishing action                                          <a id="Publishing-action" name="Publishing-action"></a></h4>
 <div class="outline-text-4" id="text-13-1-4">
 <p>
-Publishing means that a file is copied to the destination directory and
-possibly transformed in the process. The default transformation is to
-export Org files as HTML files, and this is done by the function
-<code>org-html-publish-to-html</code>, which calls the HTML exporter (see
-<a href="#HTML-export">HTML export</a>). But you also can publish your content as
-PDF files using <code>org-latex-publish-to-pdf</code> or as <code>ascii</code>, <code>Texinfo</code>,
-etc., using the corresponding functions.
+Publishing means that a file is copied to the destination
+directory and possibly transformed in the process. The default
+transformation is to export Org files as HTML files, and this is
+done by the function <code>org-html-publish-to-html</code>, which calls the
+HTML exporter (see <a href="#HTML-export">HTML export</a>). But you also can publish your
+content as PDF files using <code>org-latex-publish-to-pdf</code> or as
+<code>ascii</code>, <code>Texinfo</code>, etc., using the corresponding functions.
 </p>
 
 <p>
 If you want to publish the Org file as an <code>.org</code> file but with the
 <i>archived</i>, <i>commented</i> and <i>tag-excluded</i> trees removed, use the
-function <code>org-org-publish-to-org</code>. This will produce file.org and put it
-in the publishing directory. If you want a htmlized version of this
-file, set the parameter <code>:htmlized-source</code> to <code>t</code>, it will produce
-file.org.html in the publishing directory<sup><a id="fnr.157" name="fnr.157" class="footref" href="#fn.157">157</a></sup>.
+function <code>org-org-publish-to-org</code>. This will produce file.org and
+put it in the publishing directory. If you want a htmlized version
+of this file, set the parameter <code>:htmlized-source</code> to <code>t</code>, it will
+produce file.org.html in the publishing directory<sup><a id="fnr.157" name="fnr.157" class="footref" href="#fn.157">157</a></sup>.
 </p>
 
 <p>
 Other files like images only need to be copied to the publishing
-destination. For this you can use <code>org-publish-attachment</code>. For non-org
-files, you always need to specify the publishing function:
+destination. For this you can use <code>org-publish-attachment</code>. For
+non-org files, you always need to specify the publishing function:
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -20457,17 +20465,18 @@ files, you always need to specify the publishing function:
 
 <tr>
 <td class="left"><code>:htmlized-source</code></td>
-<td class="left">non-=nil= means, publish htmlized source.</td>
+<td class="left">non- <code>nil</code> means, publish htmlized source.</td>
 </tr>
 </tbody>
 </table>
 
 <p>
-The function must accept three arguments: a property list containing at
-least a <code>:publishing-directory</code> property, the name of the file to be
-published and the path to the publishing directory of the output file.
-It should take the specified file, make the necessary transformation (if
-any) and place the result into the destination folder.
+The function must accept three arguments: a property list
+containing at least a <code>:publishing-directory</code> property, the name
+of the file to be published and the path to the publishing
+directory of the output file.  It should take the specified file,
+make the necessary transformation (if any) and place the result
+into the destination folder.
 </p>
 </div>
 </div>
@@ -20477,18 +20486,19 @@ any) and place the result into the destination folder.
 <div class="outline-text-4" id="text-13-1-5">
 <p>
 The property list can be used to set export options during the
-publishing process. In most cases, these properties correspond to user
-variables in Org. While some properties are available for all export
-back-ends, most of them are back-end specific. The following sections
-list properties along with the variable they belong to. See the
-documentation string of these options for details.
+publishing process. In most cases, these properties correspond to
+user variables in Org. While some properties are available for all
+export back-ends, most of them are back-end specific. The
+following sections list properties along with the variable they
+belong to. See the documentation string of these options for
+details.
 </p>
 
 <p>
-When a property is given a value in <code>org-publish-project-alist</code>, its
-setting overrides the value of the corresponding user variable (if any)
-during publishing. Options set within a file (see
-<a href="#Export-settings">Export settings</a>), however, override everything.
+When a property is given a value in <code>org-publish-project-alist</code>,
+its setting overrides the value of the corresponding user variable
+(if any) during publishing. Options set within a file (see <a href="#Export-settings">Export
+settings</a>), however, override everything.
 </p>
 </div>
 
@@ -21455,21 +21465,22 @@ during publishing. Options set within a file (see
 <h4 id="sec-13-1-6">13.1.6 Links between published files                              <a id="Publishing-links" name="Publishing-links"></a></h4>
 <div class="outline-text-4" id="text-13-1-6">
 <p>
-To create a link from one Org file to another, you would use something
-like ‘<a href="foo.html">The foo</a>' or simply ‘<a href="foo.html">foo.html</a>.' (see
-<a href="#Hyperlinks">Hyperlinks</a>). When published, this link becomes a link
-to foo.html. You can thus interlink the pages of your "org web" project
-and the links will work as expected when you publish them to HTML. If
-you also publish the Org source file and want to link to it, use an
-<code>http:</code> link instead of a <code>file:</code> link, because <code>file:</code> links are
-converted to link to the corresponding html file.
+To create a link from one Org file to another, you would use
+something like <code>[[file:foo.org][The foo]]</code> or simply <code>file:foo.org.</code> (see
+<a href="#Hyperlinks">Hyperlinks</a>). When published, this link becomes a link to
+foo.html. You can thus interlink the pages of your "org web"
+project and the links will work as expected when you publish them
+to HTML. If you also publish the Org source file and want to link
+to it, use an <code>http:</code> link instead of a <code>file:</code> link, because
+<code>file:</code> links are converted to link to the corresponding html
+file.
 </p>
 
 <p>
-You may also link to related files, such as images. Provided you are
-careful with relative file names, and provided you have also configured
-Org to upload the related files, these links will work too. See
-<a href="#Complex-example">Complex example</a>, for an example of this usage.
+You may also link to related files, such as images. Provided you
+are careful with relative file names, and provided you have also
+configured Org to upload the related files, these links will work
+too. See <a href="#Complex-example">Complex example</a>, for an example of this usage.
 </p>
 </div>
 </div>
@@ -21478,8 +21489,8 @@ Org to upload the related files, these links will work too. See
 <h4 id="sec-13-1-7">13.1.7 Generating a sitemap                                       <a id="Sitemap" name="Sitemap"></a></h4>
 <div class="outline-text-4" id="text-13-1-7">
 <p>
-The following properties may be used to control publishing of a map of
-files for a given project.
+The following properties may be used to control publishing of a
+map of files for a given project.
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -21549,7 +21560,8 @@ files for a given project.
 <h4 id="sec-13-1-8">13.1.8 Generating an index                                        <a id="Generating-an-index" name="Generating-an-index"></a></h4>
 <div class="outline-text-4" id="text-13-1-8">
 <p>
-Org mode can generate an index across the files of a publishing project.
+Org mode can generate an index across the files of a publishing
+project.
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -21570,9 +21582,9 @@ Org mode can generate an index across the files of a publishing project.
 
 <p>
 The file will be created when first publishing a project with the
-<code>:makeindex</code> set. The file only contains a statement
-=#+INCLUDE: "theindex.inc"=. You can then build around this include
-statement by adding a title, style information, etc.
+<code>:makeindex</code> set. The file only contains a statement =#+INCLUDE:
+"theindex.inc"=. You can then build around this include statement
+by adding a title, style information, etc.
 </p>
 </div>
 </div>
@@ -21584,39 +21596,39 @@ statement by adding a title, style information, etc.
 <p>
 For those people already utilizing third party sync tools such as
 <code>rsync</code> or <code>unison</code>, it might be preferable not to use the built in
-<i>remote</i> publishing facilities of Org mode which rely heavily on Tramp.
-Tramp, while very useful and powerful, tends not to be so efficient for
-multiple file transfer and has been known to cause problems under heavy
-usage.
+<i>remote</i> publishing facilities of Org mode which rely heavily on
+Tramp.  Tramp, while very useful and powerful, tends not to be so
+efficient for multiple file transfer and has been known to cause
+problems under heavy usage.
 </p>
 
 <p>
 Specialized synchronization utilities offer several advantages. In
 addition to timestamp comparison, they also do content and
 permissions/attribute checks. For this reason you might prefer to
-publish your web to a local directory (possibly even <i>in place</i> with
-your Org files) and then use unison or rsync to do the synchronization
-with the remote host.
+publish your web to a local directory (possibly even <i>in place</i>
+with your Org files) and then use unison or rsync to do the
+synchronization with the remote host.
 </p>
 
 <p>
 Since Unison (for example) can be configured as to which files to
-transfer to a certain remote destination, it can greatly simplify the
-project publishing definition. Simply keep all files in the correct
-location, process your Org files with <code>org-publish</code> and let the
-synchronization tool do the rest. You do not need, in this scenario, to
-include attachments such as jpg, css or gif files in the project
-definition since the 3rd party tool syncs them.
+transfer to a certain remote destination, it can greatly simplify
+the project publishing definition. Simply keep all files in the
+correct location, process your Org files with <code>org-publish</code> and let
+the synchronization tool do the rest. You do not need, in this
+scenario, to include attachments such as jpg, css or gif files in
+the project definition since the 3rd party tool syncs them.
 </p>
 
 <p>
-Publishing to a local directory is also much faster than to a remote
-one, so that you can afford more easily to republish entire projects. If
-you set <code>org-publish-use-timestamps-flag</code> to <code>nil</code>, you gain the main
-benefit of re-including any changed external files such as source
-example files you might include with <code>#+INCLUDE:</code>. The timestamp
-mechanism in Org is not smart enough to detect if included files have
-been modified.
+Publishing to a local directory is also much faster than to a
+remote one, so that you can afford more easily to republish entire
+projects. If you set <code>org-publish-use-timestamps-flag</code> to <code>nil</code>,
+you gain the main benefit of re-including any changed external
+files such as source example files you might include with
+<code>#+INCLUDE:</code>. The timestamp mechanism in Org is not smart enough to
+detect if included files have been modified.
 </p>
 </div>
 </div>
@@ -21625,9 +21637,9 @@ been modified.
 <h3 id="sec-13-3">13.3 Sample configuration                                          <a id="Sample-configuration" name="Sample-configuration"></a></h3>
 <div class="outline-text-3" id="text-13-3">
 <p>
-Below we provide two example configurations. The first one is a simple
-project publishing only a set of Org files. The second example is more
-complex, with a multi-component project.
+Below we provide two example configurations. The first one is a
+simple project publishing only a set of Org files. The second
+example is more complex, with a multi-component project.
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -21656,8 +21668,8 @@ complex, with a multi-component project.
 <h4 id="sec-13-3-1">13.3.1 Example: simple publishing configuration                   <a id="Simple-example" name="Simple-example"></a></h4>
 <div class="outline-text-4" id="text-13-3-1">
 <p>
-This example publishes a set of Org files to the public\<sub>html</sub> directory
-on the local machine.
+This example publishes a set of Org files to the public\<sub>html</sub>
+directory on the local machine.
 </p>
 
 <div class="org-src-container">
@@ -21680,17 +21692,18 @@ on the local machine.
 <h4 id="sec-13-3-2">13.3.2 Example: complex publishing configuration                  <a id="Complex-example" name="Complex-example"></a></h4>
 <div class="outline-text-4" id="text-13-3-2">
 <p>
-This more complicated example publishes an entire website, including Org
-files converted to HTML, image files, Emacs Lisp source code, and style
-sheets. The publishing directory is remote and private files are
-excluded.
+This more complicated example publishes an entire website,
+including Org files converted to HTML, image files, Emacs Lisp
+source code, and style sheets. The publishing directory is remote
+and private files are excluded.
 </p>
 
 <p>
-To ensure that links are preserved, care should be taken to replicate
-your directory structure on the web server, and to use relative file
-paths. For example, if your Org files are kept in ~/org and your
-publishable images in ~/images, you would link to an image with
+To ensure that links are preserved, care should be taken to
+replicate your directory structure on the web server, and to use
+relative file paths. For example, if your Org files are kept in
+~/org and your publishable images in ~/images, you would link to
+an image with
 </p>
 
 <pre class="example">
@@ -21741,48 +21754,49 @@ place on the web server, and publishing images to it.
 <h3 id="sec-13-4">13.4 Triggering publication                                        <a id="Triggering-publication" name="Triggering-publication"></a></h3>
 <div class="outline-text-3" id="text-13-4">
 <p>
-Once properly configured, Org can publish with the following commands:
+Once properly configured, Org can publish with the following
+commands:
 </p>
 
-<p>
-C-c C-e P x (<code>org-publish</code>)
-</p>
+<ul class="org-ul">
+<li><b><i>C-c C-e P x</i></b> (<code>org-publish</code>)
 
 <p>
-Prompt for a specific project and publish all files that belong to it.
+Prompt for a specific project and publish all files that belong
+to it.
 </p>
+</li>
 
-<p>
-C-c C-e P p (<code>org-publish-current-project</code>)
-</p>
+<li><b><i>C-c C-e P p</i></b> (<code>org-publish-current-project</code>)
 
 <p>
 Publish the project containing the current file.
 </p>
+</li>
 
-<p>
-C-c C-e P f (<code>org-publish-current-file</code>)
-</p>
+<li><b><i>C-c C-e P f</i></b> (<code>org-publish-current-file</code>)
 
 <p>
 Publish only the current file.
 </p>
+</li>
 
-<p>
-C-c C-e P a (<code>org-publish-all</code>)
-</p>
+<li><b><i>C-c C-e P a</i></b> (<code>org-publish-all</code>)
 
 <p>
 Publish every project.
 </p>
+</li>
+</ul>
 
 <p>
 Org uses timestamps to track when a file has changed. The above
-functions normally only publish changed files. You can override this and
-force publishing of all files by giving a prefix argument to any of the
-commands above, or by customizing the variable
-<code>org-publish-use-timestamps-flag</code>. This may be necessary in particular
-if files include other files via <code>#+SETUPFILE:</code> or <code>#+INCLUDE:</code>.
+functions normally only publish changed files. You can override
+this and force publishing of all files by giving a prefix argument
+to any of the commands above, or by customizing the variable
+<code>org-publish-use-timestamps-flag</code>. This may be necessary in
+particular if files include other files via <code>#+SETUPFILE:</code> or
+<code>#+INCLUDE:</code>.
 </p>
 </div>
 </div>
@@ -29503,8 +29517,8 @@ you configure <code>org-use-property-inheritance</code> accordingly.
 
 <div class="footdef"><sup><a id="fn.157" name="fn.157" class="footnum" href="#fnr.157">157</a></sup> <p class="footpara">
 If the publishing directory is the same than the source directory,
-file.org will be exported as file.org.org, so probably don't want to do
-this.
+file.org will be exported as file.org.org, so probably don't want to
+do this.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.158" name="fn.158" class="footnum" href="#fnr.158">158</a></sup> <p class="footpara">
