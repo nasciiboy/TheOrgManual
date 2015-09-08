@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>The Org Manual</title>
-<!-- 2015-09-06 dom 19:07 -->
+<!-- 2015-09-08 mar 17:37 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Carsten Dominik with contributiond by Bastien Guerry, Nicolas Goazion, Eric Schulte, Jambunathan K. Dan Davison, Thomas O`Thoole, and Philip Rooke." />
@@ -139,7 +139,7 @@
 <li><a href="#sec-3-5-7">3.5.7 Lookup functions                                            </a></li>
 <li><a href="#sec-3-5-8">3.5.8 Editing and debugging formulas                              </a>
 <ul>
-<li><a href="#sec-3-5-8-1">Using multiple #+TBLFM lines</a></li>
+<li><a href="#sec-3-5-8-1">Using multiple #+TBLFM lines                                     </a></li>
 <li><a href="#sec-3-5-8-2">Debugging formulas</a></li>
 </ul>
 </li>
@@ -611,57 +611,60 @@
 <li><a href="#sec-14-8-1-6">Header arguments in function calls                               </a></li>
 </ul>
 </li>
-<li><a href="#sec-14-8-2">14.8.2 Specific header arguments                                  </a></li>
-<li><a href="#sec-14-8-3">14.8.2.1 <code>:var</code>                                                   </a>
+<li><a href="#sec-14-8-2">14.8.2 Specific header arguments                                  </a>
 <ul>
-<li><a href="#sec-14-8-3-1">Indexable variable values</a></li>
-<li><a href="#sec-14-8-3-2">Emacs Lisp evaluation of variables</a></li>
+<li><a href="#sec-14-8-2-1">14.8.2.1 <code>:var</code>                                                  </a>
+<ul>
+<li><a href="#sec-14-8-2-1-1">Indexable variable values</a></li>
+<li><a href="#sec-14-8-2-1-2">Emacs Lisp evaluation of variables</a></li>
 </ul>
 </li>
-<li><a href="#sec-14-8-4">14.8.2.2 <code>:results</code>                                               </a>
+<li><a href="#sec-14-8-2-2">14.8.2.2 <code>:results</code>                                              </a>
 <ul>
-<li><a href="#sec-14-8-4-1">Collection</a></li>
-<li><a href="#sec-14-8-4-2">Type</a></li>
-<li><a href="#sec-14-8-4-3">Format</a></li>
-<li><a href="#sec-14-8-4-4">Handling</a></li>
+<li><a href="#sec-14-8-2-2-1">Collection</a></li>
+<li><a href="#sec-14-8-2-2-2">Type</a></li>
+<li><a href="#sec-14-8-2-2-3">Format</a></li>
+<li><a href="#sec-14-8-2-2-4">Handling</a></li>
 </ul>
 </li>
-<li><a href="#sec-14-8-5">14.8.2.3 <code>:file</code>                                                  </a></li>
-<li><a href="#sec-14-8-6">14.8.2.4 <code>:file-desc</code>                                             </a></li>
-<li><a href="#sec-14-8-7">14.8.2.5 <code>:file-ext</code>                                              </a></li>
-<li><a href="#sec-14-8-8">14.8.2.6 <code>:output-dir</code>                                            </a></li>
-<li><a href="#sec-14-8-9">14.8.2.7 <code>:dir</code> and remote execution                              </a>
+<li><a href="#sec-14-8-2-3">14.8.2.3 <code>:file</code>                                                 </a></li>
+<li><a href="#sec-14-8-2-4">14.8.2.4 <code>:file-desc</code>                                            </a></li>
+<li><a href="#sec-14-8-2-5">14.8.2.5 <code>:file-ext</code>                                             </a></li>
+<li><a href="#sec-14-8-2-6">14.8.2.6 <code>:output-dir</code>                                           </a></li>
+<li><a href="#sec-14-8-2-7">14.8.2.7 <code>:dir</code> and remote execution                             </a>
 <ul>
-<li><a href="#sec-14-8-9-1">Remote execution</a></li>
-<li><a href="#sec-14-8-9-2">Further points</a></li>
+<li><a href="#sec-14-8-2-7-1">Remote execution</a></li>
+<li><a href="#sec-14-8-2-7-2">Further points</a></li>
 </ul>
 </li>
-<li><a href="#sec-14-8-10">14.8.2.8 <code>:exports</code>                                               </a></li>
-<li><a href="#sec-14-8-11">14.8.2.9 <code>:tangle</code>                                                </a></li>
-<li><a href="#sec-14-8-12">14.8.2.10 <code>:mkdirp</code>                                               </a></li>
-<li><a href="#sec-14-8-13">14.8.2.11 <code>:comments</code>                                             </a></li>
-<li><a href="#sec-14-8-14">14.8.2.12 <code>:padline</code>                                              </a></li>
-<li><a href="#sec-14-8-15">14.8.2.13 <code>:no-expand</code>                                            </a></li>
-<li><a href="#sec-14-8-16">14.8.2.14 <code>:session</code>                                              </a></li>
-<li><a href="#sec-14-8-17">14.8.2.15 <code>:noweb</code>                                                </a>
+<li><a href="#sec-14-8-2-8">14.8.2.8 <code>:exports</code>                                              </a></li>
+<li><a href="#sec-14-8-2-9">14.8.2.9 <code>:tangle</code>                                               </a></li>
+<li><a href="#sec-14-8-2-10">14.8.2.10 <code>:mkdirp</code>                                              </a></li>
+<li><a href="#sec-14-8-2-11">14.8.2.11 <code>:comments</code>                                            </a></li>
+<li><a href="#sec-14-8-2-12">14.8.2.12 <code>:padline</code>                                             </a></li>
+<li><a href="#sec-14-8-2-13">14.8.2.13 <code>:no-expand</code>                                           </a></li>
+<li><a href="#sec-14-8-2-14">14.8.2.14 <code>:session</code>                                             </a></li>
+<li><a href="#sec-14-8-2-15">14.8.2.15 <code>:noweb</code>                                               </a>
 <ul>
-<li><a href="#sec-14-8-17-1">Noweb prefix lines</a></li>
+<li><a href="#sec-14-8-2-15-1">Noweb prefix lines</a></li>
 </ul>
 </li>
-<li><a href="#sec-14-8-18">14.8.2.16 <code>:noweb-ref</code>                                            </a></li>
-<li><a href="#sec-14-8-19">14.8.2.17 <code>:noweb-sep</code>                                            </a></li>
-<li><a href="#sec-14-8-20">14.8.2.18 <code>:cache</code>                                                </a></li>
-<li><a href="#sec-14-8-21">14.8.2.19 <code>:sep</code>                                                  </a></li>
-<li><a href="#sec-14-8-22">14.8.2.20 <code>:hlines</code>                                               </a></li>
-<li><a href="#sec-14-8-23">14.8.2.21 <code>:colnames</code>                                             </a></li>
-<li><a href="#sec-14-8-24">14.8.2.22 <code>:rownames</code>                                             </a></li>
-<li><a href="#sec-14-8-25">14.8.2.23 <code>:shebang</code>                                              </a></li>
-<li><a href="#sec-14-8-26">14.8.2.24 <code>:tangle-mode</code>                                          </a></li>
-<li><a href="#sec-14-8-27">14.8.2.25 <code>:eval</code>                                                 </a></li>
-<li><a href="#sec-14-8-28">14.8.2.26 <code>:wrap</code>                                                 </a></li>
-<li><a href="#sec-14-8-29">14.8.2.27 <code>:post</code>                                                 </a></li>
-<li><a href="#sec-14-8-30">14.8.2.28 <code>:prologue</code>                                             </a></li>
-<li><a href="#sec-14-8-31">14.8.2.29 <code>:epilogue</code>                                             </a></li>
+<li><a href="#sec-14-8-2-16">14.8.2.16 <code>:noweb-ref</code>                                           </a></li>
+<li><a href="#sec-14-8-2-17">14.8.2.17 <code>:noweb-sep</code>                                           </a></li>
+<li><a href="#sec-14-8-2-18">14.8.2.18 <code>:cache</code>                                               </a></li>
+<li><a href="#sec-14-8-2-19">14.8.2.19 <code>:sep</code>                                                 </a></li>
+<li><a href="#sec-14-8-2-20">14.8.2.20 <code>:hlines</code>                                              </a></li>
+<li><a href="#sec-14-8-2-21">14.8.2.21 <code>:colnames</code>                                            </a></li>
+<li><a href="#sec-14-8-2-22">14.8.2.22 <code>:rownames</code>                                            </a></li>
+<li><a href="#sec-14-8-2-23">14.8.2.23 <code>:shebang</code>                                             </a></li>
+<li><a href="#sec-14-8-2-24">14.8.2.24 <code>:tangle-mode</code>                                         </a></li>
+<li><a href="#sec-14-8-2-25">14.8.2.25 <code>:eval</code>                                                </a></li>
+<li><a href="#sec-14-8-2-26">14.8.2.26 <code>:wrap</code>                                                </a></li>
+<li><a href="#sec-14-8-2-27">14.8.2.27 <code>:post</code>                                                </a></li>
+<li><a href="#sec-14-8-2-28">14.8.2.28 <code>:prologue</code>                                            </a></li>
+<li><a href="#sec-14-8-2-29">14.8.2.29 <code>:epilogue</code>                                            </a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#sec-14-9">14.9 Results of evaluation                                         </a>
@@ -693,7 +696,7 @@
 <li><a href="#sec-15-4">15.4 Code evaluation and security issues                           </a></li>
 <li><a href="#sec-15-5">15.5 Customization                                                 </a></li>
 <li><a href="#sec-15-6">15.6 Summary of in-buffer settings                                 </a></li>
-<li><a href="#sec-15-7">15.7 The very busy C-c C-c key                                     </a></li>
+<li><a href="#sec-15-7">15.7 The very busy <b><i>C-c C-c</i></b> key                                 </a></li>
 <li><a href="#sec-15-8">15.8 A cleaner outline view                                        </a></li>
 <li><a href="#sec-15-9">15.9 Using Org on a tty                                            </a></li>
 <li><a href="#sec-15-10">15.10 Interaction with other packages                              </a>
@@ -4051,7 +4054,7 @@ recalculation commands in the table.
 </div>
 
 <div id="outline-container-sec-3-5-8-1" class="outline-5">
-<h5 id="sec-3-5-8-1">Using multiple #+TBLFM lines</h5>
+<h5 id="sec-3-5-8-1">Using multiple #+TBLFM lines                                     <a id="Using-multiple-TBLFM-lines" name="Using-multiple-TBLFM-lines"></a></h5>
 <div class="outline-text-5" id="text-3-5-8-1">
 <p>
 You may apply the formula temporarily. This is useful when you
@@ -23108,25 +23111,24 @@ Additional header arguments are defined on a language-specific
 basis, see <a href="#Languages">Languages</a>.
 </p>
 </div>
-</div>
 
-<div id="outline-container-sec-14-8-3" class="outline-4">
-<h4 id="sec-14-8-3">14.8.2.1 <code>:var</code>                                                   <a id="var" name="var"></a></h4>
-<div class="outline-text-4" id="text-14-8-3">
+<div id="outline-container-sec-14-8-2-1" class="outline-5">
+<h5 id="sec-14-8-2-1">14.8.2.1 <code>:var</code>                                                  <a id="var" name="var"></a></h5>
+<div class="outline-text-5" id="text-14-8-2-1">
 <p>
 The <code>:var</code> header argument is used to pass arguments to code
 blocks. The specifics of how arguments are included in a code
 block vary by language; these are addressed in the
 language-specific documentation.  However, the syntax used to
-specify arguments is the same across all languages. In every case,
-variables require a default value when they are declared.
+specify arguments is the same across all languages. In every
+case, variables require a default value when they are declared.
 </p>
 
 <p>
 The values passed to arguments can either be literal values,
 references, or Emacs Lisp code (see <a href="#var">Emacs Lisp evaluation of
-variables</a>).  References include anything in the Org mode file that
-takes a <code>#+NAME:</code> or <code>#+RESULTS:</code> line: tables, lists,
+variables</a>).  References include anything in the Org mode file
+that takes a <code>#+NAME:</code> or <code>#+RESULTS:</code> line: tables, lists,
 <code>#+BEGIN_EXAMPLE</code> blocks, other code blocks and the results of
 other code blocks.
 </p>
@@ -23282,9 +23284,9 @@ a literal example block named with a <code>#+NAME:</code> line
 </ul>
 </div>
 
-<div id="outline-container-sec-14-8-3-1" class="outline-5">
-<h5 id="sec-14-8-3-1">Indexable variable values</h5>
-<div class="outline-text-5" id="text-14-8-3-1">
+<div id="outline-container-sec-14-8-2-1-1" class="outline-6">
+<h6 id="sec-14-8-2-1-1">Indexable variable values</h6>
+<div class="outline-text-6" id="text-14-8-2-1-1">
 <p>
 It is possible to reference portions of variable values by
 “indexing” into the variables. Indexes are 0 based with negative
@@ -23384,18 +23386,18 @@ following example.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-3-2" class="outline-5">
-<h5 id="sec-14-8-3-2">Emacs Lisp evaluation of variables</h5>
-<div class="outline-text-5" id="text-14-8-3-2">
+<div id="outline-container-sec-14-8-2-1-2" class="outline-6">
+<h6 id="sec-14-8-2-1-2">Emacs Lisp evaluation of variables</h6>
+<div class="outline-text-6" id="text-14-8-2-1-2">
 <p>
-Emacs lisp code can be used to initialize variable values. When a
-variable value starts with <code>(</code>, <code>[</code>, ='= or <code>`</code> it will be
+Emacs lisp code can be used to initialize variable values. When
+a variable value starts with <code>(</code>, <code>[</code>, ='= or <code>`</code> it will be
 evaluated as Emacs Lisp and the result of the evaluation will be
 assigned as the variable value. The following example
 demonstrates use of this evaluation to reliably pass the
 file-name of the Org mode buffer to a code block&#x2014;note that
-evaluation of header arguments is guaranteed to take place in the
-original Org mode file, while there is no such guarantee for
+evaluation of header arguments is guaranteed to take place in
+the original Org mode file, while there is no such guarantee for
 evaluation of the code block body.
 </p>
 
@@ -23406,8 +23408,8 @@ evaluation of the code block body.
 </pre>
 
 <p>
-Note that values read from tables and lists will not be evaluated
-as Emacs Lisp, as shown in the following example.
+Note that values read from tables and lists will not be
+evaluated as Emacs Lisp, as shown in the following example.
 </p>
 
 <pre class="example">
@@ -23426,17 +23428,17 @@ as Emacs Lisp, as shown in the following example.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-4" class="outline-4">
-<h4 id="sec-14-8-4">14.8.2.2 <code>:results</code>                                               <a id="Results" name="Results"></a></h4>
-<div class="outline-text-4" id="text-14-8-4">
+<div id="outline-container-sec-14-8-2-2" class="outline-5">
+<h5 id="sec-14-8-2-2">14.8.2.2 <code>:results</code>                                              <a id="Results" name="Results"></a></h5>
+<div class="outline-text-5" id="text-14-8-2-2">
 <p>
 There are four classes of <code>:results</code> header argument. Only one
 option per class may be supplied per code block.
 </p>
 
 <ul class="org-ul">
-<li><b>collection</b> header arguments specify how the results should be
-collected from the code block
+<li><b>collection</b> header arguments specify how the results should
+be collected from the code block
 </li>
 
 <li><b>type</b> header arguments specify what type of result the code
@@ -23455,25 +23457,25 @@ evaluating the code block should be handled.
 </ul>
 </div>
 
-<div id="outline-container-sec-14-8-4-1" class="outline-5">
-<h5 id="sec-14-8-4-1">Collection</h5>
-<div class="outline-text-5" id="text-14-8-4-1">
+<div id="outline-container-sec-14-8-2-2-1" class="outline-6">
+<h6 id="sec-14-8-2-2-1">Collection</h6>
+<div class="outline-text-6" id="text-14-8-2-2-1">
 <p>
-The following options are mutually exclusive, and specify how the
-results should be collected from the code block.
+The following options are mutually exclusive, and specify how
+the results should be collected from the code block.
 </p>
 
 <ul class="org-ul">
 <li><code>value</code> This is the default. The result is the value of the
 last statement in the code block. This header argument places
 the evaluation in functional mode. Note that in some
-languages, e.g., Python, use of this result type requires that
-a <code>return</code> statement be included in the body of the source
-code block. E.g., <code>:results value</code>.
+languages, e.g., Python, use of this result type requires
+that a <code>return</code> statement be included in the body of the
+source code block. E.g., <code>:results value</code>.
 </li>
 
-<li><code>output</code> The result is the collection of everything printed to
-STDOUT during the execution of the code block. This header
+<li><code>output</code> The result is the collection of everything printed
+to STDOUT during the execution of the code block. This header
 argument places the evaluation in scripting mode. E.g.,
 <code>:results output</code>.
 </li>
@@ -23481,9 +23483,9 @@ argument places the evaluation in scripting mode. E.g.,
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-4-2" class="outline-5">
-<h5 id="sec-14-8-4-2">Type</h5>
-<div class="outline-text-5" id="text-14-8-4-2">
+<div id="outline-container-sec-14-8-2-2-2" class="outline-6">
+<h6 id="sec-14-8-2-2-2">Type</h6>
+<div class="outline-text-6" id="text-14-8-2-2-2">
 <p>
 The following options are mutually exclusive and specify what
 type of results the code block will return. By default, results
@@ -23517,9 +23519,9 @@ link. E.g., <code>:results value file</code>.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-4-3" class="outline-5">
-<h5 id="sec-14-8-4-3">Format</h5>
-<div class="outline-text-5" id="text-14-8-4-3">
+<div id="outline-container-sec-14-8-2-2-3" class="outline-6">
+<h6 id="sec-14-8-2-2-3">Format</h6>
+<div class="outline-text-6" id="text-14-8-2-2-3">
 <p>
 The following options are mutually exclusive and specify what
 type of results the code block will return. By default, results
@@ -23527,15 +23529,15 @@ are inserted according to the type as specified above.
 </p>
 
 <ul class="org-ul">
-<li><code>raw</code> The results are interpreted as raw Org mode code and are
-inserted directly into the buffer. If the results look like a
-table they will be aligned as such by Org mode. E.g.,
+<li><code>raw</code> The results are interpreted as raw Org mode code and
+are inserted directly into the buffer. If the results look
+like a table they will be aligned as such by Org mode. E.g.,
 <code>:results value raw</code>.
 </li>
 
 <li><code>org</code> The results are will be enclosed in a <code>BEGIN_SRC org</code>
-block.  They are not comma-escaped by default but they will be
-if you hit TAB in the block and/or if you export the
+block.  They are not comma-escaped by default but they will
+be if you hit TAB in the block and/or if you export the
 file. E.g., <code>:results value org</code>.
 </li>
 
@@ -23547,36 +23549,36 @@ a <code>BEGIN_HTML</code> block. E.g., <code>:results value html</code>.
 <code>BEGIN_LaTeX</code> block. E.g., <code>:results value latex</code>.
 </li>
 
-<li><code>code</code> Result are assumed to be parsable code and are enclosed
-in a code block. E.g., <code>:results value code</code>.
+<li><code>code</code> Result are assumed to be parsable code and are
+enclosed in a code block. E.g., <code>:results value code</code>.
 </li>
 
 <li><code>pp</code> The result is converted to pretty-printed code and is
-enclosed in a code block. This option currently supports Emacs
-Lisp, Python, and Ruby. E.g., <code>:results value pp</code>.
+enclosed in a code block. This option currently supports
+Emacs Lisp, Python, and Ruby. E.g., <code>:results value pp</code>.
 </li>
 
 <li><code>drawer</code> The result is wrapped in a RESULTS drawer. This can
 be useful for inserting <code>raw</code> or <code>org</code> syntax results in such
-a way that their extent is known and they can be automatically
-removed or replaced.
+a way that their extent is known and they can be
+automatically removed or replaced.
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-4-4" class="outline-5">
-<h5 id="sec-14-8-4-4">Handling</h5>
-<div class="outline-text-5" id="text-14-8-4-4">
+<div id="outline-container-sec-14-8-2-2-4" class="outline-6">
+<h6 id="sec-14-8-2-2-4">Handling</h6>
+<div class="outline-text-6" id="text-14-8-2-2-4">
 <p>
 The following results options indicate what happens with the
 results once they are collected.
 </p>
 
 <ul class="org-ul">
-<li><code>silent</code> The results will be echoed in the minibuffer but will
-not be inserted into the Org mode buffer. E.g., <code>:results
-        output silent</code>.
+<li><code>silent</code> The results will be echoed in the minibuffer but
+will not be inserted into the Org mode buffer. E.g.,
+<code>:results output silent</code>.
 </li>
 
 <li><code>replace</code> The default value. Any existing results will be
@@ -23600,14 +23602,14 @@ results. Otherwise the new results will be inserted as with
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-5" class="outline-4">
-<h4 id="sec-14-8-5">14.8.2.3 <code>:file</code>                                                  <a id="file" name="file"></a></h4>
-<div class="outline-text-4" id="text-14-8-5">
+<div id="outline-container-sec-14-8-2-3" class="outline-5">
+<h5 id="sec-14-8-2-3">14.8.2.3 <code>:file</code>                                                 <a id="file" name="file"></a></h5>
+<div class="outline-text-5" id="text-14-8-2-3">
 <p>
-The header argument <code>:file</code> is used to specify an external file in
-which to save code block results. After code block evaluation an
-Org mode style <code>[[file:]]</code> link (see <a href="#Link-format">Link format</a>) to the file will be
-inserted into the Org mode buffer. Some languages including R,
+The header argument <code>:file</code> is used to specify an external file
+in which to save code block results. After code block evaluation
+an Org mode style <code>[[file:]]</code> link (see <a href="#Link-format">Link format</a>) to the file will
+be inserted into the Org mode buffer. Some languages including R,
 gnuplot, dot, and ditaa provide special handling of the <code>:file</code>
 header argument automatically wrapping the code block body in the
 boilerplate code required to save output to the specified
@@ -23624,25 +23626,26 @@ description for the link.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-6" class="outline-4">
-<h4 id="sec-14-8-6">14.8.2.4 <code>:file-desc</code>                                             <a id="file_desc" name="file_desc"></a></h4>
-<div class="outline-text-4" id="text-14-8-6">
+<div id="outline-container-sec-14-8-2-4" class="outline-5">
+<h5 id="sec-14-8-2-4">14.8.2.4 <code>:file-desc</code>                                            <a id="file_desc" name="file_desc"></a></h5>
+<div class="outline-text-5" id="text-14-8-2-4">
 <p>
-The value of the <code>:file-desc</code> header argument is used to provide a
-description for file code block results which are inserted as Org
-mode links (see <a href="#Link-format">Link format</a>). If the <code>:file-desc</code> header argument
-is given with no value the link path will be placed in both the
-“link” and the “description” portion of the Org mode link.
+The value of the <code>:file-desc</code> header argument is used to provide
+a description for file code block results which are inserted as
+Org mode links (see <a href="#Link-format">Link format</a>). If the <code>:file-desc</code> header
+argument is given with no value the link path will be placed in
+both the “link” and the “description” portion of the Org mode
+link.
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-7" class="outline-4">
-<h4 id="sec-14-8-7">14.8.2.5 <code>:file-ext</code>                                              <a id="file_ext" name="file_ext"></a></h4>
-<div class="outline-text-4" id="text-14-8-7">
+<div id="outline-container-sec-14-8-2-5" class="outline-5">
+<h5 id="sec-14-8-2-5">14.8.2.5 <code>:file-ext</code>                                             <a id="file_ext" name="file_ext"></a></h5>
+<div class="outline-text-5" id="text-14-8-2-5">
 <p>
-The value of the <code>:file-ext</code> header argument is used to provide an
-extension to write the file output to. It is combined with the
+The value of the <code>:file-ext</code> header argument is used to provide
+an extension to write the file output to. It is combined with the
 <code>#+NAME:</code> of the source block and the value of the <a href="#output_dir">output-dir</a>
 header argument to generate a complete file name.
 </p>
@@ -23654,23 +23657,24 @@ effect when the latter is specified.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-8" class="outline-4">
-<h4 id="sec-14-8-8">14.8.2.6 <code>:output-dir</code>                                            <a id="output_dir" name="output_dir"></a></h4>
-<div class="outline-text-4" id="text-14-8-8">
+<div id="outline-container-sec-14-8-2-6" class="outline-5">
+<h5 id="sec-14-8-2-6">14.8.2.6 <code>:output-dir</code>                                           <a id="output_dir" name="output_dir"></a></h5>
+<div class="outline-text-5" id="text-14-8-2-6">
 <p>
 The value of the <code>:output-dir</code> header argument is used to provide
 a directory to write the file output to. It may specify an
 absolute directory (beginning with <code>/</code>) or a relative directory
-(without <code>/</code>). It can be combined with the <code>#+NAME:</code> of the source
-block and the value of the <a href="#file_ext">file-ext</a> header argument to generate a
-complete file name, or used along with a <a href="#file">file</a> header arg.
+(without <code>/</code>). It can be combined with the <code>#+NAME:</code> of the
+source block and the value of the <a href="#file_ext">file-ext</a> header argument to
+generate a complete file name, or used along with a <a href="#file">file</a> header
+arg.
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-9" class="outline-4">
-<h4 id="sec-14-8-9">14.8.2.7 <code>:dir</code> and remote execution                              <a id="dir" name="dir"></a></h4>
-<div class="outline-text-4" id="text-14-8-9">
+<div id="outline-container-sec-14-8-2-7" class="outline-5">
+<h5 id="sec-14-8-2-7">14.8.2.7 <code>:dir</code> and remote execution                             <a id="dir" name="dir"></a></h5>
+<div class="outline-text-5" id="text-14-8-2-7">
 <p>
 While the <code>:file</code> header argument can be used to specify the path
 to the output file, <code>:dir</code> specifies the default directory during
@@ -23684,9 +23688,9 @@ of the Emacs variable <code>default-directory</code>.
 
 <p>
 When using <code>:dir</code>, you should supply a relative path for file
-output (e.g., <code>:file myfile.jpg</code> or <code>:file results/myfile.jpg</code>) in
-which case that path will be interpreted relative to the default
-directory.
+output (e.g., <code>:file myfile.jpg</code> or <code>:file results/myfile.jpg</code>)
+in which case that path will be interpreted relative to the
+default directory.
 </p>
 
 <p>
@@ -23701,13 +23705,13 @@ matplot(matrix(rnorm(100), 10), type="l")
 </pre>
 </div>
 
-<div id="outline-container-sec-14-8-9-1" class="outline-5">
-<h5 id="sec-14-8-9-1">Remote execution</h5>
-<div class="outline-text-5" id="text-14-8-9-1">
+<div id="outline-container-sec-14-8-2-7-1" class="outline-6">
+<h6 id="sec-14-8-2-7-1">Remote execution</h6>
+<div class="outline-text-6" id="text-14-8-2-7-1">
 <p>
-A directory on a remote machine can be specified using tramp file
-syntax, in which case the code will be evaluated on the remote
-machine.  An example is
+A directory on a remote machine can be specified using tramp
+file syntax, in which case the code will be evaluated on the
+remote machine.  An example is
 </p>
 
 <pre class="example">
@@ -23718,15 +23722,15 @@ plot(1:10, main=system("hostname", intern=TRUE))
 
 <p>
 Text results will be returned to the local Org mode buffer as
-usual, and file output will be created on the remote machine with
-relative paths interpreted relative to the remote directory. An
-Org mode link to the remote file will be created.
+usual, and file output will be created on the remote machine
+with relative paths interpreted relative to the remote
+directory. An Org mode link to the remote file will be created.
 </p>
 
 <p>
 So, in the above example a plot will be created on the remote
-machine, and a link of the following form will be inserted in the
-org buffer:
+machine, and a link of the following form will be inserted in
+the org buffer:
 </p>
 
 <pre class="example">
@@ -23734,18 +23738,18 @@ org buffer:
 </pre>
 
 <p>
-Most of this functionality follows immediately from the fact that
-<code>:dir</code> sets the value of the Emacs variable <code>default-directory</code>,
-thanks to tramp. Those using XEmacs, or GNU Emacs prior to
-version 23 may need to install tramp separately in order for
-these features to work correctly.
+Most of this functionality follows immediately from the fact
+that <code>:dir</code> sets the value of the Emacs variable
+<code>default-directory</code>, thanks to tramp. Those using XEmacs, or GNU
+Emacs prior to version 23 may need to install tramp separately
+in order for these features to work correctly.
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-9-2" class="outline-5">
-<h5 id="sec-14-8-9-2">Further points</h5>
-<div class="outline-text-5" id="text-14-8-9-2">
+<div id="outline-container-sec-14-8-2-7-2" class="outline-6">
+<h6 id="sec-14-8-2-7-2">Further points</h6>
+<div class="outline-text-6" id="text-14-8-2-7-2">
 <ul class="org-ul">
 <li>If <code>:dir</code> is used in conjunction with <code>:session</code>, although it
 will determine the starting directory for a new session as
@@ -23756,20 +23760,20 @@ associated with an existing session.
 <li><code>:dir</code> should typically not be used to create files during
 export with <code>:exports results</code> or <code>:exports both</code>. The reason
 is that, in order to retain portability of exported material
-between machines, during export links inserted into the buffer
-will <i>not</i> be expanded against <code>default directory</code>. Therefore,
-if <code>default-directory</code> is altered using <code>:dir</code>, it is probable
-that the file will be created in a location to which the link
-does not point.
+between machines, during export links inserted into the
+buffer will <i>not</i> be expanded against <code>default
+         directory</code>. Therefore, if <code>default-directory</code> is altered
+using <code>:dir</code>, it is probable that the file will be created in
+a location to which the link does not point.
 </li>
 </ul>
 </div>
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-10" class="outline-4">
-<h4 id="sec-14-8-10">14.8.2.8 <code>:exports</code>                                               <a id="exports" name="exports"></a></h4>
-<div class="outline-text-4" id="text-14-8-10">
+<div id="outline-container-sec-14-8-2-8" class="outline-5">
+<h5 id="sec-14-8-2-8">14.8.2.8 <code>:exports</code>                                              <a id="exports" name="exports"></a></h5>
+<div class="outline-text-5" id="text-14-8-2-8">
 <p>
 The <code>:exports</code> header argument specifies what should be included
 in HTML or LaTeX exports of the Org mode file. Note that the
@@ -23797,9 +23801,9 @@ file.  E.g., <code>:exports both</code>.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-11" class="outline-4">
-<h4 id="sec-14-8-11">14.8.2.9 <code>:tangle</code>                                                <a id="tangle" name="tangle"></a></h4>
-<div class="outline-text-4" id="text-14-8-11">
+<div id="outline-container-sec-14-8-2-9" class="outline-5">
+<h5 id="sec-14-8-2-9">14.8.2.9 <code>:tangle</code>                                               <a id="tangle" name="tangle"></a></h5>
+<div class="outline-text-5" id="text-14-8-2-9">
 <p>
 The <code>:tangle</code> header argument specifies whether or not the code
 block should be included in tangled extraction of source code
@@ -23807,9 +23811,10 @@ files.
 </p>
 
 <ul class="org-ul">
-<li><code>tangle</code> The code block is exported to a source code file named
-after the full path (including the directory) and file name
-(w/o extension) of the Org mode file. E.g., <code>:tangle yes</code>.
+<li><code>tangle</code> The code block is exported to a source code file
+named after the full path (including the directory) and file
+name (w/o extension) of the Org mode file. E.g., <code>:tangle
+        yes</code>.
 </li>
 
 <li><code>no</code> The default. The code block is not exported to a source
@@ -23825,27 +23830,27 @@ exported.  E.g., <code>:tangle path</code>.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-12" class="outline-4">
-<h4 id="sec-14-8-12">14.8.2.10 <code>:mkdirp</code>                                               <a id="mkdirp" name="mkdirp"></a></h4>
-<div class="outline-text-4" id="text-14-8-12">
+<div id="outline-container-sec-14-8-2-10" class="outline-5">
+<h5 id="sec-14-8-2-10">14.8.2.10 <code>:mkdirp</code>                                              <a id="mkdirp" name="mkdirp"></a></h5>
+<div class="outline-text-5" id="text-14-8-2-10">
 <p>
 The <code>:mkdirp</code> header argument can be used to create parent
 directories of tangled files when missing. This can be set to
-<code>yes</code> to enable directory creation or to <code>no</code> to inhibit directory
-creation.
+<code>yes</code> to enable directory creation or to <code>no</code> to inhibit
+directory creation.
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-13" class="outline-4">
-<h4 id="sec-14-8-13">14.8.2.11 <code>:comments</code>                                             <a id="comments" name="comments"></a></h4>
-<div class="outline-text-4" id="text-14-8-13">
+<div id="outline-container-sec-14-8-2-11" class="outline-5">
+<h5 id="sec-14-8-2-11">14.8.2.11 <code>:comments</code>                                            <a id="comments" name="comments"></a></h5>
+<div class="outline-text-5" id="text-14-8-2-11">
 <p>
 By default code blocks are tangled to source-code files without
 any insertion of comments beyond those which may already exist in
-the body of the code block. The <code>:comments</code> header argument can be
-set as follows to control the insertion of extra comments into the
-tangled code file.
+the body of the code block. The <code>:comments</code> header argument can
+be set as follows to control the insertion of extra comments into
+the tangled code file.
 </p>
 
 <ul class="org-ul">
@@ -23858,13 +23863,14 @@ pointers back to the original Org file from which the code was
 tangled.
 </li>
 
-<li><code>yes</code> A synonym for “link” to maintain backwards compatibility.
+<li><code>yes</code> A synonym for “link” to maintain backwards
+compatibility.
 </li>
 
 <li><code>org</code> Include text from the Org mode file as a comment. The
-text is picked from the leading context of the tangled code and
-is limited by the nearest headline or source block as the case
-may be.
+text is picked from the leading context of the tangled code
+and is limited by the nearest headline or source block as the
+case may be.
 </li>
 
 <li><code>both</code> Turns on both the “link” and “org” comment options.
@@ -23878,9 +23884,9 @@ comments.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-14" class="outline-4">
-<h4 id="sec-14-8-14">14.8.2.12 <code>:padline</code>                                              <a id="padline" name="padline"></a></h4>
-<div class="outline-text-4" id="text-14-8-14">
+<div id="outline-container-sec-14-8-2-12" class="outline-5">
+<h5 id="sec-14-8-2-12">14.8.2.12 <code>:padline</code>                                             <a id="padline" name="padline"></a></h5>
+<div class="outline-text-5" id="text-14-8-2-12">
 <p>
 Control in insertion of padding lines around code block bodies in
 tangled code files. The default value is <code>yes</code> which results in
@@ -23899,9 +23905,9 @@ tangled code files.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-15" class="outline-4">
-<h4 id="sec-14-8-15">14.8.2.13 <code>:no-expand</code>                                            <a id="no_expand" name="no_expand"></a></h4>
-<div class="outline-text-4" id="text-14-8-15">
+<div id="outline-container-sec-14-8-2-13" class="outline-5">
+<h5 id="sec-14-8-2-13">14.8.2.13 <code>:no-expand</code>                                           <a id="no_expand" name="no_expand"></a></h5>
+<div class="outline-text-5" id="text-14-8-2-13">
 <p>
 By default, code blocks are expanded with
 <code>org-babel-expand-src-block</code> during tangling. This has the effect
@@ -23915,9 +23921,9 @@ this header argument expanded for execution.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-16" class="outline-4">
-<h4 id="sec-14-8-16">14.8.2.14 <code>:session</code>                                              <a id="session" name="session"></a></h4>
-<div class="outline-text-4" id="text-14-8-16">
+<div id="outline-container-sec-14-8-2-14" class="outline-5">
+<h5 id="sec-14-8-2-14">14.8.2.14 <code>:session</code>                                             <a id="session" name="session"></a></h5>
+<div class="outline-text-5" id="text-14-8-2-14">
 <p>
 The <code>:session</code> header argument starts a (possibly named) session
 for an interpreted language where the interpreter's state is
@@ -23933,7 +23939,7 @@ interpreter process, which is terminated after the evaluation.
 
 <li><code>other</code> Any other string passed to the <code>:session</code> header
 argument will give the session a name. For example, <code>:session
-      mysession</code>. If <code>:session</code> is given but no name string is
+       mysession</code>. If <code>:session</code> is given but no name string is
 specified, the session is named according to the language used
 in the block. All blocks with the same session name share the
 same session. Using different session names enables concurrent
@@ -23944,15 +23950,15 @@ language supports multiple sessions).
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-17" class="outline-4">
-<h4 id="sec-14-8-17">14.8.2.15 <code>:noweb</code>                                                <a id="noweb" name="noweb"></a></h4>
-<div class="outline-text-4" id="text-14-8-17">
+<div id="outline-container-sec-14-8-2-15" class="outline-5">
+<h5 id="sec-14-8-2-15">14.8.2.15 <code>:noweb</code>                                               <a id="noweb" name="noweb"></a></h5>
+<div class="outline-text-5" id="text-14-8-2-15">
 <p>
 The <code>:noweb</code> header argument controls expansion of “noweb” syntax
 references (see <a href="#Noweb-reference-syntax">Noweb reference syntax</a>) when the code block is
 evaluated, tangled, or exported. The <code>:noweb</code> header argument can
-have one of the five values: <code>no</code>, <code>yes</code>, <code>tangle</code>, or <code>no-export</code>
-<code>strip-export</code>.
+have one of the five values: <code>no</code>, <code>yes</code>, <code>tangle</code>, or
+<code>no-export</code> <code>strip-export</code>.
 </p>
 
 <ul class="org-ul">
@@ -23962,8 +23968,8 @@ evaluated, tangled or exported.
 </li>
 
 <li><code>yes</code> “Noweb” syntax references in the body of the code block
-will be expanded before the code block is evaluated, tangled or
-exported.
+will be expanded before the code block is evaluated, tangled
+or exported.
 </li>
 
 <li><code>tangle</code> “Noweb” syntax references in the body of the code
@@ -23990,9 +23996,9 @@ will only be expanded before the block is evaluated.
 </ul>
 </div>
 
-<div id="outline-container-sec-14-8-17-1" class="outline-5">
-<h5 id="sec-14-8-17-1">Noweb prefix lines</h5>
-<div class="outline-text-5" id="text-14-8-17-1">
+<div id="outline-container-sec-14-8-2-15-1" class="outline-6">
+<h6 id="sec-14-8-2-15-1">Noweb prefix lines</h6>
+<div class="outline-text-6" id="text-14-8-2-15-1">
 <p>
 Noweb insertions are now placed behind the line prefix of the
 <code>&lt;&lt;reference&gt;&gt;</code>. This behavior is illustrated in the following
@@ -24027,21 +24033,21 @@ possible to use inline noweb references.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-18" class="outline-4">
-<h4 id="sec-14-8-18">14.8.2.16 <code>:noweb-ref</code>                                            <a id="noweb_ref" name="noweb_ref"></a></h4>
-<div class="outline-text-4" id="text-14-8-18">
+<div id="outline-container-sec-14-8-2-16" class="outline-5">
+<h5 id="sec-14-8-2-16">14.8.2.16 <code>:noweb-ref</code>                                           <a id="noweb_ref" name="noweb_ref"></a></h5>
+<div class="outline-text-5" id="text-14-8-2-16">
 <p>
 When expanding “noweb” style references, the bodies of all code
 block with <i>either</i> a block name matching the reference name <i>or</i>
-a <code>:noweb-ref</code> header argument matching the reference name will be
-concatenated together to form the replacement text.
+a <code>:noweb-ref</code> header argument matching the reference name will
+be concatenated together to form the replacement text.
 </p>
 
 <p>
 By setting this header argument at the subtree or file level,
-simple code block concatenation may be achieved. For example, when
-tangling the following Org mode file, the bodies of code blocks
-will be concatenated into the resulting pure code
+simple code block concatenation may be achieved. For example,
+when tangling the following Org mode file, the bodies of code
+blocks will be concatenated into the resulting pure code
 file<sup><a id="fnr.162" name="fnr.162" class="footref" href="#fn.162">162</a></sup>.
 </p>
 
@@ -24083,29 +24089,29 @@ default a newline is used.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-19" class="outline-4">
-<h4 id="sec-14-8-19">14.8.2.17 <code>:noweb-sep</code>                                            <a id="noweb_sep" name="noweb_sep"></a></h4>
-<div class="outline-text-4" id="text-14-8-19">
+<div id="outline-container-sec-14-8-2-17" class="outline-5">
+<h5 id="sec-14-8-2-17">14.8.2.17 <code>:noweb-sep</code>                                           <a id="noweb_sep" name="noweb_sep"></a></h5>
+<div class="outline-text-5" id="text-14-8-2-17">
 <p>
-The <code>:noweb-sep</code> header argument holds the string used to separate
-accumulate noweb references (see <a href="#noweb_ref">noweb-ref</a>). By default a newline
-is used.
+The <code>:noweb-sep</code> header argument holds the string used to
+separate accumulate noweb references (see <a href="#noweb_ref">noweb-ref</a>). By default
+a newline is used.
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-20" class="outline-4">
-<h4 id="sec-14-8-20">14.8.2.18 <code>:cache</code>                                                <a id="cache" name="cache"></a></h4>
-<div class="outline-text-4" id="text-14-8-20">
+<div id="outline-container-sec-14-8-2-18" class="outline-5">
+<h5 id="sec-14-8-2-18">14.8.2.18 <code>:cache</code>                                               <a id="cache" name="cache"></a></h5>
+<div class="outline-text-5" id="text-14-8-2-18">
 <p>
-The <code>:cache</code> header argument controls the use of in-buffer caching
-of the results of evaluating code blocks. It can be used to avoid
-re-evaluating unchanged code blocks. Note that the <code>:cache</code> header
-argument will not attempt to cache results when the <code>:session</code>
-header argument is used, because the results of the code block
-execution may be stored in the session outside of the Org mode
-buffer. The <code>:cache</code> header argument can have one of two values:
-<code>yes</code> or <code>no</code>.
+The <code>:cache</code> header argument controls the use of in-buffer
+caching of the results of evaluating code blocks. It can be used
+to avoid re-evaluating unchanged code blocks. Note that the
+<code>:cache</code> header argument will not attempt to cache results when
+the <code>:session</code> header argument is used, because the results of
+the code block execution may be stored in the session outside of
+the Org mode buffer. The <code>:cache</code> header argument can have one of
+two values: <code>yes</code> or <code>no</code>.
 </p>
 
 <ul class="org-ul">
@@ -24150,15 +24156,15 @@ x
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-21" class="outline-4">
-<h4 id="sec-14-8-21">14.8.2.19 <code>:sep</code>                                                  <a id="sep" name="sep"></a></h4>
-<div class="outline-text-4" id="text-14-8-21">
+<div id="outline-container-sec-14-8-2-19" class="outline-5">
+<h5 id="sec-14-8-2-19">14.8.2.19 <code>:sep</code>                                                 <a id="sep" name="sep"></a></h5>
+<div class="outline-text-5" id="text-14-8-2-19">
 <p>
 The <code>:sep</code> header argument can be used to control the delimiter
 used when writing tabular results out to files external to Org
 mode. This is used either when opening tabular results of a code
-block by calling the <code>org-open-at-point</code> function bound to C-c C-o
-on the code block, or when writing code block results to an
+block by calling the <code>org-open-at-point</code> function bound to C-c
+C-o on the code block, or when writing code block results to an
 external file (see <a href="#file">file</a>) header argument.
 </p>
 
@@ -24169,9 +24175,9 @@ delimited.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-22" class="outline-4">
-<h4 id="sec-14-8-22">14.8.2.20 <code>:hlines</code>                                               <a id="hlines" name="hlines"></a></h4>
-<div class="outline-text-4" id="text-14-8-22">
+<div id="outline-container-sec-14-8-2-20" class="outline-5">
+<h5 id="sec-14-8-2-20">14.8.2.20 <code>:hlines</code>                                              <a id="hlines" name="hlines"></a></h5>
+<div class="outline-text-5" id="text-14-8-2-20">
 <p>
 Tables are frequently represented with one or more horizontal
 lines, or hlines. The <code>:hlines</code> argument to a code block accepts
@@ -24233,21 +24239,21 @@ this effect.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-23" class="outline-4">
-<h4 id="sec-14-8-23">14.8.2.21 <code>:colnames</code>                                             <a id="colnames" name="colnames"></a></h4>
-<div class="outline-text-4" id="text-14-8-23">
+<div id="outline-container-sec-14-8-2-21" class="outline-5">
+<h5 id="sec-14-8-2-21">14.8.2.21 <code>:colnames</code>                                            <a id="colnames" name="colnames"></a></h5>
+<div class="outline-text-5" id="text-14-8-2-21">
 <p>
-The <code>:colnames</code> header argument accepts the values <code>yes</code>, <code>no</code>, or
-<code>nil</code> for unassigned. The default value is <code>nil</code>. Note that the
-behavior of the <code>:colnames</code> header argument may differ across
+The <code>:colnames</code> header argument accepts the values <code>yes</code>, <code>no</code>,
+or <code>nil</code> for unassigned. The default value is <code>nil</code>. Note that
+the behavior of the <code>:colnames</code> header argument may differ across
 languages.
 </p>
 
 <ul class="org-ul">
-<li><code>nil</code> If an input table looks like it has column names (because
-its second row is an hline), then the column names will be
-removed from the table before processing, then reapplied to the
-results.
+<li><code>nil</code> If an input table looks like it has column names
+(because its second row is an hline), then the column names
+will be removed from the table before processing, then
+reapplied to the results.
 
 <pre class="example">
 #+NAME: less-cols
@@ -24278,17 +24284,17 @@ values</a>.
 <li><code>no</code> No column name pre-processing takes place
 </li>
 
-<li><code>yes</code> Column names are removed and reapplied as with <code>nil</code> even
-if the table does not “look like” it has column names (i.e.,
-the second row is not an hline)
+<li><code>yes</code> Column names are removed and reapplied as with <code>nil</code>
+even if the table does not “look like” it has column names
+(i.e., the second row is not an hline)
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-24" class="outline-4">
-<h4 id="sec-14-8-24">14.8.2.22 <code>:rownames</code>                                             <a id="rownames" name="rownames"></a></h4>
-<div class="outline-text-4" id="text-14-8-24">
+<div id="outline-container-sec-14-8-2-22" class="outline-5">
+<h5 id="sec-14-8-2-22">14.8.2.22 <code>:rownames</code>                                            <a id="rownames" name="rownames"></a></h5>
+<div class="outline-text-5" id="text-14-8-2-22">
 <p>
 The <code>:rownames</code> header argument can take on the values <code>yes</code> or
 <code>no</code>, with a default value of <code>no</code>. Note that Emacs Lisp code
@@ -24328,9 +24334,9 @@ indexed using variable indexing See <a href="#var">Indexable variable values</a>
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-25" class="outline-4">
-<h4 id="sec-14-8-25">14.8.2.23 <code>:shebang</code>                                              <a id="shebang" name="shebang"></a></h4>
-<div class="outline-text-4" id="text-14-8-25">
+<div id="outline-container-sec-14-8-2-23" class="outline-5">
+<h5 id="sec-14-8-2-23">14.8.2.23 <code>:shebang</code>                                             <a id="shebang" name="shebang"></a></h5>
+<div class="outline-text-5" id="text-14-8-2-23">
 <p>
 Setting the <code>:shebang</code> header argument to a string value (e.g.,
 =:shebang "#!/bin/bash"=) causes the string to be inserted as the
@@ -24341,34 +24347,35 @@ executable.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-26" class="outline-4">
-<h4 id="sec-14-8-26">14.8.2.24 <code>:tangle-mode</code>                                          <a id="tangle_mode" name="tangle_mode"></a></h4>
-<div class="outline-text-4" id="text-14-8-26">
+<div id="outline-container-sec-14-8-2-24" class="outline-5">
+<h5 id="sec-14-8-2-24">14.8.2.24 <code>:tangle-mode</code>                                         <a id="tangle_mode" name="tangle_mode"></a></h5>
+<div class="outline-text-5" id="text-14-8-2-24">
 <p>
 The <code>tangle-mode</code> header argument controls the permission set on
-tangled files. The value of this header argument will be passed to
-<code>set-file-modes</code>. For example, to set a tangled file as read only
-use <code>:tangle-mode (identity #o444)</code>, or to set a tangled file as
-executable use <code>:tangle-mode (identity #o755)</code>. Blocks with
-<code>shebang</code> (<a href="#shebang">shebang</a>) header arguments will automatically be made
-executable unless the <code>tangle-mode</code> header argument is also
+tangled files. The value of this header argument will be passed
+to <code>set-file-modes</code>. For example, to set a tangled file as read
+only use <code>:tangle-mode (identity #o444)</code>, or to set a tangled
+file as executable use <code>:tangle-mode (identity #o755)</code>. Blocks
+with <code>shebang</code> (<a href="#shebang">shebang</a>) header arguments will automatically be
+made executable unless the <code>tangle-mode</code> header argument is also
 used. The behavior is undefined if multiple code blocks with
-different values for the <code>tangle-mode</code> header argument are tangled
-to the same file.
+different values for the <code>tangle-mode</code> header argument are
+tangled to the same file.
 </p>
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-27" class="outline-4">
-<h4 id="sec-14-8-27">14.8.2.25 <code>:eval</code>                                                 <a id="eval" name="eval"></a></h4>
-<div class="outline-text-4" id="text-14-8-27">
+<div id="outline-container-sec-14-8-2-25" class="outline-5">
+<h5 id="sec-14-8-2-25">14.8.2.25 <code>:eval</code>                                                <a id="eval" name="eval"></a></h5>
+<div class="outline-text-5" id="text-14-8-2-25">
 <p>
-The <code>:eval</code> header argument can be used to limit the evaluation of
-specific code blocks. The <code>:eval</code> header argument can be useful
-for protecting against the evaluation of dangerous code blocks or
-to ensure that evaluation will require a query regardless of the
-value of the <code>org-confirm-babel-evaluate</code> variable. The possible
-values of <code>:eval</code> and their effects are shown below.
+The <code>:eval</code> header argument can be used to limit the evaluation
+of specific code blocks. The <code>:eval</code> header argument can be
+useful for protecting against the evaluation of dangerous code
+blocks or to ensure that evaluation will require a query
+regardless of the value of the <code>org-confirm-babel-evaluate</code>
+variable. The possible values of <code>:eval</code> and their effects are
+shown below.
 </p>
 
 <ul class="org-ul">
@@ -24411,9 +24418,9 @@ by the value of the <code>org-confirm-babel-evaluate</code> variable see
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-28" class="outline-4">
-<h4 id="sec-14-8-28">14.8.2.26 <code>:wrap</code>                                                 <a id="wrap" name="wrap"></a></h4>
-<div class="outline-text-4" id="text-14-8-28">
+<div id="outline-container-sec-14-8-2-26" class="outline-5">
+<h5 id="sec-14-8-2-26">14.8.2.26 <code>:wrap</code>                                                <a id="wrap" name="wrap"></a></h5>
+<div class="outline-text-5" id="text-14-8-2-26">
 <p>
 The <code>:wrap</code> header argument is used to mark the results of source
 block evaluation. The header argument can be passed a string that
@@ -24424,18 +24431,18 @@ results will be wrapped in a <code>#+BEGIN/END_RESULTS</code> block.
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-29" class="outline-4">
-<h4 id="sec-14-8-29">14.8.2.27 <code>:post</code>                                                 <a id="post" name="post"></a></h4>
-<div class="outline-text-4" id="text-14-8-29">
+<div id="outline-container-sec-14-8-2-27" class="outline-5">
+<h5 id="sec-14-8-2-27">14.8.2.27 <code>:post</code>                                                <a id="post" name="post"></a></h5>
+<div class="outline-text-5" id="text-14-8-2-27">
 <p>
-The <code>:post</code> header argument is used to post-process the results of
-a code block execution. When a post argument is given, the results
-of the code block will temporarily be bound to the <code>*this*</code>
-variable. This variable may then be included in header argument
-forms such as those used in <a href="#var">var</a> header argument specifications
-allowing passing of results to other code blocks, or direct
-execution via Emacs Lisp.  Additional header arguments may be
-passed to the <code>:post</code>-function.
+The <code>:post</code> header argument is used to post-process the results
+of a code block execution. When a post argument is given, the
+results of the code block will temporarily be bound to the
+<code>*this*</code> variable. This variable may then be included in header
+argument forms such as those used in <a href="#var">var</a> header argument
+specifications allowing passing of results to other code blocks,
+or direct execution via Emacs Lisp.  Additional header arguments
+may be passed to the <code>:post</code>-function.
 </p>
 
 <p>
@@ -24497,9 +24504,9 @@ data.frame(foo=rnorm(1))
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-30" class="outline-4">
-<h4 id="sec-14-8-30">14.8.2.28 <code>:prologue</code>                                             <a id="prologue" name="prologue"></a></h4>
-<div class="outline-text-4" id="text-14-8-30">
+<div id="outline-container-sec-14-8-2-28" class="outline-5">
+<h5 id="sec-14-8-2-28">14.8.2.28 <code>:prologue</code>                                            <a id="prologue" name="prologue"></a></h5>
+<div class="outline-text-5" id="text-14-8-2-28">
 <p>
 The value of the <code>prologue</code> header argument will be prepended to
 the code block body before execution. For example, =:prologue
@@ -24517,13 +24524,14 @@ used to do this for all gnuplot code blocks. Also see <a href="#epilogue">epilog
 </div>
 </div>
 
-<div id="outline-container-sec-14-8-31" class="outline-4">
-<h4 id="sec-14-8-31">14.8.2.29 <code>:epilogue</code>                                             <a id="epilogue" name="epilogue"></a></h4>
-<div class="outline-text-4" id="text-14-8-31">
+<div id="outline-container-sec-14-8-2-29" class="outline-5">
+<h5 id="sec-14-8-2-29">14.8.2.29 <code>:epilogue</code>                                            <a id="epilogue" name="epilogue"></a></h5>
+<div class="outline-text-5" id="text-14-8-2-29">
 <p>
 The value of the <code>epilogue</code> header argument will be appended to
 the code block body before execution. Also see <a href="#prologue">prologue</a>.
 </p>
+</div>
 </div>
 </div>
 </div>
@@ -25036,14 +25044,13 @@ preference by setting at most one of the variables
 </p>
 
 <p>
-Org supports in-buffer completion. This type of completion does not make
-use of the minibuffer. You simply type a few letters into the buffer and
-use the key to complete text right there.
+Org supports in-buffer completion. This type of completion does not
+make use of the minibuffer. You simply type a few letters into the
+buffer and use the key to complete text right there.
 </p>
 
-<p>
-M-TAB
-</p>
+<ul class="org-ul">
+<li>M-TAB
 
 <p>
 Complete word at point
@@ -25052,32 +25059,42 @@ Complete word at point
 <ul class="org-ul">
 <li>At the beginning of a headline, complete TODO keywords.
 </li>
+
 <li>After ‘\', complete TeX symbols supported by the exporter.
 </li>
-<li>After ‘*', complete headlines in the current buffer so that they can
-be used in search links like ‘<i>*find this headline</i>'.
+
+<li>After ‘*', complete headlines in the current buffer so that
+they can be used in search links like <code>[[*find this headline]]</code>.
 </li>
-<li>After ‘:' in a headline, complete tags. The list of tags is taken
-from the variable <code>org-tag-alist</code> (possibly set through the ‘#+TAGS'
-in-buffer option, see <a href="#Setting-tags">Setting tags</a>), or it is
-created dynamically from all tags used in the current buffer.
-</li>
-<li>After ‘:' and not in a headline, complete property keys. The list of
-keys is constructed dynamically from all keys used in the current
+
+<li>After ‘:' in a headline, complete tags. The list of tags is
+taken from the variable <code>org-tag-alist</code> (possibly set
+through the ‘#+TAGS' in-buffer option, see <a href="#Setting-tags">Setting tags</a>), or
+it is created dynamically from all tags used in the current
 buffer.
 </li>
-<li>After ‘[', complete link abbreviations (see
-<a href="#Link-abbreviations">Link abbreviations</a>).
+
+<li>After ‘:' and not in a headline, complete property keys. The
+list of keys is constructed dynamically from all keys used
+in the current buffer.
 </li>
+
+<li>After ‘[', complete link abbreviations (see <a href="#Link-abbreviations">Link abbreviations</a>).
+</li>
+
 <li>After ‘#+', complete the special keywords like ‘TYP<sub>TODO'</sub> or
-‘OPTIONS' which set file-specific options for Org mode. When the
-option keyword is already complete, pressing M-TAB again will insert
-example settings for this keyword.
+‘OPTIONS' which set file-specific options for Org mode. When
+the option keyword is already complete, pressing M-TAB again
+will insert example settings for this keyword.
 </li>
-<li>In the line after ‘#+STARTUP: ', complete startup keywords, i.e.,
-valid keys for this line.
+
+<li>In the line after ‘#+STARTUP: ', complete startup keywords,
+i.e., valid keys for this line.
 </li>
+
 <li>Elsewhere, complete dictionary words using Ispell.
+</li>
+</ul>
 </li>
 </ul>
 </div>
@@ -25088,16 +25105,16 @@ valid keys for this line.
 <div class="outline-text-3" id="text-15-2">
 <p>
 Org mode supports insertion of empty structural elements (like
-<code>#+BEGIN_SRC</code> and <code>#+END_SRC</code> pairs) with just a few key strokes. This
-is achieved through a native template expansion mechanism. Note that
-Emacs has several other template mechanisms which could be used in a
-similar way, for example yasnippet.
+<code>#+BEGIN_SRC</code> and <code>#+END_SRC</code> pairs) with just a few key
+strokes. This is achieved through a native template expansion
+mechanism. Note that Emacs has several other template mechanisms
+which could be used in a similar way, for example yasnippet.
 </p>
 
 <p>
 To insert a structural element, type a ‘&lt;', followed by a template
-selector and TAB. Completion takes effect only when the above keystrokes
-are typed on a line by itself.
+selector and <b><i>TAB</i></b>. Completion takes effect only when the above
+keystrokes are typed on a line by itself.
 </p>
 
 <p>
@@ -25181,14 +25198,14 @@ The following template selectors are currently supported.
 </table>
 
 <p>
-For example, on an empty line, typing "&lt;e" and then pressing TAB, will
-expand into a complete EXAMPLE template.
+For example, on an empty line, typing "&lt;e" and then pressing TAB,
+will expand into a complete EXAMPLE template.
 </p>
 
 <p>
 You can install additional templates by customizing the variable
-<code>org-structure-template-alist</code>. See the docstring of the variable for
-additional details.
+<code>org-structure-template-alist</code>. See the docstring of the variable
+for additional details.
 </p>
 </div>
 </div>
@@ -25197,19 +25214,20 @@ additional details.
 <h3 id="sec-15-3">15.3 Speed keys                                                    <a id="Speed-keys" name="Speed-keys"></a></h3>
 <div class="outline-text-3" id="text-15-3">
 <p>
-Single keys can be made to execute commands when the cursor is at the
-beginning of a headline, i.e., before the first star. Configure the
-variable <code>org-use-speed-commands</code> to activate this feature. There is a
-pre-defined list of commands, and you can add more such commands using
-the variable <code>org-speed-commands-user</code>. Speed keys not only speed up
-navigation and other commands, but they also provide an alternative way
-to execute commands bound to keys that are not or not easily available
+Single keys can be made to execute commands when the cursor is at
+the beginning of a headline, i.e., before the first star. Configure
+the variable <code>org-use-speed-commands</code> to activate this
+feature. There is a pre-defined list of commands, and you can add
+more such commands using the variable
+<code>org-speed-commands-user</code>. Speed keys not only speed up navigation
+and other commands, but they also provide an alternative way to
+execute commands bound to keys that are not or not easily available
 on a TTY, or on a small mobile device with a limited keyboard.
 </p>
 
 <p>
-To see which commands are available, activate the feature and press ?
-with the cursor at the beginning of a headline.
+To see which commands are available, activate the feature and press
+<b><i>?</i></b> with the cursor at the beginning of a headline.
 </p>
 </div>
 </div>
@@ -25223,48 +25241,57 @@ them.
 </p>
 
 <p>
-Running code on your machine always comes with a security risk. Badly
-written or malicious code can be executed on purpose or by accident. Org
-has default settings which will only evaluate such code if you give
-explicit permission to do so, and as a casual user of these features you
-should leave these precautions intact.
+Running code on your machine always comes with a security
+risk. Badly written or malicious code can be executed on purpose or
+by accident. Org has default settings which will only evaluate such
+code if you give explicit permission to do so, and as a casual user
+of these features you should leave these precautions intact.
 </p>
 
 <p>
-For people who regularly work with such code, the confirmation prompts
-can become annoying, and you might want to turn them off. This can be
-done, but you must be aware of the risks that are involved.
+For people who regularly work with such code, the confirmation
+prompts can become annoying, and you might want to turn them
+off. This can be done, but you must be aware of the risks that are
+involved.
 </p>
 
 <p>
 Code evaluation can happen under the following circumstances:
 </p>
 
-<dl class="org-dl">
-<dt> <i>Source code blocks</i> </dt><dd>Source code blocks can be evaluated during
-export, or when pressing C-c C-c in the block. The most important
-thing to realize here is that Org mode files which contain code
-snippets are, in a certain sense, like executable files. So you
-should accept them and load them into Emacs only from trusted
-sources&#x2014;just like you would do with a program you install on your
+<ul class="org-ul">
+<li><i>Source code blocks</i>
+
+<p>
+Source code blocks can be evaluated during export, or when
+pressing <b><i>C-c C-c</i></b> in the block. The most important thing to
+realize here is that Org mode files which contain code snippets
+are, in a certain sense, like executable files. So you should
+accept them and load them into Emacs only from trusted sources
+&#x2013; just like you would do with a program you install on your
 computer.
+</p>
 
 <p>
 Make sure you know what you are doing before customizing the
 variables which take off the default security brakes.
 </p>
 
-<dl class="org-dl">
-<dt> User Option: <b>org-confirm-babel-evaluate</b> </dt><dd>When t (the default),
-the user is asked before every code block evaluation. When <code>nil</code>,
-the user is not asked. When set to a function, it is called with
-two arguments (language and body of the code block) and should
-return t to ask and <code>nil</code> not to ask.
-</dd>
-</dl>
+<ul class="org-ul">
+<li>User Option: <b>org-confirm-babel-evaluate</b>
+
 <p>
-For example, here is how to execute "ditaa" code (which is considered
-safe) without asking:
+When t (the default), the user is asked before every code
+block evaluation. When <code>nil</code>, the user is not asked. When set
+to a function, it is called with two arguments (language and
+body of the code block) and should return t to ask and <code>nil</code>
+not to ask.
+</p>
+</li>
+</ul>
+<p>
+For example, here is how to execute "ditaa" code (which is
+considered safe) without asking:
 </p>
 
 <div class="org-src-container">
@@ -25274,29 +25301,42 @@ safe) without asking:
 (setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
 </pre>
 </div>
-</dd>
+</li>
 
-<dt> <i>Following <code>shell</code> and <code>elisp</code> links</i> </dt><dd>Org has two link types that
-can directly evaluate code (see <a href="#External-links">External links</a>).
-These links can be problematic because the code to be evaluated is
-not visible.
+<li><i>Following <code>shell</code> and <code>elisp</code> links</i>
 
-<dl class="org-dl">
-<dt> User Option: <b>org-confirm-shell-link-function</b> </dt><dd>Function to
-queries user about shell link execution.
-</dd>
+<p>
+Org has two link types that can directly evaluate code (see
+<a href="#External-links">External links</a>).  These links can be problematic because the
+code to be evaluated is not visible.
+</p>
 
-<dt> User Option: <b>org-confirm-elisp-link-function</b> </dt><dd>Functions to
-query user for Emacs Lisp link execution.
-</dd>
-</dl>
-</dd>
+<ul class="org-ul">
+<li>User Option: <b>org-confirm-shell-link-function</b>
 
-<dt> <i>Formulas in tables</i> </dt><dd>Formulas in tables (see
-<a href="#The-spreadsheet">The spreadsheet</a>) are code that is evaluated
-either by the <i>calc</i> interpreter, or by the <i>Emacs Lisp</i> interpreter.
-</dd>
-</dl>
+<p>
+Function to queries user about shell link execution.
+</p>
+</li>
+
+<li>User Option: <b>org-confirm-elisp-link-function</b>
+
+<p>
+Functions to query user for Emacs Lisp link execution.
+</p>
+</li>
+</ul>
+</li>
+
+<li><i>Formulas in tables</i>
+
+<p>
+Formulas in tables (see <a href="#The-spreadsheet">The spreadsheet</a>) are code that is
+evaluated either by the <i>calc</i> interpreter, or by the <i>Emacs
+Lisp</i> interpreter.
+</p>
+</li>
+</ul>
 </div>
 </div>
 
@@ -25304,13 +25344,13 @@ either by the <i>calc</i> interpreter, or by the <i>Emacs Lisp</i> interpreter.
 <h3 id="sec-15-5">15.5 Customization                                                 <a id="Customization" name="Customization"></a></h3>
 <div class="outline-text-3" id="text-15-5">
 <p>
-There are more than 500 variables that can be used to customize Org. For
-the sake of compactness of the manual, I am not describing the variables
-here. A structured overview of customization variables is available with
-M-x org-customize RET. Or select <code>Browse Org Group</code> from the
-<code>Org-&gt;Customization</code> menu. Many settings can also be activated on a
-per-file basis, by putting special lines into the buffer (see
-<a href="#In_buffer-settings">In-buffer settings</a>).
+There are more than 500 variables that can be used to customize
+Org. For the sake of compactness of the manual, I am not describing
+the variables here. A structured overview of customization
+variables is available with M-x org-customize RET. Or select
+<code>Browse Org Group</code> from the <code>Org-&gt;Customization</code> menu. Many
+settings can also be activated on a per-file basis, by putting
+special lines into the buffer (see <a href="#In_buffer-settings">In-buffer settings</a>).
 </p>
 </div>
 </div>
@@ -25320,196 +25360,485 @@ per-file basis, by putting special lines into the buffer (see
 <div class="outline-text-3" id="text-15-6">
 <p>
 Org mode uses special lines in the buffer to define settings on a
-per-file basis. These lines start with a ‘#+' followed by a keyword, a
-colon, and then individual words defining a setting. Several setting
-words can be in the same line, but you can also have multiple lines for
-the keyword. While these settings are described throughout the manual,
-here is a summary. After changing any of these lines in the buffer,
-press C-c C-c with the cursor still in the line to activate the changes
-immediately. Otherwise they become effective only when the file is
-visited again in a new Emacs session.
+per-file basis. These lines start with a ‘#+' followed by a
+keyword, a colon, and then individual words defining a
+setting. Several setting words can be in the same line, but you can
+also have multiple lines for the keyword. While these settings are
+described throughout the manual, here is a summary. After changing
+any of these lines in the buffer, press <b><i>C-c C-c</i></b> with the cursor
+still in the line to activate the changes immediately. Otherwise
+they become effective only when the file is visited again in a new
+Emacs session.
 </p>
 
-<dl class="org-dl">
-<dt> #+ARCHIVE: %s\<sub>done</sub>:: </dt><dd>This line sets the archive location for the
-agenda file. It applies for all subsequent lines until the next
-‘#+ARCHIVE' line, or the end of the file. The first such line also
-applies to any entries before it. The corresponding variable is
-<code>org-archive-location</code>.
-</dd>
-
-<dt> #+CATEGORY: </dt><dd>This line sets the category for the agenda file. The
-category applies to the whole document.
-</dd>
-
-<dt> #+COLUMNS: %25ITEM &#x2026; </dt><dd>Set the default format for columns view.
-This format applies when columns view is invoked in locations where
-no <code>COLUMNS</code> property applies.
-</dd>
-
-<dt> #+CONSTANTS: name1=value1 &#x2026; </dt><dd>Set file-local values for constants
-to be used in table formulas. This line sets the local variable
-<code>org-table-formula-constants-local</code>. The global version of this
-variable is <code>org-table-formula-constants</code>.
-</dd>
-
-<dt> #+FILETAGS: :tag1:tag2:tag3: </dt><dd>Set tags that can be inherited by any
-entry in the file, including the top-level entries.
-</dd>
-
-<dt> #+LINK: linkword replace </dt><dd>These lines (several are allowed) specify
-link abbreviations. See <a href="#Link-abbreviations">Link abbreviations</a>.
-The corresponding variable is <code>org-link-abbrev-alist</code>.
-</dd>
-
-<dt> #+PRIORITIES: highest lowest default </dt><dd>This line sets the limits and
-the default for the priorities. All three must be either letters A&#x2013;Z
-or numbers 0&#x2013;9. The highest priority must have a lower ASCII number
-than the lowest priority.
-</dd>
-
-<dt> #+PROPERTY: Property<sub>Name</sub> Value </dt><dd>This line sets a default
-inheritance value for entries in the current buffer, most useful for
-specifying the allowed values of a property.
-</dd>
-
-<dt> #+SETUPFILE: file </dt><dd>This line defines a file that holds more
-in-buffer setup. Normally this is entirely ignored. Only when the
-buffer is parsed for option-setting lines (i.e., when starting Org
-mode for a file, when pressing C-c C-c in a settings line, or when
-exporting), then the contents of this file are parsed as if they had
-been included in the buffer. In particular, the file can be any other
-Org mode file with internal setup. You can visit the file the cursor
-is in the line with C-c '.
-</dd>
-
-<dt> #+STARTUP: </dt><dd>This line sets options to be used at startup of Org
-mode, when an Org file is being visited.
+<ul class="org-ul">
+<li>#+ARCHIVE: %s\<sub>done</sub>::
 
 <p>
-The first set of options deals with the initial visibility of the
-outline tree. The corresponding variable for global default settings
-is <code>org-startup-folded</code>, with a default value <code>t</code>, which means
-<code>overview</code>.
+This line sets the archive location for the agenda file. It
+applies for all subsequent lines until the next ‘#+ARCHIVE’
+line, or the end of the file. The first such line also applies
+to any entries before it. The corresponding variable is
+org-archive-location.
+</p>
+</li>
+
+<li>#+CATEGORY:
+
+<p>
+This line sets the category for the agenda file. The category
+applies to the whole document.
+</p>
+</li>
+
+<li>#+COLUMNS: %25ITEM &#x2026;
+
+<p>
+Set the default format for columns view.  This format applies
+when columns view is invoked in locations where no <code>COLUMNS</code>
+property applies.
+</p>
+</li>
+
+<li>#+CONSTANTS: name1=value1 &#x2026;
+
+<p>
+Set file-local values for constants to be used in table
+formulas. This line sets the local variable
+<code>org-table-formula-constants-local</code>. The global version of this
+variable is <code>org-table-formula-constants</code>.
+</p>
+</li>
+
+<li>#+FILETAGS: :tag1:tag2:tag3:
+
+<p>
+Set tags that can be inherited by any entry in the file,
+including the top-level entries.
+</p>
+</li>
+
+<li>#+LINK: linkword replace
+
+<p>
+These lines (several are allowed) specify link
+abbreviations. See <a href="#Link-abbreviations">Link abbreviations</a>.  The corresponding
+variable is <code>org-link-abbrev-alist</code>.
+</p>
+</li>
+
+<li>#+PRIORITIES: highest lowest default
+
+<p>
+This line sets the limits and the default for the
+priorities. All three must be either letters A&#x2013;Z or numbers
+0&#x2013;9. The highest priority must have a lower ASCII number than
+the lowest priority.
+</p>
+</li>
+
+<li>#+PROPERTY: Property<sub>Name</sub> Value
+
+<p>
+This line sets a default inheritance value for entries in the
+current buffer, most useful for specifying the allowed values of
+a property.
+</p>
+</li>
+
+<li>#+SETUPFILE: file
+
+<p>
+This line defines a file that holds more in-buffer
+setup. Normally this is entirely ignored. Only when the buffer
+is parsed for option-setting lines (i.e., when starting Org mode
+for a file, when pressing <b><i>C-c C-c</i></b> in a settings line, or
+when exporting), then the contents of this file are parsed as if
+they had been included in the buffer. In particular, the file
+can be any other Org mode file with internal setup. You can
+visit the file the cursor is in the line with <b>/C-c '/</b>.
+</p>
+</li>
+
+<li>#+STARTUP:
+
+<p>
+This line sets options to be used at startup of Org mode, when
+an Org file is being visited.
 </p>
 
-<pre class="example">
-overview         top-level headlines only
-content          all headlines
-showall          no folding of any entries
-showeverything   show even drawer contents
-</pre>
+<p>
+The first set of options deals with the initial visibility of
+the outline tree. The corresponding variable for global default
+settings is <code>org-startup-folded</code>, with a default value <code>t</code>,
+which means <code>overview</code>.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">overview</td>
+<td class="left">top-level headlines only</td>
+</tr>
+
+<tr>
+<td class="left">content</td>
+<td class="left">all headlines</td>
+</tr>
+
+<tr>
+<td class="left">showall</td>
+<td class="left">no folding of any entries</td>
+</tr>
+
+<tr>
+<td class="left">showeverything</td>
+<td class="left">show even drawer contents</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+
 
 <p>
 Dynamic virtual indentation is controlled by the variable
-=org-startup-indented=<sup><a id="fnr.163" name="fnr.163" class="footref" href="#fn.163">163</a></sup>
+<code>org-startup-indented</code> <sup><a id="fnr.163" name="fnr.163" class="footref" href="#fn.163">163</a></sup>
 </p>
 
-<pre class="example">
-indent     start with org-indent-mode turned on
-noindent   start with org-indent-mode turned off
-</pre>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">indent</td>
+<td class="left">start with org-indent-mode turned on</td>
+</tr>
+
+<tr>
+<td class="left">noindent</td>
+<td class="left">start with org-indent-mode turned off</td>
+</tr>
+</tbody>
+</table>
 
 <p>
-Then there are options for aligning tables upon visiting a file. This
-is useful in files containing narrowed table columns. The
-corresponding variable is <code>org-startup-align-all-tables</code>, with a
-default value <code>nil</code>.
+Then there are options for aligning tables upon visiting a
+file. This is useful in files containing narrowed table
+columns. The corresponding variable is
+<code>org-startup-align-all-tables</code>, with a default value <code>nil</code>.
 </p>
 
-<pre class="example">
-align      align all tables
-noalign    don’t align tables on startup
-</pre>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">align</td>
+<td class="left">align all tables</td>
+</tr>
+
+<tr>
+<td class="left">noalign</td>
+<td class="left">don’t align tables on startup</td>
+</tr>
+</tbody>
+</table>
 
 <p>
-When visiting a file, inline images can be automatically displayed.
-The corresponding variable is <code>org-startup-with-inline-images</code>, with
-a default value <code>nil</code> to avoid delays when visiting a file.
+When visiting a file, inline images can be automatically
+displayed.  The corresponding variable is
+<code>org-startup-with-inline-images</code>, with a default value <code>nil</code> to
+avoid delays when visiting a file.
 </p>
 
-<pre class="example">
-inlineimages   show inline images
-noinlineimages don’t show inline images on startup
-</pre>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">inlineimages</td>
+<td class="left">show inline images</td>
+</tr>
+
+<tr>
+<td class="left">noinlineimages</td>
+<td class="left">don’t show inline images on startup</td>
+</tr>
+</tbody>
+</table>
+
 
 <p>
-When visiting a file, LaTeX fragments can be converted to images
-automatically. The variable <code>org-startup-with-latex-preview</code> which
-controls this behavior, is set to <code>nil</code> by default to avoid delays on
-startup.
+When visiting a file, LaTeX fragments can be converted to
+images automatically. The variable
+<code>org-startup-with-latex-preview</code> which controls this behavior,
+is set to <code>nil</code> by default to avoid delays on startup.
 </p>
 
-<pre class="example">
-latexpreview   preview LaTeX fragments
-nolatexpreview don’t preview LaTeX fragments
-</pre>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">latexpreview</td>
+<td class="left">preview LaTeX fragments</td>
+</tr>
+
+<tr>
+<td class="left">nolatexpreview</td>
+<td class="left">don’t preview LaTeX fragments</td>
+</tr>
+</tbody>
+</table>
+
 
 <p>
-Logging the closing and reopening of TODO items and clock intervals
-can be configured using these options (see variables <code>org-log-done</code>,
-<code>org-log-note-clock-out</code> and <code>org-log-repeat</code>)
+Logging the closing and reopening of TODO items and clock
+intervals can be configured using these options (see variables
+<code>org-log-done</code>, <code>org-log-note-clock-out</code> and <code>org-log-repeat</code>)
 </p>
 
-<pre class="example">
-logdone             record a timestamp when an item is marked DONE
-lognotedone         record timestamp and a note when DONE
-nologdone           don’t record when items are marked DONE
-logrepeat           record a time when reinstating a repeating item
-lognoterepeat       record a note when reinstating a repeating item
-nologrepeat         do not record when reinstating repeating item
-lognoteclock-out    record a note when clocking out
-nolognoteclock-out  don’t record a note when clocking out
-logreschedule       record a timestamp when scheduling time changes
-lognotereschedule   record a note when scheduling time changes
-nologreschedule     do not record when a scheduling date changes
-logredeadline       record a timestamp when deadline changes
-lognoteredeadline   record a note when deadline changes
-nologredeadline     do not record when a deadline date changes
-logrefile           record a timestamp when refiling
-lognoterefile       record a note when refiling
-nologrefile         do not record when refiling
-logdrawer           store log into drawer
-nologdrawer         store log outside of drawer
-logstatesreversed   reverse the order of states notes
-nologstatesreversed do not reverse the order of states notes
-</pre>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">logdone</td>
+<td class="left">record a timestamp when an item is marked DONE</td>
+</tr>
+
+<tr>
+<td class="left">lognotedone</td>
+<td class="left">record timestamp and a note when DONE</td>
+</tr>
+
+<tr>
+<td class="left">nologdone</td>
+<td class="left">don’t record when items are marked DONE</td>
+</tr>
+
+<tr>
+<td class="left">logrepeat</td>
+<td class="left">record a time when reinstating a repeating item</td>
+</tr>
+
+<tr>
+<td class="left">lognoterepeat</td>
+<td class="left">record a note when reinstating a repeating item</td>
+</tr>
+
+<tr>
+<td class="left">nologrepeat</td>
+<td class="left">do not record when reinstating repeating item</td>
+</tr>
+
+<tr>
+<td class="left">lognoteclock-out</td>
+<td class="left">record a note when clocking out</td>
+</tr>
+
+<tr>
+<td class="left">nolognoteclock-out</td>
+<td class="left">don’t record a note when clocking out</td>
+</tr>
+
+<tr>
+<td class="left">logreschedule</td>
+<td class="left">record a timestamp when scheduling time changes</td>
+</tr>
+
+<tr>
+<td class="left">lognotereschedule</td>
+<td class="left">record a note when scheduling time changes</td>
+</tr>
+
+<tr>
+<td class="left">nologreschedule</td>
+<td class="left">do not record when a scheduling date changes</td>
+</tr>
+
+<tr>
+<td class="left">logredeadline</td>
+<td class="left">record a timestamp when deadline changes</td>
+</tr>
+
+<tr>
+<td class="left">lognoteredeadline</td>
+<td class="left">record a note when deadline changes</td>
+</tr>
+
+<tr>
+<td class="left">nologredeadline</td>
+<td class="left">do not record when a deadline date changes</td>
+</tr>
+
+<tr>
+<td class="left">logrefile</td>
+<td class="left">record a timestamp when refiling</td>
+</tr>
+
+<tr>
+<td class="left">lognoterefile</td>
+<td class="left">record a note when refiling</td>
+</tr>
+
+<tr>
+<td class="left">nologrefile</td>
+<td class="left">do not record when refiling</td>
+</tr>
+
+<tr>
+<td class="left">logdrawer</td>
+<td class="left">store log into drawer</td>
+</tr>
+
+<tr>
+<td class="left">nologdrawer</td>
+<td class="left">store log outside of drawer</td>
+</tr>
+
+<tr>
+<td class="left">logstatesreversed</td>
+<td class="left">reverse the order of states notes</td>
+</tr>
+
+<tr>
+<td class="left">nologstatesreversed</td>
+<td class="left">do not reverse the order of states notes</td>
+</tr>
+</tbody>
+</table>
 
 <p>
-Here are the options for hiding leading stars in outline headings,
-and for indenting outlines. The corresponding variables are
-<code>org-hide-leading-stars</code> and <code>org-odd-levels-only</code>, both with a
-default setting <code>nil</code> (meaning <code>showstars</code> and <code>oddeven</code>).
+Here are the options for hiding leading stars in outline
+headings, and for indenting outlines. The corresponding
+variables are <code>org-hide-leading-stars</code> and
+<code>org-odd-levels-only</code>, both with a default setting <code>nil</code>
+(meaning <code>showstars</code> and <code>oddeven</code>).
 </p>
 
-<pre class="example">
-hidestars  make all but one of the stars starting a headline invisible.
-showstars  show all stars starting a headline
-indent     virtual indentation according to outline level
-noindent   no virtual indentation according to outline level
-odd        allow only odd outline levels (1,3,...)
-oddeven    allow all outline levels
-</pre>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">hidestars</td>
+<td class="left">make all but one of the stars starting a headline invisible.</td>
+</tr>
+
+<tr>
+<td class="left">showstars</td>
+<td class="left">show all stars starting a headline</td>
+</tr>
+
+<tr>
+<td class="left">indent</td>
+<td class="left">virtual indentation according to outline level</td>
+</tr>
+
+<tr>
+<td class="left">noindent</td>
+<td class="left">no virtual indentation according to outline level</td>
+</tr>
+
+<tr>
+<td class="left">odd</td>
+<td class="left">allow only odd outline levels (1,3,&#x2026;)</td>
+</tr>
+
+<tr>
+<td class="left">oddeven</td>
+<td class="left">allow all outline levels</td>
+</tr>
+</tbody>
+</table>
 
 <p>
 To turn on custom format overlays over timestamps (variables
-<code>org-put-time-stamp-overlays</code> and <code>org-time-stamp-overlay-formats</code>),
-use
+<code>org-put-time-stamp-overlays</code> and
+<code>org-time-stamp-overlay-formats</code>), use
 </p>
 
-<pre class="example">
-customtime overlay custom time format
-</pre>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">customtime</td>
+<td class="left">overlay custom time format</td>
+</tr>
+</tbody>
+</table>
+
 
 <p>
 The following options influence the table spreadsheet (variable
 <code>constants-unit-system</code>).
 </p>
 
-<pre class="example">
-constcgs   constants.el should use the c-g-s unit system
-constSI    constants.el should use the SI unit system
-</pre>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">constcgs</td>
+<td class="left">constants.el should use the c-g-s unit system</td>
+</tr>
+
+<tr>
+<td class="left">constSI</td>
+<td class="left">constants.el should use the SI unit system</td>
+</tr>
+</tbody>
+</table>
 
 <p>
 To influence footnote settings, use the following keywords. The
@@ -25517,124 +25846,221 @@ corresponding variables are <code>org-footnote-define-inline</code>,
 <code>org-footnote-auto-label</code>, and <code>org-footnote-auto-adjust</code>.
 </p>
 
-<pre class="example">
-fninline    define footnotes inline
-fnnoinline  define footnotes in separate section
-fnlocal     define footnotes near first reference, but not inline
-fnprompt    prompt for footnote labels
-fnauto      create [fn:1]-like labels automatically (default)
-fnconfirm   offer automatic label for editing or confirmation
-fnplain     create [1]-like labels automatically
-fnadjust    automatically renumber and sort footnotes
-nofnadjust  do not renumber and sort automatically
-</pre>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">fninline</td>
+<td class="left">define footnotes inline</td>
+</tr>
+
+<tr>
+<td class="left">fnnoinline</td>
+<td class="left">define footnotes in separate section</td>
+</tr>
+
+<tr>
+<td class="left">fnlocal</td>
+<td class="left">define footnotes near first reference, but not inline</td>
+</tr>
+
+<tr>
+<td class="left">fnprompt</td>
+<td class="left">prompt for footnote labels</td>
+</tr>
+
+<tr>
+<td class="left">fnauto</td>
+<td class="left">create <code>[fn:1]</code>-like labels automatically (default)</td>
+</tr>
+
+<tr>
+<td class="left">fnconfirm</td>
+<td class="left">offer automatic label for editing or confirmation</td>
+</tr>
+
+<tr>
+<td class="left">fnplain</td>
+<td class="left">create <code>[1]</code>-like labels automatically</td>
+</tr>
+
+<tr>
+<td class="left">fnadjust</td>
+<td class="left">automatically renumber and sort footnotes</td>
+</tr>
+
+<tr>
+<td class="left">nofnadjust</td>
+<td class="left">do not renumber and sort automatically</td>
+</tr>
+</tbody>
+</table>
 
 <p>
-To hide blocks on startup, use these keywords. The corresponding
-variable is <code>org-hide-block-startup</code>.
+To hide blocks on startup, use these keywords. The
+corresponding variable is <code>org-hide-block-startup</code>.
 </p>
 
-<pre class="example">
-hideblocks   Hide all begin/end blocks on startup
-nohideblocks Do not hide blocks on startup
-</pre>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">hideblocks</td>
+<td class="left">Hide all begin/end blocks on startup</td>
+</tr>
+
+<tr>
+<td class="left">nohideblocks</td>
+<td class="left">Do not hide blocks on startup</td>
+</tr>
+</tbody>
+</table>
 
 <p>
 The display of entities as UTF-8 characters is governed by the
 variable <code>org-pretty-entities</code> and the keywords
 </p>
 
-<pre class="example">
-entitiespretty  Show entities as UTF-8 characters where possible
-entitiesplain   Leave entities plain
-</pre>
-</dd>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
-<dt> #+TAGS: TAG1(c1) TAG2(c2) </dt><dd>These lines (several such lines are
-allowed) specify the valid tags in this file, and (potentially) the
-corresponding <i>fast tag selection</i> keys. The corresponding variable
-is <code>org-tag-alist</code>.
-</dd>
 
-<dt> #+TBLFM: </dt><dd>This line contains the formulas for the table directly
-above the line.
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">entitiespretty</td>
+<td class="left">Show entities as UTF-8 characters where possible</td>
+</tr>
+
+<tr>
+<td class="left">entitiesplain</td>
+<td class="left">Leave entities plain</td>
+</tr>
+</tbody>
+</table>
+
+<ul class="org-ul">
+<li>#+TAGS: TAG1(c1) TAG2(c2)
 
 <p>
-Table can have multiple lines containing ‘#+TBLFM:'. Note that only
-the first line of ‘#+TBLFM:' will be applied when you recalculate the
-table. For more details see
-<i>Using multiple #+TBLFM
-lines</i> in <a href="#Editing-and-debugging-formulas">Editing and debugging
-formulas</a>.
+These lines (several such lines are allowed) specify the valid
+tags in this file, and (potentially) the corresponding <i>fast tag
+selection</i> keys. The corresponding variable is <code>org-tag-alist</code>.
 </p>
-</dd>
+</li>
 
-<dt> (no term) </dt><dd>#+TITLE:, #+AUTHOR:, #+EMAIL:, #+LANGUAGE:, #+DATE:,<br  />
+<li>#+TBLFM:
+
 <p>
-exporting files. For more details see <a href="#Export-settings">Export
-settings</a>.
+This line contains the formulas for the table directly above the
+line.
 </p>
-</dd>
 
-<dt> #+TODO: #+SEQ<sub>TODO</sub>: #+TYP<sub>TODO</sub>: </dt><dd>These lines set the TODO
-keywords and their interpretation in the current file. The
-corresponding variable is <code>org-todo-keywords</code>.
-</dd>
-</dl>
+<p>
+Table can have multiple lines containing ‘#+TBLFM:'. Note that
+only the first line of ‘#+TBLFM:' will be applied when you
+recalculate the table. For more details see <i>Using
+multiple #+TBLFM lines</i> in <a href="#Editing-and-debugging-formulas">Editing and debugging formulas</a>.
+</p>
+</li>
+
+<li>#+TITLE:, #+AUTHOR:, #+EMAIL:, #+LANGUAGE:, #+DATE:,<br  />
+<p>
+These lines provide settings for exporting files. For more
+details see <a href="#Export-settings">Export settings</a>.
+</p>
+</li>
+
+<li>#+TODO: #+SEQ<sub>TODO</sub>: #+TYP<sub>TODO</sub>:
+
+<p>
+These lines set the TODO keywords and their interpretation in
+the current file. The corresponding variable is
+<code>org-todo-keywords</code>.
+</p>
+</li>
+</ul>
 </div>
 </div>
 
 <div id="outline-container-sec-15-7" class="outline-3">
-<h3 id="sec-15-7">15.7 The very busy C-c C-c key                                     <a id="The-very-busy-C_c-C_c-key" name="The-very-busy-C_c-C_c-key"></a></h3>
+<h3 id="sec-15-7">15.7 The very busy <b><i>C-c C-c</i></b> key                                 <a id="The-very-busy-C_c-C_c-key" name="The-very-busy-C_c-C_c-key"></a></h3>
 <div class="outline-text-3" id="text-15-7">
 <p>
-The key C-c C-c has many purposes in Org, which are all mentioned
-scattered throughout this manual. One specific function of this key is
-to add <i>tags</i> to a headline (see <a href="#Tags">Tags</a>). In many other
-circumstances it means something like <i>“Hey Org, look here and update
-according to what you see here”</i>. Here is a summary of what this means
-in different contexts.
+The key <b><i>C-c C-c</i></b> has many purposes in Org, which are all
+mentioned scattered throughout this manual. One specific function
+of this key is to add <i>tags</i> to a headline (see <a href="#Tags">Tags</a>). In many
+other circumstances it means something like <i>“Hey Org, look here
+and update according to what you see here”</i>. Here is a summary of
+what this means in different contexts.
 </p>
 
 <ul class="org-ul">
-<li>- If there are highlights in the buffer from the creation of a sparse
-tree, or from clock display, remove these highlights.
+<li>If there are highlights in the buffer from the creation of a
+sparse tree, or from clock display, remove these highlights.
 </li>
-<li>- If the cursor is in one of the special <code>#+KEYWORD</code> lines, this
+
+<li>If the cursor is in one of the special <code>#+KEYWORD</code> lines, this
 triggers scanning the buffer for these lines and updating the
 information.
 </li>
-<li>- If the cursor is inside a table, realign the table. This command
+
+<li>If the cursor is inside a table, realign the table. This command
 works even if the automatic table editor has been turned off.
 </li>
-<li>- If the cursor is on a <code>#+TBLFM</code> line, re-apply the formulas to the
-entire table.
+
+<li>If the cursor is on a <code>#+TBLFM</code> line, re-apply the formulas to
+the entire table.
 </li>
-<li>- If the current buffer is a capture buffer, close the note and file
-it. With a prefix argument, file it, without further interaction, to
-the default location.
+<li>If the current buffer is a capture buffer, close the note and
+file it. With a prefix argument, file it, without further
+interaction, to the default location.
 </li>
-<li>- If the cursor is on a <code>&lt;&lt;&lt;target&gt;&gt;&gt;</code>, update radio targets and
+
+<li>If the cursor is on a <code>&lt;&lt;&lt;target&gt;&gt;&gt;</code>, update radio targets and
 corresponding links in this buffer.
 </li>
-<li>- If the cursor is in a property line or at the start or end of a
+
+<li>If the cursor is in a property line or at the start or end of a
 property drawer, offer property commands.
 </li>
-<li>- If the cursor is at a footnote reference, go to the corresponding
-definition, and <i>vice versa</i>.
+
+<li>If the cursor is at a footnote reference, go to the
+corresponding definition, and <i>vice versa</i>.
 </li>
-<li>- If the cursor is on a statistics cookie, update it.
+
+<li>If the cursor is on a statistics cookie, update it.
 </li>
-<li>- If the cursor is in a plain list item with a checkbox, toggle the
-status of the checkbox.
+
+<li>If the cursor is in a plain list item with a checkbox, toggle
+the status of the checkbox.
 </li>
-<li>- If the cursor is on a numbered item in a plain list, renumber the
-ordered list.
+
+<li>If the cursor is on a numbered item in a plain list, renumber
+the ordered list.
 </li>
-<li>- If the cursor is on the <code>#+BEGIN</code> line of a dynamic block, the
+
+<li>If the cursor is on the <code>#+BEGIN</code> line of a dynamic block, the
 block is updated.
 </li>
-<li>- If the cursor is at a timestamp, fix the day name in the timestamp.
+
+<li>If the cursor is at a timestamp, fix the day name in the
+timestamp.
 </li>
 </ul>
 </div>
@@ -25644,12 +26070,12 @@ block is updated.
 <h3 id="sec-15-8">15.8 A cleaner outline view                                        <a id="Clean-view" name="Clean-view"></a></h3>
 <div class="outline-text-3" id="text-15-8">
 <p>
-Some people find it noisy and distracting that the Org headlines start
-with a potentially large number of stars, and that text below the
-headlines is not indented. While this is no problem when writing a
-<i>book-like</i> document where the outline headings are really section
-headings, in a more <i>list-oriented</i> outline, indented structure is a lot
-cleaner:
+Some people find it noisy and distracting that the Org headlines
+start with a potentially large number of stars, and that text below
+the headlines is not indented. While this is no problem when
+writing a <i>book-like</i> document where the outline headings are
+really section headings, in a more <i>list-oriented</i> outline,
+indented structure is a lot cleaner:
 </p>
 
 <pre class="example">
@@ -25663,17 +26089,18 @@ more text                        |          more text
 </pre>
 
 <p>
-If you are using at least Emacs 23.2<sup><a id="fnr.164" name="fnr.164" class="footref" href="#fn.164">164</a></sup> and version
-6.29 of Org, this kind of view can be achieved dynamically at display
-time using <code>org-indent-mode</code>. In this minor mode, all lines are prefixed
-for display with the necessary amount of space<sup><a id="fnr.165" name="fnr.165" class="footref" href="#fn.165">165</a></sup>. Also
-headlines are prefixed with additional stars, so that the amount of
-indentation shifts by two<sup><a id="fnr.166" name="fnr.166" class="footref" href="#fn.166">166</a></sup> spaces per level. All
-headline stars but the last one are made invisible using the <code>org-hide</code>
-face<sup><a id="fnr.167" name="fnr.167" class="footref" href="#fn.167">167</a></sup>; see below under ‘2.' for more information on
-how this works. You can turn on <code>org-indent-mode</code> for all files by
-customizing the variable <code>org-startup-indented</code>, or you can turn it on
-for individual files using
+If you are using at least Emacs 23.2<sup><a id="fnr.164" name="fnr.164" class="footref" href="#fn.164">164</a></sup> and version 6.29
+of Org, this kind of view can be achieved dynamically at display
+time using <code>org-indent-mode</code>. In this minor mode, all lines are
+prefixed for display with the necessary amount of
+space<sup><a id="fnr.165" name="fnr.165" class="footref" href="#fn.165">165</a></sup>. Also headlines are prefixed with additional
+stars, so that the amount of indentation shifts by two<sup><a id="fnr.166" name="fnr.166" class="footref" href="#fn.166">166</a></sup>
+spaces per level. All headline stars but the last one are made
+invisible using the <code>org-hide</code> face<sup><a id="fnr.167" name="fnr.167" class="footref" href="#fn.167">167</a></sup>; see below under
+‘2.' for more information on how this works. You can turn on
+<code>org-indent-mode</code> for all files by customizing the variable
+<code>org-startup-indented</code>, or you can turn it on for individual files
+using
 </p>
 
 <pre class="example">
@@ -25681,16 +26108,19 @@ for individual files using
 </pre>
 
 <p>
-If you want a similar effect in an earlier version of Emacs and/or Org,
-or if you want the indentation to be hard space characters so that the
-plain text file looks as similar as possible to the Emacs display, Org
-supports you in the following way:
+If you want a similar effect in an earlier version of Emacs and/or
+Org, or if you want the indentation to be hard space characters so
+that the plain text file looks as similar as possible to the Emacs
+display, Org supports you in the following way:
 </p>
 
 <ol class="org-ol">
-<li><i>Indentation of text below headlines</i><br  />
-    You may indent text below each headline to make the left boundary
-line up with the headline, like
+<li><i>Indentation of text below headlines</i>
+
+<p>
+You may indent text below each headline to make the left
+boundary line up with the headline, like
+</p>
 
 <pre class="example">
 *** 3rd level
@@ -25704,10 +26134,14 @@ indentation as appropriate.
 </p>
 </li>
 
-<li><i>Hiding leading stars</i><br  />
-    You can modify the display in such a way that all leading stars
-become invisible. To do this in a global way, configure the variable
-<code>org-hide-leading-stars</code> or change this on a per-file basis with
+<li><i>Hiding leading stars</i>
+
+<p>
+You can modify the display in such a way that all leading stars
+become invisible. To do this in a global way, configure the
+variable <code>org-hide-leading-stars</code> or change this on a per-file
+basis with
+</p>
 
 <pre class="example">
 #+STARTUP: hidestars
@@ -25726,23 +26160,24 @@ With hidden stars, the tree becomes:
 </pre>
 
 <p>
-The leading stars are not truly replaced by whitespace, they are only
-fontified with the face <code>org-hide</code> that uses the background color as
-font color. If you are not using either white or black background,
-you may have to customize this face to get the wanted effect. Another
-possibility is to set this font such that the extra stars are
-<i>almost</i> invisible, for example using the color <code>grey90</code> on a white
-background.
+The leading stars are not truly replaced by whitespace, they
+are only fontified with the face <code>org-hide</code> that uses the
+background color as font color. If you are not using either
+white or black background, you may have to customize this face
+to get the wanted effect. Another possibility is to set this
+font such that the extra stars are <i>almost</i> invisible, for
+example using the color <code>grey90</code> on a white background.
 </p>
 </li>
 
-<li>Things become cleaner still if you skip all the even levels and use
-only odd levels 1, 3, 5&#x2026;, effectively adding two stars to go from
-one outline level to the next<sup><a id="fnr.169" name="fnr.169" class="footref" href="#fn.169">169</a></sup>. In this way we get
-the outline view shown at the beginning of this section. In order to
-make the structure editing and export commands handle this convention
-correctly, configure the variable <code>org-odd-levels-only</code>, or set this
-on a per-file basis with one of the following lines:
+<li>Things become cleaner still if you skip all the even levels and
+use only odd levels 1, 3, 5&#x2026;, effectively adding two stars to
+go from one outline level to the next<sup><a id="fnr.169" name="fnr.169" class="footref" href="#fn.169">169</a></sup>. In this way
+we get the outline view shown at the beginning of this
+section. In order to make the structure editing and export
+commands handle this convention correctly, configure the
+variable <code>org-odd-levels-only</code>, or set this on a per-file basis
+with one of the following lines:
 
 <pre class="example">
 #+STARTUP: odd
@@ -25751,9 +26186,9 @@ on a per-file basis with one of the following lines:
 
 <p>
 You can convert an Org file from single-star-per-level to the
-double-star-per-level convention with M-x org-convert-to-odd-levels
-RET in that file. The reverse operation is M-x
-org-convert-to-oddeven-levels.
+double-star-per-level convention with M-x
+org-convert-to-odd-levels RET in that file. The reverse
+operation is M-x org-convert-to-oddeven-levels.
 </p>
 </li>
 </ol>
@@ -25765,164 +26200,167 @@ org-convert-to-oddeven-levels.
 <div class="outline-text-3" id="text-15-9">
 <p>
 Because Org contains a large number of commands, by default many of
-Org's core commands are bound to keys that are generally not accessible
-on a tty, such as the cursor keys (<code>left</code>, <code>right</code>, <code>up</code>, <code>down</code>), <code>TAB</code>
-and <code>RET</code>, in particular when used together with modifiers like <code>Meta</code>
-and/or <code>Shift</code>. To access these commands on a tty when special keys are
-unavailable, the following alternative bindings can be used. The tty
-bindings below will likely be more cumbersome; you may find for some of
-the bindings below that a customized workaround suits you better. For
-example, changing a timestamp is really only fun with S-cursor keys,
-whereas on a tty you would rather use C-c . to re-insert the timestamp.
+Org's core commands are bound to keys that are generally not
+accessible on a tty, such as the cursor keys (<code>left</code>, <code>right</code>,
+<code>up</code>, <code>down</code>), <code>TAB</code> and <code>RET</code>, in particular when used together
+with modifiers like <code>Meta</code> and/or <code>Shift</code>. To access these commands
+on a tty when special keys are unavailable, the following
+alternative bindings can be used. The tty bindings below will
+likely be more cumbersome; you may find for some of the bindings
+below that a customized workaround suits you better. For example,
+changing a timestamp is really only fun with S-cursor keys, whereas
+on a tty you would rather use <b><i>C-c .</i></b> to re-insert the timestamp.
 </p>
 
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<div class="center">
+  <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
-<colgroup>
-<col  class="left" />
+    <colgroup>
+      <col  class="left" />
 
-<col  class="left" />
+      <col  class="left" />
 
-<col  class="left" />
+      <col  class="left" />
 
-<col  class="left" />
-</colgroup>
-<tbody>
-<tr>
-<td class="left"><b>Default</b></td>
-<td class="left"><b>Alternative 1</b></td>
-<td class="left"><b>Speed key</b></td>
-<td class="left"><b>Alternative 2</b></td>
-</tr>
+      <col  class="left" />
+    </colgroup>
+    <tbody>
+      <tr>
+        <td class="left"><b>Default</b></td>
+        <td class="left"><b>Alternative 1</b></td>
+        <td class="left"><b>Speed key</b></td>
+        <td class="left"><b>Alternative 2</b></td>
+      </tr>
 
-<tr>
-<td class="left">S-TAB</td>
-<td class="left">C-u TAB</td>
-<td class="left">C</td>
-<td class="left">&#xa0;</td>
-</tr>
+      <tr>
+        <td class="left">S-TAB</td>
+        <td class="left">C-u TAB</td>
+        <td class="left">C</td>
+        <td class="left">&#xa0;</td>
+      </tr>
 
-<tr>
-<td class="left">M-left</td>
-<td class="left">C-c C-x l</td>
-<td class="left">l</td>
-<td class="left">Esc left</td>
-</tr>
+      <tr>
+        <td class="left">M-left</td>
+        <td class="left">C-c C-x l</td>
+        <td class="left">l</td>
+        <td class="left">Esc left</td>
+      </tr>
 
-<tr>
-<td class="left">M-S-left</td>
-<td class="left">C-c C-x L</td>
-<td class="left">L</td>
-<td class="left">&#xa0;</td>
-</tr>
+      <tr>
+        <td class="left">M-S-left</td>
+        <td class="left">C-c C-x L</td>
+        <td class="left">L</td>
+        <td class="left">&#xa0;</td>
+      </tr>
 
-<tr>
-<td class="left">M-right</td>
-<td class="left">C-c C-x r</td>
-<td class="left">r</td>
-<td class="left">Esc right</td>
-</tr>
+      <tr>
+        <td class="left">M-right</td>
+        <td class="left">C-c C-x r</td>
+        <td class="left">r</td>
+        <td class="left">Esc right</td>
+      </tr>
 
-<tr>
-<td class="left">M-S-right</td>
-<td class="left">C-c C-x R</td>
-<td class="left">R</td>
-<td class="left">&#xa0;</td>
-</tr>
+      <tr>
+        <td class="left">M-S-right</td>
+        <td class="left">C-c C-x R</td>
+        <td class="left">R</td>
+        <td class="left">&#xa0;</td>
+      </tr>
 
-<tr>
-<td class="left">M-up</td>
-<td class="left">C-c C-x u</td>
-<td class="left">&#xa0;</td>
-<td class="left">Esc up</td>
-</tr>
+      <tr>
+        <td class="left">M-up</td>
+        <td class="left">C-c C-x u</td>
+        <td class="left">&#xa0;</td>
+        <td class="left">Esc up</td>
+      </tr>
 
-<tr>
-<td class="left">M-S-up</td>
-<td class="left">C-c C-x U</td>
-<td class="left">U</td>
-<td class="left">&#xa0;</td>
-</tr>
+      <tr>
+        <td class="left">M-S-up</td>
+        <td class="left">C-c C-x U</td>
+        <td class="left">U</td>
+        <td class="left">&#xa0;</td>
+      </tr>
 
-<tr>
-<td class="left">M-down</td>
-<td class="left">C-c C-x d</td>
-<td class="left">&#xa0;</td>
-<td class="left">Esc down</td>
-</tr>
+      <tr>
+        <td class="left">M-down</td>
+        <td class="left">C-c C-x d</td>
+        <td class="left">&#xa0;</td>
+        <td class="left">Esc down</td>
+      </tr>
 
-<tr>
-<td class="left">M-S-down</td>
-<td class="left">C-c C-x D</td>
-<td class="left">D</td>
-<td class="left">&#xa0;</td>
-</tr>
+      <tr>
+        <td class="left">M-S-down</td>
+        <td class="left">C-c C-x D</td>
+        <td class="left">D</td>
+        <td class="left">&#xa0;</td>
+      </tr>
 
-<tr>
-<td class="left">S-RET</td>
-<td class="left">C-c C-x c</td>
-<td class="left">&#xa0;</td>
-<td class="left">&#xa0;</td>
-</tr>
+      <tr>
+        <td class="left">S-RET</td>
+        <td class="left">C-c C-x c</td>
+        <td class="left">&#xa0;</td>
+        <td class="left">&#xa0;</td>
+      </tr>
 
-<tr>
-<td class="left">M-RET</td>
-<td class="left">C-c C-x m</td>
-<td class="left">&#xa0;</td>
-<td class="left">Esc RET</td>
-</tr>
+      <tr>
+        <td class="left">M-RET</td>
+        <td class="left">C-c C-x m</td>
+        <td class="left">&#xa0;</td>
+        <td class="left">Esc RET</td>
+      </tr>
 
-<tr>
-<td class="left">M-S-RET</td>
-<td class="left">C-c C-x M</td>
-<td class="left">&#xa0;</td>
-<td class="left">&#xa0;</td>
-</tr>
+      <tr>
+        <td class="left">M-S-RET</td>
+        <td class="left">C-c C-x M</td>
+        <td class="left">&#xa0;</td>
+        <td class="left">&#xa0;</td>
+      </tr>
 
-<tr>
-<td class="left">S-left</td>
-<td class="left">C-c left</td>
-<td class="left">&#xa0;</td>
-<td class="left">&#xa0;</td>
-</tr>
+      <tr>
+        <td class="left">S-left</td>
+        <td class="left">C-c left</td>
+        <td class="left">&#xa0;</td>
+        <td class="left">&#xa0;</td>
+      </tr>
 
-<tr>
-<td class="left">S-right</td>
-<td class="left">C-c right</td>
-<td class="left">&#xa0;</td>
-<td class="left">&#xa0;</td>
-</tr>
+      <tr>
+        <td class="left">S-right</td>
+        <td class="left">C-c right</td>
+        <td class="left">&#xa0;</td>
+        <td class="left">&#xa0;</td>
+      </tr>
 
-<tr>
-<td class="left">S-up</td>
-<td class="left">C-c up</td>
-<td class="left">&#xa0;</td>
-<td class="left">&#xa0;</td>
-</tr>
+      <tr>
+        <td class="left">S-up</td>
+        <td class="left">C-c up</td>
+        <td class="left">&#xa0;</td>
+        <td class="left">&#xa0;</td>
+      </tr>
 
-<tr>
-<td class="left">S-down</td>
-<td class="left">C-c down</td>
-<td class="left">&#xa0;</td>
-<td class="left">&#xa0;</td>
-</tr>
+      <tr>
+        <td class="left">S-down</td>
+        <td class="left">C-c down</td>
+        <td class="left">&#xa0;</td>
+        <td class="left">&#xa0;</td>
+      </tr>
 
-<tr>
-<td class="left">C-S-left</td>
-<td class="left">C-c C-x left</td>
-<td class="left">&#xa0;</td>
-<td class="left">&#xa0;</td>
-</tr>
+      <tr>
+        <td class="left">C-S-left</td>
+        <td class="left">C-c C-x left</td>
+        <td class="left">&#xa0;</td>
+        <td class="left">&#xa0;</td>
+      </tr>
 
-<tr>
-<td class="left">C-S-right</td>
-<td class="left">C-c C-x right</td>
-<td class="left">&#xa0;</td>
-<td class="left">&#xa0;</td>
-</tr>
-</tbody>
-</table>
+      <tr>
+        <td class="left">C-S-right</td>
+        <td class="left">C-c C-x right</td>
+        <td class="left">&#xa0;</td>
+        <td class="left">&#xa0;</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 </div>
 </div>
 
@@ -25930,8 +26368,8 @@ whereas on a tty you would rather use C-c . to re-insert the timestamp.
 <h3 id="sec-15-10">15.10 Interaction with other packages                              <a id="Interaction" name="Interaction"></a></h3>
 <div class="outline-text-3" id="text-15-10">
 <p>
-Org lives in the world of GNU Emacs and interacts in various ways with
-other code out there.
+Org lives in the world of GNU Emacs and interacts in various ways
+with other code out there.
 </p>
 
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
@@ -25959,54 +26397,51 @@ other code out there.
 <div id="outline-container-sec-15-10-1" class="outline-4">
 <h4 id="sec-15-10-1">15.10.1 Packages that Org cooperates with                         <a id="Cooperation" name="Cooperation"></a></h4>
 <div class="outline-text-4" id="text-15-10-1">
-<p>
-calc.el by Dave Gillespie
-</p>
+<ul class="org-ul">
+<li>calc.el by Dave Gillespie
 
 <p>
-Org uses the Calc package for implementing spreadsheet functionality in
-its tables (see <a href="#The-spreadsheet">The spreadsheet</a>). Org checks for
-the availability of Calc by looking for the function <code>calc-eval</code> which
-will have been autoloaded during setup if Calc has been installed
-properly. As of Emacs 22, Calc is part of the Emacs distribution.
-Another possibility for interaction between the two packages is using
-Calc for embedded calculations. See
-<a href="http://www.gnu.org/software/emacs/manual/html_mono/calc.html#Embedded-Mode">Embedded
-Mode</a> in GNU Emacs Calc Manual.
+Org uses the Calc package for implementing spreadsheet
+functionality in its tables (see <a href="#The-spreadsheet">The spreadsheet</a>). Org checks
+for the availability of Calc by looking for the function
+<code>calc-eval</code> which will have been autoloaded during setup if
+Calc has been installed properly. As of Emacs 22, Calc is part
+of the Emacs distribution.  Another possibility for interaction
+between the two packages is using Calc for embedded
+calculations. See <a href="http://www.gnu.org/software/emacs/manual/html_mono/calc.html#Embedded-Mode">Embedded Mode</a> in GNU Emacs Calc Manual.
 </p>
+</li>
+
+<li>constants.el by Carsten Dominik
 
 <p>
-constants.el by Carsten Dominik
+In a table formula (see <a href="#The-spreadsheet">The spreadsheet</a>), it is possible to use
+names for natural constants or units. Instead of defining your
+own constants in the variable <code>org-table-formula-constants</code>,
+install the constants package which defines a large number of
+constants and units, and lets you use unit prefixes like ‘M'
+for ‘Mega', etc. You will need version 2.0 of this package,
+available at <a href="http://www.astro.uva.nl/~dominik/Tools">http://www.astro.uva.nl/~dominik/Tools</a>. Org checks
+for the function <code>constants-get</code>, which has to be autoloaded in
+your setup. See the installation instructions in the file
+constants.el.
 </p>
+</li>
+
+<li>cdlatex.el by Carsten Dominik
 
 <p>
-In a table formula (see <a href="#The-spreadsheet">The spreadsheet</a>), it is
-possible to use names for natural constants or units. Instead of
-defining your own constants in the variable
-<code>org-table-formula-constants</code>, install the constants package which
-defines a large number of constants and units, and lets you use unit
-prefixes like ‘M' for ‘Mega', etc. You will need version 2.0 of this
-package, available at <a href="http://www.astro.uva.nl/~dominik/Tools">http://www.astro.uva.nl/~dominik/Tools</a>. Org
-checks for the function <code>constants-get</code>, which has to be autoloaded in
-your setup. See the installation instructions in the file constants.el.
+Org mode can make use of the CDLaTeX package to efficiently
+enter LaTeX fragments into Org files. See <a href="#CDLaTeX-mode">CDLaTeX mode</a>.
 </p>
+</li>
+
+<li>imenu.el by Ake Stenhoff and Lars Lindberg
 
 <p>
-cdlatex.el by Carsten Dominik
-</p>
-
-<p>
-Org mode can make use of the CDLaTeX package to efficiently enter LaTeX
-fragments into Org files. See <a href="#CDLaTeX-mode">CDLaTeX mode</a>.
-</p>
-
-<p>
-imenu.el by Ake Stenhoff and Lars Lindberg
-</p>
-
-<p>
-Imenu allows menu access to an index of items in a file. Org mode
-supports Imenu&#x2014;all you need to do to get the index is the following:
+Imenu allows menu access to an index of items in a file. Org
+mode supports Imenu&#x2014;all you need to do to get the index is
+the following:
 </p>
 
 <div class="org-src-container">
@@ -26017,77 +26452,78 @@ supports Imenu&#x2014;all you need to do to get the index is the following:
 </div>
 
 <p>
-By default the index is two levels deep&#x2014;you can modify the depth using
-the option <code>org-imenu-depth</code>.
+By default the index is two levels deep &#x2013; you can modify the
+depth using the option <code>org-imenu-depth</code>.
 </p>
+</li>
 
-<p>
-remember.el by John Wiegley
-</p>
+<li>remember.el by John Wiegley
 
 <p>
 Org used to use this package for capture, but no longer does.
 </p>
+</li>
+
+<li>speedbar.el by Eric M. Ludlam
 
 <p>
-speedbar.el by Eric M. Ludlam
+Speedbar is a package that creates a special frame displaying
+files and index items in files. Org mode supports Speedbar and
+allows you to drill into Org files directly from the
+Speedbar. It also allows you to restrict the scope of agenda
+commands to a file or a subtree by using the command &lt; in the
+Speedbar frame.
 </p>
+</li>
 
-<p>
-Speedbar is a package that creates a special frame displaying files and
-index items in files. Org mode supports Speedbar and allows you to drill
-into Org files directly from the Speedbar. It also allows you to
-restrict the scope of agenda commands to a file or a subtree by using
-the command &lt; in the Speedbar frame.
-</p>
-
-<p>
-table.el by Takaaki Ota
-</p>
+<li>table.el by Takaaki Ota
 
 <p>
 Complex ASCII tables with automatic line wrapping, column- and
-row-spanning, and alignment can be created using the Emacs table package
-by Takaaki Ota (<a href="http://sourceforge.net/projects/table">http://sourceforge.net/projects/table</a>, and also part
-of Emacs 22). Org mode will recognize these tables and export them
-properly. Because of interference with other Org mode functionality, you
-unfortunately cannot edit these tables directly in the buffer. Instead,
-you need to use the command C-c ' to edit them, similar to source code
-snippets.
+row-spanning, and alignment can be created using the Emacs
+table package by Takaaki Ota
+(<a href="http://sourceforge.net/projects/table">http://sourceforge.net/projects/table</a>, and also part of Emacs
+22). Org mode will recognize these tables and export them
+properly. Because of interference with other Org mode
+functionality, you unfortunately cannot edit these tables
+directly in the buffer. Instead, you need to use the command
+<b>/C-c '/</b> to edit them, similar to source code snippets.
 </p>
+
+<ul class="org-ul">
+<li>C-c ' (<code>org-edit-special</code>)
 
 <p>
-C-c ' (<code>org-edit-special</code>)
+Edit a table.el table. Works when the cursor is in a
+table.el table.
 </p>
+</li>
+
+<li>C-c ~ (<code>org-table-create-with-table.el</code>)
 
 <p>
-Edit a table.el table. Works when the cursor is in a table.el table.
+Insert a table.el table. If there is already a table at
+point, this command converts it between the table.el format
+and the Org mode format.  See the documentation string of
+the command <code>org-convert-table</code> for the restrictions under
+which this is possible.
 </p>
-
-<p>
-C-c ~ (<code>org-table-create-with-table.el</code>)
-</p>
-
-<p>
-Insert a table.el table. If there is already a table at point, this
-command converts it between the table.el format and the Org mode format.
-See the documentation string of the command <code>org-convert-table</code> for the
-restrictions under which this is possible.
-</p>
-
+</li>
+</ul>
 <p>
 table.el is part of Emacs since Emacs 22.
 </p>
+</li>
+
+<li>footnote.el by Steven L. Baur
 
 <p>
-footnote.el by Steven L. Baur
+Org mode recognizes numerical footnotes as provided by this
+package.  However, Org mode also has its own footnote support
+(see <a href="#Footnotes">Footnotes</a>), which makes using footnote.el unnecessary.
 </p>
-
-<p>
-Org mode recognizes numerical footnotes as provided by this package.
-However, Org mode also has its own footnote support (see
-<a href="#Footnotes">Footnotes</a>), which makes using footnote.el unnecessary.
-</p>
+</li>
+</ul>
 </div>
 </div>
 
@@ -26097,30 +26533,32 @@ However, Org mode also has its own footnote support (see
 <p>
 In Emacs 23, <code>shift-selection-mode</code> is on by default, meaning that
 cursor motions combined with the shift key should start or enlarge
-regions. This conflicts with the use of S-cursor commands in Org to
-change timestamps, TODO keywords, priorities, and item bullet types if
-the cursor is at such a location. By default, S-cursor commands outside
-special contexts don't do anything, but you can customize the variable
-<code>org-support-shift-select</code>. Org mode then tries to accommodate shift
-selection by (i) using it outside of the special contexts where special
-commands apply, and by (ii) extending an existing active region even if
-the cursor moves across a special context.
+regions. This conflicts with the use of S-cursor commands in Org
+to change timestamps, TODO keywords, priorities, and item bullet
+types if the cursor is at such a location. By default, S-cursor
+commands outside special contexts don't do anything, but you can
+customize the variable <code>org-support-shift-select</code>. Org mode then
+tries to accommodate shift selection by (i) using it outside of
+the special contexts where special commands apply, and by (ii)
+extending an existing active region even if the cursor moves
+across a special context.
 </p>
 
-<p>
-CUA.el by Kim. F. Storm
-</p>
+<ul class="org-ul">
+<li>CUA.el by Kim. F. Storm
 
 <p>
-Key bindings in Org conflict with the S-&lt;cursor&gt; keys used by CUA mode
-(as well as <code>pc-select-mode</code> and <code>s-region-mode</code>) to select and extend
-the region. In fact, Emacs 23 has this built-in in the form of
-<code>shift-selection-mode</code>, see previous paragraph. If you are using Emacs
-23, you probably don't want to use another package for this purpose.
-However, if you prefer to leave these keys to a different package while
-working in Org mode, configure the variable <code>org-replace-disputed-keys</code>.
-When set, Org will move the following key bindings in Org files, and in
-the agenda buffer (but not during date selection).
+Key bindings in Org conflict with the S-&lt;cursor&gt; keys used by
+CUA mode (as well as <code>pc-select-mode</code> and <code>s-region-mode</code>) to
+select and extend the region. In fact, Emacs 23 has this
+built-in in the form of <code>shift-selection-mode</code>, see previous
+paragraph. If you are using Emacs 23, you probably don't want
+to use another package for this purpose.  However, if you
+prefer to leave these keys to a different package while working
+in Org mode, configure the variable
+<code>org-replace-disputed-keys</code>.  When set, Org will move the
+following key bindings in Org files, and in the agenda buffer
+(but not during date selection).
 </p>
 
 <pre class="example">
@@ -26130,35 +26568,34 @@ C-S-LEFT  ⇒  M-S--           C-S-RIGHT  ⇒  M-S-+
 </pre>
 
 <p>
-Yes, these are unfortunately more difficult to remember. If you want to
-have other replacement keys, look at the variable <code>org-disputed-keys</code>.
+Yes, these are unfortunately more difficult to remember. If you
+want to have other replacement keys, look at the variable
+<code>org-disputed-keys</code>.
 </p>
+</li>
+
+<li>ecomplete.el by Lars Magne Ingebrigtsen <a href="mailto:larsi@gnus.org">larsi@gnus.org</a>
 
 <p>
-ecomplete.el by Lars Magne Ingebrigtsen
-<a href="mailto:larsi@gnus.org">larsi@gnus.org</a>
-</p>
-
-<p>
-Ecomplete provides “electric” address completion in address header lines
-in message buffers. Sadly Orgtbl mode cuts ecompletes power supply: No
-completion happens when Orgtbl mode is enabled in message buffers while
-entering text in address header lines. If one wants to use ecomplete one
-should <i>not</i> follow the advice to automagically turn on Orgtbl mode in
-message buffers (see <a href="#Orgtbl-mode">Orgtbl mode</a>), but instead&#x2014;after
-filling in the message headers&#x2014;turn on Orgtbl mode manually when
+Ecomplete provides “electric” address completion in address
+header lines in message buffers. Sadly Orgtbl mode cuts
+ecompletes power supply: No completion happens when Orgtbl mode
+is enabled in message buffers while entering text in address
+header lines. If one wants to use ecomplete one should <i>not</i>
+follow the advice to automagically turn on Orgtbl mode in
+message buffers (see <a href="#Orgtbl-mode">Orgtbl mode</a>), but instead &#x2013; after filling
+in the message headers&#x2014;turn on Orgtbl mode manually when
 needed in the messages body.
 </p>
+</li>
+
+<li>filladapt.el by Kyle Jones
 
 <p>
-filladapt.el by Kyle Jones
-</p>
-
-<p>
-Org mode tries to do the right thing when filling paragraphs, list items
-and other elements. Many users reported they had problems using both
-filladapt.el and Org mode, so a safe thing to do is to disable it like
-this:
+Org mode tries to do the right thing when filling paragraphs,
+list items and other elements. Many users reported they had
+problems using both filladapt.el and Org mode, so a safe thing
+to do is to disable it like this:
 </p>
 
 <div class="org-src-container">
@@ -26166,15 +26603,14 @@ this:
 <pre class="src src-lisp">(add-hook 'org-mode-hook 'turn-off-filladapt-mode)
 </pre>
 </div>
+</li>
+
+<li>yasnippet.el
 
 <p>
-yasnippet.el
-</p>
-
-<p>
-The way Org mode binds the <code>TAB</code> key (binding to <code>[tab]</code> instead of
-="\t"=) overrules YASnippet's access to this key. The following code
-fixed this problem:
+The way Org mode binds the <code>TAB</code> key (binding to <code>[tab]</code>
+instead of ="\t"=) overrules YASnippet's access to this
+key. The following code fixed this problem:
 </p>
 
 <div class="org-src-container">
@@ -26187,9 +26623,9 @@ fixed this problem:
 </div>
 
 <p>
-The latest version of yasnippet doesn't play well with Org mode. If the
-above code does not fix the conflict, start by defining the following
-function:
+The latest version of yasnippet doesn't play well with Org
+mode. If the above code does not fix the conflict, start by
+defining the following function:
 </p>
 
 <div class="org-src-container">
@@ -26213,16 +26649,16 @@ Then, tell Org mode what to do with the new function:
             (define-key yas/keymap [tab] 'yas/next-field)))
 </pre>
 </div>
+</li>
+
+<li>windmove.el by Hovav Shacham
 
 <p>
-windmove.el by Hovav Shacham
-</p>
-
-<p>
-This package also uses the S-&lt;cursor&gt; keys, so everything written in the
-paragraph above about CUA mode also applies here. If you want make the
-windmove function active in locations where Org mode does not have
-special functionality on S-cursor, add this to your configuration:
+This package also uses the S-&lt;cursor&gt; keys, so everything
+written in the paragraph above about CUA mode also applies
+here. If you want make the windmove function active in
+locations where Org mode does not have special functionality on
+S-cursor, add this to your configuration:
 </p>
 
 <div class="org-src-container">
@@ -26234,15 +26670,14 @@ special functionality on S-cursor, add this to your configuration:
 (add-hook 'org-shiftright-final-hook 'windmove-right)
 </pre>
 </div>
+</li>
+
+<li>viper.el by Michael Kifer
 
 <p>
-viper.el by Michael Kifer
-</p>
-
-<p>
-Viper uses C-c / and therefore makes this key not access the
-corresponding Org mode command <code>org-sparse-tree</code>. You need to find
-another key for this command, or override the key in
+Viper uses <code>C-c /</code> and therefore makes this key not access the
+corresponding Org mode command <code>org-sparse-tree</code>. You need to
+find another key for this command, or override the key in
 <code>viper-vi-global-user-map</code> with
 </p>
 
@@ -26251,6 +26686,8 @@ another key for this command, or override the key in
 <pre class="src src-lisp">(define-key viper-vi-global-user-map "C-c /" 'org-sparse-tree)
 </pre>
 </div>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -26259,20 +26696,21 @@ another key for this command, or override the key in
 <h3 id="sec-15-11">15.11 org-crypt.el                                                 <a id="org_crypt" name="org_crypt"></a></h3>
 <div class="outline-text-3" id="text-15-11">
 <p>
-Org-crypt will encrypt the text of an entry, but not the headline, or
-properties. Org-crypt uses the Emacs EasyPG library to encrypt and
-decrypt files.
+Org-crypt will encrypt the text of an entry, but not the headline,
+or properties. Org-crypt uses the Emacs EasyPG library to encrypt
+and decrypt files.
 </p>
 
 <p>
-Any text below a headline that has a ‘:crypt:' tag will be automatically
-be encrypted when the file is saved. If you want to use a different tag
-just customize the <code>org-crypt-tag-matcher</code> setting.
+Any text below a headline that has a ‘:crypt:' tag will be
+automatically be encrypted when the file is saved. If you want to
+use a different tag just customize the <code>org-crypt-tag-matcher</code>
+setting.
 </p>
 
 <p>
-To use org-crypt it is suggested that you have the following in your
-.emacs:
+To use org-crypt it is suggested that you have the following in
+your .emacs:
 </p>
 
 <div class="org-src-container">
@@ -26298,8 +26736,8 @@ To use org-crypt it is suggested that you have the following in your
 </div>
 
 <p>
-Excluding the crypt tag from inheritance prevents already encrypted text
-being encrypted again.
+Excluding the crypt tag from inheritance prevents already encrypted
+text being encrypted again.
 </p>
 </div>
 </div>

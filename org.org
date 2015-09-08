@@ -2235,7 +2235,7 @@ modify this GNU manual.”
     equations with */C-c C-c/* in that line or with the normal
     recalculation commands in the table.
 
-**** Using multiple #+TBLFM lines
+**** Using multiple #+TBLFM lines                                     <<@Using-multiple-#+TBLFM-lines>>
 
      You may apply the formula temporarily. This is useful when you
      switch the formula. Place multiple ‘#+TBLFM' lines right after
@@ -13698,1054 +13698,1059 @@ modify this GNU manual.”
     Additional header arguments are defined on a language-specific
     basis, see [[@Languages][Languages]].
 
-*** 14.8.2.1 =:var=                                                   <<@var>>
+**** 14.8.2.1 =:var=                                                  <<@var>>
 
-    The =:var= header argument is used to pass arguments to code
-    blocks. The specifics of how arguments are included in a code
-    block vary by language; these are addressed in the
-    language-specific documentation.  However, the syntax used to
-    specify arguments is the same across all languages. In every case,
-    variables require a default value when they are declared.
+     The =:var= header argument is used to pass arguments to code
+     blocks. The specifics of how arguments are included in a code
+     block vary by language; these are addressed in the
+     language-specific documentation.  However, the syntax used to
+     specify arguments is the same across all languages. In every
+     case, variables require a default value when they are declared.
 
-    The values passed to arguments can either be literal values,
-    references, or Emacs Lisp code (see [[@var][Emacs Lisp evaluation of
-    variables]]).  References include anything in the Org mode file that
-    takes a =#+NAME:= or =#+RESULTS:= line: tables, lists,
-    =#+BEGIN_EXAMPLE= blocks, other code blocks and the results of
-    other code blocks.
+     The values passed to arguments can either be literal values,
+     references, or Emacs Lisp code (see [[@var][Emacs Lisp evaluation of
+     variables]]).  References include anything in the Org mode file
+     that takes a =#+NAME:= or =#+RESULTS:= line: tables, lists,
+     =#+BEGIN_EXAMPLE= blocks, other code blocks and the results of
+     other code blocks.
 
-    Note: When a reference is made to another code block, the
-    referenced block will be evaluated unless it has current cached
-    results (see [[@cache][cache]]).
+     Note: When a reference is made to another code block, the
+     referenced block will be evaluated unless it has current cached
+     results (see [[@cache][cache]]).
 
-    Argument values can be indexed in a manner similar to arrays (see
-    [[@var][Indexable variable values]]).
+     Argument values can be indexed in a manner similar to arrays (see
+     [[@var][Indexable variable values]]).
 
-    The following syntax is used to pass arguments to code blocks
-    using the =:var= header argument.
+     The following syntax is used to pass arguments to code blocks
+     using the =:var= header argument.
 
-    #+BEGIN_EXAMPLE
-      :var name=assign
-    #+END_EXAMPLE
+     #+BEGIN_EXAMPLE
+       :var name=assign
+     #+END_EXAMPLE
 
-    The argument, =assign=, can either be a literal value, such as a
-    string ‘"string"' or a number ‘9', or a reference to a table, a
-    list, a literal example, another code block (with or without
-    arguments), or the results of evaluating another code block.
+     The argument, =assign=, can either be a literal value, such as a
+     string ‘"string"' or a number ‘9', or a reference to a table, a
+     list, a literal example, another code block (with or without
+     arguments), or the results of evaluating another code block.
 
-    Here are examples of passing values by reference:
+     Here are examples of passing values by reference:
 
-     - /table/
+      - /table/
 
-       an Org mode table named with either a =#+NAME:= line
+        an Org mode table named with either a =#+NAME:= line
+
+         #+BEGIN_EXAMPLE
+           #+NAME: example-table
+           | 1 |
+           | 2 |
+           | 3 |
+           | 4 |
+
+           #+NAME: table-length
+           #+BEGIN_SRC emacs-lisp :var table=example-table
+           (length table)
+           #+END_SRC
+
+           #+RESULTS: table-length
+           : 4
+         #+END_EXAMPLE
+
+       - /list/
+
+         a simple list named with a =#+NAME:= line (note that nesting
+         is not carried through to the source code block)
+
+         #+BEGIN_EXAMPLE
+           #+NAME: example-list
+             - simple
+               - not
+               - nested
+             - list
+
+           #+BEGIN_SRC emacs-lisp :var x=example-list
+             (print x)
+           #+END_SRC
+
+           #+RESULTS:
+           | simple | list |
+         #+END_EXAMPLE
+
+       - /code block without arguments/
+
+         a code block name (from the example above), as assigned by
+         =#+NAME:=, optionally followed by parentheses
+
+         #+BEGIN_EXAMPLE
+         #+BEGIN_SRC emacs-lisp :var length=table-length()
+           (* 2 length)
+         #+END_SRC
+
+         #+RESULTS:
+           : 8
+         #+END_EXAMPLE
+
+      - /code block with arguments/
+
+        a code block name, as assigned by =#+NAME:=, followed by
+        parentheses and optional arguments passed within the
+        parentheses following the code block name using standard
+        function call syntax
 
         #+BEGIN_EXAMPLE
-          #+NAME: example-table
-          | 1 |
-          | 2 |
-          | 3 |
-          | 4 |
-
-          #+NAME: table-length
-          #+BEGIN_SRC emacs-lisp :var table=example-table
-          (length table)
+          #+NAME: double
+          #+BEGIN_SRC emacs-lisp :var input=8
+            (* 2 input)
           #+END_SRC
 
-          #+RESULTS: table-length
+          #+RESULTS: double
+          : 16
+
+          #+NAME: squared
+          #+BEGIN_SRC emacs-lisp :var input=double(input=1)
+          (* input input)
+          #+END_SRC
+
+          #+RESULTS: squared
           : 4
         #+END_EXAMPLE
 
-      - /list/
+      - /literal example/
 
-        a simple list named with a =#+NAME:= line (note that nesting
-        is not carried through to the source code block)
+        a literal example block named with a =#+NAME:= line
 
         #+BEGIN_EXAMPLE
-          #+NAME: example-list
-            - simple
-              - not
-              - nested
-            - list
+          #+NAME: literal-example
+          #+BEGIN_EXAMPLE
+          A literal example
+          on two lines
+         \#+END_EXAMPLE
 
-          #+BEGIN_SRC emacs-lisp :var x=example-list
-            (print x)
+          #+NAME: read-literal-example
+          #+BEGIN_SRC emacs-lisp :var x=literal-example
+            (concatenate 'string x " for you.")
           #+END_SRC
 
-          #+RESULTS:
-          | simple | list |
+          #+RESULTS: read-literal-example
+          : A literal example
+          : on two lines for you.
         #+END_EXAMPLE
 
-      - /code block without arguments/
+***** Indexable variable values
 
-        a code block name (from the example above), as assigned by
-        =#+NAME:=, optionally followed by parentheses
+      It is possible to reference portions of variable values by
+      “indexing” into the variables. Indexes are 0 based with negative
+      values counting back from the end. If an index is separated by
+      =,=s then each subsequent section will index into the next
+      deepest nesting or dimension of the value. Note that this
+      indexing occurs /before/ other table related header arguments
+      like =:hlines=, =:colnames= and =:rownames= are applied. The
+      following example assigns the last cell of the first row the
+      table =example-table= to the variable =data=:
 
-        #+BEGIN_EXAMPLE
-        #+BEGIN_SRC emacs-lisp :var length=table-length()
-          (* 2 length)
+      #+BEGIN_EXAMPLE
+        #+NAME: example-table
+        | 1 | a |
+        | 2 | b |
+        | 3 | c |
+        | 4 | d |
+
+        #+BEGIN_SRC emacs-lisp :var data=example-table[0,-1]
+          data
         #+END_SRC
 
         #+RESULTS:
-          : 8
+        : a
+      #+END_EXAMPLE
+
+      Ranges of variable values can be referenced using two integers
+      separated by a =:=, in which case the entire inclusive range is
+      referenced. For example the following assigns the middle three
+      rows of =example-table= to =data=.
+
+      #+BEGIN_EXAMPLE
+        #+NAME: example-table
+        | 1 | a |
+        | 2 | b |
+        | 3 | c |
+        | 4 | d |
+        | 5 | 3 |
+
+        #+BEGIN_SRC emacs-lisp :var data=example-table[1:3]
+          data
+        #+END_SRC
+
+        #+RESULTS:
+        | 2 | b |
+        | 3 | c |
+        | 4 | d |
+      #+END_EXAMPLE
+
+      Additionally, an empty index, or the single character =*=, are
+      both interpreted to mean the entire range and as such are
+      equivalent to =0:-1=, as shown in the following example in which
+      the entire first column is referenced.
+
+      #+BEGIN_EXAMPLE
+        #+NAME: example-table
+        | 1 | a |
+        | 2 | b |
+        | 3 | c |
+        | 4 | d |
+
+        #+BEGIN_SRC emacs-lisp :var data=example-table[,0]
+          data
+        #+END_SRC
+
+        #+RESULTS:
+        | 1 | 2 | 3 | 4 |
+      #+END_EXAMPLE
+
+      It is possible to index into the results of code blocks as well
+      as tables. Any number of dimensions can be indexed. Dimensions
+      are separated from one another by commas, as shown in the
+      following example.
+
+      #+BEGIN_EXAMPLE
+        #+NAME: 3D
+        #+BEGIN_SRC emacs-lisp
+          '(((1  2  3)  (4  5  6)  (7  8  9))
+            ((10 11 12) (13 14 15) (16 17 18))
+            ((19 20 21) (22 23 24) (25 26 27)))
+        #+END_SRC
+
+        #+BEGIN_SRC emacs-lisp :var data=3D[1,,1]
+          data
+        #+END_SRC
+
+        #+RESULTS:
+        | 11 | 14 | 17 |
+      #+END_EXAMPLE
+
+***** Emacs Lisp evaluation of variables
+
+      Emacs lisp code can be used to initialize variable values. When
+      a variable value starts with =(=, =[=, ='= or =`= it will be
+      evaluated as Emacs Lisp and the result of the evaluation will be
+      assigned as the variable value. The following example
+      demonstrates use of this evaluation to reliably pass the
+      file-name of the Org mode buffer to a code block---note that
+      evaluation of header arguments is guaranteed to take place in
+      the original Org mode file, while there is no such guarantee for
+      evaluation of the code block body.
+
+      #+BEGIN_EXAMPLE
+        #+BEGIN_SRC sh :var filename=(buffer-file-name) :exports both
+          wc -w $filename
+        #+END_SRC
+      #+END_EXAMPLE
+
+      Note that values read from tables and lists will not be
+      evaluated as Emacs Lisp, as shown in the following example.
+
+      #+BEGIN_EXAMPLE
+        #+NAME: table
+        | (a b c) |
+
+        #+HEADERS: :var data=table[0,0]
+        #+BEGIN_SRC perl
+          $data
+        #+END_SRC
+
+        #+RESULTS:
+        : (a b c)
+      #+END_EXAMPLE
+
+**** 14.8.2.2 =:results=                                              <<@Results>>
+
+     There are four classes of =:results= header argument. Only one
+     option per class may be supplied per code block.
+
+      - *collection* header arguments specify how the results should
+        be collected from the code block
+
+      - *type* header arguments specify what type of result the code
+        block will return -- which has implications for how they will
+        be processed before insertion into the Org mode buffer
+
+      - *format* header arguments specify what type of result the code
+        block will return -- which has implications for how they will
+        be inserted into the Org mode buffer
+
+      - *handling* header arguments specify how the results of
+        evaluating the code block should be handled.
+
+***** Collection
+
+      The following options are mutually exclusive, and specify how
+      the results should be collected from the code block.
+
+       - =value= This is the default. The result is the value of the
+         last statement in the code block. This header argument places
+         the evaluation in functional mode. Note that in some
+         languages, e.g., Python, use of this result type requires
+         that a =return= statement be included in the body of the
+         source code block. E.g., =:results value=.
+
+       - =output= The result is the collection of everything printed
+         to STDOUT during the execution of the code block. This header
+         argument places the evaluation in scripting mode. E.g.,
+         =:results output=.
+
+***** Type
+
+      The following options are mutually exclusive and specify what
+      type of results the code block will return. By default, results
+      are inserted as either a table or scalar depending on their
+      value.
+
+       - =table=, =vector= The results should be interpreted as an Org
+         mode table. If a single value is returned, it will be
+         converted into a table with one row and one column. E.g.,
+         =:results value table=.
+
+       - =list= The results should be interpreted as an Org mode
+         list. If a single scalar value is returned it will be
+         converted into a list with only one element.
+
+       - =scalar=, =verbatim= The results should be interpreted
+         literally---they will not be converted into a table. The
+         results will be inserted into the Org mode buffer as quoted
+         text. E.g., =:results value verbatim=.
+
+       - =file= The results will be interpreted as the path to a file,
+         and will be inserted into the Org mode buffer as a file
+         link. E.g., =:results value file=.
+
+***** Format
+
+      The following options are mutually exclusive and specify what
+      type of results the code block will return. By default, results
+      are inserted according to the type as specified above.
+
+       - =raw= The results are interpreted as raw Org mode code and
+         are inserted directly into the buffer. If the results look
+         like a table they will be aligned as such by Org mode. E.g.,
+         =:results value raw=.
+
+       - =org= The results are will be enclosed in a =BEGIN_SRC org=
+         block.  They are not comma-escaped by default but they will
+         be if you hit TAB in the block and/or if you export the
+         file. E.g., =:results value org=.
+
+       - =html= Results are assumed to be HTML and will be enclosed in
+         a =BEGIN_HTML= block. E.g., =:results value html=.
+
+       - =latex= Results assumed to be LaTeX and are enclosed in a
+         =BEGIN_LaTeX= block. E.g., =:results value latex=.
+
+       - =code= Result are assumed to be parsable code and are
+         enclosed in a code block. E.g., =:results value code=.
+
+       - =pp= The result is converted to pretty-printed code and is
+         enclosed in a code block. This option currently supports
+         Emacs Lisp, Python, and Ruby. E.g., =:results value pp=.
+
+       - =drawer= The result is wrapped in a RESULTS drawer. This can
+         be useful for inserting =raw= or =org= syntax results in such
+         a way that their extent is known and they can be
+         automatically removed or replaced.
+
+***** Handling
+
+      The following results options indicate what happens with the
+      results once they are collected.
+
+       - =silent= The results will be echoed in the minibuffer but
+         will not be inserted into the Org mode buffer. E.g.,
+         =:results output silent=.
+
+       - =replace= The default value. Any existing results will be
+         removed, and the new results will be inserted into the Org
+         mode buffer in their place. E.g., =:results output replace=.
+
+       - =append= If there are pre-existing results of the code block
+         then the new results will be appended to the existing
+         results. Otherwise the new results will be inserted as with
+         =replace=.
+
+       - =prepend= If there are pre-existing results of the code block
+         then the new results will be prepended to the existing
+         results. Otherwise the new results will be inserted as with
+         =replace=.
+
+**** 14.8.2.3 =:file=                                                 <<@file>>
+
+     The header argument =:file= is used to specify an external file
+     in which to save code block results. After code block evaluation
+     an Org mode style =[[file:]]= link (see [[@Link-format][Link format]]) to the file will
+     be inserted into the Org mode buffer. Some languages including R,
+     gnuplot, dot, and ditaa provide special handling of the =:file=
+     header argument automatically wrapping the code block body in the
+     boilerplate code required to save output to the specified
+     file. This is often useful for saving graphical output of a code
+     block to the specified file.
+
+     The argument to =:file= should be either a string specifying the
+     path to a file, or a list of two strings in which case the first
+     element of the list should be the path to a file and the second a
+     description for the link.
+
+**** 14.8.2.4 =:file-desc=                                            <<@file_desc>>
+
+     The value of the =:file-desc= header argument is used to provide
+     a description for file code block results which are inserted as
+     Org mode links (see [[@Link-format][Link format]]). If the =:file-desc= header
+     argument is given with no value the link path will be placed in
+     both the “link” and the “description” portion of the Org mode
+     link.
+
+**** 14.8.2.5 =:file-ext=                                             <<@file_ext>>
+
+     The value of the =:file-ext= header argument is used to provide
+     an extension to write the file output to. It is combined with the
+     =#+NAME:= of the source block and the value of the [[@output_dir][output-dir]]
+     header argument to generate a complete file name.
+
+     This header arg will be overridden by =:file=, and thus has no
+     effect when the latter is specified.
+
+**** 14.8.2.6 =:output-dir=                                           <<@output_dir>>
+
+     The value of the =:output-dir= header argument is used to provide
+     a directory to write the file output to. It may specify an
+     absolute directory (beginning with =/=) or a relative directory
+     (without =/=). It can be combined with the =#+NAME:= of the
+     source block and the value of the [[@file_ext][file-ext]] header argument to
+     generate a complete file name, or used along with a [[@file][file]] header
+     arg.
+
+**** 14.8.2.7 =:dir= and remote execution                             <<@dir>>
+
+     While the =:file= header argument can be used to specify the path
+     to the output file, =:dir= specifies the default directory during
+     code block execution. If it is absent, then the directory
+     associated with the current buffer is used. In other words,
+     supplying =:dir path= temporarily has the same effect as changing
+     the current directory with */M-x cd path RET/*, and then not
+     supplying =:dir=. Under the surface, =:dir= simply sets the value
+     of the Emacs variable =default-directory=.
+
+     When using =:dir=, you should supply a relative path for file
+     output (e.g., =:file myfile.jpg= or =:file results/myfile.jpg=)
+     in which case that path will be interpreted relative to the
+     default directory.
+
+     In other words, if you want your plot to go into a folder called
+     Work in your home directory, you could use
+
+     #+BEGIN_EXAMPLE
+       #+BEGIN_SRC R :file myplot.png :dir ~/Work
+       matplot(matrix(rnorm(100), 10), type="l")
+       #+END_SRC
+     #+END_EXAMPLE
+
+***** Remote execution
+
+      A directory on a remote machine can be specified using tramp
+      file syntax, in which case the code will be evaluated on the
+      remote machine.  An example is
+
+      #+BEGIN_EXAMPLE
+        #+BEGIN_SRC R :file plot.png :dir /dand@yakuba.princeton.edu:
+        plot(1:10, main=system("hostname", intern=TRUE))
+        #+END_SRC
+      #+END_EXAMPLE
+
+      Text results will be returned to the local Org mode buffer as
+      usual, and file output will be created on the remote machine
+      with relative paths interpreted relative to the remote
+      directory. An Org mode link to the remote file will be created.
+
+      So, in the above example a plot will be created on the remote
+      machine, and a link of the following form will be inserted in
+      the org buffer:
+
+      #+BEGIN_EXAMPLE
+      [[file:/scp:dand@yakuba.princeton.edu:/home/dand/plot.png][plot.png]]
+      #+END_EXAMPLE
+
+      Most of this functionality follows immediately from the fact
+      that =:dir= sets the value of the Emacs variable
+      =default-directory=, thanks to tramp. Those using XEmacs, or GNU
+      Emacs prior to version 23 may need to install tramp separately
+      in order for these features to work correctly.
+
+***** Further points
+
+       - If =:dir= is used in conjunction with =:session=, although it
+         will determine the starting directory for a new session as
+         expected, no attempt is currently made to alter the directory
+         associated with an existing session.
+
+       - =:dir= should typically not be used to create files during
+         export with =:exports results= or =:exports both=. The reason
+         is that, in order to retain portability of exported material
+         between machines, during export links inserted into the
+         buffer will /not/ be expanded against =default
+         directory=. Therefore, if =default-directory= is altered
+         using =:dir=, it is probable that the file will be created in
+         a location to which the link does not point.
+
+**** 14.8.2.8 =:exports=                                              <<@exports>>
+
+     The =:exports= header argument specifies what should be included
+     in HTML or LaTeX exports of the Org mode file. Note that the
+     =:exports= option is only relevant for code blocks, not inline
+     code.
+
+      - =code= The default. The body of code is included into the
+        exported file. E.g., =:exports code=.
+
+      - =results= The result of evaluating the code is included in the
+        exported file. E.g., =:exports results=.
+
+      - =both= Both the code and results are included in the exported
+        file.  E.g., =:exports both=.
+
+      - =none= Nothing is included in the exported file. E.g.,
+        =:exports none=.
+
+**** 14.8.2.9 =:tangle=                                               <<@tangle>>
+
+     The =:tangle= header argument specifies whether or not the code
+     block should be included in tangled extraction of source code
+     files.
+
+      - =tangle= The code block is exported to a source code file
+        named after the full path (including the directory) and file
+        name (w/o extension) of the Org mode file. E.g., =:tangle
+        yes=.
+
+      - =no= The default. The code block is not exported to a source
+        code file. E.g., =:tangle no=.
+
+      - other Any other string passed to the =:tangle= header argument
+        is interpreted as a path (directory and file name relative to
+        the directory of the Org mode file) to which the block will be
+        exported.  E.g., =:tangle path=.
+
+**** 14.8.2.10 =:mkdirp=                                              <<@mkdirp>>
+
+     The =:mkdirp= header argument can be used to create parent
+     directories of tangled files when missing. This can be set to
+     =yes= to enable directory creation or to =no= to inhibit
+     directory creation.
+
+**** 14.8.2.11 =:comments=                                            <<@comments>>
+
+     By default code blocks are tangled to source-code files without
+     any insertion of comments beyond those which may already exist in
+     the body of the code block. The =:comments= header argument can
+     be set as follows to control the insertion of extra comments into
+     the tangled code file.
+
+      - =no= The default. No extra comments are inserted during
+        tangling.
+
+      - =link= The code block is wrapped in comments which contain
+        pointers back to the original Org file from which the code was
+        tangled.
+
+      - =yes= A synonym for “link” to maintain backwards
+        compatibility.
+
+      - =org= Include text from the Org mode file as a comment. The
+        text is picked from the leading context of the tangled code
+        and is limited by the nearest headline or source block as the
+        case may be.
+
+      - =both= Turns on both the “link” and “org” comment options.
+
+      - =noweb= Turns on the “link” comment option, and additionally
+        wraps expanded noweb references in the code block body in link
+        comments.
+
+**** 14.8.2.12 =:padline=                                             <<@padline>>
+
+     Control in insertion of padding lines around code block bodies in
+     tangled code files. The default value is =yes= which results in
+     insertion of newlines before and after each tangled code
+     block. The following arguments are accepted.
+
+      - =yes= Insert newlines before and after each code block body in
+        tangled code files.
+
+      - =no= Do not insert any newline padding in tangled output.
+
+**** 14.8.2.13 =:no-expand=                                           <<@no_expand>>
+
+     By default, code blocks are expanded with
+     =org-babel-expand-src-block= during tangling. This has the effect
+     of assigning values to variables specified with =:var= (see [[@var][var]]),
+     and of replacing “noweb” references (see [[@Noweb-reference-syntax][Noweb reference syntax]])
+     with their targets. The =:no-expand= header argument can be used
+     to turn off this behavior. Note: The =:no-expand= header argument
+     has no impact on export, i.e. code blocks will irrespective of
+     this header argument expanded for execution.
+
+**** 14.8.2.14 =:session=                                             <<@session>>
+
+     The =:session= header argument starts a (possibly named) session
+     for an interpreted language where the interpreter's state is
+     preserved. All code blocks sharing the same name are exectuted by
+     the same interpreter process. By default, a session is not
+     started.
+
+     - =none= The default. Each block is evaluated in its own
+       interpreter process, which is terminated after the evaluation.
+
+     - =other= Any other string passed to the =:session= header
+       argument will give the session a name. For example, =:session
+       mysession=. If =:session= is given but no name string is
+       specified, the session is named according to the language used
+       in the block. All blocks with the same session name share the
+       same session. Using different session names enables concurrent
+       sessions (even for the same interpreted language, if the
+       language supports multiple sessions).
+
+**** 14.8.2.15 =:noweb=                                               <<@noweb>>
+
+     The =:noweb= header argument controls expansion of “noweb” syntax
+     references (see [[@Noweb-reference-syntax][Noweb reference syntax]]) when the code block is
+     evaluated, tangled, or exported. The =:noweb= header argument can
+     have one of the five values: =no=, =yes=, =tangle=, or
+     =no-export= =strip-export=.
+
+      - =no= The default. “Noweb” syntax references in the body of the
+        code block will not be expanded before the code block is
+        evaluated, tangled or exported.
+
+      - =yes= “Noweb” syntax references in the body of the code block
+        will be expanded before the code block is evaluated, tangled
+        or exported.
+
+      - =tangle= “Noweb” syntax references in the body of the code
+        block will be expanded before the code block is
+        tangled. However, “noweb” syntax references will not be
+        expanded when the code block is evaluated or exported.
+
+      - =no-export= “Noweb” syntax references in the body of the code
+        block will be expanded before the block is evaluated or
+        tangled. However, “noweb” syntax references will not be
+        expanded when the code block is exported.
+
+      - =strip-export= “Noweb” syntax references in the body of the
+        code block will be expanded before the block is evaluated or
+        tangled.  However, “noweb” syntax references will be removed
+        when the code block is exported.
+
+      - =eval= “Noweb” syntax references in the body of the code block
+        will only be expanded before the block is evaluated.
+
+***** Noweb prefix lines
+
+      Noweb insertions are now placed behind the line prefix of the
+      =<<reference>>=. This behavior is illustrated in the following
+      example.  Because the =<<example>>= noweb reference appears
+      behind the SQL comment syntax, each line of the expanded noweb
+      reference will be commented.
+
+      This code block:
+
+      #+BEGIN_EXAMPLE
+        -- <<example>>
+      #+END_EXAMPLE
+
+      expands to:
+
+      #+BEGIN_EXAMPLE
+        -- this is the
+        -- multi-line body of example
+      #+END_EXAMPLE
+
+      Note that noweb replacement text that does not contain any
+      newlines will not be affected by this change, so it is still
+      possible to use inline noweb references.
+
+**** 14.8.2.16 =:noweb-ref=                                           <<@noweb_ref>>
+
+     When expanding “noweb” style references, the bodies of all code
+     block with /either/ a block name matching the reference name /or/
+     a =:noweb-ref= header argument matching the reference name will
+     be concatenated together to form the replacement text.
+
+     By setting this header argument at the subtree or file level,
+     simple code block concatenation may be achieved. For example,
+     when tangling the following Org mode file, the bodies of code
+     blocks will be concatenated into the resulting pure code
+     file[fn:FOOT170].
+
+     #+BEGIN_EXAMPLE
+       #+BEGIN_SRC sh :tangle yes :noweb yes :shebang #!/bin/sh
+         <<fullest-disk>>
+       #+END_SRC
+       * the mount point of the fullest disk
+         :PROPERTIES:
+         :noweb-ref: fullest-disk
+         :END:
+
+       ** query all mounted disks
+       #+BEGIN_SRC sh
+       df \
+       #+END_SRC
+
+       ** strip the header row
+       #+BEGIN_SRC sh
+         |sed '1d' \
+       #+END_SRC
+
+       ** sort by the percent full
+       #+BEGIN_SRC sh
+         |awk '{print $5 " " $6}'|sort -n |tail -1 \
+       #+END_SRC
+
+       ** extract the mount point
+       #+BEGIN_SRC sh
+         |awk '{print $2}'
+       #+END_SRC
+     #+END_EXAMPLE
+
+     The =:noweb-sep= (see [[@noweb_sep][noweb-sep]]) header argument holds the string
+     used to separate accumulate noweb references like those above. By
+     default a newline is used.
+
+**** 14.8.2.17 =:noweb-sep=                                           <<@noweb_sep>>
+
+     The =:noweb-sep= header argument holds the string used to
+     separate accumulate noweb references (see [[@noweb_ref][noweb-ref]]). By default
+     a newline is used.
+
+**** 14.8.2.18 =:cache=                                               <<@cache>>
+
+     The =:cache= header argument controls the use of in-buffer
+     caching of the results of evaluating code blocks. It can be used
+     to avoid re-evaluating unchanged code blocks. Note that the
+     =:cache= header argument will not attempt to cache results when
+     the =:session= header argument is used, because the results of
+     the code block execution may be stored in the session outside of
+     the Org mode buffer. The =:cache= header argument can have one of
+     two values: =yes= or =no=.
+
+      - =no= The default. No caching takes place, and the code block
+        will be evaluated every time it is called.
+
+      - =yes= Every time the code block is run a SHA1 hash of the code
+        and arguments passed to the block will be generated. This hash
+        is packed into the =#+RESULTS:= line and will be checked on
+        subsequent executions of the code block. If the code block has
+        not changed since the last time it was evaluated, it will not
+        be re-evaluated.
+
+     Code block caches notice if the value of a variable argument to
+     the code block has changed. If this is the case, the cache is
+     invalidated and the code block is re-run. In the following
+     example, =caller= will not be re-run unless the results of
+     =random= have changed since it was last run.
+
+     #+BEGIN_EXAMPLE
+       #+NAME: random
+       #+BEGIN_SRC R :cache yes
+       runif(1)
+       #+END_SRC
+
+       #+RESULTS[a2a72cd647ad44515fab62e144796432793d68e1]: random
+       0.4659510825295
+
+       #+NAME: caller
+       #+BEGIN_SRC emacs-lisp :var x=random :cache yes
+       x
+       #+END_SRC
+
+       #+RESULTS[bec9c8724e397d5df3b696502df3ed7892fc4f5f]: caller
+       0.254227238707244
+     #+END_EXAMPLE
+
+**** 14.8.2.19 =:sep=                                                 <<@sep>>
+
+     The =:sep= header argument can be used to control the delimiter
+     used when writing tabular results out to files external to Org
+     mode. This is used either when opening tabular results of a code
+     block by calling the =org-open-at-point= function bound to C-c
+     C-o on the code block, or when writing code block results to an
+     external file (see [[@file][file]]) header argument.
+
+     By default, when =:sep= is not specified output tables are tab
+     delimited.
+
+**** 14.8.2.20 =:hlines=                                              <<@hlines>>
+
+     Tables are frequently represented with one or more horizontal
+     lines, or hlines. The =:hlines= argument to a code block accepts
+     the values =yes= or =no=, with a default value of =no=.
+
+      - =no= Strips horizontal lines from the input table. In most
+        languages this is the desired effect because an =hline= symbol
+        is interpreted as an unbound variable and raises an
+        error. Setting =:hlines no= or relying on the default value
+        yields the following results.
+
+        #+BEGIN_EXAMPLE
+          #+NAME: many-cols
+          | a | b | c |
+          |---+---+---|
+          | d | e | f |
+          |---+---+---|
+          | g | h | i |
+
+          #+NAME: echo-table
+          #+BEGIN_SRC python :var tab=many-cols
+             return tab
+          #+END_SRC
+
+          #+RESULTS: echo-table
+          | a | b | c |
+          | d | e | f |
+          | g | h | i |
         #+END_EXAMPLE
 
-     - /code block with arguments/
+      - =yes= Leaves hlines in the table. Setting =:hlines yes= has
+        this effect.
 
-       a code block name, as assigned by =#+NAME:=, followed by
-       parentheses and optional arguments passed within the
-       parentheses following the code block name using standard
-       function call syntax
+        #+BEGIN_EXAMPLE
+          #+NAME: many-cols
+          | a | b | c |
+          |---+---+---|
+          | d | e | f |
+          |---+---+---|
+          | g | h | i |
 
-       #+BEGIN_EXAMPLE
-         #+NAME: double
-         #+BEGIN_SRC emacs-lisp :var input=8
-           (* 2 input)
-         #+END_SRC
+          #+NAME: echo-table
+          #+BEGIN_SRC python :var tab=many-cols :hlines yes
+             return tab
+          #+END_SRC
 
-         #+RESULTS: double
-         : 16
+          #+RESULTS: echo-table
+          | a | b | c |
+          |---+---+---|
+          | d | e | f |
+          |---+---+---|
+          | g | h | i |
+        #+END_EXAMPLE
 
-         #+NAME: squared
-         #+BEGIN_SRC emacs-lisp :var input=double(input=1)
-         (* input input)
-         #+END_SRC
+**** 14.8.2.21 =:colnames=                                            <<@colnames>>
 
-         #+RESULTS: squared
-         : 4
-       #+END_EXAMPLE
+     The =:colnames= header argument accepts the values =yes=, =no=,
+     or =nil= for unassigned. The default value is =nil=. Note that
+     the behavior of the =:colnames= header argument may differ across
+     languages.
 
-     - /literal example/
+      - =nil= If an input table looks like it has column names
+        (because its second row is an hline), then the column names
+        will be removed from the table before processing, then
+        reapplied to the results.
 
-       a literal example block named with a =#+NAME:= line
+        #+BEGIN_EXAMPLE
+          #+NAME: less-cols
+          | a |
+          |---|
+          | b |
+          | c |
 
-       #+BEGIN_EXAMPLE
-         #+NAME: literal-example
-         #+BEGIN_EXAMPLE
-         A literal example
-         on two lines
-        \#+END_EXAMPLE
+          #+NAME: echo-table-again
+          #+BEGIN_SRC python :var tab=less-cols
+            return [[val + '*' for val in row] for row in tab]
+          #+END_SRC
 
-         #+NAME: read-literal-example
-         #+BEGIN_SRC emacs-lisp :var x=literal-example
-           (concatenate 'string x " for you.")
-         #+END_SRC
+          #+RESULTS: echo-table-again
+          | a  |
+          |----|
+          | b* |
+          | c* |
+        #+END_EXAMPLE
 
-         #+RESULTS: read-literal-example
-         : A literal example
-         : on two lines for you.
-       #+END_EXAMPLE
+        Please note that column names are not removed before the table
+        is indexed using variable indexing See [[@var][Indexable variable
+        values]].
 
-**** Indexable variable values
+      - =no= No column name pre-processing takes place
 
-     It is possible to reference portions of variable values by
-     “indexing” into the variables. Indexes are 0 based with negative
-     values counting back from the end. If an index is separated by
-     =,=s then each subsequent section will index into the next
-     deepest nesting or dimension of the value. Note that this
-     indexing occurs /before/ other table related header arguments
-     like =:hlines=, =:colnames= and =:rownames= are applied. The
-     following example assigns the last cell of the first row the
-     table =example-table= to the variable =data=:
+      - =yes= Column names are removed and reapplied as with =nil=
+        even if the table does not “look like” it has column names
+        (i.e., the second row is not an hline)
+
+**** 14.8.2.22 =:rownames=                                            <<@rownames>>
+
+     The =:rownames= header argument can take on the values =yes= or
+     =no=, with a default value of =no=. Note that Emacs Lisp code
+     blocks ignore the =:rownames= header argument entirely given the
+     ease with which tables with row names may be handled directly in
+     Emacs Lisp.
+
+      - =no= No row name pre-processing will take place.
+
+      - =yes= The first column of the table is removed from the table
+        before processing, and is then reapplied to the results.
+
+        #+BEGIN_EXAMPLE
+          #+NAME: with-rownames
+          | one | 1 | 2 | 3 | 4 |  5 |
+          | two | 6 | 7 | 8 | 9 | 10 |
+
+          #+NAME: echo-table-once-again
+          #+BEGIN_SRC python :var tab=with-rownames :rownames yes
+            return [[val + 10 for val in row] for row in tab]
+          #+END_SRC
+
+          #+RESULTS: echo-table-once-again
+          | one | 11 | 12 | 13 | 14 | 15 |
+          | two | 16 | 17 | 18 | 19 | 20 |
+        #+END_EXAMPLE
+
+        Please note that row names are not removed before the table is
+        indexed using variable indexing See [[@var][Indexable variable values]].
+
+**** 14.8.2.23 =:shebang=                                             <<@shebang>>
+
+     Setting the =:shebang= header argument to a string value (e.g.,
+     =:shebang "#!/bin/bash"=) causes the string to be inserted as the
+     first line of any tangled file holding the code block, and the
+     file permissions of the tangled file are set to make it
+     executable.
+
+**** 14.8.2.24 =:tangle-mode=                                         <<@tangle_mode>>
+
+     The =tangle-mode= header argument controls the permission set on
+     tangled files. The value of this header argument will be passed
+     to =set-file-modes=. For example, to set a tangled file as read
+     only use =:tangle-mode (identity #o444)=, or to set a tangled
+     file as executable use =:tangle-mode (identity #o755)=. Blocks
+     with =shebang= ([[@shebang][shebang]]) header arguments will automatically be
+     made executable unless the =tangle-mode= header argument is also
+     used. The behavior is undefined if multiple code blocks with
+     different values for the =tangle-mode= header argument are
+     tangled to the same file.
+
+**** 14.8.2.25 =:eval=                                                <<@eval>>
+
+     The =:eval= header argument can be used to limit the evaluation
+     of specific code blocks. The =:eval= header argument can be
+     useful for protecting against the evaluation of dangerous code
+     blocks or to ensure that evaluation will require a query
+     regardless of the value of the =org-confirm-babel-evaluate=
+     variable. The possible values of =:eval= and their effects are
+     shown below.
+
+      - =never or no=
+
+        The code block will not be evaluated under any circumstances.
+
+      - =query=
+
+        Evaluation of the code block will require a query.
+
+      - =never-export or no-export=
+
+        The code block will not be evaluated during export but may
+        still be called interactively.
+
+      - =query-export=
+
+        Evaluation of the code block during export will require a
+        query.
+
+      If this header argument is not set then evaluation is determined
+      by the value of the =org-confirm-babel-evaluate= variable see
+      [[@Code-evaluation-security][Code evaluation security]].
+
+**** 14.8.2.26 =:wrap=                                                <<@wrap>>
+
+     The =:wrap= header argument is used to mark the results of source
+     block evaluation. The header argument can be passed a string that
+     will be appended to =#+BEGIN_= and =#+END_=, which will then be
+     used to wrap the results. If not string is specified then the
+     results will be wrapped in a =#+BEGIN/END_RESULTS= block.
+
+**** 14.8.2.27 =:post=                                                <<@post>>
+
+     The =:post= header argument is used to post-process the results
+     of a code block execution. When a post argument is given, the
+     results of the code block will temporarily be bound to the
+     =*this*= variable. This variable may then be included in header
+     argument forms such as those used in [[@var][var]] header argument
+     specifications allowing passing of results to other code blocks,
+     or direct execution via Emacs Lisp.  Additional header arguments
+     may be passed to the =:post=-function.
+
+     The following two examples illustrate the usage of the =:post=
+     header argument. The first example shows how to attach a
+     attribute-line via =:post=.
 
      #+BEGIN_EXAMPLE
-       #+NAME: example-table
-       | 1 | a |
-       | 2 | b |
-       | 3 | c |
-       | 4 | d |
+       #+name: attr_wrap
+       #+begin_src sh :var data="" :var width="\\textwidth" :results output
+         echo "#+ATTR_LATEX: :width $width"
+         echo "$data"
+       #+end_src
 
-       #+BEGIN_SRC emacs-lisp :var data=example-table[0,-1]
-         data
-       #+END_SRC
+       #+header: :file /tmp/it.png
+       #+begin_src dot :post attr_wrap(width="5cm", data=*this*) :results drawer
+         digraph{
+                 a -> b;
+                 b -> c;
+                 c -> a;
+         }
+       #+end_src
 
        #+RESULTS:
-       : a
+       :RESULTS:
+       #+ATTR_LATEX :width 5cm
+       [[file:/tmp/it.png]]
+       :END:
      #+END_EXAMPLE
 
-     Ranges of variable values can be referenced using two integers
-     separated by a =:=, in which case the entire inclusive range is
-     referenced. For example the following assigns the middle three
-     rows of =example-table= to =data=.
+     The second examples shows how to use =:post= together with the
+     =:colnames= header argument.
 
      #+BEGIN_EXAMPLE
-       #+NAME: example-table
-       | 1 | a |
-       | 2 | b |
-       | 3 | c |
-       | 4 | d |
-       | 5 | 3 |
+       #+name: round-tbl
+       #+begin_src emacs-lisp :var tbl="" fmt="%.3f"
+         (mapcar (lambda (row)
+                   (mapcar (lambda (cell)
+                             (if (numberp cell)
+                                 (format fmt cell)
+                               cell))
+                           row))
+                 tbl)
+       #+end_src
 
-       #+BEGIN_SRC emacs-lisp :var data=example-table[1:3]
-         data
-       #+END_SRC
+       #+begin_src R :colnames yes :post round-tbl[:colnames yes](*this*)
+       set.seed(42)
+       data.frame(foo=rnorm(1))
+       #+end_src
 
        #+RESULTS:
-       | 2 | b |
-       | 3 | c |
-       | 4 | d |
+       |   foo |
+       |-------|
+       | 1.371 |
      #+END_EXAMPLE
 
-     Additionally, an empty index, or the single character =*=, are
-     both interpreted to mean the entire range and as such are
-     equivalent to =0:-1=, as shown in the following example in which
-     the entire first column is referenced.
-
-     #+BEGIN_EXAMPLE
-       #+NAME: example-table
-       | 1 | a |
-       | 2 | b |
-       | 3 | c |
-       | 4 | d |
-
-       #+BEGIN_SRC emacs-lisp :var data=example-table[,0]
-         data
-       #+END_SRC
-
-       #+RESULTS:
-       | 1 | 2 | 3 | 4 |
-     #+END_EXAMPLE
-
-     It is possible to index into the results of code blocks as well
-     as tables. Any number of dimensions can be indexed. Dimensions
-     are separated from one another by commas, as shown in the
-     following example.
-
-     #+BEGIN_EXAMPLE
-       #+NAME: 3D
-       #+BEGIN_SRC emacs-lisp
-         '(((1  2  3)  (4  5  6)  (7  8  9))
-           ((10 11 12) (13 14 15) (16 17 18))
-           ((19 20 21) (22 23 24) (25 26 27)))
-       #+END_SRC
-
-       #+BEGIN_SRC emacs-lisp :var data=3D[1,,1]
-         data
-       #+END_SRC
-
-       #+RESULTS:
-       | 11 | 14 | 17 |
-     #+END_EXAMPLE
-
-**** Emacs Lisp evaluation of variables
-
-     Emacs lisp code can be used to initialize variable values. When a
-     variable value starts with =(=, =[=, ='= or =`= it will be
-     evaluated as Emacs Lisp and the result of the evaluation will be
-     assigned as the variable value. The following example
-     demonstrates use of this evaluation to reliably pass the
-     file-name of the Org mode buffer to a code block---note that
-     evaluation of header arguments is guaranteed to take place in the
-     original Org mode file, while there is no such guarantee for
-     evaluation of the code block body.
-
-     #+BEGIN_EXAMPLE
-       #+BEGIN_SRC sh :var filename=(buffer-file-name) :exports both
-         wc -w $filename
-       #+END_SRC
-     #+END_EXAMPLE
-
-     Note that values read from tables and lists will not be evaluated
-     as Emacs Lisp, as shown in the following example.
-
-     #+BEGIN_EXAMPLE
-       #+NAME: table
-       | (a b c) |
-
-       #+HEADERS: :var data=table[0,0]
-       #+BEGIN_SRC perl
-         $data
-       #+END_SRC
-
-       #+RESULTS:
-       : (a b c)
-     #+END_EXAMPLE
-
-*** 14.8.2.2 =:results=                                               <<@Results>>
-
-    There are four classes of =:results= header argument. Only one
-    option per class may be supplied per code block.
-
-     - *collection* header arguments specify how the results should be
-       collected from the code block
-
-     - *type* header arguments specify what type of result the code
-       block will return -- which has implications for how they will
-       be processed before insertion into the Org mode buffer
-
-     - *format* header arguments specify what type of result the code
-       block will return -- which has implications for how they will
-       be inserted into the Org mode buffer
-
-     - *handling* header arguments specify how the results of
-       evaluating the code block should be handled.
-
-**** Collection
-
-     The following options are mutually exclusive, and specify how the
-     results should be collected from the code block.
-
-      - =value= This is the default. The result is the value of the
-        last statement in the code block. This header argument places
-        the evaluation in functional mode. Note that in some
-        languages, e.g., Python, use of this result type requires that
-        a =return= statement be included in the body of the source
-        code block. E.g., =:results value=.
-
-      - =output= The result is the collection of everything printed to
-        STDOUT during the execution of the code block. This header
-        argument places the evaluation in scripting mode. E.g.,
-        =:results output=.
-
-**** Type
-
-     The following options are mutually exclusive and specify what
-     type of results the code block will return. By default, results
-     are inserted as either a table or scalar depending on their
-     value.
-
-      - =table=, =vector= The results should be interpreted as an Org
-        mode table. If a single value is returned, it will be
-        converted into a table with one row and one column. E.g.,
-        =:results value table=.
-
-      - =list= The results should be interpreted as an Org mode
-        list. If a single scalar value is returned it will be
-        converted into a list with only one element.
-
-      - =scalar=, =verbatim= The results should be interpreted
-        literally---they will not be converted into a table. The
-        results will be inserted into the Org mode buffer as quoted
-        text. E.g., =:results value verbatim=.
-
-      - =file= The results will be interpreted as the path to a file,
-        and will be inserted into the Org mode buffer as a file
-        link. E.g., =:results value file=.
-
-**** Format
-
-     The following options are mutually exclusive and specify what
-     type of results the code block will return. By default, results
-     are inserted according to the type as specified above.
-
-      - =raw= The results are interpreted as raw Org mode code and are
-        inserted directly into the buffer. If the results look like a
-        table they will be aligned as such by Org mode. E.g.,
-        =:results value raw=.
-
-      - =org= The results are will be enclosed in a =BEGIN_SRC org=
-        block.  They are not comma-escaped by default but they will be
-        if you hit TAB in the block and/or if you export the
-        file. E.g., =:results value org=.
-
-      - =html= Results are assumed to be HTML and will be enclosed in
-        a =BEGIN_HTML= block. E.g., =:results value html=.
-
-      - =latex= Results assumed to be LaTeX and are enclosed in a
-        =BEGIN_LaTeX= block. E.g., =:results value latex=.
-
-      - =code= Result are assumed to be parsable code and are enclosed
-        in a code block. E.g., =:results value code=.
-
-      - =pp= The result is converted to pretty-printed code and is
-        enclosed in a code block. This option currently supports Emacs
-        Lisp, Python, and Ruby. E.g., =:results value pp=.
-
-      - =drawer= The result is wrapped in a RESULTS drawer. This can
-        be useful for inserting =raw= or =org= syntax results in such
-        a way that their extent is known and they can be automatically
-        removed or replaced.
-
-**** Handling
-
-     The following results options indicate what happens with the
-     results once they are collected.
-
-      - =silent= The results will be echoed in the minibuffer but will
-        not be inserted into the Org mode buffer. E.g., =:results
-        output silent=.
-
-      - =replace= The default value. Any existing results will be
-        removed, and the new results will be inserted into the Org
-        mode buffer in their place. E.g., =:results output replace=.
-
-      - =append= If there are pre-existing results of the code block
-        then the new results will be appended to the existing
-        results. Otherwise the new results will be inserted as with
-        =replace=.
-
-      - =prepend= If there are pre-existing results of the code block
-        then the new results will be prepended to the existing
-        results. Otherwise the new results will be inserted as with
-        =replace=.
-
-*** 14.8.2.3 =:file=                                                  <<@file>>
-
-    The header argument =:file= is used to specify an external file in
-    which to save code block results. After code block evaluation an
-    Org mode style =[[file:]]= link (see [[@Link-format][Link format]]) to the file will be
-    inserted into the Org mode buffer. Some languages including R,
-    gnuplot, dot, and ditaa provide special handling of the =:file=
-    header argument automatically wrapping the code block body in the
-    boilerplate code required to save output to the specified
-    file. This is often useful for saving graphical output of a code
-    block to the specified file.
-
-    The argument to =:file= should be either a string specifying the
-    path to a file, or a list of two strings in which case the first
-    element of the list should be the path to a file and the second a
-    description for the link.
-
-*** 14.8.2.4 =:file-desc=                                             <<@file_desc>>
-
-    The value of the =:file-desc= header argument is used to provide a
-    description for file code block results which are inserted as Org
-    mode links (see [[@Link-format][Link format]]). If the =:file-desc= header argument
-    is given with no value the link path will be placed in both the
-    “link” and the “description” portion of the Org mode link.
-
-*** 14.8.2.5 =:file-ext=                                              <<@file_ext>>
-
-    The value of the =:file-ext= header argument is used to provide an
-    extension to write the file output to. It is combined with the
-    =#+NAME:= of the source block and the value of the [[@output_dir][output-dir]]
-    header argument to generate a complete file name.
-
-    This header arg will be overridden by =:file=, and thus has no
-    effect when the latter is specified.
-
-*** 14.8.2.6 =:output-dir=                                            <<@output_dir>>
-
-    The value of the =:output-dir= header argument is used to provide
-    a directory to write the file output to. It may specify an
-    absolute directory (beginning with =/=) or a relative directory
-    (without =/=). It can be combined with the =#+NAME:= of the source
-    block and the value of the [[@file_ext][file-ext]] header argument to generate a
-    complete file name, or used along with a [[@file][file]] header arg.
-
-*** 14.8.2.7 =:dir= and remote execution                              <<@dir>>
-
-    While the =:file= header argument can be used to specify the path
-    to the output file, =:dir= specifies the default directory during
-    code block execution. If it is absent, then the directory
-    associated with the current buffer is used. In other words,
-    supplying =:dir path= temporarily has the same effect as changing
-    the current directory with */M-x cd path RET/*, and then not
-    supplying =:dir=. Under the surface, =:dir= simply sets the value
-    of the Emacs variable =default-directory=.
-
-    When using =:dir=, you should supply a relative path for file
-    output (e.g., =:file myfile.jpg= or =:file results/myfile.jpg=) in
-    which case that path will be interpreted relative to the default
-    directory.
-
-    In other words, if you want your plot to go into a folder called
-    Work in your home directory, you could use
-
-    #+BEGIN_EXAMPLE
-      #+BEGIN_SRC R :file myplot.png :dir ~/Work
-      matplot(matrix(rnorm(100), 10), type="l")
-      #+END_SRC
-    #+END_EXAMPLE
-
-**** Remote execution
-
-     A directory on a remote machine can be specified using tramp file
-     syntax, in which case the code will be evaluated on the remote
-     machine.  An example is
-
-     #+BEGIN_EXAMPLE
-       #+BEGIN_SRC R :file plot.png :dir /dand@yakuba.princeton.edu:
-       plot(1:10, main=system("hostname", intern=TRUE))
-       #+END_SRC
-     #+END_EXAMPLE
-
-     Text results will be returned to the local Org mode buffer as
-     usual, and file output will be created on the remote machine with
-     relative paths interpreted relative to the remote directory. An
-     Org mode link to the remote file will be created.
-
-     So, in the above example a plot will be created on the remote
-     machine, and a link of the following form will be inserted in the
-     org buffer:
-
-     #+BEGIN_EXAMPLE
-     [[file:/scp:dand@yakuba.princeton.edu:/home/dand/plot.png][plot.png]]
-     #+END_EXAMPLE
-
-     Most of this functionality follows immediately from the fact that
-     =:dir= sets the value of the Emacs variable =default-directory=,
-     thanks to tramp. Those using XEmacs, or GNU Emacs prior to
-     version 23 may need to install tramp separately in order for
-     these features to work correctly.
-
-**** Further points
-
-      - If =:dir= is used in conjunction with =:session=, although it
-        will determine the starting directory for a new session as
-        expected, no attempt is currently made to alter the directory
-        associated with an existing session.
-
-      - =:dir= should typically not be used to create files during
-        export with =:exports results= or =:exports both=. The reason
-        is that, in order to retain portability of exported material
-        between machines, during export links inserted into the buffer
-        will /not/ be expanded against =default directory=. Therefore,
-        if =default-directory= is altered using =:dir=, it is probable
-        that the file will be created in a location to which the link
-        does not point.
-
-*** 14.8.2.8 =:exports=                                               <<@exports>>
-
-    The =:exports= header argument specifies what should be included
-    in HTML or LaTeX exports of the Org mode file. Note that the
-    =:exports= option is only relevant for code blocks, not inline
-    code.
-
-     - =code= The default. The body of code is included into the
-       exported file. E.g., =:exports code=.
-
-     - =results= The result of evaluating the code is included in the
-       exported file. E.g., =:exports results=.
-
-     - =both= Both the code and results are included in the exported
-       file.  E.g., =:exports both=.
-
-     - =none= Nothing is included in the exported file. E.g.,
-       =:exports none=.
-
-*** 14.8.2.9 =:tangle=                                                <<@tangle>>
-
-    The =:tangle= header argument specifies whether or not the code
-    block should be included in tangled extraction of source code
-    files.
-
-     - =tangle= The code block is exported to a source code file named
-       after the full path (including the directory) and file name
-       (w/o extension) of the Org mode file. E.g., =:tangle yes=.
-
-     - =no= The default. The code block is not exported to a source
-       code file. E.g., =:tangle no=.
-
-     - other Any other string passed to the =:tangle= header argument
-       is interpreted as a path (directory and file name relative to
-       the directory of the Org mode file) to which the block will be
-       exported.  E.g., =:tangle path=.
-
-*** 14.8.2.10 =:mkdirp=                                               <<@mkdirp>>
-
-    The =:mkdirp= header argument can be used to create parent
-    directories of tangled files when missing. This can be set to
-    =yes= to enable directory creation or to =no= to inhibit directory
-    creation.
-
-*** 14.8.2.11 =:comments=                                             <<@comments>>
-
-    By default code blocks are tangled to source-code files without
-    any insertion of comments beyond those which may already exist in
-    the body of the code block. The =:comments= header argument can be
-    set as follows to control the insertion of extra comments into the
-    tangled code file.
-
-     - =no= The default. No extra comments are inserted during
-       tangling.
-
-     - =link= The code block is wrapped in comments which contain
-       pointers back to the original Org file from which the code was
-       tangled.
-
-     - =yes= A synonym for “link” to maintain backwards compatibility.
-
-     - =org= Include text from the Org mode file as a comment. The
-       text is picked from the leading context of the tangled code and
-       is limited by the nearest headline or source block as the case
-       may be.
-
-     - =both= Turns on both the “link” and “org” comment options.
-
-     - =noweb= Turns on the “link” comment option, and additionally
-       wraps expanded noweb references in the code block body in link
-       comments.
-
-*** 14.8.2.12 =:padline=                                              <<@padline>>
-
-    Control in insertion of padding lines around code block bodies in
-    tangled code files. The default value is =yes= which results in
-    insertion of newlines before and after each tangled code
-    block. The following arguments are accepted.
-
-     - =yes= Insert newlines before and after each code block body in
-       tangled code files.
-
-     - =no= Do not insert any newline padding in tangled output.
-
-*** 14.8.2.13 =:no-expand=                                            <<@no_expand>>
-
-    By default, code blocks are expanded with
-    =org-babel-expand-src-block= during tangling. This has the effect
-    of assigning values to variables specified with =:var= (see [[@var][var]]),
-    and of replacing “noweb” references (see [[@Noweb-reference-syntax][Noweb reference syntax]])
-    with their targets. The =:no-expand= header argument can be used
-    to turn off this behavior. Note: The =:no-expand= header argument
-    has no impact on export, i.e. code blocks will irrespective of
-    this header argument expanded for execution.
-
-*** 14.8.2.14 =:session=                                              <<@session>>
-
-    The =:session= header argument starts a (possibly named) session
-    for an interpreted language where the interpreter's state is
-    preserved. All code blocks sharing the same name are exectuted by
-    the same interpreter process. By default, a session is not
-    started.
-
-    - =none= The default. Each block is evaluated in its own
-      interpreter process, which is terminated after the evaluation.
-
-    - =other= Any other string passed to the =:session= header
-      argument will give the session a name. For example, =:session
-      mysession=. If =:session= is given but no name string is
-      specified, the session is named according to the language used
-      in the block. All blocks with the same session name share the
-      same session. Using different session names enables concurrent
-      sessions (even for the same interpreted language, if the
-      language supports multiple sessions).
-
-*** 14.8.2.15 =:noweb=                                                <<@noweb>>
-
-    The =:noweb= header argument controls expansion of “noweb” syntax
-    references (see [[@Noweb-reference-syntax][Noweb reference syntax]]) when the code block is
-    evaluated, tangled, or exported. The =:noweb= header argument can
-    have one of the five values: =no=, =yes=, =tangle=, or =no-export=
-    =strip-export=.
-
-     - =no= The default. “Noweb” syntax references in the body of the
-       code block will not be expanded before the code block is
-       evaluated, tangled or exported.
-
-     - =yes= “Noweb” syntax references in the body of the code block
-       will be expanded before the code block is evaluated, tangled or
-       exported.
-
-     - =tangle= “Noweb” syntax references in the body of the code
-       block will be expanded before the code block is
-       tangled. However, “noweb” syntax references will not be
-       expanded when the code block is evaluated or exported.
-
-     - =no-export= “Noweb” syntax references in the body of the code
-       block will be expanded before the block is evaluated or
-       tangled. However, “noweb” syntax references will not be
-       expanded when the code block is exported.
-
-     - =strip-export= “Noweb” syntax references in the body of the
-       code block will be expanded before the block is evaluated or
-       tangled.  However, “noweb” syntax references will be removed
-       when the code block is exported.
-
-     - =eval= “Noweb” syntax references in the body of the code block
-       will only be expanded before the block is evaluated.
-
-**** Noweb prefix lines
-
-     Noweb insertions are now placed behind the line prefix of the
-     =<<reference>>=. This behavior is illustrated in the following
-     example.  Because the =<<example>>= noweb reference appears
-     behind the SQL comment syntax, each line of the expanded noweb
-     reference will be commented.
-
-     This code block:
-
-     #+BEGIN_EXAMPLE
-       -- <<example>>
-     #+END_EXAMPLE
-
-     expands to:
-
-     #+BEGIN_EXAMPLE
-       -- this is the
-       -- multi-line body of example
-     #+END_EXAMPLE
-
-     Note that noweb replacement text that does not contain any
-     newlines will not be affected by this change, so it is still
-     possible to use inline noweb references.
-
-*** 14.8.2.16 =:noweb-ref=                                            <<@noweb_ref>>
-
-    When expanding “noweb” style references, the bodies of all code
-    block with /either/ a block name matching the reference name /or/
-    a =:noweb-ref= header argument matching the reference name will be
-    concatenated together to form the replacement text.
-
-    By setting this header argument at the subtree or file level,
-    simple code block concatenation may be achieved. For example, when
-    tangling the following Org mode file, the bodies of code blocks
-    will be concatenated into the resulting pure code
-    file[fn:FOOT170].
-
-    #+BEGIN_EXAMPLE
-      #+BEGIN_SRC sh :tangle yes :noweb yes :shebang #!/bin/sh
-        <<fullest-disk>>
-      #+END_SRC
-      * the mount point of the fullest disk
-        :PROPERTIES:
-        :noweb-ref: fullest-disk
-        :END:
-
-      ** query all mounted disks
-      #+BEGIN_SRC sh
-      df \
-      #+END_SRC
-
-      ** strip the header row
-      #+BEGIN_SRC sh
-        |sed '1d' \
-      #+END_SRC
-
-      ** sort by the percent full
-      #+BEGIN_SRC sh
-        |awk '{print $5 " " $6}'|sort -n |tail -1 \
-      #+END_SRC
-
-      ** extract the mount point
-      #+BEGIN_SRC sh
-        |awk '{print $2}'
-      #+END_SRC
-    #+END_EXAMPLE
-
-    The =:noweb-sep= (see [[@noweb_sep][noweb-sep]]) header argument holds the string
-    used to separate accumulate noweb references like those above. By
-    default a newline is used.
-
-*** 14.8.2.17 =:noweb-sep=                                            <<@noweb_sep>>
-
-    The =:noweb-sep= header argument holds the string used to separate
-    accumulate noweb references (see [[@noweb_ref][noweb-ref]]). By default a newline
-    is used.
-
-*** 14.8.2.18 =:cache=                                                <<@cache>>
-
-    The =:cache= header argument controls the use of in-buffer caching
-    of the results of evaluating code blocks. It can be used to avoid
-    re-evaluating unchanged code blocks. Note that the =:cache= header
-    argument will not attempt to cache results when the =:session=
-    header argument is used, because the results of the code block
-    execution may be stored in the session outside of the Org mode
-    buffer. The =:cache= header argument can have one of two values:
-    =yes= or =no=.
-
-     - =no= The default. No caching takes place, and the code block
-       will be evaluated every time it is called.
-
-     - =yes= Every time the code block is run a SHA1 hash of the code
-       and arguments passed to the block will be generated. This hash
-       is packed into the =#+RESULTS:= line and will be checked on
-       subsequent executions of the code block. If the code block has
-       not changed since the last time it was evaluated, it will not
-       be re-evaluated.
-
-    Code block caches notice if the value of a variable argument to
-    the code block has changed. If this is the case, the cache is
-    invalidated and the code block is re-run. In the following
-    example, =caller= will not be re-run unless the results of
-    =random= have changed since it was last run.
-
-    #+BEGIN_EXAMPLE
-      #+NAME: random
-      #+BEGIN_SRC R :cache yes
-      runif(1)
-      #+END_SRC
-
-      #+RESULTS[a2a72cd647ad44515fab62e144796432793d68e1]: random
-      0.4659510825295
-
-      #+NAME: caller
-      #+BEGIN_SRC emacs-lisp :var x=random :cache yes
-      x
-      #+END_SRC
-
-      #+RESULTS[bec9c8724e397d5df3b696502df3ed7892fc4f5f]: caller
-      0.254227238707244
-    #+END_EXAMPLE
-
-*** 14.8.2.19 =:sep=                                                  <<@sep>>
-
-    The =:sep= header argument can be used to control the delimiter
-    used when writing tabular results out to files external to Org
-    mode. This is used either when opening tabular results of a code
-    block by calling the =org-open-at-point= function bound to C-c C-o
-    on the code block, or when writing code block results to an
-    external file (see [[@file][file]]) header argument.
-
-    By default, when =:sep= is not specified output tables are tab
-    delimited.
-
-*** 14.8.2.20 =:hlines=                                               <<@hlines>>
-
-    Tables are frequently represented with one or more horizontal
-    lines, or hlines. The =:hlines= argument to a code block accepts
-    the values =yes= or =no=, with a default value of =no=.
-
-     - =no= Strips horizontal lines from the input table. In most
-       languages this is the desired effect because an =hline= symbol
-       is interpreted as an unbound variable and raises an
-       error. Setting =:hlines no= or relying on the default value
-       yields the following results.
-
-       #+BEGIN_EXAMPLE
-         #+NAME: many-cols
-         | a | b | c |
-         |---+---+---|
-         | d | e | f |
-         |---+---+---|
-         | g | h | i |
-
-         #+NAME: echo-table
-         #+BEGIN_SRC python :var tab=many-cols
-            return tab
-         #+END_SRC
-
-         #+RESULTS: echo-table
-         | a | b | c |
-         | d | e | f |
-         | g | h | i |
-       #+END_EXAMPLE
-
-     - =yes= Leaves hlines in the table. Setting =:hlines yes= has
-       this effect.
-
-       #+BEGIN_EXAMPLE
-         #+NAME: many-cols
-         | a | b | c |
-         |---+---+---|
-         | d | e | f |
-         |---+---+---|
-         | g | h | i |
-
-         #+NAME: echo-table
-         #+BEGIN_SRC python :var tab=many-cols :hlines yes
-            return tab
-         #+END_SRC
-
-         #+RESULTS: echo-table
-         | a | b | c |
-         |---+---+---|
-         | d | e | f |
-         |---+---+---|
-         | g | h | i |
-       #+END_EXAMPLE
-
-*** 14.8.2.21 =:colnames=                                             <<@colnames>>
-
-    The =:colnames= header argument accepts the values =yes=, =no=, or
-    =nil= for unassigned. The default value is =nil=. Note that the
-    behavior of the =:colnames= header argument may differ across
-    languages.
-
-     - =nil= If an input table looks like it has column names (because
-       its second row is an hline), then the column names will be
-       removed from the table before processing, then reapplied to the
-       results.
-
-       #+BEGIN_EXAMPLE
-         #+NAME: less-cols
-         | a |
-         |---|
-         | b |
-         | c |
-
-         #+NAME: echo-table-again
-         #+BEGIN_SRC python :var tab=less-cols
-           return [[val + '*' for val in row] for row in tab]
-         #+END_SRC
-
-         #+RESULTS: echo-table-again
-         | a  |
-         |----|
-         | b* |
-         | c* |
-       #+END_EXAMPLE
-
-       Please note that column names are not removed before the table
-       is indexed using variable indexing See [[@var][Indexable variable
-       values]].
-
-     - =no= No column name pre-processing takes place
-
-     - =yes= Column names are removed and reapplied as with =nil= even
-       if the table does not “look like” it has column names (i.e.,
-       the second row is not an hline)
-
-*** 14.8.2.22 =:rownames=                                             <<@rownames>>
-
-    The =:rownames= header argument can take on the values =yes= or
-    =no=, with a default value of =no=. Note that Emacs Lisp code
-    blocks ignore the =:rownames= header argument entirely given the
-    ease with which tables with row names may be handled directly in
-    Emacs Lisp.
-
-     - =no= No row name pre-processing will take place.
-
-     - =yes= The first column of the table is removed from the table
-       before processing, and is then reapplied to the results.
-
-       #+BEGIN_EXAMPLE
-         #+NAME: with-rownames
-         | one | 1 | 2 | 3 | 4 |  5 |
-         | two | 6 | 7 | 8 | 9 | 10 |
-
-         #+NAME: echo-table-once-again
-         #+BEGIN_SRC python :var tab=with-rownames :rownames yes
-           return [[val + 10 for val in row] for row in tab]
-         #+END_SRC
-
-         #+RESULTS: echo-table-once-again
-         | one | 11 | 12 | 13 | 14 | 15 |
-         | two | 16 | 17 | 18 | 19 | 20 |
-       #+END_EXAMPLE
-
-       Please note that row names are not removed before the table is
-       indexed using variable indexing See [[@var][Indexable variable values]].
-
-*** 14.8.2.23 =:shebang=                                              <<@shebang>>
-
-    Setting the =:shebang= header argument to a string value (e.g.,
-    =:shebang "#!/bin/bash"=) causes the string to be inserted as the
-    first line of any tangled file holding the code block, and the
-    file permissions of the tangled file are set to make it
-    executable.
-
-*** 14.8.2.24 =:tangle-mode=                                          <<@tangle_mode>>
-
-    The =tangle-mode= header argument controls the permission set on
-    tangled files. The value of this header argument will be passed to
-    =set-file-modes=. For example, to set a tangled file as read only
-    use =:tangle-mode (identity #o444)=, or to set a tangled file as
-    executable use =:tangle-mode (identity #o755)=. Blocks with
-    =shebang= ([[@shebang][shebang]]) header arguments will automatically be made
-    executable unless the =tangle-mode= header argument is also
-    used. The behavior is undefined if multiple code blocks with
-    different values for the =tangle-mode= header argument are tangled
-    to the same file.
-
-*** 14.8.2.25 =:eval=                                                 <<@eval>>
-
-    The =:eval= header argument can be used to limit the evaluation of
-    specific code blocks. The =:eval= header argument can be useful
-    for protecting against the evaluation of dangerous code blocks or
-    to ensure that evaluation will require a query regardless of the
-    value of the =org-confirm-babel-evaluate= variable. The possible
-    values of =:eval= and their effects are shown below.
-
-     - =never or no=
-
-       The code block will not be evaluated under any circumstances.
-
-     - =query=
-
-       Evaluation of the code block will require a query.
-
-     - =never-export or no-export=
-
-       The code block will not be evaluated during export but may
-       still be called interactively.
-
-     - =query-export=
-
-       Evaluation of the code block during export will require a
-       query.
-
-     If this header argument is not set then evaluation is determined
-     by the value of the =org-confirm-babel-evaluate= variable see
-     [[@Code-evaluation-security][Code evaluation security]].
-
-*** 14.8.2.26 =:wrap=                                                 <<@wrap>>
-
-    The =:wrap= header argument is used to mark the results of source
-    block evaluation. The header argument can be passed a string that
-    will be appended to =#+BEGIN_= and =#+END_=, which will then be
-    used to wrap the results. If not string is specified then the
-    results will be wrapped in a =#+BEGIN/END_RESULTS= block.
-
-*** 14.8.2.27 =:post=                                                 <<@post>>
-
-    The =:post= header argument is used to post-process the results of
-    a code block execution. When a post argument is given, the results
-    of the code block will temporarily be bound to the =*this*=
-    variable. This variable may then be included in header argument
-    forms such as those used in [[@var][var]] header argument specifications
-    allowing passing of results to other code blocks, or direct
-    execution via Emacs Lisp.  Additional header arguments may be
-    passed to the =:post=-function.
-
-    The following two examples illustrate the usage of the =:post=
-    header argument. The first example shows how to attach a
-    attribute-line via =:post=.
-
-    #+BEGIN_EXAMPLE
-      #+name: attr_wrap
-      #+begin_src sh :var data="" :var width="\\textwidth" :results output
-        echo "#+ATTR_LATEX: :width $width"
-        echo "$data"
-      #+end_src
-
-      #+header: :file /tmp/it.png
-      #+begin_src dot :post attr_wrap(width="5cm", data=*this*) :results drawer
-        digraph{
-                a -> b;
-                b -> c;
-                c -> a;
-        }
-      #+end_src
-
-      #+RESULTS:
-      :RESULTS:
-      #+ATTR_LATEX :width 5cm
-      [[file:/tmp/it.png]]
-      :END:
-    #+END_EXAMPLE
-
-    The second examples shows how to use =:post= together with the
-    =:colnames= header argument.
-
-    #+BEGIN_EXAMPLE
-      #+name: round-tbl
-      #+begin_src emacs-lisp :var tbl="" fmt="%.3f"
-        (mapcar (lambda (row)
-                  (mapcar (lambda (cell)
-                            (if (numberp cell)
-                                (format fmt cell)
-                              cell))
-                          row))
-                tbl)
-      #+end_src
-
-      #+begin_src R :colnames yes :post round-tbl[:colnames yes](*this*)
-      set.seed(42)
-      data.frame(foo=rnorm(1))
-      #+end_src
-
-      #+RESULTS:
-      |   foo |
-      |-------|
-      | 1.371 |
-    #+END_EXAMPLE
-
-*** 14.8.2.28 =:prologue=                                             <<@prologue>>
-
-    The value of the =prologue= header argument will be prepended to
-    the code block body before execution. For example, =:prologue
-    "reset"= may be used to reset a gnuplot session before execution
-    of a particular code block, or the following configuration may be
-    used to do this for all gnuplot code blocks. Also see [[@epilogue][epilogue]].
-
-    #+BEGIN_SRC lisp
-      (add-to-list 'org-babel-default-header-args:gnuplot
-                   '((:prologue . "reset")))
-    #+END_SRC
-
-*** 14.8.2.29 =:epilogue=                                             <<@epilogue>>
-
-    The value of the =epilogue= header argument will be appended to
-    the code block body before execution. Also see [[@prologue][prologue]].
+**** 14.8.2.28 =:prologue=                                            <<@prologue>>
+
+     The value of the =prologue= header argument will be prepended to
+     the code block body before execution. For example, =:prologue
+     "reset"= may be used to reset a gnuplot session before execution
+     of a particular code block, or the following configuration may be
+     used to do this for all gnuplot code blocks. Also see [[@epilogue][epilogue]].
+
+     #+BEGIN_SRC lisp
+       (add-to-list 'org-babel-default-header-args:gnuplot
+                    '((:prologue . "reset")))
+     #+END_SRC
+
+**** 14.8.2.29 =:epilogue=                                            <<@epilogue>>
+
+     The value of the =epilogue= header argument will be appended to
+     the code block body before execution. Also see [[@prologue][prologue]].
 
 ** 14.9 Results of evaluation                                         <<@Results-of-evaluation>>
 
@@ -14955,806 +14960,863 @@ modify this GNU manual.”
 
 * 15 Miscellaneous
 
-| • [[@Completion][Completion]]:                | M-TAB knows what you need                        |
-| • [[@Easy-templates][Easy templates]]:            | Quick insertion of structural elements           |
-| • [[@Speed-keys][Speed keys]]:                | Electric commands at the beginning of a headline |
-| • [[@Code-evaluation-security][Code evaluation security]]:  | Org mode files evaluate inline code              |
-| • [[@Customization][Customization]]:             | Adapting Org to your taste                       |
-| • [[@In_buffer-settings][In-buffer settings]]:        | Overview of the #+KEYWORDS                       |
-| • [[@The-very-busy-C_c-C_c-key][The very busy C-c C-c key]]: | When in doubt, press C-c C-c                     |
-| • [[@Clean-view][Clean view]]:                | Getting rid of leading stars in the outline      |
-| • [[@TTY-keys][TTY keys]]:                  | Using Org on a tty                               |
-| • [[@Interaction][Interaction]]:               | Other Emacs packages                             |
-| • [[@org_crypt][org-crypt]]:                 | Encrypting Org files                             |
+  | • [[@Completion][Completion]]:                | M-TAB knows what you need                        |
+  | • [[@Easy-templates][Easy templates]]:            | Quick insertion of structural elements           |
+  | • [[@Speed-keys][Speed keys]]:                | Electric commands at the beginning of a headline |
+  | • [[@Code-evaluation-security][Code evaluation security]]:  | Org mode files evaluate inline code              |
+  | • [[@Customization][Customization]]:             | Adapting Org to your taste                       |
+  | • [[@In_buffer-settings][In-buffer settings]]:        | Overview of the #+KEYWORDS                       |
+  | • [[@The-very-busy-C_c-C_c-key][The very busy C-c C-c key]]: | When in doubt, press C-c C-c                     |
+  | • [[@Clean-view][Clean view]]:                | Getting rid of leading stars in the outline      |
+  | • [[@TTY-keys][TTY keys]]:                  | Using Org on a tty                               |
+  | • [[@Interaction][Interaction]]:               | Other Emacs packages                             |
+  | • [[@org_crypt][org-crypt]]:                 | Encrypting Org files                             |
 
 ** 15.1 Completion                                                    <<@Completion>>
 
-Emacs would not be Emacs without completion, and Org mode uses it
-whenever it makes sense. If you prefer an /iswitchb/- or /ido/-like
-interface for some of the completion prompts, you can specify your
-preference by setting at most one of the variables
-=org-completion-use-iswitchb= =org-completion-use-ido=.
+   Emacs would not be Emacs without completion, and Org mode uses it
+   whenever it makes sense. If you prefer an /iswitchb/- or /ido/-like
+   interface for some of the completion prompts, you can specify your
+   preference by setting at most one of the variables
+   =org-completion-use-iswitchb= =org-completion-use-ido=.
 
-Org supports in-buffer completion. This type of completion does not make
-use of the minibuffer. You simply type a few letters into the buffer and
-use the key to complete text right there.
+   Org supports in-buffer completion. This type of completion does not
+   make use of the minibuffer. You simply type a few letters into the
+   buffer and use the key to complete text right there.
 
-M-TAB
+    - M-TAB
 
-Complete word at point
+      Complete word at point
 
--  At the beginning of a headline, complete TODO keywords.
--  After ‘\', complete TeX symbols supported by the exporter.
--  After ‘*', complete headlines in the current buffer so that they can
-   be used in search links like ‘[[*find this headline]]'.
--  After ‘:' in a headline, complete tags. The list of tags is taken
-   from the variable =org-tag-alist= (possibly set through the ‘#+TAGS'
-   in-buffer option, see [[@Setting-tags][Setting tags]]), or it is
-   created dynamically from all tags used in the current buffer.
--  After ‘:' and not in a headline, complete property keys. The list of
-   keys is constructed dynamically from all keys used in the current
-   buffer.
--  After ‘[', complete link abbreviations (see
-   [[@Link-abbreviations][Link abbreviations]]).
--  After ‘#+', complete the special keywords like ‘TYP_TODO' or
-   ‘OPTIONS' which set file-specific options for Org mode. When the
-   option keyword is already complete, pressing M-TAB again will insert
-   example settings for this keyword.
--  In the line after ‘#+STARTUP: ', complete startup keywords, i.e.,
-   valid keys for this line.
--  Elsewhere, complete dictionary words using Ispell.
+       -  At the beginning of a headline, complete TODO keywords.
+
+       -  After ‘\', complete TeX symbols supported by the exporter.
+
+       -  After ‘*', complete headlines in the current buffer so that
+          they can be used in search links like =[[*find this headline]]=.
+
+       -  After ‘:' in a headline, complete tags. The list of tags is
+          taken from the variable =org-tag-alist= (possibly set
+          through the ‘#+TAGS' in-buffer option, see [[@Setting-tags][Setting tags]]), or
+          it is created dynamically from all tags used in the current
+          buffer.
+
+       -  After ‘:' and not in a headline, complete property keys. The
+          list of keys is constructed dynamically from all keys used
+          in the current buffer.
+
+       -  After ‘[', complete link abbreviations (see [[@Link-abbreviations][Link abbreviations]]).
+
+       -  After ‘#+', complete the special keywords like ‘TYP_TODO' or
+          ‘OPTIONS' which set file-specific options for Org mode. When
+          the option keyword is already complete, pressing M-TAB again
+          will insert example settings for this keyword.
+
+       -  In the line after ‘#+STARTUP: ', complete startup keywords,
+          i.e., valid keys for this line.
+
+       -  Elsewhere, complete dictionary words using Ispell.
 
 ** 15.2 Easy templates                                                <<@Easy-templates>>
 
-Org mode supports insertion of empty structural elements (like
-=#+BEGIN_SRC= and =#+END_SRC= pairs) with just a few key strokes. This
-is achieved through a native template expansion mechanism. Note that
-Emacs has several other template mechanisms which could be used in a
-similar way, for example yasnippet.
+   Org mode supports insertion of empty structural elements (like
+   =#+BEGIN_SRC= and =#+END_SRC= pairs) with just a few key
+   strokes. This is achieved through a native template expansion
+   mechanism. Note that Emacs has several other template mechanisms
+   which could be used in a similar way, for example yasnippet.
 
-To insert a structural element, type a ‘<', followed by a template
-selector and TAB. Completion takes effect only when the above keystrokes
-are typed on a line by itself.
+   To insert a structural element, type a ‘<', followed by a template
+   selector and */TAB/*. Completion takes effect only when the above
+   keystrokes are typed on a line by itself.
 
-The following template selectors are currently supported.
+   The following template selectors are currently supported.
 
-| s   | =#+BEGIN_SRC     ... #+END_SRC=       |
-| e   | =#+BEGIN_EXAMPLE ... #+END_EXAMPLE=   |
-| q   | =#+BEGIN_QUOTE   ... #+END_QUOTE=     |
-| v   | =#+BEGIN_VERSE   ... #+END_VERSE=     |
-| c   | =#+BEGIN_CENTER  ... #+END_CENTER=    |
-| l   | =#+BEGIN_LaTeX   ... #+END_LaTeX=     |
-| L   | =#+LaTeX:=                            |
-| h   | =#+BEGIN_HTML    ... #+END_HTML=      |
-| H   | =#+HTML:=                             |
-| a   | =#+BEGIN_ASCII   ... #+END_ASCII=     |
-| A   | =#+ASCII:=                            |
-| i   | =#+INDEX:= line                       |
-| I   | =#+INCLUDE:= line                     |
+   | s | =#+BEGIN_SRC     ... #+END_SRC=     |
+   | e | =#+BEGIN_EXAMPLE ... #+END_EXAMPLE= |
+   | q | =#+BEGIN_QUOTE   ... #+END_QUOTE=   |
+   | v | =#+BEGIN_VERSE   ... #+END_VERSE=   |
+   | c | =#+BEGIN_CENTER  ... #+END_CENTER=  |
+   | l | =#+BEGIN_LaTeX   ... #+END_LaTeX=   |
+   | L | =#+LaTeX:=                          |
+   | h | =#+BEGIN_HTML    ... #+END_HTML=    |
+   | H | =#+HTML:=                           |
+   | a | =#+BEGIN_ASCII   ... #+END_ASCII=   |
+   | A | =#+ASCII:=                          |
+   | i | =#+INDEX:= line                     |
+   | I | =#+INCLUDE:= line                   |
 
-For example, on an empty line, typing "<e" and then pressing TAB, will
-expand into a complete EXAMPLE template.
+   For example, on an empty line, typing "<e" and then pressing TAB,
+   will expand into a complete EXAMPLE template.
 
-You can install additional templates by customizing the variable
-=org-structure-template-alist=. See the docstring of the variable for
-additional details.
+   You can install additional templates by customizing the variable
+   =org-structure-template-alist=. See the docstring of the variable
+   for additional details.
 
 ** 15.3 Speed keys                                                    <<@Speed-keys>>
 
-Single keys can be made to execute commands when the cursor is at the
-beginning of a headline, i.e., before the first star. Configure the
-variable =org-use-speed-commands= to activate this feature. There is a
-pre-defined list of commands, and you can add more such commands using
-the variable =org-speed-commands-user=. Speed keys not only speed up
-navigation and other commands, but they also provide an alternative way
-to execute commands bound to keys that are not or not easily available
-on a TTY, or on a small mobile device with a limited keyboard.
+   Single keys can be made to execute commands when the cursor is at
+   the beginning of a headline, i.e., before the first star. Configure
+   the variable =org-use-speed-commands= to activate this
+   feature. There is a pre-defined list of commands, and you can add
+   more such commands using the variable
+   =org-speed-commands-user=. Speed keys not only speed up navigation
+   and other commands, but they also provide an alternative way to
+   execute commands bound to keys that are not or not easily available
+   on a TTY, or on a small mobile device with a limited keyboard.
 
-To see which commands are available, activate the feature and press ?
-with the cursor at the beginning of a headline.
+   To see which commands are available, activate the feature and press
+   */?/* with the cursor at the beginning of a headline.
 
 ** 15.4 Code evaluation and security issues                           <<@Code-evaluation-security>>
 
-Org provides tools to work with code snippets, including evaluating
-them.
+   Org provides tools to work with code snippets, including evaluating
+   them.
 
-Running code on your machine always comes with a security risk. Badly
-written or malicious code can be executed on purpose or by accident. Org
-has default settings which will only evaluate such code if you give
-explicit permission to do so, and as a casual user of these features you
-should leave these precautions intact.
+   Running code on your machine always comes with a security
+   risk. Badly written or malicious code can be executed on purpose or
+   by accident. Org has default settings which will only evaluate such
+   code if you give explicit permission to do so, and as a casual user
+   of these features you should leave these precautions intact.
 
-For people who regularly work with such code, the confirmation prompts
-can become annoying, and you might want to turn them off. This can be
-done, but you must be aware of the risks that are involved.
+   For people who regularly work with such code, the confirmation
+   prompts can become annoying, and you might want to turn them
+   off. This can be done, but you must be aware of the risks that are
+   involved.
 
-Code evaluation can happen under the following circumstances:
+   Code evaluation can happen under the following circumstances:
 
--  /Source code blocks/ :: Source code blocks can be evaluated during
-   export, or when pressing C-c C-c in the block. The most important
-   thing to realize here is that Org mode files which contain code
-   snippets are, in a certain sense, like executable files. So you
-   should accept them and load them into Emacs only from trusted
-   sources---just like you would do with a program you install on your
-   computer.
+    - /Source code blocks/
 
-   Make sure you know what you are doing before customizing the
-   variables which take off the default security brakes.
+      Source code blocks can be evaluated during export, or when
+      pressing */C-c C-c/* in the block. The most important thing to
+      realize here is that Org mode files which contain code snippets
+      are, in a certain sense, like executable files. So you should
+      accept them and load them into Emacs only from trusted sources
+      -- just like you would do with a program you install on your
+      computer.
 
-   -  User Option: *org-confirm-babel-evaluate* :: When t (the default),
-      the user is asked before every code block evaluation. When =nil=,
-      the user is not asked. When set to a function, it is called with
-      two arguments (language and body of the code block) and should
-      return t to ask and =nil= not to ask.
+      Make sure you know what you are doing before customizing the
+      variables which take off the default security brakes.
 
-   For example, here is how to execute "ditaa" code (which is considered
-   safe) without asking:
+       - User Option: *org-confirm-babel-evaluate*
 
-   #+BEGIN_SRC lisp
-       (defun my-org-confirm-babel-evaluate (lang body)
-         (not (string= lang "ditaa")))  ; don't ask for ditaa
-       (setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
-   #+END_SRC
+         When t (the default), the user is asked before every code
+         block evaluation. When =nil=, the user is not asked. When set
+         to a function, it is called with two arguments (language and
+         body of the code block) and should return t to ask and =nil=
+         not to ask.
 
--  /Following =shell= and =elisp= links/ :: Org has two link types that
-   can directly evaluate code (see [[@External-links][External links]]).
-   These links can be problematic because the code to be evaluated is
-   not visible.
+      For example, here is how to execute "ditaa" code (which is
+      considered safe) without asking:
 
-   -  User Option: *org-confirm-shell-link-function* :: Function to
-      queries user about shell link execution.
+      #+BEGIN_SRC lisp
+        (defun my-org-confirm-babel-evaluate (lang body)
+          (not (string= lang "ditaa")))  ; don't ask for ditaa
+        (setq org-confirm-babel-evaluate 'my-org-confirm-babel-evaluate)
+      #+END_SRC
 
-   -  User Option: *org-confirm-elisp-link-function* :: Functions to
-      query user for Emacs Lisp link execution.
+    - /Following =shell= and =elisp= links/
 
--  /Formulas in tables/ :: Formulas in tables (see
-   [[@The-spreadsheet][The spreadsheet]]) are code that is evaluated
-   either by the /calc/ interpreter, or by the /Emacs Lisp/ interpreter.
+      Org has two link types that can directly evaluate code (see
+      [[@External-links][External links]]).  These links can be problematic because the
+      code to be evaluated is not visible.
+
+       - User Option: *org-confirm-shell-link-function*
+
+         Function to queries user about shell link execution.
+
+       - User Option: *org-confirm-elisp-link-function*
+
+         Functions to query user for Emacs Lisp link execution.
+
+    - /Formulas in tables/
+
+      Formulas in tables (see [[@The-spreadsheet][The spreadsheet]]) are code that is
+      evaluated either by the /calc/ interpreter, or by the /Emacs
+      Lisp/ interpreter.
 
 ** 15.5 Customization                                                 <<@Customization>>
 
-There are more than 500 variables that can be used to customize Org. For
-the sake of compactness of the manual, I am not describing the variables
-here. A structured overview of customization variables is available with
-M-x org-customize RET. Or select =Browse Org Group= from the
-=Org->Customization= menu. Many settings can also be activated on a
-per-file basis, by putting special lines into the buffer (see
-[[@In_buffer-settings][In-buffer settings]]).
+   There are more than 500 variables that can be used to customize
+   Org. For the sake of compactness of the manual, I am not describing
+   the variables here. A structured overview of customization
+   variables is available with M-x org-customize RET. Or select
+   =Browse Org Group= from the =Org->Customization= menu. Many
+   settings can also be activated on a per-file basis, by putting
+   special lines into the buffer (see [[@In_buffer-settings][In-buffer settings]]).
 
 ** 15.6 Summary of in-buffer settings                                 <<@In_buffer-settings>>
 
-Org mode uses special lines in the buffer to define settings on a
-per-file basis. These lines start with a ‘#+' followed by a keyword, a
-colon, and then individual words defining a setting. Several setting
-words can be in the same line, but you can also have multiple lines for
-the keyword. While these settings are described throughout the manual,
-here is a summary. After changing any of these lines in the buffer,
-press C-c C-c with the cursor still in the line to activate the changes
-immediately. Otherwise they become effective only when the file is
-visited again in a new Emacs session.
+   Org mode uses special lines in the buffer to define settings on a
+   per-file basis. These lines start with a ‘#+' followed by a
+   keyword, a colon, and then individual words defining a
+   setting. Several setting words can be in the same line, but you can
+   also have multiple lines for the keyword. While these settings are
+   described throughout the manual, here is a summary. After changing
+   any of these lines in the buffer, press */C-c C-c/* with the cursor
+   still in the line to activate the changes immediately. Otherwise
+   they become effective only when the file is visited again in a new
+   Emacs session.
 
--  #+ARCHIVE: %s\_done:: :: This line sets the archive location for the
-   agenda file. It applies for all subsequent lines until the next
-   ‘#+ARCHIVE' line, or the end of the file. The first such line also
-   applies to any entries before it. The corresponding variable is
-   =org-archive-location=.
+    - #+ARCHIVE: %s\_done::
 
--  #+CATEGORY: :: This line sets the category for the agenda file. The
-   category applies to the whole document.
+      This line sets the archive location for the agenda file. It
+      applies for all subsequent lines until the next ‘#+ARCHIVE’
+      line, or the end of the file. The first such line also applies
+      to any entries before it. The corresponding variable is
+      org-archive-location.
 
--  #+COLUMNS: %25ITEM ... :: Set the default format for columns view.
-   This format applies when columns view is invoked in locations where
-   no =COLUMNS= property applies.
+    - #+CATEGORY:
 
--  #+CONSTANTS: name1=value1 ... :: Set file-local values for constants
-   to be used in table formulas. This line sets the local variable
-   =org-table-formula-constants-local=. The global version of this
-   variable is =org-table-formula-constants=.
+      This line sets the category for the agenda file. The category
+      applies to the whole document.
 
--  #+FILETAGS: :tag1:tag2:tag3: :: Set tags that can be inherited by any
-   entry in the file, including the top-level entries.
+    - #+COLUMNS: %25ITEM ...
 
--  #+LINK: linkword replace :: These lines (several are allowed) specify
-   link abbreviations. See [[@Link-abbreviations][Link abbreviations]].
-   The corresponding variable is =org-link-abbrev-alist=.
+      Set the default format for columns view.  This format applies
+      when columns view is invoked in locations where no =COLUMNS=
+      property applies.
 
--  #+PRIORITIES: highest lowest default :: This line sets the limits and
-   the default for the priorities. All three must be either letters A--Z
-   or numbers 0--9. The highest priority must have a lower ASCII number
-   than the lowest priority.
+    - #+CONSTANTS: name1=value1 ...
 
--  #+PROPERTY: Property_Name Value :: This line sets a default
-   inheritance value for entries in the current buffer, most useful for
-   specifying the allowed values of a property.
+      Set file-local values for constants to be used in table
+      formulas. This line sets the local variable
+      =org-table-formula-constants-local=. The global version of this
+      variable is =org-table-formula-constants=.
 
--  #+SETUPFILE: file :: This line defines a file that holds more
-   in-buffer setup. Normally this is entirely ignored. Only when the
-   buffer is parsed for option-setting lines (i.e., when starting Org
-   mode for a file, when pressing C-c C-c in a settings line, or when
-   exporting), then the contents of this file are parsed as if they had
-   been included in the buffer. In particular, the file can be any other
-   Org mode file with internal setup. You can visit the file the cursor
-   is in the line with C-c '.
+    - #+FILETAGS: :tag1:tag2:tag3:
 
--  #+STARTUP: :: This line sets options to be used at startup of Org
-   mode, when an Org file is being visited.
+      Set tags that can be inherited by any entry in the file,
+      including the top-level entries.
 
-   The first set of options deals with the initial visibility of the
-   outline tree. The corresponding variable for global default settings
-   is =org-startup-folded=, with a default value =t=, which means
-   =overview=.
+    - #+LINK: linkword replace
 
-   #+BEGIN_EXAMPLE
-       overview         top-level headlines only
-       content          all headlines
-       showall          no folding of any entries
-       showeverything   show even drawer contents
-   #+END_EXAMPLE
+      These lines (several are allowed) specify link
+      abbreviations. See [[@Link-abbreviations][Link abbreviations]].  The corresponding
+      variable is =org-link-abbrev-alist=.
 
-   Dynamic virtual indentation is controlled by the variable
-   =org-startup-indented=[fn:FOOT171]
+    - #+PRIORITIES: highest lowest default
 
-   #+BEGIN_EXAMPLE
-       indent     start with org-indent-mode turned on
-       noindent   start with org-indent-mode turned off
-   #+END_EXAMPLE
+      This line sets the limits and the default for the
+      priorities. All three must be either letters A--Z or numbers
+      0--9. The highest priority must have a lower ASCII number than
+      the lowest priority.
 
-   Then there are options for aligning tables upon visiting a file. This
-   is useful in files containing narrowed table columns. The
-   corresponding variable is =org-startup-align-all-tables=, with a
-   default value =nil=.
+    - #+PROPERTY: Property_Name Value
 
-   #+BEGIN_EXAMPLE
-       align      align all tables
-       noalign    don’t align tables on startup
-   #+END_EXAMPLE
+      This line sets a default inheritance value for entries in the
+      current buffer, most useful for specifying the allowed values of
+      a property.
 
-   When visiting a file, inline images can be automatically displayed.
-   The corresponding variable is =org-startup-with-inline-images=, with
-   a default value =nil= to avoid delays when visiting a file.
+    - #+SETUPFILE: file
 
-   #+BEGIN_EXAMPLE
-       inlineimages   show inline images
-       noinlineimages don’t show inline images on startup
-   #+END_EXAMPLE
+      This line defines a file that holds more in-buffer
+      setup. Normally this is entirely ignored. Only when the buffer
+      is parsed for option-setting lines (i.e., when starting Org mode
+      for a file, when pressing */C-c C-c/* in a settings line, or
+      when exporting), then the contents of this file are parsed as if
+      they had been included in the buffer. In particular, the file
+      can be any other Org mode file with internal setup. You can
+      visit the file the cursor is in the line with */C-c '/*.
 
-   When visiting a file, LaTeX fragments can be converted to images
-   automatically. The variable =org-startup-with-latex-preview= which
-   controls this behavior, is set to =nil= by default to avoid delays on
-   startup.
+    - #+STARTUP:
 
-   #+BEGIN_EXAMPLE
-       latexpreview   preview LaTeX fragments
-       nolatexpreview don’t preview LaTeX fragments
-   #+END_EXAMPLE
+      This line sets options to be used at startup of Org mode, when
+      an Org file is being visited.
 
-   Logging the closing and reopening of TODO items and clock intervals
-   can be configured using these options (see variables =org-log-done=,
-   =org-log-note-clock-out= and =org-log-repeat=)
+      The first set of options deals with the initial visibility of
+      the outline tree. The corresponding variable for global default
+      settings is =org-startup-folded=, with a default value =t=,
+      which means =overview=.
 
-   #+BEGIN_EXAMPLE
-       logdone             record a timestamp when an item is marked DONE
-       lognotedone         record timestamp and a note when DONE
-       nologdone           don’t record when items are marked DONE
-       logrepeat           record a time when reinstating a repeating item
-       lognoterepeat       record a note when reinstating a repeating item
-       nologrepeat         do not record when reinstating repeating item
-       lognoteclock-out    record a note when clocking out
-       nolognoteclock-out  don’t record a note when clocking out
-       logreschedule       record a timestamp when scheduling time changes
-       lognotereschedule   record a note when scheduling time changes
-       nologreschedule     do not record when a scheduling date changes
-       logredeadline       record a timestamp when deadline changes
-       lognoteredeadline   record a note when deadline changes
-       nologredeadline     do not record when a deadline date changes
-       logrefile           record a timestamp when refiling
-       lognoterefile       record a note when refiling
-       nologrefile         do not record when refiling
-       logdrawer           store log into drawer
-       nologdrawer         store log outside of drawer
-       logstatesreversed   reverse the order of states notes
-       nologstatesreversed do not reverse the order of states notes
-   #+END_EXAMPLE
+       | overview       | top-level headlines only  |
+       | content        | all headlines             |
+       | showall        | no folding of any entries |
+       | showeverything | show even drawer contents |
 
-   Here are the options for hiding leading stars in outline headings,
-   and for indenting outlines. The corresponding variables are
-   =org-hide-leading-stars= and =org-odd-levels-only=, both with a
-   default setting =nil= (meaning =showstars= and =oddeven=).
 
-   #+BEGIN_EXAMPLE
-       hidestars  make all but one of the stars starting a headline invisible.
-       showstars  show all stars starting a headline
-       indent     virtual indentation according to outline level
-       noindent   no virtual indentation according to outline level
-       odd        allow only odd outline levels (1,3,...)
-       oddeven    allow all outline levels
-   #+END_EXAMPLE
+       Dynamic virtual indentation is controlled by the variable
+       =org-startup-indented= [fn:FOOT171]
 
-   To turn on custom format overlays over timestamps (variables
-   =org-put-time-stamp-overlays= and =org-time-stamp-overlay-formats=),
-   use
+       | indent   | start with org-indent-mode turned on  |
+       | noindent | start with org-indent-mode turned off |
 
-   #+BEGIN_EXAMPLE
-       customtime overlay custom time format
-   #+END_EXAMPLE
+       Then there are options for aligning tables upon visiting a
+       file. This is useful in files containing narrowed table
+       columns. The corresponding variable is
+       =org-startup-align-all-tables=, with a default value =nil=.
 
-   The following options influence the table spreadsheet (variable
-   =constants-unit-system=).
+       | align   | align all tables              |
+       | noalign | don’t align tables on startup |
 
-   #+BEGIN_EXAMPLE
-       constcgs   constants.el should use the c-g-s unit system
-       constSI    constants.el should use the SI unit system
-   #+END_EXAMPLE
+       When visiting a file, inline images can be automatically
+       displayed.  The corresponding variable is
+       =org-startup-with-inline-images=, with a default value =nil= to
+       avoid delays when visiting a file.
 
-   To influence footnote settings, use the following keywords. The
-   corresponding variables are =org-footnote-define-inline=,
-   =org-footnote-auto-label=, and =org-footnote-auto-adjust=.
+       | inlineimages   | show inline images                  |
+       | noinlineimages | don’t show inline images on startup |
 
-   #+BEGIN_EXAMPLE
-       fninline    define footnotes inline
-       fnnoinline  define footnotes in separate section
-       fnlocal     define footnotes near first reference, but not inline
-       fnprompt    prompt for footnote labels
-       fnauto      create [fn:1]-like labels automatically (default)
-       fnconfirm   offer automatic label for editing or confirmation
-       fnplain     create [1]-like labels automatically
-       fnadjust    automatically renumber and sort footnotes
-       nofnadjust  do not renumber and sort automatically
-   #+END_EXAMPLE
 
-   To hide blocks on startup, use these keywords. The corresponding
-   variable is =org-hide-block-startup=.
+       When visiting a file, LaTeX fragments can be converted to
+       images automatically. The variable
+       =org-startup-with-latex-preview= which controls this behavior,
+       is set to =nil= by default to avoid delays on startup.
 
-   #+BEGIN_EXAMPLE
-       hideblocks   Hide all begin/end blocks on startup
-       nohideblocks Do not hide blocks on startup
-   #+END_EXAMPLE
+       | latexpreview   | preview LaTeX fragments       |
+       | nolatexpreview | don’t preview LaTeX fragments |
 
-   The display of entities as UTF-8 characters is governed by the
-   variable =org-pretty-entities= and the keywords
 
-   #+BEGIN_EXAMPLE
-       entitiespretty  Show entities as UTF-8 characters where possible
-       entitiesplain   Leave entities plain
-   #+END_EXAMPLE
+       Logging the closing and reopening of TODO items and clock
+       intervals can be configured using these options (see variables
+       =org-log-done=, =org-log-note-clock-out= and =org-log-repeat=)
 
--  #+TAGS: TAG1(c1) TAG2(c2) :: These lines (several such lines are
-   allowed) specify the valid tags in this file, and (potentially) the
-   corresponding /fast tag selection/ keys. The corresponding variable
-   is =org-tag-alist=.
+       | logdone             | record a timestamp when an item is marked DONE  |
+       | lognotedone         | record timestamp and a note when DONE           |
+       | nologdone           | don’t record when items are marked DONE         |
+       | logrepeat           | record a time when reinstating a repeating item |
+       | lognoterepeat       | record a note when reinstating a repeating item |
+       | nologrepeat         | do not record when reinstating repeating item   |
+       | lognoteclock-out    | record a note when clocking out                 |
+       | nolognoteclock-out  | don’t record a note when clocking out           |
+       | logreschedule       | record a timestamp when scheduling time changes |
+       | lognotereschedule   | record a note when scheduling time changes      |
+       | nologreschedule     | do not record when a scheduling date changes    |
+       | logredeadline       | record a timestamp when deadline changes        |
+       | lognoteredeadline   | record a note when deadline changes             |
+       | nologredeadline     | do not record when a deadline date changes      |
+       | logrefile           | record a timestamp when refiling                |
+       | lognoterefile       | record a note when refiling                     |
+       | nologrefile         | do not record when refiling                     |
+       | logdrawer           | store log into drawer                           |
+       | nologdrawer         | store log outside of drawer                     |
+       | logstatesreversed   | reverse the order of states notes               |
+       | nologstatesreversed | do not reverse the order of states notes        |
 
--  #+TBLFM: :: This line contains the formulas for the table directly
-   above the line.
+       Here are the options for hiding leading stars in outline
+       headings, and for indenting outlines. The corresponding
+       variables are =org-hide-leading-stars= and
+       =org-odd-levels-only=, both with a default setting =nil=
+       (meaning =showstars= and =oddeven=).
 
-   Table can have multiple lines containing ‘#+TBLFM:'. Note that only
-   the first line of ‘#+TBLFM:' will be applied when you recalculate the
-   table. For more details see
-   [[@Using-multiple-_0023_002bTBLFM-lines][Using multiple #+TBLFM
-   lines]] in [[@Editing-and-debugging-formulas][Editing and debugging
-   formulas]].
+       | hidestars | make all but one of the stars starting a headline invisible. |
+       | showstars | show all stars starting a headline                           |
+       | indent    | virtual indentation according to outline level               |
+       | noindent  | no virtual indentation according to outline level            |
+       | odd       | allow only odd outline levels (1,3,...)                      |
+       | oddeven   | allow all outline levels                                     |
 
--  #+TITLE:, #+AUTHOR:, #+EMAIL:, #+LANGUAGE:, #+DATE:,\\
-   #+OPTIONS:, #+BIND:,\\
-   #+SELECT_TAGS:, #+EXCLUDE_TAGS: :: These lines provide settings for
-   exporting files. For more details see [[@Export-settings][Export
-   settings]].
+       To turn on custom format overlays over timestamps (variables
+       =org-put-time-stamp-overlays= and
+       =org-time-stamp-overlay-formats=), use
 
--  #+TODO: #+SEQ_TODO: #+TYP_TODO: :: These lines set the TODO
-   keywords and their interpretation in the current file. The
-   corresponding variable is =org-todo-keywords=.
+       | customtime | overlay custom time format |
 
-** 15.7 The very busy C-c C-c key                                     <<@The-very-busy-C_c-C_c-key>>
 
-The key C-c C-c has many purposes in Org, which are all mentioned
-scattered throughout this manual. One specific function of this key is
-to add /tags/ to a headline (see [[@Tags][Tags]]). In many other
-circumstances it means something like /“Hey Org, look here and update
-according to what you see here”/. Here is a summary of what this means
-in different contexts.
+       The following options influence the table spreadsheet (variable
+       =constants-unit-system=).
 
--  - If there are highlights in the buffer from the creation of a sparse
-   tree, or from clock display, remove these highlights.
--  - If the cursor is in one of the special =#+KEYWORD= lines, this
-   triggers scanning the buffer for these lines and updating the
-   information.
--  - If the cursor is inside a table, realign the table. This command
-   works even if the automatic table editor has been turned off.
--  - If the cursor is on a =#+TBLFM= line, re-apply the formulas to the
-   entire table.
--  - If the current buffer is a capture buffer, close the note and file
-   it. With a prefix argument, file it, without further interaction, to
-   the default location.
--  - If the cursor is on a =<<<target>>>=, update radio targets and
-   corresponding links in this buffer.
--  - If the cursor is in a property line or at the start or end of a
-   property drawer, offer property commands.
--  - If the cursor is at a footnote reference, go to the corresponding
-   definition, and /vice versa/.
--  - If the cursor is on a statistics cookie, update it.
--  - If the cursor is in a plain list item with a checkbox, toggle the
-   status of the checkbox.
--  - If the cursor is on a numbered item in a plain list, renumber the
-   ordered list.
--  - If the cursor is on the =#+BEGIN= line of a dynamic block, the
-   block is updated.
--  - If the cursor is at a timestamp, fix the day name in the timestamp.
+       | constcgs | constants.el should use the c-g-s unit system |
+       | constSI  | constants.el should use the SI unit system    |
+
+       To influence footnote settings, use the following keywords. The
+       corresponding variables are =org-footnote-define-inline=,
+       =org-footnote-auto-label=, and =org-footnote-auto-adjust=.
+
+       | fninline   | define footnotes inline                               |
+       | fnnoinline | define footnotes in separate section                  |
+       | fnlocal    | define footnotes near first reference, but not inline |
+       | fnprompt   | prompt for footnote labels                            |
+       | fnauto     | create =[fn:1]=-like labels automatically (default)   |
+       | fnconfirm  | offer automatic label for editing or confirmation     |
+       | fnplain    | create =[1]=-like labels automatically                |
+       | fnadjust   | automatically renumber and sort footnotes             |
+       | nofnadjust | do not renumber and sort automatically                |
+
+       To hide blocks on startup, use these keywords. The
+       corresponding variable is =org-hide-block-startup=.
+
+       | hideblocks   | Hide all begin/end blocks on startup |
+       | nohideblocks | Do not hide blocks on startup        |
+
+       The display of entities as UTF-8 characters is governed by the
+       variable =org-pretty-entities= and the keywords
+
+       | entitiespretty | Show entities as UTF-8 characters where possible |
+       | entitiesplain  | Leave entities plain                             |
+
+    - #+TAGS: TAG1(c1) TAG2(c2)
+
+      These lines (several such lines are allowed) specify the valid
+      tags in this file, and (potentially) the corresponding /fast tag
+      selection/ keys. The corresponding variable is =org-tag-alist=.
+
+    - #+TBLFM:
+
+      This line contains the formulas for the table directly above the
+      line.
+
+      Table can have multiple lines containing ‘#+TBLFM:'. Note that
+      only the first line of ‘#+TBLFM:' will be applied when you
+      recalculate the table. For more details see [[@Using-multiple-#%2BTBLFM-lines][Using
+      multiple #+TBLFM lines]] in [[@Editing-and-debugging-formulas][Editing and debugging formulas]].
+
+    - #+TITLE:, #+AUTHOR:, #+EMAIL:, #+LANGUAGE:, #+DATE:,\\
+      #+OPTIONS:, #+BIND:,\\
+      #+SELECT_TAGS:, #+EXCLUDE_TAGS:
+
+      These lines provide settings for exporting files. For more
+      details see [[@Export-settings][Export settings]].
+
+    - #+TODO: #+SEQ_TODO: #+TYP_TODO:
+
+      These lines set the TODO keywords and their interpretation in
+      the current file. The corresponding variable is
+      =org-todo-keywords=.
+
+** 15.7 The very busy */C-c C-c/* key                                 <<@The-very-busy-C_c-C_c-key>>
+
+   The key */C-c C-c/* has many purposes in Org, which are all
+   mentioned scattered throughout this manual. One specific function
+   of this key is to add /tags/ to a headline (see [[@Tags][Tags]]). In many
+   other circumstances it means something like /“Hey Org, look here
+   and update according to what you see here”/. Here is a summary of
+   what this means in different contexts.
+
+    - If there are highlights in the buffer from the creation of a
+      sparse tree, or from clock display, remove these highlights.
+
+    - If the cursor is in one of the special =#+KEYWORD= lines, this
+      triggers scanning the buffer for these lines and updating the
+      information.
+
+    - If the cursor is inside a table, realign the table. This command
+      works even if the automatic table editor has been turned off.
+
+    - If the cursor is on a =#+TBLFM= line, re-apply the formulas to
+      the entire table.
+    - If the current buffer is a capture buffer, close the note and
+      file it. With a prefix argument, file it, without further
+      interaction, to the default location.
+
+    - If the cursor is on a =<<<target>>>=, update radio targets and
+      corresponding links in this buffer.
+
+    - If the cursor is in a property line or at the start or end of a
+      property drawer, offer property commands.
+
+    - If the cursor is at a footnote reference, go to the
+      corresponding definition, and /vice versa/.
+
+    - If the cursor is on a statistics cookie, update it.
+
+    - If the cursor is in a plain list item with a checkbox, toggle
+      the status of the checkbox.
+
+    - If the cursor is on a numbered item in a plain list, renumber
+      the ordered list.
+
+    - If the cursor is on the =#+BEGIN= line of a dynamic block, the
+      block is updated.
+
+    - If the cursor is at a timestamp, fix the day name in the
+      timestamp.
 
 ** 15.8 A cleaner outline view                                        <<@Clean-view>>
 
-Some people find it noisy and distracting that the Org headlines start
-with a potentially large number of stars, and that text below the
-headlines is not indented. While this is no problem when writing a
-/book-like/ document where the outline headings are really section
-headings, in a more /list-oriented/ outline, indented structure is a lot
-cleaner:
-
-#+BEGIN_EXAMPLE
-    * Top level headline             |    * Top level headline
-    ** Second level                  |      * Second level
-    *** 3rd level                    |        * 3rd level
-    some text                        |          some text
-    *** 3rd level                    |        * 3rd level
-    more text                        |          more text
-    * Another top level headline     |    * Another top level headline
-#+END_EXAMPLE
-
-If you are using at least Emacs 23.2[fn:FOOT172] and version
-6.29 of Org, this kind of view can be achieved dynamically at display
-time using =org-indent-mode=. In this minor mode, all lines are prefixed
-for display with the necessary amount of space[fn:FOOT173]. Also
-headlines are prefixed with additional stars, so that the amount of
-indentation shifts by two[fn:FOOT174] spaces per level. All
-headline stars but the last one are made invisible using the =org-hide=
-face[fn:FOOT175]; see below under ‘2.' for more information on
-how this works. You can turn on =org-indent-mode= for all files by
-customizing the variable =org-startup-indented=, or you can turn it on
-for individual files using
-
-#+BEGIN_EXAMPLE
-    #+STARTUP: indent
-#+END_EXAMPLE
-
-If you want a similar effect in an earlier version of Emacs and/or Org,
-or if you want the indentation to be hard space characters so that the
-plain text file looks as similar as possible to the Emacs display, Org
-supports you in the following way:
-
-1. /Indentation of text below headlines/\\
-    You may indent text below each headline to make the left boundary
-   line up with the headline, like
+   Some people find it noisy and distracting that the Org headlines
+   start with a potentially large number of stars, and that text below
+   the headlines is not indented. While this is no problem when
+   writing a /book-like/ document where the outline headings are
+   really section headings, in a more /list-oriented/ outline,
+   indented structure is a lot cleaner:
 
    #+BEGIN_EXAMPLE
-       *** 3rd level
-           more text, now indented
+     * Top level headline             |    * Top level headline
+     ** Second level                  |      * Second level
+     *** 3rd level                    |        * 3rd level
+     some text                        |          some text
+     *** 3rd level                    |        * 3rd level
+     more text                        |          more text
+     * Another top level headline     |    * Another top level headline
    #+END_EXAMPLE
 
-   Org supports this with paragraph filling, line wrapping, and
-   structure editing[fn:FOOT176], preserving or adapting the
-   indentation as appropriate.
-
-2. /Hiding leading stars/\\
-    You can modify the display in such a way that all leading stars
-   become invisible. To do this in a global way, configure the variable
-   =org-hide-leading-stars= or change this on a per-file basis with
+   If you are using at least Emacs 23.2[fn:FOOT172] and version 6.29
+   of Org, this kind of view can be achieved dynamically at display
+   time using =org-indent-mode=. In this minor mode, all lines are
+   prefixed for display with the necessary amount of
+   space[fn:FOOT173]. Also headlines are prefixed with additional
+   stars, so that the amount of indentation shifts by two[fn:FOOT174]
+   spaces per level. All headline stars but the last one are made
+   invisible using the =org-hide= face[fn:FOOT175]; see below under
+   ‘2.' for more information on how this works. You can turn on
+   =org-indent-mode= for all files by customizing the variable
+   =org-startup-indented=, or you can turn it on for individual files
+   using
 
    #+BEGIN_EXAMPLE
-       #+STARTUP: hidestars
-       #+STARTUP: showstars
+     #+STARTUP: indent
    #+END_EXAMPLE
 
-   With hidden stars, the tree becomes:
+   If you want a similar effect in an earlier version of Emacs and/or
+   Org, or if you want the indentation to be hard space characters so
+   that the plain text file looks as similar as possible to the Emacs
+   display, Org supports you in the following way:
 
-   #+BEGIN_EXAMPLE
-       * Top level headline
-        * Second level
-         * 3rd level
-         ...
-   #+END_EXAMPLE
+    1. /Indentation of text below headlines/
 
-   The leading stars are not truly replaced by whitespace, they are only
-   fontified with the face =org-hide= that uses the background color as
-   font color. If you are not using either white or black background,
-   you may have to customize this face to get the wanted effect. Another
-   possibility is to set this font such that the extra stars are
-   /almost/ invisible, for example using the color =grey90= on a white
-   background.
+       You may indent text below each headline to make the left
+       boundary line up with the headline, like
 
-3. Things become cleaner still if you skip all the even levels and use
-   only odd levels 1, 3, 5..., effectively adding two stars to go from
-   one outline level to the next[fn:FOOT177]. In this way we get
-   the outline view shown at the beginning of this section. In order to
-   make the structure editing and export commands handle this convention
-   correctly, configure the variable =org-odd-levels-only=, or set this
-   on a per-file basis with one of the following lines:
+       #+BEGIN_EXAMPLE
+           *** 3rd level
+               more text, now indented
+       #+END_EXAMPLE
 
-   #+BEGIN_EXAMPLE
-       #+STARTUP: odd
-       #+STARTUP: oddeven
-   #+END_EXAMPLE
+       Org supports this with paragraph filling, line wrapping, and
+       structure editing[fn:FOOT176], preserving or adapting the
+       indentation as appropriate.
 
-   You can convert an Org file from single-star-per-level to the
-   double-star-per-level convention with M-x org-convert-to-odd-levels
-   RET in that file. The reverse operation is M-x
-   org-convert-to-oddeven-levels.
+    2. /Hiding leading stars/
+
+       You can modify the display in such a way that all leading stars
+       become invisible. To do this in a global way, configure the
+       variable =org-hide-leading-stars= or change this on a per-file
+       basis with
+
+       #+BEGIN_EXAMPLE
+         #+STARTUP: hidestars
+         #+STARTUP: showstars
+       #+END_EXAMPLE
+
+       With hidden stars, the tree becomes:
+
+       #+BEGIN_EXAMPLE
+         * Top level headline
+          * Second level
+           * 3rd level
+           ...
+       #+END_EXAMPLE
+
+       The leading stars are not truly replaced by whitespace, they
+       are only fontified with the face =org-hide= that uses the
+       background color as font color. If you are not using either
+       white or black background, you may have to customize this face
+       to get the wanted effect. Another possibility is to set this
+       font such that the extra stars are /almost/ invisible, for
+       example using the color =grey90= on a white background.
+
+    3. Things become cleaner still if you skip all the even levels and
+       use only odd levels 1, 3, 5..., effectively adding two stars to
+       go from one outline level to the next[fn:FOOT177]. In this way
+       we get the outline view shown at the beginning of this
+       section. In order to make the structure editing and export
+       commands handle this convention correctly, configure the
+       variable =org-odd-levels-only=, or set this on a per-file basis
+       with one of the following lines:
+
+       #+BEGIN_EXAMPLE
+         #+STARTUP: odd
+         #+STARTUP: oddeven
+       #+END_EXAMPLE
+
+       You can convert an Org file from single-star-per-level to the
+       double-star-per-level convention with M-x
+       org-convert-to-odd-levels RET in that file. The reverse
+       operation is M-x org-convert-to-oddeven-levels.
 
 ** 15.9 Using Org on a tty                                            <<@TTY-keys>>
 
-Because Org contains a large number of commands, by default many of
-Org's core commands are bound to keys that are generally not accessible
-on a tty, such as the cursor keys (=left=, =right=, =up=, =down=), =TAB=
-and =RET=, in particular when used together with modifiers like =Meta=
-and/or =Shift=. To access these commands on a tty when special keys are
-unavailable, the following alternative bindings can be used. The tty
-bindings below will likely be more cumbersome; you may find for some of
-the bindings below that a customized workaround suits you better. For
-example, changing a timestamp is really only fun with S-cursor keys,
-whereas on a tty you would rather use C-c . to re-insert the timestamp.
+   Because Org contains a large number of commands, by default many of
+   Org's core commands are bound to keys that are generally not
+   accessible on a tty, such as the cursor keys (=left=, =right=,
+   =up=, =down=), =TAB= and =RET=, in particular when used together
+   with modifiers like =Meta= and/or =Shift=. To access these commands
+   on a tty when special keys are unavailable, the following
+   alternative bindings can be used. The tty bindings below will
+   likely be more cumbersome; you may find for some of the bindings
+   below that a customized workaround suits you better. For example,
+   changing a timestamp is really only fun with S-cursor keys, whereas
+   on a tty you would rather use */C-c ./* to re-insert the timestamp.
 
-| *Default*   | *Alternative 1*   | *Speed key*   | *Alternative 2*   |
-| S-TAB       | C-u TAB           | C             |                   |
-| M-left      | C-c C-x l         | l             | Esc left          |
-| M-S-left    | C-c C-x L         | L             |                   |
-| M-right     | C-c C-x r         | r             | Esc right         |
-| M-S-right   | C-c C-x R         | R             |                   |
-| M-up        | C-c C-x u         |               | Esc up            |
-| M-S-up      | C-c C-x U         | U             |                   |
-| M-down      | C-c C-x d         |               | Esc down          |
-| M-S-down    | C-c C-x D         | D             |                   |
-| S-RET       | C-c C-x c         |               |                   |
-| M-RET       | C-c C-x m         |               | Esc RET           |
-| M-S-RET     | C-c C-x M         |               |                   |
-| S-left      | C-c left          |               |                   |
-| S-right     | C-c right         |               |                   |
-| S-up        | C-c up            |               |                   |
-| S-down      | C-c down          |               |                   |
-| C-S-left    | C-c C-x left      |               |                   |
-| C-S-right   | C-c C-x right     |               |                   |
+   #+BEGIN_CENTER
+     | *Default* | *Alternative 1* | *Speed key* | *Alternative 2* |
+     | S-TAB     | C-u TAB         | C           |                 |
+     | M-left    | C-c C-x l       | l           | Esc left        |
+     | M-S-left  | C-c C-x L       | L           |                 |
+     | M-right   | C-c C-x r       | r           | Esc right       |
+     | M-S-right | C-c C-x R       | R           |                 |
+     | M-up      | C-c C-x u       |             | Esc up          |
+     | M-S-up    | C-c C-x U       | U           |                 |
+     | M-down    | C-c C-x d       |             | Esc down        |
+     | M-S-down  | C-c C-x D       | D           |                 |
+     | S-RET     | C-c C-x c       |             |                 |
+     | M-RET     | C-c C-x m       |             | Esc RET         |
+     | M-S-RET   | C-c C-x M       |             |                 |
+     | S-left    | C-c left        |             |                 |
+     | S-right   | C-c right       |             |                 |
+     | S-up      | C-c up          |             |                 |
+     | S-down    | C-c down        |             |                 |
+     | C-S-left  | C-c C-x left    |             |                 |
+     | C-S-right | C-c C-x right   |             |                 |
+   #+END_CENTER
 
 ** 15.10 Interaction with other packages                              <<@Interaction>>
 
-Org lives in the world of GNU Emacs and interacts in various ways with
-other code out there.
+   Org lives in the world of GNU Emacs and interacts in various ways
+   with other code out there.
 
-| • [[@Cooperation][Cooperation]]: | Packages Org cooperates with    |
-| • [[@Conflicts][Conflicts]]:   | Packages that lead to conflicts |
+   | • [[@Cooperation][Cooperation]]: | Packages Org cooperates with    |
+   | • [[@Conflicts][Conflicts]]:   | Packages that lead to conflicts |
 
 *** 15.10.1 Packages that Org cooperates with                         <<@Cooperation>>
 
-calc.el by Dave Gillespie
+     - calc.el by Dave Gillespie
 
-Org uses the Calc package for implementing spreadsheet functionality in
-its tables (see [[@The-spreadsheet][The spreadsheet]]). Org checks for
-the availability of Calc by looking for the function =calc-eval= which
-will have been autoloaded during setup if Calc has been installed
-properly. As of Emacs 22, Calc is part of the Emacs distribution.
-Another possibility for interaction between the two packages is using
-Calc for embedded calculations. See
-[[http://www.gnu.org/software/emacs/manual/html_mono/calc.html#Embedded-Mode][Embedded
-Mode]] in GNU Emacs Calc Manual.
+       Org uses the Calc package for implementing spreadsheet
+       functionality in its tables (see [[@The-spreadsheet][The spreadsheet]]). Org checks
+       for the availability of Calc by looking for the function
+       =calc-eval= which will have been autoloaded during setup if
+       Calc has been installed properly. As of Emacs 22, Calc is part
+       of the Emacs distribution.  Another possibility for interaction
+       between the two packages is using Calc for embedded
+       calculations. See [[http://www.gnu.org/software/emacs/manual/html_mono/calc.html#Embedded-Mode][Embedded Mode]] in GNU Emacs Calc Manual.
 
-constants.el by Carsten Dominik
+     - constants.el by Carsten Dominik
 
-In a table formula (see [[@The-spreadsheet][The spreadsheet]]), it is
-possible to use names for natural constants or units. Instead of
-defining your own constants in the variable
-=org-table-formula-constants=, install the constants package which
-defines a large number of constants and units, and lets you use unit
-prefixes like ‘M' for ‘Mega', etc. You will need version 2.0 of this
-package, available at [[http://www.astro.uva.nl/~dominik/Tools]]. Org
-checks for the function =constants-get=, which has to be autoloaded in
-your setup. See the installation instructions in the file constants.el.
+       In a table formula (see [[@The-spreadsheet][The spreadsheet]]), it is possible to use
+       names for natural constants or units. Instead of defining your
+       own constants in the variable =org-table-formula-constants=,
+       install the constants package which defines a large number of
+       constants and units, and lets you use unit prefixes like ‘M'
+       for ‘Mega', etc. You will need version 2.0 of this package,
+       available at [[http://www.astro.uva.nl/~dominik/Tools]]. Org checks
+       for the function =constants-get=, which has to be autoloaded in
+       your setup. See the installation instructions in the file
+       constants.el.
 
-cdlatex.el by Carsten Dominik
+     - cdlatex.el by Carsten Dominik
 
-Org mode can make use of the CDLaTeX package to efficiently enter LaTeX
-fragments into Org files. See [[@CDLaTeX-mode][CDLaTeX mode]].
+       Org mode can make use of the CDLaTeX package to efficiently
+       enter LaTeX fragments into Org files. See [[@CDLaTeX-mode][CDLaTeX mode]].
 
-imenu.el by Ake Stenhoff and Lars Lindberg
+     - imenu.el by Ake Stenhoff and Lars Lindberg
 
-Imenu allows menu access to an index of items in a file. Org mode
-supports Imenu---all you need to do to get the index is the following:
+       Imenu allows menu access to an index of items in a file. Org
+       mode supports Imenu---all you need to do to get the index is
+       the following:
 
-#+BEGIN_SRC lisp
-    (add-hook 'org-mode-hook
-              (lambda () (imenu-add-to-menubar "Imenu")))
-#+END_SRC
+       #+BEGIN_SRC lisp
+         (add-hook 'org-mode-hook
+                   (lambda () (imenu-add-to-menubar "Imenu")))
+       #+END_SRC
 
-By default the index is two levels deep---you can modify the depth using
-the option =org-imenu-depth=.
+       By default the index is two levels deep -- you can modify the
+       depth using the option =org-imenu-depth=.
 
-remember.el by John Wiegley
+     - remember.el by John Wiegley
 
-Org used to use this package for capture, but no longer does.
+       Org used to use this package for capture, but no longer does.
 
-speedbar.el by Eric M. Ludlam
+     - speedbar.el by Eric M. Ludlam
 
-Speedbar is a package that creates a special frame displaying files and
-index items in files. Org mode supports Speedbar and allows you to drill
-into Org files directly from the Speedbar. It also allows you to
-restrict the scope of agenda commands to a file or a subtree by using
-the command < in the Speedbar frame.
+       Speedbar is a package that creates a special frame displaying
+       files and index items in files. Org mode supports Speedbar and
+       allows you to drill into Org files directly from the
+       Speedbar. It also allows you to restrict the scope of agenda
+       commands to a file or a subtree by using the command < in the
+       Speedbar frame.
 
-table.el by Takaaki Ota
+     - table.el by Takaaki Ota
 
-Complex ASCII tables with automatic line wrapping, column- and
-row-spanning, and alignment can be created using the Emacs table package
-by Takaaki Ota ([[http://sourceforge.net/projects/table]], and also part
-of Emacs 22). Org mode will recognize these tables and export them
-properly. Because of interference with other Org mode functionality, you
-unfortunately cannot edit these tables directly in the buffer. Instead,
-you need to use the command C-c ' to edit them, similar to source code
-snippets.
+       Complex ASCII tables with automatic line wrapping, column- and
+       row-spanning, and alignment can be created using the Emacs
+       table package by Takaaki Ota
+       ([[http://sourceforge.net/projects/table]], and also part of Emacs
+       22). Org mode will recognize these tables and export them
+       properly. Because of interference with other Org mode
+       functionality, you unfortunately cannot edit these tables
+       directly in the buffer. Instead, you need to use the command
+       */C-c '/* to edit them, similar to source code snippets.
 
-C-c ' (=org-edit-special=)
+        - C-c ' (=org-edit-special=)
 
-Edit a table.el table. Works when the cursor is in a table.el table.
+          Edit a table.el table. Works when the cursor is in a
+          table.el table.
 
-C-c ~ (=org-table-create-with-table.el=)
+        - C-c ~ (=org-table-create-with-table.el=)
 
-Insert a table.el table. If there is already a table at point, this
-command converts it between the table.el format and the Org mode format.
-See the documentation string of the command =org-convert-table= for the
-restrictions under which this is possible.
+          Insert a table.el table. If there is already a table at
+          point, this command converts it between the table.el format
+          and the Org mode format.  See the documentation string of
+          the command =org-convert-table= for the restrictions under
+          which this is possible.
 
-table.el is part of Emacs since Emacs 22.
+       table.el is part of Emacs since Emacs 22.
 
-footnote.el by Steven L. Baur
+     - footnote.el by Steven L. Baur
 
-Org mode recognizes numerical footnotes as provided by this package.
-However, Org mode also has its own footnote support (see
-[[@Footnotes][Footnotes]]), which makes using footnote.el unnecessary.
+       Org mode recognizes numerical footnotes as provided by this
+       package.  However, Org mode also has its own footnote support
+       (see [[@Footnotes][Footnotes]]), which makes using footnote.el unnecessary.
 
 *** 15.10.2 Packages that lead to conflicts with Org mode             <<@Conflicts>>
 
-In Emacs 23, =shift-selection-mode= is on by default, meaning that
-cursor motions combined with the shift key should start or enlarge
-regions. This conflicts with the use of S-cursor commands in Org to
-change timestamps, TODO keywords, priorities, and item bullet types if
-the cursor is at such a location. By default, S-cursor commands outside
-special contexts don't do anything, but you can customize the variable
-=org-support-shift-select=. Org mode then tries to accommodate shift
-selection by (i) using it outside of the special contexts where special
-commands apply, and by (ii) extending an existing active region even if
-the cursor moves across a special context.
+    In Emacs 23, =shift-selection-mode= is on by default, meaning that
+    cursor motions combined with the shift key should start or enlarge
+    regions. This conflicts with the use of S-cursor commands in Org
+    to change timestamps, TODO keywords, priorities, and item bullet
+    types if the cursor is at such a location. By default, S-cursor
+    commands outside special contexts don't do anything, but you can
+    customize the variable =org-support-shift-select=. Org mode then
+    tries to accommodate shift selection by (i) using it outside of
+    the special contexts where special commands apply, and by (ii)
+    extending an existing active region even if the cursor moves
+    across a special context.
 
-CUA.el by Kim. F. Storm
+     - CUA.el by Kim. F. Storm
 
-Key bindings in Org conflict with the S-<cursor> keys used by CUA mode
-(as well as =pc-select-mode= and =s-region-mode=) to select and extend
-the region. In fact, Emacs 23 has this built-in in the form of
-=shift-selection-mode=, see previous paragraph. If you are using Emacs
-23, you probably don't want to use another package for this purpose.
-However, if you prefer to leave these keys to a different package while
-working in Org mode, configure the variable =org-replace-disputed-keys=.
-When set, Org will move the following key bindings in Org files, and in
-the agenda buffer (but not during date selection).
+       Key bindings in Org conflict with the S-<cursor> keys used by
+       CUA mode (as well as =pc-select-mode= and =s-region-mode=) to
+       select and extend the region. In fact, Emacs 23 has this
+       built-in in the form of =shift-selection-mode=, see previous
+       paragraph. If you are using Emacs 23, you probably don't want
+       to use another package for this purpose.  However, if you
+       prefer to leave these keys to a different package while working
+       in Org mode, configure the variable
+       =org-replace-disputed-keys=.  When set, Org will move the
+       following key bindings in Org files, and in the agenda buffer
+       (but not during date selection).
 
-#+BEGIN_EXAMPLE
-    S-UP      ⇒  M-p             S-DOWN     ⇒  M-n
-    S-LEFT    ⇒  M--             S-RIGHT    ⇒  M-+
-    C-S-LEFT  ⇒  M-S--           C-S-RIGHT  ⇒  M-S-+
-#+END_EXAMPLE
+       #+BEGIN_EXAMPLE
+         S-UP      ⇒  M-p             S-DOWN     ⇒  M-n
+         S-LEFT    ⇒  M--             S-RIGHT    ⇒  M-+
+         C-S-LEFT  ⇒  M-S--           C-S-RIGHT  ⇒  M-S-+
+       #+END_EXAMPLE
 
-Yes, these are unfortunately more difficult to remember. If you want to
-have other replacement keys, look at the variable =org-disputed-keys=.
+       Yes, these are unfortunately more difficult to remember. If you
+       want to have other replacement keys, look at the variable
+       =org-disputed-keys=.
 
-ecomplete.el by Lars Magne Ingebrigtsen
-[[mailto:larsi@gnus.org][larsi@gnus.org]]
+     - ecomplete.el by Lars Magne Ingebrigtsen [[mailto:larsi@gnus.org][larsi@gnus.org]]
 
-Ecomplete provides “electric” address completion in address header lines
-in message buffers. Sadly Orgtbl mode cuts ecompletes power supply: No
-completion happens when Orgtbl mode is enabled in message buffers while
-entering text in address header lines. If one wants to use ecomplete one
-should /not/ follow the advice to automagically turn on Orgtbl mode in
-message buffers (see [[@Orgtbl-mode][Orgtbl mode]]), but instead---after
-filling in the message headers---turn on Orgtbl mode manually when
-needed in the messages body.
+       Ecomplete provides “electric” address completion in address
+       header lines in message buffers. Sadly Orgtbl mode cuts
+       ecompletes power supply: No completion happens when Orgtbl mode
+       is enabled in message buffers while entering text in address
+       header lines. If one wants to use ecomplete one should /not/
+       follow the advice to automagically turn on Orgtbl mode in
+       message buffers (see [[@Orgtbl-mode][Orgtbl mode]]), but instead -- after filling
+       in the message headers---turn on Orgtbl mode manually when
+       needed in the messages body.
 
-filladapt.el by Kyle Jones
+     - filladapt.el by Kyle Jones
 
-Org mode tries to do the right thing when filling paragraphs, list items
-and other elements. Many users reported they had problems using both
-filladapt.el and Org mode, so a safe thing to do is to disable it like
-this:
+       Org mode tries to do the right thing when filling paragraphs,
+       list items and other elements. Many users reported they had
+       problems using both filladapt.el and Org mode, so a safe thing
+       to do is to disable it like this:
 
-#+BEGIN_SRC lisp
-    (add-hook 'org-mode-hook 'turn-off-filladapt-mode)
-#+END_SRC
+       #+BEGIN_SRC lisp
+         (add-hook 'org-mode-hook 'turn-off-filladapt-mode)
+       #+END_SRC
 
-yasnippet.el
+     - yasnippet.el
 
-The way Org mode binds the =TAB= key (binding to =[tab]= instead of
-="\t"=) overrules YASnippet's access to this key. The following code
-fixed this problem:
+       The way Org mode binds the =TAB= key (binding to =[tab]=
+       instead of ="\t"=) overrules YASnippet's access to this
+       key. The following code fixed this problem:
 
-#+BEGIN_SRC lisp
-    (add-hook 'org-mode-hook
-              (lambda ()
-                (org-set-local 'yas/trigger-key [tab])
-                (define-key yas/keymap [tab] 'yas/next-field-or-maybe-expand)))
-#+END_SRC
+       #+BEGIN_SRC lisp
+         (add-hook 'org-mode-hook
+                   (lambda ()
+                     (org-set-local 'yas/trigger-key [tab])
+                     (define-key yas/keymap [tab] 'yas/next-field-or-maybe-expand)))
+       #+END_SRC
 
-The latest version of yasnippet doesn't play well with Org mode. If the
-above code does not fix the conflict, start by defining the following
-function:
+       The latest version of yasnippet doesn't play well with Org
+       mode. If the above code does not fix the conflict, start by
+       defining the following function:
 
-#+BEGIN_SRC lisp
-    (defun yas/org-very-safe-expand ()
-      (let ((yas/fallback-behavior 'return-nil)) (yas/expand)))
-#+END_SRC
+       #+BEGIN_SRC lisp
+         (defun yas/org-very-safe-expand ()
+           (let ((yas/fallback-behavior 'return-nil)) (yas/expand)))
+       #+END_SRC
 
-Then, tell Org mode what to do with the new function:
+       Then, tell Org mode what to do with the new function:
 
-#+BEGIN_SRC lisp
-    (add-hook 'org-mode-hook
-              (lambda ()
-                (make-variable-buffer-local 'yas/trigger-key)
-                (setq yas/trigger-key [tab])
-                (add-to-list 'org-tab-first-hook 'yas/org-very-safe-expand)
-                (define-key yas/keymap [tab] 'yas/next-field)))
-#+END_SRC
+       #+BEGIN_SRC lisp
+         (add-hook 'org-mode-hook
+                   (lambda ()
+                     (make-variable-buffer-local 'yas/trigger-key)
+                     (setq yas/trigger-key [tab])
+                     (add-to-list 'org-tab-first-hook 'yas/org-very-safe-expand)
+                     (define-key yas/keymap [tab] 'yas/next-field)))
+       #+END_SRC
 
-windmove.el by Hovav Shacham
+     - windmove.el by Hovav Shacham
 
-This package also uses the S-<cursor> keys, so everything written in the
-paragraph above about CUA mode also applies here. If you want make the
-windmove function active in locations where Org mode does not have
-special functionality on S-cursor, add this to your configuration:
+       This package also uses the S-<cursor> keys, so everything
+       written in the paragraph above about CUA mode also applies
+       here. If you want make the windmove function active in
+       locations where Org mode does not have special functionality on
+       S-cursor, add this to your configuration:
 
-#+BEGIN_SRC lisp
-    ;; Make windmove work in org-mode:
-    (add-hook 'org-shiftup-final-hook 'windmove-up)
-    (add-hook 'org-shiftleft-final-hook 'windmove-left)
-    (add-hook 'org-shiftdown-final-hook 'windmove-down)
-    (add-hook 'org-shiftright-final-hook 'windmove-right)
-#+END_SRC
+       #+BEGIN_SRC lisp
+         ;; Make windmove work in org-mode:
+         (add-hook 'org-shiftup-final-hook 'windmove-up)
+         (add-hook 'org-shiftleft-final-hook 'windmove-left)
+         (add-hook 'org-shiftdown-final-hook 'windmove-down)
+         (add-hook 'org-shiftright-final-hook 'windmove-right)
+       #+END_SRC
 
-viper.el by Michael Kifer
+     - viper.el by Michael Kifer
 
-Viper uses C-c / and therefore makes this key not access the
-corresponding Org mode command =org-sparse-tree=. You need to find
-another key for this command, or override the key in
-=viper-vi-global-user-map= with
+       Viper uses =C-c /= and therefore makes this key not access the
+       corresponding Org mode command =org-sparse-tree=. You need to
+       find another key for this command, or override the key in
+       =viper-vi-global-user-map= with
 
-#+BEGIN_SRC lisp
-    (define-key viper-vi-global-user-map "C-c /" 'org-sparse-tree)
-#+END_SRC
+       #+BEGIN_SRC lisp
+         (define-key viper-vi-global-user-map "C-c /" 'org-sparse-tree)
+       #+END_SRC
 
 ** 15.11 org-crypt.el                                                 <<@org_crypt>>
 
-Org-crypt will encrypt the text of an entry, but not the headline, or
-properties. Org-crypt uses the Emacs EasyPG library to encrypt and
-decrypt files.
+   Org-crypt will encrypt the text of an entry, but not the headline,
+   or properties. Org-crypt uses the Emacs EasyPG library to encrypt
+   and decrypt files.
 
-Any text below a headline that has a ‘:crypt:' tag will be automatically
-be encrypted when the file is saved. If you want to use a different tag
-just customize the =org-crypt-tag-matcher= setting.
+   Any text below a headline that has a ‘:crypt:' tag will be
+   automatically be encrypted when the file is saved. If you want to
+   use a different tag just customize the =org-crypt-tag-matcher=
+   setting.
 
-To use org-crypt it is suggested that you have the following in your
-.emacs:
+   To use org-crypt it is suggested that you have the following in
+   your .emacs:
 
-#+BEGIN_SRC lisp
-    (require 'org-crypt)
-    (org-crypt-use-before-save-magic)
-    (setq org-tags-exclude-from-inheritance (quote ("crypt")))
+   #+BEGIN_SRC lisp
+     (require 'org-crypt)
+     (org-crypt-use-before-save-magic)
+     (setq org-tags-exclude-from-inheritance (quote ("crypt")))
 
-    (setq org-crypt-key nil)
-      ;; GPG key to use for encryption
-      ;; Either the Key ID or set to nil to use symmetric encryption.
+     (setq org-crypt-key nil)
+       ;; GPG key to use for encryption
+       ;; Either the Key ID or set to nil to use symmetric encryption.
 
-    (setq auto-save-default nil)
-      ;; Auto-saving does not cooperate with org-crypt.el: so you need
-      ;; to turn it off if you plan to use org-crypt.el quite often.
-      ;; Otherwise, you'll get an (annoying) message each time you
-      ;; start Org.
+     (setq auto-save-default nil)
+       ;; Auto-saving does not cooperate with org-crypt.el: so you need
+       ;; to turn it off if you plan to use org-crypt.el quite often.
+       ;; Otherwise, you'll get an (annoying) message each time you
+       ;; start Org.
 
-      ;; To turn it off only locally, you can insert this:
-      ;;
-      ;; # -*- buffer-auto-save-file-name: nil; -*-
-#+END_SRC
+       ;; To turn it off only locally, you can insert this:
+       ;;
+       ;; # -*- buffer-auto-save-file-name: nil; -*-
+   #+END_SRC
 
-Excluding the crypt tag from inheritance prevents already encrypted text
-being encrypted again.
+   Excluding the crypt tag from inheritance prevents already encrypted
+   text being encrypted again.
 
 * Appendix A Hacking
 

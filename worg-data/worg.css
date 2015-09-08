@@ -1,4 +1,4 @@
-/* worg.css inspired by http://orgmode.org/worg/org-tutorials/orgtutorial_dto-es.html */
+/* WORG.css inspired by http://orgmode.org/worg/org-tutorials/orgtutorial_dto-es.html */
 /*
 title          afeeee ff4500
 *              87cefa
@@ -103,37 +103,21 @@ html body #content
 #table-of-contents:hover #text-table-of-contents ul li ul li ul li ul li ul li ul li ul li ul li a
                          { color: #ffa074; font-size: .6em; }
 
-/* ####################### IMG */
-html body #content img { border: none; filter: grayscale( 100% ); filter: invert(100%); }
-html body #content img:hover { filter: none;
-                           /*  filter: grayscale(50%);
-                               filter: sepia(100%);
-                               filter: blur(10px);
-                               filter: brightness(0.5);
-                               filter: contrast(200%);
-                               filter: drop-shadow(16px 16px 10px black );
-                               filter: hue-rotate(90deg);
-                               filter: invert(100%);
-                               filter: opacity(50%);
-                               filter: saturate(200%); */ }
-
-/* ##################### TABLE */
-html body #content table    { border: 2px solid #87cefa; }
-html body #content table tr { border: 2px solid #87cefa; }
-html body #content table th { border: none; color: #ff7f24; }
-html body #content table td { border: none; color: #ffffff; }
-
-
 /* ############## CODE IN TEXT */
 html body #content code { background-color: #000; color: #b3b3b3; font-size: 1em;  font-family: codetext;
                           /* border: 1px solid #DEDEDE; */ padding: 0px 0.2em; }
 
 /* ############### CODE BLOCKS */
-html body #content pre { background-color: #000; color: white; font-size: 100%; text-align: left; font-family: codeblock;
+html body #content pre { background-color: #000; color: white;
+                         font-size: 100%; text-align: left; font-family: codeblock;
                          padding: 1.2em; border: 1px solid #ddd; overflow: auto; }
 
+html body #content pre.example { background-color: #000; color: white;
+                                 font-size: 100%; text-align: left; font-family: codeblock;
+                                 padding: 1.2em; border: 1px solid #ddd; overflow: auto; }
+
 /* #################### CENTER */
-html body #content .center { text-align: center; }
+html body #content div.center { text-align: center; display: table; margin: 0 auto; }
 
 /* ##################### VERSE */
 html body #content .verse { text-align: center; color: #b3b3b3;
@@ -141,7 +125,7 @@ html body #content .verse { text-align: center; color: #b3b3b3;
 
 /* ############### FONT STYLE */
 html body #content b { font-family: text_bold; }     /* *BOLD*       */
-html body #content i { font-family: text_italic; }  /* /ITALIC/     */
+html body #content i { font-family: text_italic; }   /* /ITALIC/     */
 
 /* #################### LINKS */
 html body #content a { color: #00ffff; text-decoration: underline; }
@@ -163,3 +147,15 @@ html body #content dl.org-dl { padding-bottom: 2em; }         /* body           
 html body #content dl.org-dl dt { color: #daa520;             /* description id */
                                   font-size: 1.2em; font-family: description_id;
                                   margin-left: 0.6em; }
+
+/* ####################### IMG */
+div.figure { text-align: center; }
+html body #content img { border: none; max-width: 100%;
+                         filter: grayscale( 100% ); filter: invert(100%); }
+html body #content img:hover { filter: none; }
+
+/* ##################### TABLE */
+html body #content table    { border: 2px solid #87cefa; text-align: left; }
+html body #content table tr { border: 2px solid #87cefa; }
+html body #content table th { border: none; color: #ff7f24; }
+html body #content table td { border: none; color: #ffffff; }
