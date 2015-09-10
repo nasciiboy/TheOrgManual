@@ -16799,27 +16799,27 @@ modify this GNU manual.”
 * Appendix B MobileOrg
 
   /MobileOrg/ is the name of the mobile companion app for Org mode,
-  currently available for iOS and for Android. /MobileOrg/ offers offline
-  viewing and capture support for an Org mode system rooted on a “real”
-  computer. It also allows you to record changes to existing entries. The
-  [[https://github.com/MobileOrg/][iOS implementation]] for the
-  /iPhone/iPod Touch/iPad/ series of devices, was started by Richard
-  Moreland and is now in the hands Sean Escriva. Android users should
-  check out [[http://wiki.github.com/matburt/mobileorg-android/][MobileOrg
-  Android]] by Matt Jones. The two implementations are not identical but
-  offer similar features.
+  currently available for iOS and for Android. /MobileOrg/ offers
+  offline viewing and capture support for an Org mode system rooted on
+  a “real” computer. It also allows you to record changes to existing
+  entries. The [[https://github.com/MobileOrg/][iOS implementation]] for the /iPhone/iPod Touch/iPad/
+  series of devices, was started by Richard Moreland and is now in the
+  hands Sean Escriva. Android users should check out [[http://wiki.github.com/matburt/mobileorg-android/][MobileOrg Android]]
+  by Matt Jones. The two implementations are not identical but offer
+  similar features.
 
-  This appendix describes the support Org has for creating agenda views in
-  a format that can be displayed by /MobileOrg/, and for integrating notes
-  captured and changes made by /MobileOrg/ into the main system.
+  This appendix describes the support Org has for creating agenda
+  views in a format that can be displayed by /MobileOrg/, and for
+  integrating notes captured and changes made by /MobileOrg/ into the
+  main system.
 
-  For changing tags and TODO states in MobileOrg, you should have set up
-  the customization variables =org-todo-keywords= and =org-tag-alist= to
-  cover all important tags and TODO keywords, even if individual files use
-  only part of these. MobileOrg will also offer you states and tags set up
-  with in-buffer settings, but it will understand the logistics of TODO
-  state /sets/ (see [[@Per_file-keywords][Per-file keywords]]) and
-  /mutually exclusive/ tags (see [[@Setting-tags][Setting tags]]) only for
+  For changing tags and TODO states in MobileOrg, you should have set
+  up the customization variables =org-todo-keywords= and
+  =org-tag-alist= to cover all important tags and TODO keywords, even
+  if individual files use only part of these. MobileOrg will also
+  offer you states and tags set up with in-buffer settings, but it
+  will understand the logistics of TODO state /sets/ (see [[@Per_file-keywords][Per-file
+  keywords]]) and /mutually exclusive/ tags (see [[@Setting-tags][Setting tags]]) only for
   those set in these variables.
 
   | • [[@Setting-up-the-staging-area][Setting up the staging area]]: | Where to interact with the mobile device |
@@ -16828,831 +16828,2003 @@ modify this GNU manual.”
 
 ** B.1 Setting up the staging area                                    <<@Setting-up-the-staging-area>>
 
-   MobileOrg needs to interact with Emacs through a directory on a server.
-   If you are using a public server, you should consider encrypting the
-   files that are uploaded to the server. This can be done with Org mode
-   7.02 and with /MobileOrg 1.5/ (iPhone version), and you need an openssl
-   installation on your system. To turn on encryption, set a password in
-   /MobileOrg/ and, on the Emacs side, configure the variable
-   =org-mobile-use-encryption=[fn:FOOT183].
+   MobileOrg needs to interact with Emacs through a directory on a
+   server.  If you are using a public server, you should consider
+   encrypting the files that are uploaded to the server. This can be
+   done with Org mode 7.02 and with /MobileOrg 1.5/ (iPhone version),
+   and you need an openssl installation on your system. To turn on
+   encryption, set a password in /MobileOrg/ and, on the Emacs side,
+   configure the variable =org-mobile-use-encryption= [fn:FOOT183].
 
    The easiest way to create that directory is to use a free
-   [[http://dropbox.com][Dropbox.com]] account[fn:FOOT184]. When
-   MobileOrg first connects to your Dropbox, it will create a directory
-   /MobileOrg/ inside the Dropbox. After the directory has been created,
-   tell Emacs about it:
+   [[http://dropbox.com][Dropbox.com]] account[fn:FOOT184]. When MobileOrg first connects to
+   your Dropbox, it will create a directory /MobileOrg/ inside the
+   Dropbox. After the directory has been created, tell Emacs about it:
 
    #+BEGIN_SRC lisp
-    (setq org-mobile-directory "~/Dropbox/MobileOrg")
+     (setq org-mobile-directory "~/Dropbox/MobileOrg")
    #+END_SRC
 
-   Org mode has commands to put files for /MobileOrg/ into that directory,
-   and to read captured notes from there.
+   Org mode has commands to put files for /MobileOrg/ into that
+   directory, and to read captured notes from there.
 
 ** B.2 Pushing to MobileOrg                                           <<@Pushing-to-MobileOrg>>
 
-   This operation copies all files currently listed in =org-mobile-files=
-   to the directory =org-mobile-directory=. By default this list contains
-   all agenda files (as listed in =org-agenda-files=), but additional files
-   can be included by customizing =org-mobile-files=. File names will be
-   staged with paths relative to =org-directory=, so all files should be
-   inside this directory[fn:FOOT185].
+   This operation copies all files currently listed in
+   =org-mobile-files= to the directory =org-mobile-directory=. By
+   default this list contains all agenda files (as listed in
+   =org-agenda-files=), but additional files can be included by
+   customizing =org-mobile-files=. File names will be staged with
+   paths relative to =org-directory=, so all files should be inside
+   this directory[fn:FOOT185].
 
-   The push operation also creates a special Org file agendas.org with all
-   custom agenda view defined by the user[fn:FOOT186].
+   The push operation also creates a special Org file agendas.org with
+   all custom agenda view defined by the user[fn:FOOT186].
 
-   Finally, Org writes the file index.org, containing links to all other
-   files. /MobileOrg/ first reads this file from the server, and then
-   downloads all agendas and Org files listed in it. To speed up the
-   download, MobileOrg will only read files whose
+   Finally, Org writes the file index.org, containing links to all
+   other files. /MobileOrg/ first reads this file from the server, and
+   then downloads all agendas and Org files listed in it. To speed up
+   the download, MobileOrg will only read files whose
    checksums[fn:FOOT187] have changed.
 
 ** B.3 Pulling from MobileOrg                                         <<@Pulling-from-MobileOrg>>
 
-   When /MobileOrg/ synchronizes with the server, it not only pulls the Org
-   files for viewing. It also appends captured entries and pointers to
-   flagged and changed entries to the file mobileorg.org on the server. Org
-   has a /pull/ operation that integrates this information into an inbox
-   file and operates on the pointers to flagged entries. Here is how it
-   works:
+   When /MobileOrg/ synchronizes with the server, it not only pulls
+   the Org files for viewing. It also appends captured entries and
+   pointers to flagged and changed entries to the file mobileorg.org
+   on the server. Org has a /pull/ operation that integrates this
+   information into an inbox file and operates on the pointers to
+   flagged entries. Here is how it works:
 
-1. Org moves all entries found in mobileorg.org[fn:FOOT188] and
-   appends them to the file pointed to by the variable
-   =org-mobile-inbox-for-pull=. Each captured entry and each editing
-   event will be a top-level entry in the inbox file.
-2. After moving the entries, Org will attempt to implement the changes
-   made in /MobileOrg/. Some changes are applied directly and without
-   user interaction. Examples are all changes to tags, TODO state,
-   headline and body text that can be cleanly applied. Entries that have
-   been flagged for further action will receive a tag =:FLAGGED:=, so
-   that they can be easily found again. When there is a problem finding
-   an entry or applying the change, the pointer entry will remain in the
-   inbox and will be marked with an error message. You need to later
-   resolve these issues by hand.
-3. Org will then generate an agenda view with all flagged entries. The
-   user should then go through these entries and do whatever actions are
-   necessary. If a note has been stored while flagging an entry in
-   /MobileOrg/, that note will be displayed in the echo area when the
-   cursor is on the corresponding agenda line.
+    1. Org moves all entries found in mobileorg.org[fn:FOOT188] and
+       appends them to the file pointed to by the variable
+       =org-mobile-inbox-for-pull=. Each captured entry and each
+       editing event will be a top-level entry in the inbox file.
 
-   ?
+    2. After moving the entries, Org will attempt to implement the
+       changes made in /MobileOrg/. Some changes are applied directly
+       and without user interaction. Examples are all changes to tags,
+       TODO state, headline and body text that can be cleanly
+       applied. Entries that have been flagged for further action will
+       receive a tag =:FLAGGED:=, so that they can be easily found
+       again. When there is a problem finding an entry or applying the
+       change, the pointer entry will remain in the inbox and will be
+       marked with an error message. You need to later resolve these
+       issues by hand.
 
-   Pressing ? in that special agenda will display the full flagging note
-   in another window and also push it onto the kill ring. So you could
-   use ? z C-y C-c C-c to store that flagging note as a normal note in
-   the entry. Pressing ? twice in succession will offer to remove the
-   =:FLAGGED:= tag along with the recorded flagging note (which is
-   stored in a property). In this way you indicate that the intended
-   processing for this flagged entry is finished.
+    3. Org will then generate an agenda view with all flagged
+       entries. The user should then go through these entries and do
+       whatever actions are necessary. If a note has been stored while
+       flagging an entry in /MobileOrg/, that note will be displayed
+       in the echo area when the cursor is on the corresponding agenda
+       line.
 
-If you are not able to process all flagged entries directly, you can
-always return to this agenda view[fn:FOOT189] using C-c a ?.
+       - ?
+
+         Pressing ? in that special agenda will display the full
+         flagging note in another window and also push it onto the
+         kill ring. So you could use ? z C-y C-c C-c to store that
+         flagging note as a normal note in the entry. Pressing ? twice
+         in succession will offer to remove the =:FLAGGED:= tag along
+         with the recorded flagging note (which is stored in a
+         property). In this way you indicate that the intended
+         processing for this flagged entry is finished.
+
+   If you are not able to process all flagged entries directly, you
+   can always return to this agenda view[fn:FOOT189] using C-c a ?.
 
 * Appendix C History and acknowledgments
 
 ** C.1 From Carsten
 
-Org was born in 2003, out of frustration over the user interface of the
-Emacs Outline mode. I was trying to organize my notes and projects, and
-using Emacs seemed to be the natural way to go. However, having to
-remember eleven different commands with two or three keys per command,
-only to hide and show parts of the outline tree, that seemed entirely
-unacceptable to me. Also, when using outlines to take notes, I
-constantly wanted to restructure the tree, organizing it parallel to my
-thoughts and plans. /Visibility cycling/ and /structure editing/ were
-originally implemented in the package outline-magic.el, but quickly
-moved to the more general org.el. As this environment became comfortable
-for project planning, the next step was adding /TODO entries/, basic
-/timestamps/, and /table support/. These areas highlighted the two main
-goals that Org still has today: to be a new, outline-based, plain text
-mode with innovative and intuitive editing features, and to incorporate
-project planning functionality directly into a notes file.
+   Org was born in 2003, out of frustration over the user interface of
+   the Emacs Outline mode. I was trying to organize my notes and
+   projects, and using Emacs seemed to be the natural way to
+   go. However, having to remember eleven different commands with two
+   or three keys per command, only to hide and show parts of the
+   outline tree, that seemed entirely unacceptable to me. Also, when
+   using outlines to take notes, I constantly wanted to restructure
+   the tree, organizing it parallel to my thoughts and
+   plans. /Visibility cycling/ and /structure editing/ were originally
+   implemented in the package outline-magic.el, but quickly moved to
+   the more general org.el. As this environment became comfortable for
+   project planning, the next step was adding /TODO entries/, basic
+   /timestamps/, and /table support/. These areas highlighted the two
+   main goals that Org still has today: to be a new, outline-based,
+   plain text mode with innovative and intuitive editing features, and
+   to incorporate project planning functionality directly into a notes
+   file.
 
-Since the first release, literally thousands of emails to me or to
-[[mailto:emacs-orgmode@gnu.org][emacs-orgmode@gnu.org]] have provided a
-constant stream of bug reports, feedback, new ideas, and sometimes
-patches and add-on code. Many thanks to everyone who has helped to
-improve this package. I am trying to keep here a list of the people who
-had significant influence in shaping one or more aspects of Org. The
-list may not be complete, if I have forgotten someone, please accept my
-apologies and let me know.
+   Since the first release, literally thousands of emails to me or to
+   [[mailto:emacs-orgmode@gnu.org][emacs-orgmode@gnu.org]] have provided a constant stream of bug
+   reports, feedback, new ideas, and sometimes patches and add-on
+   code. Many thanks to everyone who has helped to improve this
+   package. I am trying to keep here a list of the people who had
+   significant influence in shaping one or more aspects of Org. The
+   list may not be complete, if I have forgotten someone, please
+   accept my apologies and let me know.
 
-Before I get to this list, a few special mentions are in order:
+   Before I get to this list, a few special mentions are in order:
 
--  /Bastien Guerry/ :: Bastien has written a large number of extensions
-   to Org (most of them integrated into the core by now), including the
-   LaTeX exporter and the plain list parser. His support during the
-   early days was central to the success of this project. Bastien also
-   invented Worg, helped establishing the Web presence of Org, and
-   sponsored hosting costs for the orgmode.org website. Bastien stepped
-   in as maintainer of Org between 2011 and 2013, at a time when I
-   desparately needed a break.
+    - /Bastien Guerry/
 
--  /Eric Schulte and Dan Davison/ :: Eric and Dan are jointly
-   responsible for the Org-babel system, which turns Org into a
-   multi-language environment for evaluating code and doing literate
-   programming and reproducible research. This has become one of Org's
-   killer features that define what Org is today.
+      Bastien has written a large number of extensions to Org (most of
+      them integrated into the core by now), including the LaTeX
+      exporter and the plain list parser. His support during the early
+      days was central to the success of this project. Bastien also
+      invented Worg, helped establishing the Web presence of Org, and
+      sponsored hosting costs for the orgmode.org website. Bastien
+      stepped in as maintainer of Org between 2011 and 2013, at a time
+      when I desparately needed a break.
 
--  /John Wiegley/ :: John has contributed a number of great ideas and
-   patches directly to Org, including the attachment system
-   (org-attach.el), integration with Apple Mail (org-mac-message.el),
-   hierarchical dependencies of TODO items, habit tracking
-   (org-habits.el), and encryption (org-crypt.el). Also, the capture
-   system is really an extended copy of his great remember.el.
+    - /Eric Schulte and Dan Davison/
 
--  /Sebastian Rose/ :: Without Sebastian, the HTML/XHTML publishing of
-   Org would be the pitiful work of an ignorant amateur. Sebastian has
-   pushed this part of Org onto a much higher level. He also wrote
-   org-info.js, a Java script for displaying web pages derived from Org
-   using an Info-like or a folding interface with single-key navigation.
+      Eric and Dan are jointly responsible for the Org-babel system,
+      which turns Org into a multi-language environment for evaluating
+      code and doing literate programming and reproducible
+      research. This has become one of Org's killer features that
+      define what Org is today.
 
-See below for the full list of contributions! Again, please let me know
-what I am missing here!
+    - /John Wiegley/
+
+      John has contributed a number of great ideas and patches
+      directly to Org, including the attachment system
+      (org-attach.el), integration with Apple Mail
+      (org-mac-message.el), hierarchical dependencies of TODO items,
+      habit tracking (org-habits.el), and encryption
+      (org-crypt.el). Also, the capture system is really an extended
+      copy of his great remember.el.
+
+    - /Sebastian Rose/
+
+      Without Sebastian, the HTML/XHTML publishing of Org would be the
+      pitiful work of an ignorant amateur. Sebastian has pushed this
+      part of Org onto a much higher level. He also wrote org-info.js,
+      a Java script for displaying web pages derived from Org using an
+      Info-like or a folding interface with single-key navigation.
+
+   See below for the full list of contributions! Again, please let me
+   know what I am missing here!
 
 ** C.2 From Bastien
 
-I (Bastien) have been maintaining Org between 2011 and 2013. This
-appendix would not be complete without adding a few more
-acknowledgements and thanks.
+   I (Bastien) have been maintaining Org between 2011 and 2013. This
+   appendix would not be complete without adding a few more
+   acknowledgements and thanks.
 
-I am first grateful to Carsten for his trust while handing me over the
-maintainership of Org. His unremitting support is what really helped me
-getting more confident over time, with both the community and the code.
+   I am first grateful to Carsten for his trust while handing me over
+   the maintainership of Org. His unremitting support is what really
+   helped me getting more confident over time, with both the community
+   and the code.
 
-When I took over maintainership, I knew I would have to make Org more
-collaborative than ever, as I would have to rely on people that are more
-knowledgeable than I am on many parts of the code. Here is a list of the
-persons I could rely on, they should really be considered
-co-maintainers, either of the code or the community:
+   When I took over maintainership, I knew I would have to make Org
+   more collaborative than ever, as I would have to rely on people
+   that are more knowledgeable than I am on many parts of the
+   code. Here is a list of the persons I could rely on, they should
+   really be considered co-maintainers, either of the code or the
+   community:
 
--  /Eric Schulte/ :: Eric is maintaining the Babel parts of Org. His
-   reactivity here kept me away from worrying about possible bugs here
-   and let me focus on other parts.
+    - /Eric Schulte/
 
--  /Nicolas Goaziou/ :: Nicolas is maintaining the consistency of the
-   deepest parts of Org. His work on org-element.el and ox.el has been
-   outstanding, and it opened the doors for many new ideas and features.
-   He rewrote many of the old exporters to use the new export engine,
-   and helped with documenting this major change. More importantly (if
-   that's possible), he has been more than reliable during all the work
-   done for Org 8.0, and always very reactive on the mailing list.
+      Eric is maintaining the Babel parts of Org. His reactivity here
+      kept me away from worrying about possible bugs here and let me
+      focus on other parts.
 
--  /Achim Gratz/ :: Achim rewrote the building process of Org, turning
-   some /ad hoc/ tools into a flexible and conceptually clean process.
-   He patiently coped with the many hiccups that such a change can
-   create for users.
+    - /Nicolas Goaziou/
 
--  /Nick Dokos/ :: The Org mode mailing list would not be such a nice
-   place without Nick, who patiently helped users so many times. It is
-   impossible to overestimate such a great help, and the list would not
-   be so active without him.
+      Nicolas is maintaining the consistency of the deepest parts of
+      Org. His work on org-element.el and ox.el has been outstanding,
+      and it opened the doors for many new ideas and features.  He
+      rewrote many of the old exporters to use the new export engine,
+      and helped with documenting this major change. More importantly
+      (if that's possible), he has been more than reliable during all
+      the work done for Org 8.0, and always very reactive on the
+      mailing list.
 
-I received support from so many users that it is clearly impossible to
-be fair when shortlisting a few of them, but Org's history would not be
-complete if the ones above were not mentioned in this manual.
+    - /Achim Gratz/
+
+      Achim rewrote the building process of Org, turning some /ad hoc/
+      tools into a flexible and conceptually clean process.  He
+      patiently coped with the many hiccups that such a change can
+      create for users.
+
+    - /Nick Dokos/
+
+      The Org mode mailing list would not be such a nice place without
+      Nick, who patiently helped users so many times. It is impossible
+      to overestimate such a great help, and the list would not be so
+      active without him.
+
+   I received support from so many users that it is clearly impossible
+   to be fair when shortlisting a few of them, but Org's history would
+   not be complete if the ones above were not mentioned in this
+   manual.
 
 ** C.3 List of contributions
 
--  /Russel Adams/ came up with the idea for drawers.
--  /Suvayu Ali/ has steadily helped on the mailing list, providing
-   useful feedback on many features and several patches.
--  /Luis Anaya/ wrote ox-man.el.
--  /Thomas Baumann/ wrote org-bbdb.el and org-mhe.el.
--  /Michael Brand/ helped by reporting many bugs and testing many
-   features. He also implemented the distinction between empty fields
-   and 0-value fields in Org's spreadsheets.
--  /Christophe Bataillon/ created the great unicorn logo that we use on
-   the Org mode website.
--  /Alex Bochannek/ provided a patch for rounding timestamps.
--  /Jan Böcker/ wrote org-docview.el.
--  /Brad Bozarth/ showed how to pull RSS feed data into Org mode files.
--  /Tom Breton/ wrote org-choose.el.
--  /Charles Cave/'s suggestion sparked the implementation of templates
-   for Remember, which are now templates for capture.
--  /Pavel Chalmoviansky/ influenced the agenda treatment of items with
-   specified time.
--  /Gregory Chernov/ patched support for Lisp forms into table
-   calculations and improved XEmacs compatibility, in particular by
-   porting nouline.el to XEmacs.
--  /Sacha Chua/ suggested copying some linking code from Planner, and
-   helped make Org pupular through her blog.
--  /Toby S. Cubitt/ contributed to the code for clock formats.
--  /Baoqiu Cui/ contributed the first DocBook exporter. In Org 8.0, we
-   go a different route: you can now export to Texinfo and export the
-   .texi file to DocBook using =makeinfo=.
--  /Eddward DeVilla/ proposed and tested checkbox statistics. He also
-   came up with the idea of properties, and that there should be an API
-   for them.
--  /Nick Dokos/ tracked down several nasty bugs.
--  /Kees Dullemond/ used to edit projects lists directly in HTML and so
-   inspired some of the early development, including HTML export. He
-   also asked for a way to narrow wide table columns.
--  /Jason Dunsmore/ has been maintaining the Org-Mode server at
-   Rackspace for several years now. He also sponsored the hosting costs
-   until Rackspace started to host us for free.
--  /Thomas S. Dye/ contributed documentation on Worg and helped
-   integrating the Org-Babel documentation into the manual.
--  /Christian Egli/ converted the documentation into Texinfo format,
-   inspired the agenda, patched CSS formatting into the HTML exporter,
-   and wrote org-taskjuggler.el, which has been rewritten by Nicolas
-   Goaziou as ox-taskjuggler.el for Org 8.0.
--  /David Emery/ provided a patch for custom CSS support in exported
-   HTML agendas.
--  /Sean Escriva/ took over MobileOrg development on the iPhone
-   platform.
--  /Nic Ferrier/ contributed mailcap and XOXO support.
--  /Miguel A. Figueroa-Villanueva/ implemented hierarchical checkboxes.
--  /John Foerch/ figured out how to make incremental search show context
-   around a match in a hidden outline tree.
--  /Raimar Finken/ wrote org-git-line.el.
--  /Mikael Fornius/ works as a mailing list moderator.
--  /Austin Frank/ works as a mailing list moderator.
--  /Eric Fraga/ drove the development of BEAMER export with ideas and
-   testing.
--  /Barry Gidden/ did proofreading the manual in preparation for the
-   book publication through Network Theory Ltd.
--  /Niels Giesen/ had the idea to automatically archive DONE trees.
--  /Nicolas Goaziou/ rewrote much of the plain list code. He also wrote
-   org-element.el and org-export.el, which was a huge step forward in
-   implementing a clean framework for Org exporters.
--  /Kai Grossjohann/ pointed out key-binding conflicts with other
-   packages.
--  /Brian Gough/ of Network Theory Ltd publishes the Org mode manual as
-   a book.
--  /Bernt Hansen/ has driven much of the support for auto-repeating
-   tasks, task state change logging, and the clocktable. His clear
-   explanations have been critical when we started to adopt the Git
-   version control system.
--  /Manuel Hermenegildo/ has contributed various ideas, small fixes and
-   patches.
--  /Phil Jackson/ wrote org-irc.el.
--  /Scott Jaderholm/ proposed footnotes, control over whitespace between
-   folded entries, and column view for properties.
--  /Matt Jones/ wrote /MobileOrg Android/.
--  /Tokuya Kameshima/ wrote org-wl.el and org-mew.el.
--  /Jonathan Leech-Pepin/ wrote ox-texinfo.el.
--  /Shidai Liu/ ("Leo") asked for embedded LaTeX and tested it. He also
-   provided frequent feedback and some patches.
--  /Matt Lundin/ has proposed last-row references for table formulas and
-   named invisible anchors. He has also worked a lot on the FAQ.
--  /David Maus/ wrote org-atom.el, maintains the issues file for Org,
-   and is a prolific contributor on the mailing list with competent
-   replies, small fixes and patches.
--  /Jason F. McBrayer/ suggested agenda export to CSV format.
--  /Max Mikhanosha/ came up with the idea of refiling and sticky
-   agendas.
--  /Dmitri Minaev/ sent a patch to set priority limits on a per-file
-   basis.
--  /Stefan Monnier/ provided a patch to keep the Emacs-Lisp compiler
-   happy.
--  /Richard Moreland/ wrote /MobileOrg/ for the iPhone.
--  /Rick Moynihan/ proposed allowing multiple TODO sequences in a file
-   and being able to quickly restrict the agenda to a subtree.
--  /Todd Neal/ provided patches for links to Info files and Elisp forms.
--  /Greg Newman/ refreshed the unicorn logo into its current form.
--  /Tim O'Callaghan/ suggested in-file links, search options for general
-   file links, and TAGS.
--  /Osamu Okano/ wrote orgcard2ref.pl, a Perl program to create a text
-   version of the reference card.
--  /Takeshi Okano/ translated the manual and David O'Toole's tutorial
-   into Japanese.
--  /Oliver Oppitz/ suggested multi-state TODO items.
--  /Scott Otterson/ sparked the introduction of descriptive text for
-   links, among other things.
--  /Pete Phillips/ helped during the development of the TAGS feature,
-   and provided frequent feedback.
--  /Francesco Pizzolante/ provided patches that helped speeding up the
-   agenda generation.
--  /Martin Pohlack/ provided the code snippet to bundle character
-   insertion into bundles of 20 for undo.
--  /Rackspace.com/ is hosting our website for free. Thank you Rackspace!
--  /T.V. Raman/ reported bugs and suggested improvements.
--  /Matthias Rempe/ (Oelde) provided ideas, Windows support, and quality
-   control.
--  /Paul Rivier/ provided the basic implementation of named footnotes.
-   He also acted as mailing list moderator for some time.
--  /Kevin Rogers/ contributed code to access VM files on remote hosts.
--  /Frank Ruell/ solved the mystery of the =keymapp nil= bug, a conflict
-   with allout.el.
--  /Jason Riedy/ generalized the send-receive mechanism for Orgtbl
-   tables with extensive patches.
--  /Philip Rooke/ created the Org reference card, provided lots of
-   feedback, developed and applied standards to the Org documentation.
--  /Christian Schlauer/ proposed angular brackets around links, among
-   other things.
--  /Christopher Schmidt/ reworked =orgstruct-mode= so that users can
-   enjoy folding in non-org buffers by using Org headlines in comments.
--  /Paul Sexton/ wrote org-ctags.el.
--  Linking to VM/BBDB/Gnus was first inspired by /Tom Shannon/'s
-   organizer-mode.el.
--  /Ilya Shlyakhter/ proposed the Archive Sibling, line numbering in
-   literal examples, and remote highlighting for referenced code lines.
--  /Stathis Sideris/ wrote the ditaa.jar ASCII to PNG converter that is
-   now packaged into Org's contrib directory.
--  /Daniel Sinder/ came up with the idea of internal archiving by
-   locking subtrees.
--  /Dale Smith/ proposed link abbreviations.
--  /James TD Smith/ has contributed a large number of patches for useful
-   tweaks and features.
--  /Adam Spiers/ asked for global linking commands, inspired the link
-   extension system, added support for mairix, and proposed the mapping
-   API.
--  /Ulf Stegemann/ created the table to translate special symbols to
-   HTML, LaTeX, UTF-8, Latin-1 and ASCII.
--  /Andy Stewart/ contributed code to org-w3m.el, to copy HTML content
-   with links transformation to Org syntax.
--  /David O'Toole/ wrote org-publish.el and drafted the manual chapter
-   about publishing.
--  /Jambunathan K/ contributed the ODT exporter and rewrote the HTML
-   exporter.
--  /Sebastien Vauban/ reported many issues with LaTeX and BEAMER export
-   and enabled source code highlighting in Gnus.
--  /Stefan Vollmar/ organized a video-recorded talk at the
-   Max-Planck-Institute for Neurology. He also inspired the creation of
-   a concept index for HTML export.
--  /Jürgen Vollmer/ contributed code generating the table of contents in
-   HTML output.
--  /Samuel Wales/ has provided important feedback and bug reports.
--  /Chris Wallace/ provided a patch implementing the ‘QUOTE' keyword.
--  /David Wainberg/ suggested archiving, and improvements to the linking
-   system.
--  /Carsten Wimmer/ suggested some changes and helped fix a bug in
-   linking to Gnus.
--  /Roland Winkler/ requested additional key bindings to make Org work
-   on a tty.
--  /Piotr Zielinski/ wrote org-mouse.el, proposed agenda blocks and
-   contributed various ideas and code snippets.
+    - /Russel Adams/ came up with the idea for drawers.
+
+    - /Suvayu Ali/ has steadily helped on the mailing list, providing
+      useful feedback on many features and several patches.
+
+    - /Luis Anaya/ wrote ox-man.el.
+
+    - /Thomas Baumann/ wrote org-bbdb.el and org-mhe.el.
+
+    - /Michael Brand/ helped by reporting many bugs and testing many
+      features. He also implemented the distinction between empty
+      fields and 0-value fields in Org's spreadsheets.
+
+    - /Christophe Bataillon/ created the great unicorn logo that we
+      use on the Org mode website.
+
+    - /Alex Bochannek/ provided a patch for rounding timestamps.
+
+    - /Jan Böcker/ wrote org-docview.el.
+
+    - /Brad Bozarth/ showed how to pull RSS feed data into Org mode
+      files.
+
+    - /Tom Breton/ wrote org-choose.el.
+
+    - /Charles Cave/'s suggestion sparked the implementation of
+      templates for Remember, which are now templates for capture.
+
+    - /Pavel Chalmoviansky/ influenced the agenda treatment of items
+      with specified time.
+
+    - /Gregory Chernov/ patched support for Lisp forms into table
+      calculations and improved XEmacs compatibility, in particular by
+      porting nouline.el to XEmacs.
+
+    - /Sacha Chua/ suggested copying some linking code from Planner,
+      and helped make Org pupular through her blog.
+
+    - /Toby S. Cubitt/ contributed to the code for clock formats.
+
+    - /Baoqiu Cui/ contributed the first DocBook exporter. In Org 8.0,
+      we go a different route: you can now export to Texinfo and
+      export the .texi file to DocBook using =makeinfo=.
+
+    - /Eddward DeVilla/ proposed and tested checkbox statistics. He
+      also came up with the idea of properties, and that there should
+      be an API for them.
+
+    - /Nick Dokos/ tracked down several nasty bugs.
+
+    - /Kees Dullemond/ used to edit projects lists directly in HTML
+      and so inspired some of the early development, including HTML
+      export. He also asked for a way to narrow wide table columns.
+
+    - /Jason Dunsmore/ has been maintaining the Org-Mode server at
+      Rackspace for several years now. He also sponsored the hosting
+      costs until Rackspace started to host us for free.
+
+    - /Thomas S. Dye/ contributed documentation on Worg and helped
+      integrating the Org-Babel documentation into the manual.
+
+    - /Christian Egli/ converted the documentation into Texinfo
+      format, inspired the agenda, patched CSS formatting into the
+      HTML exporter, and wrote org-taskjuggler.el, which has been
+      rewritten by Nicolas Goaziou as ox-taskjuggler.el for Org 8.0.
+
+    - /David Emery/ provided a patch for custom CSS support in
+      exported HTML agendas.
+
+    - /Sean Escriva/ took over MobileOrg development on the iPhone
+      platform.
+
+    - /Nic Ferrier/ contributed mailcap and XOXO support.
+
+    - /Miguel A. Figueroa-Villanueva/ implemented hierarchical
+      checkboxes.
+
+    - /John Foerch/ figured out how to make incremental search show
+      context around a match in a hidden outline tree.
+
+    - /Raimar Finken/ wrote org-git-line.el.
+
+    - /Mikael Fornius/ works as a mailing list moderator.
+
+    - /Austin Frank/ works as a mailing list moderator.
+
+    - /Eric Fraga/ drove the development of BEAMER export with ideas
+      and testing.
+
+    - /Barry Gidden/ did proofreading the manual in preparation for
+      the book publication through Network Theory Ltd.
+
+    - /Niels Giesen/ had the idea to automatically archive DONE trees.
+
+    - /Nicolas Goaziou/ rewrote much of the plain list code. He also
+      wrote org-element.el and org-export.el, which was a huge step
+      forward in implementing a clean framework for Org exporters.
+
+    - /Kai Grossjohann/ pointed out key-binding conflicts with other
+      packages.
+
+    - /Brian Gough/ of Network Theory Ltd publishes the Org mode
+      manual as a book.
+
+    - /Bernt Hansen/ has driven much of the support for auto-repeating
+      tasks, task state change logging, and the clocktable. His clear
+      explanations have been critical when we started to adopt the Git
+      version control system.
+
+    - /Manuel Hermenegildo/ has contributed various ideas, small fixes
+      and patches.
+
+    - /Phil Jackson/ wrote org-irc.el.
+
+    - /Scott Jaderholm/ proposed footnotes, control over whitespace
+      between folded entries, and column view for properties.
+
+    - /Matt Jones/ wrote /MobileOrg Android/.
+
+    - /Tokuya Kameshima/ wrote org-wl.el and org-mew.el.
+
+    - /Jonathan Leech-Pepin/ wrote ox-texinfo.el.
+
+    - /Shidai Liu/ ("Leo") asked for embedded LaTeX and tested it. He
+      also provided frequent feedback and some patches.
+
+    - /Matt Lundin/ has proposed last-row references for table
+      formulas and named invisible anchors. He has also worked a lot
+      on the FAQ.
+
+    - /David Maus/ wrote org-atom.el, maintains the issues file for
+      Org, and is a prolific contributor on the mailing list with
+      competent replies, small fixes and patches.
+
+    - /Jason F. McBrayer/ suggested agenda export to CSV format.
+
+    - /Max Mikhanosha/ came up with the idea of refiling and sticky
+      agendas.
+
+    - /Dmitri Minaev/ sent a patch to set priority limits on a
+      per-file basis.
+
+    - /Stefan Monnier/ provided a patch to keep the Emacs-Lisp
+      compiler happy.
+
+    - /Richard Moreland/ wrote /MobileOrg/ for the iPhone.
+
+    - /Rick Moynihan/ proposed allowing multiple TODO sequences in a
+      file and being able to quickly restrict the agenda to a subtree.
+
+    - /Todd Neal/ provided patches for links to Info files and Elisp
+      forms.
+
+    - /Greg Newman/ refreshed the unicorn logo into its current form.
+
+    - /Tim O'Callaghan/ suggested in-file links, search options for
+      general file links, and TAGS.
+
+    - /Osamu Okano/ wrote orgcard2ref.pl, a Perl program to create a
+      text version of the reference card.
+
+    - /Takeshi Okano/ translated the manual and David O'Toole's
+      tutorial into Japanese.
+
+    - /Oliver Oppitz/ suggested multi-state TODO items.
+
+    - /Scott Otterson/ sparked the introduction of descriptive text
+      for links, among other things.
+
+    - /Pete Phillips/ helped during the development of the TAGS
+      feature, and provided frequent feedback.
+
+    - /Francesco Pizzolante/ provided patches that helped speeding up
+      the agenda generation.
+
+    - /Martin Pohlack/ provided the code snippet to bundle character
+      insertion into bundles of 20 for undo.
+
+    - /Rackspace.com/ is hosting our website for free. Thank you
+      Rackspace!
+
+    - /T.V. Raman/ reported bugs and suggested improvements.
+
+    - /Matthias Rempe/ (Oelde) provided ideas, Windows support, and
+      quality control.
+
+    - /Paul Rivier/ provided the basic implementation of named
+      footnotes.  He also acted as mailing list moderator for some
+      time.
+
+    - /Kevin Rogers/ contributed code to access VM files on remote
+      hosts.
+
+    - /Frank Ruell/ solved the mystery of the =keymapp nil= bug, a
+      conflict with allout.el.
+
+    - /Jason Riedy/ generalized the send-receive mechanism for Orgtbl
+      tables with extensive patches.
+
+    - /Philip Rooke/ created the Org reference card, provided lots of
+      feedback, developed and applied standards to the Org
+      documentation.
+
+    - /Christian Schlauer/ proposed angular brackets around links,
+      among other things.
+
+    - /Christopher Schmidt/ reworked =orgstruct-mode= so that users
+      can enjoy folding in non-org buffers by using Org headlines in
+      comments.
+
+    - /Paul Sexton/ wrote org-ctags.el.
+
+    - Linking to VM/BBDB/Gnus was first inspired by /Tom Shannon/'s
+      organizer-mode.el.
+
+    - /Ilya Shlyakhter/ proposed the Archive Sibling, line numbering
+      in literal examples, and remote highlighting for referenced code
+      lines.
+
+    - /Stathis Sideris/ wrote the ditaa.jar ASCII to PNG converter
+      that is now packaged into Org's contrib directory.
+
+    - /Daniel Sinder/ came up with the idea of internal archiving by
+      locking subtrees.
+
+    - /Dale Smith/ proposed link abbreviations.
+
+    - /James TD Smith/ has contributed a large number of patches for
+      useful tweaks and features.
+
+    - /Adam Spiers/ asked for global linking commands, inspired the
+      link extension system, added support for mairix, and proposed
+      the mapping API.
+
+    - /Ulf Stegemann/ created the table to translate special symbols
+      to HTML, LaTeX, UTF-8, Latin-1 and ASCII.
+
+    - /Andy Stewart/ contributed code to org-w3m.el, to copy HTML
+      content with links transformation to Org syntax.
+
+    - /David O'Toole/ wrote org-publish.el and drafted the manual
+      chapter about publishing.
+
+    - /Jambunathan K/ contributed the ODT exporter and rewrote the
+      HTML exporter.
+
+    - /Sebastien Vauban/ reported many issues with LaTeX and BEAMER
+      export and enabled source code highlighting in Gnus.
+
+    - /Stefan Vollmar/ organized a video-recorded talk at the
+      Max-Planck-Institute for Neurology. He also inspired the
+      creation of a concept index for HTML export.
+
+    - /Jürgen Vollmer/ contributed code generating the table of
+      contents in HTML output.
+
+    - /Samuel Wales/ has provided important feedback and bug reports.
+
+    - /Chris Wallace/ provided a patch implementing the ‘QUOTE'
+      keyword.
+
+    - /David Wainberg/ suggested archiving, and improvements to the
+      linking system.
+
+    - /Carsten Wimmer/ suggested some changes and helped fix a bug in
+      linking to Gnus.
+
+    - /Roland Winkler/ requested additional key bindings to make Org
+      work on a tty.
+
+    - /Piotr Zielinski/ wrote org-mouse.el, proposed agenda blocks and
+      contributed various ideas and code snippets.
 
 * Appendix D GNU Free Documentation License
 
-#+BEGIN_HTML
-  <div align="center">
-#+END_HTML
+  #+BEGIN_CENTER
+    Version 1.3, 3 November 2008
+  #+END_CENTER
 
-Version 1.3, 3 November 2008
+    Copyright © 2000, 2001, 2002, 2007, 2008, 2013, 2014 Free Software
+    Foundation, Inc.  http://fsf.org/
 
-#+BEGIN_EXAMPLE
-    Copyright © 2000, 2001, 2002, 2007, 2008, 2013, 2014 Free Software Foundation, Inc.
-    http://fsf.org/
+    Everyone is permitted to copy and distribute verbatim copies of
+    this license document, but changing it is not allowed.
 
-    Everyone is permitted to copy and distribute verbatim copies
-    of this license document, but changing it is not allowed.
-#+END_EXAMPLE
 
-1.  PREAMBLE
+  1.  PREAMBLE
 
-    The purpose of this License is to make a manual, textbook, or other
-    functional and useful document /free/ in the sense of freedom: to
-    assure everyone the effective freedom to copy and redistribute it,
-    with or without modifying it, either commercially or
-    noncommercially. Secondarily, this License preserves for the author
-    and publisher a way to get credit for their work, while not being
-    considered responsible for modifications made by others.
+      The purpose of this License is to make a manual, textbook, or other
+      functional and useful document /free/ in the sense of freedom: to
+      assure everyone the effective freedom to copy and redistribute it,
+      with or without modifying it, either commercially or
+      noncommercially. Secondarily, this License preserves for the author
+      and publisher a way to get credit for their work, while not being
+      considered responsible for modifications made by others.
 
-    This License is a kind of “copyleft”, which means that derivative
-    works of the document must themselves be free in the same sense. It
-    complements the GNU General Public License, which is a copyleft
-    license designed for free software.
+      This License is a kind of “copyleft”, which means that derivative
+      works of the document must themselves be free in the same sense. It
+      complements the GNU General Public License, which is a copyleft
+      license designed for free software.
 
-    We have designed this License in order to use it for manuals for
-    free software, because free software needs free documentation: a
-    free program should come with manuals providing the same freedoms
-    that the software does. But this License is not limited to software
-    manuals; it can be used for any textual work, regardless of subject
-    matter or whether it is published as a printed book. We recommend
-    this License principally for works whose purpose is instruction or
-    reference.
+      We have designed this License in order to use it for manuals for
+      free software, because free software needs free documentation: a
+      free program should come with manuals providing the same freedoms
+      that the software does. But this License is not limited to software
+      manuals; it can be used for any textual work, regardless of subject
+      matter or whether it is published as a printed book. We recommend
+      this License principally for works whose purpose is instruction or
+      reference.
 
-2.  APPLICABILITY AND DEFINITIONS
+  2.  APPLICABILITY AND DEFINITIONS
 
-    This License applies to any manual or other work, in any medium,
-    that contains a notice placed by the copyright holder saying it can
-    be distributed under the terms of this License. Such a notice grants
-    a world-wide, royalty-free license, unlimited in duration, to use
-    that work under the conditions stated herein. The “Document”, below,
-    refers to any such manual or work. Any member of the public is a
-    licensee, and is addressed as “you”. You accept the license if you
-    copy, modify or distribute the work in a way requiring permission
-    under copyright law.
+      This License applies to any manual or other work, in any medium,
+      that contains a notice placed by the copyright holder saying it can
+      be distributed under the terms of this License. Such a notice grants
+      a world-wide, royalty-free license, unlimited in duration, to use
+      that work under the conditions stated herein. The “Document”, below,
+      refers to any such manual or work. Any member of the public is a
+      licensee, and is addressed as “you”. You accept the license if you
+      copy, modify or distribute the work in a way requiring permission
+      under copyright law.
 
-    A “Modified Version” of the Document means any work containing the
-    Document or a portion of it, either copied verbatim, or with
-    modifications and/or translated into another language.
+      A “Modified Version” of the Document means any work containing the
+      Document or a portion of it, either copied verbatim, or with
+      modifications and/or translated into another language.
 
-    A “Secondary Section” is a named appendix or a front-matter section
-    of the Document that deals exclusively with the relationship of the
-    publishers or authors of the Document to the Document's overall
-    subject (or to related matters) and contains nothing that could fall
-    directly within that overall subject. (Thus, if the Document is in
-    part a textbook of mathematics, a Secondary Section may not explain
-    any mathematics.) The relationship could be a matter of historical
-    connection with the subject or with related matters, or of legal,
-    commercial, philosophical, ethical or political position regarding
-    them.
+      A “Secondary Section” is a named appendix or a front-matter section
+      of the Document that deals exclusively with the relationship of the
+      publishers or authors of the Document to the Document's overall
+      subject (or to related matters) and contains nothing that could fall
+      directly within that overall subject. (Thus, if the Document is in
+      part a textbook of mathematics, a Secondary Section may not explain
+      any mathematics.) The relationship could be a matter of historical
+      connection with the subject or with related matters, or of legal,
+      commercial, philosophical, ethical or political position regarding
+      them.
 
-    The “Invariant Sections” are certain Secondary Sections whose titles
-    are designated, as being those of Invariant Sections, in the notice
-    that says that the Document is released under this License. If a
-    section does not fit the above definition of Secondary then it is
-    not allowed to be designated as Invariant. The Document may contain
-    zero Invariant Sections. If the Document does not identify any
-    Invariant Sections then there are none.
+      The “Invariant Sections” are certain Secondary Sections whose titles
+      are designated, as being those of Invariant Sections, in the notice
+      that says that the Document is released under this License. If a
+      section does not fit the above definition of Secondary then it is
+      not allowed to be designated as Invariant. The Document may contain
+      zero Invariant Sections. If the Document does not identify any
+      Invariant Sections then there are none.
 
-    The “Cover Texts” are certain short passages of text that are
-    listed, as Front-Cover Texts or Back-Cover Texts, in the notice that
-    says that the Document is released under this License. A Front-Cover
-    Text may be at most 5 words, and a Back-Cover Text may be at most 25
-    words.
+      The “Cover Texts” are certain short passages of text that are
+      listed, as Front-Cover Texts or Back-Cover Texts, in the notice that
+      says that the Document is released under this License. A Front-Cover
+      Text may be at most 5 words, and a Back-Cover Text may be at most 25
+      words.
 
-    A “Transparent” copy of the Document means a machine-readable copy,
-    represented in a format whose specification is available to the
-    general public, that is suitable for revising the document
-    straightforwardly with generic text editors or (for images composed
-    of pixels) generic paint programs or (for drawings) some widely
-    available drawing editor, and that is suitable for input to text
-    formatters or for automatic translation to a variety of formats
-    suitable for input to text formatters. A copy made in an otherwise
-    Transparent file format whose markup, or absence of markup, has been
-    arranged to thwart or discourage subsequent modification by readers
-    is not Transparent. An image format is not Transparent if used for
-    any substantial amount of text. A copy that is not “Transparent” is
-    called “Opaque”.
+      A “Transparent” copy of the Document means a machine-readable copy,
+      represented in a format whose specification is available to the
+      general public, that is suitable for revising the document
+      straightforwardly with generic text editors or (for images composed
+      of pixels) generic paint programs or (for drawings) some widely
+      available drawing editor, and that is suitable for input to text
+      formatters or for automatic translation to a variety of formats
+      suitable for input to text formatters. A copy made in an otherwise
+      Transparent file format whose markup, or absence of markup, has been
+      arranged to thwart or discourage subsequent modification by readers
+      is not Transparent. An image format is not Transparent if used for
+      any substantial amount of text. A copy that is not “Transparent” is
+      called “Opaque”.
 
-    Examples of suitable formats for Transparent copies include plain
-    ASCII without markup, Texinfo input format, LaTeX input format, SGML
-    or XML using a publicly available DTD, and standard-conforming
-    simple HTML, PostScript or PDF designed for human modification.
-    Examples of transparent image formats include PNG, XCF and JPG.
-    Opaque formats include proprietary formats that can be read and
-    edited only by proprietary word processors, SGML or XML for which
-    the DTD and/or processing tools are not generally available, and the
-    machine-generated HTML, PostScript or PDF produced by some word
-    processors for output purposes only.
+      Examples of suitable formats for Transparent copies include plain
+      ASCII without markup, Texinfo input format, LaTeX input format, SGML
+      or XML using a publicly available DTD, and standard-conforming
+      simple HTML, PostScript or PDF designed for human modification.
+      Examples of transparent image formats include PNG, XCF and JPG.
+      Opaque formats include proprietary formats that can be read and
+      edited only by proprietary word processors, SGML or XML for which
+      the DTD and/or processing tools are not generally available, and the
+      machine-generated HTML, PostScript or PDF produced by some word
+      processors for output purposes only.
 
-    The “Title Page” means, for a printed book, the title page itself,
-    plus such following pages as are needed to hold, legibly, the
-    material this License requires to appear in the title page. For
-    works in formats which do not have any title page as such, “Title
-    Page” means the text near the most prominent appearance of the
-    work's title, preceding the beginning of the body of the text.
+      The “Title Page” means, for a printed book, the title page itself,
+      plus such following pages as are needed to hold, legibly, the
+      material this License requires to appear in the title page. For
+      works in formats which do not have any title page as such, “Title
+      Page” means the text near the most prominent appearance of the
+      work's title, preceding the beginning of the body of the text.
 
-    The “publisher” means any person or entity that distributes copies
-    of the Document to the public.
+      The “publisher” means any person or entity that distributes copies
+      of the Document to the public.
 
-    A section “Entitled XYZ” means a named subunit of the Document whose
-    title either is precisely XYZ or contains XYZ in parentheses
-    following text that translates XYZ in another language. (Here XYZ
-    stands for a specific section name mentioned below, such as
-    “Acknowledgements”, “Dedications”, “Endorsements”, or “History”.) To
-    “Preserve the Title” of such a section when you modify the Document
-    means that it remains a section “Entitled XYZ” according to this
-    definition.
+      A section “Entitled XYZ” means a named subunit of the Document whose
+      title either is precisely XYZ or contains XYZ in parentheses
+      following text that translates XYZ in another language. (Here XYZ
+      stands for a specific section name mentioned below, such as
+      “Acknowledgements”, “Dedications”, “Endorsements”, or “History”.) To
+      “Preserve the Title” of such a section when you modify the Document
+      means that it remains a section “Entitled XYZ” according to this
+      definition.
 
-    The Document may include Warranty Disclaimers next to the notice
-    which states that this License applies to the Document. These
-    Warranty Disclaimers are considered to be included by reference in
-    this License, but only as regards disclaiming warranties: any other
-    implication that these Warranty Disclaimers may have is void and has
-    no effect on the meaning of this License.
+      The Document may include Warranty Disclaimers next to the notice
+      which states that this License applies to the Document. These
+      Warranty Disclaimers are considered to be included by reference in
+      this License, but only as regards disclaiming warranties: any other
+      implication that these Warranty Disclaimers may have is void and has
+      no effect on the meaning of this License.
 
-3.  VERBATIM COPYING
+  3.  VERBATIM COPYING
 
-    You may copy and distribute the Document in any medium, either
-    commercially or noncommercially, provided that this License, the
-    copyright notices, and the license notice saying this License
-    applies to the Document are reproduced in all copies, and that you
-    add no other conditions whatsoever to those of this License. You may
-    not use technical measures to obstruct or control the reading or
-    further copying of the copies you make or distribute. However, you
-    may accept compensation in exchange for copies. If you distribute a
-    large enough number of copies you must also follow the conditions in
-    section 3.
+      You may copy and distribute the Document in any medium, either
+      commercially or noncommercially, provided that this License, the
+      copyright notices, and the license notice saying this License
+      applies to the Document are reproduced in all copies, and that you
+      add no other conditions whatsoever to those of this License. You may
+      not use technical measures to obstruct or control the reading or
+      further copying of the copies you make or distribute. However, you
+      may accept compensation in exchange for copies. If you distribute a
+      large enough number of copies you must also follow the conditions in
+      section 3.
 
-    You may also lend copies, under the same conditions stated above,
-    and you may publicly display copies.
+      You may also lend copies, under the same conditions stated above,
+      and you may publicly display copies.
 
-4.  COPYING IN QUANTITY
+  4.  COPYING IN QUANTITY
 
-    If you publish printed copies (or copies in media that commonly have
-    printed covers) of the Document, numbering more than 100, and the
-    Document's license notice requires Cover Texts, you must enclose the
-    copies in covers that carry, clearly and legibly, all these Cover
-    Texts: Front-Cover Texts on the front cover, and Back-Cover Texts on
-    the back cover. Both covers must also clearly and legibly identify
-    you as the publisher of these copies. The front cover must present
-    the full title with all words of the title equally prominent and
-    visible. You may add other material on the covers in addition.
-    Copying with changes limited to the covers, as long as they preserve
-    the title of the Document and satisfy these conditions, can be
-    treated as verbatim copying in other respects.
+      If you publish printed copies (or copies in media that commonly have
+      printed covers) of the Document, numbering more than 100, and the
+      Document's license notice requires Cover Texts, you must enclose the
+      copies in covers that carry, clearly and legibly, all these Cover
+      Texts: Front-Cover Texts on the front cover, and Back-Cover Texts on
+      the back cover. Both covers must also clearly and legibly identify
+      you as the publisher of these copies. The front cover must present
+      the full title with all words of the title equally prominent and
+      visible. You may add other material on the covers in addition.
+      Copying with changes limited to the covers, as long as they preserve
+      the title of the Document and satisfy these conditions, can be
+      treated as verbatim copying in other respects.
 
-    If the required texts for either cover are too voluminous to fit
-    legibly, you should put the first ones listed (as many as fit
-    reasonably) on the actual cover, and continue the rest onto adjacent
-    pages.
+      If the required texts for either cover are too voluminous to fit
+      legibly, you should put the first ones listed (as many as fit
+      reasonably) on the actual cover, and continue the rest onto adjacent
+      pages.
 
-    If you publish or distribute Opaque copies of the Document numbering
-    more than 100, you must either include a machine-readable
-    Transparent copy along with each Opaque copy, or state in or with
-    each Opaque copy a computer-network location from which the general
-    network-using public has access to download using public-standard
-    network protocols a complete Transparent copy of the Document, free
-    of added material. If you use the latter option, you must take
-    reasonably prudent steps, when you begin distribution of Opaque
-    copies in quantity, to ensure that this Transparent copy will remain
-    thus accessible at the stated location until at least one year after
-    the last time you distribute an Opaque copy (directly or through
-    your agents or retailers) of that edition to the public.
+      If you publish or distribute Opaque copies of the Document numbering
+      more than 100, you must either include a machine-readable
+      Transparent copy along with each Opaque copy, or state in or with
+      each Opaque copy a computer-network location from which the general
+      network-using public has access to download using public-standard
+      network protocols a complete Transparent copy of the Document, free
+      of added material. If you use the latter option, you must take
+      reasonably prudent steps, when you begin distribution of Opaque
+      copies in quantity, to ensure that this Transparent copy will remain
+      thus accessible at the stated location until at least one year after
+      the last time you distribute an Opaque copy (directly or through
+      your agents or retailers) of that edition to the public.
 
-    It is requested, but not required, that you contact the authors of
-    the Document well before redistributing any large number of copies,
-    to give them a chance to provide you with an updated version of the
-    Document.
+      It is requested, but not required, that you contact the authors of
+      the Document well before redistributing any large number of copies,
+      to give them a chance to provide you with an updated version of the
+      Document.
 
-5.  MODIFICATIONS
+  5.  MODIFICATIONS
 
-    You may copy and distribute a Modified Version of the Document under
-    the conditions of sections 2 and 3 above, provided that you release
-    the Modified Version under precisely this License, with the Modified
-    Version filling the role of the Document, thus licensing
-    distribution and modification of the Modified Version to whoever
-    possesses a copy of it. In addition, you must do these things in the
-    Modified Version:
+      You may copy and distribute a Modified Version of the Document under
+      the conditions of sections 2 and 3 above, provided that you release
+      the Modified Version under precisely this License, with the Modified
+      Version filling the role of the Document, thus licensing
+      distribution and modification of the Modified Version to whoever
+      possesses a copy of it. In addition, you must do these things in the
+      Modified Version:
 
-    1.  Use in the Title Page (and on the covers, if any) a title
-        distinct from that of the Document, and from those of previous
-        versions (which should, if there were any, be listed in the
-        History section of the Document). You may use the same title as
-        a previous version if the original publisher of that version
-        gives permission.
-    2.  List on the Title Page, as authors, one or more persons or
-        entities responsible for authorship of the modifications in the
-        Modified Version, together with at least five of the principal
-        authors of the Document (all of its principal authors, if it has
-        fewer than five), unless they release you from this requirement.
-    3.  State on the Title page the name of the publisher of the
-        Modified Version, as the publisher.
-    4.  Preserve all the copyright notices of the Document.
-    5.  Add an appropriate copyright notice for your modifications
-        adjacent to the other copyright notices.
-    6.  Include, immediately after the copyright notices, a license
-        notice giving the public permission to use the Modified Version
-        under the terms of this License, in the form shown in the
-        Addendum below.
-    7.  Preserve in that license notice the full lists of Invariant
-        Sections and required Cover Texts given in the Document's
-        license notice.
-    8.  Include an unaltered copy of this License.
-    9.  Preserve the section Entitled “History”, Preserve its Title, and
-        add to it an item stating at least the title, year, new authors,
-        and publisher of the Modified Version as given on the Title
-        Page. If there is no section Entitled “History” in the Document,
-        create one stating the title, year, authors, and publisher of
-        the Document as given on its Title Page, then add an item
-        describing the Modified Version as stated in the previous
-        sentence.
-    10. Preserve the network location, if any, given in the Document for
-        public access to a Transparent copy of the Document, and
-        likewise the network locations given in the Document for
-        previous versions it was based on. These may be placed in the
-        “History” section. You may omit a network location for a work
-        that was published at least four years before the Document
-        itself, or if the original publisher of the version it refers to
-        gives permission.
-    11. For any section Entitled “Acknowledgements” or “Dedications”,
-        Preserve the Title of the section, and preserve in the section
-        all the substance and tone of each of the contributor
-        acknowledgements and/or dedications given therein.
-    12. Preserve all the Invariant Sections of the Document, unaltered
-        in their text and in their titles. Section numbers or the
-        equivalent are not considered part of the section titles.
-    13. Delete any section Entitled “Endorsements”. Such a section may
-        not be included in the Modified Version.
-    14. Do not retitle any existing section to be Entitled
-        “Endorsements” or to conflict in title with any Invariant
-        Section.
-    15. Preserve any Warranty Disclaimers.
+      1.  Use in the Title Page (and on the covers, if any) a title
+          distinct from that of the Document, and from those of previous
+          versions (which should, if there were any, be listed in the
+          History section of the Document). You may use the same title as
+          a previous version if the original publisher of that version
+          gives permission.
+      2.  List on the Title Page, as authors, one or more persons or
+          entities responsible for authorship of the modifications in the
+          Modified Version, together with at least five of the principal
+          authors of the Document (all of its principal authors, if it has
+          fewer than five), unless they release you from this requirement.
+      3.  State on the Title page the name of the publisher of the
+          Modified Version, as the publisher.
+      4.  Preserve all the copyright notices of the Document.
+      5.  Add an appropriate copyright notice for your modifications
+          adjacent to the other copyright notices.
+      6.  Include, immediately after the copyright notices, a license
+          notice giving the public permission to use the Modified Version
+          under the terms of this License, in the form shown in the
+          Addendum below.
+      7.  Preserve in that license notice the full lists of Invariant
+          Sections and required Cover Texts given in the Document's
+          license notice.
+      8.  Include an unaltered copy of this License.
+      9.  Preserve the section Entitled “History”, Preserve its Title, and
+          add to it an item stating at least the title, year, new authors,
+          and publisher of the Modified Version as given on the Title
+          Page. If there is no section Entitled “History” in the Document,
+          create one stating the title, year, authors, and publisher of
+          the Document as given on its Title Page, then add an item
+          describing the Modified Version as stated in the previous
+          sentence.
+      10. Preserve the network location, if any, given in the Document for
+          public access to a Transparent copy of the Document, and
+          likewise the network locations given in the Document for
+          previous versions it was based on. These may be placed in the
+          “History” section. You may omit a network location for a work
+          that was published at least four years before the Document
+          itself, or if the original publisher of the version it refers to
+          gives permission.
+      11. For any section Entitled “Acknowledgements” or “Dedications”,
+          Preserve the Title of the section, and preserve in the section
+          all the substance and tone of each of the contributor
+          acknowledgements and/or dedications given therein.
+      12. Preserve all the Invariant Sections of the Document, unaltered
+          in their text and in their titles. Section numbers or the
+          equivalent are not considered part of the section titles.
+      13. Delete any section Entitled “Endorsements”. Such a section may
+          not be included in the Modified Version.
+      14. Do not retitle any existing section to be Entitled
+          “Endorsements” or to conflict in title with any Invariant
+          Section.
+      15. Preserve any Warranty Disclaimers.
 
-    If the Modified Version includes new front-matter sections or
-    appendices that qualify as Secondary Sections and contain no
-    material copied from the Document, you may at your option designate
-    some or all of these sections as invariant. To do this, add their
-    titles to the list of Invariant Sections in the Modified Version's
-    license notice. These titles must be distinct from any other section
-    titles.
+      If the Modified Version includes new front-matter sections or
+      appendices that qualify as Secondary Sections and contain no
+      material copied from the Document, you may at your option designate
+      some or all of these sections as invariant. To do this, add their
+      titles to the list of Invariant Sections in the Modified Version's
+      license notice. These titles must be distinct from any other section
+      titles.
 
-    You may add a section Entitled “Endorsements”, provided it contains
-    nothing but endorsements of your Modified Version by various
-    parties---for example, statements of peer review or that the text
-    has been approved by an organization as the authoritative definition
-    of a standard.
+      You may add a section Entitled “Endorsements”, provided it contains
+      nothing but endorsements of your Modified Version by various
+      parties---for example, statements of peer review or that the text
+      has been approved by an organization as the authoritative definition
+      of a standard.
 
-    You may add a passage of up to five words as a Front-Cover Text, and
-    a passage of up to 25 words as a Back-Cover Text, to the end of the
-    list of Cover Texts in the Modified Version. Only one passage of
-    Front-Cover Text and one of Back-Cover Text may be added by (or
-    through arrangements made by) any one entity. If the Document
-    already includes a cover text for the same cover, previously added
-    by you or by arrangement made by the same entity you are acting on
-    behalf of, you may not add another; but you may replace the old one,
-    on explicit permission from the previous publisher that added the
-    old one.
+      You may add a passage of up to five words as a Front-Cover Text, and
+      a passage of up to 25 words as a Back-Cover Text, to the end of the
+      list of Cover Texts in the Modified Version. Only one passage of
+      Front-Cover Text and one of Back-Cover Text may be added by (or
+      through arrangements made by) any one entity. If the Document
+      already includes a cover text for the same cover, previously added
+      by you or by arrangement made by the same entity you are acting on
+      behalf of, you may not add another; but you may replace the old one,
+      on explicit permission from the previous publisher that added the
+      old one.
 
-    The author(s) and publisher(s) of the Document do not by this
-    License give permission to use their names for publicity for or to
-    assert or imply endorsement of any Modified Version.
+      The author(s) and publisher(s) of the Document do not by this
+      License give permission to use their names for publicity for or to
+      assert or imply endorsement of any Modified Version.
 
-6.  COMBINING DOCUMENTS
+  6.  COMBINING DOCUMENTS
 
-    You may combine the Document with other documents released under
-    this License, under the terms defined in section 4 above for
-    modified versions, provided that you include in the combination all
-    of the Invariant Sections of all of the original documents,
-    unmodified, and list them all as Invariant Sections of your combined
-    work in its license notice, and that you preserve all their Warranty
-    Disclaimers.
+      You may combine the Document with other documents released under
+      this License, under the terms defined in section 4 above for
+      modified versions, provided that you include in the combination all
+      of the Invariant Sections of all of the original documents,
+      unmodified, and list them all as Invariant Sections of your combined
+      work in its license notice, and that you preserve all their Warranty
+      Disclaimers.
 
-    The combined work need only contain one copy of this License, and
-    multiple identical Invariant Sections may be replaced with a single
-    copy. If there are multiple Invariant Sections with the same name
-    but different contents, make the title of each such section unique
-    by adding at the end of it, in parentheses, the name of the original
-    author or publisher of that section if known, or else a unique
-    number. Make the same adjustment to the section titles in the list
-    of Invariant Sections in the license notice of the combined work.
+      The combined work need only contain one copy of this License, and
+      multiple identical Invariant Sections may be replaced with a single
+      copy. If there are multiple Invariant Sections with the same name
+      but different contents, make the title of each such section unique
+      by adding at the end of it, in parentheses, the name of the original
+      author or publisher of that section if known, or else a unique
+      number. Make the same adjustment to the section titles in the list
+      of Invariant Sections in the license notice of the combined work.
 
-    In the combination, you must combine any sections Entitled “History”
-    in the various original documents, forming one section Entitled
-    “History”; likewise combine any sections Entitled
-    “Acknowledgements”, and any sections Entitled “Dedications”. You
-    must delete all sections Entitled “Endorsements.”
+      In the combination, you must combine any sections Entitled “History”
+      in the various original documents, forming one section Entitled
+      “History”; likewise combine any sections Entitled
+      “Acknowledgements”, and any sections Entitled “Dedications”. You
+      must delete all sections Entitled “Endorsements.”
 
-7.  COLLECTIONS OF DOCUMENTS
+  7.  COLLECTIONS OF DOCUMENTS
 
-    You may make a collection consisting of the Document and other
-    documents released under this License, and replace the individual
-    copies of this License in the various documents with a single copy
-    that is included in the collection, provided that you follow the
-    rules of this License for verbatim copying of each of the documents
-    in all other respects.
+      You may make a collection consisting of the Document and other
+      documents released under this License, and replace the individual
+      copies of this License in the various documents with a single copy
+      that is included in the collection, provided that you follow the
+      rules of this License for verbatim copying of each of the documents
+      in all other respects.
 
-    You may extract a single document from such a collection, and
-    distribute it individually under this License, provided you insert a
-    copy of this License into the extracted document, and follow this
-    License in all other respects regarding verbatim copying of that
-    document.
+      You may extract a single document from such a collection, and
+      distribute it individually under this License, provided you insert a
+      copy of this License into the extracted document, and follow this
+      License in all other respects regarding verbatim copying of that
+      document.
 
-8.  AGGREGATION WITH INDEPENDENT WORKS
+  8.  AGGREGATION WITH INDEPENDENT WORKS
 
-    A compilation of the Document or its derivatives with other separate
-    and independent documents or works, in or on a volume of a storage
-    or distribution medium, is called an “aggregate” if the copyright
-    resulting from the compilation is not used to limit the legal rights
-    of the compilation's users beyond what the individual works permit.
-    When the Document is included in an aggregate, this License does not
-    apply to the other works in the aggregate which are not themselves
-    derivative works of the Document.
+      A compilation of the Document or its derivatives with other separate
+      and independent documents or works, in or on a volume of a storage
+      or distribution medium, is called an “aggregate” if the copyright
+      resulting from the compilation is not used to limit the legal rights
+      of the compilation's users beyond what the individual works permit.
+      When the Document is included in an aggregate, this License does not
+      apply to the other works in the aggregate which are not themselves
+      derivative works of the Document.
 
-    If the Cover Text requirement of section 3 is applicable to these
-    copies of the Document, then if the Document is less than one half
-    of the entire aggregate, the Document's Cover Texts may be placed on
-    covers that bracket the Document within the aggregate, or the
-    electronic equivalent of covers if the Document is in electronic
-    form. Otherwise they must appear on printed covers that bracket the
-    whole aggregate.
+      If the Cover Text requirement of section 3 is applicable to these
+      copies of the Document, then if the Document is less than one half
+      of the entire aggregate, the Document's Cover Texts may be placed on
+      covers that bracket the Document within the aggregate, or the
+      electronic equivalent of covers if the Document is in electronic
+      form. Otherwise they must appear on printed covers that bracket the
+      whole aggregate.
 
-9.  TRANSLATION
+  9.  TRANSLATION
 
-    Translation is considered a kind of modification, so you may
-    distribute translations of the Document under the terms of section
-    4. Replacing Invariant Sections with translations requires special
-    permission from their copyright holders, but you may include
-    translations of some or all Invariant Sections in addition to the
-    original versions of these Invariant Sections. You may include a
-    translation of this License, and all the license notices in the
-    Document, and any Warranty Disclaimers, provided that you also
-    include the original English version of this License and the
-    original versions of those notices and disclaimers. In case of a
-    disagreement between the translation and the original version of
-    this License or a notice or disclaimer, the original version will
-    prevail.
+      Translation is considered a kind of modification, so you may
+      distribute translations of the Document under the terms of section
+      4. Replacing Invariant Sections with translations requires special
+      permission from their copyright holders, but you may include
+      translations of some or all Invariant Sections in addition to the
+      original versions of these Invariant Sections. You may include a
+      translation of this License, and all the license notices in the
+      Document, and any Warranty Disclaimers, provided that you also
+      include the original English version of this License and the
+      original versions of those notices and disclaimers. In case of a
+      disagreement between the translation and the original version of
+      this License or a notice or disclaimer, the original version will
+      prevail.
 
-    If a section in the Document is Entitled “Acknowledgements”,
-    “Dedications”, or “History”, the requirement (section 4) to Preserve
-    its Title (section 1) will typically require changing the actual
-    title.
+      If a section in the Document is Entitled “Acknowledgements”,
+      “Dedications”, or “History”, the requirement (section 4) to Preserve
+      its Title (section 1) will typically require changing the actual
+      title.
 
-10. TERMINATION
+  10. TERMINATION
 
-    You may not copy, modify, sublicense, or distribute the Document
-    except as expressly provided under this License. Any attempt
-    otherwise to copy, modify, sublicense, or distribute it is void, and
-    will automatically terminate your rights under this License.
+      You may not copy, modify, sublicense, or distribute the Document
+      except as expressly provided under this License. Any attempt
+      otherwise to copy, modify, sublicense, or distribute it is void, and
+      will automatically terminate your rights under this License.
 
-    However, if you cease all violation of this License, then your
-    license from a particular copyright holder is reinstated (a)
-    provisionally, unless and until the copyright holder explicitly and
-    finally terminates your license, and (b) permanently, if the
-    copyright holder fails to notify you of the violation by some
-    reasonable means prior to 60 days after the cessation.
+      However, if you cease all violation of this License, then your
+      license from a particular copyright holder is reinstated (a)
+      provisionally, unless and until the copyright holder explicitly and
+      finally terminates your license, and (b) permanently, if the
+      copyright holder fails to notify you of the violation by some
+      reasonable means prior to 60 days after the cessation.
 
-    Moreover, your license from a particular copyright holder is
-    reinstated permanently if the copyright holder notifies you of the
-    violation by some reasonable means, this is the first time you have
-    received notice of violation of this License (for any work) from
-    that copyright holder, and you cure the violation prior to 30 days
-    after your receipt of the notice.
+      Moreover, your license from a particular copyright holder is
+      reinstated permanently if the copyright holder notifies you of the
+      violation by some reasonable means, this is the first time you have
+      received notice of violation of this License (for any work) from
+      that copyright holder, and you cure the violation prior to 30 days
+      after your receipt of the notice.
 
-    Termination of your rights under this section does not terminate the
-    licenses of parties who have received copies or rights from you
-    under this License. If your rights have been terminated and not
-    permanently reinstated, receipt of a copy of some or all of the same
-    material does not give you any rights to use it.
+      Termination of your rights under this section does not terminate the
+      licenses of parties who have received copies or rights from you
+      under this License. If your rights have been terminated and not
+      permanently reinstated, receipt of a copy of some or all of the same
+      material does not give you any rights to use it.
 
-11. FUTURE REVISIONS OF THIS LICENSE
+  11. FUTURE REVISIONS OF THIS LICENSE
 
-    The Free Software Foundation may publish new, revised versions of
-    the GNU Free Documentation License from time to time. Such new
-    versions will be similar in spirit to the present version, but may
-    differ in detail to address new problems or concerns. See
-    [[http://www.gnu.org/copyleft/]].
+      The Free Software Foundation may publish new, revised versions of
+      the GNU Free Documentation License from time to time. Such new
+      versions will be similar in spirit to the present version, but may
+      differ in detail to address new problems or concerns. See
+      [[http://www.gnu.org/copyleft/]].
 
-    Each version of the License is given a distinguishing version
-    number. If the Document specifies that a particular numbered version
-    of this License “or any later version” applies to it, you have the
-    option of following the terms and conditions either of that
-    specified version or of any later version that has been published
-    (not as a draft) by the Free Software Foundation. If the Document
-    does not specify a version number of this License, you may choose
-    any version ever published (not as a draft) by the Free Software
-    Foundation. If the Document specifies that a proxy can decide which
-    future versions of this License can be used, that proxy's public
-    statement of acceptance of a version permanently authorizes you to
-    choose that version for the Document.
+      Each version of the License is given a distinguishing version
+      number. If the Document specifies that a particular numbered version
+      of this License “or any later version” applies to it, you have the
+      option of following the terms and conditions either of that
+      specified version or of any later version that has been published
+      (not as a draft) by the Free Software Foundation. If the Document
+      does not specify a version number of this License, you may choose
+      any version ever published (not as a draft) by the Free Software
+      Foundation. If the Document specifies that a proxy can decide which
+      future versions of this License can be used, that proxy's public
+      statement of acceptance of a version permanently authorizes you to
+      choose that version for the Document.
 
-12. RELICENSING
+  12. RELICENSING
 
-    “Massive Multiauthor Collaboration Site” (or “MMC Site”) means any
-    World Wide Web server that publishes copyrightable works and also
-    provides prominent facilities for anybody to edit those works. A
-    public wiki that anybody can edit is an example of such a server. A
-    “Massive Multiauthor Collaboration” (or “MMC”) contained in the site
-    means any set of copyrightable works thus published on the MMC site.
+      “Massive Multiauthor Collaboration Site” (or “MMC Site”) means any
+      World Wide Web server that publishes copyrightable works and also
+      provides prominent facilities for anybody to edit those works. A
+      public wiki that anybody can edit is an example of such a server. A
+      “Massive Multiauthor Collaboration” (or “MMC”) contained in the site
+      means any set of copyrightable works thus published on the MMC site.
 
-    “CC-BY-SA” means the Creative Commons Attribution-Share Alike 3.0
-    license published by Creative Commons Corporation, a not-for-profit
-    corporation with a principal place of business in San Francisco,
-    California, as well as future copyleft versions of that license
-    published by that same organization.
+      “CC-BY-SA” means the Creative Commons Attribution-Share Alike 3.0
+      license published by Creative Commons Corporation, a not-for-profit
+      corporation with a principal place of business in San Francisco,
+      California, as well as future copyleft versions of that license
+      published by that same organization.
 
-    “Incorporate” means to publish or republish a Document, in whole or
-    in part, as part of another Document.
+      “Incorporate” means to publish or republish a Document, in whole or
+      in part, as part of another Document.
 
-    An MMC is “eligible for relicensing” if it is licensed under this
-    License, and if all works that were first published under this
-    License somewhere other than this MMC, and subsequently incorporated
-    in whole or in part into the MMC, (1) had no cover texts or
-    invariant sections, and (2) were thus incorporated prior to November
-    1, 2008.
+      An MMC is “eligible for relicensing” if it is licensed under this
+      License, and if all works that were first published under this
+      License somewhere other than this MMC, and subsequently incorporated
+      in whole or in part into the MMC, (1) had no cover texts or
+      invariant sections, and (2) were thus incorporated prior to November
+      1, 2008.
 
-    The operator of an MMC Site may republish an MMC contained in the
-    site under CC-BY-SA on the same site at any time before August 1,
-    2009, provided the MMC is eligible for relicensing.
+      The operator of an MMC Site may republish an MMC contained in the
+      site under CC-BY-SA on the same site at any time before August 1,
+      2009, provided the MMC is eligible for relicensing.
 
 ** ADDENDUM: How to use this License for your documents
 
-To use this License in a document you have written, include a copy of
-the License in the document and put the following copyright and license
-notices just after the title page:
+   To use this License in a document you have written, include a copy
+   of the License in the document and put the following copyright and
+   license notices just after the title page:
 
-#+BEGIN_EXAMPLE
-      Copyright (C)  year  your name.
-      Permission is granted to copy, distribute and/or modify this document
-      under the terms of the GNU Free Documentation License, Version 1.3
-      or any later version published by the Free Software Foundation;
-      with no Invariant Sections, no Front-Cover Texts, and no Back-Cover
-      Texts.  A copy of the license is included in the section entitled ``GNU
-      Free Documentation License''.
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     Copyright (C)  year  your name.
+     Permission is granted to copy, distribute and/or modify this document
+     under the terms of the GNU Free Documentation License, Version 1.3
+     or any later version published by the Free Software Foundation;
+     with no Invariant Sections, no Front-Cover Texts, and no Back-Cover
+     Texts.  A copy of the license is included in the section entitled ``GNU
+     Free Documentation License''.
+   #+END_EXAMPLE
 
-If you have Invariant Sections, Front-Cover Texts and Back-Cover Texts,
-replace the “with...Texts.” line with this:
+   If you have Invariant Sections, Front-Cover Texts and Back-Cover
+   Texts, replace the “with...Texts.” line with this:
 
-#+BEGIN_EXAMPLE
-  with the Invariant Sections being list their titles, with
-  the Front-Cover Texts being list, and with the Back-Cover Texts
-  being list.
-#+END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     with the Invariant Sections being list their titles, with
+     the Front-Cover Texts being list, and with the Back-Cover Texts
+     being list.
+   #+END_EXAMPLE
 
-If you have Invariant Sections without Cover Texts, or some other
-combination of the three, merge those two alternatives to suit the
-situation.
+   If you have Invariant Sections without Cover Texts, or some other
+   combination of the three, merge those two alternatives to suit the
+   situation.
 
-If your document contains nontrivial examples of program code, we
-recommend releasing these examples in parallel under your choice of free
-software license, such as the GNU General Public License, to permit
-their use in free software.
+   If your document contains nontrivial examples of program code, we
+   recommend releasing these examples in parallel under your choice of
+   free software license, such as the GNU General Public License, to
+   permit their use in free software.
+
+* Concept-index
+
+  Jump to: [[@Main-Index_cp_symbol-1][#]] [[@Main-Index_cp_symbol-2][:]] [[@Main-Index_cp_letter-A][A]] [[@Main-Index_cp_letter-B][B]] [[@Main-Index_cp_letter-C][C]] [[@Main-Index_cp_letter-D][D]] [[@Main-Index_cp_letter-E][E]] [[@Main-Index_cp_letter-F][F]] [[@Main-Index_cp_letter-G][G]] [[@Main-Index_cp_letter-H][H]] [[@Main-Index_cp_letter-I][I]] [[@Main-Index_cp_letter-J][J]] [[@Main-Index_cp_letter-K][K]] [[@Main-Index_cp_letter-L][L]] [[@Main-Index_cp_letter-M][M]] [[@Main-Index_cp_letter-N][N]] [[@Main-Index_cp_letter-O][O]] [[@Main-Index_cp_letter-P][P]] [[@Main-Index_cp_letter-Q][Q]] [[@Main-Index_cp_letter-R][R]] [[@Main-Index_cp_letter-S][S]] [[@Main-Index_cp_letter-T][T]] [[@Main-Index_cp_letter-U][U]] [[@Main-Index_cp_letter-V][V]] [[@Main-Index_cp_letter-W][W]] [[@Main-Index_cp_letter-X][X]] [[@Main-Index_cp_letter-Y][Y]] [[@Main-Index_cp_letter-Z][Z]]
+
+** #                                                                  <<@Main-Index_cp_symbol-1>>
+
+   | #+ARCHIVE               | [[@Moving-subtrees][Moving subtrees]]                                                           |
+   | #+ASCII                 | [[@ASCII_Latin_1_UTF_8-export][ASCII/Latin-1/UTF-8 export]]                                                |
+   | #+ATTR_ASCII            | [[@ASCII_Latin_1_UTF_8-export][ASCII/Latin-1/UTF-8 export]]                                                |
+   | #+ATTR_BEAMER           | [[@Beamer-specific-syntax][Beamer specific syntax]]                                                    |
+   | #+ATTR_HTML             | [[@Links-in-HTML-export][Links in HTML export]]                                                      |
+   | #+ATTR_HTML             | [[@Tables-in-HTML-export][Tables in HTML export]]                                                     |
+   | #+ATTR_HTML             | [[@Images-in-HTML-export][Images in HTML export]]                                                     |
+   | #+ATTR_LATEX            | [[@LaTeX-specific-attributes][LaTeX specific attributes]]                                                 |
+   | #+ATTR_ODT              | [[@Tables-in-ODT-export][Tables in ODT export]]                                                      |
+   | #+ATTR_ODT              | [[@Images-in-ODT-export][Images in ODT export]]                                                      |
+   | #+ATTR_ODT              | [[@Images-in-ODT-export][Images in ODT export]]                                                      |
+   | #+ATTR_ODT              | [[@Customizing-tables-in-ODT-export][Customizing tables in ODT export]]                                          |
+   | #+ATTR_TEXINFO          | [[@Texinfo-specific-attributes][Texinfo specific attributes]]                                               |
+   | #+AUTHOR                | [[@Export-settings][Export settings]]                                                           |
+   | #+BEAMER                | [[@Beamer-specific-syntax][Beamer specific syntax]]                                                    |
+   | #+BEAMER_FONT_THEME     | [[@Beamer-specific-export-settings][Beamer specific export settings]]                                           |
+   | #+BEAMER_HEADER         | [[@Beamer-specific-export-settings][Beamer specific export settings]]                                           |
+   | #+BEAMER_INNER_THEME    | [[@Beamer-specific-export-settings][Beamer specific export settings]]                                           |
+   | #+BEAMER_OUTER_THEME    | [[@Beamer-specific-export-settings][Beamer specific export settings]]                                           |
+   | #+BEAMER_THEME          | [[@Beamer-specific-export-settings][Beamer specific export settings]]                                           |
+   | #+BEGIN, clocktable     | [[@The-clock-table][The clock table]]                                                           |
+   | #+BEGIN, columnview     | [[@Capturing-column-view][Capturing column view]]                                                     |
+   | #+BEGIN:dynamic block   | [[@Dynamic-blocks][Dynamic blocks]]                                                            |
+   | #+BEGIN_ASCII           | [[@ASCII_Latin_1_UTF_8-export][ASCII/Latin-1/UTF-8 export]]                                                |
+   | #+BEGIN_BEAMER          | [[@Beamer-specific-syntax][Beamer specific syntax]]                                                    |
+   | #+BEGIN_CENTER          | [[@Paragraphs][Paragraphs]]                                                                |
+   | #+BEGIN_COMMENT         | [[@Comment-lines][Comment lines]]                                                             |
+   | #+BEGIN_EXAMPLE         | [[@Literal-examples][Literal examples]]                                                          |
+   | #+BEGIN_HTML            | [[@Quoting-HTML-tags][Quoting HTML tags]]                                                         |
+   | #+BEGIN_HTML            | [[@Quoting-HTML-tags][Quoting HTML tags]]                                                         |
+   | #+BEGIN_JUSTIFYLEFT     | [[@ASCII_Latin_1_UTF_8-export][ASCII/Latin-1/UTF-8 export]]                                                |
+   | #+BEGIN_JUSTIFYRIGHT    | [[@ASCII_Latin_1_UTF_8-export][ASCII/Latin-1/UTF-8 export]]                                                |
+   | #+BEGIN_LATEX           | [[@Quoting-LaTeX-code][Quoting LaTeX code]]                                                        |
+   | #+BEGIN_QUOTE           | [[@Paragraphs][Paragraphs]]                                                                |
+   | #+BEGIN_SRC             | [[@Literal-examples][Literal examples]]                                   |
+   | #+BEGIN_SRC             | [[@Structure-of-code-blocks][Structure of code blocks]]                   |
+   | #+BEGIN_TEXINFO         | [[@Quoting-Texinfo-code][Quoting Texinfo code]]                           |
+   | #+BEGIN_VERSE           | [[@Paragraphs][Paragraphs]]                                               |
+   | #+BIND                  | [[@Export-settings][Export settings]]                                     |
+   | #+CALL                  | [[@Evaluating-code-blocks][Evaluating code blocks]]                       |
+   | #+CAPTION               | [[@Images-and-tables][Images and tables]]                                                         |
+   | #+CAPTION               | [[@Tables-in-HTML-export][Tables in HTML export]]                                                     |
+   | #+CAPTION               | [[@Images-in-HTML-export][Images in HTML export]]                                                     |
+   | #+CATEGORY              | [[@Categories][Categories]]                                                                |
+   | #+CINDEX                | [[@Indices][Indices]]                                                                   |
+   | #+COLUMNS               | [[@Scope-of-column-definitions][Scope of column definitions]]                                               |
+   | #+CONSTANTS             | [[@References][References]]                                                                |
+   | #+CREATOR               | [[@Export-settings][Export settings]]                                                           |
+   | #+DATE                  | [[@Export-settings][Export settings]]                                                           |
+   | #+DESCRIPTION (Beamer)  | [[@Beamer-specific-export-settings][Beamer specific export settings]]                                           |
+   | #+DESCRIPTION (HTML)    | [[@HTML-Specific-export-settings][HTML Specific export settings]]                                             |
+   | #+DESCRIPTION (LaTeX)   | [[@LaTeX-specific-export-settings][LaTeX specific export settings]]                                            |
+   | #+DESCRIPTION (ODT)     | [[@ODT-specific-export-settings][ODT specific export settings]]                                              |
+   | #+EMAIL                 | [[@Export-settings][Export settings]]                                                           |
+   | #+EXCLUDE_TAGS          | [[@Export-settings][Export settings]]                                                           |
+   | #+FILETAGS              | [[@Tag-inheritance][Tag inheritance]]                                                           |
+   | #+FINDEX                | [[@Indices][Indices]]                                                                   |
+   | #+HEADER:               | [[@Code-block-specific-header-arguments][Code block specific header arguments]]                                      |
+   | #+HEADERS:              | [[@Code-block-specific-header-arguments][Code block specific header arguments]]                                      |
+   | #+HTML                  | [[@Quoting-HTML-tags][Quoting HTML tags]]                                                         |
+   | #+HTML_CONTAINER        | [[@HTML-Specific-export-settings][HTML Specific export settings]]                                             |
+   | #+HTML_DOCTYPE          | [[@HTML-Specific-export-settings][HTML Specific export settings]]                                             |
+   | #+HTML_HEAD             | [[@HTML-Specific-export-settings][HTML Specific export settings]]                                             |
+   | #+HTML_HEAD             | [[@CSS-support][CSS support]]                                             |
+   | #+HTML_HEAD_EXTRA       | [[@HTML-Specific-export-settings][HTML Specific export settings]]         |
+   | #+HTML_HEAD_EXTRA       | [[@CSS-support][CSS support]]                                             |
+   | #+HTML_INCLUDE_STYLE    | [[@CSS-support][CSS support]]                                             |
+   | #+HTML_LINK_HOME        | [[@HTML-Specific-export-settings][HTML Specific export settings]]         |
+   | #+HTML_LINK_UP          | [[@HTML-Specific-export-settings][HTML Specific export settings]]         |
+   | #+HTML_MATHJAX          | [[@HTML-Specific-export-settings][HTML Specific export settings]]         |
+   | #+INCLUDE               | [[@Include-files][Include files]]                                         |
+   | #+INFOJS_OPT            | [[@JavaScript-support][JavaScript support]]                               |
+   | #+KEYWORDS (Beamer)     | [[@Beamer-specific-export-settings][Beamer specific export settings]]     |
+   | #+KEYWORDS (HTML)       | [[@HTML-Specific-export-settings][HTML Specific export settings]]         |
+   | #+KEYWORDS (LaTeX)      | [[@LaTeX-specific-export-settings][LaTeX specific export settings]]       |
+   | #+KEYWORDS (ODT)        | [[@ODT-specific-export-settings][ODT specific export settings]]           |
+   | #+KINDEX                | [[@Indices][Indices]]                                                     |
+   | #+LANGUAGE              | [[@Export-settings][Export settings]]                                     |
+   | #+LATEX                 | [[@Quoting-LaTeX-code][Quoting LaTeX code]]                               |
+   | #+LATEX_CLASS           | [[@LaTeX-specific-export-settings][LaTeX specific export settings]]       |
+   | #+LATEX_CLASS           | [[@Header-and-sectioning][Header and sectioning]]                         |
+   | #+LATEX_CLASS_OPTIONS   | [[@LaTeX-specific-export-settings][LaTeX specific export settings]]       |
+   | #+LATEX_CLASS_OPTIONS   | [[@Header-and-sectioning][Header and sectioning]]                         |
+   | #+LATEX_HEADER          | [[@LaTeX-specific-export-settings][LaTeX specific export settings]]       |
+   | #+LATEX_HEADER          | [[@Header-and-sectioning][Header and sectioning]]                         |
+   | #+LATEX_HEADER (HTML)   | [[@HTML-Specific-export-settings][HTML Specific export settings]]         |
+   | #+LATEX_HEADER_EXTRA    | [[@LaTeX-specific-export-settings][LaTeX specific export settings]]       |
+   | #+LATEX_HEADER_EXTRA    | [[@Header-and-sectioning][Header and sectioning]]                         |
+   | #+LINK                  | [[@Link-abbreviations][Link abbreviations]]                               |
+   | #+MACRO                 | [[@Macro-replacement][Macro replacement]]                                 |
+   | #+NAME                  | [[@Internal-links][Internal links]]                                       |
+   | #+NAME                  | [[@Images-and-tables][Images and tables]]                                 |
+   | #+NAME                  | [[@Structure-of-code-blocks][Structure of code blocks]]                   |
+   | #+NAME                  | [[@Structure-of-code-blocks][Structure of code blocks]]                   |
+   | #+NAME, for table       | [[@References][References]]                                               |
+   | #+ODT_STYLES_FILE       | [[@Applying-custom-styles][Applying custom styles]]                       |
+   | #+OPTIONS               | [[@Headings-and-sections][Headings and sections]]                         |
+   | #+OPTIONS               | [[@Export-settings][Export settings]]                                     |
+   | #+ORGLST                | [[@Radio-lists][Radio lists]]                                             |
+   | #+ORGTBL                | [[@Radio-tables][Radio tables]]                                           |
+   | #+ORGTBL, SEND          | [[@A-LaTeX-example][A LaTeX example]]                                     |
+   | #+PINDEX                | [[@Indices][Indices]]                                                     |
+   | #+PLOT                  | [[@Org-Plot][Org-Plot]]                                                   |
+   | #+PRIORITIES            | [[@Priorities][Priorities]]                                               |
+   | #+PROPERTY              | [[@Property-syntax][Property syntax]]                                     |
+   | #+RESULTS               | [[@Evaluating-code-blocks][Evaluating code blocks]]                       |
+   | #+SELECT_TAGS           | [[@Export-settings][Export settings]]                                     |
+   | #+SEQ_TODO              | [[@Per_file-keywords][Per-file keywords]]                                 |
+   | #+SETUPFILE             | [[@Export-settings][Export settings]]                                     |
+   | #+SETUPFILE             | [[@In_buffer-settings][In-buffer settings]]                               |
+   | #+STARTUP               | [[@In_buffer-settings][In-buffer settings]]                               |
+   | #+SUBAUTHOR             | [[@Texinfo-specific-export-settings][Texinfo specific export settings]]   |
+   | #+SUBAUTHOR             | [[@Document-preamble][Document preamble]]                                 |
+   | #+SUBTILE (HTML)        | [[@HTML-Specific-export-settings][HTML Specific export settings]]         |
+   | #+SUBTITLE (ASCII)      | [[@ASCII_Latin_1_UTF_8-export][ASCII/Latin-1/UTF-8 export]]               |
+   | #+SUBTITLE (Beamer)     | [[@Beamer-specific-export-settings][Beamer specific export settings]]     |
+   | #+SUBTITLE (LaTeX)      | [[@LaTeX-specific-export-settings][LaTeX specific export settings]]       |
+   | #+SUBTITLE (Texinfo)    | [[@Texinfo-specific-export-settings][Texinfo specific export settings]]   |
+   | #+TAGS                  | [[@Setting-tags][Setting tags]]                                           |
+   | #+TBLFM                 | [[@Field-and-range-formulas][Field and range formulas]]                   |
+   | #+TBLFM                 | [[@Editing-and-debugging-formulas][Editing and debugging formulas]]       |
+   | #+TBLFM                 | [[@In_buffer-settings][In-buffer settings]]                               |
+   | #+TBLFM line, multiple  | [[@Editing-and-debugging-formulas][Editing and debugging formulas]]       |
+   | #+TBLFM, switching      | [[@Editing-and-debugging-formulas][Editing and debugging formulas]]       |
+   | #+TEXINFO               | [[@Quoting-Texinfo-code][Quoting Texinfo code]]                           |
+   | #+TEXINFO_CLASS         | [[@Texinfo-specific-export-settings][Texinfo specific export settings]]   |
+   | #+TEXINFO_CLASS         | [[@Document-preamble][Document preamble]]                                 |
+   | #+TEXINFO_CLASS         | [[@Headings-and-sectioning-structure][Headings and sectioning structure]] |
+   | #+TEXINFO_DIR_CATEGORY  | [[@Texinfo-specific-export-settings][Texinfo specific export settings]]   |
+   | #+TEXINFO_DIR_CATEGORY  | [[@Document-preamble][Document preamble]]                                 |
+   | #+TEXINFO_DIR_DESC      | [[@Texinfo-specific-export-settings][Texinfo specific export settings]]   |
+   | #+TEXINFO_DIR_DESC      | [[@Document-preamble][Document preamble]]                                 |
+   | #+TEXINFO_DIR_TITLE     | [[@Texinfo-specific-export-settings][Texinfo specific export settings]]   |
+   | #+TEXINFO_DIR_TITLE     | [[@Document-preamble][Document preamble]]                                 |
+   | #+TEXINFO_FILENAME      | [[@Texinfo-specific-export-settings][Texinfo specific export settings]]   |
+   | #+TEXINFO_FILENAME      | [[@Document-preamble][Document preamble]]                                 |
+   | #+TEXINFO_HEADER        | [[@Texinfo-specific-export-settings][Texinfo specific export settings]]   |
+   | #+TEXINFO_HEADER        | [[@Document-preamble][Document preamble]]                                 |
+   | #+TEXINFO_POST_HEADER   | [[@Texinfo-specific-export-settings][Texinfo specific export settings]]   |
+   | #+TEXINFO_PRINTED_TITLE | [[@Texinfo-specific-export-settings][Texinfo specific export settings]]   |
+   | #+TEXINFO_PRINTED_TITLE | [[@Document-preamble][Document preamble]]                                 |
+   | #+TINDEX                | [[@Indices][Indices]]                                                     |
+   | #+TITLE                 | [[@Document-title][Document title]]                                       |
+   | #+TITLE                 | [[@Export-settings][Export settings]]                                     |
+   | #+TOC                   | [[@Table-of-contents][Table of contents]]                                 |
+   | #+TODO                  | [[@Per_file-keywords][Per-file keywords]]                                 |
+   | #+TYP_TODO              | [[@Per_file-keywords][Per-file keywords]]                                 |
+   | #+VINDEX                | [[@Indices][Indices]]                                                     |
+
+** :                                                                  <<@Main-Index_cp_symbol-2>>
+
+   | =:cache=, src header argument  |  [[@System_wide-header-arguments][System-wide header arguments]] |
+   | =:cache=, src header argument  |  [[@cache][cache]] |
+   | =:colnames=, src header argument  |  [[@colnames][colnames]] |
+   | =:comments=, src header argument  |  [[@comments][comments]] |
+   | =:dir=, src header argument  |  [[@dir][dir]] |
+   | =:epilogue=, src header argument  |  [[@epilogue][epilogue]] |
+   | =:eval=, src header argument  |  [[@eval][eval]] |
+   | =:exports=, src header argument  |  [[@Exporting-code-blocks][Exporting code blocks]] |
+   | =:exports=, src header argument  |  [[@System_wide-header-arguments][System-wide header arguments]] |
+   | =:exports=, src header argument  |  [[@exports][exports]] |
+   | =:file=, src header argument  |  [[@file][file]] |
+   | =:file-ext=, src header argument  |  [[@file_ext][file-ext]] |
+   | =:hlines=, src header argument  |  [[@hlines][hlines]] |
+   | =:mkdirp=, src header argument  |  [[@mkdirp][mkdirp]] |
+   | =:no-expand=, src header argument  |  [[@no_expand][no-expand]] |
+   | =:noweb=, src header argument  |  [[@System_wide-header-arguments][System-wide header arguments]] |
+   | =:noweb=, src header argument  |  [[@noweb][noweb]] |
+   | =:noweb-ref=, src header argument  |  [[@noweb_ref][noweb-ref]] |
+   | =:noweb-sep=, src header argument  |  [[@noweb_sep][noweb-sep]] |
+   | =:output-dir=, src header argument  |  [[@output_dir][output-dir]] |
+   | =:padline=, src header argument  |  [[@padline][padline]] |
+   | =:post=, src header argument  |  [[@post][post]] |
+   | =:prologue=, src header argument  |  [[@prologue][prologue]] |
+   | =:results=, src header argument  |  [[@System_wide-header-arguments][System-wide header arguments]] |
+   | =:results=, src header argument  |  [[@Results][results]] |
+   | =:results=, src header argument  |  [[@Results-of-evaluation][Results of evaluation]] |
+   | =:results=, src header argument  |  [[@Results-of-evaluation][Results of evaluation]] |
+   | =:results=, src header argument  |  [[@Results-of-evaluation][Results of evaluation]] |
+   | =:results=, src header argument  |  [[@Results-of-evaluation][Results of evaluation]] |
+   | =:rownames=, src header argument  |  [[@rownames][rownames]] |
+   | =:sep=, src header argument  |  [[@sep][sep]] |
+   | =:session=, src header argument  |  [[@System_wide-header-arguments][System-wide header arguments]] |
+   | =:session=, src header argument  |  [[@session][session]] |
+   | =:shebang=, src header argument  |  [[@shebang][shebang]] |
+   | =:tangle=, src header argument  |  [[@Extracting-source-code][Extracting source code]] |
+   | =:tangle=, src header argument  |  [[@tangle][tangle]] |
+   | =:tangle-mode=, src header argument  |  [[@tangle_mode][tangle-mode]] |
+   | =:var=, src header argument  |  [[@var][var]] |
+   | =:wrap=, src header argument  |  [[@wrap][wrap]] |
+
+** A                                                                  <<@Main-Index_cp_letter-A>>
+
+   | abbreviation, links                 | [[@Link-abbreviations][Link abbreviations]]            |
+   | abstract, in LaTeX export           | [[@LaTeX-specific-attributes][LaTeX specific attributes]]     |
+   | acknowledgments                     | [[@History-and-acknowledgments][History and acknowledgments]]   |
+   | action, for publishing              | [[@Publishing-action][Publishing action]]             |
+   | activation                          | [[@Activation][Activation]]                    |
+   | active region                       | [[@Structure-editing][Structure editing]]             |
+   | active region                       | [[@Built_in-table-editor][Built-in table editor]]         |
+   | active region                       | [[@ODT-export-commands][ODT export commands]]           |
+   | add-on packages                     | [[@Add_on-packages][Add-on packages]]               |
+   | add-ons, context-sensitive commands | [[@Context_sensitive-commands][Context-sensitive commands]]    |
+   | agenda                              | [[@Weekly_daily-agenda][Weekly/daily agenda]]           |
+   | agenda dispatcher                   | [[@Agenda-dispatcher][Agenda dispatcher]]             |
+   | agenda files                        | [[@Agenda-files][Agenda files]]                  |
+   | agenda files, removing buffers      | [[@Agenda-commands][Agenda commands]]               |
+   | agenda views                        | [[@Agenda-views][Agenda views]]                  |
+   | agenda views, custom                | [[@Custom-agenda-views][Custom agenda views]]           |
+   | agenda views, exporting             | [[@Agenda-commands][Agenda commands]]               |
+   | agenda views, exporting             | [[@Exporting-agenda-views][Exporting agenda views]]        |
+   | agenda views, exporting             | [[@Exporting-agenda-views][Exporting agenda views]]        |
+   | agenda views, main example          | [[@Storing-searches][Storing searches]]              |
+   | agenda views, optimization          | [[@Speeding-up-your-agendas][Speeding up your agendas]]      |
+   | agenda views, user-defined          | [[@Special-agenda-views][Special agenda views]]          |
+   | agenda*, as an agenda views         | [[@Storing-searches][Storing searches]]              |
+   | agenda, as an agenda views          | [[@Storing-searches][Storing searches]]              |
+   | agenda, column view                 | [[@Agenda-column-view][Agenda column view]]            |
+   | agenda, pipe                        | [[@Extracting-agenda-information][Extracting agenda information]] |
+   | agenda, sticky                      | [[@Agenda-dispatcher][Agenda dispatcher]]             |
+   | agenda, with block views            | [[@Block-agenda][Block agenda]]                  |
+   | =align=, STARTUP keyword            | [[@In_buffer-settings][In-buffer settings]]            |
+   | alignment in tables                 | [[@Column-width-and-alignment][Column width and alignment]]    |
+   | anniversaries, from BBDB            | [[@Weekly_daily-agenda][Weekly/daily agenda]]           |
+   | API, for mapping                    | [[@Using-the-mapping-API][Using the mapping API]]         |
+   | API, for properties                 | [[@Property-API][Property API]]                  |
+   | API, for properties                 | [[@Using-the-property-API][Using the property API]]        |
+   | appointment                         | [[@Timestamps][Timestamps]]                    |
+   | appointment                         | [[@Weekly_daily-agenda][Weekly/daily agenda]]           |
+   | appointment reminders               | [[@Weekly_daily-agenda][Weekly/daily agenda]]           |
+   | *appt.el*                           | [[@Weekly_daily-agenda][Weekly/daily agenda]]           |
+   | archive locations                   | [[@Moving-subtrees][Moving subtrees]]               |
+   | archiving                           | [[@Archiving][Archiving]]                     |
+   | ASCII export                        | [[@ASCII_Latin_1_UTF_8-export][ASCII/Latin-1/UTF-8 export]]    |
+   | Atom feeds                          | [[@RSS-feeds][RSS feeds]]                     |
+   | attachments                         | [[@Attachments][Attachments]]                   |
+   | author                              | [[@Feedback][Feedback]]                      |
+   | author, macro                       | [[@Macro-replacement][Macro replacement]]             |
+   | autoload                            | [[@Activation][Activation]]                    |
+
+** B                                                                  <<@Main-Index_cp_letter-B>>
+
+   | babel, languages                         | [[@Languages][Languages]]                    |
+   | babel, library of                        | [[@Library-of-Babel][Library of Babel]]             |
+   | backtrace of an error                    | [[@Feedback][Feedback]]                     |
+   | Baur, Steven L.                          | [[@Cooperation][Cooperation]]                  |
+   | BBDB links                               | [[@External-links][External links]]               |
+   | BBDB, anniversaries                      | [[@Weekly_daily-agenda][Weekly/daily agenda]]          |
+   | Beamer export                            | [[@Beamer-export][Beamer export]]                |
+   | block agenda                             | [[@Block-agenda][Block agenda]]                 |
+   | blocking, of checkboxes                  | [[@Checkboxes][Checkboxes]]                   |
+   | blocks, folding                          | [[@Blocks][Blocks]]                       |
+   | bold text, markup rules                  | [[@Emphasis-and-monospace][Emphasis and monospace]]       |
+   | Boolean logic, for tag/property searches | [[@Matching-tags-and-properties][Matching tags and properties]] |
+   | bug reports                              | [[@Feedback][Feedback]]                     |
+
+** C                                                                  <<@Main-Index_cp_letter-C>>
+
+   | C-c C-c, overview                         | [[@The-very-busy-C_c-C_c-key][The very busy C-c C-c key]]         |
+   | *calc* package                            | [[@The-spreadsheet][The spreadsheet]]                   |
+   | *calc.el*                                 | [[@Cooperation][Cooperation]]                       |
+   | calculations, in tables                   | [[@Built_in-table-editor][Built-in table editor]]             |
+   | calculations, in tables                   | [[@The-spreadsheet][The spreadsheet]]                   |
+   | calendar commands, from agenda            | [[@Agenda-commands][Agenda commands]]                   |
+   | calendar integration                      | [[@Weekly_daily-agenda][Weekly/daily agenda]]               |
+   | calendar, for selecting date              | [[@The-date_time-prompt][The date/time prompt]]              |
+   | capture                                   | [[@Capture-Refile-Archive][Capture Refile Archive]]            |
+   | capture                                   | [[@Capture][Capture]]                           |
+   | capturing, from agenda                    | [[@Agenda-commands][Agenda commands]]                   |
+   | category                                  | [[@Categories][Categories]]                        |
+   | category filtering, in agenda             | [[@Filtering_limiting-agenda-items][Filtering/limiting agenda items]]   |
+   | category, require for tags/property match | [[@Matching-tags-and-properties][Matching tags and properties]]      |
+   | CDLaTeX                                   | [[@CDLaTeX-mode][CDLaTeX mode]]                      |
+   | *cdlatex.el*                              | [[@Cooperation][Cooperation]]                       |
+   | checkbox blocking                         | [[@Checkboxes][Checkboxes]]                        |
+   | checkbox statistics                       | [[@Checkboxes][Checkboxes]]                        |
+   | checkboxes                                | [[@Checkboxes][Checkboxes]]                        |
+   | checkboxes and TODO dependencies          | [[@TODO-dependencies][TODO dependencies]]                 |
+   | children, subtree visibility state        | [[@Global-and-local-cycling][Global and local cycling]]          |
+   | clean outline view                        | [[@Clean-view][Clean view]]                        |
+   | clocking time                             | [[@Clocking-work-time][Clocking work time]]                |
+   | clocktable, dynamic block                 | [[@The-clock-table][The clock table]]                   |
+   | code block, batch execution               | [[@Batch-execution][Batch execution]]                   |
+   | code block, editing                       | [[@Editing-source-code][Editing source code]]               |
+   | code block, evaluating                    | [[@Evaluating-code-blocks][Evaluating code blocks]]            |
+   | code block, exporting                     | [[@Exporting-code-blocks][Exporting code blocks]]             |
+   | code block, extracting source code        | [[@Extracting-source-code][Extracting source code]]            |
+   | code block, header arguments              | [[@Header-arguments][Header arguments]]                  |
+   | code block, key bindings                  | [[@Key-bindings-and-useful-functions][Key bindings and useful functions]] |
+   | code block, languages                     | [[@Languages][Languages]]                         |
+   | code block, library                       | [[@Library-of-Babel][Library of Babel]]                  |
+   | code block, noweb reference               | [[@Noweb-reference-syntax][Noweb reference syntax]]            |
+   | code block, results of evaluation         | [[@Results-of-evaluation][Results of evaluation]]             |
+   | code block, structure                     | [[@Structure-of-code-blocks][Structure of code blocks]]          |
+   | code line references, markup rules        | [[@Literal-examples][Literal examples]]                  |
+   | code text, markup rules                   | [[@Emphasis-and-monospace][Emphasis and monospace]]            |
+   | column formula                            | [[@Column-formulas][Column formulas]]                   |
+   | column view, for properties               | [[@Defining-columns][Defining columns]]                  |
+   | column view, in agenda                    | [[@Agenda-column-view][Agenda column view]]                |
+   | column, of field coordinates              | [[@References][References]]                        |
+   | commands, in agenda buffer                | [[@Agenda-commands][Agenda commands]]                   |
+   | comment lines                             | [[@Comment-lines][Comment lines]]                     |
+   | completion, of dictionary words           | [[@Completion][Completion]]                        |
+   | completion, of file names                 | [[@Handling-links][Handling links]]                    |
+   | completion, of link abbreviations         | [[@Completion][Completion]]                        |
+   | completion, of links                      | [[@Handling-links][Handling links]]                    |
+   | completion, of option keywords            | [[@Per_file-keywords][Per-file keywords]]                 |
+   | completion, of option keywords            | [[@Completion][Completion]]                        |
+   | completion, of property keys              | [[@Completion][Completion]]                        |
+   | completion, of tags                       | [[@Setting-tags][Setting tags]]                      |
+   | completion, of tags                       | [[@Completion][Completion]]                        |
+   | completion, of TeX symbols                | [[@Completion][Completion]]                        |
+   | completion, of TODO keywords              | [[@Workflow-states][Workflow states]]                   |
+   | completion, of TODO keywords              | [[@Completion][Completion]]                        |
+   | constants, in calculations                | [[@References][References]]                        |
+   | constants, in calculations                | [[@References][References]]                        |
+   | *constants.el*                            | [[@Cooperation][Cooperation]]                       |
+   | =constcgs=, STARTUP keyword               | [[@In_buffer-settings][In-buffer settings]]                |
+   | =constSI=, STARTUP keyword                | [[@In_buffer-settings][In-buffer settings]]                |
+   | =content=, STARTUP keyword                | [[@Initial-visibility][Initial visibility]]                |
+   | =content=, STARTUP keyword                | [[@In_buffer-settings][In-buffer settings]]                |
+   | contents, global visibility state         | [[@Global-and-local-cycling][Global and local cycling]]          |
+   | context-sensitive commands, hooks         | [[@Context_sensitive-commands][Context-sensitive commands]]        |
+   | continuous clocking                       | [[@Resolving-idle-time][Resolving idle time]]               |
+   | convert                                   | [[@Configuring-a-document-converter][Configuring a document converter]]  |
+   | converter                                 | [[@Configuring-a-document-converter][Configuring a document converter]]  |
+   | coordinates, of field                     | [[@References][References]]                        |
+   | copying notes                             | [[@Refile-and-copy][Refile and copy]]                   |
+   | copying, of subtrees                      | [[@Structure-editing][Structure editing]]                 |
+   | countdown timer                           | [[@Timers][Timers]]                            |
+   | creating timestamps                       | [[@Creating-timestamps][Creating timestamps]]               |
+   | CSS, for HTML export                      | [[@CSS-support][CSS support]]                       |
+   | *CUA.el*                                  | [[@Conflicts][Conflicts]]                         |
+   | custom agenda views                       | [[@Custom-agenda-views][Custom agenda views]]               |
+   | custom date/time format                   | [[@Custom-time-format][Custom time format]]                |
+   | custom search strings                     | [[@Custom-searches][Custom searches]]                   |
+   | customization                             | [[@Customization][Customization]]                     |
+   | =customtime=, STARTUP keyword             | [[@In_buffer-settings][In-buffer settings]]                |
+   | cutting, of subtrees                      | [[@Structure-editing][Structure editing]]                 |
+   | cycling, in plain lists                   | [[@Plain-lists][Plain lists]]                       |
+   | cycling, of agenda files                  | [[@Agenda-files][Agenda files]]                      |
+   | cycling, of TODO states                   | [[@TODO-basics][TODO basics]]                       |
+   | cycling, visibility                       | [[@Visibility-cycling][Visibility cycling]]                |
+
+** D                                                                  <<@Main-Index_cp_letter-D>>
+
+   | daily agenda                        | [[@Weekly_daily-agenda][Weekly/daily agenda]]              |
+   | date format, custom                 | [[@Custom-time-format][Custom time format]]               |
+   | date range                          | [[@Timestamps][Timestamps]]                       |
+   | date stamp                          | [[@Dates-and-times][Dates and times]]                  |
+   | date stamps                         | [[@Timestamps][Timestamps]]                       |
+   | date tree                           | [[@Using-capture][Using capture]]                    |
+   | date, macro                         | [[@Macro-replacement][Macro replacement]]                |
+   | date, reading in minibuffer         | [[@The-date_time-prompt][The date/time prompt]]             |
+   | dates                               | [[@Dates-and-times][Dates and times]]                  |
+   | Davison, Dan                        | [[@Working-with-source-code][Working with source code]]         |
+   | DEADLINE keyword                    | [[@Deadlines-and-scheduling][Deadlines and scheduling]]         |
+   | deadlines                           | [[@Timestamps][Timestamps]]                       |
+   | debugging, of table formulas        | [[@Editing-and-debugging-formulas][Editing and debugging formulas]]   |
+   | demotion, of subtrees               | [[@Structure-editing][Structure editing]]                |
+   | dependencies, of TODO states        | [[@TODO-dependencies][TODO dependencies]]                |
+   | diary entries, creating from agenda | [[@Agenda-commands][Agenda commands]]                  |
+   | diary integration                   | [[@Weekly_daily-agenda][Weekly/daily agenda]]              |
+   | dictionary word completion          | [[@Completion][Completion]]                       |
+   | directories, for publishing         | [[@Sources-and-destinations][Sources and destinations]]         |
+   | dispatching agenda commands         | [[@Agenda-dispatcher][Agenda dispatcher]]                |
+   | display changing, in agenda         | [[@Agenda-commands][Agenda commands]]                  |
+   | doc, docx, rtf                      | [[@Configuring-a-document-converter][Configuring a document converter]] |
+   | document structure                  | [[@Document-structure][Document structure]]               |
+   | document title, markup rules        | [[@Document-title][Document title]]                   |
+   | Dominik, Carsten                    | [[@Cooperation][Cooperation]]                      |
+   | Dominik, Carsten                    | [[@Cooperation][Cooperation]]                      |
+   | DONE, final TODO keyword            | [[@Per_file-keywords][Per-file keywords]]                |
+   | dragging, agenda lines              | [[@Agenda-commands][Agenda commands]]                  |
+   | drawer, for properties              | [[@Property-syntax][Property syntax]]                  |
+   | drawer, for state change recording  | [[@Tracking-TODO-state-changes][Tracking TODO state changes]]      |
+   | drawers                             | [[@Drawers][Drawers]]                          |
+   | Duration, computing                 | [[@Durations-and-time-values][Durations and time values]]        |
+   | dvipng                              | [[@Math-formatting-in-HTML-export][Math formatting in HTML export]]   |
+   | dvipng                              | [[@Working-with-LaTeX-math-snippets][Working with LaTeX math snippets]] |
+   | dynamic blocks                      | [[@Dynamic-blocks][Dynamic blocks]]                   |
+
+** E                                                                  <<@Main-Index_cp_letter-E>>
+
+   | *ecomplete.el*                    | [[@Conflicts][Conflicts]]                       |
+   | editing tables                    | [[@Tables][Tables]]                          |
+   | editing, of table formulas        | [[@Editing-and-debugging-formulas][Editing and debugging formulas]]  |
+   | edits, catching invisible         | [[@Catching-invisible-edits][Catching invisible edits]]        |
+   | effort estimates                  | [[@Effort-estimates][Effort estimates]]                |
+   | effort filtering, in agenda       | [[@Filtering_limiting-agenda-items][Filtering/limiting agenda items]] |
+   | Elisp links                       | [[@External-links][External links]]                  |
+   | ELPA                              | [[@Activation][Activation]]                      |
+   | emacsserver                       | [[@Protocols][Protocols]]                       |
+   | email, macro                      | [[@Macro-replacement][Macro replacement]]               |
+   | embedding images in ODT           | [[@Images-in-ODT-export][Images in ODT export]]            |
+   | =entitiesplain=, STARTUP keyword  | [[@In_buffer-settings][In-buffer settings]]              |
+   | =entitiespretty=, STARTUP keyword | [[@Special-symbols][Special symbols]]                 |
+   | =entitiespretty=, STARTUP keyword | [[@In_buffer-settings][In-buffer settings]]              |
+   | evaluate time range               | [[@Creating-timestamps][Creating timestamps]]             |
+   | =even=, STARTUP keyword           | [[@In_buffer-settings][In-buffer settings]]              |
+   | example blocks, in LaTeX export   | [[@LaTeX-specific-attributes][LaTeX specific attributes]]       |
+   | export back-ends, built-in        | [[@Other-built_in-back_ends][Other built-in back-ends]]        |
+   | Export, back-ends                 | [[@Export-back_ends][Export back-ends]]                |
+   | Export, dispatcher                | [[@The-export-dispatcher][The export dispatcher]]           |
+   | export, OpenDocument              | [[@OpenDocument-Text-export][OpenDocument Text export]]        |
+   | Export, settings                  | [[@Export-settings][Export settings]]                 |
+   | Export, writing back-ends         | [[@Adding-export-back_ends][Adding export back-ends]]         |
+   | exporting                         | [[@Exporting][Exporting]]                       |
+   | exporting agenda views            | [[@Agenda-commands][Agenda commands]]                 |
+   | exporting agenda views            | [[@Exporting-agenda-views][Exporting agenda views]]          |
+   | exporting, not                    | [[@Comment-lines][Comment lines]]                   |
+   | extended TODO keywords            | [[@TODO-extensions][TODO extensions]]                 |
+   | external archiving                | [[@Moving-subtrees][Moving subtrees]]                 |
+   | external links                    | [[@External-links][External links]]                  |
+   | external links, in HTML export    | [[@Links-in-HTML-export][Links in HTML export]]            |
+
+** F                                                                  <<@Main-Index_cp_letter-F>>
+
+   | faces, for TODO keywords                                        | [[@Faces-for-TODO-keywords][Faces for TODO keywords]]         |
+   | FAQ                                                             | [[@Summary][Summary]]                         |
+   | feedback                                                        | [[@Feedback][Feedback]]                        |
+   | field coordinates                                               | [[@References][References]]                      |
+   | field formula                                                   | [[@Field-and-range-formulas][Field and range formulas]]        |
+   | field references                                                | [[@References][References]]                      |
+   | file links                                                      | [[@External-links][External links]]                  |
+   | file links, searching                                           | [[@Search-options][Search options]]                  |
+   | file name completion                                            | [[@Handling-links][Handling links]]                  |
+   | files for agenda                                                | [[@Agenda-files][Agenda files]]                    |
+   | files, adding to agenda list                                    | [[@Agenda-files][Agenda files]]                    |
+   | files, selecting for publishing                                 | [[@Selecting-files][Selecting files]]                 |
+   | *filladapt.el*                                                  | [[@Conflicts][Conflicts]]                       |
+   | filtering, by tag, category, top headline and effort, in agenda | [[@Filtering_limiting-agenda-items][Filtering/limiting agenda items]] |
+   | Filters, exporting                                              | [[@Advanced-configuration][Advanced configuration]]          |
+   | =fnadjust=, STARTUP keyword                                     | [[@In_buffer-settings][In-buffer settings]]              |
+   | =fnauto=, STARTUP keyword                                       | [[@In_buffer-settings][In-buffer settings]]              |
+   | =fnconfirm=, STARTUP keyword                                    | [[@In_buffer-settings][In-buffer settings]]              |
+   | =fninline=, STARTUP keyword                                     | [[@In_buffer-settings][In-buffer settings]]              |
+   | =fnlocal=, STARTUP keyword                                      | [[@In_buffer-settings][In-buffer settings]]              |
+   | =fnplain=, STARTUP keyword                                      | [[@In_buffer-settings][In-buffer settings]]              |
+   | =fnprompt=, STARTUP keyword                                     | [[@In_buffer-settings][In-buffer settings]]              |
+   | folded, subtree visibility state                                | [[@Global-and-local-cycling][Global and local cycling]]        |
+   | folding, sparse trees                                           | [[@Sparse-trees][Sparse trees]]                    |
+   | following links                                                 | [[@Handling-links][Handling links]]                  |
+   | *footnote.el*                                                   | [[@Footnote-markup][Footnote markup]]                 |
+   | *footnote.el*                                                   | [[@Cooperation][Cooperation]]                     |
+   | footnotes                                                       | [[@Footnotes][Footnotes]]                       |
+   | footnotes, markup rules                                         | [[@Footnote-markup][Footnote markup]]                 |
+   | format specifier                                                | [[@Formula-syntax-for-Calc][Formula syntax for Calc]]         |
+   | format, of links                                                | [[@Link-format][Link format]]                     |
+   | formatting source code, markup rules                            | [[@Literal-examples][Literal examples]]                |
+   | formula debugging                                               | [[@Editing-and-debugging-formulas][Editing and debugging formulas]]  |
+   | formula editing                                                 | [[@Editing-and-debugging-formulas][Editing and debugging formulas]]  |
+   | formula syntax, Calc                                            | [[@Formula-syntax-for-Calc][Formula syntax for Calc]]         |
+   | formula, for individual table field                             | [[@Field-and-range-formulas][Field and range formulas]]        |
+   | formula, for range of fields                                    | [[@Field-and-range-formulas][Field and range formulas]]        |
+   | formula, for table column                                       | [[@Column-formulas][Column formulas]]                 |
+   | formula, in tables                                              | [[@Built_in-table-editor][Built-in table editor]]           |
+
+** G                                                                  <<@Main-Index_cp_letter-G>>
+
+   | Gillespie, Dave                    | [[@Cooperation][Cooperation]]                  |
+   | global cycling                     | [[@Global-and-local-cycling][Global and local cycling]]     |
+   | global key bindings                | [[@Activation][Activation]]                   |
+   | global TODO list                   | [[@Global-TODO-list][Global TODO list]]             |
+   | global visibility states           | [[@Global-and-local-cycling][Global and local cycling]]     |
+   | Gnus links                         | [[@External-links][External links]]               |
+   | graph, in tables                   | [[@Org-Plot][Org-Plot]]                     |
+   | group tags                         | [[@Tag-hierarchy][Tag hierarchy]]                |
+   | group tags, as regular expressions | [[@Matching-tags-and-properties][Matching tags and properties]] |
+   | grouping columns in tables         | [[@Column-groups][Column groups]]                |
+
+** H                                                                  <<@Main-Index_cp_letter-H>>
+
+   | habits                              | [[@Tracking-your-habits][Tracking your habits]]        |
+   | hacking                             | [[@Hacking][Hacking]]                     |
+   | header, for LaTeX files             | [[@Header-and-sectioning][Header and sectioning]]       |
+   | headings and sections, markup rules | [[@Headings-and-sections][Headings and sections]]       |
+   | headline navigation                 | [[@Motion][Motion]]                      |
+   | headline tagging                    | [[@Tags][Tags]]                        |
+   | headline, promotion and demotion    | [[@Structure-editing][Structure editing]]           |
+   | headlines                           | [[@Headlines][Headlines]]                   |
+   | hide text                           | [[@Visibility-cycling][Visibility cycling]]          |
+   | =hideblocks=, STARTUP keyword       | [[@Blocks][Blocks]]                      |
+   | =hideblocks=, STARTUP keyword       | [[@In_buffer-settings][In-buffer settings]]          |
+   | =hidestars=, STARTUP keyword        | [[@In_buffer-settings][In-buffer settings]]          |
+   | hiding leading stars                | [[@Clean-view][Clean view]]                  |
+   | history                             | [[@History-and-acknowledgments][History and acknowledgments]] |
+   | hooks                               | [[@Hooks][Hooks]]                       |
+   | horizontal rules, in ASCII export   | [[@ASCII_Latin_1_UTF_8-export][ASCII/Latin-1/UTF-8 export]]  |
+   | horizontal rules, in LaTeX export   | [[@LaTeX-specific-attributes][LaTeX specific attributes]]   |
+   | horizontal rules, markup rules      | [[@Horizontal-rules][Horizontal rules]]            |
+   | HTML entities                       | [[@Special-symbols][Special symbols]]             |
+   | HTML export                         | [[@HTML-export][HTML export]]                 |
+   | HTML export, CSS                    | [[@CSS-support][CSS support]]                 |
+   | HTML, and Orgtbl mode               | [[@Translator-functions][Translator functions]]        |
+   | hyperlinks                          | [[@Hyperlinks][Hyperlinks]]                  |
+
+** I                                                                  <<@Main-Index_cp_letter-I>>
+
+   | iCalendar export                | [[@iCalendar-export][iCalendar export]]                 |
+   | identify, ImageMagick           | [[@Images-in-ODT-export][Images in ODT export]]             |
+   | idle, resolve, dangling         | [[@Resolving-idle-time][Resolving idle time]]              |
+   | imagemagick                     | [[@Math-formatting-in-HTML-export][Math formatting in HTML export]]   |
+   | imagemagick                     | [[@Working-with-LaTeX-math-snippets][Working with LaTeX math snippets]] |
+   | images, embedding in ODT        | [[@Images-in-ODT-export][Images in ODT export]]             |
+   | images, inline in HTML          | [[@Images-in-HTML-export][Images in HTML export]]            |
+   | images, inline in LaTeX         | [[@LaTeX-specific-attributes][LaTeX specific attributes]]        |
+   | images, inlining                | [[@Handling-links][Handling links]]                   |
+   | *imenu.el*                      | [[@Cooperation][Cooperation]]                      |
+   | in-buffer settings              | [[@In_buffer-settings][In-buffer settings]]               |
+   | inactive timestamp              | [[@Timestamps][Timestamps]]                       |
+   | include files, markup rules     | [[@Include-files][Include files]]                    |
+   | =indent=, STARTUP keyword       | [[@In_buffer-settings][In-buffer settings]]               |
+   | indentation, in source blocks   | [[@Literal-examples][Literal examples]]                 |
+   | indentation, in source blocks   | [[@Editing-source-code][Editing source code]]              |
+   | index entries, for publishing   | [[@Index-entries][Index entries]]                    |
+   | index, in a publishing project  | [[@Generating-an-index][Generating an index]]              |
+   | Info links                      | [[@External-links][External links]]                   |
+   | inheritance, of properties      | [[@Property-inheritance][Property inheritance]]             |
+   | inheritance, of tags            | [[@Tag-inheritance][Tag inheritance]]                  |
+   | inlined images, markup rules    | [[@Images-and-tables][Images and tables]]                |
+   | =inlineimages=, STARTUP keyword | [[@Handling-links][Handling links]]                   |
+   | =inlineimages=, STARTUP keyword | [[@In_buffer-settings][In-buffer settings]]               |
+   | inlining images                 | [[@Handling-links][Handling links]]                   |
+   | inlining images in HTML         | [[@Images-in-HTML-export][Images in HTML export]]            |
+   | inlining images in LaTeX        | [[@LaTeX-specific-attributes][LaTeX specific attributes]]        |
+   | input file, macro               | [[@Macro-replacement][Macro replacement]]                |
+   | inserting links                 | [[@Handling-links][Handling links]]                   |
+   | insertion, of templates         | [[@Easy-templates][Easy templates]]                   |
+   | installation                    | [[@Installation][Installation]]                     |
+   | internal links                  | [[@Internal-links][Internal links]]                   |
+   | internal links, in HTML export  | [[@Links-in-HTML-export][Links in HTML export]]             |
+   | introduction                    | [[@Introduction][Introduction]]                     |
+   | iPhone                          | [[@MobileOrg][MobileOrg]]                        |
+   | IRC links                       | [[@External-links][External links]]                   |
+   | italic text, markup rules       | [[@Emphasis-and-monospace][Emphasis and monospace]]           |
+
+** J                                                                  <<@Main-Index_cp_letter-J>>
+
+   | jumping, to headlines | [[@Motion][Motion]] |
+
+** K                                                                  <<@Main-Index_cp_letter-K>>
+
+   | key bindings, global | [[@Activation][Activation]]        |
+   | keyword options      | [[@Per_file-keywords][Per-file keywords]] |
+
+** L                                                                  <<@Main-Index_cp_letter-L>>
+
+   | LaTeX class                            | [[@Header-and-sectioning][Header and sectioning]]           |
+   | LaTeX entities                         | [[@Special-symbols][Special symbols]]                 |
+   | LaTeX export                           | [[@LaTeX-and-PDF-export][LaTeX and PDF export]]            |
+   | LaTeX fragments                        | [[@LaTeX-fragments][LaTeX fragments]]                 |
+   | LaTeX fragments, markup rules          | [[@Special-symbols][Special symbols]]                 |
+   | LaTeX fragments, preview               | [[@Previewing-LaTeX-fragments][Previewing LaTeX fragments]]      |
+   | LaTeX header                           | [[@Header-and-sectioning][Header and sectioning]]           |
+   | LaTeX interpretation                   | [[@Embedded-LaTeX][Embedded LaTeX]]                  |
+   | LaTeX sectioning structure             | [[@Header-and-sectioning][Header and sectioning]]           |
+   | LaTeX, and Orgtbl mode                 | [[@A-LaTeX-example][A LaTeX example]]                 |
+   | =latexpreview=, STARTUP keyword        | [[@In_buffer-settings][In-buffer settings]]              |
+   | Latin-1 export                         | [[@ASCII_Latin_1_UTF_8-export][ASCII/Latin-1/UTF-8 export]]      |
+   | level, require for tags/property match | [[@Matching-tags-and-properties][Matching tags and properties]]    |
+   | LibreOffice                            | [[@OpenDocument-Text-export][OpenDocument Text export]]        |
+   | LibreOffice                            | [[@Extending-ODT-export][Extending ODT export]]            |
+   | limits, in agenda                      | [[@Filtering_limiting-agenda-items][Filtering/limiting agenda items]] |
+   | link abbreviations                     | [[@Link-abbreviations][Link abbreviations]]              |
+   | link abbreviations, completion of      | [[@Completion][Completion]]                      |
+   | link completion                        | [[@Handling-links][Handling links]]                  |
+   | link format                            | [[@Link-format][Link format]]                     |
+   | links, external                        | [[@External-links][External links]]                  |
+   | links, finding next/previous           | [[@Handling-links][Handling links]]                  |
+   | links, handling                        | [[@Handling-links][Handling links]]                  |
+   | links, in HTML export                  | [[@Links-in-HTML-export][Links in HTML export]]            |
+   | links, in ODT export                   | [[@Links-in-ODT-export][Links in ODT export]]             |
+   | links, internal                        | [[@Internal-links][Internal links]]                  |
+   | links, publishing                      | [[@Publishing-links][Publishing links]]                |
+   | links, radio targets                   | [[@Radio-targets][Radio targets]]                   |
+   | links, returning to                    | [[@Handling-links][Handling links]]                  |
+   | linter                                 | [[@Org-syntax][Org syntax]]                      |
+   | Lisp forms, as table formulas          | [[@Formula-syntax-for-Lisp][Formula syntax for Lisp]]         |
+   | lists, in other modes                  | [[@Tables-in-arbitrary-syntax][Tables in arbitrary syntax]]      |
+   | lists, markup rules                    | [[@Lists][Lists]]                           |
+   | lists, ordered                         | [[@Plain-lists][Plain lists]]                     |
+   | lists, plain                           | [[@Plain-lists][Plain lists]]                     |
+   | literal examples, markup rules         | [[@Literal-examples][Literal examples]]                |
+   | =logdone=, STARTUP keyword             | [[@In_buffer-settings][In-buffer settings]]              |
+   | =logdrawer=, STARTUP keyword           | [[@In_buffer-settings][In-buffer settings]]              |
+   | logging, of progress                   | [[@Progress-logging][Progress logging]]                |
+   | =lognoteclock-out=, STARTUP keyword    | [[@In_buffer-settings][In-buffer settings]]              |
+   | =lognotedone=, STARTUP keyword         | [[@In_buffer-settings][In-buffer settings]]              |
+   | =lognoteredeadline=, STARTUP keyword   | [[@In_buffer-settings][In-buffer settings]]              |
+   | =lognoterefile=, STARTUP keyword       | [[@In_buffer-settings][In-buffer settings]]              |
+   | =lognoterepeat=, STARTUP keyword       | [[@In_buffer-settings][In-buffer settings]]              |
+   | =lognotereschedule=, STARTUP keyword   | [[@In_buffer-settings][In-buffer settings]]              |
+   | =logredeadline=, STARTUP keyword       | [[@In_buffer-settings][In-buffer settings]]              |
+   | =logrefile=, STARTUP keyword           | [[@In_buffer-settings][In-buffer settings]]              |
+   | =logrepeat=, STARTUP keyword           | [[@In_buffer-settings][In-buffer settings]]              |
+   | =logreschedule=, STARTUP keyword       | [[@In_buffer-settings][In-buffer settings]]              |
+   | =logstatesreversed=, STARTUP keyword   | [[@In_buffer-settings][In-buffer settings]]              |
+   | lookup functions in tables             | [[@Lookup-functions][Lookup functions]]                |
+   | Ludlam, Eric M.                        | [[@Cooperation][Cooperation]]                     |
+
+** M                                                                  <<@Main-Index_cp_letter-M>>
+
+   | macro replacement, during export | [[@Macro-replacement][Macro replacement]]                |
+   | maintainer                       | [[@Feedback][Feedback]]                         |
+   | mapping entries, API             | [[@Using-the-mapping-API][Using the mapping API]]            |
+   | mark ring                        | [[@Handling-links][Handling links]]                   |
+   | Markdown export                  | [[@Markdown-export][Markdown export]]                  |
+   | marking characters, tables       | [[@Advanced-features][Advanced features]]                |
+   | match view                       | [[@Matching-tags-and-properties][Matching tags and properties]]     |
+   | matching, of properties          | [[@Matching-tags-and-properties][Matching tags and properties]]     |
+   | matching, of tags                | [[@Matching-tags-and-properties][Matching tags and properties]]     |
+   | matching, tags                   | [[@Tags][Tags]]                             |
+   | math symbols                     | [[@Special-symbols][Special symbols]]                  |
+   | MathJax                          | [[@Math-formatting-in-HTML-export][Math formatting in HTML export]]   |
+   | MathML                           | [[@Working-with-LaTeX-math-snippets][Working with LaTeX math snippets]] |
+   | MH-E links                       | [[@External-links][External links]]                   |
+   | minor mode for structure editing | [[@Orgstruct-mode][Orgstruct mode]]                   |
+   | minor mode for tables            | [[@Orgtbl-mode][Orgtbl mode]]                      |
+   | MobileOrg                        | [[@MobileOrg][MobileOrg]]                        |
+   | mode, for *calc*                 | [[@Formula-syntax-for-Calc][Formula syntax for Calc]]          |
+   | modification time, macro         | [[@Macro-replacement][Macro replacement]]                |
+   | motion commands in agenda        | [[@Agenda-commands][Agenda commands]]                  |
+   | motion, between headlines        | [[@Motion][Motion]]                           |
+
+** N                                                                  <<@Main-Index_cp_letter-N>>
+
+   | name, of column or field               | [[@References][References]]                 |
+   | name, of column or field               | [[@References][References]]                 |
+   | named references                       | [[@References][References]]                 |
+   | names as TODO keywords                 | [[@TODO-types][TODO types]]                 |
+   | narrow columns in tables               | [[@Column-width-and-alignment][Column width and alignment]] |
+   | =noalign=, STARTUP keyword             | [[@In_buffer-settings][In-buffer settings]]         |
+   | =nofnadjust=, STARTUP keyword          | [[@In_buffer-settings][In-buffer settings]]         |
+   | =nofninline=, STARTUP keyword          | [[@In_buffer-settings][In-buffer settings]]         |
+   | =nohideblocks=, STARTUP keyword        | [[@Blocks][Blocks]]                     |
+   | =nohideblocks=, STARTUP keyword        | [[@In_buffer-settings][In-buffer settings]]         |
+   | =noindent=, STARTUP keyword            | [[@In_buffer-settings][In-buffer settings]]         |
+   | =noinlineimages=, STARTUP keyword      | [[@Handling-links][Handling links]]             |
+   | =noinlineimages=, STARTUP keyword      | [[@In_buffer-settings][In-buffer settings]]         |
+   | =nolatexpreview=, STARTUP keyword      | [[@In_buffer-settings][In-buffer settings]]         |
+   | =nologdone=, STARTUP keyword           | [[@In_buffer-settings][In-buffer settings]]         |
+   | =nologdrawer=, STARTUP keyword         | [[@In_buffer-settings][In-buffer settings]]         |
+   | =nolognoteclock-out=, STARTUP keyword  | [[@In_buffer-settings][In-buffer settings]]         |
+   | =nologredeadline=, STARTUP keyword     | [[@In_buffer-settings][In-buffer settings]]         |
+   | =nologrefile=, STARTUP keyword         | [[@In_buffer-settings][In-buffer settings]]         |
+   | =nologrepeat=, STARTUP keyword         | [[@In_buffer-settings][In-buffer settings]]         |
+   | =nologreschedule=, STARTUP keyword     | [[@In_buffer-settings][In-buffer settings]]         |
+   | =nologstatesreversed=, STARTUP keyword | [[@In_buffer-settings][In-buffer settings]]         |
+
+** O                                                                  <<@Main-Index_cp_letter-O>>
+
+   | occur, command                    | [[@Sparse-trees][Sparse trees]]                 |
+   | occur-tree                        | [[@Storing-searches][Storing searches]]             |
+   | =odd=, STARTUP keyword            | [[@In_buffer-settings][In-buffer settings]]           |
+   | odd-levels-only outlines          | [[@Clean-view][Clean view]]                   |
+   | ODT                               | [[@OpenDocument-Text-export][OpenDocument Text export]]     |
+   | ODT_STYLES_FILE                   | [[@ODT-specific-export-settings][ODT specific export settings]] |
+   | OpenDocument                      | [[@OpenDocument-Text-export][OpenDocument Text export]]     |
+   | option keyword completion         | [[@Completion][Completion]]                   |
+   | options, for custom agenda views  | [[@Setting-options][Setting options]]              |
+   | options, for customization        | [[@Customization][Customization]]                |
+   | options, for publishing           | [[@Publishing-options][Publishing options]]           |
+   | ordered lists                     | [[@Plain-lists][Plain lists]]                  |
+   | Org export                        | [[@Org-export][Org export]]                   |
+   | Org mode, turning on              | [[@Activation][Activation]]                   |
+   | Org syntax                        | [[@Org-syntax][Org syntax]]                   |
+   | org-agenda, command               | [[@Weekly_daily-agenda][Weekly/daily agenda]]          |
+   | org-capture-last-stored           | [[@Using-capture][Using capture]]                |
+   | *org-crypt.el*                    | [[@org_crypt][org-crypt]]                    |
+   | =org-decrypt-entry=               | [[@org_crypt][org-crypt]]                    |
+   | org-hide-block-startup            | [[@In_buffer-settings][In-buffer settings]]           |
+   | org-insert-drawer                 | [[@Drawers][Drawers]]                      |
+   | org-insert-drawer                 | [[@Property-syntax][Property syntax]]              |
+   | org-list-insert-radio-list        | [[@Radio-lists][Radio lists]]                  |
+   | org-pretty-entities               | [[@In_buffer-settings][In-buffer settings]]           |
+   | org-publish-project-alist         | [[@Project-alist][Project alist]]                |
+   | Orgstruct mode                    | [[@Orgstruct-mode][Orgstruct mode]]               |
+   | Orgtbl mode                       | [[@Orgtbl-mode][Orgtbl mode]]                  |
+   | Orgtbl mode                       | [[@Tables-in-arbitrary-syntax][Tables in arbitrary syntax]]   |
+   | Ota, Takaaki                      | [[@Cooperation][Cooperation]]                  |
+   | Outline mode                      | [[@Outlines][Outlines]]                     |
+   | outline tree                      | [[@Headlines][Headlines]]                    |
+   | outlines                          | [[@Outlines][Outlines]]                     |
+   | overview, global visibility state | [[@Global-and-local-cycling][Global and local cycling]]     |
+   | =overview=, STARTUP keyword       | [[@Initial-visibility][Initial visibility]]           |
+   | =overview=, STARTUP keyword       | [[@In_buffer-settings][In-buffer settings]]           |
+
+** P                                                                  <<@Main-Index_cp_letter-P>>
+
+   | packages, interaction with other     | [[@Interaction][Interaction]]                            |
+   | paragraphs, markup rules             | [[@Paragraphs][Paragraphs]]                             |
+   | pasting, of subtrees                 | [[@Structure-editing][Structure editing]]                      |
+   | PDF export                           | [[@LaTeX-and-PDF-export][LaTeX and PDF export]]                   |
+   | per-file keywords                    | [[@Per_file-keywords][Per-file keywords]]                      |
+   | plain lists                          | [[@Plain-lists][Plain lists]]                            |
+   | plain lists, in LaTeX export         | [[@LaTeX-specific-attributes][LaTeX specific attributes]]              |
+   | plain text external links            | [[@External-links][External links]]                         |
+   | plot tables using Gnuplot            | [[@Org-Plot][Org-Plot]]                               |
+   | presentation, of agenda items        | [[@Presentation-and-sorting][Presentation and sorting]]               |
+   | print edition                        | [[@Summary][Summary]]                                |
+   | printing sparse trees                | [[@Sparse-trees][Sparse trees]]                           |
+   | priorities                           | [[@Priorities][Priorities]]                             |
+   | priorities, of agenda items          | [[@Sorting-agenda-items][Sorting agenda items]]                   |
+   | progress logging                     | [[@Progress-logging][Progress logging]]                       |
+   | projects, for publishing             | [[@Project-alist][Project alist]]                          |
+   | promotion, of subtrees               | [[@Structure-editing][Structure editing]]                      |
+   | proof, in LaTeX export               | [[@LaTeX-specific-attributes][LaTeX specific attributes]]              |
+   | properties                           | [[@Properties-and-columns][Properties and columns]]                 |
+   | properties, API                      | [[@Property-API][Property API]]                           |
+   | properties, API                      | [[@Using-the-property-API][Using the property API]]                 |
+   | properties, column view              | [[@Defining-columns][Defining columns]]                       |
+   | properties, inheritance              | [[@Property-inheritance][Property inheritance]]                   |
+   | properties, searching                | [[@Property-searches][Property searches]]                      |
+   | properties, special                  | [[@Special-properties][Special properties]]                     |
+   | property EXPORT_FILE_NAME            | [[@ODT-export-commands][ODT export commands]]                    |
+   | property syntax                      | [[@Property-syntax][Property syntax]]                        |
+   | y property, +                        | [[@Property-syntax][Property syntax]]                        |
+   | property, +                          | [[@Property-syntax][Property syntax]]                        |
+   | property, ALT_TITLE                  | [[@Table-of-contents][Table of contents]]                      |
+   | property, APPENDIX                   | [[@Headings-and-sectioning-structure][Headings and sectioning structure]]      |
+   | property, ARCHIVE                    | [[@Property-inheritance][Property inheritance]]                   |
+   | property, ARCHIVE                    | [[@Moving-subtrees][Moving subtrees]]                        |
+   | property, ATTACH_DIR                 | [[@Attachments][Attachments]]                            |
+   | property, ATTACH_DIR_INHERIT         | [[@Attachments][Attachments]]                            |
+   | property, BEAMER_ACT                 | [[@Sectioning-Frames-and-Blocks-in-Beamer][Sectioning Frames and Blocks in Beamer]] |
+   | property, BEAMER_COL                 | [[@Sectioning-Frames-and-Blocks-in-Beamer][Sectioning Frames and Blocks in Beamer]] |
+   | property, BEAMER_ENV                 | [[@Sectioning-Frames-and-Blocks-in-Beamer][Sectioning Frames and Blocks in Beamer]] |
+   | property, BEAMER_OPT                 | [[@Sectioning-Frames-and-Blocks-in-Beamer][Sectioning Frames and Blocks in Beamer]] |
+   | property, BEAMER_REF                 | [[@Sectioning-Frames-and-Blocks-in-Beamer][Sectioning Frames and Blocks in Beamer]] |
+   | property, CATEGORY                   | [[@Property-inheritance][Property inheritance]]                   |
+   | property, CATEGORY                   | [[@Categories][Categories]]                             |
+   | property, COLUMNS                    | [[@Property-inheritance][Property inheritance]]                   |
+   | property, COLUMNS                    | [[@In_buffer-settings][In-buffer settings]]                     |
+   | property, COOKIE_DATA                | [[@Breaking-down-tasks][Breaking down tasks]]                    |
+   | property, COOKIE_DATA                | [[@Checkboxes][Checkboxes]]                             |
+   | property, COPYING                    | [[@Document-preamble][Document preamble]]                      |
+   | property, CUSTOM_ID                  | [[@Internal-links][Internal links]]                         |
+   | property, CUSTOM_ID                  | [[@Handling-links][Handling links]]                         |
+   | property, DESCRIPTION                | [[@Headings-and-sectioning-structure][Headings and sectioning structure]]      |
+   | property, DESCRIPTION                | [[@iCalendar-export][iCalendar export]]                       |
+   | property, Effort                     | [[@Effort-estimates][Effort estimates]]                       |
+   | property, EXPORT_FILE_NAME           | [[@Export-settings][Export settings]]                        |
+   | property, EXPORT_LATEX_CLASS         | [[@Header-and-sectioning][Header and sectioning]]                  |
+   | property, EXPORT_LATEX_CLASS_OPTIONS | [[@Header-and-sectioning][Header and sectioning]]                  |
+   | property, EXPORT_TITLE               | [[@Document-title][Document title]]                         |
+   | property, ID                         | [[@Handling-links][Handling links]]                         |
+   | property, ID                         | [[@Capturing-column-view][Capturing column view]]                  |
+   | property, ID                         | [[@iCalendar-export][iCalendar export]]                       |
+   | property, INDEX                      | [[@Indices][Indices]]                                |
+   | property, LOCATION                   | [[@iCalendar-export][iCalendar export]]                       |
+   | property, LOGGING                    | [[@Tracking-TODO-state-changes][Tracking TODO state changes]]            |
+   | property, LOGGING                    | [[@Property-inheritance][Property inheritance]]                   |
+   | property, LOG_INTO_DRAWER            | [[@Tracking-TODO-state-changes][Tracking TODO state changes]]            |
+   | property, LOG_INTO_DRAWER            | [[@Clocking-commands][Clocking commands]]                      |
+   | property, macro                      | [[@Macro-replacement][Macro replacement]]                      |
+   | property, ORDERED                    | [[@TODO-dependencies][TODO dependencies]]                      |
+   | property, ORDERED                    | [[@TODO-dependencies][TODO dependencies]]                      |
+   | property, ORDERED                    | [[@Checkboxes][Checkboxes]]                             |
+   | property, ORDERED                    | [[@Checkboxes][Checkboxes]]                             |
+   | property, special, ALLTAGS           | [[@Special-properties][Special properties]]                     |
+   | property, special, BLOCKED           | [[@Special-properties][Special properties]]                     |
+   | property, special, CLOCKSUM          | [[@Special-properties][Special properties]]                     |
+   | property, special, CLOCKSUM          | [[@Agenda-column-view][Agenda column view]]                     |
+   | property, special, CLOCKSUM_T        | [[@Special-properties][Special properties]]                     |
+   | property, special, CLOCKSUM_T        | [[@Agenda-column-view][Agenda column view]]                     |
+   | property, special, CLOSED            | [[@Special-properties][Special properties]]                     |
+   | property, special, DEADLINE          | [[@Special-properties][Special properties]]                     |
+   | property, special, FILE              | [[@Special-properties][Special properties]]                     |
+   | property, special, ITEM              | [[@Special-properties][Special properties]]                     |
+   | property, special, PRIORITY          | [[@Special-properties][Special properties]]                     |
+   | property, special, SCHEDULED         | [[@Special-properties][Special properties]]                     |
+   | property, special, TAGS              | [[@Special-properties][Special properties]]                     |
+   | property, special, TIMESTAMP         | [[@Special-properties][Special properties]]                     |
+   | property, special, TIMESTAMP_IA      | [[@Special-properties][Special properties]]                     |
+   | property, special, TODO              | [[@Special-properties][Special properties]]                     |
+   | property, SUMMARY                    | [[@iCalendar-export][iCalendar export]]                       |
+   | property, UNNUMBERED                 | [[@Export-settings][Export settings]]                        |
+   | property, VISIBILITY                 | [[@Initial-visibility][Initial visibility]]                     |
+   | property, _ALL                       | [[@Property-syntax][Property syntax]]                        |
+   | property: CLOCK_MODELINE_TOTAL       | [[@Clocking-commands][Clocking commands]]                      |
+   | property: LAST_REPEAT                | [[@Clocking-commands][Clocking commands]]                      |
+   | protocols, for external access       | [[@Protocols][Protocols]]                              |
+   | publishing                           | [[@Publishing][Publishing]]                             |
+
+** Q                                                                  <<@Main-Index_cp_letter-Q>>
+
+   | query editing, in agenda | [[@Filtering_limiting-agenda-items][Filtering/limiting agenda items]] |
+
+** R                                                                  <<@Main-Index_cp_letter-R>>
+
+   | radio lists                           | [[@Radio-lists][Radio lists]]                  |
+   | radio tables                          | [[@Radio-tables][Radio tables]]                 |
+   | radio targets                         | [[@Radio-targets][Radio targets]]                |
+   | range formula                         | [[@Field-and-range-formulas][Field and range formulas]]     |
+   | range references                      | [[@References][References]]                   |
+   | ranges, time                          | [[@Timestamps][Timestamps]]                   |
+   | recomputing table fields              | [[@Updating-the-table][Updating the table]]           |
+   | references                            | [[@References][References]]                   |
+   | references, named                     | [[@References][References]]                   |
+   | references, remote                    | [[@References][References]]                   |
+   | references, to a different table      | [[@References][References]]                   |
+   | references, to fields                 | [[@References][References]]                   |
+   | references, to ranges                 | [[@References][References]]                   |
+   | refiling notes                        | [[@Refile-and-copy][Refile and copy]]              |
+   | region, active                        | [[@Structure-editing][Structure editing]]            |
+   | region, active                        | [[@Built_in-table-editor][Built-in table editor]]        |
+   | region, active                        | [[@ODT-export-commands][ODT export commands]]          |
+   | regular expressions, with tags search | [[@Matching-tags-and-properties][Matching tags and properties]] |
+   | relative timer                        | [[@Timers][Timers]]                       |
+   | *remember.el*                         | [[@Cooperation][Cooperation]]                  |
+   | reminders                             | [[@Weekly_daily-agenda][Weekly/daily agenda]]          |
+   | remote editing, bulk, from agenda     | [[@Agenda-commands][Agenda commands]]              |
+   | remote editing, from agenda           | [[@Agenda-commands][Agenda commands]]              |
+   | remote editing, undo                  | [[@Agenda-commands][Agenda commands]]              |
+   | remote references                     | [[@References][References]]                   |
+   | repeated tasks                        | [[@Repeated-tasks][Repeated tasks]]               |
+   | report, of clocked time               | [[@The-clock-table][The clock table]]              |
+   | resolve idle time                     | [[@Resolving-idle-time][Resolving idle time]]          |
+   | revealing context                     | [[@Global-and-local-cycling][Global and local cycling]]     |
+   | RMAIL links                           | [[@External-links][External links]]               |
+   | Rose, Sebastian                       | [[@JavaScript-support][JavaScript support]]           |
+   | row, of field coordinates             | [[@References][References]]                   |
+   | RSS feeds                             | [[@RSS-feeds][RSS feeds]]                    |
+   | rsync                                 | [[@Uploading-files][Uploading files]]              |
+
+** S                                                                  <<@Main-Index_cp_letter-S>>
+
+   | SCHEDULED keyword                      | [[@Deadlines-and-scheduling][Deadlines and scheduling]]              |
+   | scheduling                             | [[@Timestamps][Timestamps]]                            |
+   | Schulte, Eric                          | [[@Working-with-source-code][Working with source code]]              |
+   | Scripts, for agenda processing         | [[@Extracting-agenda-information][Extracting agenda information]]         |
+   | search option in file links            | [[@Search-options][Search options]]                        |
+   | search strings, custom                 | [[@Custom-searches][Custom searches]]                       |
+   | search view                            | [[@Search-view][Search view]]                           |
+   | searching for tags                     | [[@Tag-searches][Tag searches]]                          |
+   | searching, for text                    | [[@Search-view][Search view]]                           |
+   | searching, of properties               | [[@Property-searches][Property searches]]                     |
+   | sectioning structure, for LaTeX export | [[@Header-and-sectioning][Header and sectioning]]                 |
+   | set startup visibility, command        | [[@Global-and-local-cycling][Global and local cycling]]              |
+   | setting tags                           | [[@Setting-tags][Setting tags]]                          |
+   | SHELL links                            | [[@External-links][External links]]                        |
+   | shift-selection-mode                   | [[@Plain-lists][Plain lists]]                           |
+   | =shift-selection-mode=                 | [[@Conflicts][Conflicts]]                             |
+   | show all, command                      | [[@Global-and-local-cycling][Global and local cycling]]              |
+   | show all, global visibility state      | [[@Global-and-local-cycling][Global and local cycling]]              |
+   | show branches, command                 | [[@Global-and-local-cycling][Global and local cycling]]              |
+   | show children, command                 | [[@Global-and-local-cycling][Global and local cycling]]              |
+   | show hidden text                       | [[@Visibility-cycling][Visibility cycling]]                    |
+   | =showall=, STARTUP keyword             | [[@Initial-visibility][Initial visibility]]                    |
+   | =showall=, STARTUP keyword             | [[@In_buffer-settings][In-buffer settings]]                    |
+   | =showeverything=, STARTUP keyword      | [[@Initial-visibility][Initial visibility]]                    |
+   | =showeverything=, STARTUP keyword      | [[@In_buffer-settings][In-buffer settings]]                    |
+   | =showstars=, STARTUP keyword           | [[@In_buffer-settings][In-buffer settings]]                    |
+   | sitemap, of published pages            | [[@Sitemap][Sitemap]]                               |
+   | sorting, of agenda items               | [[@Sorting-agenda-items][Sorting agenda items]]                  |
+   | sorting, of plain list                 | [[@Plain-lists][Plain lists]]                           |
+   | sorting, of subtrees                   | [[@Structure-editing][Structure editing]]                     |
+   | source blocks, in LaTeX export         | [[@LaTeX-specific-attributes][LaTeX specific attributes]]             |
+   | source code, batch execution           | [[@Batch-execution][Batch execution]]                       |
+   | source code, block header arguments    | [[@Header-arguments][Header arguments]]                      |
+   | source code, block structure           | [[@Structure-of-code-blocks][Structure of code blocks]]              |
+   | source code, editing                   | [[@Editing-source-code][Editing source code]]                   |
+   | source code, evaluating                | [[@Evaluating-code-blocks][Evaluating code blocks]]                |
+   | source code, exporting                 | [[@Exporting-code-blocks][Exporting code blocks]]                 |
+   | source code, extracting                | [[@Extracting-source-code][Extracting source code]]                |
+   | source code, inline                    | [[@Structure-of-code-blocks][Structure of code blocks]]              |
+   | source code, language                  | [[@Structure-of-code-blocks][Structure of code blocks]]              |
+   | source code, languages                 | [[@Languages][Languages]]                             |
+   | source code, library                   | [[@Library-of-Babel][Library of Babel]]                      |
+   | source code, noweb reference           | [[@Noweb-reference-syntax][Noweb reference syntax]]                |
+   | source code, results of evaluation     | [[@Results-of-evaluation][Results of evaluation]]                 |
+   | source code, switches                  | [[@Structure-of-code-blocks][Structure of code blocks]]              |
+   | source code, working with              | [[@Working-with-source-code][Working with source code]]              |
+   | sparse tree, for deadlines             | [[@Inserting-deadline_schedule][Inserting deadline/schedule]]           |
+   | sparse tree, for TODO                  | [[@TODO-basics][TODO basics]]                           |
+   | sparse tree, tag based                 | [[@Tags][Tags]]                                  |
+   | sparse trees                           | [[@Sparse-trees][Sparse trees]]                          |
+   | Special blocks                         | [[@Special-blocks][Special blocks]]                        |
+   | special blocks, in ASCII export        | [[@ASCII_Latin_1_UTF_8-export][ASCII/Latin-1/UTF-8 export]]            |
+   | special blocks, in LaTeX export        | [[@LaTeX-specific-attributes][LaTeX specific attributes]]             |
+   | special keywords                       | [[@In_buffer-settings][In-buffer settings]]                    |
+   | special symbols                        | [[@Special-symbols][Special symbols]]                       |
+   | speed keys                             | [[@Speed-keys][Speed keys]]                            |
+   | *speedbar.el*                          | [[@Cooperation][Cooperation]]                           |
+   | spreadsheet capabilities               | [[@The-spreadsheet][The spreadsheet]]                       |
+   | square brackets, around links          | [[@External-links][External links]]                        |
+   | statistics, for checkboxes             | [[@Checkboxes][Checkboxes]]                            |
+   | statistics, for TODO items             | [[@Breaking-down-tasks][Breaking down tasks]]                   |
+   | storing links                          | [[@Handling-links][Handling links]]                        |
+   | Storm, Kim. F.                         | [[@Conflicts][Conflicts]]                             |
+   | strike-through text, markup rules      | [[@Emphasis-and-monospace][Emphasis and monospace]]                |
+   | structure editing                      | [[@Structure-editing][Structure editing]]                     |
+   | structure of document                  | [[@Document-structure][Document structure]]                    |
+   | styles, custom                         | [[@Applying-custom-styles][Applying custom styles]]                |
+   | styles, custom                         | [[@Working-with-OpenDocument-style-files][Working with OpenDocument style files]] |
+   | sublevels, inclusion into tags match   | [[@Tag-inheritance][Tag inheritance]]                       |
+   | sublevels, inclusion into TODO list    | [[@Global-TODO-list][Global TODO list]]                      |
+   | subscript                              | [[@Subscripts-and-superscripts][Subscripts and superscripts]]           |
+   | SUBTITLE (ODT)                         | [[@ODT-specific-export-settings][ODT specific export settings]]          |
+   | subtree cycling                        | [[@Global-and-local-cycling][Global and local cycling]]              |
+   | subtree visibility states              | [[@Global-and-local-cycling][Global and local cycling]]              |
+   | subtree, cut and paste                 | [[@Structure-editing][Structure editing]]                     |
+   | subtree, subtree visibility state      | [[@Global-and-local-cycling][Global and local cycling]]              |
+   | subtrees, cut and paste                | [[@Structure-editing][Structure editing]]                     |
+   | summary                                | [[@Summary][Summary]]                               |
+   | superscript                            | [[@Subscripts-and-superscripts][Subscripts and superscripts]]           |
+   | syntax checker                         | [[@Org-syntax][Org syntax]]                            |
+   | syntax, noweb                          | [[@Noweb-reference-syntax][Noweb reference syntax]]                |
+   | syntax, of formulas                    | [[@Formula-syntax-for-Calc][Formula syntax for Calc]]               |
+
+** T                                                                  <<@Main-Index_cp_letter-T>>
+
+   | table editor, built-in                  | [[@Built_in-table-editor][Built-in table editor]]                 |
+   | table editor, *table.el*                | [[@Cooperation][Cooperation]]                           |
+   | table lookup functions                  | [[@Lookup-functions][Lookup functions]]                      |
+   | table of contents, markup rules         | [[@Table-of-contents][Table of contents]]                     |
+   | *table.el*                              | [[@Cooperation][Cooperation]]                           |
+   | *table.el*                              | [[@Cooperation][Cooperation]]                           |
+   | tables                                  | [[@Tables][Tables]]                                |
+   | tables, in HTML                         | [[@Tables-in-HTML-export][Tables in HTML export]]                 |
+   | tables, in LaTeX export                 | [[@LaTeX-specific-attributes][LaTeX specific attributes]]             |
+   | tables, in ODT export                   | [[@Tables-in-ODT-export][Tables in ODT export]]                  |
+   | tables, in ODT export                   | [[@Customizing-tables-in-ODT-export][Customizing tables in ODT export]]      |
+   | tables, in other modes                  | [[@Tables-in-arbitrary-syntax][Tables in arbitrary syntax]]            |
+   | tables, markup rules                    | [[@Images-and-tables][Images and tables]]                     |
+   | tag completion                          | [[@Completion][Completion]]                            |
+   | tag filtering, in agenda                | [[@Filtering_limiting-agenda-items][Filtering/limiting agenda items]]       |
+   | tag hierarchy                           | [[@Tag-hierarchy][Tag hierarchy]]                         |
+   | tag inheritance                         | [[@Tag-inheritance][Tag inheritance]]                       |
+   | tag searches                            | [[@Tag-searches][Tag searches]]                          |
+   | tags                                    | [[@Tags][Tags]]                                  |
+   | tags view                               | [[@Matching-tags-and-properties][Matching tags and properties]]          |
+   | tags, as an agenda view                 | [[@Storing-searches][Storing searches]]                      |
+   | tags, groups                            | [[@Tag-hierarchy][Tag hierarchy]]                         |
+   | tags, setting                           | [[@Setting-tags][Setting tags]]                          |
+   | tags-todo                               | [[@Storing-searches][Storing searches]]                      |
+   | tags-tree                               | [[@Storing-searches][Storing searches]]                      |
+   | tangling                                | [[@Extracting-source-code][Extracting source code]]                |
+   | targets, for links                      | [[@Internal-links][Internal links]]                        |
+   | targets, radio                          | [[@Radio-targets][Radio targets]]                         |
+   | tasks, breaking down                    | [[@Breaking-down-tasks][Breaking down tasks]]                   |
+   | tasks, repeated                         | [[@Repeated-tasks][Repeated tasks]]                        |
+   | template insertion                      | [[@Easy-templates][Easy templates]]                        |
+   | template, custom                        | [[@Applying-custom-styles][Applying custom styles]]                |
+   | template, custom                        | [[@Working-with-OpenDocument-style-files][Working with OpenDocument style files]] |
+   | templates, for Capture                  | [[@Capture-templates][Capture templates]]                     |
+   | TeX interpretation                      | [[@Embedded-LaTeX][Embedded LaTeX]]                        |
+   | TeX macros                              | [[@Special-symbols][Special symbols]]                       |
+   | TeX symbol completion                   | [[@Completion][Completion]]                            |
+   | Texinfo export                          | [[@Texinfo-export][Texinfo export]]                        |
+   | text areas, in HTML                     | [[@Text-areas-in-HTML-export][Text areas in HTML export]]             |
+   | text search                             | [[@Search-view][Search view]]                           |
+   | thanks                                  | [[@History-and-acknowledgments][History and acknowledgments]]           |
+   | time clocking                           | [[@Clocking-work-time][Clocking work time]]                    |
+   | time format, custom                     | [[@Custom-time-format][Custom time format]]                    |
+   | time grid                               | [[@Time_of_day-specifications][Time-of-day specifications]]            |
+   | Time, computing                         | [[@Durations-and-time-values][Durations and time values]]             |
+   | time, macro                             | [[@Macro-replacement][Macro replacement]]                     |
+   | time, reading in minibuffer             | [[@The-date_time-prompt][The date/time prompt]]                  |
+   | time-of-day specification               | [[@Time_of_day-specifications][Time-of-day specifications]]            |
+   | time-sorted view                        | [[@Timeline][Timeline]]                              |
+   | timeline, single file                   | [[@Timeline][Timeline]]                              |
+   | timerange                               | [[@Timestamps][Timestamps]]                            |
+   | times                                   | [[@Dates-and-times][Dates and times]]                       |
+   | timestamp                               | [[@Dates-and-times][Dates and times]]                       |
+   | timestamp                               | [[@Timestamps][Timestamps]]                            |
+   | timestamp, inactive                     | [[@Timestamps][Timestamps]]                            |
+   | timestamp, with repeater interval       | [[@Timestamps][Timestamps]]                            |
+   | timestamps                              | [[@Timestamps][Timestamps]]                            |
+   | timestamps, creating                    | [[@Creating-timestamps][Creating timestamps]]                   |
+   | title, macro                            | [[@Macro-replacement][Macro replacement]]                     |
+   | TODO dependencies                       | [[@TODO-dependencies][TODO dependencies]]                     |
+   | TODO dependencies, NOBLOCKING           | [[@TODO-dependencies][TODO dependencies]]                     |
+   | TODO items                              | [[@TODO-items][TODO items]]                            |
+   | TODO keyword matching                   | [[@Global-TODO-list][Global TODO list]]                      |
+   | TODO keyword matching, with tags search | [[@Matching-tags-and-properties][Matching tags and properties]]          |
+   | TODO keyword sets                       | [[@Multiple-sets-in-one-file][Multiple sets in one file]]             |
+   | TODO keywords completion                | [[@Completion][Completion]]                            |
+   | TODO list, global                       | [[@Global-TODO-list][Global TODO list]]                      |
+   | TODO types                              | [[@TODO-types][TODO types]]                            |
+   | TODO workflow                           | [[@Workflow-states][Workflow states]]                       |
+   | todo, as an agenda view                 | [[@Storing-searches][Storing searches]]                      |
+   | todo-tree                               | [[@Storing-searches][Storing searches]]                      |
+   | top headline filtering, in agenda       | [[@Filtering_limiting-agenda-items][Filtering/limiting agenda items]]       |
+   | transient mark mode                     | [[@Structure-editing][Structure editing]]                     |
+   | transient mark mode                     | [[@Built_in-table-editor][Built-in table editor]]                 |
+   | transient-mark-mode                     | [[@ODT-export-commands][ODT export commands]]                   |
+   | translator function                     | [[@Translator-functions][Translator functions]]                  |
+   | trees, sparse                           | [[@Sparse-trees][Sparse trees]]                          |
+   | trees, visibility                       | [[@Visibility-cycling][Visibility cycling]]                    |
+   | tty key bindings                        | [[@TTY-keys][TTY keys]]                              |
+   | types as TODO keywords                  | [[@TODO-types][TODO types]]                            |
+
+** U                                                                  <<@Main-Index_cp_letter-U>>
+
+   | underlined text, markup rules | [[@Emphasis-and-monospace][Emphasis and monospace]]     |
+   | undoing remote-editing events | [[@Agenda-commands][Agenda commands]]            |
+   | unison                        | [[@Uploading-files][Uploading files]]            |
+   | *unoconv*                     | [[@Extending-ODT-export][Extending ODT export]]       |
+   | updating, table               | [[@Updating-the-table][Updating the table]]         |
+   | URL links                     | [[@External-links][External links]]             |
+   | USENET links                  | [[@External-links][External links]]             |
+   | UTF-8 export                  | [[@ASCII_Latin_1_UTF_8-export][ASCII/Latin-1/UTF-8 export]] |
+
+** V                                                                  <<@Main-Index_cp_letter-V>>
+
+   | variables, for customization     | [[@Customization][Customization]]             |
+   | vectors, in table calculations   | [[@Formula-syntax-for-Calc][Formula syntax for Calc]]   |
+   | verbatim blocks, in LaTeX export | [[@LaTeX-specific-attributes][LaTeX specific attributes]] |
+   | verbatim text, markup rules      | [[@Emphasis-and-monospace][Emphasis and monospace]]    |
+   | *viper.el*                       | [[@Conflicts][Conflicts]]                 |
+   | visibility cycling               | [[@Visibility-cycling][Visibility cycling]]        |
+   | visibility cycling, drawers      | [[@Drawers][Drawers]]                   |
+   | visibility, initialize           | [[@Initial-visibility][Initial visibility]]        |
+   | visible text, printing           | [[@Sparse-trees][Sparse trees]]              |
+   | VM links                         | [[@External-links][External links]]            |
+
+** W                                                                  <<@Main-Index_cp_letter-W>>
+
+   | WANDERLUST links                 | [[@External-links][External links]]      |
+   | weekly agenda                    | [[@Weekly_daily-agenda][Weekly/daily agenda]] |
+   | Wiegley, John                    | [[@Cooperation][Cooperation]]         |
+   | *windmove.el*                    | [[@Conflicts][Conflicts]]           |
+   | workflow states as TODO keywords | [[@Workflow-states][Workflow states]]     |
+
+** X                                                                  <<@Main-Index_cp_letter-X>>
+
+   | XEmacs | [[@Installation][Installation]] |
+
+** Y                                                                  <<@Main-Index_cp_letter-Y>>
+
+   | *yasnippet.el* | [[@Conflicts][Conflicts]] |
+
+** Z                                                                  <<@Main-Index_cp_letter-Z>>
+
+   | zip | [[@Pre_requisites-for-ODT-export][Pre-requisites for ODT export]] |
 
 * Footnotes
 
@@ -18480,17 +19652,16 @@ Note that, when using =org-odd-levels-only=, a level number
 corresponds to order in the hierarchy, not to the number of stars.
 
 [fn:FOOT183]
-If you can safely store the password in your Emacs setup, you might also
-want to configure =org-mobile-encryption-password=. Please read the
-docstring of that variable. Note that encryption will apply only to the
-contents of the .org files. The file names themselves will remain
-visible.
+If you can safely store the password in your Emacs setup, you might
+also want to configure =org-mobile-encryption-password=. Please read
+the docstring of that variable. Note that encryption will apply only
+to the contents of the .org files. The file names themselves will
+remain visible.
 
 [fn:FOOT184]
 If you cannot use Dropbox, or if your version of MobileOrg does not
-support it, you can use a webdav server. For more information, check out
-the documentation of MobileOrg and also this
-[[http://orgmode.org/worg/org-faq.html#mobileorg_webdav][FAQ entry]].
+support it, you can use a webdav server. For more information, check
+out the documentation of MobileOrg and also this [[http://orgmode.org/worg/org-faq.html#mobileorg_webdav][FAQ entry]].
 
 [fn:FOOT185]
 Symbolic links in =org-directory= need to have the same name as their
