@@ -123,6 +123,11 @@ html body #content div.center { text-align: center; display: table; margin: 0 au
 html body #content .verse { text-align: center; color: #b3b3b3;
                             font-style: italic; font-family: text_verse; }
 
+/* ##################### QUOTE */
+html body #content blockquote { display: table; margin: 0em auto;
+                                line-height: 1em; white-space: pre; }
+html body #content blockquote p { margin: 0; }
+
 /* ############### FONT STYLE */
 html body #content b { font-family: text_bold; }     /* *BOLD*       */
 html body #content i { font-family: text_italic; }   /* /ITALIC/     */

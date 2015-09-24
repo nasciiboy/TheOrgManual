@@ -1,0 +1,1320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>The Org Manual</title>
+<!-- 2015-09-24 jue 15:44 -->
+<meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta  name="generator" content="Org-mode" />
+<meta  name="author" content="Carsten Dominik with contributiond by Bastien Guerry, Nicolas Goazion, Eric Schulte, Jambunathan K. Dan Davison, Thomas O`Thoole, and Philip Rooke." />
+<link rel="stylesheet" type="text/css" href="worg-data/worg.css" />
+</head>
+<body>
+<div id="content">
+<h1 class="title">The Org Manual</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 Introducción                                                      </a>
+<ul>
+<li><a href="#sec-1-1">1.1 Resumen                                                        </a></li>
+<li><a href="#sec-1-2">1.2 Instalación                                                    </a>
+<ul>
+<li><a href="#sec-1-2-1">Utilizando el sistema de paquetes de Emacs</a></li>
+<li><a href="#sec-1-2-2">Descargando Org como un archivo</a></li>
+<li><a href="#sec-1-2-3">Usando el repositorio git de Org</a></li>
+</ul>
+</li>
+<li><a href="#sec-1-3">1.3 Activación                                                     </a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p>
+This manual is for Org version 8.3.1 (release<sub>8</sub>.3.1-90-g80a626).
+</p>
+
+<p>
+Copyright &copy; 2004&#x2013;2015 Free Software Foundation, Inc.
+</p>
+
+<blockquote>
+<p>
+Permission is granted to copy, distribute and/or modify this
+document under the terms of the GNU Free Documentation License,
+Version 1.3 or any later version published by the Free Software
+Foundation; with no Invariant Sections, with the Front-Cover Texts
+being “A GNU Manual,” and with the Back-Cover Texts as in (a)
+below. A copy of the license is included in the section entitled
+“GNU Free Documentation License.”
+</p>
+
+<p>
+(a) The FSF's Back-Cover Text is: “You have the freedom to copy and
+modify this GNU manual.”
+</p>
+</blockquote>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">1 Introducción                                                      <a id="Introduction" name="Introduction"></a></h2>
+<div class="outline-text-2" id="text-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">• <a href="#Summary">Resumen</a>:</td>
+<td class="left">Breve resumen de lo que hace Org</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Installation">Instalación</a>:</td>
+<td class="left">Instalando Org</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Activation">Activación</a>:</td>
+<td class="left">Cómo activar Org para ciertos buffers</td>
+</tr>
+
+<tr>
+<td class="left">• <i>Retroalimentación</i>:</td>
+<td class="left">informes de errores, ideas, parches, etc.</td>
+</tr>
+
+<tr>
+<td class="left">• <i>Convenciones</i>:</td>
+<td class="left">Convenciones de tipografía en el manual</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">1.1 Resumen                                                        <a id="Summary" name="Summary"></a></h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+Org es un modo para guardar notas, mantener listas de tareas
+pendientes, y planificación de proyectos con un sistema rápido y
+eficaz de texto plano. Es también una sistema de creación con un
+soporte unico para programacion e investigación reproducible.
+</p>
+
+<p>
+Org se implementa en la parte superior del modo Outline, que hace
+posible mantener estructurado el contenido de archivos de gran
+tamaño. Tiene visibilidad ciclica y una estructura editable que
+ayuda a trabajar con el árbol. Las tablas se crean fácilmente con
+un editor de tablas incorporado. Enlaces de texto plano al estilo
+URL, que conectan a páginas web, correos electrónicos, mensajes
+Usenet, entradas BBDB y todos los archivos relacionados a los
+proyectos.
+</p>
+
+<p>
+Org desarrolla tareas de organización en torno a notas de archivos
+que contengan listas o información sobre proyectos como texto sin
+formato. La planificación de proyectos y gestión de tareas hacen
+uso de metadatos que han pasado de un nodo de esquema. Basándose en
+estos datos, entradas específicas se pueden extraer mediante
+consultas y crear vistas dinámicas de agenda que también integran
+el calendario y el diario de Emacs. Org se puede utilizar para
+poner en práctica muchos diferentes esquemas de planificación de
+proyectos, tales como el sistema GTD (Getting Things Done) de David
+Allen`s.
+</p>
+
+<p>
+Los archivos Org pueden servir como un único sistema fuente de
+creación con exportación a muchos otros formatos diferentes, tales
+como HTML, LaTeX, Open Document, y Markdown. Nuevos backends de
+exportación se pueden derivar de los ya existentes, o definir a
+partir de cero.
+</p>
+
+<p>
+Los archivos Org pueden incluir bloques de código fuente, lo que
+hace conveniente a Org para la creación de documentos técnicos con
+ejemplos de código. Los bloques de código fuente de Org son
+completamente funcionales; pueden ser evaluados en su sitio y sus
+resultados pueden ser capturados en el archivo. Esto hace posible
+crear un compendio de investigación reproducible en un unico
+archivo.
+</p>
+
+<p>
+Org mantiene las cosas sencillas sencillas. Cuando salga disparado,
+debe sentir un avance directo, usar esquemas es fácil. La
+complejidad no es inpuesta, pero una gran cantidad de
+funcionalidades están disponibles para cuando sea ​​necesario. Org es
+una caja de herramientas. Muchos usuarios en realidad sólo ejecutan
+una (muy personal) fracción de capacidades de Org, y sabrá que hay
+más siempre que lo necesite.
+</p>
+
+<p>
+Todo esto se consigue estrictamente con archivos de texto plano, el
+formato de archivo más portátil y preparada para el futuro. Org
+funciona en Emacs. Emacs es Uno de los programas más ampliamente
+portado, por lo que el modo Org esta disponible en todas las
+plataformas principales.
+</p>
+
+<p>
+Hay un sitio web para la Org, que ofrece enlaces a la más nueva
+versión de Org, así como información adicional, preguntas
+frecuencia (FAQ), enlaces a tutoriales, etc. Esta página se
+encuentra en <a href="http://orgmode.org">http://orgmode.org</a>.
+</p>
+
+<p>
+Una versión anterior (7.3) de este manual está disponible como
+<a href="http://www.network-theory.co.uk/org/manual/">libro impreso por Network Theory Ltd.</a>
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-2" class="outline-3">
+<h3 id="sec-1-2">1.2 Instalación                                                    <a id="Installation" name="Installation"></a></h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+Org es parte de las distribuciones de GNU Emacs recientes, por lo
+que normalmente No es necesario instalarlo. Si, por una razón u
+otra, desea Instalar la mas reciente versión pre-enpaquetada de
+Org, hay tres Maneras de hacerlo:
+</p>
+
+<ul class="org-ul">
+<li>Utilizando el sistema de paquetes de Emacs.
+</li>
+<li>Descargando Org como un archivo.
+</li>
+<li>Mediante el uso del repositorio git de Org.
+</li>
+</ul>
+
+<p>
+Nosotros <b>Recomendamos</b> ceñirse a un unico método de instalación.
+</p>
+</div>
+<div id="outline-container-sec-1-2-1" class="outline-4">
+<h4 id="sec-1-2-1">Utilizando el sistema de paquetes de Emacs</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<p>
+Recientes distribuciones de Emacs incluyen un sistema de
+enpaquetado que permite Instalar bibliotecas Elisp. Puede instalar
+Org con <code>M-x package-install RET org</code>.
+</p>
+
+<p>
+<b>Importante</b>: necesita hacer esto en una sesión donde no se ha
+visitado ningun archivo <code>.org</code>, es decir, donde ninguna función
+Org incorporada, ha sido cargada. De lo contrario las funciones
+Org que han sido cargas automáticamente hacen un lío la
+Instalación.
+</p>
+
+<p>
+A continuación, para asegurarse de que su configuración de Org se
+tiene en cuenta, inicialice el sistema de paquetes con
+<code>(package-initialize)</code> en su <b>.emacs</b> Antes de establecer
+cualquier opción de Org. Si desea utilizar Org del Repositorio de
+paquetes, visita <a href="http://orgmode.org/elpa.html">Org ELPA page</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-2-2" class="outline-4">
+<h4 id="sec-1-2-2">Descargando Org como un archivo</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<p>
+Puede descargar la última versión de Org del
+<a href="http://orgmode.org/">sitio web de Org</a>. En esto caso, asegúrese
+de configurar la ruta de carga correctamente en su <b>.emacs</b>:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(add-to-list 'load-path "~/path/to/orgdir/lisp")
+</pre>
+</div>
+
+<p>
+El archivo descargado contiene bibliotecas adicianales que no son
+incluidas en Emacs. Si desea utilizarlas, añada el directorio
+contrib a su load-path:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(add-to-list 'load-path "~/path/to/orgdir/contrib/lisp" t)
+</pre>
+</div>
+
+<p>
+Opcionalmente, puede compilar los archivos y/o instalarlos en su
+sistema. Ejecute <code>make help</code> para mostrar las opciones de
+compilación e instalación.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1-2-3" class="outline-4">
+<h4 id="sec-1-2-3">Usando el repositorio git de Org</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<p>
+Se puede clonar el repositorio e instalar Org así:
+</p>
+
+<pre class="example">
+$ cd ~/src/
+$ git clone git://orgmode.org/org-mode.git
+$ make autoloads
+</pre>
+
+<p>
+Tenga en cuenta que en este caso, <code>make autoloads</code> es obligatorio
+define la versión de Org en <code>org-version.el</code> y autoloads de Org en
+<code>org-loaddefs.el</code>.
+</p>
+
+<p>
+Recuerde agregar la ruta de carga correcta como se describe en el
+método arriba.
+</p>
+
+<p>
+También se puede compilar con <code>make</code>, generar la documentación con
+<code>make doc</code>, crear una configuración local con <code>make config</code> e
+instalar Org con <code>make install</code>. Por favor, ejecute <code>make help</code>
+para obtener la lista de opciones de compilación/instalación.
+</p>
+
+<p>
+Para explicaciones más detalladas sobre el sistema de construcción
+de Org, por favor revise La página del sistema de construcción Org
+en <a href="http://orgmode.org/worg/dev/org-build-system.html">Worg</a>.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-3" class="outline-3">
+<h3 id="sec-1-3">1.3 Activación                                                     <a id="Activation" name="Activation"></a></h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+Desde Emacs 22.2, archivos con la extensión <code>.org</code> utilizan el modo
+Org por defecto. Si está utilizando una versión anterior de Emacs,
+agregue esta línea a su archivo <code>.emacs</code> :
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+</pre>
+</div>
+
+<p>
+Los buffers del modo Org necesitan font-lock para ser activados:
+esto viene predeterminado en Emacs<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup>.
+</p>
+
+<p>
+Hay problemas de compatibilidad entre el modo Org y algunos otros
+paquetes Elisp, por favor tome el tiempo para ver la lista (ver
+<i>Conflicto</i>).
+</p>
+
+<p>
+Los cuatro comandos Org <code>org-store-link</code>, <code>org-capture</code>,
+<code>org-agenda</code>, y <code>org-iswitchb</code> deben ser accesibles a través de
+teclas globales (es decir , en cualquier lugar en Emacs, no sólo en
+buffers Org). Aquí se sugieren combinaciones para estos comandos,
+modifique las teclas a su propio gusto.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-cb" 'org-iswitchb)
+</pre>
+</div>
+
+<p>
+Para activar el modo Org en un archivo que no tiene la extensión
+<code>.org</code>, Haga que la primera línea del archivo sea de la siguiente
+manera:
+</p>
+
+<pre class="example">
+MY PROJECTS    -*- mode: org; -*-
+</pre>
+
+<p>
+Esto selecciona el modo Org para este búffer, no importa el nombre
+de archivo que tenga. Véa también la variable
+<code>org-insert-mode-line-in-empty-file</code>.
+</p>
+
+<p>
+Muchos comandos trabajan con regiones en Org si la región se
+encuentra <i>activa</i>. Para hacer uso de esto, es necesario tener
+<code>transient-mark-mode</code> (<code>zmacs-regions</code> en XEmacs) encendido. en
+Emacs 23 es el valor predeterminado, en Emacs 22 necesita hacer
+esto usted mismo con
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(transient-mark-mode 1)
+</pre>
+</div>
+
+<p>
+Si no le gusta <code>transient-mark-mode</code>, puede crear una región activa
+utilizando el ratón para seleccionar una región, o presionando
+<code>C-SPC</code> dos veces antes de mover el cursor.
+</p>
+
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+subárbol actual entre los estados
+</p>
+
+<p>
+&#x2013;
+</p>
+<p>
+#&#x2013;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014; ' # + END<sub>EXAMPLE</sub>
+</p>
+
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+#' &#x2013;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014; ' # + END<sub>EXAMPLE</sub>
+</p>
+
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+Prefijo # argumento = N = , exponer a todos los niños hasta el nivel =
+N = .
+</p>
+
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+.
+</p>
+
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+-ediciones &gt;&gt;
+</p>
+
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+)
+</p>
+
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+content = )
+</p>
+
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+.
+</p>
+
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+.
+</p>
+
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+Elementos posteriores # de la que se acaba marcados . Por ejemplo,
+golpear = M- h = # En un párrafo lo marcará , golpeando = Mh =
+inmediatamente de nuevo # Marcará la siguiente.
+</p>
+
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+Interna = tirón = comando # = org- yank- plegado - subárboles = , de
+Org voluntad # Pegar subárboles dobladas y de manera inteligente ,
+utilizando la misma # Comando como * / C- c C- x C -y / * . Con la
+configuración predeterminada, hay un nivel # Ajuste se llevará a cabo
+, pero el árbol arrancado será doblado # A menos que al hacerlo se
+trague texto previamente visible. Alguna # Argumento prefijo a este
+comando forzará normal = tirón = ser # Ejecutado , con el prefijo pasa
+a lo largo . Una buena manera de forzar un # Tirón normal es * / C -u
+C -y / * . Si utiliza = yank- pop = después de un tirón, # Se tire
+artículos matar anteriores claramente, sin ajuste y # Plegable.
+</p>
+
+<p>
+&#x2013;
+</p>
+<p>
+desplazamiento =)
+</p>
+
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+diferente . Véase [ [@ volver a presentar y copiar ] [ Volver a
+presentar y copia ] ] .
+</p>
+
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+, todo Entradas # en la región serán ordenados . De lo contrario, los
+hijos de # El titular actual están ordenadas . El comando solicita la
+</p>
+<p>
+por # Tiempo ( primera marca de tiempo con el tiempo preferido , la
+creación de activos , # Programado tiempo, hora límite ) , por
+prioridad , por palabra clave TODO ( en # La secuencia de las palabras
+clave se han definido en la configuración ) o # El valor de una
+propiedad. Clasificación inversa es posible, ya que # bien. También
+puede proporcionar su propia función para extraer el # Clave de
+clasificación. Con un * / C -u / * prefijo , la clasificación será #
+Caso sensible.
+</p>
+
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+Modo # Org contiene varios comandos para la creación de este tipo de
+árboles , todos estos Comandos # se puede acceder a través de un
+despachador :
+</p>
+
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+descripción.
+</p>
+
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+una Periodo # o un paréntesis [ fn : FOOT14 ] , como ' 1. ' o # ' 1 )'
+[nota : FOOT15 ] . Si desea una lista para comenzar con una diferente
+</p>
+<p>
+[ @ 20 ] = [ fn : FOOT16 ] . Esas construcciones se pueden usar en
+cualquier artículo de # La lista con el fin de hacer cumplir una
+numeración especial .
+</p>
+
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+Todos los records que pertenecen a la misma lista deben tener la misma
+muesca en # La primera línea. En particular, si una lista ordenada
+alcanza el número # '10' , entonces los 2 - . Números de dos dígitos
+deben ser por escrito alineados a la izquierda con # Los otros números
+de la lista . Un artículo termina antes de la siguiente línea # Que es
+menor o igual sangría que su bala / número.
+</p>
+
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+Todos los records se pueden plegar como niveles de titulares
+. Normalmente esto # Funciona sólo si el cursor está en un elemento de
+lista sin formato. Para más # Detalles , ver la variable = org - ciclo
+-include- vestidos de listas = . Si # Esta variable se establece en =
+= integran , elementos de la lista de civil serán # Tratados como
+titulares de bajo nivel. El nivel de un artículo es continuación #
+Propuesta por el sangrado de la bala / número. Los productos son
+siempre # Subordinado a los titulares reales , sin embargo ; las
+jerarquías quedan # Completamente separados . En un nuevo artículo sin
+texto , sin embargo, la primera # = TAB = degrada el artículo a ser un
+hijo de la anterior # uno. Mueven posteriores = TAB = ' s el artículo
+a niveles significativos en # La lista y, finalmente, conseguir de
+nuevo a su posición inicial .
+</p>
+
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+Checkboxes ] [ Casillas ] ] ) .
+</p>
+
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+Ciclismo # Visibilidad ( ver [ [@ Visibilidad de la bicicleta ] [
+ciclismo Visibilidad ] ] ) en el titular lo hará # Ocultar y mostrar
+la entrada , pero mantener el cajón se derrumbaron a un solo # Line
+. Con el fin de observar el interior del cajón, lo que necesita para
+mover el # Cursor a la línea cajón y presione TAB = = allí. Org
+utiliza el modo de # = PROPIEDADES = cajón para almacenar las
+propiedades ( ver [ [@ Inmuebles -y- columnas ] [ Propiedades y
+Columnas # ] ] ) , y también se puede organizar para las notas de
+cambio de estado (ver # [ [@ Tracking - TODO cambios de estado ] [ los
+cambios de estado de seguimiento TODO ] ]) y los tiempos de reloj (
+ver [ [@ - trabajo a tiempo Clocking ] [ trabajo Clocking # Tiempo ]
+]) para ser almacenado en un cajón = LOGBOOK = . Si desea almacenar un
+</p>
+<p>
+Cambios , el uso
+</p>
+
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+Modo # Org utiliza empezar &#x2026; bloques extremos para diversos fines de
+</p>
+<p>
+[ ejemplos literales ] ]) para la captura # Información de la hora de
+registro ( ver [ [@ - trabajo a tiempo Clocking ] [ Clocking tiempo de
+trabajo ] ] ) . Estos bloques pueden # Ser plegada y desplegada
+presionando TAB en la línea de comenzar. Puedes # También obtener
+todos los bloques cruzados en el arranque mediante la configuración de
+la opción # = Org- ocultar- bloque -startup = o sobre una base per-
+archivo utilizando
+</p>
+
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+Modo # Org apoya la creación de notas al pie. En contraste con el #
+Paquete footnote.el , notas al pie de modo Org están diseñados para
+trabajar en # Un documento más amplio, no sólo para los documentos de
+una sola vez , como mensajes de correo electrónico .
+</p>
+
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+Modo # Org extiende la sintaxis basada en número a / nombre / notas al
+pie y # Definición en línea opcional . El uso de números simples como
+marcadores ( como # Footnote.el no ) es compatible con la
+compatibilidad hacia atrás , pero no # Animado debido a posibles
+conflictos con fragmentos LaTeX (véase # [ [@ Embedded - LaTeX ] [
+Embedded LaTeX ] ] ) . Aquí están las referencias válidas :
+</p>
+
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+Etiquetas # Footnote se pueden crear de forma automática, o puede
+crear # Nombres usted mismo . Esto es manejado por la variable # =
+Org- nota - etiqueta auto = y su correspondiente = # + STARTUP = #
+Palabras clave. Ver la cadena de documentación de esa variable para
+obtener más información .
+</p>
+
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+secuencia de referencia. Durante la edición,       Org no hace ningún
+esfuerzo para ordenar las definiciones pie de página en un particular,
+      secuencia. Si usted quiere que ordenan, utilice este comando,
+que lo hará       también mover las entradas de acuerdo a
+org-sección-pie de página. Automática       la clasificación después
+de cada inserción / deleción se puede configurar mediante la
+      opción org-nota-auto-ajustar.    r Volver a numerar el simple
+fn: N notas al pie. Renumeración automática       después de cada
+inserción / deleción se puede configurar mediante la opción
+      org-nota-auto-ajuste.    S Abreviatura de primera r, entonces s
+acción.    n Normalizar las notas mediante la recopilación de todas
+las definiciones (incluyendo       definiciones inline) en una sección
+especial, y luego la numeración ellos       en secuencia. Las
+referencias serán entonces también ser números. Este es       pretende
+ser el paso final antes de terminar un documento (por ejemplo, el
+envío de       aprovechó un servicio de correo electrónico).    d
+Eliminar la nota al pie en el punto, y todas las definiciones y
+referencias       a la misma.  # + END<sub>EXAMPLE</sub>
+</p>
+
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+Etiquetas # Footnote son también vincula a la correspondiente #
+Definición / de referencia, y puede utilizar los comandos habituales a
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+<p>
+&#x2013;
+</p>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
+Si no se utiliza font-lock a nivel glabal, debe activarlo en el buffer
+Org con <code>(add-hook 'org-mode-hook 'turn-on-font-lock)</code>
+</p></div>
+
+
+</div>
+</div></div>
+</body>
+</html>

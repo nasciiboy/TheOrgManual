@@ -111,13 +111,13 @@ modify this GNU manual.”
 
     Then, to make sure your Org configuration is taken into account,
     initialize the package system with =(package-initialize)= in your
-    .emacs before setting any Org option. If you want to use Org's
+    *.emacs* before setting any Org option. If you want to use Org's
     package repository, check out the [[http://orgmode.org/elpa.html][Org ELPA page]].
 
 *** Downloading Org as an archive
 
     You can download Org latest release from [[http://orgmode.org/][Org's website]]. In this
-    case, make sure you set the load-path correctly in your .emacs:
+    case, make sure you set the load-path correctly in your *.emacs*:
 
     #+BEGIN_SRC lisp
       (add-to-list 'load-path "~/path/to/orgdir/lisp")
@@ -162,9 +162,9 @@ modify this GNU manual.”
 
 ** 1.3 Activation                                                     <<@Activation>>
 
-   Since Emacs 22.2, files with the .org extension use Org mode by
+   Since Emacs 22.2, files with the =.org= extension use Org mode by
    default.  If you are using an earlier version of Emacs, add this
-   line to your .emacs file:
+   line to your =.emacs= file:
 
    #+BEGIN_SRC lisp
      (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
@@ -191,7 +191,7 @@ modify this GNU manual.”
    #+END_SRC
 
    To turn on Org mode in a file that does not have the extension
-   .org, make the first line of a file look like this:
+   =.org=, make the first line of a file look like this:
 
    #+BEGIN_EXAMPLE
      MY PROJECTS    -*- mode: org; -*-
@@ -212,7 +212,7 @@ modify this GNU manual.”
    #+END_SRC
 
    If you do not like =transient-mark-mode=, you can create an active
-   region by using the mouse to select a region, or pressing */C-SPC/*
+   region by using the mouse to select a region, or pressing =C-SPC=
    twice before moving the cursor.
 
 ** 1.4 Feedback                                                       <<@Feedback>>
