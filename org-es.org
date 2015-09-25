@@ -228,10 +228,6 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
     [[http://orgmode.org/][sitio web de Org]]. En esto caso, asegúrese
     de configurar la ruta de carga correctamente en su *.emacs*:
 
-#     #+BEGIN_SRC lisp
-#       (add-to-list 'load-path "~/path/to/orgdir/lisp")
-#     #+END_SRC
-
     #+BEGIN_SRC lisp
       (add-to-list 'load-path "~/path/to/orgdir/lisp")
     #+END_SRC
@@ -243,10 +239,6 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
     El archivo descargado contiene bibliotecas adicianales que no son
     incluidas en Emacs. Si desea utilizarlas, añada el directorio
     contrib a su load-path:
-
-#     #+BEGIN_SRC lisp
-#       (add-to-list 'load-path "~/path/to/orgdir/contrib/lisp" t)
-#     #+END_SRC
 
     #+BEGIN_SRC lisp
       (add-to-list 'load-path "~/path/to/orgdir/contrib/lisp" t)
@@ -266,12 +258,6 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #     You can clone Org's repository and install Org like this:
 
     Se puede clonar el repositorio e instalar Org así:
-
-#     #+BEGIN_EXAMPLE
-#       $ cd ~/src/
-#       $ git clone git://orgmode.org/org-mode.git
-#       $ make autoloads
-#     #+END_EXAMPLE
 
     #+BEGIN_EXAMPLE
       $ cd ~/src/
@@ -321,10 +307,6 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
    Org por defecto. Si está utilizando una versión anterior de Emacs,
    agregue esta línea a su archivo =.emacs= :
 
-#    #+BEGIN_SRC lisp
-#      (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
-#    #+END_SRC
-
    #+BEGIN_SRC lisp
      (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
    #+END_SRC
@@ -356,13 +338,6 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
    buffers Org). Aquí se sugieren combinaciones para estos comandos,
    modifique las teclas a su propio gusto.
 
-#    #+BEGIN_SRC lisp
-#      (global-set-key "\C-cl" 'org-store-link)
-#      (global-set-key "\C-ca" 'org-agenda)
-#      (global-set-key "\C-cc" 'org-capture)
-#      (global-set-key "\C-cb" 'org-iswitchb)
-#    #+END_SRC
-
    #+BEGIN_SRC lisp
      (global-set-key "\C-cl" 'org-store-link)
      (global-set-key "\C-ca" 'org-agenda)
@@ -376,10 +351,6 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
    Para activar el modo Org en un archivo que no tiene la extensión
    =.org=, Haga que la primera línea del archivo sea de la siguiente
    manera:
-
-#    #+BEGIN_EXAMPLE
-#      MY PROJECTS    -*- mode: org; -*-
-#    #+END_EXAMPLE
 
    #+BEGIN_EXAMPLE
      MY PROJECTS    -*- mode: org; -*-
@@ -405,10 +376,6 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
    Emacs 23 es el valor predeterminado, en Emacs 22 necesita hacer
    esto usted mismo con
 
-#    #+BEGIN_SRC lisp
-#      (transient-mark-mode 1)
-#    #+END_SRC
-
    #+BEGIN_SRC lisp
      (transient-mark-mode 1)
    #+END_SRC
@@ -422,9 +389,7 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
    =C-SPC= dos veces antes de mover el cursor.
 
 # ** 1.4 Feedback                                                       <<@Feedback>>
-
---
-# ** 1.4 Comentarios << @ Feedback >>
+** 1.4 Comentarios                                                    <<@Feedback>>
 
 #    If you find problems with Org, or if you have questions, remarks,
 #    or ideas about it, please mail to the Org mailing list
@@ -432,15 +397,12 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #    page]]. If you are not a member of the mailing list, your mail will
 #    be passed to the list after a moderator has approved it[fn:FOOT2].
 
---
-# Si encuentra problemas con Org , o si tiene preguntas, comentarios ,
-# O ideas al respecto , por favor enviar por correo a la lista de
-# correo Org [ [ Mailto : emacs-orgmode@gnu.org ] [
-# emacs-orgmode@gnu.org ] ] . Usted puede suscribirse a la lista [ [
-# https://lists.gnu.org/mailman/listinfo/emacs-orgmode][on esta web
-# Page ] ] . Si usted no es un miembro de la lista de correo , su
-# correo Ser pasado a la lista después de que un moderador lo ha
-# aprobado [ fn : foot2 ] .
+   Si encuentra problemas en Org, o si tiene preguntas, comentarios, o
+   ideas al respecto, por favor enviar por correo a la lista de correo
+   Org [[mailto:emacs-orgmode@gnu.org][emacs-orgmode@gnu.org]]. Usted puede suscribirse a la lista de
+   correo [[https://lists.gnu.org/mailman/listinfo/emacs-orgmode][en esta pagina web]]. Si usted no es un miembro de la lista de
+   correo , su correo sera pasado a la lista después de que un
+   moderador lo alla aprobado[fn:FOOT2].
 
 #    For bug reports, please first try to reproduce the bug with the
 #    latest version of Org available---if you are running an outdated
@@ -451,35 +413,29 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #    well as the Org related setup in .emacs. The easiest way to do this
 #    is to use the command
 
---
-# Para informes de error , por favor, primero trate de reproducir el
-# error con la Versión más reciente de Org disponible --- si está
-# ejecutando una obsoleta Versión , es muy posible que el error se ha
-# corregido Ya . Si el error persiste, preparar un informe y
-# proporcionar la mayor cantidad Información # como sea posible ,
-# incluyendo la información de versión de Emacs ( * / Mx emacs
-# -version RET / *) y Org (* / Mx org- versión RET / *) , como Así
-# como la configuración Org relacionados en .emacs . La forma más
-# fácil de hacer esto Es utilizar el comando
+   Para informes de errores, por favor, primero trate de reproducir el
+   error con la versión más reciente de Org disponible -- si está
+   ejecutando una versión obsoleta, es muy posible que el error ya se
+   haya corregido. Si el error persiste, prepare un informe y
+   proporcione la mayor cantidad de Información que sea posible,
+   incluyendo la información de versión de Emacs (=M-x emacs-version
+   RET=) y Org (=M-x org-version RET=), así como la configuración
+   relacionada con Org en =.emacs=. La forma más fácil de hacer esto
+   es utilizar el comando
 
-#    #+BEGIN_EXAMPLE
-#      M-x org-submit-bug-report RET
-#    #+END_EXAMPLE
-
---
-# # + BEGIN_EXAMPLE M- x org- presentar -bug- informe RET # +
-# END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     M-x org-submit-bug-report RET
+   #+END_EXAMPLE
 
 #    which will put all this information into an Emacs mail buffer so
 #    that you only need to add your description. If you are not sending
 #    the Email from within Emacs, please copy and paste the content into
 #    your Email program.
 
---
-# Que pondrá toda esta información en un búfer de correo Emacs lo Que
-# sólo tiene que añadir su descripción. Si usted no está enviando El
-# Email desde Emacs , por favor, copia y pega el contenido en Su
-# programa de correo electrónico .
+   Que pondrá toda esta información en un búfer de correo Emacs al que
+   sólo tiene que añadir su descripción. Si usted no está enviando el
+   Email desde Emacs, por favor, copie y pege el contenido en su
+   programa de correo electrónico .
 
 #    Sometimes you might face a problem due to an error in your Emacs or
 #    Org mode setup. Before reporting a bug, it is very helpful to start
@@ -488,89 +444,65 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #    customization or with Org mode itself. You can start a typical
 #    minimal session with a command like the example below.
 
---
-# Algunas veces usted puede hacer frente a un problema debido a un
-# error en sus Emacs o Org configuración del modo . Antes de informar
-# de un error , es muy útil para comenzar Emacs con personalizaciones
-# mínimas y reproducir el problema . Hacer Tan a menudo ayuda a
-# determinar si el problema es con su Personalización o con el modo
-# Org sí . Puede iniciar una típica Mínimas sesión con un comando como
-# el siguiente ejemplo.
+   Algunas veces usted puede hacer frente a un problema debido a un
+   error en su configuración de Emacs o del modo Org. Antes de
+   informar de un error, es muy útil iniciar Emacs con
+   personalizaciones mínimas y reproducir el problema. Antes de pedir
+   ayuda determine si el problema es debido a su personalización o al
+   modo Org en sí . Puede iniciar una sesión mínima típica con un
+   comando como el siguiente.
 
-#    #+BEGIN_EXAMPLE
-#      $ emacs -Q -l /path/to/minimal-org.el
-#    #+END_EXAMPLE
-
---
-# # + BEGIN_EXAMPLE $ Emacs -Q -l /path/to/minimal-org.el # +
-# END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     $ emacs -Q -l /path/to/minimal-org.el
+   #+END_EXAMPLE
 
 #    However if you are using Org mode as distributed with Emacs, a
 #    minimal setup is not necessary. In that case it is sufficient to
 #    start Emacs as =emacs -Q=. The =minimal-org.el= setup file can have
 #    contents as shown below.
 
---
-# Sin embargo, si está utilizando el modo Org como se distribuye con
-# Emacs , un Una configuración mínima no es necesario. En ese caso, es
-# suficiente para Iniciar Emacs como emacs = -Q = . El = mínimo -
-# org.el = archivo de instalación puede tener Contenido que se muestra
-# a continuación .
+   Sin embargo, si está utilizando el modo Org como se distribuye con
+   Emacs, una configuración mínima no es necesaria. En ese caso, es
+   suficiente iniciar Emacs como =emacs -Q=. La configuracion minima
+   para Org =minimal-org.el= puede ser la que se muestra a
+   continuación.
 
-#    #+BEGIN_SRC lisp
-#      ;;; Minimal setup to load latest 'org-mode'
+   #+BEGIN_SRC lisp
+     ;;; Minimal setup to load latest 'org-mode'
 
---
-# # + BEGIN_SRC ceceo ;;; Configuración mínima para cargar última '
-# org -mode '
+     ;; activate debugging
+     (setq debug-on-error t
+           debug-on-signal nil
+           debug-on-quit nil)
 
-#      ;; activate debugging
-#      (setq debug-on-error t
-#            debug-on-signal nil
-#            debug-on-quit nil)
-
---
-# ;; activar la depuración ( Setq debug- on-error t Debug-on - señal
-# nula Debug-on -quit nil )
-
-#      ;; add latest org-mode to load path
-#      (add-to-list 'load-path (expand-file-name "/path/to/org-mode/lisp"))
-#      (add-to-list 'load-path (expand-file-name "/path/to/org-mode/contrib/lisp" t))
-#    #+END_SRC
-
---
-# ;; añadir última modo org para cargar ruta ( Load-path add- to-list
-# ' ( ampliar -file-name " / path / to / org -mode / ceceo " ) ) (
-# Load-path add- to-list ' ( ampliar -file-name " / path / to / org
-# -mode / contrib / ceceo " t) ) # + END_SRC
+     ;; add latest org-mode to load path
+     (add-to-list 'load-path (expand-file-name "/path/to/org-mode/lisp"))
+     (add-to-list 'load-path (expand-file-name "/path/to/org-mode/contrib/lisp" t))
+   #+END_SRC
 
 #    If an error occurs, a backtrace can be very useful (see below on how to
 #    create one). Often a small example file helps, along with clear
 #    information about:
 
---
-# Si se produce un error , una traza inversa puede ser muy útil (
-#    véase más adelante sobre la manera de crea uno). A menudo, un
-#    pequeño archivo de ejemplo ayuda , junto con la clara Información
-#    sobre:
+   Si se produce un error , una traza inversa puede ser muy útil
+   (véase más adelante sobre la manera de crer una). A menudo, un
+   pequeño archivo de ejemplo ayuda, junto con información clara
+   sobre:
 
 #     1. What exactly did you do?
 #     2. What did you expect to happen?
 #     3. What happened instead?
 
---
-# 1. ¿Qué es exactamente lo hiciste ?  2. ¿Qué espera que suceda ?
-# 3. ¿Qué pasó en su lugar?
+   1. ¿Qué hizo exactamente?
+   2. ¿Qué espera que suceda?
+   3. ¿Qué pasó en su lugar?
 
 #     Thank you for helping to improve this program.
 
---
-# Gracias por ayudarnos a mejorar este programa .
+   Gracias por ayudarnos a mejorar este programa .
 
 # *** How to create a useful backtrace
-
---
-# *** ¿Cómo crear una traza inversa útil
+*** Cómo crear una traza inversa útil
 
 #     If working with Org produces an error with a message you don't
 #     understand, you may have hit a bug. The best way to report this is
@@ -579,36 +511,30 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #     where and how the error occurred. Here is how to produce a useful
 #     backtrace:
 
---
-# Si se trabaja con Org produce un error con un mensaje no lo hace
-# Entienden , es posible que haya golpeado un error . La mejor manera
-# de informar de esto es Proporcionando , además de lo que se ha
-# mencionado anteriormente, una / Traza / . Esta es la información del
-# depurador integrado sobre Dónde y cómo se produjo el error . Aquí es
-# cómo producir un útil Traza inversa :
+   Si al trabajar con Org se produce un error con un mensaje que no
+   entiende, es posible que haya chocado con un error. La mejor manera
+   de informar de esto es proporcionando, además de lo que se ha
+   mencionado anteriormente, una /traza/. Esta es la información del
+   depurador integrado, sobre dónde y cómo se produjo el error. Estos
+   son los pasos para producir una útil traza inversa:
 
 #      1. Reload uncompiled versions of all Org mode Lisp files. The
 #         backtrace contains much more information if it is produced
 #         with uncompiled code. To do this, use
 
---
-# 1. Actualizar sin compilar versiones de todos los archivos Lisp modo
-# Org . los Traza contiene mucha más información si se produce Con
-# código sin compilar . Para ello, utilice
+    1. Actualizar sin compilar versiones de todos los archivos Lisp
+       del modo Org. La traza contiene mucha más información si se
+       produce con código sin compilar. Para ello, ejecute
 
-#         #+BEGIN_EXAMPLE
-#           C-u M-x org-reload RET
-#         #+END_EXAMPLE
-
---
-# # + BEGIN_EXAMPLE C -u M- x RET org -reload # + END_EXAMPLE
+        #+BEGIN_EXAMPLE
+          C-u M-x org-reload RET
+        #+END_EXAMPLE
 
 #         or select =Org -> Refresh/Reload -> Reload Org uncompiled=
 #         from the menu.
 
---
-# O seleccione = Org - > Actualizar / Recargar -> Actualizar Org sin
-# compilar = Desde el menú.
+        o seleccione =Org -> Refresh/Reload -> Reload Org uncompiled=
+        desde el menú.
 
 #      2. Go to the =Options= menu and select =Enter Debugger on Error=
 #         (XEmacs has this option in the =Troubleshooting= sub-menu).
@@ -618,57 +544,61 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #         the screen. Save this buffer to a file (for example using
 #         */C-x C-w/*) and attach it to your bug report.
 
---
-# 2. Vaya a la = = Opciones de menú y seleccione = Introduzca
-# depurador de error = ( XEmacs tiene esta opción en la solución de
-# problemas = = sub- menú).  3. Haz lo que tengas que hacer para
-# golpear el error. No te olvides de Documento los pasos que das .
-# 4. Al llegar el error , a * Backtrace * búfer aparecerá en la
-# pantalla. Guarde este tampón a un archivo ( por ejemplo, utilizando
-# * / Cx Cw / *) y adjuntarlo a su informe de error .
+    2. Del menú vaya a =Options= y seleccione =Enter Debugger on
+       Error= (XEmacs tiene esta opción en el sub-menú
+       =Troubleshooting=).
+
+    3. Haga lo que tengas que hacer para reproducir el error. No se
+       olvide de documentar los pasos que da.
+
+    4. Al ocurrir el error, el búfer *Backtrace* aparecerá en la
+       pantalla. Guarde este búfer en un archivo (por ejemplo,
+       utilizando =C-x C-w=) y adjuntelo a su informe de error.
 
 # ** 1.5 Typesetting conventions used in this manual                    <<@Conventions>>
+** 1.5 Convenciones tipográficas utilizadas en este manual            <<@Conventions>>
 # *** 1.5.1 TODO keywords, tags, properties, etc.
-
---
-# ** Convenciones 1.5 composición tipográfica utilizados en este
-# **manual << @ Convenios >> * Palabras clave TODO 1.5.1 , etiquetas ,
-# **propiedades , etc.
+*** 1.5.1 Palabras clave TODO, etiquetas, propiedades, etc.
 
 #     Org mainly uses three types of keywords: TODO keywords, tags and
 #     property names. In this manual we use the following conventions:
 
---
-# Org utiliza principalmente tres tipos de palabras clave: palabras
-# clave TODO , etiquetas y Nombres de propiedad . En este manual se
-# utilizan los siguientes convenios :
+    Org utiliza principalmente tres tipos de palabras clave: palabras
+    clave TODO, tags (etiquetas) y nombres de propiedad. En este
+    manual se utilizan los siguientes convenios:
 
 #     - =TODO=\\
 #       =WAITING= :: TODO keywords are written with all capitals, even
 #       if they are user-defined.
 
---
-# - = TODO = \\ = Palabras clave ESPERA = :: TODO se escriben con
-# todas las capitales , incluso Si son definidos por el usuario .
+     - =TODO=
+     - =WAITING=
+
+       La palabra clave TODO se escribe en mayusculas, incluso si es
+       definida por el usuario.
 
 #     - =boss=\\
 #       =ARCHIVE= :: User-defined tags are written in lowercase;
 #       built-in tags with special meaning are written with all
 #       capitals.
 
---
-# - = Jefe = \\ = = ARCHIVO :: etiquetas definidas por el usuario se
-# escriben en minúsculas ; Etiquetas integradas con significado
-# especial se escriben con todo Capitales #.
+     - =boss=
+     - =ARCHIVE=
+
+       las etiquetas definidas por el usuario se escriben en
+       minúsculas; las etiquetas integradas con significado especial
+       se escriben en mayusculas.
 
 #     - =Release=\\
 #       =PRIORITY= :: User-defined properties are capitalized; built-in
 #       properties with special meaning are written with all capitals.
 
---
-# - = Release = \\ = PRIORIDAD = :: propiedades definidas por el
-# usuario son capitalizados ; incorporado Propiedades con un
-# significado especial se escriben con mayúsculas.
+     - =Release=
+     - =PRIORITY=
+
+       las propiedades definidas por el usuario se escriben
+       capitalizadas; Las propiedades incorporadas con significado
+       especial se escriben con mayúsculas.
 
 #     Moreover, Org uses /option keywords/ (like =#+TITLE= to set the
 #     title) and /environment keywords/ (like =#+BEGIN_HTML= to start a
@@ -676,30 +606,25 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #     to enhance its readability, but you can use lowercase in your Org
 #     files[fn:FOOT3].
 
---
-# Además , Org utiliza la opción / palabras clave / (como = # + TITLE
-# = para establecer el Título) y / medio ambiente / palabras clave
-# (como = # + BEGIN_HTML = para iniciar un = = HTML medio ambiente)
-# . Están escritos en mayúsculas en el manual Para mejorar su
-# legibilidad , pero se puede utilizar minúsculas en su Org Archivos [
-# fn : FOOT3 ] .
+    Además, Org utiliza /palabras clave opcionales/ (como =#+TITLE=
+    para establecer el título) y /palabras clave de entorno/ (como
+    =#+BEGIN_HTML= para iniciar un entorno =HTML=). Están escritas en
+    mayúsculas en el manual para mejorar su legibilidad, pero puede
+    utilizar minúsculas en sus Archivos Org[fn:FOOT3].
 
 # *** 1.5.2 Keybindings and commands
-
---
-# *** Combinaciones de teclas 1.5.2 y comandos
+*** 1.5.2 Combinaciones de teclado y comandos
 
 #     The manual suggests a few global keybindings, in particular */C-c
 #     a/* for =org-agenda= and */C-c c/* for =org-capture=. These are
 #     only suggestions, but the rest of the manual assumes that these
 #     keybindings are in place in order to list commands by key access.
 
---
-# El manual sugiere algunas combinaciones de teclas globales , en
-# particular, * / CC A / * para = org- agenda = y * / Cc para = org-
-# captura c / * = . Estos son Sólo sugerencias , pero el resto del
-# manual asume que éstos Combinaciones de teclas están en su lugar con
-# el fin de ver los comandos de acceso clave.
+    Este manual sugiere algunas combinaciones de teclas globales, en
+    particular, =C-c a= para =org-agenda= y =C-c c= para
+    =org-capture=. Estas son sólo sugerencias, pero el resto del
+    manual asume éstas combinaciones de teclas como comandos de
+    acceso.
 
 #     Also, the manual lists both the keys and the corresponding
 #     commands for accessing a functionality. Org mode often uses the
@@ -713,32 +638,26 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #     prefer, you can compile the manual without the command names by
 #     unsetting the flag =cmdnames= in org.texi.
 
---
-# Además, las listas manuales tanto de las llaves y la correspondiente
-# Comandos para acceder a una funcionalidad. El modo Org utiliza a
-# menudo el Misma clave para diferentes funciones , dependiendo del
-# contexto. los Comando que está obligado a dichas claves tiene un
-# nombre genérico , como = Org- metaderecho = . En el manual de
-# nosotros , siempre que sea posible , dar La función que se llama
-# internamente por el comando genérico. por Ejemplo, en el capítulo
-# sobre la estructura del documento , * / M- derecha / * será
-# Enumerado llamar = org -do- Disminuir el nivel de = , mientras que
-# en el capítulo sobre tablas , es Aparecerá en la lista para llamar =
-# org -table- movimiento - columna - derecha = . si tu Prefieren ,
-# puede compilar el manual sin los nombres de los comandos por
-# Desarmar la bandera = CMDNAMES = en org.texi .
+    El modo Org utiliza a menudo la misma combinacion para diferentes
+    funciones, dependiendo del contexto. Los comandos que están
+    ligados a dichas combinaciones tiene un nombre genérico, como
+    =org-metaright=. En el manual nosotros, siempre que sea posible,
+    daremos la función que es internamente llamada por el comando
+    genérico. por Ejemplo, en el capítulo sobre la estructura de
+    documentos, =M-right= llamara a =org-do-demote=, mientras que en
+    el capítulo sobre tablas, será listada para llamar a
+    =org-table-move-column-right=. Si prefiere, puede compilar el
+    manual sin los nombres de los comandos demarcando la bandera
+    =cmdnames= en org.texi.
 
 # * 2 Document structure                                                <<@Document-structure>>
-
---
-# * 2 Estructura del documento << @ estructura Documento >>
+* 2 Estructura del documento                                          <<@Document-structure>>
 
 #   Org is based on Outline mode and provides flexible commands to edit
 #   the structure of the document.
 
---
-# Org se basa en el modo Esquema y proporciona comandos flexibles para
-# editar La estructura del documento.
+  Org se basa en el modo Outline y proporciona comandos flexibles para
+  editar la estructura del documento.
 
 #   | • [[@Outlines][Outlines]]:           | Org is based on Outline mode              |
 #   | • [[@Headlines][Headlines]]:          | How to typeset Org tree headlines         |
@@ -752,6 +671,19 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #   | • [[@Footnotes][Footnotes]]:          | How footnotes are defined in Org's syntax |
 #   | • [[@Orgstruct-mode][Orgstruct mode]]:     | Structure editing outside Org             |
 #   | • [[@Org-syntax][Org syntax]]:         | Formal description of Org's syntax        |
+
+  | • [[@Outlines][Esquemas]]:            | Org se basa en el modo Outline                         |
+  | • [[@Headlines][Titulares]]:           | Cómo establecer titulares del árbol Org                |
+  | • [[@Visibility-cycling][Visibilidad ciclica]]: | Mostrar y ocultar, simplifica mucho                    |
+  | • [[@Motion][Movimiento]]:          | Saltar a otros titulares                               |
+  | • [[@Structure-editing][editar Estructura]]:   | Cambiar secuencia y nivel de titulares                 |
+  | • [[@Sparse-trees][árboles poco densos]]: | Coincidencias embebidas en contexto                    |
+  | • [[@Plain-lists][listas Planas]]:       | estructura adicional dentro de una entrada             |
+  | • [[@Drawers][Cajones]]:             | Guardando cosas lejos                                  |
+  | • [[@Blocks][Bloques]]:             | bloques plegables                                      |
+  | • [[@Footnotes][Notas]]:               | Cómo se definen las notas al pie en la sintaxis de Org |
+  | • [[@Orgstruct-mode][modo Orgstruct]]:      | edición de estructura exterior Org                     |
+  | • [[@Org-syntax][sintaxis Org]]:        | descripción formal de la sintaxis de Org               |
 
 # ** 2.1 Outlines                                                       <<@Outlines>>
 
@@ -22008,9 +21940,17 @@ Org con =(add-hook 'org-mode-hook 'turn-on-font-lock)=
 # Please consider subscribing to the mailing list, in order to minimize
 # the work the mailing list moderators have to do.
 
+[fn:FOOT2]
+Por favor considere suscribirse a la lista de correo, con el fin de
+reducir el trabajo que los moderadores de correo tienen que hacer.
+
 # [fn:FOOT3]
 # Easy templates insert lowercase keywords and Babel dynamically inserts
 # =#+results=.
+
+[fn:FOOT3]
+Las plantillas insertan fácilmente palabras clave minúsculas y Babel
+inserta de forma dinámica =#+results=.
 
 # [fn:FOOT4]
 # See the variables =org-special-ctrl-a/e=, =org-special-ctrl-k=, and

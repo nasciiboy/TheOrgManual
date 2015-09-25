@@ -143,9 +143,10 @@ html body #content a.footnum { color: #00ffff; text-decoration: none; }
 html body #content a.footnum:hover { background-color: #556b2f; color: #ffffff; text-decoration: none; }
 
 /* #################### LIST  */
-html body #content ul.org-ul li { color: #fff; font-size: 1em; }
+html body #content ul.org-ul li { color: #fff; font-size: 1em;
+                                  list-style-type: square; }
 html body #content ul.org-ul li b { font-weight: bold; }
-html body #content ul.org-ul li p { color: #fff; font-size: 1em; }
+html body #content ul.org-ul li p { color: #fff; font-size: .9em; }
 
 /* ############### DESCRIPTION */
 html body #content dl.org-dl { padding-bottom: 2em; }         /* body           */

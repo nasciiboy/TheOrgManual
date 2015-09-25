@@ -224,13 +224,13 @@ modify this GNU manual.”
    be passed to the list after a moderator has approved it[fn:FOOT2].
 
    For bug reports, please first try to reproduce the bug with the
-   latest version of Org available---if you are running an outdated
+   latest version of Org available -- if you are running an outdated
    version, it is quite possible that the bug has been fixed
    already. If the bug persists, prepare a report and provide as much
    information as possible, including the version information of Emacs
-   (*/M-x emacs-version RET/*) and Org (*/M-x org-version RET/*), as
-   well as the Org related setup in .emacs. The easiest way to do this
-   is to use the command
+   (=M-x emacs-version RET=) and Org (=M-x org-version RET=), as well
+   as the Org related setup in =.emacs=. The easiest way to do this is
+   to use the command
 
    #+BEGIN_EXAMPLE
      M-x org-submit-bug-report RET
@@ -302,11 +302,13 @@ modify this GNU manual.”
 
      2. Go to the =Options= menu and select =Enter Debugger on Error=
         (XEmacs has this option in the =Troubleshooting= sub-menu).
+
      3. Do whatever you have to do to hit the error. Don't forget to
         document the steps you take.
+
      4. When you hit the error, a *Backtrace* buffer will appear on
-        the screen. Save this buffer to a file (for example using
-        */C-x C-w/*) and attach it to your bug report.
+        the screen. Save this buffer to a file (for example using =C-x
+        C-w=) and attach it to your bug report.
 
 ** 1.5 Typesetting conventions used in this manual                    <<@Conventions>>
 *** 1.5.1 TODO keywords, tags, properties, etc.
@@ -314,18 +316,23 @@ modify this GNU manual.”
     Org mainly uses three types of keywords: TODO keywords, tags and
     property names. In this manual we use the following conventions:
 
-    - =TODO=\\
-      =WAITING= :: TODO keywords are written with all capitals, even
-      if they are user-defined.
+     - =TODO=
+     - =WAITING=
 
-    - =boss=\\
-      =ARCHIVE= :: User-defined tags are written in lowercase;
-      built-in tags with special meaning are written with all
-      capitals.
+       TODO keywords are written with all capitals, even if they are
+       user-defined.
 
-    - =Release=\\
-      =PRIORITY= :: User-defined properties are capitalized; built-in
-      properties with special meaning are written with all capitals.
+     - =boss=
+     - =ARCHIVE=
+
+       User-defined tags are written in lowercase; built-in tags with
+       special meaning are written with all capitals.
+
+     - =Release=
+     - =PRIORITY=
+
+       User-defined properties are capitalized; built-in properties
+       with special meaning are written with all capitals.
 
     Moreover, Org uses /option keywords/ (like =#+TITLE= to set the
     title) and /environment keywords/ (like =#+BEGIN_HTML= to start a
@@ -335,9 +342,9 @@ modify this GNU manual.”
 
 *** 1.5.2 Keybindings and commands
 
-    The manual suggests a few global keybindings, in particular */C-c
-    a/* for =org-agenda= and */C-c c/* for =org-capture=. These are
-    only suggestions, but the rest of the manual assumes that these
+    The manual suggests a few global keybindings, in particular =C-c
+    a= for =org-agenda= and =C-c c= for =org-capture=. These are only
+    suggestions, but the rest of the manual assumes that these
     keybindings are in place in order to list commands by key access.
 
     Also, the manual lists both the keys and the corresponding
@@ -346,7 +353,7 @@ modify this GNU manual.”
     command that is bound to such keys has a generic name, like
     =org-metaright=. In the manual we will, wherever possible, give
     the function that is internally called by the generic command. For
-    example, in the chapter on document structure, */M-right/* will be
+    example, in the chapter on document structure, =M-right= will be
     listed to call =org-do-demote=, while in the chapter on tables, it
     will be listed to call =org-table-move-column-right=. If you
     prefer, you can compile the manual without the command names by

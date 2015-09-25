@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>The Org Manual</title>
-<!-- 2015-09-24 jue 15:44 -->
+<!-- 2015-09-25 vie 18:40 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Carsten Dominik with contributiond by Bastien Guerry, Nicolas Goazion, Eric Schulte, Jambunathan K. Dan Davison, Thomas O`Thoole, and Philip Rooke." />
@@ -28,8 +28,20 @@
 </ul>
 </li>
 <li><a href="#sec-1-3">1.3 Activación                                                     </a></li>
+<li><a href="#sec-1-4">1.4 Comentarios                                                    </a>
+<ul>
+<li><a href="#sec-1-4-1">Cómo crear una traza inversa útil</a></li>
 </ul>
 </li>
+<li><a href="#sec-1-5">1.5 Convenciones tipográficas utilizadas en este manual            </a>
+<ul>
+<li><a href="#sec-1-5-1">1.5.1 Palabras clave TODO, etiquetas, propiedades, etc.</a></li>
+<li><a href="#sec-1-5-2">1.5.2 Combinaciones de teclado y comandos</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-2">2 Estructura del documento                                          </a></li>
 </ul>
 </div>
 </div>
@@ -85,12 +97,12 @@ modify this GNU manual.”
 </tr>
 
 <tr>
-<td class="left">• <i>Retroalimentación</i>:</td>
+<td class="left">• <a href="#Feedback">Retroalimentación</a>:</td>
 <td class="left">informes de errores, ideas, parches, etc.</td>
 </tr>
 
 <tr>
-<td class="left">• <i>Convenciones</i>:</td>
+<td class="left">• <a href="#Conventions">Convenciones</a>:</td>
 <td class="left">Convenciones de tipografía en el manual</td>
 </tr>
 </tbody>
@@ -379,100 +391,313 @@ Si no le gusta <code>transient-mark-mode</code>, puede crear una región activa
 utilizando el ratón para seleccionar una región, o presionando
 <code>C-SPC</code> dos veces antes de mover el cursor.
 </p>
+</div>
+</div>
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4">1.4 Comentarios                                                    <a id="Feedback" name="Feedback"></a></h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+Si encuentra problemas en Org, o si tiene preguntas, comentarios, o
+ideas al respecto, por favor enviar por correo a la lista de correo
+Org <a href="mailto:emacs-orgmode@gnu.org">emacs-orgmode@gnu.org</a>. Usted puede suscribirse a la lista de
+correo <a href="https://lists.gnu.org/mailman/listinfo/emacs-orgmode">en esta pagina web</a>. Si usted no es un miembro de la lista de
+correo , su correo sera pasado a la lista después de que un
+moderador lo alla aprobado<sup><a id="fnr.2" name="fnr.2" class="footref" href="#fn.2">2</a></sup>.
+</p>
 
 <p>
-&#x2013;
+Para informes de errores, por favor, primero trate de reproducir el
+error con la versión más reciente de Org disponible &#x2013; si está
+ejecutando una versión obsoleta, es muy posible que el error ya se
+haya corregido. Si el error persiste, prepare un informe y
+proporcione la mayor cantidad de Información que sea posible,
+incluyendo la información de versión de Emacs (<code>M-x emacs-version
+   RET</code>) y Org (<code>M-x org-version RET</code>), así como la configuración
+relacionada con Org en <code>.emacs</code>. La forma más fácil de hacer esto
+es utilizar el comando
 </p>
+
+<pre class="example">
+M-x org-submit-bug-report RET
+</pre>
+
 <p>
-&#x2013;
+Que pondrá toda esta información en un búfer de correo Emacs al que
+sólo tiene que añadir su descripción. Si usted no está enviando el
+Email desde Emacs, por favor, copie y pege el contenido en su
+programa de correo electrónico .
 </p>
+
 <p>
-&#x2013;
+Algunas veces usted puede hacer frente a un problema debido a un
+error en su configuración de Emacs o del modo Org. Antes de
+informar de un error, es muy útil iniciar Emacs con
+personalizaciones mínimas y reproducir el problema. Antes de pedir
+ayuda determine si el problema es debido a su personalización o al
+modo Org en sí . Puede iniciar una sesión mínima típica con un
+comando como el siguiente.
 </p>
+
+<pre class="example">
+$ emacs -Q -l /path/to/minimal-org.el
+</pre>
+
 <p>
-&#x2013;
+Sin embargo, si está utilizando el modo Org como se distribuye con
+Emacs, una configuración mínima no es necesaria. En ese caso, es
+suficiente iniciar Emacs como <code>emacs -Q</code>. La configuracion minima
+para Org <code>minimal-org.el</code> puede ser la que se muestra a
+continuación.
 </p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">;;; Minimal setup to load latest 'org-mode'
+
+;; activate debugging
+(setq debug-on-error t
+      debug-on-signal nil
+      debug-on-quit nil)
+
+;; add latest org-mode to load path
+(add-to-list 'load-path (expand-file-name "/path/to/org-mode/lisp"))
+(add-to-list 'load-path (expand-file-name "/path/to/org-mode/contrib/lisp" t))
+</pre>
+</div>
+
 <p>
-&#x2013;
+Si se produce un error , una traza inversa puede ser muy útil
+(véase más adelante sobre la manera de crer una). A menudo, un
+pequeño archivo de ejemplo ayuda, junto con información clara
+sobre:
 </p>
+
+<ol class="org-ol">
+<li>¿Qué hizo exactamente?
+</li>
+<li>¿Qué espera que suceda?
+</li>
+<li>¿Qué pasó en su lugar?
+</li>
+</ol>
+
 <p>
-&#x2013;
+Gracias por ayudarnos a mejorar este programa .
 </p>
+</div>
+<div id="outline-container-sec-1-4-1" class="outline-4">
+<h4 id="sec-1-4-1">Cómo crear una traza inversa útil</h4>
+<div class="outline-text-4" id="text-1-4-1">
 <p>
-&#x2013;
+Si al trabajar con Org se produce un error con un mensaje que no
+entiende, es posible que haya chocado con un error. La mejor manera
+de informar de esto es proporcionando, además de lo que se ha
+mencionado anteriormente, una <i>traza</i>. Esta es la información del
+depurador integrado, sobre dónde y cómo se produjo el error. Estos
+son los pasos para producir una útil traza inversa:
 </p>
+
+<ol class="org-ol">
+<li>Actualizar sin compilar versiones de todos los archivos Lisp
+del modo Org. La traza contiene mucha más información si se
+produce con código sin compilar. Para ello, ejecute
+
+<pre class="example">
+C-u M-x org-reload RET
+</pre>
+</li>
+</ol>
+
 <p>
-&#x2013;
+o seleccione <code>Org -&gt; Refresh/Reload -&gt; Reload Org uncompiled</code>
+desde el menú.
 </p>
+
+<ol class="org-ol">
+<li>Del menú vaya a <code>Options</code> y seleccione <code>Enter Debugger on
+       Error</code> (XEmacs tiene esta opción en el sub-menú
+<code>Troubleshooting</code>).
+</li>
+
+<li>Haga lo que tengas que hacer para reproducir el error. No se
+olvide de documentar los pasos que da.
+</li>
+
+<li>Al ocurrir el error, el búfer <b>Backtrace</b> aparecerá en la
+pantalla. Guarde este búfer en un archivo (por ejemplo,
+utilizando <code>C-x C-w</code>) y adjuntelo a su informe de error.
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5">1.5 Convenciones tipográficas utilizadas en este manual            <a id="Conventions" name="Conventions"></a></h3>
+<div class="outline-text-3" id="text-1-5">
+</div>
+<div id="outline-container-sec-1-5-1" class="outline-4">
+<h4 id="sec-1-5-1">1.5.1 Palabras clave TODO, etiquetas, propiedades, etc.</h4>
+<div class="outline-text-4" id="text-1-5-1">
 <p>
-&#x2013;
+Org utiliza principalmente tres tipos de palabras clave: palabras
+clave TODO, tags (etiquetas) y nombres de propiedad. En este
+manual se utilizan los siguientes convenios:
 </p>
+
+<ul class="org-ul">
+<li><code>TODO</code>
+</li>
+<li><code>WAITING</code>
+
 <p>
-&#x2013;
+La palabra clave TODO se escribe en mayusculas, incluso si es
+definida por el usuario.
 </p>
+</li>
+</ul>
+
+<ul class="org-ul">
+<li><code>boss</code>
+</li>
+<li><code>ARCHIVE</code>
+
 <p>
-&#x2013;
+las etiquetas definidas por el usuario se escriben en
+minúsculas; las etiquetas integradas con significado especial
+se escriben en mayusculas.
 </p>
+</li>
+</ul>
+
+<ul class="org-ul">
+<li><code>Release</code>
+</li>
+<li><code>PRIORITY</code>
+
 <p>
-&#x2013;
+las propiedades definidas por el usuario se escriben
+capitalizadas; Las propiedades incorporadas con significado
+especial se escriben con mayúsculas.
 </p>
+</li>
+</ul>
+
 <p>
-&#x2013;
+Además, Org utiliza <i>palabras clave opcionales</i> (como <code>#+TITLE</code>
+para establecer el título) y <i>palabras clave de entorno</i> (como
+<code>#+BEGIN_HTML</code> para iniciar un entorno <code>HTML</code>). Están escritas en
+mayúsculas en el manual para mejorar su legibilidad, pero puede
+utilizar minúsculas en sus Archivos Org<sup><a id="fnr.3" name="fnr.3" class="footref" href="#fn.3">3</a></sup>.
 </p>
+</div>
+</div>
+<div id="outline-container-sec-1-5-2" class="outline-4">
+<h4 id="sec-1-5-2">1.5.2 Combinaciones de teclado y comandos</h4>
+<div class="outline-text-4" id="text-1-5-2">
 <p>
-&#x2013;
+Este manual sugiere algunas combinaciones de teclas globales, en
+particular, <code>C-c a</code> para <code>org-agenda</code> y <code>C-c c</code> para
+<code>org-capture</code>. Estas son sólo sugerencias, pero el resto del
+manual asume éstas combinaciones de teclas como comandos de
+acceso.
 </p>
+
 <p>
-&#x2013;
+El modo Org utiliza a menudo la misma combinacion para diferentes
+funciones, dependiendo del contexto. Los comandos que están
+ligados a dichas combinaciones tiene un nombre genérico, como
+<code>org-metaright</code>. En el manual nosotros, siempre que sea posible,
+daremos la función que es internamente llamada por el comando
+genérico. por Ejemplo, en el capítulo sobre la estructura de
+documentos, <code>M-right</code> llamara a <code>org-do-demote</code>, mientras que en
+el capítulo sobre tablas, será listada para llamar a
+<code>org-table-move-column-right</code>. Si prefiere, puede compilar el
+manual sin los nombres de los comandos demarcando la bandera
+<code>cmdnames</code> en org.texi.
 </p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">2 Estructura del documento                                          <a id="Document-structure" name="Document-structure"></a></h2>
+<div class="outline-text-2" id="text-2">
 <p>
-&#x2013;
+Org se basa en el modo Outline y proporciona comandos flexibles para
+editar la estructura del documento.
 </p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">• <i>Esquemas</i>:</td>
+<td class="left">Org se basa en el modo Outline</td>
+</tr>
+
+<tr>
+<td class="left">• <i>Titulares</i>:</td>
+<td class="left">Cómo establecer titulares del árbol Org</td>
+</tr>
+
+<tr>
+<td class="left">• <i>Visibilidad ciclica</i>:</td>
+<td class="left">Mostrar y ocultar, simplifica mucho</td>
+</tr>
+
+<tr>
+<td class="left">• <i>Movimiento</i>:</td>
+<td class="left">Saltar a otros titulares</td>
+</tr>
+
+<tr>
+<td class="left">• <i>editar Estructura</i>:</td>
+<td class="left">Cambiar secuencia y nivel de titulares</td>
+</tr>
+
+<tr>
+<td class="left">• <i>árboles poco densos</i>:</td>
+<td class="left">Coincidencias embebidas en contexto</td>
+</tr>
+
+<tr>
+<td class="left">• <i>listas Planas</i>:</td>
+<td class="left">estructura adicional dentro de una entrada</td>
+</tr>
+
+<tr>
+<td class="left">• <i>Cajones</i>:</td>
+<td class="left">Guardando cosas lejos</td>
+</tr>
+
+<tr>
+<td class="left">• <i>Bloques</i>:</td>
+<td class="left">bloques plegables</td>
+</tr>
+
+<tr>
+<td class="left">• <i>Notas</i>:</td>
+<td class="left">Cómo se definen las notas al pie en la sintaxis de Org</td>
+</tr>
+
+<tr>
+<td class="left">• <i>modo Orgstruct</i>:</td>
+<td class="left">edición de estructura exterior Org</td>
+</tr>
+
+<tr>
+<td class="left">• <i>sintaxis Org</i>:</td>
+<td class="left">descripción formal de la sintaxis de Org</td>
+</tr>
+</tbody>
+</table>
+
 <p>
 &#x2013;
 </p>
@@ -1303,7 +1528,6 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 </p>
 </div>
 </div>
-</div>
 <div id="footnotes">
 <h2 class="footnotes">Footnotes: </h2>
 <div id="text-footnotes">
@@ -1311,6 +1535,16 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 <div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
 Si no se utiliza font-lock a nivel glabal, debe activarlo en el buffer
 Org con <code>(add-hook 'org-mode-hook 'turn-on-font-lock)</code>
+</p></div>
+
+<div class="footdef"><sup><a id="fn.2" name="fn.2" class="footnum" href="#fnr.2">2</a></sup> <p class="footpara">
+Por favor considere suscribirse a la lista de correo, con el fin de
+reducir el trabajo que los moderadores de correo tienen que hacer.
+</p></div>
+
+<div class="footdef"><sup><a id="fn.3" name="fn.3" class="footnum" href="#fnr.3">3</a></sup> <p class="footpara">
+Las plantillas insertan fácilmente palabras clave minúsculas y Babel
+inserta de forma dinámica <code>#+results</code>.
 </p></div>
 
 
