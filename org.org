@@ -430,11 +430,12 @@ modify this GNU manual.”
 *** 2.3.1 Global and local cycling                                    <<@Global-and-local-cycling>>
 
     Outlines make it possible to hide parts of the text in the
-    buffer. Org uses just two commands, bound to =TAB= and S-TAB to
+    buffer. Org uses just two commands, bound to =TAB= and =S-TAB= to
     change the visibility in the buffer.
 
-     - */TAB/* (=org-cycle=)\\
-       /Subtree cycling/ :: Rotate current subtree among the states
+     - =TAB= (=org-cycle=)
+
+       /Subtree cycling/ : Rotate current subtree among the states
 
        #+BEGIN_EXAMPLE
          ,-> FOLDED -> CHILDREN -> SUBTREE --.
@@ -445,33 +446,33 @@ modify this GNU manual.”
        work[fn:FOOT6]. When the cursor is at the beginning of the
        buffer and the first line is not a headline, then =TAB=
        actually runs global cycling (see below)[fn:FOOT7]. Also when
-       called with a prefix argument (*/C-u TAB/*), global cycling is
+       called with a prefix argument (=C-u TAB=), global cycling is
        invoked.
 
-     - */S-TAB/* (=org-global-cycle=)\\
-       */C-u TAB/*\\
-       /Global cycling/ :: Rotate the entire buffer among the states
+     - =S-TAB= (=org-global-cycle=)
+     - =C-u TAB=
+
+       /Global cycling/ : Rotate the entire buffer among the states
 
        #+BEGIN_EXAMPLE
-       ,-> OVERVIEW -> CONTENTS -> SHOW ALL --.
-       '--------------------------------------'
+         ,-> OVERVIEW -> CONTENTS -> SHOW ALL --.
+         '--------------------------------------'
        #+END_EXAMPLE
 
-       When */S-TAB/* is called with a numeric prefix argument =N=,
-       the CONTENTS view up to headlines of level =N= will be
-       shown. Note that inside tables, */S-TAB/* jumps to the previous
-       field.
+       When =S-TAB= is called with a numeric prefix argument =N=, the
+       CONTENTS view up to headlines of level =N= will be shown. Note
+       that inside tables, =S-TAB= jumps to the previous field.
 
-     - */C-u C-u TAB/* (=org-set-startup-visibility=)
+     - =C-u C-u TAB= (=org-set-startup-visibility=)
 
        Switch back to the startup visibility of the buffer (see
        [[@Initial-visibility][Initial visibility]]).
 
-     - */C-u C-u C-u TAB/* (=show-all=)
+     - =C-u C-u C-u TAB= (=show-all=)
 
        Show all, including drawers.
 
-     - */C-c C-r/* (=org-reveal=)
+     - =C-c C-r= (=org-reveal=)
 
        Reveal context around point, showing the current entry, the
        following heading and the hierarchy above. Useful for working
@@ -481,25 +482,25 @@ modify this GNU manual.”
        headings. With a double prefix argument, also show the entire
        subtree of the parent.
 
-     - */C-c C-k/* (=show-branches=)
+     - =C-c C-k= (=show-branches=)
 
        Expose all the headings of the subtree, CONTENT view for just
        one subtree.
 
-     - */C-c TAB/* (=show-children=)
+     - =C-c TAB= (=show-children=)
 
        Expose all direct children of the subtree. With a numeric
        prefix argument =N=, expose all children down to level =N=.
 
-     - */C-c C-x b/* (=org-tree-to-indirect-buffer=)
+     - =C-c C-x b= (=org-tree-to-indirect-buffer=)
 
        Show the current subtree in an indirect buffer[fn:FOOT8]. With
        a numeric prefix argument =N=, go up to level =N= and then take
        that tree. If =N= is negative then go up that many levels. With
-       a */C-u/* prefix, do not remove the previously used indirect
+       a =C-u= prefix, do not remove the previously used indirect
        buffer.
 
-     - */C-c C-x v/* (=org-copy-visible=)
+     - =C-c C-x v= (=org-copy-visible=)
 
        Copy the /visible/ text in the region into the kill ring.
 
@@ -20557,8 +20558,8 @@ Easy templates insert lowercase keywords and Babel dynamically inserts
 
 [fn:FOOT4]
 See the variables =org-special-ctrl-a/e=, =org-special-ctrl-k=, and
-=org-ctrl-k-protect-subtree= to configure special behavior of */C-a/*,
-*/C-e/*, and */C-k/* in headlines.
+=org-ctrl-k-protect-subtree= to configure special behavior of =C-a=,
+=C-e=, and =C-k= in headlines.
 
 [fn:FOOT5]
 Clocking only works with headings indented less than 30 stars.

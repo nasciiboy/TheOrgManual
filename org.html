@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>The Org Manual</title>
-<!-- 2015-09-25 vie 18:39 -->
+<!-- 2015-09-28 lun 19:14 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Carsten Dominik with contributiond by Bastien Guerry, Nicolas Goazion, Eric Schulte, Jambunathan K. Dan Davison, Thomas O`Thoole, and Philip Rooke." />
@@ -1588,13 +1588,16 @@ behavior.
 <div class="outline-text-4" id="text-2-3-1">
 <p>
 Outlines make it possible to hide parts of the text in the
-buffer. Org uses just two commands, bound to <code>TAB</code> and S-TAB to
+buffer. Org uses just two commands, bound to <code>TAB</code> and <code>S-TAB</code> to
 change the visibility in the buffer.
 </p>
 
 <ul class="org-ul">
-<li><b><i>TAB</i></b> (<code>org-cycle</code>)<br  />
-       <i>Subtree cycling</i> :: Rotate current subtree among the states
+<li><code>TAB</code> (<code>org-cycle</code>)
+
+<p>
+<i>Subtree cycling</i> : Rotate current subtree among the states
+</p>
 
 <pre class="example">
 ,-&gt; FOLDED -&gt; CHILDREN -&gt; SUBTREE --.
@@ -1606,14 +1609,18 @@ The cursor must be on a headline for this to
 work<sup><a id="fnr.6" name="fnr.6" class="footref" href="#fn.6">6</a></sup>. When the cursor is at the beginning of the
 buffer and the first line is not a headline, then <code>TAB</code>
 actually runs global cycling (see below)<sup><a id="fnr.7" name="fnr.7" class="footref" href="#fn.7">7</a></sup>. Also when
-called with a prefix argument (<b><i>C-u TAB</i></b>), global cycling is
+called with a prefix argument (<code>C-u TAB</code>), global cycling is
 invoked.
 </p>
 </li>
 
-<li><b><i>S-TAB</i></b> (<code>org-global-cycle</code>)<br  />
-       <b><i>C-u TAB</i></b><br  />
-       <i>Global cycling</i> :: Rotate the entire buffer among the states
+<li><code>S-TAB</code> (<code>org-global-cycle</code>)
+</li>
+<li><code>C-u TAB</code>
+
+<p>
+<i>Global cycling</i> : Rotate the entire buffer among the states
+</p>
 
 <pre class="example">
 ,-&gt; OVERVIEW -&gt; CONTENTS -&gt; SHOW ALL --.
@@ -1621,14 +1628,13 @@ invoked.
 </pre>
 
 <p>
-When <b><i>S-TAB</i></b> is called with a numeric prefix argument <code>N</code>,
-the CONTENTS view up to headlines of level <code>N</code> will be
-shown. Note that inside tables, <b><i>S-TAB</i></b> jumps to the previous
-field.
+When <code>S-TAB</code> is called with a numeric prefix argument <code>N</code>, the
+CONTENTS view up to headlines of level <code>N</code> will be shown. Note
+that inside tables, <code>S-TAB</code> jumps to the previous field.
 </p>
 </li>
 
-<li><b><i>C-u C-u TAB</i></b> (<code>org-set-startup-visibility</code>)
+<li><code>C-u C-u TAB</code> (<code>org-set-startup-visibility</code>)
 
 <p>
 Switch back to the startup visibility of the buffer (see
@@ -1636,14 +1642,14 @@ Switch back to the startup visibility of the buffer (see
 </p>
 </li>
 
-<li><b><i>C-u C-u C-u TAB</i></b> (<code>show-all</code>)
+<li><code>C-u C-u C-u TAB</code> (<code>show-all</code>)
 
 <p>
 Show all, including drawers.
 </p>
 </li>
 
-<li><b><i>C-c C-r</i></b> (<code>org-reveal</code>)
+<li><code>C-c C-r</code> (<code>org-reveal</code>)
 
 <p>
 Reveal context around point, showing the current entry, the
@@ -1656,7 +1662,7 @@ subtree of the parent.
 </p>
 </li>
 
-<li><b><i>C-c C-k</i></b> (<code>show-branches</code>)
+<li><code>C-c C-k</code> (<code>show-branches</code>)
 
 <p>
 Expose all the headings of the subtree, CONTENT view for just
@@ -1664,7 +1670,7 @@ one subtree.
 </p>
 </li>
 
-<li><b><i>C-c TAB</i></b> (<code>show-children</code>)
+<li><code>C-c TAB</code> (<code>show-children</code>)
 
 <p>
 Expose all direct children of the subtree. With a numeric
@@ -1672,18 +1678,18 @@ prefix argument <code>N</code>, expose all children down to level <code>N</code>
 </p>
 </li>
 
-<li><b><i>C-c C-x b</i></b> (<code>org-tree-to-indirect-buffer</code>)
+<li><code>C-c C-x b</code> (<code>org-tree-to-indirect-buffer</code>)
 
 <p>
 Show the current subtree in an indirect buffer<sup><a id="fnr.8" name="fnr.8" class="footref" href="#fn.8">8</a></sup>. With
 a numeric prefix argument <code>N</code>, go up to level <code>N</code> and then take
 that tree. If <code>N</code> is negative then go up that many levels. With
-a <b><i>C-u</i></b> prefix, do not remove the previously used indirect
+a <code>C-u</code> prefix, do not remove the previously used indirect
 buffer.
 </p>
 </li>
 
-<li><b><i>C-c C-x v</i></b> (<code>org-copy-visible</code>)
+<li><code>C-c C-x v</code> (<code>org-copy-visible</code>)
 
 <p>
 Copy the <i>visible</i> text in the region into the kill ring.
@@ -43022,8 +43028,8 @@ Easy templates insert lowercase keywords and Babel dynamically inserts
 
 <div class="footdef"><sup><a id="fn.4" name="fn.4" class="footnum" href="#fnr.4">4</a></sup> <p class="footpara">
 See the variables <code>org-special-ctrl-a/e</code>, <code>org-special-ctrl-k</code>, and
-<code>org-ctrl-k-protect-subtree</code> to configure special behavior of <b><i>C-a</i></b>,
-<b><i>C-e</i></b>, and <b><i>C-k</i></b> in headlines.
+<code>org-ctrl-k-protect-subtree</code> to configure special behavior of <code>C-a</code>,
+<code>C-e</code>, and <code>C-k</code> in headlines.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.5" name="fn.5" class="footnum" href="#fnr.5">5</a></sup> <p class="footpara">

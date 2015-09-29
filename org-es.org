@@ -673,22 +673,20 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #   | • [[@Org-syntax][Org syntax]]:         | Formal description of Org's syntax        |
 
   | • [[@Outlines][Esquemas]]:            | Org se basa en el modo Outline                         |
-  | • [[@Headlines][Titulares]]:           | Cómo establecer titulares del árbol Org                |
+  | • [[@Headlines][Encabezados]]:         | Cómo establecer encabezados del árbol de esquema Org   |
   | • [[@Visibility-cycling][Visibilidad ciclica]]: | Mostrar y ocultar, simplifica mucho                    |
   | • [[@Motion][Movimiento]]:          | Saltar a otros titulares                               |
-  | • [[@Structure-editing][editar Estructura]]:   | Cambiar secuencia y nivel de titulares                 |
-  | • [[@Sparse-trees][árboles poco densos]]: | Coincidencias embebidas en contexto                    |
-  | • [[@Plain-lists][listas Planas]]:       | estructura adicional dentro de una entrada             |
+  | • [[@Structure-editing][Editar estructura]]:   | Cambiar secuencia y nivel de titulares                 |
+  | • [[@Sparse-trees][Árboles poco densos]]: | Coincidencias embebidas en contexto                    |
+  | • [[@Plain-lists][Listas Planas]]:       | Estructura adicional dentro de una entrada             |
   | • [[@Drawers][Cajones]]:             | Guardando cosas lejos                                  |
-  | • [[@Blocks][Bloques]]:             | bloques plegables                                      |
+  | • [[@Blocks][Bloques]]:             | Bloques plegables                                      |
   | • [[@Footnotes][Notas]]:               | Cómo se definen las notas al pie en la sintaxis de Org |
-  | • [[@Orgstruct-mode][modo Orgstruct]]:      | edición de estructura exterior Org                     |
-  | • [[@Org-syntax][sintaxis Org]]:        | descripción formal de la sintaxis de Org               |
+  | • [[@Orgstruct-mode][Modo Orgstruct]]:      | Edición de estructura exterior Org                     |
+  | • [[@Org-syntax][Sintaxis Org]]:        | Descripción formal de la sintaxis de Org               |
 
 # ** 2.1 Outlines                                                       <<@Outlines>>
-
---
-# ** 2.1 Contornos << @ contornos >>
+** 2.1 Esquemas                                                       <<@Outlines>>
 
 #    Org is implemented on top of Outline mode. Outlines allow a
 #    document to be organized in a hierarchical structure, which (at
@@ -700,31 +698,26 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #    functionality into a single command, =org-cycle=, which is bound to
 #    the =TAB= key.
 
---
-# Org se implementa en la parte superior de modo Esquema. Contornos
-# permitir que un Documento que se organiza en una estructura
-# jerárquica , que (al Menos para mí ) es la mejor representación de
-# las notas y pensamientos . Un Visión general de esta estructura se
-# consigue mediante el plegado ( escondite ) grande Partes del
-# documento para mostrar sólo la estructura de documentos en general Y
-# las partes se está trabajando actualmente. Org simplifica
-# enormemente El uso de contornos mediante la compresión de todo el
-# Mostrar / Ocultar Funcionalidad en un solo comando , = org- ciclo =
-# , que está obligado a El TAB = = clave.
+   Org se implementa en la parte superior de modo Outline. Outline
+   permite que un documento que se organiza en una estructura
+   jerárquica, que (al menos para mí) es la mejor forma de representar
+   notas y pensamientos. Un visión glabal de esta estructura se
+   consigue mediante el plegado (ocultacion) de grandes partes del
+   documento, para mostrar sólo la estructura global del documento Y
+   la zona de trabajo actual.  Org simplifica enormemente todo el uso
+   de esquemas mediante la funcionalidad mostrar/ocultar en un solo
+   comando, =org-cycle=, que está ligado a la tecla =TAB=.
 
 # ** 2.2 Headlines                                                      <<@Headlines>>
-
---
-# ** 2.2 Titulares << @ Titulares >>
+** 2.2 Encabezados                                                      <<@Headlines>>
 
 #    Headlines define the structure of an outline tree. The headlines in
 #    Org start with one or more stars, on the left
 #    margin[fn:FOOT4] [fn:FOOT5]. For example:
 
---
-# Titulares definir la estructura de un árbol de esquema. Los
-# titulares de Org comenzar con una o más estrellas , a la izquierda
-# Margen [ fn : FOOT4 ] [nota : FOOT5 ] . Por ejemplo:
+   Los encabezados definen la estructura del arbol de esquema. Los
+   encabezados en Org comienzan con uno o más asteriscos, en el margen
+   izquierdo[fn:FOOT4] [fn:FOOT5]. Por ejemplo:
 
 #    #+BEGIN_EXAMPLE
 #      * Top level headline
@@ -733,37 +726,38 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #          some text
 #      *** 3rd level
 #          more text
-
---
-# # + BEGIN_EXAMPLE * Título de nivel superior ** Segundo nivel ***
-# Nivel de tercero Texto *** Nivel de tercero Más texto
-
+#
 #      * Another top level headline
 #    #+END_EXAMPLE
 
---
-# * Otro título de nivel superior # + END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     * Encabezado principal
+     ** Segundo nivel
+     *** 3er. nivel
+         algo de texto
+     *** 3er. nivel
+         mas texto
+
+     * Otro encabezado principal
+   #+END_EXAMPLE
 
 #    Note that a headline named after =org-footnote-section=, which
 #    defaults to ‘Footnotes', is considered as special. A subtree with
 #    this headline will be silently ignored by exporting functions.
 
---
-# Tenga en cuenta que un titular nombrado después = org nota - sección
-# = , que Defecto es ' Notas ' , es considerado como especial. Un
-# subárbol con Este titular será silenciosamente ignorada por las
-# funciones de exportación .
+   Tenga en cuenta que un encabezado nombrado después de
+   =org-footnote-section=, que por defecto es ‘Footnotes', es
+   considerado como especial. Un subárbol de este encabezado será
+   silenciosamente ignorado por las funciones de exportación.
 
 #    Some people find the many stars too noisy and would prefer an
 #    outline that has whitespace followed by a single star as headline
 #    starters.  [[@Clean-view][Clean view]], describes a setup to realize this.
 
---
-# Algunas personas encuentran las muchas estrellas demasiado ruidoso y
-# preferirían un Esquema que ha seguido de espacio en blanco por una
-# sola estrella como titular Arrancadores #. [ [@ Clean - view] [
-# Vista Clean] ] , describe una configuración para darse cuenta de
-# esto.
+   Algunas personas encuentran tantos asteriscos demasiado molestos y
+   prefieren encabezado que comiencen por espacios en blanco seguidos
+   por una sola estrella.  En [[@Clean-view][Vista limpia]], se describe la
+   configuración para realizar esto.
 
 #    An empty line after the end of a subtree is considered part of it
 #    and will be hidden when the subtree is folded. However, if you
@@ -772,60 +766,51 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #    view. See the variable =org-cycle-separator-lines= to modify this
 #    behavior.
 
---
-# Una línea vacía después de la final de un subárbol se considera
-# parte de la misma Y se oculta cuando se dobla el subárbol . Sin
-# embargo , si usted Dejan al menos dos líneas en blanco , una línea
-# vacía permanecerá visible Después de doblar el subárbol , con el fin
-# de estructurar el colapsado Vista . Ver las variables = org ciclo-
-# separador -lines - = a modificar la presente Comportamiento .
+   Una línea vacía al final de un subárbol se considera parte de este
+   y se oculta cuando se oculta el subárbol.  Sin embargo , si usted
+   deja al menos dos líneas en blanco, una línea vacía permanecerá
+   visible después de ocultar el subárbol, con el fin de estructurar
+   la vista oculta. Vea las variables =org-cycle-separator-lines= para
+   modificar este comportamiento.
 
 # ** 2.3 Visibility cycling                                             <<@Visibility-cycling>>
-
---
-# ** 2.3 Visibilidad ciclismo << @ Visibilidad de la bicicleta >>
+** 2.3 Visibilidad ciclica                                            <<@Visibility-cycling>>
 
 #    | • [[@Global-and-local-cycling][Global and local cycling]]: | Cycling through various visibility states        |
 #    | • [[@Initial-visibility][Initial visibility]]:       | Setting the initial visibility state             |
 #    | • [[@Catching-invisible-edits][Catching invisible edits]]: | Preventing mistakes when editing invisible parts |
 
---
-# | • [ [@ Global- y -local- ciclismo ] [ ciclismo global y local ] ]
-# | • : | Ciclismo a través de varios estados de visibilidad | [ [@
-# | • visibilidad inicial ] [ visibilidad inicial ] ] : | Establecer
-# | • el estado de visibilidad inicial | [ [@ Atrapar - invisible -
-# | • ediciones ] [ Ponerme ediciones invisibles ] ] : | Prevención de
-# | • errores al editar partes invisibles |
+   | • [[@Global-and-local-cycling][Rotacion global y local]]:               | Rotacion a través de varios estados de visibilidad |
+   | • [[@Initial-visibility][Visibilidad inicial]]:                | Establecer el estado de visibilidad inicial        |
+   | • [[@Catching-invisible-edits][Capturar modificaciones invisibles]]: | Prevención de errores al editar partes invisibles  |
 
 # *** 2.3.1 Global and local cycling                                    <<@Global-and-local-cycling>>
-
---
-# *** 2.3.1 ciclo global y local << @ -local- global - ciclismo y >>
+*** 2.3.1 Rotacion global y local                                     <<@Global-and-local-cycling>>
 
 #     Outlines make it possible to hide parts of the text in the
 #     buffer. Org uses just two commands, bound to =TAB= and S-TAB to
 #     change the visibility in the buffer.
 
---
-# Contornos hacen posible para ocultar partes del texto en el
-#     amortiguador. Org utiliza sólo dos comandos , unidos a = TAB = y
-#     S- TAB para Cambiar la visibilidad en el búfer.
+   Los esquemas hacen posible ocultar partes del texto en el
+   bufer. Org utiliza sólo dos comandos, ligados a =TAB= y =S-TAB=
+   para cambiar la visibilidad en el búfer.
 
-#      - */TAB/* (=org-cycle=)\\
 #        /Subtree cycling/ :: Rotate current subtree among the states
 
---
-# - * / TAB / * ( = org- ciclo =) \\ Ciclismo # / subárbol / :: Gire
-subárbol actual entre los estados
+     - =TAB= (=org-cycle=)
 
-#        #+BEGIN_EXAMPLE
-#          ,-> FOLDED -> CHILDREN -> SUBTREE --.
-#          '-----------------------------------'
-#        #+END_EXAMPLE
+       /Subtree cycling/ : Alterne entre entre estados del subarbol
+       actual
 
---
-# # + BEGIN_EXAMPLE , -> PLEGABLES - > Niños - > SUBTREE - .  '
-#----------------------------------- ' # + END_EXAMPLE
+#       #+BEGIN_EXAMPLE
+#         ,-> FOLDED -> CHILDREN -> SUBTREE --.
+#         '-----------------------------------'
+#       #+END_EXAMPLE
+
+       #+BEGIN_EXAMPLE
+         ,-> PLEGADO -> HIJOS -> SUBARBOL --.
+         '----------------------------------'
+       #+END_EXAMPLE
 
 #        The cursor must be on a headline for this to
 #        work[fn:FOOT6]. When the cursor is at the beginning of the
@@ -834,31 +819,30 @@ subárbol actual entre los estados
 #        called with a prefix argument (*/C-u TAB/*), global cycling is
 #        invoked.
 
---
-# El cursor debe estar en un titular para que esto Work [ fn : FOOT6 ]
-# . Cuando el cursor se encuentra en el comienzo de la Búfer y la
-# primera línea no es un titular , entonces = TAB = Realmente ejecuta
-# el ciclismo mundial ( véase más adelante ) [nota : FOOT7 ] . también
-# cuando Llamada con un argumento prefijo (* / Cu TAB / *) , ciclismo
-# mundial es Invocado.
+       El cursor debe estar en un encabezade para que esto
+       funcione[fn:FOOT6]. Cuando el cursor se encuentra al comienzo
+       del búfer y la primera línea no es un encabezado, entonces
+       =TAB= ejecuta la rotacion global (véase más adelante
+       )[fn:FOOT7]. También cuando llama con el argumento prefijo
+       (=C-u TAB=) , se invoca la rotacion global.
 
-#      - */S-TAB/* (=org-global-cycle=)\\
-#        */C-u TAB/*\\
 #        /Global cycling/ :: Rotate the entire buffer among the states
 
---
-# - * / S - TAB / * ( = org- ciclo mundial =) \\ / C -u TAB / * \\ # /
-# * Ciclismo Global / :: Gire toda la memoria intermedia entre los
-# * estados
+     - =S-TAB= (=org-global-cycle=)
+     - =C-u TAB=
 
-#        #+BEGIN_EXAMPLE
-#        ,-> OVERVIEW -> CONTENTS -> SHOW ALL --.
-#        '--------------------------------------'
-#        #+END_EXAMPLE
+       /Global cycling/ : Rotar entre los estados de todo el bufer
 
---
-# # + BEGIN_EXAMPLE , - > Sumario -> Contenido - > MOSTRAR TODOS - .
-#' -------------------------------------- ' # + END_EXAMPLE
+
+#       #+BEGIN_EXAMPLE
+#       ,-> OVERVIEW -> CONTENTS -> SHOW ALL --.
+#       '--------------------------------------'
+#       #+END_EXAMPLE
+
+       #+BEGIN_EXAMPLE
+         ,-> VISIÓN GENERAL -> CONTENIDOS -> MOSTRAR TODO --.
+         '--------------------------------------------------'
+       #+END_EXAMPLE
 
 #        When */S-TAB/* is called with a numeric prefix argument =N=,
 #        the CONTENTS view up to headlines of level =N= will be
@@ -971,9 +955,7 @@ N = .
   .
 
 # *** 2.3.2 Initial visibility                                          <<@Initial-visibility>>
-
---
-# *** 2.3.2 visibilidad inicial << @ visibilidad inicial >>
+*** 2.3.2 Visibilidad inicial << @ visibilidad inicial >>
 
 #     When Emacs first visits an Org file, the global state is set to
 #     OVERVIEW, i.e., only the top level headlines are
@@ -1038,10 +1020,7 @@ N = .
 # "visibilidad" Propiedades en las entradas individuales .
 
 # *** 2.3.3 Catching invisible edits                                    <<@Catching-invisible-edits>>
-
---
-# *** 2.3.3 Ponerme ediciones invisibles << @ Atrapar - invisibles
-      -ediciones >>
+*** 2.3.3 Capturar modificaciones invisibles                          <<@Catching-invisible-edits>>
 
 #     Sometimes you may inadvertently edit an invisible part of the
 #     buffer and be confused on what has been edited and how to undo the
@@ -1058,9 +1037,7 @@ N = .
 # procesarlos.
 
 # ** 2.4 Motion                                                         <<@Motion>>
-
---
-# ** 2.4 Movimiento << @ Movimiento >>
+** 2.4 Movimiento                                                     <<@Motion>>
 
 #    The following commands jump to other headlines in the buffer.
 
@@ -1160,9 +1137,7 @@ N = .
 # Véase también la opción = org- goto- interface = .
 
 # ** 2.5 Structure editing                                              <<@Structure-editing>>
-
---
-# ** Edición Estructura 2.5 << @ Estructura de edición >>
+** 2.5 Editar Estructura                                              <<@Structure-editing>>
 
 #     - */M-RET/* (=org-insert-heading=)
 
@@ -1588,9 +1563,7 @@ Caso sensible.
 # teclas de cursor Meta- Tienen una funcionalidad diferente .
 
 # ** 2.6 Sparse trees                                                   <<@Sparse-trees>>
-
---
-# ** 2,6 árboles Escasos << @ Escasos -árboles >>
+** 2.6 Árboles poco densos                                            <<@Sparse-trees>>
 
 #    An important feature of Org mode is the ability to construct
 #    /sparse trees/ for selected information in an outline tree, so that
@@ -1731,9 +1704,7 @@ despachador :
 # el Archivo resultante .
 
 # ** 2.7 Plain lists                                                    <<@Plain-lists>>
-
---
-# ** 2.7 listas Plain << @ Llano- listas >>
+** 2.7 Listas Planas                                                  <<@Plain-lists>>
 
 #    Within an entry of the outline tree, hand-formatted lists can
 #    provide additional structure. They also provide a way to create
@@ -2136,9 +2107,7 @@ nuevo a su posición inicial .
 # personalizada.
 
 # ** 2.8 Drawers                                                        <<@Drawers>>
-
---
-# ** 2.8 Cajones << @ Cajones >>
+** 2.8 Cajones                                                        <<@Drawers>>
 
 #    Sometimes you want to keep information associated with an entry,
 #    but you normally don't want to see it. For this, Org mode has
@@ -2233,9 +2202,7 @@ Cambios , el uso
 # .
 
 # ** 2.9 Blocks                                                         <<@Blocks>>
-
---
-# ** 2.9 Bloques << @ Bloques >>
+** 2.9 Bloques                                                         <<@Blocks>>
 
 #    Org mode uses begin...end blocks for various purposes from
 #    including source code examples (see [[@Literal-examples][Literal examples]]) to capturing
@@ -2265,9 +2232,7 @@ archivo utilizando
 # # END_EXAMPLE
 
 # ** 2.10 Footnotes                                                     <<@Footnotes>>
-
---
-# ** 2.10 Notas << @ Notas >>
+** 2.10 Notas                                                         <<@Footnotes>>
 
 #    Org mode supports the creation of footnotes. In contrast to the
 #    footnote.el package, Org mode's footnotes are designed for work on
@@ -2514,9 +2479,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 # Presionando * / C- c ' / * .
 
 # ** 2.11 The Orgstruct minor mode                                      <<@Orgstruct-mode>>
-
---
-# ** 2.11 El modo menor Orgstruct << @ Orgstruct modo >>
+** 2.11 El modo menor Orgstruct                                       <<@Orgstruct-mode>>
 
 #    If you like the intuitive way the Org mode structure editing and
 #    list formatting works, you might want to use these commands in
@@ -2586,9 +2549,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 # correctamente .
 
 # ** 2.12 Org syntax                                                    <<@Org-syntax>>
-
---
-# ** 2,12 sintaxis Org << @ Org - sintaxis >>
+** 2.12 Sintaxis Org                                                  <<@Org-syntax>>
 
 #    A reference document providing a formal description of Org's syntax
 #    is available as [[http://orgmode.org/worg/dev/org-syntax.html][a draft on Worg]], written and maintained by Nicolas
@@ -16359,7 +16320,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #   | • [[@Customization][Customization]]:             | Adapting Org to your taste                       |
 #   | • [[@In_buffer-settings][In-buffer settings]]:        | Overview of the #+KEYWORDS                       |
 #   | • [[@The-very-busy-C_c-C_c-key][The very busy C-c C-c key]]: | When in doubt, press C-c C-c                     |
-#   | • [[@Clean-view][Clean view]]:                | Getting rid of leading stars in the outline      |
+#   | • [[@Clean-view][Vista limpia]]:                | Getting rid of leading stars in the outline      |
 #   | • [[@TTY-keys][TTY keys]]:                  | Using Org on a tty                               |
 #   | • [[@Interaction][Interaction]]:               | Other Emacs packages                             |
 #   | • [[@org_crypt][org-crypt]]:                 | Encrypting Org files                             |
@@ -19466,7 +19427,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | checkboxes                               | [[@Checkboxes][Checkboxes]]                                         |
 #    | checkboxes and TODO dependencies         | [[@TODO-dependencies][TODO dependencies]]                                  |
 #    | children, subtree visibility state       | [[@Global-and-local-cycling][Global and local cycling]]                           |
-#    | clean outline view                       | [[@Clean-view][Clean view]]                                         |
+#    | clean outline view                       | [[@Clean-view][Vista limpia]]                                         |
 #    | clocking time                            | [[@Clocking-work-time][Clocking work time]]                                 |
 #    | clocktable, dynamic block                | [[@The-clock-table][The clock table]]                                    |
 #    | code block, batch execution              | [[@Batch-execution][Batch execution]]                                    |
@@ -19677,7 +19638,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =hideblocks=, STARTUP keyword            | [[@Blocks][Blocks]]                                             |
 #    | =hideblocks=, STARTUP keyword            | [[@In_buffer-settings][In-buffer settings]]                                 |
 #    | =hidestars=, STARTUP keyword             | [[@In_buffer-settings][In-buffer settings]]                                 |
-#    | hiding leading stars                     | [[@Clean-view][Clean view]]                                         |
+#    | hiding leading stars                     | [[@Clean-view][Vista limpia]]                                         |
 #    | history                                  | [[@History-and-acknowledgments][History and acknowledgments]]                        |
 #    | hooks                                    | [[@Hooks][Hooks]]                                              |
 #    | horizontal rules, in ASCII export        | [[@ASCII_Latin_1_UTF_8-export][ASCII/Latin-1/UTF-8 export]]                         |
@@ -19854,7 +19815,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | occur, command                           | [[@Sparse-trees][Sparse trees]]                                       |
 #    | occur-tree                               | [[@Storing-searches][Storing searches]]                                   |
 #    | =odd=, STARTUP keyword                   | [[@In_buffer-settings][In-buffer settings]]                                 |
-#    | odd-levels-only outlines                 | [[@Clean-view][Clean view]]                                         |
+#    | odd-levels-only outlines                 | [[@Clean-view][Vista limpia]]                                         |
 #    | ODT                                      | [[@OpenDocument-Text-export][OpenDocument Text export]]                           |
 #    | ODT_STYLES_FILE                          | [[@ODT-specific-export-settings][ODT specific export settings]]                       |
 #    | OpenDocument                             | [[@OpenDocument-Text-export][OpenDocument Text export]]                           |
@@ -21470,7 +21431,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 # ** O                                                                  <<@Variable-Index_vr_letter-O>>
 
 #    | <40>                                     | <40>                                     |
-#    | =org-adapt-indentation=                  | [[@Clean-view][Clean view]]                               |
+#    | =org-adapt-indentation=                  | [[@Clean-view][Vista limpia]]                               |
 #    | =org-agenda-add-entry-text-maxlines=     | [[@Exporting-agenda-views][Exporting agenda views]]                   |
 #    | =org-agenda-bulk-custom-functions=       | [[@Agenda-commands][Agenda commands]]                          |
 #    | =org-agenda-category-filter-preset=      | [[@Filtering_limiting-agenda-items][Filtering/limiting agenda items]]          |
@@ -21689,10 +21650,10 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =org-goto-auto-isearch=                  | [[@Motion][Motion]]                                   |
 #    | =org-goto-interface=                     | [[@Motion][Motion]]                                   |
 #    | =org-group-tags=                         | [[@Tag-hierarchy][Tag hierarchy]]                            |
-#    | =org-hide (face)=                        | [[@Clean-view][Clean view]]                               |
+#    | =org-hide (face)=                        | [[@Clean-view][Vista limpia]]                               |
 #    | =org-hide-block-startup=                 | [[@Blocks][Blocks]]                                   |
 #    | =org-hide-leading-stars=                 | [[@In_buffer-settings][In-buffer settings]]                       |
-#    | =org-hide-leading-stars=                 | [[@Clean-view][Clean view]]                               |
+#    | =org-hide-leading-stars=                 | [[@Clean-view][Vista limpia]]                               |
 #    | =org-hierarchical-todo-statistics=       | [[@Breaking-down-tasks][Breaking down tasks]]                      |
 #    | =org-highest-priority=                   | [[@Priorities][Priorities]]                               |
 #    | =org-highest-priority=                   | [[@In_buffer-settings][In-buffer settings]]                       |
@@ -21792,7 +21753,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =org-md-headline-style=                  | [[@Markdown-export][Markdown export]]                          |
 #    | =org-odd-levels-only=                    | [[@Matching-tags-and-properties][Matching tags and properties]]             |
 #    | =org-odd-levels-only=                    | [[@In_buffer-settings][In-buffer settings]]                       |
-#    | =org-odd-levels-only=                    | [[@Clean-view][Clean view]]                               |
+#    | =org-odd-levels-only=                    | [[@Clean-view][Vista limpia]]                               |
 #    | =org-odd-levels-only=                    | [[@Special-agenda-views][Special agenda views]]                     |
 #    | =org-odt-category-map-alist=             | [[@Labels-and-captions-in-ODT-export][Labels and captions in ODT export]]        |
 #    | =org-odt-convert=                        | [[@Extending-ODT-export][Extending ODT export]]                     |
@@ -21928,169 +21889,177 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 # * Footnotes
 
-# [fn:FOOT1]
-# If you don't use font-lock globally, turn it on in Org buffer with
-# =(add-hook 'org-mode-hook 'turn-on-font-lock)=
-
 [fn:FOOT1]
 Si no se utiliza font-lock a nivel glabal, debe activarlo en el buffer
 Org con =(add-hook 'org-mode-hook 'turn-on-font-lock)=
 
-# [fn:FOOT2]
-# Please consider subscribing to the mailing list, in order to minimize
-# the work the mailing list moderators have to do.
+# If you don't use font-lock globally, turn it on in Org buffer with
+# =(add-hook 'org-mode-hook 'turn-on-font-lock)=
 
 [fn:FOOT2]
 Por favor considere suscribirse a la lista de correo, con el fin de
 reducir el trabajo que los moderadores de correo tienen que hacer.
 
-# [fn:FOOT3]
-# Easy templates insert lowercase keywords and Babel dynamically inserts
-# =#+results=.
+# Please consider subscribing to the mailing list, in order to minimize
+# the work the mailing list moderators have to do.
 
 [fn:FOOT3]
 Las plantillas insertan fácilmente palabras clave minúsculas y Babel
 inserta de forma dinámica =#+results=.
 
-# [fn:FOOT4]
+# Easy templates insert lowercase keywords and Babel dynamically inserts
+# =#+results=.
+
+[fn:FOOT4]
+Vea las variables =org-special-ctrl-a/e=, =org-special-ctrl-k=, y
+=org-ctrl-k-protect-subtree= para configurar el comportamiento
+especial de =C-a=, =C-e=, y =C-k= en los encabezados.
+
 # See the variables =org-special-ctrl-a/e=, =org-special-ctrl-k=, and
 # =org-ctrl-k-protect-subtree= to configure special behavior of */C-a/*,
 # */C-e/*, and */C-k/* in headlines.
 
-# [fn:FOOT5]
+[fn:FOOT5]
+Clocking sólo funciona con encabezados con menos de 30 asteriscos de
+indentacion.
+
 # Clocking only works with headings indented less than 30 stars.
 
-# [fn:FOOT6]
+[fn:FOOT6]
+Sin embargo, vea, la opción =org-cycle-emulate-tab=.
+
 # see, however, the option =org-cycle-emulate-tab=.
 
-# [fn:FOOT7]
+[fn:FOOT7]
+Vea la opción =org-cycle-global-at-bob=.
+
 # see the option =org-cycle-global-at-bob=.
 
-# [fn:FOOT8]
+[fn:FOOT8]
 # The indirect buffer (see [[http://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Indirect-Buffers][Indirect Buffers]] in GNU Emacs Manual) will
 # contain the entire buffer, but will be narrowed to the current
 # tree. Editing the indirect buffer will also change the original
 # buffer, but without affecting visibility in that buffer.
 
-# [fn:FOOT9]
+[fn:FOOT9]
 # When =org-agenda-inhibit-startup= is non- =nil=, Org will not honor
 # the default visibility state when first opening a file for the agenda
 # (see [[@Speeding-up-your-agendas][Speeding up your agendas]]).
 
-# [fn:FOOT10]
+[fn:FOOT10]
 # See also the variable =org-show-context-detail= to decide how much
 # context is shown around each match.
 
-# [fn:FOOT11]
+[fn:FOOT11]
 # This depends on the option =org-remove-highlights-with-change=
 
-# [fn:FOOT12]
+[fn:FOOT12]
 # This does not work under XEmacs, because XEmacs uses selective display
 # for outlining, not text properties.
 
-# [fn:FOOT13]
+[fn:FOOT13]
 # When using ‘*' as a bullet, lines must be indented or they will be
 # seen as top-level headlines. Also, when you are hiding leading stars
 # to get a clean outline view, plain list items starting with a star may
 # be hard to distinguish from true headlines. In short: even though ‘*'
 # is supported, it may be better to not use it for plain list items.
 
-# [fn:FOOT14]
+[fn:FOOT14]
 # You can filter out any of them by configuring
 # =org-plain-list-ordered-item-terminator=.
 
-# [fn:FOOT15]
+[fn:FOOT15]
 # You can also get ‘a.', ‘A.', ‘a)' and ‘A)' by configuring
 # =org-list-allow-alphabetical=. To minimize confusion with normal text,
 # those are limited to one character only. Beyond that limit, bullets
 # will automatically fallback to numbers.
 
-# [fn:FOOT16]
+[fn:FOOT16]
 # If there's a checkbox in the item, the cookie must be put /before/ the
 # checkbox. If you have activated alphabetical lists, you can also use
 # counters like =[@b]=.
 
-# [fn:FOOT17]
+[fn:FOOT17]
 # See also =org-list-empty-line-terminates-plain-lists=.
 
-# [fn:FOOT18]
+[fn:FOOT18]
 # Org only changes the filling settings for Emacs. For XEmacs, you
 # should use Kyle E. Jones' filladapt.el. To turn this on, put into
 # .emacs: =(require 'filladapt)=
 
-# [fn:FOOT19]
+[fn:FOOT19]
 # If you do not want the item to be split, customize the variable
 # =org-M-RET-may-split-line=.
 
-# [fn:FOOT20]
+[fn:FOOT20]
 # If you want to cycle around items that way, you may customize
 # =org-list-use-circular-motion=.
 
-# [fn:FOOT21]
+[fn:FOOT21]
 # See =org-list-use-circular-motion= for a cyclic behavior.
 
-# [fn:FOOT22]
+[fn:FOOT22]
 # The corresponding in-buffer setting is: =#+STARTUP: fninline= or
 # =#+STARTUP: nofninline=
 
-# [fn:FOOT23]
+[fn:FOOT23]
 # the corresponding in-buffer options are =fnadjust= and =nofnadjust=.
 
-# [fn:FOOT24]
+[fn:FOOT24]
 # To insert a vertical bar into a table field, use =\vert= or, inside a
 # word =abc\vert{}def=.
 
-# [fn:FOOT25]
+[fn:FOOT25]
 # This feature does not work on XEmacs.
 
-# [fn:FOOT26]
+[fn:FOOT26]
 # Centering does not work inside Emacs, but it does have an effect when
 # exporting to HTML.
 
-# [fn:FOOT27]
+[fn:FOOT27]
 # Org will understand references typed by the user as ‘B4', but it will
 # not use this syntax when offering a formula for editing. You can
 # customize this behavior using the option
 # =org-table-use-standard-references=.
 
-# [fn:FOOT28]
+[fn:FOOT28]
 # For backward compatibility you can also use special names like =$LR5=
 # and =$LR12= to refer in a stable way to the 5th and 12th field in the
 # last row of the table. However, this syntax is deprecated, it should
 # not be used for new documents. Use =@>$= instead.
 
-# [fn:FOOT29]
+[fn:FOOT29]
 # The computation time scales as O(N\^2) because the table named =FOO=
 # is parsed for each field to be read.
 
-# [fn:FOOT30]
+[fn:FOOT30]
 # constants.el can supply the values of constants in two different unit
 # systems, =SI= and =cgs=. Which one is used depends on the value of the
 # variable =constants-unit-system=. You can use the =#+STARTUP= options
 # =constSI= and =constcgs= to set this value for the current buffer.
 
-# [fn:FOOT31]
+[fn:FOOT31]
 # The ‘printf' reformatting is limited in precision because the value
 # passed to it is converted into an ‘integer' or ‘double'. The ‘integer'
 # is limited in size by truncating the signed value to 32 bits. The
 # ‘double' is limited in precision to 64 bits overall which leaves
 # approximately 16 significant decimal digits.
 
-# [fn:FOOT32]
+[fn:FOOT32]
 # Such names must start by an alphabetic character and use only
 # alphanumeric/underscore characters.
 
-# [fn:FOOT33]
+[fn:FOOT33]
 # To insert a link targeting a headline, in-buffer completion can be
 # used.  Just type a star followed by a few optional letters into the
 # buffer and press */M-TAB/*. All headlines in the current buffer will
 # be offered as completions.
 
-# [fn:FOOT34]
+[fn:FOOT34]
 # When targeting a =#+NAME= keyword, =#+CAPTION= keyword is mandatory in
 # order to get proper numbering (see [[@Images-and-tables][Images and tables]]).
 
-# [fn:FOOT35]
+[fn:FOOT35]
 # The actual behavior of the search will depend on the value of the
 # option =org-link-search-must-match-exact-headline=. If its value is
 # =nil=, then a fuzzy text search will be done. If it is t, then only
@@ -22099,147 +22068,147 @@ inserta de forma dinámica =#+results=.
 # searched; if it is not found, then the user will be queried to create
 # it.
 
-# [fn:FOOT36]
+[fn:FOOT36]
 # Headline searches always match the exact headline, ignoring spaces and
 # cookies. If the headline is not found and the value of the option
 # =org-link-search-must-match-exact-headline= is =query-to-create=, then
 # the user will be queried to create it.
 
-# [fn:FOOT37]
+[fn:FOOT37]
 # If the headline contains a timestamp, it will be removed from the link
 # and result in a wrong link -- you should avoid putting timestamp in
 # the headline.
 
-# [fn:FOOT38]
+[fn:FOOT38]
 # The library org-id.el must first be loaded, either through
 # =org-customize= by enabling =org-id= in =org-modules=, or by adding
 # =(require 'org-id)= in your .emacs.
 
-# [fn:FOOT39]
+[fn:FOOT39]
 # Note that you don't have to use this command to insert a link. Links
 # in Org are plain text, and you can type or paste them straight into
 # the buffer. By using this command, the links are automatically
 # enclosed in double brackets, and you will be asked for the optional
 # descriptive text.
 
-# [fn:FOOT40]
+[fn:FOOT40]
 # After insertion of a stored link, the link will be removed from the
 # list of stored links. To keep it in the list later use, use a triple
 # */C-u/* prefix argument to */C-c C-l/*, or configure the option
 # =org-keep-stored-link-after-insertion=.
 
-# [fn:FOOT41]
+[fn:FOOT41]
 # This works by calling a special function =org-PREFIX-complete-link=.
 
-# [fn:FOOT42]
+[fn:FOOT42]
 # See the option =org-display-internal-link-with-indirect-buffer=
 
-# [fn:FOOT43]
+[fn:FOOT43]
 # with corresponding =#+STARTUP= keywords =inlineimages= and
 # =noinlineimages=
 
-# [fn:FOOT44]
+[fn:FOOT44]
 # For backward compatibility, line numbers can also follow a single
 # colon.
 
-# [fn:FOOT45]
+[fn:FOOT45]
 # Of course, you can make a document that contains only long lists of
 # TODO items, but this is not required.
 
-# [fn:FOOT46]
+[fn:FOOT46]
 # Changing this variable only becomes effective after restarting Org
 # mode in a buffer.
 
-# [fn:FOOT47]
+[fn:FOOT47]
 # This is also true for the t command in the timeline and agenda
 # buffers.
 
-# [fn:FOOT48]
+[fn:FOOT48]
 # All characters are allowed except =@^!=, which have a special meaning
 # here.
 
-# [fn:FOOT49]
+[fn:FOOT49]
 # Check also the option =org-fast-tag-selection-include-todo=, it allows
 # you to change the TODO state through the tags interface (see [[@Setting-tags][Setting
 # tags]]), in case you like to mingle the two concepts. Note that this
 # means you need to come up with unique keys across both sets of
 # keywords.
 
-# [fn:FOOT50]
+[fn:FOOT50]
 # Org mode parses these lines only when Org mode is activated after
 # visiting a file. */C-c C-c/* with the cursor in a line starting with
 # ‘#+' is simply restarting Org mode for the current buffer.
 
-# [fn:FOOT51]
+[fn:FOOT51]
 # The corresponding in-buffer setting is: =#+STARTUP: logdone=
 
-# [fn:FOOT52]
+[fn:FOOT52]
 # The corresponding in-buffer setting is: =#+STARTUP: lognotedone=.
 
-# [fn:FOOT53]
+[fn:FOOT53]
 # See the option =org-log-states-order-reversed=
 
-# [fn:FOOT54]
+[fn:FOOT54]
 # Note that the =LOGBOOK= drawer is unfolded when pressing =SPC= in the
 # agenda to show an entry---use =C-u SPC= to keep it folded here
 
-# [fn:FOOT55]
+[fn:FOOT55]
 # It is possible that Org mode will record two timestamps when you are
 # using both =org-log-done= and state change logging. However, it will
 # never prompt for two notes---if you have configured both, the state
 # change recording note will take precedence and cancel the ‘Closing
 # Note'.
 
-# [fn:FOOT56]
+[fn:FOOT56]
 # See also the option =org-priority-start-cycle-with-default=.
 
-# [fn:FOOT57]
+[fn:FOOT57]
 # To keep subtasks out of the global TODO list, see the
 # =org-agenda-todo-list-sublevels=.
 
-# [fn:FOOT58]
+[fn:FOOT58]
 # With the exception of description lists. But you can allow it by
 # modifying =org-list-automatic-rules= accordingly.
 
-# [fn:FOOT59]
+[fn:FOOT59]
 # Set the option =org-checkbox-hierarchical-statistics= if you want such
 # cookies to count all checkboxes below the cookie, not just those
 # belonging to direct children.
 
-# [fn:FOOT60]
+[fn:FOOT60]
 # */C-u C-c C-c/* on the /first/ item of a list with no checkbox will
 # add checkboxes to the rest of the list.
 
-# [fn:FOOT61]
+[fn:FOOT61]
 # As with all these in-buffer settings, pressing */C-c C-c/* activates
 # any changes in the line.
 
-# [fn:FOOT62]
+[fn:FOOT62]
 # This is only true if the search does not involve more complex tests
 # including properties (see [[@Property-searches][Property searches]]).
 
-# [fn:FOOT63]
+[fn:FOOT63]
 # Keys will automatically be assigned to tags which have no configured
 # keys.
 
-# [fn:FOOT64]
+[fn:FOOT64]
 # Please note that the COLUMNS definition must be on a single line---it
 # is wrapped here only because of formatting constraints.
 
-# [fn:FOOT65]
+[fn:FOOT65]
 # Contributed packages are not part of Emacs, but are distributed with
 # the main distribution of Org (visit [[http://orgmode.org]]).
 
-# [fn:FOOT66]
+[fn:FOOT66]
 # In this simplest form, the day name is optional when you type the date
 # yourself. However, any dates inserted or modified by Org will add that
 # day name, for reading convenience.
 
-# [fn:FOOT67]
+[fn:FOOT67]
 # This is inspired by the standard ISO 8601 date/time format. To use an
 # alternative format, see [[@Custom-time-format][Custom time format]].
 
-# [fn:FOOT68]
+[fn:FOOT68]
 # When working with the standard diary sexp functions, you need to be
 # very careful with the order of the arguments. That order depends
 # evilly on the variable =calendar-date-style= (or, for older Emacs
@@ -22253,78 +22222,78 @@ inserta de forma dinámica =#+results=.
 # wherever applicable, independent of the value of
 # =calendar-date-style=.
 
-# [fn:FOOT69]
+[fn:FOOT69]
 # See the variable =org-read-date-prefer-future=. You may set that
 # variable to the symbol =time= to even make a time before now shift the
 # date to tomorrow.
 
-# [fn:FOOT70]
+[fn:FOOT70]
 # If you don't need/want the calendar, configure the variable
 # =org-popup-calendar-for-date-prompt=.
 
-# [fn:FOOT71]
+[fn:FOOT71]
 # If you find this distracting, turn the display off with
 # =org-read-date-display-live=.
 
-# [fn:FOOT72]
+[fn:FOOT72]
 # It will still be listed on that date after it has been marked DONE. If
 # you don't like this, set the variable
 # =org-agenda-skip-scheduled-if-done=.
 
-# [fn:FOOT73]
+[fn:FOOT73]
 # The ‘SCHEDULED' and ‘DEADLINE' dates are inserted on the line right
 # below the headline. Don't put any text between this line and the
 # headline.
 
-# [fn:FOOT74]
+[fn:FOOT74]
 # with corresponding =#+STARTUP= keywords =logredeadline=,
 # =lognoteredeadline=, and =nologredeadline=
 
-# [fn:FOOT75]
+[fn:FOOT75]
 # with corresponding =#+STARTUP= keywords =logreschedule=,
 # =lognotereschedule=, and =nologreschedule=
 
-# [fn:FOOT76]
+[fn:FOOT76]
 # In fact, the target state is taken from, in this sequence, the
 # =REPEAT_TO_STATE= property or the variable =org-todo-repeat-to-state=.
 # If neither of these is specified, the target state defaults to the
 # first state of the TODO state sequence.
 
-# [fn:FOOT77]
+[fn:FOOT77]
 # You can change this using the option =org-log-repeat=, or the
 # =#+STARTUP= options =logrepeat=, =lognoterepeat=, and =nologrepeat=.
 # With =lognoterepeat=, you will also be prompted for a note.
 
-# [fn:FOOT78]
+[fn:FOOT78]
 # Clocking only works if all headings are indented with less than 30
 # stars. This is a hardcoded limitation of =lmax= in =org-clock-sum=.
 
-# [fn:FOOT79]
+[fn:FOOT79]
 # To resume the clock under the assumption that you have worked on this
 # task while outside Emacs, use =(setq org-clock-persist t)=.
 
-# [fn:FOOT80]
+[fn:FOOT80]
 # To add an effort estimate “on the fly”, hook a function doing this to
 # =org-clock-in-prepare-hook=.
 
-# [fn:FOOT81]
+[fn:FOOT81]
 # as recorded by the =LAST_REPEAT= property
 
-# [fn:FOOT82]
+[fn:FOOT82]
 # See also the variable =org-clock-modeline-total=.
 
-# [fn:FOOT83]
+[fn:FOOT83]
 # The corresponding in-buffer setting is: =#+STARTUP: lognoteclock-out=
 
-# [fn:FOOT84]
+[fn:FOOT84]
 # Language terms can be set through the variable
 # =org-clock-clocktable-language-setup=.
 
-# [fn:FOOT85]
+[fn:FOOT85]
 # Note that all parameters must be specified in a single line -- the
 # line is broken here only to fit it into the manual.
 
-# [fn:FOOT86]
+[fn:FOOT86]
 # On computers using Mac OS X, idleness is based on actual user
 # idleness, not just Emacs' idle time. For X11, you can install a
 # utility program x11idle.c, available in the =contrib/scripts=
@@ -22333,73 +22302,73 @@ inserta de forma dinámica =#+results=.
 # you are running Debian, to get the same general treatment of
 # idleness. On other systems, idle time refers to Emacs idle time only.
 
-# [fn:FOOT87]
+[fn:FOOT87]
 # Please note the pitfalls of summing hierarchical data in a flat list
 # (see [[@Agenda-column-view][Agenda column view]]).
 
-# [fn:FOOT88]
+[fn:FOOT88]
 # Please select your own key, */C-c c/* is only a suggestion.
 
-# [fn:FOOT89]
+[fn:FOOT89]
 # Datetree headlines for years accept tags, so if you use both =*
 # 2013 :noexport:= and =* 2013= in your file, the capture will refile
 # the note to the first one matched.
 
-# [fn:FOOT90]
+[fn:FOOT90]
 # If you need one of these sequences literally, escape the % with a
 # backslash.
 
-# [fn:FOOT91]
+[fn:FOOT91]
 # If you define your own link types (see [[@Adding-hyperlink-types][Adding hyperlink types]]), any
 # property you store with =org-store-link-props= can be accessed in
 # capture templates in a similar way.
 
-# [fn:FOOT92]
+[fn:FOOT92]
 # This will always be the other, not the user. See the variable
 # =org-from-is-user-regexp=.
 
-# [fn:FOOT93]
+[fn:FOOT93]
 # If you move entries or Org files from one directory to another, you
 # may want to configure =org-attach-directory= to contain an absolute
 # path.
 
-# [fn:FOOT94]
+[fn:FOOT94]
 # with corresponding =#+STARTUP= keywords =logrefile=, =lognoterefile=,
 # and =nologrefile=
 
-# [fn:FOOT95]
+[fn:FOOT95]
 # If the value of that variable is not a list, but a single file name,
 # then the list of agenda files will be maintained in that external
 # file.
 
-# [fn:FOOT96]
+[fn:FOOT96]
 # When using the dispatcher, pressing < before selecting a command will
 # actually limit the command to the current file, and ignore
 # =org-agenda-files= until the next dispatcher command.
 
-# [fn:FOOT97]
+[fn:FOOT97]
 # For backward compatibility, you can also press 1 to restrict to the
 # current buffer.
 
-# [fn:FOOT98]
+[fn:FOOT98]
 # For backward compatibility, you can also press 0 to restrict to the
 # current region/subtree.
 
-# [fn:FOOT99]
+[fn:FOOT99]
 # For backward compatibility, the universal prefix */C-u/* causes all
 # TODO entries to be listed before the agenda. This feature is
 # deprecated, use the dedicated TODO list, or a block agenda instead
 # (see [[@Block-agenda][Block agenda]]).
 
-# [fn:FOOT100]
+[fn:FOOT100]
 # =org-anniversary= is just like =diary-anniversary=, but the argument
 # order is always according to ISO and therefore independent of the
 # value of =calendar-date-style=.
 
-# [fn:FOOT101]
+[fn:FOOT101]
 # See [[@Tag-searches][Tag searches]].
 
-# [fn:FOOT102]
+[fn:FOOT102]
 # Custom commands can preset a filter by binding the variable
 # =org-agenda-tag-filter-preset= as an option. This filter will then be
 # applied to the view and persist as a basic filter through refreshes
@@ -22407,58 +22376,58 @@ inserta de forma dinámica =#+results=.
 # entire agenda view -- in a block agenda, you should only set this in
 # the global options section, not in the section of an individual block.
 
-# [fn:FOOT103]
+[fn:FOOT103]
 # Only tags filtering will be respected here, effort filtering is ignored.
 
-# [fn:FOOT104]
+[fn:FOOT104]
 # Moving agenda lines does not persist after an agenda refresh and does
 # not modify the contributing .org files
 
-# [fn:FOOT105]
+[fn:FOOT105]
 # You can also create persistent custom functions through
 # =org-agenda-bulk-custom-functions=.
 
-# [fn:FOOT106]
+[fn:FOOT106]
 # This file is parsed for the agenda when =org-agenda-include-diary= is
 # set.
 
-# [fn:FOOT107]
+[fn:FOOT107]
 # You can provide a description for a prefix key by inserting a cons
 # cell with the prefix and the description.
 
-# [fn:FOOT108]
+[fn:FOOT108]
 # /Planned/ means here that these entries have some planning information
 # attached to them, like a time-stamp, a scheduled or a deadline string.
 # See =org-agenda-entry-types= on how to set what planning information
 # will be taken into account.
 
-# [fn:FOOT109]
+[fn:FOOT109]
 # You need to install Hrvoje Niksic's htmlize.el.
 
-# [fn:FOOT110]
+[fn:FOOT110]
 # To create PDF output, the ghostscript ps2pdf utility must be installed
 # on the system. Selecting a PDF file will also create the postscript
 # file.
 
-# [fn:FOOT111]
+[fn:FOOT111]
 # If you want to store standard views like the weekly agenda or the
 # global TODO list as well, you need to define custom commands for them
 # in order to be able to specify file names.
 
-# [fn:FOOT112]
+[fn:FOOT112]
 # Quoting depends on the system you use, please check the FAQ for
 # examples.
 
-# [fn:FOOT113]
+[fn:FOOT113]
 # For LaTeX export, this feature requires the =titletoc= package. Note
 # that =titletoc= must be loaded /before/ =hyperref=. Thus, you may have
 # to customize =org-latex-default-packages-alist=.
 
-# [fn:FOOT114]
+[fn:FOOT114]
 # For a less drastic behavior, consider using a select tag (see
 # [[@Export-settings][Export settings]]) instead.
 
-# [fn:FOOT115]
+[fn:FOOT115]
 # This works automatically for the HTML back-end (it requires version
 # 1.34 of the htmlize.el package, which is distributed with
 # Org). Fontified code chunks in LaTeX can be achieved using either the
@@ -22467,285 +22436,285 @@ inserta de forma dinámica =#+results=.
 # to =org-latex-packages-alist=. Refer to =org-latex-listings= for
 # details.
 
-# [fn:FOOT116]
+[fn:FOOT116]
 # Code in ‘src' blocks may also be evaluated either interactively or on
 # export. See see [[@Working-with-source-code][Working with source code]] for more information on
 # evaluating code blocks.
 
-# [fn:FOOT117]
+[fn:FOOT117]
 # Adding =-k= to =-n -r= will /keep/ the labels in the source code while
 # using line numbers for the links, which might be useful to explain
 # those in an Org mode example code.
 
-# [fn:FOOT118]
+[fn:FOOT118]
 # Upon exit, lines starting with ‘*', ‘,*', ‘#+' and ‘,#+' will get a
 # comma prepended, to keep them from being interpreted by Org as outline
 # nodes or special syntax. These commas will be stripped for editing
 # with */C-c '/*, and also for export.
 
-# [fn:FOOT119]
+[fn:FOOT119]
 # You may select a different-mode with the variable
 # =org-edit-fixed-width-region-mode=.
 
-# [fn:FOOT120]
+[fn:FOOT120]
 # While you can request paragraphs (‘verse', ‘quote', ‘center'), but
 # this places severe restrictions on the type of content that is
 # permissible
 
-# [fn:FOOT121]
+[fn:FOOT121]
 # Note that =org-link-search-must-match-exact-headline= is locally bound
 # to non- =nil=. Therefore, =org-link-search= only matches headlines and
 # named elements.
 
-# [fn:FOOT122]
+[fn:FOOT122]
 # Since commas separate arguments, commas within arguments have to be
 # escaped with a backslash character. Conversely, backslash characters
 # before a comma, and only them, need to be escaped with another
 # backslash character.
 
-# [fn:FOOT123]
+[fn:FOOT123]
 # LaTeX is a macro system based on Donald E. Knuth's TeX system. Many of
 # the features described here as “LaTeX” are really from TeX, but for
 # simplicity I am blurring this distinction.
 
-# [fn:FOOT124]
+[fn:FOOT124]
 # You can turn this on by default by setting the variable
 # =org-pretty-entities=, or on a per-file base with the =#+STARTUP=
 # option =entitiespretty=.
 
-# [fn:FOOT125]
+[fn:FOOT125]
 # When MathJax is used, only the environments recognized by MathJax will
 # be processed. When dvipng program or imagemagick suite is used to
 # create images, any LaTeX environment will be handled.
 
-# [fn:FOOT126]
+[fn:FOOT126]
 # These are respectively available at
 # [[http://sourceforge.net/projects/dvipng/]] and from the imagemagick
 # suite. Choose the converter by setting the variable
 # =org-latex-create-formula-image-program= accordingly.
 
-# [fn:FOOT127]
+[fn:FOOT127]
 # Org mode has a method to test if the cursor is inside such a fragment,
 # see the documentation of the function =org-inside-LaTeX-fragment-p=.
 
-# [fn:FOOT128]
+[fn:FOOT128]
 # It is also possible to use a less intrusive interface by setting
 # =org-export-dispatch-use-expert-ui= to a non- =nil= value. In that
 # case, only a prompt is visible from the minibuffer. From there one can
 # still switch back to regular menu by pressing =?=.
 
-# [fn:FOOT129]
+[fn:FOOT129]
 # The variable =org-export-date-timestamp-format= defines how this
 # time-stamp will be exported.
 
-# [fn:FOOT130]
+[fn:FOOT130]
 # If you want to configure many options this way, you can use several
 # =#+OPTIONS= lines.
 
-# [fn:FOOT131]
+[fn:FOOT131]
 # With the exception of ‘SETUPFILE'.
 
-# [fn:FOOT132]
+[fn:FOOT132]
 # If this property is set, the entry will also get a =:B_environment:=
 # tag to make this visible. This tag has no semantic meaning, it is only
 # a visual aid.
 
-# [fn:FOOT133]
+[fn:FOOT133]
 # The =fragile= option is added automatically if it contains code that
 # requires a verbatim environment, though.
 
-# [fn:FOOT134]
+[fn:FOOT134]
 # But see the variable =org-html-inline-images=.
 
-# [fn:FOOT135]
+[fn:FOOT135]
 # By default Org loads MathJax from [[http://docs.mathjax.org/en/latest/start.html#using-the-mathjax-content-delivery-network-cdn][MathJax.org]].  A link to the terms of
 # service of the MathJax CDN can be found in the docstring of
 # =org-html-mathjax-options=.
 
-# [fn:FOOT136]
+[fn:FOOT136]
 # If the classes on TODO keywords and tags lead to conflicts, use the
 # variables =org-html-todo-kwd-class-prefix= and
 # =org-html-tag-class-prefix= to make them unique.
 
-# [fn:FOOT137]
+[fn:FOOT137]
 # This style is defined in the constant =org-html-style-default=, which
 # you should not modify. To turn inclusion of these defaults off,
 # customize =org-html-head-include-default-style= or set =html-style= to
 # =nil= in an =OPTIONS= line.
 
-# [fn:FOOT138]
+[fn:FOOT138]
 # The default LaTeX output is designed for processing with =pdftex= or
 # =latex=. The LaTeX exporter can be configured to support alternative
 # TeX engines, see see =org-latex-pdf-process=, and alternative
 # packages, see =org-latex-default-packages-alist= and
 # =org-latex-packages-alist=.
 
-# [fn:FOOT139]
+[fn:FOOT139]
 # Into which the values of =org-latex-default-packages-alist= and
 # =org-latex-packages-alist= are spliced.
 
-# [fn:FOOT140]
+[fn:FOOT140]
 # Unlike =LATEX_HEADER=, contents from =LATEX_HEADER_EXTRA= keywords
 # will not be loaded when previewing LaTeX snippets (see [[@Previewing-LaTeX-fragments][Previewing
 # LaTeX fragments]]).
 
-# [fn:FOOT141]
+[fn:FOOT141]
 # Requires adding the =tabularx= package to =org-latex-packages-alist=.
 
-# [fn:FOOT142]
+[fn:FOOT142]
 # Requires adding the =tabu= package to =org-latex-packages-alist=.
 
-# [fn:FOOT143]
+[fn:FOOT143]
 # Formerly, the value was =sidewaystable=. This is deprecated since Org
 # 8.3.
 
-# [fn:FOOT144]
+[fn:FOOT144]
 # In the case of TikZ ([[http://sourceforge.net/projects/pgf/]]) images, it
 # will become an =\input= macro wrapped within a =tikzpicture=
 # environment.
 
-# [fn:FOOT145]
+[fn:FOOT145]
 # Vanilla flavor, as defined at
 # [[http://daringfireball.net/projects/markdown/]].
 
-# [fn:FOOT146]
+[fn:FOOT146]
 # Versions 7.8 or later
 
-# [fn:FOOT147]
+[fn:FOOT147]
 # [[http://docs.oasis-open.org/office/v1.2/OpenDocument-v1.2.html][Open Document Format for Office Applications (OpenDocument) Version 1.2]]
 
-# [fn:FOOT148]
+[fn:FOOT148]
 # This requires =transient-mark-mode= to be turned on
 
-# [fn:FOOT149]
+[fn:FOOT149]
 # To select the current subtree, use */C-c @/*
 
-# [fn:FOOT150]
+[fn:FOOT150]
 # The column widths are interpreted as weighted ratios with the default
 # weight being 1
 
-# [fn:FOOT151]
+[fn:FOOT151]
 # Use of ImageMagick is only desirable. However, if you routinely
 # produce documents that have large images or you export your Org files
 # that has images using a Emacs batch script, then the use of
 # ImageMagick is mandatory.
 
-# [fn:FOOT152]
+[fn:FOOT152]
 # See [[http://www.mathtoweb.com/cgi-bin/mathtoweb_home.pl][MathToWeb]].
 
-# [fn:FOOT153]
+[fn:FOOT153]
 # See [[http://dlmf.nist.gov/LaTeXML/]].
 
-# [fn:FOOT154]
+[fn:FOOT154]
 # Your =htmlfontify.el= library must at least be at Emacs 24.1 levels
 # for fontification to be turned on.
 
-# [fn:FOOT155]
-# [[http://docs.oasis-open.org/office/v1.2/OpenDocument-v1.2.html][OpenDocument-v1.2 Specification]]
+[fn:FOOT155]
+[[http://docs.oasis-open.org/office/v1.2/OpenDocument-v1.2.html][OpenDocument-v1.2 Specification]]
 
-# [fn:FOOT156]
+[fn:FOOT156]
 # See the =<table:table-template>= element of the OpenDocument-v1.2
 # specification
 
-# [fn:FOOT157]
+[fn:FOOT157]
 # See the attributes =table:template-name=,
 # =table:use-first-row-styles=, =table:use-last-row-styles=,
 # =table:use-first-column-styles=, =table:use-last-column-styles=,
 # =table:use-banding-rows-styles=, and =table:use-banding-column-styles=
 # of the =<table:table>= element in the OpenDocument-v1.2 specification
 
-# [fn:FOOT158]
+[fn:FOOT158]
 # .odt files are nothing but ‘zip' archives
 
-# [fn:FOOT159]
+[fn:FOOT159]
 # By setting =org-texinfo-info-process=, it is possible to generate
 # other formats, including DocBook.
 
-# [fn:FOOT160]
+[fn:FOOT160]
 # See =org-texinfo-coding-system= for more information.
 
-# [fn:FOOT161]
+[fn:FOOT161]
 # For more information, See
 # [[http://www.gnu.org/software/texinfo/manual/texinfo/texinfo.html#Two_002dcolumn-Tables][(texinfo)Two-column
 # Tables]].
 
-# [fn:FOOT162]
+[fn:FOOT162]
 # See the variables =org-icalendar-use-deadline= and
 # =org-icalendar-use-scheduled=.
 
-# [fn:FOOT163]
+[fn:FOOT163]
 # To add inherited tags or the TODO state, configure the variable
 # =org-icalendar-categories=.
 
-# [fn:FOOT164]
+[fn:FOOT164]
 # The LOCATION property can be inherited from higher in the hierarchy if
 # you configure =org-use-property-inheritance= accordingly.
 
-# [fn:FOOT165]
+[fn:FOOT165]
 # If the publishing directory is the same than the source directory,
 # file.org will be exported as file.org.org, so probably don't want to
 # do this.
 
-# [fn:FOOT166]
+[fn:FOOT166]
 # Note that ‘src' blocks may be inserted using Org mode's [[@Easy-templates][Easy templates]]
 # system
 
-# [fn:FOOT167]
+[fn:FOOT167]
 # Whenever code is evaluated there is a potential for that code to do
 # harm. Org mode provides safeguards to ensure that code is only
 # evaluated after explicit confirmation from the user. For information
 # on these safeguards (and on how to disable them) see [[@Code-evaluation-security][Code evaluation
 # security]].
 
-# [fn:FOOT168]
+[fn:FOOT168]
 # The option =org-babel-no-eval-on-ctrl-c-ctrl-c= can be used to remove
 # code evaluation from the */C-c C-c/* key binding.
 
-# [fn:FOOT169]
+[fn:FOOT169]
 # The deprecated syntax for default header argument properties, using
 # the name of the header argument as a property name directly, evaluates
 # the property as seen by the corresponding source block
 # definition. This behavior has been kept for backwards compatibility.
 
-# [fn:FOOT170]
+[fn:FOOT170]
 # (The example needs property inheritance to be turned on for the
 # =noweb-ref= property, see [[@Property-inheritance][Property inheritance]]).
 
-# [fn:FOOT171]
+[fn:FOOT171]
 # Emacs 23 and Org mode 6.29 are required
 
-# [fn:FOOT172]
+[fn:FOOT172]
 # Emacs 23.1 can actually crash with =org-indent-mode=
 
-# [fn:FOOT173]
+[fn:FOOT173]
 # =org-indent-mode= also sets the =wrap-prefix= property, such that
 # =visual-line-mode= (or purely setting =word-wrap=) wraps long lines
 # (including headlines) correctly indented.
 
-# [fn:FOOT174]
+[fn:FOOT174]
 # See the variable =org-indent-indentation-per-level=.
 
-# [fn:FOOT175]
+[fn:FOOT175]
 # Turning on =org-indent-mode= sets =org-hide-leading-stars= to =t= and
 # =org-adapt-indentation= to =nil=.
 
-# [fn:FOOT176]
+[fn:FOOT176]
 # See also the variable =org-adapt-indentation=.
 
-# [fn:FOOT177]
+[fn:FOOT177]
 # When you need to specify a level for a property search or refile
 # targets, ‘LEVEL=2' will correspond to 3 stars, etc.
 
-# [fn:FOOT178]
+[fn:FOOT178]
 # org-R.el has been replaced by the Org mode functionality described in
 # [[@Working-with-source-code][Working with source code]] and is now obsolete.
 
-# [fn:FOOT179]
+[fn:FOOT179]
 # By default this works only for LaTeX, HTML, and Texinfo. Configure the
 # variable =orgtbl-radio-table-templates= to install templates for other
 # modes.
 
-# [fn:FOOT180]
+[fn:FOOT180]
 # If the ‘#+TBLFM' line contains an odd number of dollar characters,
 # this may cause problems with font-lock in LaTeX mode. As shown in the
 # example you can fix this by adding an extra line inside the =comment=
@@ -22754,32 +22723,32 @@ inserta de forma dinámica =#+results=.
 # add the =comment= environment to the variable
 # =LaTeX-verbatim-environments=.
 
-# [fn:FOOT181]
+[fn:FOOT181]
 # The =agenda*= view is the same as =agenda= except that it only considers
 # /appointments/, i.e., scheduled and deadline items that have a time
 # specification =[h]h:mm= in their time-stamps.
 
-# [fn:FOOT182]
+[fn:FOOT182]
 # Note that, when using =org-odd-levels-only=, a level number
 # corresponds to order in the hierarchy, not to the number of stars.
 
-# [fn:FOOT183]
+[fn:FOOT183]
 # If you can safely store the password in your Emacs setup, you might
 # also want to configure =org-mobile-encryption-password=. Please read
 # the docstring of that variable. Note that encryption will apply only
 # to the contents of the .org files. The file names themselves will
 # remain visible.
 
-# [fn:FOOT184]
+[fn:FOOT184]
 # If you cannot use Dropbox, or if your version of MobileOrg does not
 # support it, you can use a webdav server. For more information, check
 # out the documentation of MobileOrg and also this [[http://orgmode.org/worg/org-faq.html#mobileorg_webdav][FAQ entry]].
 
-# [fn:FOOT185]
+[fn:FOOT185]
 # Symbolic links in =org-directory= need to have the same name as their
 # targets.
 
-# [fn:FOOT186]
+[fn:FOOT186]
 # While creating the agendas, Org mode will force ID properties on all
 # referenced entries, so that these entries can be uniquely identified if
 # /MobileOrg/ flags them for further action. If you do not want to get
@@ -22787,13 +22756,13 @@ inserta de forma dinámica =#+results=.
 # =org-mobile-force-id-on-agenda-items= to =nil=. Org mode will then rely
 # on outline paths, in the hope that these will be unique enough.
 
-# [fn:FOOT187]
+[fn:FOOT187]
 # Checksums are stored automatically in the file checksums.dat
 
-# [fn:FOOT188]
+[fn:FOOT188]
 # mobileorg.org will be empty after this operation.
 
-# [fn:FOOT189]
+[fn:FOOT189]
 # Note, however, that there is a subtle difference. The view created
 # automatically by M-x org-mobile-pull RET is guaranteed to search all
 # files that have been addressed by the last pull. This might include a
