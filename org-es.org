@@ -826,13 +826,11 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
        )[fn:FOOT7]. También cuando llama con el argumento prefijo
        (=C-u TAB=) , se invoca la rotacion global.
 
-#        /Global cycling/ :: Rotate the entire buffer among the states
-
      - =S-TAB= (=org-global-cycle=)
      - =C-u TAB=
 
+#        /Global cycling/ :: Rotate the entire buffer among the states
        /Global cycling/ : Rotar entre los estados de todo el bufer
-
 
 #       #+BEGIN_EXAMPLE
 #       ,-> OVERVIEW -> CONTENTS -> SHOW ALL --.
@@ -849,38 +847,26 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #        shown. Note that inside tables, */S-TAB/* jumps to the previous
 #        field.
 
---
-# Cuando * / S - TAB / * se llama con un argumento prefijo numérico =
-# N = , INDICE ver hasta titulares de nivel = N = será Muestra. Tenga
-# en cuenta que mesas dentro , * / S - TAB / * salta a la anterior
-# Campo # .
+       Cuando =S-TAB= se llama con un argumento prefijo numérico =N=,
+       los CONTENIDOS se mostraran hasta el encabezado de nivel =N=.
+       Tenga en cuenta que dentro de tablas, =S-TAB= salta al campo
+       anterior.
 
-#      - */C-u C-u TAB/* (=org-set-startup-visibility=)
-
---
-# - * / Cu Cu TAB / * ( = org -set- startup- visibilidad =)
+     - =C-u C-u TAB= (=org-set-startup-visibility=)
 
 #        Switch back to the startup visibility of the buffer (see
 #        [[@Initial-visibility][Initial visibility]]).
 
---
-# Vuelva a la visibilidad de inicio de la memoria intermedia (ver [ [@
-# Visibilidad inicial ] [ visibilidad inicial ] ] ) .
+       Vuelve a la visibilidad inicial del buffer (vea
+       [[@Initial-visibility][Visibilidad inicial]]).
 
-#      - */C-u C-u C-u TAB/* (=show-all=)
-
---
-# - * / C -u C -u C -u TAB / * ( = show- all = )
+     - =C-u C-u C-u TAB= (=show-all=)
 
 #        Show all, including drawers.
 
---
-# Mostrar todos, incluidos los cajones.
+       Mostrar todo, incluidos los cajones.
 
-#      - */C-c C-r/* (=org-reveal=)
-
---
-# - * / C- c C- r / * ( = org- revelar =)
+     - =C-c C-r= (=org-reveal=)
 
 #        Reveal context around point, showing the current entry, the
 #        following heading and the hierarchy above. Useful for working
@@ -890,45 +876,33 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #        headings. With a double prefix argument, also show the entire
 #        subtree of the parent.
 
---
-# Reveal contexto alrededor del punto , mostrando la entrada actual,
-# la Siguiente encabezamiento y la jerarquía arriba. Útil para
-# trabajar Cerca de un lugar que ha sido expuesta por un comando de
-# árbol de escasa ( Ver [ [@ Escasos -árboles ] [ árboles Escasos ] ]
-# ) o un comando del programa ( ver [ [@ agenda comandos ] [ comandos
-# del programa] ] ) .  Con un espectáculo argumento prefijo , en cada
-# nivel , todos hermanos Encabezamientos #. Con un argumento doble
-# prefijo, también muestran la totalidad Subárbol del padre .
+       Revelar contexto al rededor del punto, mostrando la entrada
+       actual, el siguiente encabezado y la jerarquía superior. Útil
+       para trabajar cerca de un lugar que ha sido expuesto por un
+       comando de árbol escaso (Ver [[@Sparse-trees][Sparse trees]]) o
+       un comando de agenda ( ver [[@Agenda-commands][Agenda
+       commands]]). Con un argumento prefijo muestra, en cada nivel,
+       todos los encabezados hermanos. Con un argumento doble prefijo,
+       también muestran la totalidad del subárbol padre.
 
-#      - */C-c C-k/* (=show-branches=)
-
---
-# - * / C- c C- k / * ( = show- ramas =)
+     - =C-c C-k= (=show-branches=)
 
 #        Expose all the headings of the subtree, CONTENT view for just
 #        one subtree.
 
---
-# Exponer todas las partidas del sub-árbol , ver el contenido por sólo
-# Un subárbol .
+       Expone todas las cabeceras del sub-árbol, el CONTENIDO es
+       visible sólo para un subárbol.
 
-#      - */C-c TAB/* (=show-children=)
-
---
-# - * / C- c TAB / * ( = show- hijos =)
+     - =C-c TAB= (=show-children=)
 
 #        Expose all direct children of the subtree. With a numeric
 #        prefix argument =N=, expose all children down to level =N=.
 
---
-# Exponga todos los niños directos del subárbol . Con una numérico
-Prefijo # argumento = N = , exponer a todos los niños hasta el nivel =
-N = .
+       Exponga todos los hijos directos del sub-árbol. Con una
+       argumento prefijo numérico =N=, expone todos los hijos debajo
+       hasta el nivel =N=.
 
-#      - */C-c C-x b/* (=org-tree-to-indirect-buffer=)
-
---
-# - * / Cc Cx b / * ( = org- árbol -to -buffer indirecta =)
+     - =C-c C-x b= (=org-tree-to-indirect-buffer=)
 
 #        Show the current subtree in an indirect buffer[fn:FOOT8]. With
 #        a numeric prefix argument =N=, go up to level =N= and then take
@@ -936,26 +910,20 @@ N = .
 #        a */C-u/* prefix, do not remove the previously used indirect
 #        buffer.
 
---
-# Mostrar el subárbol actual en un búfer indirecto [ fn : FOOT8 ]
-# . Con Un argumento prefijo numérico = N = , ir hasta el nivel = N =
-# y luego tomar Ese árbol. Si = N = es negativo y luego ir hasta que
-# muchos niveles. Con A * / Cu / * prefijo, no retire la indirecta
-# utilizado anteriormente amortiguador.
+       Muestra el subárbol actual en un búfer diferente[fn:FOOT8]. Con
+       Un argumento prefijo numérico =N=, va hasta el nivel =N= y
+       luego toma ese árbol. Si =N= es negativo luego sube esa
+       cantidad de niveles. Con el prefijo =C-u=, no retira los
+       distintos buffer utilizados anteriormente.
 
-#      - */C-c C-x v/* (=org-copy-visible=)
-
---
-# - * / C- c C- x v / * ( = org- copia - visible =)
+     - =C-c C-x v= (=org-copy-visible=)
 
 #        Copy the /visible/ text in the region into the kill ring.
 
---
-# Copie el / visible / texto en la región en el histórico de recortes
-  .
+       Copia el texto /visible/ de la región dentro del kill ring.
 
 # *** 2.3.2 Initial visibility                                          <<@Initial-visibility>>
-*** 2.3.2 Visibilidad inicial << @ visibilidad inicial >>
+*** 2.3.2 Visibilidad inicial                                         <<@Initial-visibility>>
 
 #     When Emacs first visits an Org file, the global state is set to
 #     OVERVIEW, i.e., only the top level headlines are
@@ -963,24 +931,19 @@ N = .
 #     =org-startup-folded=, or on a per-file basis by adding one of the
 #     following lines anywhere in the buffer:
 
---
-# Cuando Emacs primera visita un fichero Org , el estado global se
-# establece en PANORAMA , es decir , sólo los titulares de primer
-# nivel son Visible [ fn : FOOT9 ] . Esto se puede configurar a través
-# de la variable = = Org- startup- doblado, o en función de cada
-# archivo mediante la adición de uno de los Siguientes líneas en
-# cualquier lugar del búfer:
+    Cuando Emacs visita por primera un fichero Org, el estado global
+    se establece en VISIÓN GENERAL, es decir, sólo los titulares de
+    primer nivel son visibles[fn:FOOT9]. Esto se puede configurar a
+    través de la variable =org-startup-folded=, o en función de cada
+    archivo mediante la adición de una de las siguientes líneas en
+    cualquier parte del búfer:
 
-#     #+BEGIN_EXAMPLE
-#       #+STARTUP: overview
-#       #+STARTUP: content
-#       #+STARTUP: showall
-#       #+STARTUP: showeverything
-#     #+END_EXAMPLE
-
---
-# # + BEGIN_EXAMPLE + STARTUP : visión general + STARTUP : contenido +
-# # STARTUP : showall + STARTUP : showeverything + END_EXAMPLE
+    #+BEGIN_EXAMPLE
+      #+STARTUP: overview
+      #+STARTUP: content
+      #+STARTUP: showall
+      #+STARTUP: showeverything
+    #+END_EXAMPLE
 
 #     The startup visibility options are ignored when the file is open
 #     for the first time during the agenda generation: if you want the
@@ -19467,7 +19430,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | *constants.el*                           | [[@Cooperation][Cooperation]]                                        |
 #    | =constcgs=, STARTUP keyword              | [[@In_buffer-settings][In-buffer settings]]                                 |
 #    | =constSI=, STARTUP keyword               | [[@In_buffer-settings][In-buffer settings]]                                 |
-#    | =content=, STARTUP keyword               | [[@Initial-visibility][Initial visibility]]                                 |
+#    | =content=, STARTUP keyword               | [[@Initial-visibility][Visibilidad inicial]]                                 |
 #    | =content=, STARTUP keyword               | [[@In_buffer-settings][In-buffer settings]]                                 |
 #    | contents, global visibility state        | [[@Global-and-local-cycling][Global and local cycling]]                           |
 #    | context-sensitive commands, hooks        | [[@Context_sensitive-commands][Context-sensitive commands]]                         |
@@ -19845,7 +19808,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | outline tree                             | [[@Headlines][Headlines]]                                          |
 #    | outlines                                 | [[@Outlines][Outlines]]                                           |
 #    | overview, global visibility state        | [[@Global-and-local-cycling][Global and local cycling]]                           |
-#    | =overview=, STARTUP keyword              | [[@Initial-visibility][Initial visibility]]                                 |
+#    | =overview=, STARTUP keyword              | [[@Initial-visibility][Visibilidad inicial]]                                 |
 #    | =overview=, STARTUP keyword              | [[@In_buffer-settings][In-buffer settings]]                                 |
 
 # ** P                                                                  <<@Main-Index_cp_letter-P>>
@@ -19939,7 +19902,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | property, special, TODO                  | [[@Special-properties][Special properties]]                                 |
 #    | property, SUMMARY                        | [[@iCalendar-export][iCalendar export]]                                   |
 #    | property, UNNUMBERED                     | [[@Export-settings][Export settings]]                                    |
-#    | property, VISIBILITY                     | [[@Initial-visibility][Initial visibility]]                                 |
+#    | property, VISIBILITY                     | [[@Initial-visibility][Visibilidad inicial]]                                 |
 #    | property, _ALL                           | [[@Property-syntax][Property syntax]]                                    |
 #    | property: CLOCK_MODELINE_TOTAL           | [[@Clocking-commands][Clocking commands]]                                  |
 #    | property: LAST_REPEAT                    | [[@Clocking-commands][Clocking commands]]                                  |
@@ -20013,9 +19976,9 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | show branches, command                   | [[@Global-and-local-cycling][Global and local cycling]]                           |
 #    | show children, command                   | [[@Global-and-local-cycling][Global and local cycling]]                           |
 #    | show hidden text                         | [[@Visibility-cycling][Visibility cycling]]                                 |
-#    | =showall=, STARTUP keyword               | [[@Initial-visibility][Initial visibility]]                                 |
+#    | =showall=, STARTUP keyword               | [[@Initial-visibility][Visibilidad inicial]]                                 |
 #    | =showall=, STARTUP keyword               | [[@In_buffer-settings][In-buffer settings]]                                 |
-#    | =showeverything=, STARTUP keyword        | [[@Initial-visibility][Initial visibility]]                                 |
+#    | =showeverything=, STARTUP keyword        | [[@Initial-visibility][Visibilidad inicial]]                                 |
 #    | =showeverything=, STARTUP keyword        | [[@In_buffer-settings][In-buffer settings]]                                 |
 #    | =showstars=, STARTUP keyword             | [[@In_buffer-settings][In-buffer settings]]                                 |
 #    | sitemap, of published pages              | [[@Sitemap][Sitemap]]                                            |
@@ -20181,7 +20144,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | *viper.el*                               | [[@Conflicts][Conflicts]]                                          |
 #    | visibility cycling                       | [[@Visibility-cycling][Visibility cycling]]                                 |
 #    | visibility cycling, drawers              | [[@Drawers][Drawers]]                                            |
-#    | visibility, initialize                   | [[@Initial-visibility][Initial visibility]]                                 |
+#    | visibility, initialize                   | [[@Initial-visibility][Visibilidad inicial]]                                 |
 #    | visible text, printing                   | [[@Sparse-trees][Sparse trees]]                                       |
 #    | VM links                                 | [[@External-links][External links]]                                     |
 
@@ -20702,7 +20665,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =C-u C-u C-u C-c C-t= | [[@TODO-dependencies][TODO dependencies]]                        |
 #    | =C-u C-u C-u TAB=    | [[@Global-and-local-cycling][Global and local cycling]]                 |
 #    | =C-u C-u TAB=        | [[@Global-and-local-cycling][Global and local cycling]]                 |
-#    | =C-u C-u TAB=        | [[@Initial-visibility][Initial visibility]]                       |
+#    | =C-u C-u TAB=        | [[@Initial-visibility][Visibilidad inicial]]                       |
 #    | =C-v=                | [[@The-date_time-prompt][The date/time prompt]]                     |
 #    | =C-x C-s=            | [[@Editing-and-debugging-formulas][Editing and debugging formulas]]           |
 #    | =C-x C-s=            | [[@Agenda-commands][Agenda commands]]                          |
@@ -21273,7 +21236,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =org-set-property=                       | [[@Property-syntax][Property syntax]]                          |
 #    | =org-set-property=                       | [[@Property-syntax][Property syntax]]                          |
 #    | =org-set-startup-visibility=             | [[@Global-and-local-cycling][Global and local cycling]]                 |
-#    | =org-set-startup-visibility=             | [[@Initial-visibility][Initial visibility]]                       |
+#    | =org-set-startup-visibility=             | [[@Initial-visibility][Visibilidad inicial]]                       |
 #    | =org-set-tags-command=                   | [[@Setting-tags][Setting tags]]                             |
 #    | =org-set-tags-command=                   | [[@Setting-tags][Setting tags]]                             |
 #    | =org-show-todo-tree=                     | [[@TODO-basics][TODO basics]]                              |
@@ -21455,7 +21418,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =org-agenda-files=                       | [[@Agenda-files][Agenda files]]                             |
 #    | =org-agenda-files=                       | [[@Sorting-agenda-items][Sorting agenda items]]                     |
 #    | =org-agenda-files=                       | [[@iCalendar-export][iCalendar export]]                         |
-#    | =org-agenda-inhibit-startup=             | [[@Initial-visibility][Initial visibility]]                       |
+#    | =org-agenda-inhibit-startup=             | [[@Initial-visibility][Visibilidad inicial]]                       |
 #    | =org-agenda-inhibit-startup=             | [[@Speeding-up-your-agendas][Speeding up your agendas]]                 |
 #    | =org-agenda-log-mode-items=              | [[@Agenda-commands][Agenda commands]]                          |
 #    | =org-agenda-max-effort=                  | [[@Filtering_limiting-agenda-items][Filtering/limiting agenda items]]          |
@@ -21805,7 +21768,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =org-speed-commands-user=                | [[@Speed-keys][Speed keys]]                               |
 #    | =org-startup-align-all-tables=           | [[@Column-width-and-alignment][Column width and alignment]]               |
 #    | =org-startup-align-all-tables=           | [[@In_buffer-settings][In-buffer settings]]                       |
-#    | =org-startup-folded=                     | [[@Initial-visibility][Initial visibility]]                       |
+#    | =org-startup-folded=                     | [[@Initial-visibility][Visibilidad inicial]]                       |
 #    | =org-startup-folded=                     | [[@In_buffer-settings][In-buffer settings]]                       |
 #    | =org-startup-folded=                     | [[@Speeding-up-your-agendas][Speeding up your agendas]]                 |
 #    | =org-startup-indented=                   | [[@In_buffer-settings][In-buffer settings]]                       |
@@ -21936,6 +21899,11 @@ Vea la opción =org-cycle-global-at-bob=.
 # see the option =org-cycle-global-at-bob=.
 
 [fn:FOOT8]
+El búfer indirecto (vea [[http://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Indirect-Buffers][Indirect Buffers]] en el Manual de GNU Emacs)
+contiene todo el buffer, pero se redujo al árbol actual. La edición
+del búfer indirecto también cambiará el buffer original, pero sin
+afectar la visibilidad en ese búfer.
+
 # The indirect buffer (see [[http://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Indirect-Buffers][Indirect Buffers]] in GNU Emacs Manual) will
 # contain the entire buffer, but will be narrowed to the current
 # tree. Editing the indirect buffer will also change the original
