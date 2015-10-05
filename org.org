@@ -547,50 +547,51 @@ modify this GNU manual.”
 
    The following commands jump to other headlines in the buffer.
 
-    - */C-c C-n/* (=outline-next-visible-heading=)
+    - =C-c C-n= (=outline-next-visible-heading=)
 
       Next heading.
 
-    - */C-c C-p/* (=outline-previous-visible-heading=)
+    - =C-c C-p= (=outline-previous-visible-heading=)
 
       Previous heading.
 
-    - */C-c C-f/* (=org-forward-same-level=)
+    - =C-c C-f= (=org-forward-same-level=)
 
       Next heading same level.
 
-    - */C-c C-b/* (=org-backward-same-level=)
+    - =C-c C-b= (=org-backward-same-level=)
 
       Previous heading same level.
 
-    - */C-c C-u/* (=outline-up-heading=)
+    - =C-c C-u= (=outline-up-heading=)
 
       Backward to higher level heading.
 
-    - */C-c C-j/* (=org-goto=)
+    - =C-c C-j= (=org-goto=)
 
       Jump to a different place without changing the current outline
       visibility. Shows the document structure in a temporary buffer,
       where you can use the following keys to find your destination:
 
-      #+BEGIN_EXAMPLE
-        TAB         Cycle visibility.
-        down / up   Next/previous visible headline.
-        RET         Select this location.
-        /           Do a Sparse-tree search
-        The following keys work if you turn off org-goto-auto-isearch
-        n / p        Next/previous visible headline.
-        f / b        Next/previous headline same level.
-        u            One level up.
-        0-9          Digit argument.
-        q            Quit
-      #+END_EXAMPLE
+
+       | TAB       | Cycle visibility.               |
+       | down / up | Next/previous visible headline. |
+       | RET       | Select this location.           |
+       | =/=       | Do a Sparse-tree search         |
+
+      The following keys work if you turn off =org-goto-auto-isearch=
+
+       | n / p | Next/previous visible headline.    |
+       | f / b | Next/previous headline same level. |
+       | u     | One level up.                      |
+       | 0-9   | Digit argument.                    |
+       | q     | Quit                               |
 
       See also the option =org-goto-interface=.
 
 ** 2.5 Structure editing                                              <<@Structure-editing>>
 
-    - */M-RET/* (=org-insert-heading=)
+    - =M-RET= (=org-insert-heading=)
 
       Insert a new heading/item with the same level as the one at
       point.
@@ -609,87 +610,87 @@ modify this GNU manual.”
       of a headline), then a headline will be inserted after the end
       of the subtree.
 
-      Calling this command with */C-u C-u/* will unconditionally
-      respect the headline's content and create a new item at the end
-      of the parent subtree.
+      Calling this command with =C-u C-u= will unconditionally respect
+      the headline's content and create a new item at the end of the
+      parent subtree.
 
       If point is at the beginning of a normal line, turn this line
       into a heading.
 
-    - */C-RET/* (=org-insert-heading-respect-content=)
+    - =C-RET= (=org-insert-heading-respect-content=)
 
-      Just like */M-RET*/, except when adding a new heading below the
+      Just like =M-RET=, except when adding a new heading below the
       current heading, the new heading is placed after the body
       instead of before it.  This command works from anywhere in the
       entry.
 
-    - */M-S-RET/* (=org-insert-todo-heading=)
+    - =M-S-RET= (=org-insert-todo-heading=)
 
       Insert new TODO entry with same level as current heading. See
       also the variable
       =org-treat-insert-todo-heading-as-state-change=.
 
-    - */C-S-RET/* (=org-insert-todo-heading-respect-content=)
+    - =C-S-RET= (=org-insert-todo-heading-respect-content=)
 
       Insert new TODO entry with same level as current heading. Like
-      */C-RET/*, the new headline will be inserted after the current
+      =C-RET=, the new headline will be inserted after the current
       subtree.
 
-    - */TAB/* (=org-cycle=)
+    - =TAB= (=org-cycle=)
 
       In a new entry with no text yet, the first =TAB= demotes the
       entry to become a child of the previous one. The next =TAB=
       makes it a parent, and so on, all the way to top level. Yet
       another =TAB=, and you are back to the initial level.
 
-    - */M-left/* (=org-do-promote=)
+    - =M-left= (=org-do-promote=)
 
       Promote current heading by one level.
 
-    - */M-right/* (=org-do-demote=)
+    - =M-right= (=org-do-demote=)
 
       Demote current heading by one level.
 
-    - */M-S-left/* (=org-promote-subtree=)
+    - =M-S-left= (=org-promote-subtree=)
 
       Promote the current subtree by one level.
 
-    - */M-S-right/* (=org-demote-subtree=)
+    - =M-S-right= (=org-demote-subtree=)
 
       Demote the current subtree by one level.
 
-    - */M-S-up/* (=org-move-subtree-up=)
+    - =M-S-up= (=org-move-subtree-up=)
 
       Move subtree up (swap with previous subtree of same level).
 
-    - */M-S-down/* (=org-move-subtree-down=)
+    - =M-S-down= (=org-move-subtree-down=)
 
       Move subtree down (swap with next subtree of same level).
 
-    - */M-h/* (=org-mark-element=)
+    - =M-h= (=org-mark-element=)
 
       Mark the element at point. Hitting repeatedly will mark
       subsequent elements of the one just marked. E.g., hitting =M-h=
       on a paragraph will mark it, hitting =M-h= immediately again
       will mark the next one.
 
-    - */C-c @/* (=org-mark-subtree=)
+    - =C-c @= (=org-mark-subtree=)
 
       Mark the subtree at point. Hitting repeatedly will mark
       subsequent subtrees of the same level than the marked subtree.
 
-    - */C-c C-x C-w/* (=org-cut-subtree=)
+    - =C-c C-x C-w= (=org-cut-subtree=)
 
       Kill subtree, i.e., remove it from buffer but save in kill
       ring. With a numeric prefix argument N, kill N sequential
       subtrees.
 
-    - */C-c C-x M-w/* (=org-copy-subtree=)
+    - =C-c C-x M-w= (=org-copy-subtree=)
 
       Copy subtree to kill ring. With a numeric prefix argument N,
       copy the N sequential subtrees.
 
-    - */C-c C-x C-y/* (=org-paste-subtree=)
+    - =C-c C-x C-y= (=org-paste-subtree=)
 
       Yank subtree from kill ring. This does modify the level of the
       subtree to make sure the tree fits in nicely at the yank
@@ -697,21 +698,21 @@ modify this GNU manual.”
       prefix argument, or by yanking after a headline marker like
       ‘****'.
 
-    - */C-y/* (=org-yank=)
+    - =C-y= (=org-yank=)
 
       Depending on the options =org-yank-adjusted-subtrees= and
       =org-yank-folded-subtrees=, Org's internal =yank= command will
       paste subtrees folded and in a clever way, using the same
-      command as */C-c C-x C-y/*. With the default settings, no level
+      command as =C-c C-x C-y=. With the default settings, no level
       adjustment will take place, but the yanked tree will be folded
       unless doing so would swallow text previously visible. Any
       prefix argument to this command will force a normal =yank= to be
       executed, with the prefix passed along. A good way to force a
-      normal yank is */C-u C-y/*. If you use =yank-pop= after a yank,
-      it will yank previous kill items plainly, without adjustment and
+      normal yank is =C-u C-y=. If you use =yank-pop= after a yank, it
+      will yank previous kill items plainly, without adjustment and
       folding.
 
-    - */C-c C-x c/* (=org-clone-subtree-with-time-shift=)
+    - =C-c C-x c= (=org-clone-subtree-with-time-shift=)
 
       Clone a subtree by making a number of sibling copies of it. You
       will be prompted for the number of copies to make, and you can
@@ -721,11 +722,11 @@ modify this GNU manual.”
       details, see the docstring of the command
       =org-clone-subtree-with-time-shift=.
 
-    - */C-c C-w/* (=org-refile=)
+    - =C-c C-w= (=org-refile=)
 
       Refile entry or region to a different location. See [[@Refile-and-copy][Refile and copy]].
 
-    - */C-c ^/* (=org-sort=)
+    - =C-c ^= (=org-sort=)
 
       Sort same-level entries. When there is an active region, all
       entries in the region will be sorted. Otherwise the children of
@@ -736,22 +737,22 @@ modify this GNU manual.”
       the sequence the keywords have been defined in the setup) or by
       the value of a property. Reverse sorting is possible as
       well. You can also supply your own function to extract the
-      sorting key.  With a */C-u/* prefix, sorting will be
+      sorting key.  With a =C-u= prefix, sorting will be
       case-sensitive.
 
-    - */C-x n s/* (=org-narrow-to-subtree=)
+    - =C-x n s= (=org-narrow-to-subtree=)
 
       Narrow buffer to current subtree.
 
-    - */C-x n b/* (=org-narrow-to-block=)
+    - =C-x n b= (=org-narrow-to-block=)
 
       Narrow buffer to current block.
 
-    - */C-x n w/* (=widen=)
+    - =C-x n w= (=widen=)
 
       Widen buffer to remove narrowing.
 
-    - */C-c */* (=org-toggle-heading=)
+    - =C-c *= (=org-toggle-heading=)
 
       Turn a normal line or plain list item into a headline (so that
       it becomes a subheading at its location). Also turn a headline

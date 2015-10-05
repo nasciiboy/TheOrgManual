@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>The Org Manual</title>
-<!-- 2015-09-28 lun 19:14 -->
+<!-- 2015-10-04 dom 19:24 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Carsten Dominik with contributiond by Bastien Guerry, Nicolas Goazion, Eric Schulte, Jambunathan K. Dan Davison, Thomas O`Thoole, and Philip Rooke." />
@@ -1766,67 +1766,126 @@ The following commands jump to other headlines in the buffer.
 </p>
 
 <ul class="org-ul">
-<li><b><i>C-c C-n</i></b> (<code>outline-next-visible-heading</code>)
+<li><code>C-c C-n</code> (<code>outline-next-visible-heading</code>)
 
 <p>
 Next heading.
 </p>
 </li>
 
-<li><b><i>C-c C-p</i></b> (<code>outline-previous-visible-heading</code>)
+<li><code>C-c C-p</code> (<code>outline-previous-visible-heading</code>)
 
 <p>
 Previous heading.
 </p>
 </li>
 
-<li><b><i>C-c C-f</i></b> (<code>org-forward-same-level</code>)
+<li><code>C-c C-f</code> (<code>org-forward-same-level</code>)
 
 <p>
 Next heading same level.
 </p>
 </li>
 
-<li><b><i>C-c C-b</i></b> (<code>org-backward-same-level</code>)
+<li><code>C-c C-b</code> (<code>org-backward-same-level</code>)
 
 <p>
 Previous heading same level.
 </p>
 </li>
 
-<li><b><i>C-c C-u</i></b> (<code>outline-up-heading</code>)
+<li><code>C-c C-u</code> (<code>outline-up-heading</code>)
 
 <p>
 Backward to higher level heading.
 </p>
 </li>
 
-<li><b><i>C-c C-j</i></b> (<code>org-goto</code>)
+<li><code>C-c C-j</code> (<code>org-goto</code>)
 
 <p>
 Jump to a different place without changing the current outline
 visibility. Shows the document structure in a temporary buffer,
 where you can use the following keys to find your destination:
 </p>
+</li>
+</ul>
 
-<pre class="example">
-TAB         Cycle visibility.
-down / up   Next/previous visible headline.
-RET         Select this location.
-/           Do a Sparse-tree search
-The following keys work if you turn off org-goto-auto-isearch
-n / p        Next/previous visible headline.
-f / b        Next/previous headline same level.
-u            One level up.
-0-9          Digit argument.
-q            Quit
-</pre>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">TAB</td>
+<td class="left">Cycle visibility.</td>
+</tr>
+
+<tr>
+<td class="left">down / up</td>
+<td class="left">Next/previous visible headline.</td>
+</tr>
+
+<tr>
+<td class="left">RET</td>
+<td class="left">Select this location.</td>
+</tr>
+
+<tr>
+<td class="left"><code>/</code></td>
+<td class="left">Do a Sparse-tree search</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+The following keys work if you turn off <code>org-goto-auto-isearch</code>
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">n / p</td>
+<td class="left">Next/previous visible headline.</td>
+</tr>
+
+<tr>
+<td class="left">f / b</td>
+<td class="left">Next/previous headline same level.</td>
+</tr>
+
+<tr>
+<td class="left">u</td>
+<td class="left">One level up.</td>
+</tr>
+
+<tr>
+<td class="left">0-9</td>
+<td class="left">Digit argument.</td>
+</tr>
+
+<tr>
+<td class="left">q</td>
+<td class="left">Quit</td>
+</tr>
+</tbody>
+</table>
 
 <p>
 See also the option <code>org-goto-interface</code>.
 </p>
-</li>
-</ul>
 </div>
 </div>
 
@@ -1834,7 +1893,7 @@ See also the option <code>org-goto-interface</code>.
 <h3 id="sec-2-5">2.5 Structure editing                                              <a id="Structure-editing" name="Structure-editing"></a></h3>
 <div class="outline-text-3" id="text-2-5">
 <ul class="org-ul">
-<li><b><i>M-RET</i></b> (<code>org-insert-heading</code>)
+<li><code>M-RET</code> (<code>org-insert-heading</code>)
 
 <p>
 Insert a new heading/item with the same level as the one at
@@ -1860,9 +1919,9 @@ of the subtree.
 </p>
 
 <p>
-Calling this command with <b><i>C-u C-u</i></b> will unconditionally
-respect the headline's content and create a new item at the end
-of the parent subtree.
+Calling this command with <code>C-u C-u</code> will unconditionally respect
+the headline's content and create a new item at the end of the
+parent subtree.
 </p>
 
 <p>
@@ -1871,17 +1930,17 @@ into a heading.
 </p>
 </li>
 
-<li><b><i>C-RET</i></b> (<code>org-insert-heading-respect-content</code>)
+<li><code>C-RET</code> (<code>org-insert-heading-respect-content</code>)
 
 <p>
-Just like */M-RET*/, except when adding a new heading below the
+Just like <code>M-RET</code>, except when adding a new heading below the
 current heading, the new heading is placed after the body
 instead of before it.  This command works from anywhere in the
 entry.
 </p>
 </li>
 
-<li><b><i>M-S-RET</i></b> (<code>org-insert-todo-heading</code>)
+<li><code>M-S-RET</code> (<code>org-insert-todo-heading</code>)
 
 <p>
 Insert new TODO entry with same level as current heading. See
@@ -1890,16 +1949,16 @@ also the variable
 </p>
 </li>
 
-<li><b><i>C-S-RET</i></b> (<code>org-insert-todo-heading-respect-content</code>)
+<li><code>C-S-RET</code> (<code>org-insert-todo-heading-respect-content</code>)
 
 <p>
 Insert new TODO entry with same level as current heading. Like
-<b><i>C-RET</i></b>, the new headline will be inserted after the current
+<code>C-RET</code>, the new headline will be inserted after the current
 subtree.
 </p>
 </li>
 
-<li><b><i>TAB</i></b> (<code>org-cycle</code>)
+<li><code>TAB</code> (<code>org-cycle</code>)
 
 <p>
 In a new entry with no text yet, the first <code>TAB</code> demotes the
@@ -1909,49 +1968,49 @@ another <code>TAB</code>, and you are back to the initial level.
 </p>
 </li>
 
-<li><b><i>M-left</i></b> (<code>org-do-promote</code>)
+<li><code>M-left</code> (<code>org-do-promote</code>)
 
 <p>
 Promote current heading by one level.
 </p>
 </li>
 
-<li><b><i>M-right</i></b> (<code>org-do-demote</code>)
+<li><code>M-right</code> (<code>org-do-demote</code>)
 
 <p>
 Demote current heading by one level.
 </p>
 </li>
 
-<li><b><i>M-S-left</i></b> (<code>org-promote-subtree</code>)
+<li><code>M-S-left</code> (<code>org-promote-subtree</code>)
 
 <p>
 Promote the current subtree by one level.
 </p>
 </li>
 
-<li><b><i>M-S-right</i></b> (<code>org-demote-subtree</code>)
+<li><code>M-S-right</code> (<code>org-demote-subtree</code>)
 
 <p>
 Demote the current subtree by one level.
 </p>
 </li>
 
-<li><b><i>M-S-up</i></b> (<code>org-move-subtree-up</code>)
+<li><code>M-S-up</code> (<code>org-move-subtree-up</code>)
 
 <p>
 Move subtree up (swap with previous subtree of same level).
 </p>
 </li>
 
-<li><b><i>M-S-down</i></b> (<code>org-move-subtree-down</code>)
+<li><code>M-S-down</code> (<code>org-move-subtree-down</code>)
 
 <p>
 Move subtree down (swap with next subtree of same level).
 </p>
 </li>
 
-<li><b><i>M-h</i></b> (<code>org-mark-element</code>)
+<li><code>M-h</code> (<code>org-mark-element</code>)
 
 <p>
 Mark the element at point. Hitting repeatedly will mark
@@ -1961,7 +2020,7 @@ will mark the next one.
 </p>
 </li>
 
-<li><b><i>C-c @</i></b> (<code>org-mark-subtree</code>)
+<li><code>C-c @</code> (<code>org-mark-subtree</code>)
 
 <p>
 Mark the subtree at point. Hitting repeatedly will mark
@@ -1969,7 +2028,7 @@ subsequent subtrees of the same level than the marked subtree.
 </p>
 </li>
 
-<li><b><i>C-c C-x C-w</i></b> (<code>org-cut-subtree</code>)
+<li><code>C-c C-x C-w</code> (<code>org-cut-subtree</code>)
 
 <p>
 Kill subtree, i.e., remove it from buffer but save in kill
@@ -1978,7 +2037,7 @@ subtrees.
 </p>
 </li>
 
-<li><b><i>C-c C-x M-w</i></b> (<code>org-copy-subtree</code>)
+<li><code>C-c C-x M-w</code> (<code>org-copy-subtree</code>)
 
 <p>
 Copy subtree to kill ring. With a numeric prefix argument N,
@@ -1986,7 +2045,7 @@ copy the N sequential subtrees.
 </p>
 </li>
 
-<li><b><i>C-c C-x C-y</i></b> (<code>org-paste-subtree</code>)
+<li><code>C-c C-x C-y</code> (<code>org-paste-subtree</code>)
 
 <p>
 Yank subtree from kill ring. This does modify the level of the
@@ -1997,24 +2056,24 @@ prefix argument, or by yanking after a headline marker like
 </p>
 </li>
 
-<li><b><i>C-y</i></b> (<code>org-yank</code>)
+<li><code>C-y</code> (<code>org-yank</code>)
 
 <p>
 Depending on the options <code>org-yank-adjusted-subtrees</code> and
 <code>org-yank-folded-subtrees</code>, Org's internal <code>yank</code> command will
 paste subtrees folded and in a clever way, using the same
-command as <b><i>C-c C-x C-y</i></b>. With the default settings, no level
+command as <code>C-c C-x C-y</code>. With the default settings, no level
 adjustment will take place, but the yanked tree will be folded
 unless doing so would swallow text previously visible. Any
 prefix argument to this command will force a normal <code>yank</code> to be
 executed, with the prefix passed along. A good way to force a
-normal yank is <b><i>C-u C-y</i></b>. If you use <code>yank-pop</code> after a yank,
-it will yank previous kill items plainly, without adjustment and
+normal yank is <code>C-u C-y</code>. If you use <code>yank-pop</code> after a yank, it
+will yank previous kill items plainly, without adjustment and
 folding.
 </p>
 </li>
 
-<li><b><i>C-c C-x c</i></b> (<code>org-clone-subtree-with-time-shift</code>)
+<li><code>C-c C-x c</code> (<code>org-clone-subtree-with-time-shift</code>)
 
 <p>
 Clone a subtree by making a number of sibling copies of it. You
@@ -2027,14 +2086,14 @@ details, see the docstring of the command
 </p>
 </li>
 
-<li><b><i>C-c C-w</i></b> (<code>org-refile</code>)
+<li><code>C-c C-w</code> (<code>org-refile</code>)
 
 <p>
 Refile entry or region to a different location. See <a href="#Refile-and-copy">Refile and copy</a>.
 </p>
 </li>
 
-<li><b><i>C-c ^</i></b> (<code>org-sort</code>)
+<li><code>C-c ^</code> (<code>org-sort</code>)
 
 <p>
 Sort same-level entries. When there is an active region, all
@@ -2046,33 +2105,33 @@ scheduled time, deadline time), by priority, by TODO keyword (in
 the sequence the keywords have been defined in the setup) or by
 the value of a property. Reverse sorting is possible as
 well. You can also supply your own function to extract the
-sorting key.  With a <b><i>C-u</i></b> prefix, sorting will be
+sorting key.  With a <code>C-u</code> prefix, sorting will be
 case-sensitive.
 </p>
 </li>
 
-<li><b><i>C-x n s</i></b> (<code>org-narrow-to-subtree</code>)
+<li><code>C-x n s</code> (<code>org-narrow-to-subtree</code>)
 
 <p>
 Narrow buffer to current subtree.
 </p>
 </li>
 
-<li><b><i>C-x n b</i></b> (<code>org-narrow-to-block</code>)
+<li><code>C-x n b</code> (<code>org-narrow-to-block</code>)
 
 <p>
 Narrow buffer to current block.
 </p>
 </li>
 
-<li><b><i>C-x n w</i></b> (<code>widen</code>)
+<li><code>C-x n w</code> (<code>widen</code>)
 
 <p>
 Widen buffer to remove narrowing.
 </p>
 </li>
 
-<li><b><i>C-c *</i></b> (<code>org-toggle-heading</code>)
+<li><code>C-c *</code> (<code>org-toggle-heading</code>)
 
 <p>
 Turn a normal line or plain list item into a headline (so that

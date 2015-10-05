@@ -950,37 +950,31 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #     agenda to honor the startup visibility, set
 #     =org-agenda-inhibit-startup= to =nil=.
 
---
-# Las opciones de visibilidad de inicio se ignoran cuando el archivo
-# está abierto Por primera vez durante la generación del programa : si
-# desea que el Agenda para honrar la visibilidad de inicio , ajuste =
-# Org- agenda - inhibición -startup = a = nil = .
+    Las opciones de visibilidad inicial se ignoran cuando el archivo
+    es abierto por primera vez durante la generación de la agenda: si
+    desea que al agenda respete la visibilidad inicial, establesca
+    =org-agenda-inhibit-startup= como =nil=.
 
 #     Furthermore, any entries with a ‘VISIBILITY' property (see
-#     [[@Properties-and-columns][Properties and columns]]) will get their visibility adapted
+#     [[@Properties-and-columns][Propiedades y columnas]]) will get their visibility adapted
 #     accordingly. Allowed values for this property are =folded=,
 #     =children=, =content=, and =all=.
 
---
-# Además , todas las entradas con una propiedad de "visibilidad" ( ver
-# [ [@ Propiedades -y- columnas ] [Propiedades y columnas ] ])
-# conseguirá su visibilidad adaptada Consecuencia. Los valores
-# permitidos para esta propiedad son = = cruzados, = Hijos = = =
-# contenido y = all = .
+    Además, todas las entradas con una propiedad ‘VISIBILITY' (ver
+    [[@Properties-and-columns][Propiedades y columnas]]) conseguirá
+    adaptadar su visibilidad en consecuencia. Los valores permitidos
+    para esta propiedad son =folded=, =children=, =content=, and
+    =all=.
 
-#      - */C-u C-u TAB/* (=org-set-startup-visibility=)
-
---
-# - * / Cu Cu TAB / * ( = org -set- startup- visibilidad =)
+     - */C-u C-u TAB/* (=org-set-startup-visibility=)
 
 #        Switch back to the startup visibility of the buffer, i.e.,
 #        whatever is requested by startup options and ‘VISIBILITY'
 #        properties in individual entries.
 
---
-# Vuelva a la visibilidad de inicio de la memoria intermedia , es
-# decir , Lo que sea solicitada por las opciones de inicio y
-# "visibilidad" Propiedades en las entradas individuales .
+    Volver a la visibilidad inicial del buffer, es decir, lo
+    solicitado por las opciones de inicio y las propiedades
+    ‘VISIBILITY' en las entradas individuales.
 
 # *** 2.3.3 Catching invisible edits                                    <<@Catching-invisible-edits>>
 *** 2.3.3 Capturar modificaciones invisibles                          <<@Catching-invisible-edits>>
@@ -991,86 +985,59 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #     help prevent this. See the docstring of this option on how Org
 #     should catch invisible edits and process them.
 
---
-# A veces puede que sin querer editar una parte invisible del Tampón y
-# ser confundido sobre lo que se ha editado y cómo deshacer el Error
-# #. Configuración = org -catch- invisible - ediciones = a no = nil =
-# se Ayuda a prevenir esto. Ver la cadena de documentación de esta
-# opción sobre cómo Org Debe ponerse ediciones invisibles y
-# procesarlos.
+    A veces puede editar sin querer una parte invisible del buffer y
+    ser confuso conocer sobre lo que se ha editado y cómo deshacer el
+    error. Configurar =org-catch-invisible-edits= distinto de =nil=
+    ayudara a prevenir esto. Vea la cadena de documentación de esta
+    opción sobre cómo Org tendria que tomar las ediciones invisibles y
+    procesarlas.
 
 # ** 2.4 Motion                                                         <<@Motion>>
 ** 2.4 Movimiento                                                     <<@Motion>>
 
 #    The following commands jump to other headlines in the buffer.
 
---
-# Los siguientes comandos saltar a otros titulares en el búfer.
+   Los siguientes comandos saltan a otras cabeceras en el búfer.
 
-#     - */C-c C-n/* (=outline-next-visible-heading=)
-
---
-# - * / Cc Cn / * ( = esquema -next- visible -encabezamiento =)
+    - =C-c C-n= (=outline-next-visible-heading=)
 
 #       Next heading.
 
---
-# Siguiente epígrafe .
+      Encabezado siguiente.
 
-#     - */C-c C-p/* (=outline-previous-visible-heading=)
-
---
-# - * / Cc Cp / * ( = esquema - anterior - visible -encabezamiento =)
-
+    - =C-c C-p= (=outline-previous-visible-heading=)
 #       Previous heading.
 
---
-# Rubro anterior .
+      Encabezado anterior.
 
-#     - */C-c C-f/* (=org-forward-same-level=)
-
---
-# - * / C- c C- f / * ( = - mismo nivel org -forward =)
+    - =C-c C-f= (=org-forward-same-level=)
 
 #       Next heading same level.
 
---
-# Siguiente rúbrica mismo nivel .
+      Encabezado siguiente del mismo nivel .
 
-#     - */C-c C-b/* (=org-backward-same-level=)
-
---
-# - * / C- c C- b / * ( = - mismo nivel org- retroceso =)
+    - =C-c C-b= (=org-backward-same-level=)
 
 #       Previous heading same level.
 
---
-# Rúbrica Anterior mismo nivel .
+      Encabezado anterior del mismo nivel .
 
-#     - */C-c C-u/* (=outline-up-heading=)
-
---
-# - * / C- c C -u / * ( = esbozar -up -encabezamiento =)
+    - =C-c C-u= (=outline-up-heading=)
 
 #       Backward to higher level heading.
 
---
-# Hacia atrás a un mayor nivel de partida .
+       Ir hacia el anterior encabezado de mayor nivel.
 
-#     - */C-c C-j/* (=org-goto=)
-
---
-# - * / C- c C- j / * ( = org -goto =)
+    - =C-c C-j= (=org-goto=)
 
 #       Jump to a different place without changing the current outline
 #       visibility. Shows the document structure in a temporary buffer,
 #       where you can use the following keys to find your destination:
 
---
-# Ir a un lugar diferente sin cambiar el esquema actual
-# Visibilidad. Muestra la estructura del documento en un buffer
-# temporal , Donde se puede utilizar las siguientes teclas para
-# encontrar su destino :
+      Ir a un lugar diferente sin cambiar el esquema actual de
+      visibilidad. Muestra la estructura del documento en un buffer
+      temporal, Donde se puede utilizar las siguientes teclas para
+      encontrar su destino:
 
 #       #+BEGIN_EXAMPLE
 #         TAB         Cycle visibility.
@@ -1085,34 +1052,34 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #         q            Quit
 #       #+END_EXAMPLE
 
---
-# # + BEGIN_EXAMPLE Visibilidad Ciclo TAB .  Abajo / arriba /
-# siguiente título visibles anterior.  RET Seleccione esta ubicación.
-# / Haga una búsqueda Sparse - árbol Las siguientes teclas funcionan
-# si se apaga org -goto -auto- isearch N / p Siguiente titular
-# visibles anterior / .  F / b Siguiente titular anterior mismo nivel
-# / .  U Un nivel arriba .  0-9 argumento de dígitos .  Q Salir # +
-# END_EXAMPLE
+       | TAB       | Visibilidad Ciclica.                 |
+       | down / up | Siguiente/Anterior cabecera visible. |
+       | RET       | Seleccione esta ubicacion.           |
+       | =/=       | Haga una busqueda de arbol-escaso    |
+
+      Las siguientes teclas funcionan si se desactiva
+      =org-goto-auto-isearch=
+
+       | n / p | Siguiente/Anterior cabecera visible.         |
+       | f / b | Siguiente/Anterior cabecera del mismo nivel. |
+       | u     | Un nivel arriba.                             |
+       | 0-9   | Argumento de dígitos.                        |
+       | q     | Salir                                        |
 
 #       See also the option =org-goto-interface=.
 
---
-# Véase también la opción = org- goto- interface = .
+      Véase también la opción =org-goto-interface=.
 
 # ** 2.5 Structure editing                                              <<@Structure-editing>>
 ** 2.5 Editar Estructura                                              <<@Structure-editing>>
 
-#     - */M-RET/* (=org-insert-heading=)
-
---
-# - * / / * ( = Org -insert -encabezamiento =) M- RET
+    - =M-RET= (=org-insert-heading=)
 
 #       Insert a new heading/item with the same level as the one at
 #       point.
 
---
-# Inserte una nueva línea / elemento con el mismo nivel que el de uno
-# en uno Punto .
+      Inserte una nuevo encabezado/elemento con el mismo nivel que el
+      del punto.
 
 #       If the cursor is in a plain list item, a new item is created
 #       (see [[@Plain-lists][Plain lists]]). To prevent this behavior in lists, call the
@@ -1121,14 +1088,13 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #       becomes the new item or headline. If you do not want the line to
 #       be split, customize =org-M-RET-may-split-line=.
 
---
-# Si el cursor se encuentra en un elemento de lista sin formato , se
-# crea un nuevo elemento ( Ver [ [@ Llano- listas ] [ listas Plain ] ]
-# ) . Para evitar este comportamiento en las listas , llame al Comando
-# con un argumento prefijo. Cuando se usa este comando en Medio de una
-# línea, la línea se divide y el resto de la línea Se convierte en el
-# nuevo artículo o titular. Si no desea que la línea Dividir ,
-# personalizar = org- M- RET -may -split - line = .
+      Si el cursor se encuentra en un elemento de lista sin formato,
+      se crea un nuevo elemento (Ver [[@Plain-lists][Listas
+      Planas]]). Para evitar este comportamiento en las listas, llame
+      al Comando con un argumento prefijo. Cuando se usa este comando
+      en medio de una línea, la línea se divide y el resto de la línea
+      Se convierte en el nuevo artículo o cabecera. Si no desea
+      dividir línea, personalice =org-M-RET-may-split-line=.
 
 #       If the command is used at the /beginning/ of a line, and if
 #       there is a heading or an item at point, the new heading/item is
@@ -1137,13 +1103,13 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #       of a headline), then a headline will be inserted after the end
 #       of the subtree.
 
---
-# Si el comando se utiliza en el / comenzando / de una línea, y si Hay
-# una partida o un elemento en el punto , el nuevo encabezado /
-# Articulo Creada / antes / la línea actual. Si el comando se utiliza
-# en el / Final / de un sub-árbol doblado (es decir , detrás de los
-# puntos suspensivos al final De un titular ) , a continuación, se
-# inserta un titular después del final Del subárbol .
+      Si el comando se utiliza al /comienzo/ de una línea, y si hay
+      una encabezado o un elemento en el punto, el nuevo
+      encabezado/elemento es creado /antes/ de la línea actual. Si el
+      comando se utiliza al /final/ de un sub-árbol plegado (es decir,
+      detrás de los puntos suspensivos al final del encabezado), a
+      continuación, se inserta un encabezado después del final Del
+      subárbol.
 
 #       Calling this command with */C-u C-u/* will unconditionally
 #       respect the headline's content and create a new item at the end
@@ -1161,11 +1127,7 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 # Si el punto está al principio de una línea normal , gire esta línea
 # En un encabezado .
 
-#     - */C-RET/* (=org-insert-heading-respect-content=)
-
---
-# - * / C- RET / * ( = org -insert -encabezamiento respeto - content =
-      )
+    - =C-RET= (=org-insert-heading-respect-content=)
 
 #       Just like */M-RET*/, except when adding a new heading below the
 #       current heading, the new heading is placed after the body
@@ -1178,10 +1140,7 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 # después el cuerpo En lugar de antes . Este comando funciona desde
 # cualquier lugar del Entrada .
 
-#     - */M-S-RET/* (=org-insert-todo-heading=)
-
---
-# - / * ( = Org -insert -todo -encabezamiento =) * / M- S - RET
+    - =M-S-RET= (=org-insert-todo-heading=)
 
 #       Insert new TODO entry with same level as current heading. See
 #       also the variable
@@ -1192,11 +1151,7 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 # También la variable = Org -treat -insert -todo -encabezamiento -as-
 # estado -change = .
 
-#     - */C-S-RET/* (=org-insert-todo-heading-respect-content=)
-
---
-# - * / CS- RET / * ( = org -insert -todo -encabezamiento respeto -
-      content = )
+    - =C-S-RET= (=org-insert-todo-heading-respect-content=)
 
 #       Insert new TODO entry with same level as current heading. Like
 #       */C-RET/*, the new headline will be inserted after the current
@@ -1207,10 +1162,7 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 # . Como * / C- RET / * , se insertará el nuevo titular después de que
 # el actual Subárbol .
 
-#     - */TAB/* (=org-cycle=)
-
---
-# - * / / * ( = Org- ciclo =) TAB
+    - =TAB= (=org-cycle=)
 
 #       In a new entry with no text yet, the first =TAB= demotes the
 #       entry to become a child of the previous one. The next =TAB=
@@ -1224,50 +1176,35 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 # sucesivamente , hasta llegar al nivel superior . Aún Otra = TAB = ,
 # y usted está de nuevo al nivel inicial.
 
-#     - */M-left/* (=org-do-promote=)
-
---
-# - * / M- izquierda / * ( = org -do- promover =)
+    - =M-left= (=org-do-promote=)
 
 #       Promote current heading by one level.
 
 --
 # Promover rumbo actual en un nivel.
 
-#     - */M-right/* (=org-do-demote=)
-
---
-# - * / M- derecha / * ( = org -do- demote =)
+    - =M-right= (=org-do-demote=)
 
 #       Demote current heading by one level.
 
 --
 # Degradar rumbo actual en un nivel.
 
-#     - */M-S-left/* (=org-promote-subtree=)
-
---
-# - * / M -S -izquierda / * ( = org- promoción - subárbol =)
+    - =M-S-left= (=org-promote-subtree=)
 
 #       Promote the current subtree by one level.
 
 --
 # Promover el subárbol actual en un nivel.
 
-#     - */M-S-right/* (=org-demote-subtree=)
-
---
-# - * / M- S - derecha / * ( = org- demote - subárbol =)
+    - =M-S-right= (=org-demote-subtree=)
 
 #       Demote the current subtree by one level.
 
 --
 # Degradar el subárbol actual en un nivel.
 
-#     - */M-S-up/* (=org-move-subtree-up=)
-
---
-# - * / M- S -up / * ( = org -move - subárbol -up =)
+    - =M-S-up= (=org-move-subtree-up=)
 
 #       Move subtree up (swap with previous subtree of same level).
 
@@ -1275,10 +1212,7 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 # Mover subárbol arriba ( swap con subárbol anterior del mismo nivel)
   .
 
-#     - */M-S-down/* (=org-move-subtree-down=)
-
---
-# - * / M- S -down / * ( = org -move - sub árbol hacia abajo =)
+    - =M-S-down= (=org-move-subtree-down=)
 
 #       Move subtree down (swap with next subtree of same level).
 
@@ -1286,10 +1220,7 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 # Mover subárbol abajo ( swap con siguiente subárbol del mismo nivel)
   .
 
-#     - */M-h/* (=org-mark-element=)
-
---
-# - * / M- h / * ( = org- mark- elemento =)
+    - =M-h= (=org-mark-element=)
 
 #       Mark the element at point. Hitting repeatedly will mark
 #       subsequent elements of the one just marked. E.g., hitting =M-h=
@@ -1302,10 +1233,7 @@ Elementos posteriores # de la que se acaba marcados . Por ejemplo,
 golpear = M- h = # En un párrafo lo marcará , golpeando = Mh =
 inmediatamente de nuevo # Marcará la siguiente.
 
-#     - */C-c @/* (=org-mark-subtree=)
-
---
-# - * / C- c @ / * ( = org- mark- subárbol =)
+    - =C-c @= (=org-mark-subtree=)
 
 #       Mark the subtree at point. Hitting repeatedly will mark
 #       subsequent subtrees of the same level than the marked subtree.
@@ -1314,10 +1242,7 @@ inmediatamente de nuevo # Marcará la siguiente.
 # Marque el subárbol en el punto . Golpear repetidamente marcará
 # Subárboles posteriores del mismo nivel que el marcado subárbol .
 
-#     - */C-c C-x C-w/* (=org-cut-subtree=)
-
---
-# - * / C- c / * ( subárbol org corte = =) C- x C- w
+    - =C-c C-x C-w= (=org-cut-subtree=)
 
 #       Kill subtree, i.e., remove it from buffer but save in kill
 #       ring. With a numeric prefix argument N, kill N sequential
@@ -1328,10 +1253,7 @@ inmediatamente de nuevo # Marcará la siguiente.
 # matanza Anillo. Con un argumento prefijo numérico N, N matar
 # secuencial Subárboles .
 
-#     - */C-c C-x M-w/* (=org-copy-subtree=)
-
---
-# - * / C- c C- x / * ( = org- copia - subárbol =) w - M
+    - =C-c C-x M-w= (=org-copy-subtree=)
 
 #       Copy subtree to kill ring. With a numeric prefix argument N,
 #       copy the N sequential subtrees.
@@ -1340,10 +1262,7 @@ inmediatamente de nuevo # Marcará la siguiente.
 # Copia subárbol matar anillo. Con un argumento prefijo numérico N,
 # Copy los subárboles secuenciales N .
 
-#     - */C-c C-x C-y/* (=org-paste-subtree=)
-
---
-# - * / C- c / * ( = org- pasta - subárbol =) C- x C -y
+    - =C-c C-x C-y= (=org-paste-subtree=)
 
 #       Yank subtree from kill ring. This does modify the level of the
 #       subtree to make sure the tree fits in nicely at the yank
@@ -1358,10 +1277,7 @@ inmediatamente de nuevo # Marcará la siguiente.
 # especificar con un valor numérico Prefijo # argumento , o tirando
 # después de un marcador de titular como ' **** ' .
 
-#     - */C-y/* (=org-yank=)
-
---
-# - * / C -y / * ( = org- tirón =)
+    - =C-y= (=org-yank=)
 
 #       Depending on the options =org-yank-adjusted-subtrees= and
 #       =org-yank-folded-subtrees=, Org's internal =yank= command will
@@ -1388,11 +1304,7 @@ a lo largo . Una buena manera de forzar un # Tirón normal es * / C -u
 C -y / * . Si utiliza = yank- pop = después de un tirón, # Se tire
 artículos matar anteriores claramente, sin ajuste y # Plegable.
 
-#     - */C-c C-x c/* (=org-clone-subtree-with-time-shift=)
-
---
-# - * / Cc Cx c / * ( = org- clon - sub-árbol - con - tiempo de
-      desplazamiento =)
+    - =C-c C-x c= (=org-clone-subtree-with-time-shift=)
 
 #       Clone a subtree by making a number of sibling copies of it. You
 #       will be prompted for the number of copies to make, and you can
@@ -1411,10 +1323,7 @@ artículos matar anteriores claramente, sin ajuste y # Plegable.
 # prepararse. Para más Detalles #, ver la cadena de documentación del
 # comando = Org- clon - sub-árbol - con - tiempo de desplazamiento = .
 
-#     - */C-c C-w/* (=org-refile=)
-
---
-# - * / C- c / * ( = org- refile =) C- w
+    - =C-c C-w= (=org-refile=)
 
 #       Refile entry or region to a different location. See [[@Refile-and-copy][Refile and copy]].
 
@@ -1423,10 +1332,7 @@ artículos matar anteriores claramente, sin ajuste y # Plegable.
   diferente . Véase [ [@ volver a presentar y copiar ] [ Volver a
   presentar y copia ] ] .
 
-#     - */C-c ^/* (=org-sort=)
-
---
-# - * / C- c ^ / * ( = org- sort = )
+    - =C-c ^= (=org-sort=)
 
 #       Sort same-level entries. When there is an active region, all
 #       entries in the region will be sorted. Otherwise the children of
@@ -1454,40 +1360,28 @@ puede proporcionar su propia función para extraer el # Clave de
 clasificación. Con un * / C -u / * prefijo , la clasificación será #
 Caso sensible.
 
-#     - */C-x n s/* (=org-narrow-to-subtree=)
-
---
-# - * / C- x n s / * ( = -org narrow-to- subárbol =)
+    - =C-x n s= (=org-narrow-to-subtree=)
 
 #       Narrow buffer to current subtree.
 
 --
 # Búfer Reducir a subárbol actual.
 
-#     - */C-x n b/* (=org-narrow-to-block=)
-
---
-# - * / C- x n b / * ( = -org - estrecho a bloque =)
+    - =C-x n b= (=org-narrow-to-block=)
 
 #       Narrow buffer to current block.
 
 --
 # Búfer Reducir a bloque actual .
 
-#     - */C-x n w/* (=widen=)
-
---
-# - * / C- x n w / * ( = amplían =)
+    - =C-x n w= (=widen=)
 
 #       Widen buffer to remove narrowing.
 
 --
 # Ampliar tampón para eliminar el estrechamiento .
 
-#     - */C-c */* (=org-toggle-heading=)
-
---
-# - * / C- c * / * ( = org -toggle -encabezamiento =)
+    - =C-c *= (=org-toggle-heading=)
 
 #       Turn a normal line or plain list item into a headline (so that
 #       it becomes a subheading at its location). Also turn a headline
@@ -3074,7 +2968,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #        #+CONSTANTS: c=299792458. pi=3.14 eps=2.4e-6
 #      #+END_EXAMPLE
 
-#      Also properties (see [[@Properties-and-columns][Properties and columns]]) can be used as
+#      Also properties (see [[@Properties-and-columns][Propiedades y columnas]]) can be used as
 #      constants in table formulas: for a property ‘:Xyz:' use the name
 #      =$PROP_Xyz=, and the property will be searched in the current
 #      outline entry and in the hierarchy above it. If you have the
@@ -5148,7 +5042,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 # ** 5.6 Checkboxes                                                     <<@Checkboxes>>
 
-#    Every item in a plain list[fn:FOOT58] (see [[@Plain-lists][Plain lists]]) can be made
+#    Every item in a plain list[fn:FOOT58] (see [[@Plain-lists][Listas Planas]]) can be made
 #    into a checkbox by starting it with the string ‘[ ]'. This feature
 #    is similar to TODO items (see [[@TODO-items][TODO items]]), but is more
 #    lightweight. Checkboxes are not included in the global TODO list,
@@ -5227,7 +5121,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     - */M-S-RET/* (=org-insert-todo-heading=)
 
 #       Insert a new item with a checkbox. This works only if the cursor
-#       is already in a plain list item (see [[@Plain-lists][Plain lists]]).
+#       is already in a plain list item (see [[@Plain-lists][Listas Planas]]).
 
 #     - */C-c C-x o/* (=org-toggle-ordered-property=)
 
@@ -5623,7 +5517,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    against TODO keywords, entry levels and properties. For a complete
 #    description with many examples, see [[@Matching-tags-and-properties][Matching tags and properties]].
 
-# * 7 Properties and columns                                            <<@Properties-and-columns>>
+# * 7 Propiedades y columnas                                            <<@Properties-and-columns>>
 
 #   A property is a key-value pair associated with an entry. Properties
 #   can be set so they are associated with a single entry, with every
@@ -7949,7 +7843,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #     If you would like to have a special ARCHIVE location for a single
 #     entry or a (sub)tree, give the entry an =:ARCHIVE:= property with
-#     the location as the value (see [[@Properties-and-columns][Properties and columns]]).
+#     the location as the value (see [[@Properties-and-columns][Propiedades y columnas]]).
 
 #     When a subtree is moved, it receives a number of special
 #     properties that record context information like the file from
@@ -8416,7 +8310,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 # *** 10.3.3 Matching tags and properties                               <<@Matching-tags-and-properties>>
 
 #     If headlines in the agenda files are marked with /tags/ (see
-#     [[@Tags][Tags]]), or have properties (see [[@Properties-and-columns][Properties and columns]]), you can
+#     [[@Tags][Tags]]), or have properties (see [[@Properties-and-columns][Propiedades y columnas]]), you can
 #     select headlines based on this metadata and collect them into an
 #     agenda buffer.  The match syntax described here also applies when
 #     creating sparse trees with */C-c / m/*.
@@ -8489,7 +8383,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #      for all headlines but those with one of the tags in the group
 #      (i.e., =-{\(?:work\|lab\|conf\)}=).
 
-#      You may also test for properties (see [[@Properties-and-columns][Properties and columns]]) at
+#      You may also test for properties (see [[@Properties-and-columns][Propiedades y columnas]]) at
 #      the same time as matching tags. The properties may be real
 #      properties, or special properties that represent other metadata
 #      (see [[@Special-properties][Special properties]]). For example, the “property” =TODO=
@@ -10089,7 +9983,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 # *** Lists                                                             <<@Lists>>
 
-#     Plain lists as described in [[@Plain-lists][Plain lists]], are translated to the
+#     Plain lists as described in [[@Plain-lists][Listas Planas]], are translated to the
 #     back-end's syntax for such lists. Most back-ends support
 #     unordered, ordered, and description lists.
 
@@ -10238,7 +10132,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #    Note that such blocks may be /indented/ in order to align nicely
 #    with indented text and in particular with plain list structure (see
-#    [[@Plain-lists][Plain lists]]). For simplicity when using small examples, you can
+#    [[@Plain-lists][Listas Planas]]). For simplicity when using small examples, you can
 #    also start the example lines with a colon followed by a
 #    space. There may also be additional whitespace before the colon:
 
@@ -12274,7 +12168,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 # **** Plain lists in LaTeX export
 
-#      Plain lists accept two optional attributes: =:environment= and
+#      Listas Planas accept two optional attributes: =:environment= and
 #      =:options=. The first one allows the use of a non-standard
 #      environment (e.g., ‘inparaenum'). The second one specifies
 #      additional arguments for that environment.
@@ -13494,7 +13388,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     =#+ATTR_TEXINFO= keyword, written just above the list, table or
 #     image.
 
-# **** Plain lists
+# **** Listas Planas
 
 #      In Texinfo output, description lists appear as two-column tables,
 #      using the default command =@table=. You can use =@ftable= or
@@ -19450,7 +19344,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | customization                            | [[@Customization][Customization]]                                      |
 #    | =customtime=, STARTUP keyword            | [[@In_buffer-settings][In-buffer settings]]                                 |
 #    | cutting, of subtrees                     | [[@Structure-editing][Structure editing]]                                  |
-#    | cycling, in plain lists                  | [[@Plain-lists][Plain lists]]                                        |
+#    | cycling, in plain lists                  | [[@Plain-lists][Listas Planas]]                                        |
 #    | cycling, of agenda files                 | [[@Agenda-files][Agenda files]]                                       |
 #    | cycling, of TODO states                  | [[@TODO-basics][TODO basics]]                                        |
 #    | cycling, visibility                      | [[@Visibility-cycling][Visibility cycling]]                                 |
@@ -19701,8 +19595,8 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | Lisp forms, as table formulas            | [[@Formula-syntax-for-Lisp][Formula syntax for Lisp]]                            |
 #    | lists, in other modes                    | [[@Tables-in-arbitrary-syntax][Tables in arbitrary syntax]]                         |
 #    | lists, markup rules                      | [[@Lists][Lists]]                                              |
-#    | lists, ordered                           | [[@Plain-lists][Plain lists]]                                        |
-#    | lists, plain                             | [[@Plain-lists][Plain lists]]                                        |
+#    | lists, ordered                           | [[@Plain-lists][Listas Planas]]                                        |
+#    | lists, plain                             | [[@Plain-lists][Listas Planas]]                                        |
 #    | literal examples, markup rules           | [[@Literal-examples][Literal examples]]                                   |
 #    | =logdone=, STARTUP keyword               | [[@In_buffer-settings][In-buffer settings]]                                 |
 #    | =logdrawer=, STARTUP keyword             | [[@In_buffer-settings][In-buffer settings]]                                 |
@@ -19786,7 +19680,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | options, for custom agenda views         | [[@Setting-options][Setting options]]                                    |
 #    | options, for customization               | [[@Customization][Customization]]                                      |
 #    | options, for publishing                  | [[@Publishing-options][Publishing options]]                                 |
-#    | ordered lists                            | [[@Plain-lists][Plain lists]]                                        |
+#    | ordered lists                            | [[@Plain-lists][Listas Planas]]                                        |
 #    | Org export                               | [[@Org-export][Org export]]                                         |
 #    | Org mode, turning on                     | [[@Activation][Activation]]                                         |
 #    | Org syntax                               | [[@Org-syntax][Org syntax]]                                         |
@@ -19819,7 +19713,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | pasting, of subtrees                     | [[@Structure-editing][Structure editing]]                                  |
 #    | PDF export                               | [[@LaTeX-and-PDF-export][LaTeX and PDF export]]                               |
 #    | per-file keywords                        | [[@Per_file-keywords][Per-file keywords]]                                  |
-#    | plain lists                              | [[@Plain-lists][Plain lists]]                                        |
+#    | plain lists                              | [[@Plain-lists][Listas Planas]]                                        |
 #    | plain lists, in LaTeX export             | [[@LaTeX-specific-attributes][LaTeX specific attributes]]                          |
 #    | plain text external links                | [[@External-links][External links]]                                     |
 #    | plot tables using Gnuplot                | [[@Org-Plot][Org-Plot]]                                           |
@@ -19832,7 +19726,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | projects, for publishing                 | [[@Project-alist][Project alist]]                                      |
 #    | promotion, of subtrees                   | [[@Structure-editing][Structure editing]]                                  |
 #    | proof, in LaTeX export                   | [[@LaTeX-specific-attributes][LaTeX specific attributes]]                          |
-#    | properties                               | [[@Properties-and-columns][Properties and columns]]                             |
+#    | properties                               | [[@Properties-and-columns][Propiedades y columnas]]                             |
 #    | properties, API                          | [[@Property-API][Property API]]                                       |
 #    | properties, API                          | [[@Using-the-property-API][Using the property API]]                             |
 #    | properties, column view                  | [[@Defining-columns][Defining columns]]                                   |
@@ -19969,7 +19863,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | set startup visibility, command          | [[@Global-and-local-cycling][Global and local cycling]]                           |
 #    | setting tags                             | [[@Setting-tags][Setting tags]]                                       |
 #    | SHELL links                              | [[@External-links][External links]]                                     |
-#    | shift-selection-mode                     | [[@Plain-lists][Plain lists]]                                        |
+#    | shift-selection-mode                     | [[@Plain-lists][Listas Planas]]                                        |
 #    | =shift-selection-mode=                   | [[@Conflicts][Conflicts]]                                          |
 #    | show all, command                        | [[@Global-and-local-cycling][Global and local cycling]]                           |
 #    | show all, global visibility state        | [[@Global-and-local-cycling][Global and local cycling]]                           |
@@ -19983,7 +19877,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =showstars=, STARTUP keyword             | [[@In_buffer-settings][In-buffer settings]]                                 |
 #    | sitemap, of published pages              | [[@Sitemap][Sitemap]]                                            |
 #    | sorting, of agenda items                 | [[@Sorting-agenda-items][Sorting agenda items]]                               |
-#    | sorting, of plain list                   | [[@Plain-lists][Plain lists]]                                        |
+#    | sorting, of plain list                   | [[@Plain-lists][Listas Planas]]                                        |
 #    | sorting, of subtrees                     | [[@Structure-editing][Structure editing]]                                  |
 #    | source blocks, in LaTeX export           | [[@LaTeX-specific-attributes][LaTeX specific attributes]]                          |
 #    | source code, batch execution             | [[@Batch-execution][Batch execution]]                                    |
@@ -20356,11 +20250,11 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =C-c '=              | [[@Editing-source-code][Editing source code]]                      |
 #    | =C-c '=              | [[@Cooperation][Cooperation]]                              |
 #    | =C-c *=              | [[@Structure-editing][Structure editing]]                        |
-#    | =C-c *=              | [[@Plain-lists][Plain lists]]                              |
+#    | =C-c *=              | [[@Plain-lists][Listas Planas]]                              |
 #    | =C-c *=              | [[@Updating-the-table][Updating the table]]                       |
 #    | =C-c +=              | [[@Built-in-table-editor][Built-in table editor]]                    |
 #    | =C-c ,=              | [[@Priorities][Priorities]]                               |
-#    | =C-c -=              | [[@Plain-lists][Plain lists]]                              |
+#    | =C-c -=              | [[@Plain-lists][Listas Planas]]                              |
 #    | =C-c -=              | [[@Built-in-table-editor][Built-in table editor]]                    |
 #    | =C-c .=              | [[@Creating-timestamps][Creating timestamps]]                      |
 #    | =C-c /=              | [[@Sparse-trees][Sparse trees]]                             |
@@ -20401,7 +20295,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =C-c c=              | [[@Conventions][Conventions]]                              |
 #    | =C-c c=              | [[@Using-capture][Using capture]]                            |
 #    | =C-c c C=            | [[@Capture-templates][Capture templates]]                        |
-#    | =C-c C-*=            | [[@Plain-lists][Plain lists]]                              |
+#    | =C-c C-*=            | [[@Plain-lists][Listas Planas]]                              |
 #    | =C-c C-a=            | [[@Attachments][Attachments]]                              |
 #    | =C-c C-a=            | [[@Agenda-commands][Agenda commands]]                          |
 #    | =C-c C-a a=          | [[@Attachments][Attachments]]                              |
@@ -20420,7 +20314,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =C-c C-a z=          | [[@Attachments][Attachments]]                              |
 #    | =C-c C-b=            | [[@Motion][Motion]]                                   |
 #    | =C-c C-b=            | [[@Editing-support][Editing support]]                          |
-#    | =C-c C-c=            | [[@Plain-lists][Plain lists]]                              |
+#    | =C-c C-c=            | [[@Plain-lists][Listas Planas]]                              |
 #    | =C-c C-c=            | [[@Footnotes][Footnotes]]                                |
 #    | =C-c C-c=            | [[@Built-in-table-editor][Built-in table editor]]                    |
 #    | =C-c C-c=            | [[@Editing-and-debugging-formulas][Editing and debugging formulas]]           |
@@ -20621,7 +20515,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =C-c \=              | [[@Property-searches][Property searches]]                        |
 #    | =C-c ]=              | [[@Agenda-files][Agenda files]]                             |
 #    | =C-c ^=              | [[@Structure-editing][Structure editing]]                        |
-#    | =C-c ^=              | [[@Plain-lists][Plain lists]]                              |
+#    | =C-c ^=              | [[@Plain-lists][Listas Planas]]                              |
 #    | =C-c ^=              | [[@Built-in-table-editor][Built-in table editor]]                    |
 #    | =C-c `=              | [[@Built-in-table-editor][Built-in table editor]]                    |
 #    | =C-c {=              | [[@Editing-and-debugging-formulas][Editing and debugging formulas]]           |
@@ -20740,7 +20634,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =M-<down>=           | [[@Agenda-commands][Agenda commands]]                          |
 #    | =M-<up>=             | [[@Agenda-commands][Agenda commands]]                          |
 #    | =M-a=                | [[@Built-in-table-editor][Built-in table editor]]                    |
-#    | =M-down=             | [[@Plain-lists][Plain lists]]                              |
+#    | =M-down=             | [[@Plain-lists][Listas Planas]]                              |
 #    | =M-down=             | [[@Built-in-table-editor][Built-in table editor]]                    |
 #    | =M-down=             | [[@Editing-and-debugging-formulas][Editing and debugging formulas]]           |
 #    | =M-down=             | [[@Key-bindings-and-useful-functions][Key bindings and useful functions]]        |
@@ -20751,29 +20645,29 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =M-g p=              | [[@Sparse-trees][Sparse trees]]                             |
 #    | =M-h=                | [[@Structure-editing][Structure editing]]                        |
 #    | =M-left=             | [[@Structure-editing][Structure editing]]                        |
-#    | =M-left=             | [[@Plain-lists][Plain lists]]                              |
+#    | =M-left=             | [[@Plain-lists][Listas Planas]]                              |
 #    | =M-left=             | [[@Built-in-table-editor][Built-in table editor]]                    |
 #    | =M-m=                | [[@Agenda-commands][Agenda commands]]                          |
 #    | =M-RET=              | [[@Structure-editing][Structure editing]]                        |
-#    | =M-RET=              | [[@Plain-lists][Plain lists]]                              |
+#    | =M-RET=              | [[@Plain-lists][Listas Planas]]                              |
 #    | =M-RET=              | [[@Built-in-table-editor][Built-in table editor]]                    |
 #    | =M-RET=              | [[@Timers][Timers]]                                   |
 #    | =M-right=            | [[@Structure-editing][Structure editing]]                        |
-#    | =M-right=            | [[@Plain-lists][Plain lists]]                              |
+#    | =M-right=            | [[@Plain-lists][Listas Planas]]                              |
 #    | =M-right=            | [[@Built-in-table-editor][Built-in table editor]]                    |
 #    | =M-S-down=           | [[@Structure-editing][Structure editing]]                        |
 #    | =M-S-down=           | [[@Built-in-table-editor][Built-in table editor]]                    |
 #    | =M-S-down=           | [[@Editing-and-debugging-formulas][Editing and debugging formulas]]           |
 #    | =M-S-down=           | [[@The-date_time-prompt][The date/time prompt]]                     |
 #    | =M-S-left=           | [[@Structure-editing][Structure editing]]                        |
-#    | =M-S-left=           | [[@Plain-lists][Plain lists]]                              |
+#    | =M-S-left=           | [[@Plain-lists][Listas Planas]]                              |
 #    | =M-S-left=           | [[@Built-in-table-editor][Built-in table editor]]                    |
 #    | =M-S-left=           | [[@The-date_time-prompt][The date/time prompt]]                     |
 #    | =M-S-RET=            | [[@Structure-editing][Structure editing]]                        |
-#    | =M-S-RET=            | [[@Plain-lists][Plain lists]]                              |
+#    | =M-S-RET=            | [[@Plain-lists][Listas Planas]]                              |
 #    | =M-S-RET=            | [[@Checkboxes][Checkboxes]]                               |
 #    | =M-S-right=          | [[@Structure-editing][Structure editing]]                        |
-#    | =M-S-right=          | [[@Plain-lists][Plain lists]]                              |
+#    | =M-S-right=          | [[@Plain-lists][Listas Planas]]                              |
 #    | =M-S-right=          | [[@Built-in-table-editor][Built-in table editor]]                    |
 #    | =M-S-right=          | [[@The-date_time-prompt][The date/time prompt]]                     |
 #    | =M-S-up=             | [[@Structure-editing][Structure editing]]                        |
@@ -20785,7 +20679,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =M-TAB=              | [[@Setting-tags][Setting tags]]                             |
 #    | =M-TAB=              | [[@Property-syntax][Property syntax]]                          |
 #    | =M-TAB=              | [[@Completion][Completion]]                               |
-#    | =M-up=               | [[@Plain-lists][Plain lists]]                              |
+#    | =M-up=               | [[@Plain-lists][Listas Planas]]                              |
 #    | =M-up=               | [[@Built-in-table-editor][Built-in table editor]]                    |
 #    | =M-up=               | [[@Editing-and-debugging-formulas][Editing and debugging formulas]]           |
 #    | =M-up=               | [[@Key-bindings-and-useful-functions][Key bindings and useful functions]]        |
@@ -20845,13 +20739,13 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | <20>                 | <40>                                     |
 #    | =s=                  | [[@Agenda-commands][Agenda commands]]                          |
 #    | =S=                  | [[@Agenda-commands][Agenda commands]]                          |
-#    | =S-down=             | [[@Plain-lists][Plain lists]]                              |
+#    | =S-down=             | [[@Plain-lists][Listas Planas]]                              |
 #    | =S-down=             | [[@Editing-and-debugging-formulas][Editing and debugging formulas]]           |
 #    | =S-down=             | [[@Priorities][Priorities]]                               |
 #    | =S-down=             | [[@Creating-timestamps][Creating timestamps]]                      |
 #    | =S-down=             | [[@The-date_time-prompt][The date/time prompt]]                     |
 #    | =S-down=             | [[@Agenda-commands][Agenda commands]]                          |
-#    | =S-left=             | [[@Plain-lists][Plain lists]]                              |
+#    | =S-left=             | [[@Plain-lists][Listas Planas]]                              |
 #    | =S-left=             | [[@Editing-and-debugging-formulas][Editing and debugging formulas]]           |
 #    | =S-left=             | [[@TODO-basics][TODO basics]]                              |
 #    | =S-left=             | [[@Multiple-sets-in-one-file][Multiple sets in one file]]                |
@@ -20866,7 +20760,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =S-M-right=          | [[@Using-column-view][Using column view]]                        |
 #    | =S-M-up/down=        | [[@Clocking-commands][Clocking commands]]                        |
 #    | =S-RET=              | [[@Built-in-table-editor][Built-in table editor]]                    |
-#    | =S-right=            | [[@Plain-lists][Plain lists]]                              |
+#    | =S-right=            | [[@Plain-lists][Listas Planas]]                              |
 #    | =S-right=            | [[@Editing-and-debugging-formulas][Editing and debugging formulas]]           |
 #    | =S-right=            | [[@TODO-basics][TODO basics]]                              |
 #    | =S-right=            | [[@Multiple-sets-in-one-file][Multiple sets in one file]]                |
@@ -20893,7 +20787,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =T=                  | [[@Agenda-commands][Agenda commands]]                          |
 #    | =TAB=                | [[@Global-and-local-cycling][Global and local cycling]]                 |
 #    | =TAB=                | [[@Structure-editing][Structure editing]]                        |
-#    | =TAB=                | [[@Plain-lists][Plain lists]]                              |
+#    | =TAB=                | [[@Plain-lists][Listas Planas]]                              |
 #    | =TAB=                | [[@Editing-and-debugging-formulas][Editing and debugging formulas]]           |
 #    | =TAB=                | [[@Setting-tags][Setting tags]]                             |
 #    | =TAB=                | [[@Agenda-commands][Agenda commands]]                          |
@@ -21130,7 +21024,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =org-cut-subtree=                        | [[@Structure-editing][Structure editing]]                        |
 #    | =org-cycle=                              | [[@Global-and-local-cycling][Global and local cycling]]                 |
 #    | =org-cycle=                              | [[@Structure-editing][Structure editing]]                        |
-#    | =org-cycle=                              | [[@Plain-lists][Plain lists]]                              |
+#    | =org-cycle=                              | [[@Plain-lists][Listas Planas]]                              |
 #    | =org-cycle-agenda-files=                 | [[@Agenda-files][Agenda files]]                             |
 #    | =org-date-from-calendar=                 | [[@Creating-timestamps][Creating timestamps]]                      |
 #    | =org-dblock-update=                      | [[@Capturing-column-view][Capturing column view]]                    |
@@ -21170,7 +21064,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =org-icalendar-export-to-ics=            | [[@iCalendar-export][iCalendar export]]                         |
 #    | =org-insert-columns-dblock=              | [[@Capturing-column-view][Capturing column view]]                    |
 #    | =org-insert-heading=                     | [[@Structure-editing][Structure editing]]                        |
-#    | =org-insert-heading=                     | [[@Plain-lists][Plain lists]]                              |
+#    | =org-insert-heading=                     | [[@Plain-lists][Listas Planas]]                              |
 #    | =org-insert-heading=                     | [[@Timers][Timers]]                                   |
 #    | =org-insert-heading-respect-content=     | [[@Structure-editing][Structure editing]]                        |
 #    | =org-insert-link=                        | [[@Handling-links][Handling links]]                           |
@@ -21516,7 +21410,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =org-ctrl-k-protect-subtree=             | [[@Headlines][Headlines]]                                |
 #    | =org-cycle-emulate-tab=                  | [[@Global-and-local-cycling][Global and local cycling]]                 |
 #    | =org-cycle-global-at-bob=                | [[@Global-and-local-cycling][Global and local cycling]]                 |
-#    | =org-cycle-include-plain-lists=          | [[@Plain-lists][Plain lists]]                              |
+#    | =org-cycle-include-plain-lists=          | [[@Plain-lists][Listas Planas]]                              |
 #    | =org-cycle-open-archived-trees=          | [[@Internal-archiving][Internal archiving]]                       |
 #    | =org-cycle-separator-lines=              | [[@Headlines][Headlines]]                                |
 #    | =org-deadline-warning-days=              | [[@Deadlines-and-scheduling][Deadlines and scheduling]]                 |
@@ -21690,14 +21584,14 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =org-link-abbrev-alist=                  | [[@Link-abbreviations][Link abbreviations]]                       |
 #    | =org-link-abbrev-alist=                  | [[@In_buffer-settings][In-buffer settings]]                       |
 #    | =org-link-frame-setup=                   | [[@Handling-links][Handling links]]                           |
-#    | =org-list-allow-alphabetical=            | [[@Plain-lists][Plain lists]]                              |
-#    | =org-list-automatic-rules=               | [[@Plain-lists][Plain lists]]                              |
-#    | =org-list-automatic-rules=               | [[@Plain-lists][Plain lists]]                              |
+#    | =org-list-allow-alphabetical=            | [[@Plain-lists][Listas Planas]]                              |
+#    | =org-list-automatic-rules=               | [[@Plain-lists][Listas Planas]]                              |
+#    | =org-list-automatic-rules=               | [[@Plain-lists][Listas Planas]]                              |
 #    | =org-list-automatic-rules=               | [[@Checkboxes][Checkboxes]]                               |
-#    | =org-list-demote-modify-bullet=          | [[@Plain-lists][Plain lists]]                              |
-#    | =org-list-empty-line-terminates-plain-lists= | [[@Plain-lists][Plain lists]]                              |
-#    | =org-list-indent-offset=                 | [[@Plain-lists][Plain lists]]                              |
-#    | =org-list-use-circular-motion=           | [[@Plain-lists][Plain lists]]                              |
+#    | =org-list-demote-modify-bullet=          | [[@Plain-lists][Listas Planas]]                              |
+#    | =org-list-empty-line-terminates-plain-lists= | [[@Plain-lists][Listas Planas]]                              |
+#    | =org-list-indent-offset=                 | [[@Plain-lists][Listas Planas]]                              |
+#    | =org-list-use-circular-motion=           | [[@Plain-lists][Listas Planas]]                              |
 #    | =org-log-done=                           | [[@Tracking-TODO-state-changes][Tracking TODO state changes]]              |
 #    | =org-log-done=                           | [[@Agenda-commands][Agenda commands]]                          |
 #    | =org-log-done=                           | [[@In_buffer-settings][In-buffer settings]]                       |
@@ -21712,7 +21606,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =org-lowest-priority=                    | [[@Priorities][Priorities]]                               |
 #    | =org-lowest-priority=                    | [[@In_buffer-settings][In-buffer settings]]                       |
 #    | =org-M-RET-may-split-line=               | [[@Structure-editing][Structure editing]]                        |
-#    | =org-M-RET-may-split-line=               | [[@Plain-lists][Plain lists]]                              |
+#    | =org-M-RET-may-split-line=               | [[@Plain-lists][Listas Planas]]                              |
 #    | =org-md-headline-style=                  | [[@Markdown-export][Markdown export]]                          |
 #    | =org-odd-levels-only=                    | [[@Matching-tags-and-properties][Matching tags and properties]]             |
 #    | =org-odd-levels-only=                    | [[@In_buffer-settings][In-buffer settings]]                       |
@@ -21736,8 +21630,8 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =org-odt-table-styles=                   | [[@Customizing-tables-in-ODT-export][Customizing tables in ODT export]]         |
 #    | =org-outline-path-complete-in-steps=     | [[@Refile-and-copy][Refile and copy]]                          |
 #    | =org-overriding-columns-format=          | [[@Agenda-column-view][Agenda column view]]                       |
-#    | =org-plain-list-ordered-item-terminator= | [[@Plain-lists][Plain lists]]                              |
-#    | =org-plain-list-ordered-item-terminator= | [[@Plain-lists][Plain lists]]                              |
+#    | =org-plain-list-ordered-item-terminator= | [[@Plain-lists][Listas Planas]]                              |
+#    | =org-plain-list-ordered-item-terminator= | [[@Plain-lists][Listas Planas]]                              |
 #    | =org-popup-calendar-for-date-prompt=     | [[@The-date_time-prompt][The date/time prompt]]                     |
 #    | =org-priority-faces=                     | [[@Priorities][Priorities]]                               |
 #    | =org-priority-start-cycle-with-default=  | [[@Priorities][Priorities]]                               |
@@ -21778,8 +21672,8 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =org-startup-with-latex-preview=         | [[@In_buffer-settings][In-buffer settings]]                       |
 #    | =org-store-link-functions=               | [[@Adding-hyperlink-types][Adding hyperlink types]]                   |
 #    | =org-stuck-projects=                     | [[@Stuck-projects][Stuck projects]]                           |
-#    | =org-support-shift-select=               | [[@Plain-lists][Plain lists]]                              |
-#    | =org-support-shift-select=               | [[@Plain-lists][Plain lists]]                              |
+#    | =org-support-shift-select=               | [[@Plain-lists][Listas Planas]]                              |
+#    | =org-support-shift-select=               | [[@Plain-lists][Listas Planas]]                              |
 #    | =org-support-shift-select=               | [[@Conflicts][Conflicts]]                                |
 #    | =org-table-auto-blank-field=             | [[@Built-in-table-editor][Built-in table editor]]                    |
 #    | =org-table-copy-increment=               | [[@Built-in-table-editor][Built-in table editor]]                    |
@@ -21910,6 +21804,10 @@ afectar la visibilidad en ese búfer.
 # buffer, but without affecting visibility in that buffer.
 
 [fn:FOOT9]
+Cuando =org-agenda-inhibit-startup= no es =nil=, Org no respeta el
+estado de visibilidad por defecto al abrir un archivo por primera vez
+para la agenda ( Ver [[@Speeding-up-your-agendas][Speeding up your agendas]]).
+
 # When =org-agenda-inhibit-startup= is non- =nil=, Org will not honor
 # the default visibility state when first opening a file for the agenda
 # (see [[@Speeding-up-your-agendas][Speeding up your agendas]]).
