@@ -529,7 +529,7 @@ modify this GNU manual.”
     accordingly. Allowed values for this property are =folded=,
     =children=, =content=, and =all=.
 
-     - */C-u C-u TAB/* (=org-set-startup-visibility=)
+     - =C-u C-u TAB= (=org-set-startup-visibility=)
 
        Switch back to the startup visibility of the buffer, i.e.,
        whatever is requested by startup options and ‘VISIBILITY'
@@ -588,6 +588,69 @@ modify this GNU manual.”
        | q     | Quit                               |
 
       See also the option =org-goto-interface=.
+
+** 2.6 Sparse trees                                                   <<@Sparse-trees>>
+
+   An important feature of Org mode is the ability to construct
+   /sparse trees/ for selected information in an outline tree, so that
+   the entire document is folded as much as possible, but the selected
+   information is made visible along with the headline structure above
+   it[fn:FOOT10]. Just try it out and you will see immediately how it
+   works.
+
+   Org mode contains several commands for creating such trees, all these
+   commands can be accessed through a dispatcher:
+
+    - */C-c //* (=org-sparse-tree=)
+
+      This prompts for an extra key to select a sparse-tree creating
+      command.
+
+    - */C-c / r/* (=org-occur=)
+
+      Prompts for a regexp and shows a sparse tree with all
+      matches. If the match is in a headline, the headline is made
+      visible. If the match is in the body of an entry, headline and
+      body are made visible. In order to provide minimal context, also
+      the full hierarchy of headlines above the match is shown, as
+      well as the headline following the match. Each match is also
+      highlighted; the highlights disappear when the buffer is changed
+      by an editing command[fn:FOOT11], or by pressing */C-c
+      C-c/*. When called with a */C-u/* prefix argument, previous
+      highlights are kept, so several calls to this command can be
+      stacked.
+
+    - */M-g n/* or */M-g M-n/* (=next-error=)
+
+      Jump to the next sparse tree match in this buffer.
+
+    - */M-g p/* or */M-g M-p/* (=previous-error=)
+
+      Jump to the previous sparse tree match in this buffer.
+
+   For frequently used sparse trees of specific search strings, you
+   can use the option =org-agenda-custom-commands= to define fast
+   keyboard access to specific sparse trees. These commands will then
+   be accessible through the agenda dispatcher (see [[@Agenda-dispatcher][Agenda dispatcher]]).
+   For example:
+
+   #+BEGIN_SRC lisp
+     (setq org-agenda-custom-commands
+           '(("f" occur-tree "FIXME")))
+   #+END_SRC
+
+   will define the key */C-c a f/* as a shortcut for creating a sparse
+   tree matching the string ‘FIXME'.
+
+   The other sparse tree commands select headings based on TODO
+   keywords, tags, or properties and will be discussed later in this
+   manual.
+
+   To print a sparse tree, you can use the Emacs command
+   =ps-print-buffer-with-faces= which does not print invisible parts
+   of the document[fn:FOOT12]. Or you can use */C-c C-e C-v/* to
+   export only the visible part of the document and print the
+   resulting file.
 
 ** 2.5 Structure editing                                              <<@Structure-editing>>
 
@@ -724,7 +787,8 @@ modify this GNU manual.”
 
     - =C-c C-w= (=org-refile=)
 
-      Refile entry or region to a different location. See [[@Refile-and-copy][Refile and copy]].
+      Refile entry or region to a different location. See [[@Refile-and-copy][Refile and
+      copy]].
 
     - =C-c ^= (=org-sort=)
 
@@ -769,69 +833,6 @@ modify this GNU manual.”
    at the line just after the last headline to change. Note that when
    the cursor is inside a table (see [[@Tables][Tables]]), the Meta-Cursor keys
    have different functionality.
-
-** 2.6 Sparse trees                                                   <<@Sparse-trees>>
-
-   An important feature of Org mode is the ability to construct
-   /sparse trees/ for selected information in an outline tree, so that
-   the entire document is folded as much as possible, but the selected
-   information is made visible along with the headline structure above
-   it[fn:FOOT10]. Just try it out and you will see immediately how it
-   works.
-
-   Org mode contains several commands for creating such trees, all these
-   commands can be accessed through a dispatcher:
-
-    - */C-c //* (=org-sparse-tree=)
-
-      This prompts for an extra key to select a sparse-tree creating
-      command.
-
-    - */C-c / r/* (=org-occur=)
-
-      Prompts for a regexp and shows a sparse tree with all
-      matches. If the match is in a headline, the headline is made
-      visible. If the match is in the body of an entry, headline and
-      body are made visible. In order to provide minimal context, also
-      the full hierarchy of headlines above the match is shown, as
-      well as the headline following the match. Each match is also
-      highlighted; the highlights disappear when the buffer is changed
-      by an editing command[fn:FOOT11], or by pressing */C-c
-      C-c/*. When called with a */C-u/* prefix argument, previous
-      highlights are kept, so several calls to this command can be
-      stacked.
-
-    - */M-g n/* or */M-g M-n/* (=next-error=)
-
-      Jump to the next sparse tree match in this buffer.
-
-    - */M-g p/* or */M-g M-p/* (=previous-error=)
-
-      Jump to the previous sparse tree match in this buffer.
-
-   For frequently used sparse trees of specific search strings, you
-   can use the option =org-agenda-custom-commands= to define fast
-   keyboard access to specific sparse trees. These commands will then
-   be accessible through the agenda dispatcher (see [[@Agenda-dispatcher][Agenda dispatcher]]).
-   For example:
-
-   #+BEGIN_SRC lisp
-     (setq org-agenda-custom-commands
-           '(("f" occur-tree "FIXME")))
-   #+END_SRC
-
-   will define the key */C-c a f/* as a shortcut for creating a sparse
-   tree matching the string ‘FIXME'.
-
-   The other sparse tree commands select headings based on TODO
-   keywords, tags, or properties and will be discussed later in this
-   manual.
-
-   To print a sparse tree, you can use the Emacs command
-   =ps-print-buffer-with-faces= which does not print invisible parts
-   of the document[fn:FOOT12]. Or you can use */C-c C-e C-v/* to
-   export only the visible part of the document and print the
-   resulting file.
 
 ** 2.7 Plain lists                                                    <<@Plain-lists>>
 

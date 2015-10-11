@@ -8,6 +8,7 @@
 # #+EXCLUDE_TAGS: noexport
 
 # (esto es, basura) -> (i.e., garbage)
+# sparce-tree -> arbol conpacto
 
 This manual is for Org version 8.3.1 (release_8.3.1-90-g80a626).
 
@@ -966,7 +967,7 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
     para esta propiedad son =folded=, =children=, =content=, and
     =all=.
 
-     - */C-u C-u TAB/* (=org-set-startup-visibility=)
+     - =C-u C-u TAB= (=org-set-startup-visibility=)
 
 #        Switch back to the startup visibility of the buffer, i.e.,
 #        whatever is requested by startup options and ‘VISIBILITY'
@@ -1115,17 +1116,15 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #       respect the headline's content and create a new item at the end
 #       of the parent subtree.
 
---
-# Al llamar a este comando con * / Cu Cu / * voluntad
-# incondicionalmente Respetar el contenido del título y crear un nuevo
-# elemento al final Del subárbol padres.
+      Llame a este comando con =C-u C-u= si desea respetar el
+      contenido del encabezado y crear un nuevo elemento al final del
+      subárbol padre.
 
 #       If point is at the beginning of a normal line, turn this line
 #       into a heading.
 
---
-# Si el punto está al principio de una línea normal , gire esta línea
-# En un encabezado .
+      Si el punto está al inicio de una línea normal, convierte esta
+      línea en un encabezado.
 
     - =C-RET= (=org-insert-heading-respect-content=)
 
@@ -1134,11 +1133,10 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #       instead of before it.  This command works from anywhere in the
 #       entry.
 
---
-# Al igual que * / M- RET * / , excepto cuando se añade un nuevo
-# título por debajo de la Rumbo actual , el nuevo título se coloca
-# después el cuerpo En lugar de antes . Este comando funciona desde
-# cualquier lugar del Entrada .
+      Al igual que =M-RET=, excepto que se añade un nuevo encabezado
+      por debajo del encabezado actual, el nuevo encabezado se coloca
+      después el cuerpo en lugar de antes. Este comando funciona desde
+      cualquier lugar de entrada.
 
     - =M-S-RET= (=org-insert-todo-heading=)
 
@@ -1146,10 +1144,9 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #       also the variable
 #       =org-treat-insert-todo-heading-as-state-change=.
 
---
-# Inserte nueva entrada TODO con mismo nivel que el rumbo actual . ver
-# También la variable = Org -treat -insert -todo -encabezamiento -as-
-# estado -change = .
+      Inserta una nueva entrada TODO con el mismo nivel que el
+      encabezado actual. Vea también la variable
+      =org-treat-insert-todo-heading-as-state-change=.
 
     - =C-S-RET= (=org-insert-todo-heading-respect-content=)
 
@@ -1157,10 +1154,9 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #       */C-RET/*, the new headline will be inserted after the current
 #       subtree.
 
---
-# Inserte nueva entrada TODO con mismo nivel que el rumbo actual
-# . Como * / C- RET / * , se insertará el nuevo titular después de que
-# el actual Subárbol .
+      Inserta nueva entrada TODO con mismo nivel que el encabezado
+      actual. Como =C-RET=, se insertará el nuevo encabezado después
+      del actual Subárbol.
 
     - =TAB= (=org-cycle=)
 
@@ -1169,56 +1165,49 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #       makes it a parent, and so on, all the way to top level. Yet
 #       another =TAB=, and you are back to the initial level.
 
---
-# En una nueva entrada sin texto , sin embargo, la primera = TAB =
-# degrada la Entrada para convertirse en un hijo de la anterior. El
-# siguiente = TAB = Hace que sea uno de los padres , y así
-# sucesivamente , hasta llegar al nivel superior . Aún Otra = TAB = ,
-# y usted está de nuevo al nivel inicial.
+      En una nueva entrada sin texto, el primer =TAB= degrada la
+      entrada para convertirse en un hijo de la anterior. El siguiente
+      =TAB= hace que sea uno de los padres, y así sucesivamente, hasta
+      llegar al nivel superior. Otra =TAB= mas, y regresara de nuevo
+      al nivel inicial.
 
     - =M-left= (=org-do-promote=)
 
 #       Promote current heading by one level.
 
---
-# Promover rumbo actual en un nivel.
+      Promover encabezado actual en un nivel.
 
     - =M-right= (=org-do-demote=)
 
 #       Demote current heading by one level.
 
---
-# Degradar rumbo actual en un nivel.
+      Degradar encabezado actual en un nivel.
 
     - =M-S-left= (=org-promote-subtree=)
 
 #       Promote the current subtree by one level.
 
---
-# Promover el subárbol actual en un nivel.
+      Promover el subárbol actual en un nivel.
 
     - =M-S-right= (=org-demote-subtree=)
 
 #       Demote the current subtree by one level.
 
---
-# Degradar el subárbol actual en un nivel.
+      Degradar el subárbol actual en un nivel.
 
     - =M-S-up= (=org-move-subtree-up=)
 
 #       Move subtree up (swap with previous subtree of same level).
 
---
-# Mover subárbol arriba ( swap con subárbol anterior del mismo nivel)
-  .
+      Mover subárbol arriba (intercambia con subárbol anterior del
+      mismo nivel).
 
     - =M-S-down= (=org-move-subtree-down=)
 
 #       Move subtree down (swap with next subtree of same level).
 
---
-# Mover subárbol abajo ( swap con siguiente subárbol del mismo nivel)
-  .
+      Mover subárbol abajo (intercambio con siguiente subárbol del
+      mismo nivel).
 
     - =M-h= (=org-mark-element=)
 
@@ -1227,20 +1216,18 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #       on a paragraph will mark it, hitting =M-h= immediately again
 #       will mark the next one.
 
---
-# Marque el elemento en el punto . Golpear repetidamente marcará
-Elementos posteriores # de la que se acaba marcados . Por ejemplo,
-golpear = M- h = # En un párrafo lo marcará , golpeando = Mh =
-inmediatamente de nuevo # Marcará la siguiente.
+      Marque el elemento en el punto. Precionar repetidamente marcará
+      elementos subsiguientes del que acaba de ser marcado. Por
+      ejemplo, precionar =M-h= en un párrafo lo marcará, otro =M-h=
+      marcara el parrafo siguiente.
 
     - =C-c @= (=org-mark-subtree=)
 
 #       Mark the subtree at point. Hitting repeatedly will mark
 #       subsequent subtrees of the same level than the marked subtree.
 
---
-# Marque el subárbol en el punto . Golpear repetidamente marcará
-# Subárboles posteriores del mismo nivel que el marcado subárbol .
+      Marque el subárbol en el punto. Precionar repetidamente marcará
+      subárboles posteriores del mismo nivel que el subárbol marcado.
 
     - =C-c C-x C-w= (=org-cut-subtree=)
 
@@ -1248,19 +1235,17 @@ inmediatamente de nuevo # Marcará la siguiente.
 #       ring. With a numeric prefix argument N, kill N sequential
 #       subtrees.
 
---
-# Subárbol de muertes , es decir , sacarlo de búfer , pero salvo en
-# matanza Anillo. Con un argumento prefijo numérico N, N matar
-# secuencial Subárboles .
+      Matar subárbol, es decir, removerlo del búfer pero guardarlo a
+      salvo en el kill ring. Con un argumento prefijo numérico N, mata
+      los N subárboles siguientes.
 
     - =C-c C-x M-w= (=org-copy-subtree=)
 
 #       Copy subtree to kill ring. With a numeric prefix argument N,
 #       copy the N sequential subtrees.
 
---
-# Copia subárbol matar anillo. Con un argumento prefijo numérico N,
-# Copy los subárboles secuenciales N .
+      Copia subárbol al kill ring. Con un argumento prefijo numérico
+      N, copia los N subárboles siguientes.
 
     - =C-c C-x C-y= (=org-paste-subtree=)
 
@@ -1270,12 +1255,11 @@ inmediatamente de nuevo # Marcará la siguiente.
 #       prefix argument, or by yanking after a headline marker like
 #       ‘****'.
 
---
-# Yank subárbol del histórico de recortes . Esto hace modificar el
-# nivel de la Subárbol para asegurarse de que el árbol se adapta muy
-# bien en el tirón Posición. El nivel tirón también se puede
-# especificar con un valor numérico Prefijo # argumento , o tirando
-# después de un marcador de titular como ' **** ' .
+      Traer subárbol del kill ring. Esto modifica el nivel del
+      subárbol para adaptarlo a la posicion dentro del arbol. El nivel
+      se puede especificar con un valor numérico dentro del argumento
+      prefijo, o tirando después de marcador el encabezado como
+      '****'.
 
     - =C-y= (=org-yank=)
 
@@ -1291,18 +1275,17 @@ inmediatamente de nuevo # Marcará la siguiente.
 #       it will yank previous kill items plainly, without adjustment and
 #       folding.
 
---
-# Dependiendo de las opciones = org - yank ajustados - subárboles = y
-Interna = tirón = comando # = org- yank- plegado - subárboles = , de
-Org voluntad # Pegar subárboles dobladas y de manera inteligente ,
-utilizando la misma # Comando como * / C- c C- x C -y / * . Con la
-configuración predeterminada, hay un nivel # Ajuste se llevará a cabo
-, pero el árbol arrancado será doblado # A menos que al hacerlo se
-trague texto previamente visible. Alguna # Argumento prefijo a este
-comando forzará normal = tirón = ser # Ejecutado , con el prefijo pasa
-a lo largo . Una buena manera de forzar un # Tirón normal es * / C -u
-C -y / * . Si utiliza = yank- pop = después de un tirón, # Se tire
-artículos matar anteriores claramente, sin ajuste y # Plegable.
+      Dependiendo de las opciones de =org-yank-adjusted-subtrees= y
+      =org-yank-folded-subtrees=, ambos, comandos internos =yank= de
+      Org para traer subarboles plegados y de manera inteligente,
+      utilizando el mismo comando =C-c C-x C-y=. Con la configuración
+      predeterminada, no se llevara a cabo el ajuste de nivel, pero el
+      árbol traido será plegado a menos que al hacerlo se pliegue
+      texto previamente visible. Cualquier argumento prefijo a este
+      comando forzará la ejecucion de un =yank= normal. Una buena
+      manera de forzar un yank normal es =C-u C-y=. Si utiliza
+      =yank-pop= después de un yank, se traeran artículos, sin ajuste
+      ni plegado.
 
     - =C-c C-x c= (=org-clone-subtree-with-time-shift=)
 
@@ -1314,23 +1297,20 @@ artículos matar anteriores claramente, sin ajuste y # Plegable.
 #       details, see the docstring of the command
 #       =org-clone-subtree-with-time-shift=.
 
---
-# Clonar un subárbol al hacer varias copias de la misma entre hermanos
-# . usted Se le solicitará el número de copias que desea hacer , y se
-# puede Especificar también si los sellos de tiempo en la entrada
-# deben ser Cambió . Esto puede ser útil, por ejemplo, para crear una
-# serie de Tareas relacionadas con una serie de conferencias para
-# prepararse. Para más Detalles #, ver la cadena de documentación del
-# comando = Org- clon - sub-árbol - con - tiempo de desplazamiento = .
+      Clonar un subárbol haciendo un numero de copias hermanas de
+      este. Se le solicitará el número de copias que desea hacer, y
+      tamien puede especificar si las marcas de tiempo de entrada
+      deben ser cambiadas. Esto puede ser útil, por ejemplo, para
+      crear una serie de tareas relacionadas con una serie de
+      conferencias. Para más detalles, ver la cadena de documentación
+      del comando =org-clone-subtree-with-time-shift=.
 
     - =C-c C-w= (=org-refile=)
 
 #       Refile entry or region to a different location. See [[@Refile-and-copy][Refile and copy]].
 
---
-# Volver a presentar la entrada o de la región en una ubicación
-  diferente . Véase [ [@ volver a presentar y copiar ] [ Volver a
-  presentar y copia ] ] .
+      Colocar entrada o región en una ubicación diferente . Vér
+      [[@Refile-and-copy][Colocacion y copia]].
 
     - =C-c ^= (=org-sort=)
 
@@ -1346,40 +1326,36 @@ artículos matar anteriores claramente, sin ajuste y # Plegable.
 #       sorting key.  With a */C-u/* prefix, sorting will be
 #       case-sensitive.
 
---
-# Ordenar las entradas del mismo nivel . Cuando hay una región activa
-, todo Entradas # en la región serán ordenados . De lo contrario, los
-hijos de # El titular actual están ordenadas . El comando solicita la
-# Método de clasificación , que puede ser orden alfabético, numérico ,
-por # Tiempo ( primera marca de tiempo con el tiempo preferido , la
-creación de activos , # Programado tiempo, hora límite ) , por
-prioridad , por palabra clave TODO ( en # La secuencia de las palabras
-clave se han definido en la configuración ) o # El valor de una
-propiedad. Clasificación inversa es posible, ya que # bien. También
-puede proporcionar su propia función para extraer el # Clave de
-clasificación. Con un * / C -u / * prefijo , la clasificación será #
-Caso sensible.
+      Ordenar entradas del mismo nivel. Cuando hay una región activa,
+      todas las entradas en la región serán ordenados. De lo
+      contrario, los hijos del encabezado actual están ordenados . El
+      comando solicita el método de clasificación, que puede ser orden
+      alfabético, numérico, por tiempo (primera marca de tiempo con el
+      tiempo preferido, tiempo de creacion, tiempo programado, hora
+      límite), por prioridad , por palabra clave TODO (la secuencia en
+      que las palabras clave se han definido en la configuración) o el
+      valor de una propiedad. La clasificación inversa tambien es
+      posible. También puede proporcionar su propia función para
+      extraer la clave de clasificación. Con el prefijo =C-u=, la
+      clasificación será sensible a mayusculas y minusculas.
 
     - =C-x n s= (=org-narrow-to-subtree=)
 
 #       Narrow buffer to current subtree.
 
---
-# Búfer Reducir a subárbol actual.
+      Reducir buffer a subárbol actual.
 
     - =C-x n b= (=org-narrow-to-block=)
 
 #       Narrow buffer to current block.
 
---
-# Búfer Reducir a bloque actual .
+      Reducir búfer a bloque actual.
 
     - =C-x n w= (=widen=)
 
 #       Widen buffer to remove narrowing.
 
---
-# Ampliar tampón para eliminar el estrechamiento .
+      Ampliar buffer para eliminar la reduccion.
 
     - =C-c *= (=org-toggle-heading=)
 
@@ -1391,15 +1367,15 @@ Caso sensible.
 #       into headlines. Finally, if the first line is a headline, remove
 #       the stars from all headlines in the region.
 
---
-# Activar una línea normal o llanura elemento de la lista en un
-# titular (de modo que Se convierte en una subpartida en su lugar)
-# . También convertir un titular En una línea de la normalidad
-# mediante la eliminación de las estrellas. Si hay un activo Región, a
-# su vez todas las líneas en la región en los titulares. Si el Primera
-# línea en la región era un elemento, gire sólo las líneas de
-# artículos En los titulares. Por último, si la primera línea es un
-# titular , retire Las estrellas de todos los titulares de la región.
+      Convertir una línea normal o elemento del lista siple en un
+      encabezado (a modo de subencabezado en esta ubicacion). También
+      convierte un encabezado en una línea comun mediante la
+      eliminación de los asteriscos. Si hay una región activa,
+      convierte todas las líneas en la región en los encabezados. Si
+      la primera línea en la región era un elemento, convierte sólo
+      las líneas de elementos en encabezados. Por último, si la
+      primera línea es un encabezado, retira los asteriscos de todos
+      los encabezados de la región.
 
 #    When there is an active region (Transient Mark mode), promotion and
 #    demotion work on all headlines in the region. To select a region of
@@ -1409,18 +1385,18 @@ Caso sensible.
 #    the cursor is inside a table (see [[@Tables][Tables]]), the Meta-Cursor keys
 #    have different functionality.
 
---
-# Cuando hay una región activa ( Transient modo de Marcos) , promoción
-# y Descenso de categoría de trabajo en todos los titulares de la
-# región. Para seleccionar una región de Titulares , lo mejor es
-# colocar tanto punto y la marca al comienzo De una línea, marca al
-# comienzo del primer título, y el punto En la línea justo después del
-# último título para cambiar . Tenga en cuenta que cuando El cursor se
-# encuentra dentro de una tabla ( ver [ [ Tables ] [ Cuadros ] ]), las
-# teclas de cursor Meta- Tienen una funcionalidad diferente .
+   Cuando hay una región activa (modo Transient Mark), la promoción y
+   el descenso de categoría trabaja en todos los encabezados de la
+   región. Para seleccionar una región de encabezados, lo mejor es
+   colocar tanto punto y la marca al comienzo de una línea, la marcar
+   al comienzo del primer encabezado, y el punto en la línea justo
+   después del último encabezado a cambiar. Tenga en cuenta que cuando
+   el cursor se encuentra dentro de una tabla ( ver
+   [[@Tables][Tablas]]), las teclas del Meta-Cursor tienen una
+   funcionalidad diferente.
 
 # ** 2.6 Sparse trees                                                   <<@Sparse-trees>>
-** 2.6 Árboles poco densos                                            <<@Sparse-trees>>
+** 2.6 Árboles compactos                                              <<@Sparse-trees>>
 
 #    An important feature of Org mode is the ability to construct
 #    /sparse trees/ for selected information in an outline tree, so that
@@ -7151,7 +7127,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #   | • [[@Attachments][Attachments]]:     | Add files to tasks                               |
 #   | • [[@RSS-feeds][RSS feeds]]:       | Getting input from RSS feeds                     |
 #   | • [[@Protocols][Protocols]]:       | External (e.g., Browser) access to Emacs and Org |
-#   | • [[@Refile-and-copy][Refile and copy]]: | Moving/copying a tree from one place to another  |
+#   | • [[@Refile-and-copy][Colocacion y copia]]: | Moving/copying a tree from one place to another  |
 #   | • [[@Archiving][Archiving]]:       | What to do with finished projects                |
 
 # ** 9.1 Capture                                                        <<@Capture>>
@@ -7211,7 +7187,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #      - */C-c C-w/* (=org-capture-refile=)
 
-#        Finalize the capture process by refiling (see [[@Refile-and-copy][Refile and copy]])
+#        Finalize the capture process by refiling (see [[@Refile-and-copy][Colocacion y copia]])
 #        the note to a different place. Please realize that this is a
 #        normal refiling command that will be executed -- so the cursor
 #        position at the moment you run this command is important. If
@@ -10076,7 +10052,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 # ** 11.2 Images and Tables                                             <<@Images-and-tables>>
 
-#    Both the native Org mode tables (see [[@Tables][Tables]]) and tables formatted
+#    Both the native Org mode tables (see [[@Tables][Tablas]]) and tables formatted
 #    with the table.el package will be exported properly. For Org mode
 #    tables, the lines before the first horizontal separator line will
 #    become table header lines. You can use the following lines
@@ -12501,7 +12477,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 # *** 12.9.7 Tables in ODT export                                       <<@Tables-in-ODT-export>>
 
-#     Export of native Org mode tables (see [[@Tables][Tables]]) and simple table.el
+#     Export of native Org mode tables (see [[@Tables][Tablas]]) and simple table.el
 #     tables is supported. However, export of complex table.el
 #     tables---tables that have column or row spans -- is not
 #     supported. Such tables are stripped from the exported document.
@@ -19332,7 +19308,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | convert                                  | [[@Configuring-a-document-converter][Configuring a document converter]]                   |
 #    | converter                                | [[@Configuring-a-document-converter][Configuring a document converter]]                   |
 #    | coordinates, of field                    | [[@References][References]]                                         |
-#    | copying notes                            | [[@Refile-and-copy][Refile and copy]]                                    |
+#    | copying notes                            | [[@Refile-and-copy][Colocacion y copia]]                                    |
 #    | copying, of subtrees                     | [[@Structure-editing][Structure editing]]                                  |
 #    | countdown timer                          | [[@Timers][Timers]]                                             |
 #    | creating timestamps                      | [[@Creating-timestamps][Creating timestamps]]                                |
@@ -19392,7 +19368,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #    | <40>                                     | <50>                                               |
 #    | *ecomplete.el*                           | [[@Conflicts][Conflicts]]                                          |
-#    | editing tables                           | [[@Tables][Tables]]                                             |
+#    | editing tables                           | [[@Tables][Tablas]]                                             |
 #    | editing, of table formulas               | [[@Editing-and-debugging-formulas][Editing and debugging formulas]]                     |
 #    | edits, catching invisible                | [[@Catching-invisible-edits][Catching invisible edits]]                           |
 #    | effort estimates                         | [[@Effort-estimates][Effort estimates]]                                   |
@@ -19824,7 +19800,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | references, to a different table         | [[@References][References]]                                         |
 #    | references, to fields                    | [[@References][References]]                                         |
 #    | references, to ranges                    | [[@References][References]]                                         |
-#    | refiling notes                           | [[@Refile-and-copy][Refile and copy]]                                    |
+#    | refiling notes                           | [[@Refile-and-copy][Colocacion y copia]]                                    |
 #    | region, active                           | [[@Structure-editing][Structure editing]]                                  |
 #    | region, active                           | [[@Built-in-table-editor][Built-in table editor]]                              |
 #    | region, active                           | [[@ODT-export-commands][ODT export commands]]                                |
@@ -19941,7 +19917,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | table of contents, markup rules          | [[@Table-of-contents][Table of contents]]                                  |
 #    | *table.el*                               | [[@Cooperation][Cooperation]]                                        |
 #    | *table.el*                               | [[@Cooperation][Cooperation]]                                        |
-#    | tables                                   | [[@Tables][Tables]]                                             |
+#    | tables                                   | [[@Tables][Tablas]]                                             |
 #    | tables, in HTML                          | [[@Tables-in-HTML-export][Tables in HTML export]]                              |
 #    | tables, in LaTeX export                  | [[@LaTeX-specific-attributes][LaTeX specific attributes]]                          |
 #    | tables, in ODT export                    | [[@Tables-in-ODT-export][Tables in ODT export]]                               |
@@ -20237,7 +20213,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =C-#=                | [[@Advanced-features][Advanced features]]                        |
 #    | =C-'=                | [[@Agenda-files][Agenda files]]                             |
 #    | =C-,=                | [[@Agenda-files][Agenda files]]                             |
-#    | =C-0 C-c C-w=        | [[@Refile-and-copy][Refile and copy]]                          |
+#    | =C-0 C-c C-w=        | [[@Refile-and-copy][Colocacion y copia]]                          |
 #    | =C-c !=              | [[@Creating-timestamps][Creating timestamps]]                      |
 #    | =C-c #=              | [[@Checkboxes][Checkboxes]]                               |
 #    | =C-c $=              | [[@Moving-subtrees][Moving subtrees]]                          |
@@ -20436,7 +20412,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =C-c C-v z=          | [[@Key-bindings-and-useful-functions][Key bindings and useful functions]]        |
 #    | =C-c C-w=            | [[@Structure-editing][Structure editing]]                        |
 #    | =C-c C-w=            | [[@Using-capture][Using capture]]                            |
-#    | =C-c C-w=            | [[@Refile-and-copy][Refile and copy]]                          |
+#    | =C-c C-w=            | [[@Refile-and-copy][Colocacion y copia]]                          |
 #    | =C-c C-w=            | [[@Agenda-commands][Agenda commands]]                          |
 #    | =C-c C-x -=          | [[@Timers][Timers]]                                   |
 #    | =C-c C-x .=          | [[@Timers][Timers]]                                   |
@@ -20506,7 +20482,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =C-c C-z=            | [[@Agenda-commands][Agenda commands]]                          |
 #    | =C-c l=              | [[@Handling-links][Handling links]]                           |
 #    | =C-c l=              | [[@Literal-examples][Literal examples]]                         |
-#    | =C-c M-w=            | [[@Refile-and-copy][Refile and copy]]                          |
+#    | =C-c M-w=            | [[@Refile-and-copy][Colocacion y copia]]                          |
 #    | =C-c RET=            | [[@Built-in-table-editor][Built-in table editor]]                    |
 #    | =C-c SPC=            | [[@Built-in-table-editor][Built-in table editor]]                    |
 #    | =C-c TAB=            | [[@Global-and-local-cycling][Global and local cycling]]                 |
@@ -20543,7 +20519,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =C-u C-c C-c=        | [[@Updating-the-table][Updating the table]]                       |
 #    | =C-u C-c C-l=        | [[@Handling-links][Handling links]]                           |
 #    | =C-u C-c C-t=        | [[@TODO-basics][TODO basics]]                              |
-#    | =C-u C-c C-w=        | [[@Refile-and-copy][Refile and copy]]                          |
+#    | =C-u C-c C-w=        | [[@Refile-and-copy][Colocacion y copia]]                          |
 #    | =C-u C-c C-x a=      | [[@Internal-archiving][Internal archiving]]                       |
 #    | =C-u C-c C-x C-s=    | [[@Moving-subtrees][Moving subtrees]]                          |
 #    | =C-u C-c C-x C-u=    | [[@Capturing-column-view][Capturing column view]]                    |
@@ -20554,7 +20530,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =C-u C-u C-c c=      | [[@Using-capture][Using capture]]                            |
 #    | =C-u C-u C-c C-c=    | [[@Updating-the-table][Updating the table]]                       |
 #    | =C-u C-u C-c C-t=    | [[@Multiple-sets-in-one-file][Multiple sets in one file]]                |
-#    | =C-u C-u C-c C-w=    | [[@Refile-and-copy][Refile and copy]]                          |
+#    | =C-u C-u C-c C-w=    | [[@Refile-and-copy][Colocacion y copia]]                          |
 #    | =C-u C-u C-c C-x C-s= | [[@Moving-subtrees][Moving subtrees]]                          |
 #    | =C-u C-u C-u C-c C-t= | [[@TODO-dependencies][TODO dependencies]]                        |
 #    | =C-u C-u C-u TAB=    | [[@Global-and-local-cycling][Global and local cycling]]                 |
@@ -21017,8 +20993,8 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =org-columns-show-value=                 | [[@Using-column-view][Using column view]]                        |
 #    | =org-columns-widen=                      | [[@Using-column-view][Using column view]]                        |
 #    | =org-compute-property-at-point=          | [[@Property-syntax][Property syntax]]                          |
-#    | =org-copy=                               | [[@Refile-and-copy][Refile and copy]]                          |
-#    | =org-copy=                               | [[@Refile-and-copy][Refile and copy]]                          |
+#    | =org-copy=                               | [[@Refile-and-copy][Colocacion y copia]]                          |
+#    | =org-copy=                               | [[@Refile-and-copy][Colocacion y copia]]                          |
 #    | =org-copy-subtree=                       | [[@Structure-editing][Structure editing]]                        |
 #    | =org-copy-visible=                       | [[@Global-and-local-cycling][Global and local cycling]]                 |
 #    | =org-cut-subtree=                        | [[@Structure-editing][Structure editing]]                        |
@@ -21117,10 +21093,10 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =org-publish-current-file=               | [[@Triggering-publication][Triggering publication]]                   |
 #    | =org-publish-current-project=            | [[@Triggering-publication][Triggering publication]]                   |
 #    | =org-refile=                             | [[@Structure-editing][Structure editing]]                        |
-#    | =org-refile=                             | [[@Refile-and-copy][Refile and copy]]                          |
-#    | =org-refile=                             | [[@Refile-and-copy][Refile and copy]]                          |
-#    | =org-refile-cache-clear=                 | [[@Refile-and-copy][Refile and copy]]                          |
-#    | =org-refile-goto-last-stored=            | [[@Refile-and-copy][Refile and copy]]                          |
+#    | =org-refile=                             | [[@Refile-and-copy][Colocacion y copia]]                          |
+#    | =org-refile=                             | [[@Refile-and-copy][Colocacion y copia]]                          |
+#    | =org-refile-cache-clear=                 | [[@Refile-and-copy][Colocacion y copia]]                          |
+#    | =org-refile-goto-last-stored=            | [[@Refile-and-copy][Colocacion y copia]]                          |
 #    | =org-remove-file=                        | [[@Agenda-files][Agenda files]]                             |
 #    | =org-reveal=                             | [[@Global-and-local-cycling][Global and local cycling]]                 |
 #    | =org-save-all-org-buffers=               | [[@Agenda-commands][Agenda commands]]                          |
@@ -21599,7 +21575,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =org-log-into-drawer=                    | [[@Agenda-commands][Agenda commands]]                          |
 #    | =org-log-note-clock-out=                 | [[@Clocking-commands][Clocking commands]]                        |
 #    | =org-log-note-clock-out=                 | [[@In_buffer-settings][In-buffer settings]]                       |
-#    | =org-log-refile=                         | [[@Refile-and-copy][Refile and copy]]                          |
+#    | =org-log-refile=                         | [[@Refile-and-copy][Colocacion y copia]]                          |
 #    | =org-log-repeat=                         | [[@Repeated-tasks][Repeated tasks]]                           |
 #    | =org-log-repeat=                         | [[@In_buffer-settings][In-buffer settings]]                       |
 #    | =org-log-states-order-reversed=          | [[@Tracking-TODO-state-changes][Tracking TODO state changes]]              |
@@ -21628,7 +21604,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =org-odt-styles-file=                    | [[@Applying-custom-styles][Applying custom styles]]                   |
 #    | =org-odt-table-styles=                   | [[@Customizing-tables-in-ODT-export][Customizing tables in ODT export]]         |
 #    | =org-odt-table-styles=                   | [[@Customizing-tables-in-ODT-export][Customizing tables in ODT export]]         |
-#    | =org-outline-path-complete-in-steps=     | [[@Refile-and-copy][Refile and copy]]                          |
+#    | =org-outline-path-complete-in-steps=     | [[@Refile-and-copy][Colocacion y copia]]                          |
 #    | =org-overriding-columns-format=          | [[@Agenda-column-view][Agenda column view]]                       |
 #    | =org-plain-list-ordered-item-terminator= | [[@Plain-lists][Listas Planas]]                              |
 #    | =org-plain-list-ordered-item-terminator= | [[@Plain-lists][Listas Planas]]                              |
@@ -21643,16 +21619,16 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    | =org-read-date-display-live=             | [[@The-date_time-prompt][The date/time prompt]]                     |
 #    | =org-read-date-force-compatible-dates=   | [[@The-date_time-prompt][The date/time prompt]]                     |
 #    | =org-read-date-prefer-future=            | [[@The-date_time-prompt][The date/time prompt]]                     |
-#    | =org-refile-allow-creating-parent-nodes= | [[@Refile-and-copy][Refile and copy]]                          |
-#    | =org-refile-keep=                        | [[@Refile-and-copy][Refile and copy]]                          |
-#    | =org-refile-targets=                     | [[@Refile-and-copy][Refile and copy]]                          |
-#    | =org-refile-use-cache=                   | [[@Refile-and-copy][Refile and copy]]                          |
-#    | =org-refile-use-outline-path=            | [[@Refile-and-copy][Refile and copy]]                          |
+#    | =org-refile-allow-creating-parent-nodes= | [[@Refile-and-copy][Colocacion y copia]]                          |
+#    | =org-refile-keep=                        | [[@Refile-and-copy][Colocacion y copia]]                          |
+#    | =org-refile-targets=                     | [[@Refile-and-copy][Colocacion y copia]]                          |
+#    | =org-refile-use-cache=                   | [[@Refile-and-copy][Colocacion y copia]]                          |
+#    | =org-refile-use-outline-path=            | [[@Refile-and-copy][Colocacion y copia]]                          |
 #    | =org-remove-highlights-with-change=      | [[@Sparse-trees][Sparse trees]]                             |
 #    | =org-remove-highlights-with-change=      | [[@Clocking-commands][Clocking commands]]                        |
 #    | =org-replace-disputed-keys=              | [[@Conflicts][Conflicts]]                                |
 #    | =org-return-follows-link=                | [[@Handling-links][Handling links]]                           |
-#    | =org-reverse-note-order=                 | [[@Refile-and-copy][Refile and copy]]                          |
+#    | =org-reverse-note-order=                 | [[@Refile-and-copy][Colocacion y copia]]                          |
 #    | =org-scheduled-delay-days=               | [[@Deadlines-and-scheduling][Deadlines and scheduling]]                 |
 #    | =org-show-context-detail=                | [[@Sparse-trees][Sparse trees]]                             |
 #    | =org-sort-agenda-noeffort-is-high=       | [[@Filtering_limiting-agenda-items][Filtering/limiting agenda items]]          |

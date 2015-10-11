@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>The Org Manual</title>
-<!-- 2015-09-25 vie 18:40 -->
+<!-- 2015-10-10 sáb 19:09 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Carsten Dominik with contributiond by Bastien Guerry, Nicolas Goazion, Eric Schulte, Jambunathan K. Dan Davison, Thomas O`Thoole, and Philip Rooke." />
@@ -41,7 +41,28 @@
 </li>
 </ul>
 </li>
-<li><a href="#sec-2">2 Estructura del documento                                          </a></li>
+<li><a href="#sec-2">2 Estructura del documento                                          </a>
+<ul>
+<li><a href="#sec-2-1">2.1 Esquemas                                                       </a></li>
+<li><a href="#sec-2-2">2.2 Encabezados                                                      </a></li>
+<li><a href="#sec-2-3">2.3 Visibilidad ciclica                                            </a>
+<ul>
+<li><a href="#sec-2-3-1">2.3.1 Rotacion global y local                                     </a></li>
+<li><a href="#sec-2-3-2">2.3.2 Visibilidad inicial                                         </a></li>
+<li><a href="#sec-2-3-3">2.3.3 Capturar modificaciones invisibles                          </a></li>
+</ul>
+</li>
+<li><a href="#sec-2-4">2.4 Movimiento                                                     </a></li>
+<li><a href="#sec-2-5">2.5 Editar Estructura                                              </a></li>
+<li><a href="#sec-2-6">2.6 Árboles compactos                                              </a></li>
+<li><a href="#sec-2-7">2.7 Listas Planas                                                  </a></li>
+<li><a href="#sec-2-8">2.8 Cajones                                                        </a></li>
+<li><a href="#sec-2-9">2.9 Bloques                                                         </a></li>
+<li><a href="#sec-2-10">2.10 Notas                                                         </a></li>
+<li><a href="#sec-2-11">2.11 El modo menor Orgstruct                                       </a></li>
+<li><a href="#sec-2-12">2.12 Sintaxis Org                                                  </a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -637,490 +658,818 @@ editar la estructura del documento.
 </colgroup>
 <tbody>
 <tr>
-<td class="left">• <i>Esquemas</i>:</td>
+<td class="left">• <a href="#Outlines">Esquemas</a>:</td>
 <td class="left">Org se basa en el modo Outline</td>
 </tr>
 
 <tr>
-<td class="left">• <i>Titulares</i>:</td>
-<td class="left">Cómo establecer titulares del árbol Org</td>
+<td class="left">• <a href="#Headlines">Encabezados</a>:</td>
+<td class="left">Cómo establecer encabezados del árbol de esquema Org</td>
 </tr>
 
 <tr>
-<td class="left">• <i>Visibilidad ciclica</i>:</td>
+<td class="left">• <a href="#Visibility-cycling">Visibilidad ciclica</a>:</td>
 <td class="left">Mostrar y ocultar, simplifica mucho</td>
 </tr>
 
 <tr>
-<td class="left">• <i>Movimiento</i>:</td>
+<td class="left">• <a href="#Motion">Movimiento</a>:</td>
 <td class="left">Saltar a otros titulares</td>
 </tr>
 
 <tr>
-<td class="left">• <i>editar Estructura</i>:</td>
+<td class="left">• <a href="#Structure-editing">Editar estructura</a>:</td>
 <td class="left">Cambiar secuencia y nivel de titulares</td>
 </tr>
 
 <tr>
-<td class="left">• <i>árboles poco densos</i>:</td>
+<td class="left">• <a href="#Sparse-trees">Árboles poco densos</a>:</td>
 <td class="left">Coincidencias embebidas en contexto</td>
 </tr>
 
 <tr>
-<td class="left">• <i>listas Planas</i>:</td>
-<td class="left">estructura adicional dentro de una entrada</td>
+<td class="left">• <a href="#Plain-lists">Listas Planas</a>:</td>
+<td class="left">Estructura adicional dentro de una entrada</td>
 </tr>
 
 <tr>
-<td class="left">• <i>Cajones</i>:</td>
+<td class="left">• <a href="#Drawers">Cajones</a>:</td>
 <td class="left">Guardando cosas lejos</td>
 </tr>
 
 <tr>
-<td class="left">• <i>Bloques</i>:</td>
-<td class="left">bloques plegables</td>
+<td class="left">• <a href="#Blocks">Bloques</a>:</td>
+<td class="left">Bloques plegables</td>
 </tr>
 
 <tr>
-<td class="left">• <i>Notas</i>:</td>
+<td class="left">• <a href="#Footnotes">Notas</a>:</td>
 <td class="left">Cómo se definen las notas al pie en la sintaxis de Org</td>
 </tr>
 
 <tr>
-<td class="left">• <i>modo Orgstruct</i>:</td>
-<td class="left">edición de estructura exterior Org</td>
+<td class="left">• <a href="#Orgstruct-mode">Modo Orgstruct</a>:</td>
+<td class="left">Edición de estructura exterior Org</td>
 </tr>
 
 <tr>
-<td class="left">• <i>sintaxis Org</i>:</td>
-<td class="left">descripción formal de la sintaxis de Org</td>
+<td class="left">• <a href="#Org-syntax">Sintaxis Org</a>:</td>
+<td class="left">Descripción formal de la sintaxis de Org</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">2.1 Esquemas                                                       <a id="Outlines" name="Outlines"></a></h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+Org se implementa en la parte superior de modo Outline. Outline
+permite que un documento que se organiza en una estructura
+jerárquica, que (al menos para mí) es la mejor forma de representar
+notas y pensamientos. Un visión glabal de esta estructura se
+consigue mediante el plegado (ocultacion) de grandes partes del
+documento, para mostrar sólo la estructura global del documento Y
+la zona de trabajo actual.  Org simplifica enormemente todo el uso
+de esquemas mediante la funcionalidad mostrar/ocultar en un solo
+comando, <code>org-cycle</code>, que está ligado a la tecla <code>TAB</code>.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-2" class="outline-3">
+<h3 id="sec-2-2">2.2 Encabezados                                                      <a id="Headlines" name="Headlines"></a></h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Los encabezados definen la estructura del arbol de esquema. Los
+encabezados en Org comienzan con uno o más asteriscos, en el margen
+izquierdo<sup><a id="fnr.4" name="fnr.4" class="footref" href="#fn.4">4</a></sup> <sup>, </sup><sup><a id="fnr.5" name="fnr.5" class="footref" href="#fn.5">5</a></sup>. Por ejemplo:
+</p>
+
+<pre class="example">
+* Encabezado principal
+** Segundo nivel
+*** 3er. nivel
+    algo de texto
+*** 3er. nivel
+    mas texto
+
+* Otro encabezado principal
+</pre>
+
+<p>
+Tenga en cuenta que un encabezado nombrado después de
+<code>org-footnote-section</code>, que por defecto es ‘Footnotes', es
+considerado como especial. Un subárbol de este encabezado será
+silenciosamente ignorado por las funciones de exportación.
+</p>
+
+<p>
+Algunas personas encuentran tantos asteriscos demasiado molestos y
+prefieren encabezado que comiencen por espacios en blanco seguidos
+por una sola estrella.  En <i>Vista limpia</i>, se describe la
+configuración para realizar esto.
+</p>
+
+<p>
+Una línea vacía al final de un subárbol se considera parte de este
+y se oculta cuando se oculta el subárbol.  Sin embargo , si usted
+deja al menos dos líneas en blanco, una línea vacía permanecerá
+visible después de ocultar el subárbol, con el fin de estructurar
+la vista oculta. Vea las variables <code>org-cycle-separator-lines</code> para
+modificar este comportamiento.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-3" class="outline-3">
+<h3 id="sec-2-3">2.3 Visibilidad ciclica                                            <a id="Visibility-cycling" name="Visibility-cycling"></a></h3>
+<div class="outline-text-3" id="text-2-3">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">• <a href="#Global-and-local-cycling">Rotacion global y local</a>:</td>
+<td class="left">Rotacion a través de varios estados de visibilidad</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Initial-visibility">Visibilidad inicial</a>:</td>
+<td class="left">Establecer el estado de visibilidad inicial</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Catching-invisible-edits">Capturar modificaciones invisibles</a>:</td>
+<td class="left">Prevención de errores al editar partes invisibles</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-sec-2-3-1" class="outline-4">
+<h4 id="sec-2-3-1">2.3.1 Rotacion global y local                                     <a id="Global-and-local-cycling" name="Global-and-local-cycling"></a></h4>
+<div class="outline-text-4" id="text-2-3-1">
+<p>
+Los esquemas hacen posible ocultar partes del texto en el
+bufer. Org utiliza sólo dos comandos, ligados a <code>TAB</code> y <code>S-TAB</code>
+para cambiar la visibilidad en el búfer.
+</p>
+
+<ul class="org-ul">
+<li><code>TAB</code> (<code>org-cycle</code>)
+
+<p>
+<i>Subtree cycling</i> : Alterne entre entre estados del subarbol
+actual
+</p>
+</li>
+</ul>
+
+<pre class="example">
+,-&gt; PLEGADO -&gt; HIJOS -&gt; SUBARBOL --.
+'----------------------------------'
+</pre>
+
+<p>
+El cursor debe estar en un encabezade para que esto
+funcione<sup><a id="fnr.6" name="fnr.6" class="footref" href="#fn.6">6</a></sup>. Cuando el cursor se encuentra al comienzo
+del búfer y la primera línea no es un encabezado, entonces
+<code>TAB</code> ejecuta la rotacion global (véase más adelante
+)<sup><a id="fnr.7" name="fnr.7" class="footref" href="#fn.7">7</a></sup>. También cuando llama con el argumento prefijo
+(<code>C-u TAB</code>) , se invoca la rotacion global.
+</p>
+
+<ul class="org-ul">
+<li><code>S-TAB</code> (<code>org-global-cycle</code>)
+</li>
+<li><code>C-u TAB</code>
+</li>
+</ul>
+
+<p>
+<i>Global cycling</i> : Rotar entre los estados de todo el bufer
+</p>
+
+<pre class="example">
+,-&gt; VISIÓN GENERAL -&gt; CONTENIDOS -&gt; MOSTRAR TODO --.
+'--------------------------------------------------'
+</pre>
+
+<p>
+Cuando <code>S-TAB</code> se llama con un argumento prefijo numérico <code>N</code>,
+los CONTENIDOS se mostraran hasta el encabezado de nivel <code>N</code>.
+Tenga en cuenta que dentro de tablas, <code>S-TAB</code> salta al campo
+anterior.
+</p>
+
+<ul class="org-ul">
+<li><code>C-u C-u TAB</code> (<code>org-set-startup-visibility</code>)
+</li>
+</ul>
+
+<p>
+Vuelve a la visibilidad inicial del buffer (vea
+<a href="#Initial-visibility">Visibilidad inicial</a>).
+</p>
+
+<ul class="org-ul">
+<li><code>C-u C-u C-u TAB</code> (<code>show-all</code>)
+</li>
+</ul>
+
+<p>
+Mostrar todo, incluidos los cajones.
+</p>
+
+<ul class="org-ul">
+<li><code>C-c C-r</code> (<code>org-reveal</code>)
+</li>
+</ul>
+
+<p>
+Revelar contexto al rededor del punto, mostrando la entrada
+actual, el siguiente encabezado y la jerarquía superior. Útil
+para trabajar cerca de un lugar que ha sido expuesto por un
+comando de árbol escaso (Ver <a href="#Sparse-trees">Sparse trees</a>) o
+un comando de agenda ( ver <i>Agenda
+commands</i>). Con un argumento prefijo muestra, en cada nivel,
+todos los encabezados hermanos. Con un argumento doble prefijo,
+también muestran la totalidad del subárbol padre.
+</p>
+
+<ul class="org-ul">
+<li><code>C-c C-k</code> (<code>show-branches</code>)
+</li>
+</ul>
+
+<p>
+Expone todas las cabeceras del sub-árbol, el CONTENIDO es
+visible sólo para un subárbol.
+</p>
+
+<ul class="org-ul">
+<li><code>C-c TAB</code> (<code>show-children</code>)
+</li>
+</ul>
+
+<p>
+Exponga todos los hijos directos del sub-árbol. Con una
+argumento prefijo numérico <code>N</code>, expone todos los hijos debajo
+hasta el nivel <code>N</code>.
+</p>
+
+<ul class="org-ul">
+<li><code>C-c C-x b</code> (<code>org-tree-to-indirect-buffer</code>)
+</li>
+</ul>
+
+<p>
+Muestra el subárbol actual en un búfer diferente<sup><a id="fnr.8" name="fnr.8" class="footref" href="#fn.8">8</a></sup>. Con
+Un argumento prefijo numérico <code>N</code>, va hasta el nivel <code>N</code> y
+luego toma ese árbol. Si <code>N</code> es negativo luego sube esa
+cantidad de niveles. Con el prefijo <code>C-u</code>, no retira los
+distintos buffer utilizados anteriormente.
+</p>
+
+<ul class="org-ul">
+<li><code>C-c C-x v</code> (<code>org-copy-visible</code>)
+</li>
+</ul>
+
+<p>
+Copia el texto <i>visible</i> de la región dentro del kill ring.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-3-2" class="outline-4">
+<h4 id="sec-2-3-2">2.3.2 Visibilidad inicial                                         <a id="Initial-visibility" name="Initial-visibility"></a></h4>
+<div class="outline-text-4" id="text-2-3-2">
+<p>
+Cuando Emacs visita por primera un fichero Org, el estado global
+se establece en VISIÓN GENERAL, es decir, sólo los titulares de
+primer nivel son visibles<sup><a id="fnr.9" name="fnr.9" class="footref" href="#fn.9">9</a></sup>. Esto se puede configurar a
+través de la variable <code>org-startup-folded</code>, o en función de cada
+archivo mediante la adición de una de las siguientes líneas en
+cualquier parte del búfer:
+</p>
+
+<pre class="example">
+#+STARTUP: overview
+#+STARTUP: content
+#+STARTUP: showall
+#+STARTUP: showeverything
+</pre>
+
+<p>
+Las opciones de visibilidad inicial se ignoran cuando el archivo
+es abierto por primera vez durante la generación de la agenda: si
+desea que al agenda respete la visibilidad inicial, establesca
+<code>org-agenda-inhibit-startup</code> como <code>nil</code>.
+</p>
+
+<p>
+Además, todas las entradas con una propiedad ‘VISIBILITY' (ver
+<i>Propiedades y columnas</i>) conseguirá
+adaptadar su visibilidad en consecuencia. Los valores permitidos
+para esta propiedad son <code>folded</code>, <code>children</code>, <code>content</code>, and
+<code>all</code>.
+</p>
+
+<ul class="org-ul">
+<li><code>C-u C-u TAB</code> (<code>org-set-startup-visibility</code>)
+</li>
+</ul>
+
+<p>
+Volver a la visibilidad inicial del buffer, es decir, lo
+solicitado por las opciones de inicio y las propiedades
+‘VISIBILITY' en las entradas individuales.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-3-3" class="outline-4">
+<h4 id="sec-2-3-3">2.3.3 Capturar modificaciones invisibles                          <a id="Catching-invisible-edits" name="Catching-invisible-edits"></a></h4>
+<div class="outline-text-4" id="text-2-3-3">
+<p>
+A veces puede editar sin querer una parte invisible del buffer y
+ser confuso conocer sobre lo que se ha editado y cómo deshacer el
+error. Configurar <code>org-catch-invisible-edits</code> distinto de <code>nil</code>
+ayudara a prevenir esto. Vea la cadena de documentación de esta
+opción sobre cómo Org tendria que tomar las ediciones invisibles y
+procesarlas.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2-4" class="outline-3">
+<h3 id="sec-2-4">2.4 Movimiento                                                     <a id="Motion" name="Motion"></a></h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+Los siguientes comandos saltan a otras cabeceras en el búfer.
+</p>
+
+<ul class="org-ul">
+<li><code>C-c C-n</code> (<code>outline-next-visible-heading</code>)
+</li>
+</ul>
+
+<p>
+Encabezado siguiente.
+</p>
+
+<ul class="org-ul">
+<li><code>C-c C-p</code> (<code>outline-previous-visible-heading</code>)
+</li>
+</ul>
+<p>
+Encabezado anterior.
+</p>
+
+<ul class="org-ul">
+<li><code>C-c C-f</code> (<code>org-forward-same-level</code>)
+</li>
+</ul>
+
+<p>
+Encabezado siguiente del mismo nivel .
+</p>
+
+<ul class="org-ul">
+<li><code>C-c C-b</code> (<code>org-backward-same-level</code>)
+</li>
+</ul>
+
+<p>
+Encabezado anterior del mismo nivel .
+</p>
+
+<ul class="org-ul">
+<li><code>C-c C-u</code> (<code>outline-up-heading</code>)
+</li>
+</ul>
+
+<p>
+Ir hacia el anterior encabezado de mayor nivel.
+</p>
+
+<ul class="org-ul">
+<li><code>C-c C-j</code> (<code>org-goto</code>)
+</li>
+</ul>
+
+<p>
+Ir a un lugar diferente sin cambiar el esquema actual de
+visibilidad. Muestra la estructura del documento en un buffer
+temporal, Donde se puede utilizar las siguientes teclas para
+encontrar su destino:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">TAB</td>
+<td class="left">Visibilidad Ciclica.</td>
+</tr>
+
+<tr>
+<td class="left">down / up</td>
+<td class="left">Siguiente/Anterior cabecera visible.</td>
+</tr>
+
+<tr>
+<td class="left">RET</td>
+<td class="left">Seleccione esta ubicacion.</td>
+</tr>
+
+<tr>
+<td class="left"><code>/</code></td>
+<td class="left">Haga una busqueda de arbol-escaso</td>
 </tr>
 </tbody>
 </table>
 
 <p>
-&#x2013;
+Las siguientes teclas funcionan si se desactiva
+<code>org-goto-auto-isearch</code>
 </p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">n / p</td>
+<td class="left">Siguiente/Anterior cabecera visible.</td>
+</tr>
+
+<tr>
+<td class="left">f / b</td>
+<td class="left">Siguiente/Anterior cabecera del mismo nivel.</td>
+</tr>
+
+<tr>
+<td class="left">u</td>
+<td class="left">Un nivel arriba.</td>
+</tr>
+
+<tr>
+<td class="left">0-9</td>
+<td class="left">Argumento de dígitos.</td>
+</tr>
+
+<tr>
+<td class="left">q</td>
+<td class="left">Salir</td>
+</tr>
+</tbody>
+</table>
+
 <p>
-&#x2013;
+Véase también la opción <code>org-goto-interface</code>.
 </p>
+</div>
+</div>
+<div id="outline-container-sec-2-5" class="outline-3">
+<h3 id="sec-2-5">2.5 Editar Estructura                                              <a id="Structure-editing" name="Structure-editing"></a></h3>
+<div class="outline-text-3" id="text-2-5">
+<ul class="org-ul">
+<li><code>M-RET</code> (<code>org-insert-heading</code>)
+</li>
+</ul>
+
 <p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-subárbol actual entre los estados
+Inserte una nuevo encabezado/elemento con el mismo nivel que el
+del punto.
 </p>
 
 <p>
-&#x2013;
-</p>
-<p>
-#&#x2013;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014; ' # + END<sub>EXAMPLE</sub>
-</p>
-
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-#' &#x2013;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014;&#x2014; ' # + END<sub>EXAMPLE</sub>
+Si el cursor se encuentra en un elemento de lista sin formato,
+se crea un nuevo elemento (Ver <a href="#Plain-lists">Listas
+Planas</a>). Para evitar este comportamiento en las listas, llame
+al Comando con un argumento prefijo. Cuando se usa este comando
+en medio de una línea, la línea se divide y el resto de la línea
+Se convierte en el nuevo artículo o cabecera. Si no desea
+dividir línea, personalice <code>org-M-RET-may-split-line</code>.
 </p>
 
 <p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-Prefijo # argumento = N = , exponer a todos los niños hasta el nivel =
-N = .
+Si el comando se utiliza al <i>comienzo</i> de una línea, y si hay
+una encabezado o un elemento en el punto, el nuevo
+encabezado/elemento es creado <i>antes</i> de la línea actual. Si el
+comando se utiliza al <i>final</i> de un sub-árbol plegado (es decir,
+detrás de los puntos suspensivos al final del encabezado), a
+continuación, se inserta un encabezado después del final Del
+subárbol.
 </p>
 
 <p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-.
+Lleme a este comando con <code>C-u C-u</code> si desea respetar el
+contenido del encabezado y crear un nuevo elemento al final del
+subárbol padre.
 </p>
 
 <p>
-&#x2013;
+Si el punto está al inicio de una línea normal, convierte esta
+línea en un encabezado.
 </p>
+
+<ul class="org-ul">
+<li><code>C-RET</code> (<code>org-insert-heading-respect-content</code>)
+</li>
+</ul>
+
 <p>
-&#x2013;
+Al igual que <code>M-RET</code>, excepto que se añade un nuevo encabezado
+por debajo del encabezado actual, el nuevo encabezado se coloca
+después el cuerpo en lugar de antes. Este comando funciona desde
+cualquier lugar de entrada.
 </p>
+
+<ul class="org-ul">
+<li><code>M-S-RET</code> (<code>org-insert-todo-heading</code>)
+</li>
+</ul>
+
 <p>
-&#x2013;
+Inserta una nueva entrada TODO con el mismo nivel que el
+encabezado actual. Vea también la variable
+<code>org-treat-insert-todo-heading-as-state-change</code>.
 </p>
+
+<ul class="org-ul">
+<li><code>C-S-RET</code> (<code>org-insert-todo-heading-respect-content</code>)
+</li>
+</ul>
+
 <p>
-&#x2013;
+Inserta nueva entrada TODO con mismo nivel que el encabezado
+actual. Como <code>C-RET</code>, se insertará el nuevo encabezado después
+del actual Subárbol.
 </p>
+
+<ul class="org-ul">
+<li><code>TAB</code> (<code>org-cycle</code>)
+</li>
+</ul>
+
 <p>
-&#x2013;
+En una nueva entrada sin texto, el primer <code>TAB</code> degrada la
+entrada para convertirse en un hijo de la anterior. El siguiente
+<code>TAB</code> hace que sea uno de los padres, y así sucesivamente, hasta
+llegar al nivel superior. Otra <code>TAB</code> mas, y regresara de nuevo
+al nivel inicial.
 </p>
+
+<ul class="org-ul">
+<li><code>M-left</code> (<code>org-do-promote</code>)
+</li>
+</ul>
+
 <p>
-&#x2013;
+Promover encabezado actual en un nivel.
 </p>
+
+<ul class="org-ul">
+<li><code>M-right</code> (<code>org-do-demote</code>)
+</li>
+</ul>
+
 <p>
-&#x2013;
+Degradar encabezado actual en un nivel.
 </p>
+
+<ul class="org-ul">
+<li><code>M-S-left</code> (<code>org-promote-subtree</code>)
+</li>
+</ul>
+
 <p>
-&#x2013;
+Promover el subárbol actual en un nivel.
 </p>
+
+<ul class="org-ul">
+<li><code>M-S-right</code> (<code>org-demote-subtree</code>)
+</li>
+</ul>
+
 <p>
--ediciones &gt;&gt;
+Degradar el subárbol actual en un nivel.
+</p>
+
+<ul class="org-ul">
+<li><code>M-S-up</code> (<code>org-move-subtree-up</code>)
+</li>
+</ul>
+
+<p>
+Mover subárbol arriba (intercambia con subárbol anterior del
+mismo nivel).
+</p>
+
+<ul class="org-ul">
+<li><code>M-S-down</code> (<code>org-move-subtree-down</code>)
+</li>
+</ul>
+
+<p>
+Mover subárbol abajo (intercambio con siguiente subárbol del
+mismo nivel).
+</p>
+
+<ul class="org-ul">
+<li><code>M-h</code> (<code>org-mark-element</code>)
+</li>
+</ul>
+
+<p>
+Marque el elemento en el punto. Precionar repetidamente marcará
+elementos subsiguientes del que acaba de ser marcado. Por
+ejemplo, precionar <code>M-h</code> en un párrafo lo marcará, otro <code>M-h</code>
+marcara el parrafo siguiente.
+</p>
+
+<ul class="org-ul">
+<li><code>C-c @</code> (<code>org-mark-subtree</code>)
+</li>
+</ul>
+
+<p>
+Marque el subárbol en el punto. Precionar repetidamente marcará
+subárboles posteriores del mismo nivel que el subárbol marcado.
+</p>
+
+<ul class="org-ul">
+<li><code>C-c C-x C-w</code> (<code>org-cut-subtree</code>)
+</li>
+</ul>
+
+<p>
+Matar subárbol, es decir, removerlo del búfer pero guardarlo a
+salvo en el kill ring. Con un argumento prefijo numérico N, mata
+los N subárboles siguientes.
+</p>
+
+<ul class="org-ul">
+<li><code>C-c C-x M-w</code> (<code>org-copy-subtree</code>)
+</li>
+</ul>
+
+<p>
+Copia subárbol al kill ring. Con un argumento prefijo numérico
+N, copia los N subárboles siguientes.
+</p>
+
+<ul class="org-ul">
+<li><code>C-c C-x C-y</code> (<code>org-paste-subtree</code>)
+</li>
+</ul>
+
+<p>
+Traer subárbol del kill ring. Esto modifica el nivel del
+subárbol para adaptarlo a la posicion dentro del arbol. El nivel
+se puede especificar con un valor numérico dentro del argumento
+prefijo, o tirando después de marcador el encabezado como
+'<b>**</b>'.
+</p>
+
+<ul class="org-ul">
+<li><code>C-y</code> (<code>org-yank</code>)
+</li>
+</ul>
+
+<p>
+Dependiendo de las opciones de <code>org-yank-adjusted-subtrees</code> y
+<code>org-yank-folded-subtrees</code>, ambos, comandos internos <code>yank</code> de
+Org para traer subarboles plegados y de manera inteligente,
+utilizando el mismo comando <code>C-c C-x C-y</code>. Con la configuración
+predeterminada, no se llevara a cabo el ajuste de nivel, pero el
+árbol traido será plegado a menos que al hacerlo se pliegue
+texto previamente visible. Cualquier argumento prefijo a este
+comando forzará la ejecucion de un <code>yank</code> normal. Una buena
+manera de forzar un yank normal es <code>C-u C-y</code>. Si utiliza
+<code>yank-pop</code> después de un yank, se traeran artículos, sin ajuste
+ni plegado.
+</p>
+
+<ul class="org-ul">
+<li><code>C-c C-x c</code> (<code>org-clone-subtree-with-time-shift</code>)
+</li>
+</ul>
+
+<p>
+Clonar un subárbol haciendo un numero de copias hermanas de
+este. Se le solicitará el número de copias que desea hacer, y
+tamien puede especificar si las marcas de tiempo de entrada
+deben ser cambiadas. Esto puede ser útil, por ejemplo, para
+crear una serie de tareas relacionadas con una serie de
+conferencias. Para más detalles, ver la cadena de documentación
+del comando <code>org-clone-subtree-with-time-shift</code>.
+</p>
+
+<ul class="org-ul">
+<li><code>C-c C-w</code> (<code>org-refile</code>)
+</li>
+</ul>
+
+<p>
+Colocar entrada o región en una ubicación diferente . Vér
+<i>Colocacion y copia</i>.
+</p>
+
+<ul class="org-ul">
+<li><code>C-c ^</code> (<code>org-sort</code>)
+</li>
+</ul>
+
+<p>
+Ordenar entradas del mismo nivel. Cuando hay una región activa,
+todas las entradas en la región serán ordenados. De lo
+contrario, los hijos del encabezado actual están ordenados . El
+comando solicita el método de clasificación, que puede ser orden
+alfabético, numérico, por tiempo (primera marca de tiempo con el
+tiempo preferido, tiempo de creacion, tiempo programado, hora
+límite), por prioridad , por palabra clave TODO (la secuencia en
+que las palabras clave se han definido en la configuración) o el
+valor de una propiedad. La clasificación inversa tambien es
+posible. También puede proporcionar su propia función para
+extraer la clave de clasificación. Con el prefijo <code>C-u</code>, la
+clasificación será sensible a mayusculas y minusculas.
+</p>
+
+<ul class="org-ul">
+<li><code>C-x n s</code> (<code>org-narrow-to-subtree</code>)
+</li>
+</ul>
+
+<p>
+Reducir buffer a subárbol actual.
+</p>
+
+<ul class="org-ul">
+<li><code>C-x n b</code> (<code>org-narrow-to-block</code>)
+</li>
+</ul>
+
+<p>
+Reducir búfer a bloque actual.
+</p>
+
+<ul class="org-ul">
+<li><code>C-x n w</code> (<code>widen</code>)
+</li>
+</ul>
+
+<p>
+Ampliar buffer para eliminar la reduccion.
+</p>
+
+<ul class="org-ul">
+<li><code>C-c *</code> (<code>org-toggle-heading</code>)
+</li>
+</ul>
+
+<p>
+Convertir una línea normal o elemento del lista siple en un
+encabezado (a modo de subencabezado en esta ubicacion). También
+convierte un encabezado en una línea comun mediante la
+eliminación de los asteriscos. Si hay una región activa,
+convierte todas las líneas en la región en los encabezados. Si
+la primera línea en la región era un elemento, convierte sólo
+las líneas de elementos en encabezados. Por último, si la
+primera línea es un encabezado, retira los asteriscos de todos
+los encabezados de la región.
 </p>
 
 <p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-)
-</p>
-
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-content = )
-</p>
-
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-.
-</p>
-
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-.
-</p>
-
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-Elementos posteriores # de la que se acaba marcados . Por ejemplo,
-golpear = M- h = # En un párrafo lo marcará , golpeando = Mh =
-inmediatamente de nuevo # Marcará la siguiente.
-</p>
-
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-Interna = tirón = comando # = org- yank- plegado - subárboles = , de
-Org voluntad # Pegar subárboles dobladas y de manera inteligente ,
-utilizando la misma # Comando como * / C- c C- x C -y / * . Con la
-configuración predeterminada, hay un nivel # Ajuste se llevará a cabo
-, pero el árbol arrancado será doblado # A menos que al hacerlo se
-trague texto previamente visible. Alguna # Argumento prefijo a este
-comando forzará normal = tirón = ser # Ejecutado , con el prefijo pasa
-a lo largo . Una buena manera de forzar un # Tirón normal es * / C -u
-C -y / * . Si utiliza = yank- pop = después de un tirón, # Se tire
-artículos matar anteriores claramente, sin ajuste y # Plegable.
-</p>
-
-<p>
-&#x2013;
-</p>
-<p>
-desplazamiento =)
-</p>
-
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-diferente . Véase [ [@ volver a presentar y copiar ] [ Volver a
-presentar y copia ] ] .
-</p>
-
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-, todo Entradas # en la región serán ordenados . De lo contrario, los
-hijos de # El titular actual están ordenadas . El comando solicita la
-</p>
-<p>
-por # Tiempo ( primera marca de tiempo con el tiempo preferido , la
-creación de activos , # Programado tiempo, hora límite ) , por
-prioridad , por palabra clave TODO ( en # La secuencia de las palabras
-clave se han definido en la configuración ) o # El valor de una
-propiedad. Clasificación inversa es posible, ya que # bien. También
-puede proporcionar su propia función para extraer el # Clave de
-clasificación. Con un * / C -u / * prefijo , la clasificación será #
-Caso sensible.
-</p>
-
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
+Cuando hay una región activa (modo Transient Mark), la promoción y
+el descenso de categoría trabaja en todos los encabezados de la
+región. Para seleccionar una región de encabezados, lo mejor es
+colocar tanto punto y la marca al comienzo de una línea, la marcar
+al comienzo del primer encabezado, y el punto en la línea justo
+después del último encabezado a cambiar. Tenga en cuenta que cuando
+el cursor se encuentra dentro de una tabla ( ver
+<i>Tablas</i>), las teclas del Meta-Cursor tienen una
+funcionalidad diferente.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2-6" class="outline-3">
+<h3 id="sec-2-6">2.6 Árboles compactos                                              <a id="Sparse-trees" name="Sparse-trees"></a></h3>
+<div class="outline-text-3" id="text-2-6">
 <p>
 &#x2013;
 </p>
@@ -1170,9 +1519,11 @@ despachador :
 <p>
 &#x2013;
 </p>
-<p>
-&#x2013;
-</p>
+</div>
+</div>
+<div id="outline-container-sec-2-7" class="outline-3">
+<h3 id="sec-2-7">2.7 Listas Planas                                                  <a id="Plain-lists" name="Plain-lists"></a></h3>
+<div class="outline-text-3" id="text-2-7">
 <p>
 &#x2013;
 </p>
@@ -1326,9 +1677,11 @@ Checkboxes ] [ Casillas ] ] ) .
 <p>
 &#x2013;
 </p>
-<p>
-&#x2013;
-</p>
+</div>
+</div>
+<div id="outline-container-sec-2-8" class="outline-3">
+<h3 id="sec-2-8">2.8 Cajones                                                        <a id="Drawers" name="Drawers"></a></h3>
+<div class="outline-text-3" id="text-2-8">
 <p>
 &#x2013;
 </p>
@@ -1366,9 +1719,11 @@ Cambios , el uso
 <p>
 &#x2013;
 </p>
-<p>
-&#x2013;
-</p>
+</div>
+</div>
+<div id="outline-container-sec-2-9" class="outline-3">
+<h3 id="sec-2-9">2.9 Bloques                                                         <a id="Blocks" name="Blocks"></a></h3>
+<div class="outline-text-3" id="text-2-9">
 <p>
 &#x2013;
 Modo # Org utiliza empezar &#x2026; bloques extremos para diversos fines de
@@ -1386,9 +1741,11 @@ archivo utilizando
 <p>
 &#x2013;
 </p>
-<p>
-&#x2013;
-</p>
+</div>
+</div>
+<div id="outline-container-sec-2-10" class="outline-3">
+<h3 id="sec-2-10">2.10 Notas                                                         <a id="Footnotes" name="Footnotes"></a></h3>
+<div class="outline-text-3" id="text-2-10">
 <p>
 &#x2013;
 Modo # Org apoya la creación de notas al pie. En contraste con el #
@@ -1502,6 +1859,11 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 <p>
 &#x2013;
 </p>
+</div>
+</div>
+<div id="outline-container-sec-2-11" class="outline-3">
+<h3 id="sec-2-11">2.11 El modo menor Orgstruct                                       <a id="Orgstruct-mode" name="Orgstruct-mode"></a></h3>
+<div class="outline-text-3" id="text-2-11">
 <p>
 &#x2013;
 </p>
@@ -1514,18 +1876,18 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 <p>
 &#x2013;
 </p>
+</div>
+</div>
+<div id="outline-container-sec-2-12" class="outline-3">
+<h3 id="sec-2-12">2.12 Sintaxis Org                                                  <a id="Org-syntax" name="Org-syntax"></a></h3>
+<div class="outline-text-3" id="text-2-12">
 <p>
 &#x2013;
 </p>
 <p>
 &#x2013;
 </p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
+</div>
 </div>
 </div>
 <div id="footnotes">
@@ -1545,6 +1907,38 @@ reducir el trabajo que los moderadores de correo tienen que hacer.
 <div class="footdef"><sup><a id="fn.3" name="fn.3" class="footnum" href="#fnr.3">3</a></sup> <p class="footpara">
 Las plantillas insertan fácilmente palabras clave minúsculas y Babel
 inserta de forma dinámica <code>#+results</code>.
+</p></div>
+
+<div class="footdef"><sup><a id="fn.4" name="fn.4" class="footnum" href="#fnr.4">4</a></sup> <p class="footpara">
+Vea las variables <code>org-special-ctrl-a/e</code>, <code>org-special-ctrl-k</code>, y
+<code>org-ctrl-k-protect-subtree</code> para configurar el comportamiento
+especial de <code>C-a</code>, <code>C-e</code>, y <code>C-k</code> en los encabezados.
+</p></div>
+
+<div class="footdef"><sup><a id="fn.5" name="fn.5" class="footnum" href="#fnr.5">5</a></sup> <p class="footpara">
+Clocking sólo funciona con encabezados con menos de 30 asteriscos de
+indentacion.
+</p></div>
+
+<div class="footdef"><sup><a id="fn.6" name="fn.6" class="footnum" href="#fnr.6">6</a></sup> <p class="footpara">
+Sin embargo, vea, la opción <code>org-cycle-emulate-tab</code>.
+</p></div>
+
+<div class="footdef"><sup><a id="fn.7" name="fn.7" class="footnum" href="#fnr.7">7</a></sup> <p class="footpara">
+Vea la opción <code>org-cycle-global-at-bob</code>.
+</p></div>
+
+<div class="footdef"><sup><a id="fn.8" name="fn.8" class="footnum" href="#fnr.8">8</a></sup> <p class="footpara">
+El búfer indirecto (vea <a href="http://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Indirect-Buffers">Indirect Buffers</a> en el Manual de GNU Emacs)
+contiene todo el buffer, pero se redujo al árbol actual. La edición
+del búfer indirecto también cambiará el buffer original, pero sin
+afectar la visibilidad en ese búfer.
+</p></div>
+
+<div class="footdef"><sup><a id="fn.9" name="fn.9" class="footnum" href="#fnr.9">9</a></sup> <p class="footpara">
+Cuando <code>org-agenda-inhibit-startup</code> no es <code>nil</code>, Org no respeta el
+estado de visibilidad por defecto al abrir un archivo por primera vez
+para la agenda ( Ver <i>Speeding up your agendas</i>).
 </p></div>
 
 
