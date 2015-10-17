@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>The Org Manual</title>
-<!-- 2015-10-10 sáb 19:06 -->
+<!-- 2015-10-16 vie 19:06 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Carsten Dominik with contributiond by Bastien Guerry, Nicolas Goazion, Eric Schulte, Jambunathan K. Dan Davison, Thomas O`Thoole, and Philip Rooke." />
@@ -95,8 +95,8 @@
 </ul>
 </li>
 <li><a href="#sec-2-4">2.4 Motion                                                         </a></li>
-<li><a href="#sec-2-5">2.6 Sparse trees                                                   </a></li>
-<li><a href="#sec-2-6">2.5 Structure editing                                              </a></li>
+<li><a href="#sec-2-5">2.5 Structure editing                                              </a></li>
+<li><a href="#sec-2-6">2.6 Sparse trees                                                   </a></li>
 <li><a href="#sec-2-7">2.7 Plain lists                                                    </a></li>
 <li><a href="#sec-2-8">2.8 Drawers                                                        </a></li>
 <li><a href="#sec-2-9">2.9 Blocks                                                         </a></li>
@@ -1890,102 +1890,8 @@ See also the option <code>org-goto-interface</code>.
 </div>
 
 <div id="outline-container-sec-2-5" class="outline-3">
-<h3 id="sec-2-5">2.6 Sparse trees                                                   <a id="Sparse-trees" name="Sparse-trees"></a></h3>
+<h3 id="sec-2-5">2.5 Structure editing                                              <a id="Structure-editing" name="Structure-editing"></a></h3>
 <div class="outline-text-3" id="text-2-5">
-<p>
-An important feature of Org mode is the ability to construct
-<i>sparse trees</i> for selected information in an outline tree, so that
-the entire document is folded as much as possible, but the selected
-information is made visible along with the headline structure above
-it<sup><a id="fnr.10" name="fnr.10" class="footref" href="#fn.10">10</a></sup>. Just try it out and you will see immediately how it
-works.
-</p>
-
-<p>
-Org mode contains several commands for creating such trees, all these
-commands can be accessed through a dispatcher:
-</p>
-
-<ul class="org-ul">
-<li><b><i>C-c /</i></b> (<code>org-sparse-tree</code>)
-
-<p>
-This prompts for an extra key to select a sparse-tree creating
-command.
-</p>
-</li>
-
-<li><b><i>C-c / r</i></b> (<code>org-occur</code>)
-
-<p>
-Prompts for a regexp and shows a sparse tree with all
-matches. If the match is in a headline, the headline is made
-visible. If the match is in the body of an entry, headline and
-body are made visible. In order to provide minimal context, also
-the full hierarchy of headlines above the match is shown, as
-well as the headline following the match. Each match is also
-highlighted; the highlights disappear when the buffer is changed
-by an editing command<sup><a id="fnr.11" name="fnr.11" class="footref" href="#fn.11">11</a></sup>, or by pressing <b><i>C-c
-C-c</i></b>. When called with a <b><i>C-u</i></b> prefix argument, previous
-highlights are kept, so several calls to this command can be
-stacked.
-</p>
-</li>
-
-<li><b><i>M-g n</i></b> or <b><i>M-g M-n</i></b> (<code>next-error</code>)
-
-<p>
-Jump to the next sparse tree match in this buffer.
-</p>
-</li>
-
-<li><b><i>M-g p</i></b> or <b><i>M-g M-p</i></b> (<code>previous-error</code>)
-
-<p>
-Jump to the previous sparse tree match in this buffer.
-</p>
-</li>
-</ul>
-
-<p>
-For frequently used sparse trees of specific search strings, you
-can use the option <code>org-agenda-custom-commands</code> to define fast
-keyboard access to specific sparse trees. These commands will then
-be accessible through the agenda dispatcher (see <a href="#Agenda-dispatcher">Agenda dispatcher</a>).
-For example:
-</p>
-
-<div class="org-src-container">
-
-<pre class="src src-lisp">(setq org-agenda-custom-commands
-      '(("f" occur-tree "FIXME")))
-</pre>
-</div>
-
-<p>
-will define the key <b><i>C-c a f</i></b> as a shortcut for creating a sparse
-tree matching the string ‘FIXME'.
-</p>
-
-<p>
-The other sparse tree commands select headings based on TODO
-keywords, tags, or properties and will be discussed later in this
-manual.
-</p>
-
-<p>
-To print a sparse tree, you can use the Emacs command
-<code>ps-print-buffer-with-faces</code> which does not print invisible parts
-of the document<sup><a id="fnr.12" name="fnr.12" class="footref" href="#fn.12">12</a></sup>. Or you can use <b><i>C-c C-e C-v</i></b> to
-export only the visible part of the document and print the
-resulting file.
-</p>
-</div>
-</div>
-
-<div id="outline-container-sec-2-6" class="outline-3">
-<h3 id="sec-2-6">2.5 Structure editing                                              <a id="Structure-editing" name="Structure-editing"></a></h3>
-<div class="outline-text-3" id="text-2-6">
 <ul class="org-ul">
 <li><code>M-RET</code> (<code>org-insert-heading</code>)
 
@@ -2248,6 +2154,98 @@ of a line, mark at the beginning of the first headline, and point
 at the line just after the last headline to change. Note that when
 the cursor is inside a table (see <a href="#Tables">Tables</a>), the Meta-Cursor keys
 have different functionality.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2-6" class="outline-3">
+<h3 id="sec-2-6">2.6 Sparse trees                                                   <a id="Sparse-trees" name="Sparse-trees"></a></h3>
+<div class="outline-text-3" id="text-2-6">
+<p>
+An important feature of Org mode is the ability to construct
+<i>sparse trees</i> for selected information in an outline tree, so that
+the entire document is folded as much as possible, but the selected
+information is made visible along with the headline structure above
+it<sup><a id="fnr.10" name="fnr.10" class="footref" href="#fn.10">10</a></sup>. Just try it out and you will see immediately how it
+works.
+</p>
+
+<p>
+Org mode contains several commands for creating such trees, all these
+commands can be accessed through a dispatcher:
+</p>
+
+<ul class="org-ul">
+<li><code>C-c /</code> (<code>org-sparse-tree</code>)
+
+<p>
+This prompts for an extra key to select a sparse-tree creating
+command.
+</p>
+</li>
+
+<li><code>C-c / r</code> (<code>org-occur</code>)
+
+<p>
+Prompts for a regexp and shows a sparse tree with all
+matches. If the match is in a headline, the headline is made
+visible. If the match is in the body of an entry, headline and
+body are made visible. In order to provide minimal context, also
+the full hierarchy of headlines above the match is shown, as
+well as the headline following the match. Each match is also
+highlighted; the highlights disappear when the buffer is changed
+by an editing command<sup><a id="fnr.11" name="fnr.11" class="footref" href="#fn.11">11</a></sup>, or by pressing <code>C-c C-c</code>. When
+called with a <code>C-u</code> prefix argument, previous highlights are
+kept, so several calls to this command can be stacked.
+</p>
+</li>
+
+<li><code>M-g n</code> or <code>M-g M-n</code> (<code>next-error</code>)
+
+<p>
+Jump to the next sparse tree match in this buffer.
+</p>
+</li>
+
+<li><code>M-g p</code> or <code>M-g M-p</code> (<code>previous-error</code>)
+
+<p>
+Jump to the previous sparse tree match in this buffer.
+</p>
+</li>
+</ul>
+
+<p>
+For frequently used sparse trees of specific search strings, you
+can use the option <code>org-agenda-custom-commands</code> to define fast
+keyboard access to specific sparse trees. These commands will then
+be accessible through the agenda dispatcher (see <a href="#Agenda-dispatcher">Agenda dispatcher</a>).
+For example:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(setq org-agenda-custom-commands
+      '(("f" occur-tree "FIXME")))
+</pre>
+</div>
+
+<p>
+will define the key <code>C-c a f</code> as a shortcut for creating a sparse
+tree matching the string ‘FIXME'.
+</p>
+
+<p>
+The other sparse tree commands select headings based on TODO
+keywords, tags, or properties and will be discussed later in this
+manual.
+</p>
+
+<p>
+To print a sparse tree, you can use the Emacs command
+<code>ps-print-buffer-with-faces</code> which does not print invisible parts
+of the document<sup><a id="fnr.12" name="fnr.12" class="footref" href="#fn.12">12</a></sup>. Or you can use <code>C-c C-e C-v</code> to export
+only the visible part of the document and print the resulting file.
 </p>
 </div>
 </div>

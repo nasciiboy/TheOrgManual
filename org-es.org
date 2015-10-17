@@ -1405,38 +1405,29 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #    it[fn:FOOT10]. Just try it out and you will see immediately how it
 #    works.
 
---
-# Una característica importante del modo Org es la capacidad de
-# construir / Árboles dispersos / de información seleccionada en un
-# árbol de esquema , por lo que Todo el documento se dobla tanto como
-# sea posible , pero el seleccionado Información # se hace visible ,
-# junto con la estructura de cabezal de esta noticia Que [ fn : FOOT10
-# ] . Haga la prueba y verá de inmediato cómo trabajos.
+   Una característica importante del modo Org es la capacidad de
+   construir /árboles conpactos/ de información seleccionada en un
+   árbol de esquema, por lo que todo el documento se plega tanto como
+   sea posible, pero la información seleccionada se hace visible,
+   junto con la estructura de encabezados por encima de
+   ella[fn:FOOT10]. Haga la prueba y verá inmediatamente cómo trabaja.
 
 #    Org mode contains several commands for creating such trees, all these
 #    commands can be accessed through a dispatcher:
 
---
-Modo # Org contiene varios comandos para la creación de este tipo de
-árboles , todos estos Comandos # se puede acceder a través de un
-despachador :
+   El modo Org contiene varios comandos para la creación de este tipo
+   de árboles, todos estos comandos se puede acceder mediante un
+   despachador:
 
-#     - */C-c //* (=org-sparse-tree=)
-
---
-# - * / C- c // * ( = org- rala de árboles =)
+    - =C-c /= (=org-sparse-tree=)
 
 #       This prompts for an extra key to select a sparse-tree creating
 #       command.
 
---
-# Esto pide una llave extra para seleccionar una creación escasa de
-# árboles Comandos.
+      Activa un prompt que pide una tecla extra para seleccionar un
+      comando de creación árboles compactos.
 
-#     - */C-c / r/* (=org-occur=)
-
---
-# - * / C- c / r / * ( = org- ocurrir =)
+    - =C-c / r= (=org-occur=)
 
 #       Prompts for a regexp and shows a sparse tree with all
 #       matches. If the match is in a headline, the headline is made
@@ -1450,39 +1441,33 @@ despachador :
 #       highlights are kept, so several calls to this command can be
 #       stacked.
 
---
-# Solicita una expresión regular y muestra un árbol escaso con todo
-#       partidos. Si el partido está en un titular , se hace el
-#       titular Visible. Si el partido está en el cuerpo de una
-#       entrada, título y Cuerpo se hacen visibles. Con el fin de
-#       proporcionar un contexto mínimo , también Se muestra la
-#       jerarquía completa de los titulares sobre el partido, como Así
-#       como el titular tras el partido . Cada partido es también
-#       Destacó ; los aspectos más destacados desaparecen cuando se
-#       cambia el tampón Por un comando de edición [ fn : FOOT11 ] , o
-#       presionando * / CC C -c / * . Cuando se llama con un * / Cu /
-#       * argumento prefijo , anterior Destacados se mantienen , por
-#       lo que varias llamadas a este comando pueden ser Apilados .
+       Solicita una expresión regular y muestra un árbol compacto con
+       todas las coincidencias. Si la coincidencia está en un
+       encabezado, el encabezado se hace visible. Si la coincidencia
+       está en el cuerpo de una entrada, encabezado y cuerpo se hacen
+       visibles. Con el fin de proporcionar un contexto mínimo,
+       también se muestra la jerarquía completa de los encabezados
+       sobre la coincidencia, así como el encabezado tras la
+       coincidencia. Cada correspondencia es también resaltada; el
+       resaltado desaparece cuando se cambia el buffer con un comando
+       de edición[fn:FOOT11], o presionando =C-c C-c=. Cuando se llama
+       con el argumento prefijo =C-u=, el resaltado anterior se
+       mantiene, por lo que varias llamadas a este comando pueden ser
+       almacenadas.
 
-#     - */M-g n/* or */M-g M-n/* (=next-error=)
-
---
-# - * / M- g n / * o * / M- g M -n / * ( = próxima error = )
+    - =M-g n= or =M-g M-n= (=next-error=)
 
 #       Jump to the next sparse tree match in this buffer.
 
---
-# Saltar a la siguiente coincidencia árbol escaso en este tampón .
+      Ir a la siguiente coincidencia dentro del árbol conpacto en este
+      buffer.
 
-#     - */M-g p/* or */M-g M-p/* (=previous-error=)
-
---
-# - * / Mg p / * o * / Mg Mp / * ( = anterior - error = )
+    - =M-g p= or =M-g M-p= (=previous-error=)
 
 #       Jump to the previous sparse tree match in this buffer.
 
---
-# Saltar al partido árbol escasa anterior en este tampón .
+      Ir a la anterior coincidencia dentro del árbol conpacto en este
+      buffer.
 
 #    For frequently used sparse trees of specific search strings, you
 #    can use the option =org-agenda-custom-commands= to define fast
@@ -1490,38 +1475,30 @@ despachador :
 #    be accessible through the agenda dispatcher (see [[@Agenda-dispatcher][Agenda dispatcher]]).
 #    For example:
 
---
-# Para árboles dispersos uso frecuente de cadenas de búsqueda
-# específicos, Puede utilizar la opción = org- agenda- custom-
-# comandos = para definir rápido Acceso de teclado a escasos árboles
-# específicos. Estos comandos será entonces Sea accesible a través de
-# la operadora del programa (véase [ [@ Agenda - despachador ] [
-# despachador del programa] ] ) .  Por ejemplo:
+   Para uso frecuente de árboles conpactos o de cadenas de búsqueda
+   específicas, puede utilizar la opción =org-agenda-custom-commands=
+   para definir accesos rápidos de teclado a árboles compactos
+   específicos. Estos comandos serán accesibles a mediante el
+   despachador de agenda (véase [[@Agenda-dispatcher][Agenda dispatcher]]). Por ejemplo:
 
-#    #+BEGIN_SRC lisp
-#      (setq org-agenda-custom-commands
-#            '(("f" occur-tree "FIXME")))
-#    #+END_SRC
-
---
-# # + BEGIN_SRC ceceo ( Setq org- agenda- custom- comandos ' ( ( " F "
-# ocurrir árbol " FIXME " ))) # + END_SRC
+   #+BEGIN_SRC lisp
+     (setq org-agenda-custom-commands
+           '(("f" occur-tree "FIXME")))
+   #+END_SRC
 
 #    will define the key */C-c a f/* as a shortcut for creating a sparse
 #    tree matching the string ‘FIXME'.
 
---
-# Definirá la tecla * / Cc af / * como un atajo para crear una escasa
-# Árbol coincidente con la cadena ' FIXME ' .
+   Definirá la combicacion =C-c a f= como un atajo para coincidencias
+   con la cadena 'FIXME' en un arbol compacto.
 
 #    The other sparse tree commands select headings based on TODO
 #    keywords, tags, or properties and will be discussed later in this
 #    manual.
 
---
-# El otro árbol disperso comandos selectos títulos basados ​​en TODO
-# Palabras clave , etiquetas o propiedades y se discutirá más adelante
-# en este Manual.
+   Los otros comandos de árbol conmacto seleccionan encabezados
+   basados ​​en palabras clave TODO, etiquetas o propiedades y se
+   discutirá más adelante en este Manual.
 
 #    To print a sparse tree, you can use the Emacs command
 #    =ps-print-buffer-with-faces= which does not print invisible parts
@@ -1529,12 +1506,11 @@ despachador :
 #    export only the visible part of the document and print the
 #    resulting file.
 
---
-# Para imprimir un árbol escaso , puede utilizar el comando de Emacs =
-# Ps- print-buffer -with- faces = que no imprimen partes invisibles
-# Del documento [ fn : FOOT12 ] . O puede usar * / C- c C -e C- v / *
-# para Sólo # exportaciones la parte visible del documento e imprimir
-# el Archivo resultante .
+   Para imprimir un árbol compacto, puede utilizar el comando de Emacs
+   =ps-print-buffer-with-faces= que no imprime las partes invisibles
+   del documento[fn:FOOT12]. O puede usar =C-c C-e C-v= para sólo
+   exportar la parte visible del documento e imprimir el archivo
+   resultante.
 
 # ** 2.7 Plain lists                                                    <<@Plain-lists>>
 ** 2.7 Listas Planas                                                  <<@Plain-lists>>
@@ -21789,13 +21765,21 @@ para la agenda ( Ver [[@Speeding-up-your-agendas][Speeding up your agendas]]).
 # (see [[@Speeding-up-your-agendas][Speeding up your agendas]]).
 
 [fn:FOOT10]
+Véa también la variable =org-show-context-detail= para determinar cuánto
+contexto es muestrado alrededor de cada resultado.
+
 # See also the variable =org-show-context-detail= to decide how much
 # context is shown around each match.
 
 [fn:FOOT11]
+Esto depende de la opcion =org-remove-highlights-with-change=
+
 # This depends on the option =org-remove-highlights-with-change=
 
 [fn:FOOT12]
+Esto no funciona en XEmacs, porque XEmacs utiliza pantalla selectiva
+para esquematizar, no propiedades de texto.
+
 # This does not work under XEmacs, because XEmacs uses selective display
 # for outlining, not text properties.
 

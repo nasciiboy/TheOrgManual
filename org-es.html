@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>The Org Manual</title>
-<!-- 2015-10-10 sáb 19:09 -->
+<!-- 2015-10-16 vie 19:11 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Carsten Dominik with contributiond by Bastien Guerry, Nicolas Goazion, Eric Schulte, Jambunathan K. Dan Davison, Thomas O`Thoole, and Philip Rooke." />
@@ -1177,7 +1177,7 @@ subárbol.
 </p>
 
 <p>
-Lleme a este comando con <code>C-u C-u</code> si desea respetar el
+Llame a este comando con <code>C-u C-u</code> si desea respetar el
 contenido del encabezado y crear un nuevo elemento al final del
 subárbol padre.
 </p>
@@ -1471,53 +1471,103 @@ funcionalidad diferente.
 <h3 id="sec-2-6">2.6 Árboles compactos                                              <a id="Sparse-trees" name="Sparse-trees"></a></h3>
 <div class="outline-text-3" id="text-2-6">
 <p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-Modo # Org contiene varios comandos para la creación de este tipo de
-árboles , todos estos Comandos # se puede acceder a través de un
-despachador :
+Una característica importante del modo Org es la capacidad de
+construir <i>árboles conpactos</i> de información seleccionada en un
+árbol de esquema, por lo que todo el documento se plega tanto como
+sea posible, pero la información seleccionada se hace visible,
+junto con la estructura de encabezados por encima de
+ella<sup><a id="fnr.10" name="fnr.10" class="footref" href="#fn.10">10</a></sup>. Haga la prueba y verá inmediatamente cómo trabaja.
 </p>
 
 <p>
-&#x2013;
+El modo Org contiene varios comandos para la creación de este tipo
+de árboles, todos estos comandos se puede acceder mediante un
+despachador:
 </p>
+
+<ul class="org-ul">
+<li><code>C-c /</code> (<code>org-sparse-tree</code>)
+</li>
+</ul>
+
 <p>
-&#x2013;
+Activa un prompt que pide una tecla extra para seleccionar un
+comando de creación árboles compactos.
 </p>
+
+<ul class="org-ul">
+<li><code>C-c / r</code> (<code>org-occur</code>)
+</li>
+</ul>
+
 <p>
-&#x2013;
+Solicita una expresión regular y muestra un árbol compacto con
+todas las coincidencias. Si la coincidencia está en un
+encabezado, el encabezado se hace visible. Si la coincidencia
+está en el cuerpo de una entrada, encabezado y cuerpo se hacen
+visibles. Con el fin de proporcionar un contexto mínimo,
+también se muestra la jerarquía completa de los encabezados
+sobre la coincidencia, así como el encabezado tras la
+coincidencia. Cada correspondencia es también resaltada; el
+resaltado desaparece cuando se cambia el buffer con un comando
+de edición<sup><a id="fnr.11" name="fnr.11" class="footref" href="#fn.11">11</a></sup>, o presionando <code>C-c C-c</code>. Cuando se llama
+con el argumento prefijo <code>C-u</code>, el resaltado anterior se
+mantiene, por lo que varias llamadas a este comando pueden ser
+almacenadas.
 </p>
+
+<ul class="org-ul">
+<li><code>M-g n</code> or <code>M-g M-n</code> (<code>next-error</code>)
+</li>
+</ul>
+
 <p>
-&#x2013;
+Ir a la siguiente coincidencia dentro del árbol conpacto en este
+buffer.
 </p>
+
+<ul class="org-ul">
+<li><code>M-g p</code> or <code>M-g M-p</code> (<code>previous-error</code>)
+</li>
+</ul>
+
 <p>
-&#x2013;
+Ir a la anterior coincidencia dentro del árbol conpacto en este
+buffer.
 </p>
+
 <p>
-&#x2013;
+Para uso frecuente de árboles conpactos o de cadenas de búsqueda
+específicas, puede utilizar la opción <code>org-agenda-custom-commands</code>
+para definir accesos rápidos de teclado a árboles compactos
+específicos. Estos comandos serán accesibles a mediante el
+despachador de agenda (véase <i>Agenda dispatcher</i>). Por ejemplo:
 </p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(setq org-agenda-custom-commands
+      '(("f" occur-tree "FIXME")))
+</pre>
+</div>
+
 <p>
-&#x2013;
+Definirá la combicacion <code>C-c a f</code> como un atajo para coincidencias
+con la cadena 'FIXME' en un arbol compacto.
 </p>
+
 <p>
-&#x2013;
+Los otros comandos de árbol conmacto seleccionan encabezados
+basados ​​en palabras clave TODO, etiquetas o propiedades y se
+discutirá más adelante en este Manual.
 </p>
+
 <p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
+Para imprimir un árbol compacto, puede utilizar el comando de Emacs
+<code>ps-print-buffer-with-faces</code> que no imprime las partes invisibles
+del documento<sup><a id="fnr.12" name="fnr.12" class="footref" href="#fn.12">12</a></sup>. O puede usar <code>C-c C-e C-v</code> para sólo
+exportar la parte visible del documento e imprimir el archivo
+resultante.
 </p>
 </div>
 </div>
@@ -1939,6 +1989,20 @@ afectar la visibilidad en ese búfer.
 Cuando <code>org-agenda-inhibit-startup</code> no es <code>nil</code>, Org no respeta el
 estado de visibilidad por defecto al abrir un archivo por primera vez
 para la agenda ( Ver <i>Speeding up your agendas</i>).
+</p></div>
+
+<div class="footdef"><sup><a id="fn.10" name="fn.10" class="footnum" href="#fnr.10">10</a></sup> <p class="footpara">
+Véa también la variable <code>org-show-context-detail</code> para determinar cuánto
+contexto es muestrado alrededor de cada resultado.
+</p></div>
+
+<div class="footdef"><sup><a id="fn.11" name="fn.11" class="footnum" href="#fnr.11">11</a></sup> <p class="footpara">
+Esto depende de la opcion <code>org-remove-highlights-with-change</code>
+</p></div>
+
+<div class="footdef"><sup><a id="fn.12" name="fn.12" class="footnum" href="#fnr.12">12</a></sup> <p class="footpara">
+Esto no funciona en XEmacs, porque XEmacs utiliza pantalla selectiva
+para esquematizar, no propiedades de texto.
 </p></div>
 
 
