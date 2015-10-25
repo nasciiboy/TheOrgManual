@@ -1521,26 +1521,22 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #    lists, and every exporter (see [[@Exporting][Exporting]]) can parse and format
 #    them.
 
---
-# En una entrada del árbol de esquema, listas con formato a mano puede
-# Proporcionar estructura adicional . También proporcionan una manera
-# de crear Listas # de casillas ( ver [ [ Checkboxes ] [ Casillas ] ]
-# ) . Org soporta la edición de tales Listas y todos los exportadores
-# ( ver [ [ Exporting ] [ Exportar ] ] ) puede analizar y formato
-# Ellos.
+   En una entrada de árbol de esquema, las listas formateadas a mano
+   puede proporcionar estruturacion adicional. También proporcionan
+   una manera de crear listas de casillas ( ver [[@Checkboxes][Checkboxes]]). Org
+   soporta la edición de tales Listas y todos los exportadores ( ver
+   [[@Exporting][Exporting]]) puede analizar y dar formato ellos.
 
 #    Org knows ordered lists, unordered lists, and description lists.
 
---
-# Org sabe listas ordenadas , listas desordenadas , y las listas de
-  descripción.
+   Org reconece listas ordenadas, listas desordenadas, y listas de
+   descripción.
 
 #     - /Unordered/ list items start with ‘-', ‘+', or ‘*'[fn:FOOT13] as
 #       bullets.
 
---
-# - / Desordenada / lista de artículos comienzan con '- ', ' +' o '*'
-#       [nota : FOOT13 ] como balas.
+    - Las listas de elementos /desordenadas/ inician con '-', '+' o
+      '*'[fn:FOOT13].
 
 #     - /Ordered/ list items start with a numeral followed by either a
 #       period or a right parenthesis[fn:FOOT14], such as ‘1.' or
@@ -1549,23 +1545,21 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #       =[@20]= [fn:FOOT16]. Those constructs can be used in any item of
 #       the list in order to enforce a particular numbering.
 
---
-# - / Ordenadas artículos / lista comienzan con un número seguido de
-una Periodo # o un paréntesis [ fn : FOOT14 ] , como ' 1. ' o # ' 1 )'
-[nota : FOOT15 ] . Si desea una lista para comenzar con una diferente
-# Valor (por ejemplo , 20 ) , se inicia el texto del artículo con # =
-[ @ 20 ] = [ fn : FOOT16 ] . Esas construcciones se pueden usar en
-cualquier artículo de # La lista con el fin de hacer cumplir una
-numeración especial .
+    - Las listas de elementos /ordenadas/ inician con un número
+      seguido de un punto o un paréntesis derecho[fn:FOOT14], como
+      '1.' o ' 1)'[fn:FOOT15]. Si desea que la lista inicie con un
+      valor diferente (por ejemplo, 20), se inicia el texto del
+      elemento con =[@20]= [fn:FOOT16]. Esas construcciones se pueden
+      usar en cualquier elemento de la lista con el fin de aplicar una
+      numeracion particular.
 
 #     - /Description/ list items are unordered list items, and contain
 #       the separator ‘ :: ' to distinguish the description /term/ from
 #       the description.
 
---
-# - / Descripción / elementos de la lista son los elementos de lista
-# sin ordenar , y contienen Separador ' :: ' para distinguir la
-# descripción / term / desde la descripción.
+    - Las listas de elementos de /Descripción/ son listas de elementos
+      sin ordenar, y contienen el separador ' :: ' para distinguir el
+      /termino/ de descripción de la descripción.
 
 #    Items belonging to the same list must have the same indentation on
 #    the first line. In particular, if an ordered list reaches number
@@ -1573,25 +1567,23 @@ numeración especial .
 #    the other numbers in the list. An item ends before the next line
 #    that is less or equally indented than its bullet/number.
 
---
-Todos los records que pertenecen a la misma lista deben tener la misma
-muesca en # La primera línea. En particular, si una lista ordenada
-alcanza el número # '10' , entonces los 2 - . Números de dos dígitos
-deben ser por escrito alineados a la izquierda con # Los otros números
-de la lista . Un artículo termina antes de la siguiente línea # Que es
-menor o igual sangría que su bala / número.
+   Los elementos que pertenecen a la misma lista deben tener la misma
+   indentacion en la primera línea. En particular, si una lista
+   ordenada alcanza el número '10', entonces los números de 2--dígitos
+   deben ser escritos alineados a la izquierda con los otros números
+   de la lista. Un elemento termina antes de la siguiente línea con
+   menor o igual indentado que su simbolo/número.
 
 #    A list ends whenever every item has ended, which means before any
 #    line less or equally indented than items at top level. It also ends
 #    before two blank lines[fn:FOOT17]. In that case, all items are
 #    closed.  Here is an example:
 
---
-# Una lista termina cuando cada elemento ha terminado, lo que
-# significa que antes de que cualquier Línea de menos o igual de
-# sangría de artículos a nivel superior. También termina Antes de dos
-# líneas en blanco [ fn : FOOT17 ] . En ese caso, todos los elementos
-# son Cerrada. He aquí un ejemplo :
+   Una lista termina cuando todos los elementos han terminado, lo que
+   significa antes de cualquier línea de menor o igual indentacion que
+   el elemento de nivel superior. También termina Antes de dos líneas
+   en blanco[fn:FOOT17]. En ese caso, todos los elementos son
+   Cerrados. He aquí un ejemplo:
 
 #    #+BEGIN_EXAMPLE
 #      ** Lord of the Rings
@@ -1610,17 +1602,22 @@ menor o igual sangría que su bala / número.
 #           him very well from his role as Mikey Walsh in The Goonies.
 #    #+END_EXAMPLE
 
---
-# # + BEGIN_EXAMPLE ** Señor de los Anillos Mis escenas favoritas son
-# (en este orden) 1. El ataque de los Rohirrim 2. La lucha de Eowyn
-# con el rey brujo + Esto ya era mi escena favorita en el libro + Me
-# gusta Miranda Otto .  3. Peter Jackson está rodando por Legolas - En
-# sólo DVD Se hace una cara muy graciosa cuando sucede.  Pero al final
-# , no hay escenas individuales son importantes , pero la película en
-# su conjunto.  Actores importantes en esta película son: - Elijah
-# Wood :: Juega Frodo - Sean Austin :: Él interpreta a Sam , amigo de
-# Frodo . aún recuerdo Él muy bien desde su papel como Mikey Walsh en
-# Los Goonies .  # + END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     ** Lord of the Rings
+        Mis escenas favoritas son (en este orden)
+        1. El ataque de los Rohirrim
+        2. La lucha de Eowyn con el rey brujo
+           + Esta ya era mi escena favorita en el libro.
+           + Me gusta Miranda Otto.
+        3. Peter Jackson es baleado por Legolas
+           - Sólo en DVD
+           El hace una cara muy graciosa cuando sucede
+        Pero al final, no hay escenas individuales importantes la película es un todo.
+        Los actores importantes en esta película son:
+        - Elijah Wood :: Él interpreta a Frodo
+        - Sean Austin :: Él interpreta a Sam, amigo de Frodo. Todavía le recuerdo
+          muy bien de su papel como Mikey Walsh en Los Goonies.
+   #+END_EXAMPLE
 
 #    Org supports these lists by tuning filling and wrapping commands to
 #    deal with them correctly[fn:FOOT18], and by exporting them properly
@@ -1628,14 +1625,13 @@ menor o igual sangría que su bala / número.
 #    these lists, many structural constructs like =#+BEGIN_...= blocks
 #    can be indented to signal that they belong to a particular item.
 
---
-# Org soporta estas listas rellenando tuning y envoltura manda Trato
-# con ellos correctamente [ fn : FOOT18 ] y exportando de manera
-# adecuada ( Ver [ [ Exporting ] [ Exportar ] ] ) . Desde la sangría
-# es lo que gobierna la estructura de Estas listas , muchas
-# construcciones estructurales como = # + EMPEZAR _... = bloques Puede
-# ser una sangría para indicar que pertenecen a un elemento
-# determinado.
+   Org respalda estas listas con comandos de ajuste de llenado y
+   envoltura para tratar con ellos correctamente[fn:FOOT18] y
+   exportarlos de manera adecuada ( Ver [[@Exporting][Exporting]]). Desde la
+   indentacion se controla la estructura de estas listas, muchas
+   construcciones estructurales como los bloques =#+BEGIN_...= pueden
+   ser indentados para indicar que pertenecen a un elemento
+   determinado.
 
 #    If you find that using a different bullet for a sub-list (than that
 #    used for the current list-level) improves readability, customize
@@ -1643,13 +1639,12 @@ menor o igual sangría que su bala / número.
 #    difference of indentation between items and their sub-items,
 #    customize =org-list-indent-offset=.
 
---
-# Si usted encuentra que el uso de una bala diferente para una sub-
-# lista ( que Usado para el actual nivel de lista) mejora la
-# legibilidad , personalizar La variable = org -list- demote
-# -modificar- bala = . Para obtener una mayor Diferencia de sangrado
-# entre los elementos y sus subtemas , Personalizar = org- lista -
-# guión offset = .
+   Si usted encuentra que el uso de un simbolo diferente para una
+   sub-lista (que el usado para el actual nivel de lista) mejora la
+   legibilidad, personalizar La variable
+   =org-list-demote-modify-bullet=. Para obtener una mayor diferencia
+   de indentacion entre los elementos y sus subtemas, Personalice
+   =org-list-indent-offset=.
 
 #    The following commands act on items when the cursor is in the first
 #    line of an item (the line with the bullet or number). Some of them
@@ -1657,18 +1652,14 @@ menor o igual sangría que su bala / número.
 #    intact. If some of these actions get in your way, configure
 #    =org-list-automatic-rules= to disable them individually.
 
---
-# Los siguientes comandos actúan sobre elementos cuando el cursor está
-# en la primera Línea de un elemento ( la línea con la viñeta o el
-# número) . Algunos Implica la aplicación de reglas automáticas para
-# mantener la estructura de la lista Intacta. Si algunas de estas
-# acciones en su camino , configurar = Org- lista de reglas automática
-# = para desactivar de forma individual.
+   Los siguientes comandos actúan sobre elementos cuando el cursor
+   está en la primera Línea de un elemento (la línea con la viñeta o
+   el número). Algunos de ellos implican la aplicación de reglas
+   automáticas para mantener la estructura de la lista intacta. Si
+   algunas de estas acciones incomodan su uso, configure
+   =org-list-automatic-rules= para desactivarlas de forma individual.
 
-#     - */TAB/* (=org-cycle=)
-
---
-# - * / / * ( = Org- ciclo =) TAB
+    - =TAB= (=org-cycle=)
 
 #       Items can be folded just like headline levels. Normally this
 #       works only if the cursor is on a plain list item. For more
@@ -1682,25 +1673,21 @@ menor o igual sangría que su bala / número.
 #       one. Subsequent =TAB= 's move the item to meaningful levels in
 #       the list and eventually get it back to its initial position.
 
---
-Todos los records se pueden plegar como niveles de titulares
-. Normalmente esto # Funciona sólo si el cursor está en un elemento de
-lista sin formato. Para más # Detalles , ver la variable = org - ciclo
--include- vestidos de listas = . Si # Esta variable se establece en =
-= integran , elementos de la lista de civil serán # Tratados como
-titulares de bajo nivel. El nivel de un artículo es continuación #
-Propuesta por el sangrado de la bala / número. Los productos son
-siempre # Subordinado a los titulares reales , sin embargo ; las
-jerarquías quedan # Completamente separados . En un nuevo artículo sin
-texto , sin embargo, la primera # = TAB = degrada el artículo a ser un
-hijo de la anterior # uno. Mueven posteriores = TAB = ' s el artículo
-a niveles significativos en # La lista y, finalmente, conseguir de
-nuevo a su posición inicial .
+      Todos los elementos se pueden plegar al igual que los
+      encabezados. Normalmente esto funciona sólo si el cursor está en
+      un elemento de lista sin formato. Para más detalles, vea la
+      variable =org-cycle-include-plain-lists=. Si esta variable se
+      establece en =integrate=, elementos de la lista serán tratados
+      como encabezados de bajo nivel. El nivel de un elemento es dado
+      por la indentacion de la viñeta/número. Los elementos estan
+      siempre subordinados a los encabezados reales, sin embargo; las
+      jerarquías quedan completamente separadas. En un nuevo elemento
+      sin texto, sin embargo, el primer =TAB= marca el elemento como a
+      un hijo del anterior. Posteriores =TAB='s mueven el elemento a
+      niveles significativos en la lista y, finalmente, regresa de
+      nuevo a su posición inicial.
 
-#     - */M-RET/* (=org-insert-heading=)
-
---
-# - * / / * ( = Org -insert -encabezamiento =) M- RET
+    - =M-RET= (=org-insert-heading=)
 
 #       Insert new item at current level. With a prefix argument, force
 #       a new heading (see [[@Structure-editing][Structure editing]]). If this command is used
@@ -1709,77 +1696,58 @@ nuevo a su posición inicial .
 #       executed /before item's body/, the new item is created /before/
 #       the current one.
 
---
-# Insertar nuevo tema en el nivel actual. Con un argumento prefijo ,
-# fuerza Una nueva partida ( ver [ [@ Estructura de edición ] [ editar
-# Estructura ] ] ) . Si se utiliza este comando En el medio de un
-# elemento, que es elemento / split / en dos, y el Segunda parte # se
-# convierte en el nuevo punto [ fn : FOOT19 ] . Si este comando es
-# Ejecutada / antes del cuerpo / del artículo, se crea el nuevo
-# artículo / antes / La actual.
+      Insertar elemento nuevo en nivel actual. Con el argumento
+      prefijo, fuerza un nuevo encabezado (ver [[@Structure-editing][Structure editing]]). Si
+      utiliza este comando en medio de un elemento, ese elemento se
+      /divide/ en dos, y la segunda parte se convierte en el nuevo
+      elemento[fn:FOOT19]. Si este comando es ejecutado /antes del
+      cuerpo del elemento/, se crea el nuevo elemento /antes/ de el
+      actual.
 
-#     - */M-S-RET/*
-
---
-# - * / M- S - RET / *
+    - =M-S-RET=
 
 #       Insert a new item with a checkbox (see [[@Checkboxes][Checkboxes]]).
 
---
-# Inserte un nuevo elemento con una casilla de verificación ( ver [ [
-  Checkboxes ] [ Casillas ] ] ) .
+      Inserte un elemento nuevo con una casilla de verificación ( ver
+      [[@Checkboxes][Checkboxes]]).
 
-#     - */S-up/*
-#     - */S-down/*
-
---
-# - * / S -up / * / S -down / *
+    - =S-up=
+    - =S-down=
 
 #       Jump to the previous/next item in the current list[fn:FOOT20],
 #       but only if =org-support-shift-select= is off. If not, you can
 #       still use paragraph jumping commands like */C-up/* and
 #       */C-down/* to quite similar effect.
 
---
-# Saltar al siguiente elemento anterior / en la lista actual [ fn :
-# FOOT20 ] , Pero sólo si = org -support- shift- select = está apagado
-# . Si no, usted puede Seguir utilizando los comandos de salto de
-# párrafo como * / C -up / * y * / C- abajo / * al efecto bastante
-# similar.
+      Saltar al anterior/siguiente elemento en la lista
+      actual[fn:FOOT20], pero sólo si =org-support-shift-select= está
+      apagado. Si no, usted puede seguir utilizando los comandos de
+      salto de párrafo como =C-up= y =C-down= con un efecto bastante
+      similar.
 
-#     - */M-up/*
-#     - */M-down/*
-
---
-# - * / M- up / * / M- abajo / *
+    - =M-up=
+    - =M-down=
 
 #       Move the item including subitems up/down[fn:FOOT21] (swap with
 #       previous/next item of same indentation). If the list is ordered,
 #       renumbering is automatic.
 
---
-# Mueva el artículo incluyendo subpuntos arriba / abajo [ fn : FOOT21
-# ] ( swaps con Elemento anterior / siguiente de la misma sangría )
-# . Si la lista está ordenada , Renumeración es automática.
+      Mueva el elemento incluidos subelementos arriba/abajo[fn:FOOT21]
+      (intercambia con el elemento anterior/siguiente de la misma
+      indentacion). Si la lista está ordenada, la renumeracion es
+      automática.
 
-#     - */M-left/*
-#     - */M-right/*
-
---
-# - * / M izquierda / * / M- derecha / *
+    - =M-left=
+    - =M-right=
 
 #       Decrease/increase the indentation of an item, leaving children
 #       alone.
 
---
-# Reducir / aumentar la sangría de un elemento, dejando a los niños
-# Solo.
+      Reducir/aumentar la indentacion de un elemento, dejando a los
+      hijos solos.
 
-#     - */M-S-left/*
-#     - */M-S-right/*
-
---
-# - * / M- S izquierda / * / M- S - derecha / *
+    - =M-S-left=
+    - =M-S-right=
 
 #       Decrease/increase the indentation of the item, including
 #       subitems.  Initially, the item tree is selected based on current
@@ -1789,14 +1757,14 @@ nuevo a su posición inicial .
 #       the new hierarchy, break the command chain with a cursor motion
 #       or so.
 
---
-# Reducir / aumentar la sangría del elemento , incluyendo Subpuntos
-# . Inicialmente , el árbol elemento se selecciona en base a la
-# corriente Indentación #. Cuando estos comandos se ejecutan varias
-# veces en Sucesión directa , se usa la región seleccionada
-# inicialmente , incluso Si el nuevo sangrado implicaría una jerarquía
-# diferente. Para usar La nueva jerarquía , romper la cadena de mando
-# con un movimiento del cursor más o menos.
+      Reducir/aumentar la indentacion del elemento, incluidos
+      subelementos. Inicialmente, el árbol de elementos se selecciona
+      en base a la indentación actual. Cuando estos comandos se
+      ejecutan varias veces en sucesión directa, la región
+      inicialmente seleccionada es usada, incluso si la nueva
+      indentacion implica una jerarquía diferente. Para usar la nueva
+      jerarquía, rompa la cadena de comando con un movimiento del
+      cursor más o menos.
 
 #       As a special case, using this command on the very first item of
 #       a list will move the whole list. This behavior can be disabled
@@ -1804,32 +1772,24 @@ nuevo a su posición inicial .
 #       indentation of a list has no influence on the text /after/ the
 #       list.
 
---
-# Como caso especial , el uso de este comando en el primer elemento de
-# Una lista se moverá toda la lista . Este comportamiento se puede
-# desactivar Configurando = org- list- automáticas -rules = . El
-# mundial Indentación de una lista no tiene ninguna influencia sobre
-# el texto / después de / la Lista.
+      Como caso especial, el uso de este comando en el primer elemento
+      de una lista moverá la lista entera. Este comportamiento se
+      puede desactivar configurando =org-list-automatic-rules=. La la
+      indentación global de una lista no tiene ninguna influencia
+      sobre el texto /después/ de la lista.
 
-#     - */C-c C-c/*
-
---
-# - * / C- c C- c / *
+    - =C-c C-c=
 
 #       If there is a checkbox (see [[@Checkboxes][Checkboxes]]) in the item line, toggle
 #       the state of the checkbox. In any case, verify bullets and
 #       indentation consistency in the whole list.
 
---
-# Si hay una casilla de verificación ( ver [ [ Checkboxes ] [ Casillas
-# ] ] ) en la línea de partida , de palanca El estado de la casilla de
-# verificación. En cualquier caso , verificar y balas Consistencia
-# muesca en la lista entera .
+      Si hay una casilla de verificación (ver [[@Checkboxes][Checkboxes]]) en la línea
+      del elemento, cambio el estado de la casilla de verificación. En
+      cualquier caso, verifica viñetas e indentacion consistente en la
+      lista entera.
 
-#     - */C-c -/*
-
---
-# - * / C- c - / *
+    - =C-c -=
 
 #       Cycle the entire list level through the different
 #       itemize/enumerate bullets (‘-', ‘+', ‘*', ‘1.', ‘1)') or a
@@ -1843,77 +1803,58 @@ nuevo a su posición inicial .
 #       removed from the list. Finally, even without an active region, a
 #       normal line will be converted into a list item.
 
---
-# Ciclo de todo el nivel de lista a través de los diferentes Detallar
-# / enumerar balas ( '- ' , '+ ', ' * ', ' 1. ', ' 1 )' ) o una
-# Subconjunto de ellos, dependiendo de = Org- llano -list- ordenada
-# elemento terminador = , el tipo de lista , y Su sangría. Con un
-# argumento prefijo numérico N , seleccione el Bala enésimo de esta
-# lista . Si hay una región activa cuando Llamar a este , el texto
-# seleccionado se transforma en un elemento. Con un Argumento prefijo
-# , todas las líneas se convertirá a la lista de artículos. Si La
-# primera línea ya era un elemento de la lista , cualquier marcador
-# artículo será Eliminado de la lista. Por último, incluso sin una
-# región activa , una Línea normal se convierte en un elemento de la
-# lista .
+      Rotar el estilo de marcador de toda la lista (‘-', ‘+', ‘*',
+      ‘1.', ‘1)') o un subconjunto de estos, dependiendo de
+      =org-plain-list-ordered-item-terminator=, el tipo de lista, y su
+      indentacion. Con un argumento prefijo numérico N, seleccione el
+      N-enésimo marcador de esta lista. Si hay una región activa
+      cuando es llamado, el texto seleccionado se transforma en un
+      elemento. Con el argumento prefijo, todas las líneas se
+      convertirán a la lista de elementos. Si la primera línea ya era
+      un elemento de lista, cualquier marcador de elemento será
+      eliminado de la lista. Por último, incluso sin una región
+      activa, una línea normal se convierte en un elemento de lista .
 
-#     - */C-c */*
-
---
-# - * / C- c * / *
+    - =C-c *=
 
 #       Turn a plain list item into a headline (so that it becomes a
 #       subheading at its location). See [[@Structure-editing][Structure editing]], for a
 #       detailed explanation.
 
---
-# A su vez un elemento de la lista normal en un titular (de modo que
-# se convierte en un Subpartida en su lugar) . Ver [ [@ Estructura de
-# edición ] [ editar Estructura ] ] , para un explicación detallada.
+      Convierte un elemento de la lista en un encabezado (de modo que
+      se convierte en un subencabezado en su ubicacion). Vea [[@Structure-editing][Structure
+      editing]], para una explicación detallada.
 
-#     - */C-c C-*/*
-
---
-# - * / C- c C - * / *
+    - =C-c C-*=
 
 #       Turn the whole plain list into a subtree of the current heading.
 #       Checkboxes (see [[@Checkboxes][Checkboxes]]) will become TODO (resp.  DONE)
 #       keywords when unchecked (resp. checked).
 
---
-# Gire toda la lista normal en un subárbol del rumbo actual .  Las
-# casillas de verificación ( ver [ [ Checkboxes ] [ Casillas ] ] ) se
-# convertirá en TODO (resp . DONE ) Palabras clave cuando desenfrenado
-# (resp . Marcada) .
+      Convierte toda la lista en un subárbol del encabezado
+      actual. Las casillas de verificación (ver [[@Checkboxes][Checkboxes]]) se
+      convertirán en elementos TODO (respectivamente DONE cuando esten
+      marcados).
 
-#     - */S-left/right/*
-
---
-# - * / S - izquierda / derecha / *
+    - =S-left/right=
 
 #       This command also cycles bullet styles when the cursor in on the
 #       bullet or anywhere in an item line, details depending on
 #       =org-support-shift-select=.
 
---
-# Este comando también ciclos estilos de bala cuando el cursor en el
-# Bala o cualquier parte de una línea de artículo, detalles en función
-# de = # = Org -support- shift- select.
+      Este comando también rota el estilo de marcador cuando el cursor
+      esta en el marcador o cualquier parte de una línea de elemento,
+      los detalles dependen de =org-support-shift-select=.
 
-#     - */C-c ^/*
-
---
-# - * / C- c ^ / *
+    - =C-c ^=
 
 #       Sort the plain list. You will be prompted for the sorting
 #       method: numerically, alphabetically, by time, by checked status
 #       for check lists, or by a custom function.
 
---
-# Ordene la lista sin formato. Se le pedirá para la clasificación
-# Método : numéricamente , por orden alfabético , estado por el
-# tiempo, por la marcada Para listas de control , o por una función
-# personalizada.
+      Ordene la lista. Se le pedirá el metodo para la clasificación:
+      numéricamente, por orden alfabético, por fecha, por estado de
+      marcado para listas de control, o por una función personalizada.
 
 # ** 2.8 Drawers                                                        <<@Drawers>>
 ** 2.8 Cajones                                                        <<@Drawers>>
@@ -21784,6 +21725,13 @@ para esquematizar, no propiedades de texto.
 # for outlining, not text properties.
 
 [fn:FOOT13]
+Al usar '*' como para listas, las líneas deben tener una sangría o
+serán vistas como encabezados de primer nivel. Además, cuando usted
+utiliza el modo de esquema limpio (ocultando estrellas), los elementos
+de lista de una estrella pueden ser difícil de distinguir de los
+verdaderos encabezados. En resumen: a pesar de que '*' esta soportado,
+puede ser mejor no utilizarlo para elementos de lista sin formato.
+
 # When using ‘*' as a bullet, lines must be indented or they will be
 # seen as top-level headlines. Also, when you are hiding leading stars
 # to get a clean outline view, plain list items starting with a star may
@@ -21791,37 +21739,63 @@ para esquematizar, no propiedades de texto.
 # is supported, it may be better to not use it for plain list items.
 
 [fn:FOOT14]
+Puedes filtrar cualquiera de ellos configurando
+=org-plain-list-ordered-item-terminator=.
+
 # You can filter out any of them by configuring
 # =org-plain-list-ordered-item-terminator=.
 
 [fn:FOOT15]
+Tambien puede obtener 'a.', 'A.', 'a)' y 'A)' configurando
+=org-list-allow-alphabetical=. Para minimizar la confucion con texto
+normal, limite su uso a solo un caracter. Mas alla de ese limite, las
+balas se repliegan automaticamente a numeros.
+
 # You can also get ‘a.', ‘A.', ‘a)' and ‘A)' by configuring
 # =org-list-allow-alphabetical=. To minimize confusion with normal text,
 # those are limited to one character only. Beyond that limit, bullets
 # will automatically fallback to numbers.
 
 [fn:FOOT16]
+Si hay una casilla de verificacion en el elemento, la cookie se debe
+colocar /antes/ de la casilla de verificacion. Si ha activado las
+listas alfabeticas, tambien puede utilizar contadares como =[@b]=.
+
 # If there's a checkbox in the item, the cookie must be put /before/ the
 # checkbox. If you have activated alphabetical lists, you can also use
 # counters like =[@b]=.
 
 [fn:FOOT17]
+Vea tambien =org-list-empty-line-terminates-plain-lists=.
+
 # See also =org-list-empty-line-terminates-plain-lists=.
 
 [fn:FOOT18]
+Org solo cambia la configuracion de llenado para Emacs. Para XEmacs,
+debe utilizar =filladapt.el= de Kyle E. Jones. Para habilitar esta
+funcion agregue en =.emacs=: =(require 'filladapt)=
+
 # Org only changes the filling settings for Emacs. For XEmacs, you
 # should use Kyle E. Jones' filladapt.el. To turn this on, put into
 # .emacs: =(require 'filladapt)=
 
 [fn:FOOT19]
+Si no desea que el elemento se divida, persanalice la variable
+=org-M-RET-may-split-line=.
+
 # If you do not want the item to be split, customize the variable
 # =org-M-RET-may-split-line=.
 
 [fn:FOOT20]
+Si quiere el ciclo alrededor de los elementos de esa manera, puede
+personalizar =org-list-use-circular-motion=.
+
 # If you want to cycle around items that way, you may customize
 # =org-list-use-circular-motion=.
 
 [fn:FOOT21]
+Vea =org-list-use-circular-motion= para un comportamiento ciclico.
+
 # See =org-list-use-circular-motion= for a cyclic behavior.
 
 [fn:FOOT22]

@@ -902,7 +902,7 @@ modify this GNU manual.”
    intact. If some of these actions get in your way, configure
    =org-list-automatic-rules= to disable them individually.
 
-    - */TAB/* (=org-cycle=)
+    - =TAB= (=org-cycle=)
 
       Items can be folded just like headline levels. Normally this
       works only if the cursor is on a plain list item. For more
@@ -916,7 +916,7 @@ modify this GNU manual.”
       one. Subsequent =TAB= 's move the item to meaningful levels in
       the list and eventually get it back to its initial position.
 
-    - */M-RET/* (=org-insert-heading=)
+    - =M-RET= (=org-insert-heading=)
 
       Insert new item at current level. With a prefix argument, force
       a new heading (see [[@Structure-editing][Structure editing]]). If this command is used
@@ -925,33 +925,33 @@ modify this GNU manual.”
       executed /before item's body/, the new item is created /before/
       the current one.
 
-    - */M-S-RET/*
+    - =M-S-RET=
 
       Insert a new item with a checkbox (see [[@Checkboxes][Checkboxes]]).
 
-    - */S-up/*
-    - */S-down/*
+    - =S-up=
+    - =S-down=
 
       Jump to the previous/next item in the current list[fn:FOOT20],
       but only if =org-support-shift-select= is off. If not, you can
-      still use paragraph jumping commands like */C-up/* and
-      */C-down/* to quite similar effect.
+      still use paragraph jumping commands like =C-up= and =C-down= to
+      quite similar effect.
 
-    - */M-up/*
-    - */M-down/*
+    - =M-up=
+    - =M-down=
 
       Move the item including subitems up/down[fn:FOOT21] (swap with
       previous/next item of same indentation). If the list is ordered,
       renumbering is automatic.
 
-    - */M-left/*
-    - */M-right/*
+    - =M-left=
+    - =M-right=
 
       Decrease/increase the indentation of an item, leaving children
       alone.
 
-    - */M-S-left/*
-    - */M-S-right/*
+    - =M-S-left=
+    - =M-S-right=
 
       Decrease/increase the indentation of the item, including
       subitems.  Initially, the item tree is selected based on current
@@ -967,13 +967,13 @@ modify this GNU manual.”
       indentation of a list has no influence on the text /after/ the
       list.
 
-    - */C-c C-c/*
+    - =C-c C-c=
 
       If there is a checkbox (see [[@Checkboxes][Checkboxes]]) in the item line, toggle
       the state of the checkbox. In any case, verify bullets and
       indentation consistency in the whole list.
 
-    - */C-c -/*
+    - =C-c -=
 
       Cycle the entire list level through the different
       itemize/enumerate bullets (‘-', ‘+', ‘*', ‘1.', ‘1)') or a
@@ -987,25 +987,25 @@ modify this GNU manual.”
       removed from the list. Finally, even without an active region, a
       normal line will be converted into a list item.
 
-    - */C-c */*
+    - =C-c *=
 
       Turn a plain list item into a headline (so that it becomes a
       subheading at its location). See [[@Structure-editing][Structure editing]], for a
       detailed explanation.
 
-    - */C-c C-*/*
+    - =C-c C-*=
 
       Turn the whole plain list into a subtree of the current heading.
       Checkboxes (see [[@Checkboxes][Checkboxes]]) will become TODO (resp.  DONE)
       keywords when unchecked (resp. checked).
 
-    - */S-left/right/*
+    - =S-left/right=
 
       This command also cycles bullet styles when the cursor in on the
       bullet or anywhere in an item line, details depending on
       =org-support-shift-select=.
 
-    - */C-c ^/*
+    - =C-c ^=
 
       Sort the plain list. You will be prompted for the sorting
       method: numerically, alphabetically, by time, by checked status
@@ -20619,8 +20619,8 @@ See also =org-list-empty-line-terminates-plain-lists=.
 
 [fn:FOOT18]
 Org only changes the filling settings for Emacs. For XEmacs, you
-should use Kyle E. Jones' filladapt.el. To turn this on, put into
-.emacs: =(require 'filladapt)=
+should use Kyle E. Jones' =filladapt.el=. To turn this on, put into
+=.emacs=: =(require 'filladapt)=
 
 [fn:FOOT19]
 If you do not want the item to be split, customize the variable

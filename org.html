@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>The Org Manual</title>
-<!-- 2015-10-16 vie 19:06 -->
+<!-- 2015-10-24 sáb 19:39 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Carsten Dominik with contributiond by Bastien Guerry, Nicolas Goazion, Eric Schulte, Jambunathan K. Dan Davison, Thomas O`Thoole, and Philip Rooke." />
@@ -2341,7 +2341,7 @@ intact. If some of these actions get in your way, configure
 </p>
 
 <ul class="org-ul">
-<li><b><i>TAB</i></b> (<code>org-cycle</code>)
+<li><code>TAB</code> (<code>org-cycle</code>)
 
 <p>
 Items can be folded just like headline levels. Normally this
@@ -2358,7 +2358,7 @@ the list and eventually get it back to its initial position.
 </p>
 </li>
 
-<li><b><i>M-RET</i></b> (<code>org-insert-heading</code>)
+<li><code>M-RET</code> (<code>org-insert-heading</code>)
 
 <p>
 Insert new item at current level. With a prefix argument, force
@@ -2370,28 +2370,28 @@ the current one.
 </p>
 </li>
 
-<li><b><i>M-S-RET</i></b>
+<li><code>M-S-RET</code>
 
 <p>
 Insert a new item with a checkbox (see <a href="#Checkboxes">Checkboxes</a>).
 </p>
 </li>
 
-<li><b><i>S-up</i></b>
+<li><code>S-up</code>
 </li>
-<li><b><i>S-down</i></b>
+<li><code>S-down</code>
 
 <p>
 Jump to the previous/next item in the current list<sup><a id="fnr.20" name="fnr.20" class="footref" href="#fn.20">20</a></sup>,
 but only if <code>org-support-shift-select</code> is off. If not, you can
-still use paragraph jumping commands like <b><i>C-up</i></b> and
-<b><i>C-down</i></b> to quite similar effect.
+still use paragraph jumping commands like <code>C-up</code> and <code>C-down</code> to
+quite similar effect.
 </p>
 </li>
 
-<li><b><i>M-up</i></b>
+<li><code>M-up</code>
 </li>
-<li><b><i>M-down</i></b>
+<li><code>M-down</code>
 
 <p>
 Move the item including subitems up/down<sup><a id="fnr.21" name="fnr.21" class="footref" href="#fn.21">21</a></sup> (swap with
@@ -2400,9 +2400,9 @@ renumbering is automatic.
 </p>
 </li>
 
-<li><b><i>M-left</i></b>
+<li><code>M-left</code>
 </li>
-<li><b><i>M-right</i></b>
+<li><code>M-right</code>
 
 <p>
 Decrease/increase the indentation of an item, leaving children
@@ -2410,9 +2410,9 @@ alone.
 </p>
 </li>
 
-<li><b><i>M-S-left</i></b>
+<li><code>M-S-left</code>
 </li>
-<li><b><i>M-S-right</i></b>
+<li><code>M-S-right</code>
 
 <p>
 Decrease/increase the indentation of the item, including
@@ -2433,7 +2433,7 @@ list.
 </p>
 </li>
 
-<li><b><i>C-c C-c</i></b>
+<li><code>C-c C-c</code>
 
 <p>
 If there is a checkbox (see <a href="#Checkboxes">Checkboxes</a>) in the item line, toggle
@@ -2442,7 +2442,7 @@ indentation consistency in the whole list.
 </p>
 </li>
 
-<li><b><i>C-c -</i></b>
+<li><code>C-c -</code>
 
 <p>
 Cycle the entire list level through the different
@@ -2459,7 +2459,7 @@ normal line will be converted into a list item.
 </p>
 </li>
 
-<li><b><i>C-c *</i></b>
+<li><code>C-c *</code>
 
 <p>
 Turn a plain list item into a headline (so that it becomes a
@@ -2468,7 +2468,7 @@ detailed explanation.
 </p>
 </li>
 
-<li><b><i>C-c C-*</i></b>
+<li><code>C-c C-*</code>
 
 <p>
 Turn the whole plain list into a subtree of the current heading.
@@ -2477,7 +2477,7 @@ keywords when unchecked (resp. checked).
 </p>
 </li>
 
-<li><b><i>S-left/right</i></b>
+<li><code>S-left/right</code>
 
 <p>
 This command also cycles bullet styles when the cursor in on the
@@ -2486,7 +2486,7 @@ bullet or anywhere in an item line, details depending on
 </p>
 </li>
 
-<li><b><i>C-c ^</i></b>
+<li><code>C-c ^</code>
 
 <p>
 Sort the plain list. You will be prompted for the sorting
@@ -43161,8 +43161,8 @@ See also <code>org-list-empty-line-terminates-plain-lists</code>.
 
 <div class="footdef"><sup><a id="fn.18" name="fn.18" class="footnum" href="#fnr.18">18</a></sup> <p class="footpara">
 Org only changes the filling settings for Emacs. For XEmacs, you
-should use Kyle E. Jones' filladapt.el. To turn this on, put into
-.emacs: <code>(require 'filladapt)</code>
+should use Kyle E. Jones' <code>filladapt.el</code>. To turn this on, put into
+<code>.emacs</code>: <code>(require 'filladapt)</code>
 </p></div>
 
 <div class="footdef"><sup><a id="fn.19" name="fn.19" class="footnum" href="#fnr.19">19</a></sup> <p class="footpara">
