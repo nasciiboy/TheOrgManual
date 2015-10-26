@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>The Org Manual</title>
-<!-- 2015-10-24 sáb 19:42 -->
+<!-- 2015-10-26 lun 17:02 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Carsten Dominik with contributiond by Bastien Guerry, Nicolas Goazion, Eric Schulte, Jambunathan K. Dan Davison, Thomas O`Thoole, and Philip Rooke." />
@@ -1867,41 +1867,60 @@ marcado para listas de control, o por una función personalizada.
 <h3 id="sec-2-8">2.8 Cajones                                                        <a id="Drawers" name="Drawers"></a></h3>
 <div class="outline-text-3" id="text-2-8">
 <p>
-&#x2013;
+A veces se desea mantener información asociada a una entrada, pero
+que normalmente no se quiere mostrar. Para ello, el modo Org tiene
+<i>cajones</i>. Pueden contener cualquier cosa menos un encabezado y
+otro cajón. Los cajones se ven así:
 </p>
+
+<pre class="example">
+** Este en un encabezado
+   Aun fuera del cajon
+   :NOMBREDECAJON:
+   Este es el interion del cajon.
+   :END:
+   Despues del cajon.
+</pre>
+
 <p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-Ciclismo # Visibilidad ( ver [ [@ Visibilidad de la bicicleta ] [
-ciclismo Visibilidad ] ] ) en el titular lo hará # Ocultar y mostrar
-la entrada , pero mantener el cajón se derrumbaron a un solo # Line
-. Con el fin de observar el interior del cajón, lo que necesita para
-mover el # Cursor a la línea cajón y presione TAB = = allí. Org
-utiliza el modo de # = PROPIEDADES = cajón para almacenar las
-propiedades ( ver [ [@ Inmuebles -y- columnas ] [ Propiedades y
-Columnas # ] ] ) , y también se puede organizar para las notas de
-cambio de estado (ver # [ [@ Tracking - TODO cambios de estado ] [ los
-cambios de estado de seguimiento TODO ] ]) y los tiempos de reloj (
-ver [ [@ - trabajo a tiempo Clocking ] [ trabajo Clocking # Tiempo ]
-]) para ser almacenado en un cajón = LOGBOOK = . Si desea almacenar un
-</p>
-<p>
-Cambios , el uso
+Se pueden insertar cajones en el punto de forma interactiva
+llamando a <code>org-insert-drawer</code>, que está ligado a <code>C-c C-x d</code>. Con
+una región activa, este comando pondrá la región dentro del
+cajón. Con un Argumento prefijo, este comando llamara a
+<code>org-insert-property-drawer</code> y añadira un cajón de propiedad justo
+debajo del encabezado actual. La terminacion de palablas clave
+también es posible mediante el uso de <code>M-TAB</code>.
 </p>
 
 <p>
-&#x2013;
+La visibilidad ciclica (ver <a href="#Visibility-cycling">Visibility cycling</a>) en el encabezado lo
+hará ocultar y mostrar la entrada, pero mantendra el cajón
+colapsado en sola linea. Con el fin de observar el interior del
+cajón, necesita para mover el cursor a la línea del cajón y
+presionar allí <code>TAB</code>. El modo Org utiliza el cajon <code>PROPERTIES</code>
+para almacenar las propiedades (ver <i>Properties and columns</i>), y
+también se puede organizar para las notas de cambio de estado (ver
+<i>Tracking TODO state changes</i>) y los tiempos de reloj (ver <i>Clocking
+work time</i>) para almacenar en un cajón <code>LOGBOOK</code>. Si desea guardar
+un nota rápida en el cajón <code>LOGBOOK</code>, de una manera similar a
+declarar cambios, el uso es
 </p>
+
+<ul class="org-ul">
+<li><code>C-c C-z</code>
+</li>
+</ul>
+
 <p>
-&#x2013;
+Añadir una nota con fecha y hora a el cajón <code>LOGBOOK</code>.
 </p>
+
 <p>
-&#x2013;
+Se puede seleccionar el nombre de los cajones que deben ser
+exportados con <code>org-export-with-drawers</code>. En ese caso, el contenido
+del cajón aparecera en la salida exportada. Los cajones de
+propiedad no son afectados por esta variable: en su lugar configure
+<code>org-export-with-properties</code>.
 </p>
 </div>
 </div>
@@ -1909,33 +1928,29 @@ Cambios , el uso
 <h3 id="sec-2-9">2.9 Bloques                                                         <a id="Blocks" name="Blocks"></a></h3>
 <div class="outline-text-3" id="text-2-9">
 <p>
-&#x2013;
-Modo # Org utiliza empezar &#x2026; bloques extremos para diversos fines de
-</p>
-<p>
-[ ejemplos literales ] ]) para la captura # Información de la hora de
-registro ( ver [ [@ - trabajo a tiempo Clocking ] [ Clocking tiempo de
-trabajo ] ] ) . Estos bloques pueden # Ser plegada y desplegada
-presionando TAB en la línea de comenzar. Puedes # También obtener
-todos los bloques cruzados en el arranque mediante la configuración de
-la opción # = Org- ocultar- bloque -startup = o sobre una base per-
-archivo utilizando
+El modo Org utiliza bloques begin&#x2026;end para diversos fines para
+incluir ejemplos de código fuente (ver <i>Literal examples</i>) para
+capturar información de la hora de registro (ver <i>Clocking work
+time</i>). Estos bloques se pueden plegar y desplegar presionando <code>TAB</code>
+en la línea de inicio. Puedes también obtener todos los bloques
+plegados al arranque mediante la configuración de la opción
+<code>org-hide-block-startup</code> o por fichero utilizando
 </p>
 
-<p>
-&#x2013;
-</p>
+<pre class="example">
+#+STARTUP: hideblocks
+#+STARTUP: nohideblocks
+</pre>
 </div>
 </div>
 <div id="outline-container-sec-2-10" class="outline-3">
 <h3 id="sec-2-10">2.10 Notas                                                         <a id="Footnotes" name="Footnotes"></a></h3>
 <div class="outline-text-3" id="text-2-10">
 <p>
-&#x2013;
-Modo # Org apoya la creación de notas al pie. En contraste con el #
-Paquete footnote.el , notas al pie de modo Org están diseñados para
-trabajar en # Un documento más amplio, no sólo para los documentos de
-una sola vez , como mensajes de correo electrónico .
+El modo Org soporta la creación de notas al pie. En contraste con
+el paquete <code>footnote.el</code>, las notas del modo Org están diseñadas
+para trabajar en documentos más grandes, no sólo para documentos de
+un solo uso, como mensajes de correo electrónico.
 </p>
 
 <p>

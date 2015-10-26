@@ -1864,11 +1864,10 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #    /drawers/. They can contain anything but a headline and another
 #    drawer. Drawers look like this:
 
---
-# A veces se desea mantener la información asociada a una entrada,
-# Pero que normalmente no quiere verlo. Para ello, el modo Org tiene
-# /cajones/. Pueden contener cualquier cosa menos un titular y otro
-# Cajón. Los cajones se ven así :
+   A veces se desea mantener información asociada a una entrada, pero
+   que normalmente no se quiere mostrar. Para ello, el modo Org tiene
+   /cajones/. Pueden contener cualquier cosa menos un encabezado y
+   otro cajón. Los cajones se ven así:
 
 #    #+BEGIN_EXAMPLE
 #      ** This is a headline
@@ -1879,10 +1878,14 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #         After the drawer.
 #    #+END_EXAMPLE
 
---
-# # + BEGIN_EXAMPLE ** Este es un titular Aún fuera del cajón :
-# DRAWERNAME : Este es el interior del cajón.  :FIN: Después de la
-# gaveta.  # + END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     ** Este en un encabezado
+        Aun fuera del cajon
+        :NOMBREDECAJON:
+        Este es el interion del cajon.
+        :END:
+        Despues del cajon.
+   #+END_EXAMPLE
 
 #    You can interactively insert drawers at point by calling
 #    =org-insert-drawer=, which is bound to =C-c C-x d=. With an active
@@ -1892,14 +1895,13 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #    headline. Completion over drawer keywords is also possible using
 #    =M-TAB=.
 
---
-# Se puede insertar de forma interactiva cajones en el punto llamando
-# = Org -insert- cajón = , que está obligado a = Cc Cx d = . Con una
-# activa Región #, este comando pondrá la región dentro del cajón
-# . Con un Argumento prefijo , este comando llamadas = org -insert-
-# propiedad - cajón = Y añadir un cajón derecho de propiedad por
-# debajo de la actual Titular. Finalización sobre palabras clave cajón
-# También es posible el uso de = = M- TAB .
+   Se pueden insertar cajones en el punto de forma interactiva
+   llamando a =org-insert-drawer=, que está ligado a =C-c C-x d=. Con
+   una región activa, este comando pondrá la región dentro del
+   cajón. Con un Argumento prefijo, este comando llamara a
+   =org-insert-property-drawer= y añadira un cajón de propiedad justo
+   debajo del encabezado actual. La terminacion de palablas clave
+   también es posible mediante el uso de =M-TAB=.
 
 #    Visibility cycling (see [[@Visibility-cycling][Visibility cycling]]) on the headline will
 #    hide and show the entry, but keep the drawer collapsed to a single
@@ -1912,44 +1914,34 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #    quick note in the LOGBOOK drawer, in a similar way to state
 #    changes, use
 
---
-Ciclismo # Visibilidad ( ver [ [@ Visibilidad de la bicicleta ] [
-ciclismo Visibilidad ] ] ) en el titular lo hará # Ocultar y mostrar
-la entrada , pero mantener el cajón se derrumbaron a un solo # Line
-. Con el fin de observar el interior del cajón, lo que necesita para
-mover el # Cursor a la línea cajón y presione TAB = = allí. Org
-utiliza el modo de # = PROPIEDADES = cajón para almacenar las
-propiedades ( ver [ [@ Inmuebles -y- columnas ] [ Propiedades y
-Columnas # ] ] ) , y también se puede organizar para las notas de
-cambio de estado (ver # [ [@ Tracking - TODO cambios de estado ] [ los
-cambios de estado de seguimiento TODO ] ]) y los tiempos de reloj (
-ver [ [@ - trabajo a tiempo Clocking ] [ trabajo Clocking # Tiempo ]
-]) para ser almacenado en un cajón = LOGBOOK = . Si desea almacenar un
-# Nota rápida en el cajón DIARIO , de una manera similar a declarar #
-Cambios , el uso
+   La visibilidad ciclica (ver [[@Visibility-cycling][Visibility cycling]]) en el encabezado lo
+   hará ocultar y mostrar la entrada, pero mantendra el cajón
+   colapsado en sola linea. Con el fin de observar el interior del
+   cajón, necesita para mover el cursor a la línea del cajón y
+   presionar allí =TAB=. El modo Org utiliza el cajon =PROPERTIES=
+   para almacenar las propiedades (ver [[@Properties-and-columns][Properties and columns]]), y
+   también se puede organizar para las notas de cambio de estado (ver
+   [[@Tracking-TODO-state-changes][Tracking TODO state changes]]) y los tiempos de reloj (ver [[@Clocking-work-time][Clocking
+   work time]]) para almacenar en un cajón =LOGBOOK=. Si desea guardar
+   un nota rápida en el cajón =LOGBOOK=, de una manera similar a
+   declarar cambios, el uso es
 
-#     - */C-c C-z/*
-
---
-# - * / C- c C- z / *
+    - =C-c C-z=
 
 #       Add a time-stamped note to the LOGBOOK drawer.
 
---
-# Añadir una nota con fecha y hora para el cajón DIARIO .
+      Añadir una nota con fecha y hora a el cajón =LOGBOOK=.
 
 #    You can select the name of the drawers which should be exported
 #    with =org-export-with-drawers=. In that case, drawer contents will
 #    appear in export output. Property drawers are not affected by this
 #    variable: configure =org-export-with-properties= instead.
 
---
-# Se puede seleccionar el nombre de los cajones que deben ser
-# exportados Con = org -exportación - con - cajones = . En ese caso ,
-# el contenido cajón se Aparecen en la producción de
-# exportación. Cajones de propiedad no están afectados por esta
-# Variables : configurar = org -exportación - con -properties = lugar
-# .
+   Se puede seleccionar el nombre de los cajones que deben ser
+   exportados con =org-export-with-drawers=. En ese caso, el contenido
+   del cajón aparecera en la salida exportada. Los cajones de
+   propiedad no son afectados por esta variable: en su lugar configure
+   =org-export-with-properties=.
 
 # ** 2.9 Blocks                                                         <<@Blocks>>
 ** 2.9 Bloques                                                         <<@Blocks>>
@@ -1961,25 +1953,18 @@ Cambios , el uso
 #    also get all blocks folded at startup by configuring the option
 #    =org-hide-block-startup= or on a per-file basis by using
 
---
-Modo # Org utiliza empezar ... bloques extremos para diversos fines de
-# Incluyendo ejemplos de código fuente (ver [ [@ -ejemplos literales ]
-[ ejemplos literales ] ]) para la captura # Información de la hora de
-registro ( ver [ [@ - trabajo a tiempo Clocking ] [ Clocking tiempo de
-trabajo ] ] ) . Estos bloques pueden # Ser plegada y desplegada
-presionando TAB en la línea de comenzar. Puedes # También obtener
-todos los bloques cruzados en el arranque mediante la configuración de
-la opción # = Org- ocultar- bloque -startup = o sobre una base per-
-archivo utilizando
+   El modo Org utiliza bloques begin...end para diversos fines para
+   incluir ejemplos de código fuente (ver [[@Literal-examples][Literal examples]]) para
+   capturar información de la hora de registro (ver [[@Clocking-work-time][Clocking work
+   time]]). Estos bloques se pueden plegar y desplegar presionando =TAB=
+   en la línea de inicio. Puedes también obtener todos los bloques
+   plegados al arranque mediante la configuración de la opción
+   =org-hide-block-startup= o por fichero utilizando
 
-#    #+BEGIN_EXAMPLE
-#      #+STARTUP: hideblocks
-#      #+STARTUP: nohideblocks
-#    #+END_EXAMPLE
-
---
-# # + BEGIN_EXAMPLE + STARTUP : hideblocks + STARTUP : nohideblocks +
-# # END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     #+STARTUP: hideblocks
+     #+STARTUP: nohideblocks
+   #+END_EXAMPLE
 
 # ** 2.10 Footnotes                                                     <<@Footnotes>>
 ** 2.10 Notas                                                         <<@Footnotes>>
@@ -1988,11 +1973,10 @@ archivo utilizando
 #    footnote.el package, Org mode's footnotes are designed for work on
 #    a larger document, not only for one-off documents like emails.
 
---
-Modo # Org apoya la creación de notas al pie. En contraste con el #
-Paquete footnote.el , notas al pie de modo Org están diseñados para
-trabajar en # Un documento más amplio, no sólo para los documentos de
-una sola vez , como mensajes de correo electrónico .
+   El modo Org soporta la creación de notas al pie. En contraste con
+   el paquete =footnote.el=, las notas del modo Org están diseñadas
+   para trabajar en documentos más grandes, no sólo para documentos de
+   un solo uso, como mensajes de correo electrónico.
 
 #    A footnote is started by a footnote marker in square brackets in
 #    column 0, no indentation allowed. It ends at the next footnote

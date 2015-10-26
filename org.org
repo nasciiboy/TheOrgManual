@@ -1046,7 +1046,7 @@ modify this GNU manual.”
    quick note in the LOGBOOK drawer, in a similar way to state
    changes, use
 
-    - */C-c C-z/*
+    - =C-c C-z=
 
       Add a time-stamped note to the LOGBOOK drawer.
 
