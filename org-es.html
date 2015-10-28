@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>The Org Manual</title>
-<!-- 2015-10-26 lun 17:02 -->
+<!-- 2015-10-27 mar 19:55 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Carsten Dominik with contributiond by Bastien Guerry, Nicolas Goazion, Eric Schulte, Jambunathan K. Dan Davison, Thomas O`Thoole, and Philip Rooke." />
@@ -63,6 +63,7 @@
 <li><a href="#sec-2-12">2.12 Sintaxis Org                                                  </a></li>
 </ul>
 </li>
+<li><a href="#sec-3">3 Tablas                                                            </a></li>
 </ul>
 </div>
 </div>
@@ -1462,7 +1463,7 @@ colocar tanto punto y la marca al comienzo de una línea, la marcar
 al comienzo del primer encabezado, y el punto en la línea justo
 después del último encabezado a cambiar. Tenga en cuenta que cuando
 el cursor se encuentra dentro de una tabla ( ver
-<i>Tablas</i>), las teclas del Meta-Cursor tienen una
+<a href="#Tables">Tablas</a>), las teclas del Meta-Cursor tienen una
 funcionalidad diferente.
 </p>
 </div>
@@ -1954,109 +1955,222 @@ un solo uso, como mensajes de correo electrónico.
 </p>
 
 <p>
-&#x2013;
+Una nota al pie se inicia con un marcador de nota entre corchetes
+en lo columna 0, la indentacion no esta permitida.  Finaliza con la
+siguiente definición de nota al pie, encabezado, o después de dos
+líneas consecutivos en blanco. La referencia de nota es un
+simplemente marcador entre corchetes, dentro del texto. Por
+ejemplo:
 </p>
+
+<pre class="example">
+La pagina de inicio de Org[fn:1] ahora se ve mucho mejor que de costumbre
+...
+[fn:1] El enlace es: http://orgmode.org
+</pre>
+
 <p>
-&#x2013;
+El modo Org extiende la sintaxis basada en números a notas con
+<i>nombre</i> y definición opcional en la misma línea. El uso de números
+simples como marcadores (como hace footnote.el) es soportado por
+compatibilidad hacia atrás, pero no animado debido a posibles
+conflictos con fragmentos LaTeX (véase <i>Embedded LaTeX</i>). Aquí están
+las referencias válidas:
 </p>
+
+<ul class="org-ul">
+<li><code>[1]</code>
+</li>
+</ul>
+
 <p>
-&#x2013;
-Modo # Org extiende la sintaxis basada en número a / nombre / notas al
-pie y # Definición en línea opcional . El uso de números simples como
-marcadores ( como # Footnote.el no ) es compatible con la
-compatibilidad hacia atrás , pero no # Animado debido a posibles
-conflictos con fragmentos LaTeX (véase # [ [@ Embedded - LaTeX ] [
-Embedded LaTeX ] ] ) . Aquí están las referencias válidas :
+Un simple marcador numérico de la nota. Compatible con
+<code>footnote.el</code>, pero no es recomendable debido que algo como
+<code>[1]</code> podría ser fácilmente parte de un fragmento de código.
+</p>
+
+<ul class="org-ul">
+<li><code>[fn:nombre]</code>
+</li>
+</ul>
+
+<p>
+Una nota con nombre como referencia, donde <code>nombre</code> es una
+etiqueta única, o, por simplicidad de la creación automática, un
+número.
+</p>
+
+<ul class="org-ul">
+<li><code>[fn:: Esta es una definicion de nota dentro de la linea]</code>
+</li>
+</ul>
+
+<p>
+Una nota anónima como en LaTeX donde se indica la definición
+directamente en el punto de referencia.
+</p>
+
+<dl class="org-dl">
+<dt> <code>[fn:nombre: una definicion]</code> </dt><dd></dd>
+</dl>
+
+<p>
+Una definición de nota dentro de línea, que también especifica
+un nombre para la nota. Org permite múltiples referencias a la
+misma nota, puede utilizar <code>[fn:nombre]</code> para crear referencias
+adicionales.
 </p>
 
 <p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-Etiquetas # Footnote se pueden crear de forma automática, o puede
-crear # Nombres usted mismo . Esto es manejado por la variable # =
-Org- nota - etiqueta auto = y su correspondiente = # + STARTUP = #
-Palabras clave. Ver la cadena de documentación de esa variable para
-obtener más información .
+Las etiquetas de nota se pueden crear de forma automática, o puede
+crear nombres usted mismo. Esto es manejado por la variable
+<code>org-footnote-auto-label</code> y su correspondiente palabra clave en
+<code>#+STARTUP</code>. Vea la cadena de documentación de esa variable para
+obtener más información.
 </p>
 
 <p>
-&#x2013;
+El siguiente comando se encarga de las notas:
 </p>
+
+<ul class="org-ul">
+<li><code>C-c C-x f</code>
+</li>
+</ul>
+
 <p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-&#x2013;
-</p>
-<p>
-secuencia de referencia. Durante la edición,       Org no hace ningún
-esfuerzo para ordenar las definiciones pie de página en un particular,
-      secuencia. Si usted quiere que ordenan, utilice este comando,
-que lo hará       también mover las entradas de acuerdo a
-org-sección-pie de página. Automática       la clasificación después
-de cada inserción / deleción se puede configurar mediante la
-      opción org-nota-auto-ajustar.    r Volver a numerar el simple
-fn: N notas al pie. Renumeración automática       después de cada
-inserción / deleción se puede configurar mediante la opción
-      org-nota-auto-ajuste.    S Abreviatura de primera r, entonces s
-acción.    n Normalizar las notas mediante la recopilación de todas
-las definiciones (incluyendo       definiciones inline) en una sección
-especial, y luego la numeración ellos       en secuencia. Las
-referencias serán entonces también ser números. Este es       pretende
-ser el paso final antes de terminar un documento (por ejemplo, el
-envío de       aprovechó un servicio de correo electrónico).    d
-Eliminar la nota al pie en el punto, y todas las definiciones y
-referencias       a la misma.  # + END<sub>EXAMPLE</sub>
+El comando acciona nota al pie.
 </p>
 
 <p>
-&#x2013;
+Cuando el cursor está en una referencia de nota, salta a la
+definición. Cuando se está en una definición, salta a la
+(primera) referencia.
 </p>
+
 <p>
-&#x2013;
+De otro modo, crear una nota nueva. Dependiendo de la opción
+<code>org-footnote-define-inline</code> <sup><a id="fnr.22" name="fnr.22" class="footref" href="#fn.22">22</a></sup>, la definición será
+colocado a la derecha en el texto como parte de la referencia, o
+por separado en el lugar determinado por la opción
+<code>org-footnote-section</code>.
 </p>
+
 <p>
-&#x2013;
-Etiquetas # Footnote son también vincula a la correspondiente #
-Definición / de referencia, y puede utilizar los comandos habituales a
+Cuando este comando se llama con el argumento prefijo, se ofrece
+un menú de opciones adicionales:
 </p>
+
+<ul class="org-ul">
+<li><code>s</code>
+
 <p>
-&#x2013;
+Ordena las <i>definiciones</i> de nota por secuencia de referencia
+</p>
+
+<p>
+Durante la edicion, Org no hace ningun enfuerzo por ordenar
+las definiciones de nota en una secuencia en particular
+</p>
+
+<p>
+Si desea el ordenamiento, utilice este comando, que lo hara
+deacuerdo con <code>org-footnote-section</code>.
+</p>
+
+<p>
+El ordenamiento automatico depues de cada
+insercion/eliminacion se puede configurar mediante la opcion
+<code>org-footnote-auto-adjust</code>.
+</p>
+</li>
+
+<li><code>r</code>
+
+<p>
+Renumerar <i>referencias</i> de notas simples <code>fn:N</code>
+</p>
+
+<p>
+La renumeracion automatica depues de cada
+insercion/eliminacion se puede configurar mediante la opcion
+<code>org-footnote-auto-adjust</code>.
+</p>
+</li>
+
+<li><code>S</code>
+
+<p>
+Ordenamiento primero <code>r</code>, luego <code>s</code>.
+</p>
+</li>
+
+<li><code>n</code>
+
+<p>
+Normaliza las notas mediante la recopilacion de todas las
+definiciones (incluyendo las definiciones en linea) en una
+seccion especial, y a continuacion, se enumera por secuencia.
+</p>
+
+<p>
+Las referencias pasaran entonces a ser numeros.
+</p>
+
+<p>
+Esto esta destinado a ser el pasa final antes de terminar un
+documento (por ejemplo, el envio de un correo electronico).
+</p>
+</li>
+
+<li><code>d</code>
+
+<p>
+Eliminar la nota en el punto, y todas las definiciones y
+referencias a esta.
+</p>
+</li>
+</ul>
+
+<p>
+Dependiendo de la variable <code>org-footnote-auto-adjust</code> <sup><a id="fnr.23" name="fnr.23" class="footref" href="#fn.23">23</a></sup>,
+la renumeración y clasificación de las notas puede ser
+automática después de cada inserción o eliminacion.
+</p>
+
+<ul class="org-ul">
+<li><code>C-c C-c</code>
+</li>
+</ul>
+
+<p>
+Si el cursor está en una referencia de nota, saltar a la
+definición. Si se trata de una definición, salta de nuevo a la
+referencia. Cuando se llama detro de una nota con el argumento
+prefijo, ofrecen el mismo menú que <code>C-c C-x f</code>.
+</p>
+
+<ul class="org-ul">
+<li><code>C-c C-o or mouse-1/2</code>
+</li>
+</ul>
+
+<p>
+Las etiquetas de nota también son enlaces a la correspondiente
+definición/referencia, y puede utilizar los comandos habituales
+a seguir estos enlaces.
+</p>
+
+<ul class="org-ul">
+<li>=C-c '=
+</li>
+</ul>
+
+<p>
+Editar la definición nota correspondiente a la referencia en
+punto en una ventana separada. Esto puede ser conveniente si
+edita notas en un búfer estrecho. La ventana se puede cerrar
+Presionando =C-c '=.
 </p>
 </div>
 </div>
@@ -2064,16 +2178,48 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 <h3 id="sec-2-11">2.11 El modo menor Orgstruct                                       <a id="Orgstruct-mode" name="Orgstruct-mode"></a></h3>
 <div class="outline-text-3" id="text-2-11">
 <p>
-&#x2013;
+Si le gusta la forma intuitiva en que el modo Org estructura la
+edicion y el formato de trabajo listado, es posible que desee
+utilizar estos comandos en otros modos como el modo texto o también
+el modo de correo. El modo menor <code>orgstruct-mode</code> lo hace
+posible. Seleccione el modo con <code>M-x orgstruct-mode RET</code> o
+activelo por defecto, por ejemplo en modo Message, con uno
+de:
 </p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(add-hook 'message-mode-hook 'turn-on-orgstruct)
+(add-hook 'message-mode-hook 'turn-on-orgstruct++)
+</pre>
+</div>
+
 <p>
-&#x2013;
+Cuando este modo está activo y el cursor está en una línea que se
+parece a un encabezado Org o a la primera línea de un elemento de
+lista, la mayoría de comandos de edición de la estructura va a
+funcionar, incluso si las mismas combinaciones normalmente tienen
+una funcionalidad diferente en el modo mayor que está usando. Si el
+cursor no está en una de esas líneas especiales, el modo Orgstruct
+acecha silenciosamente en las sombras.
 </p>
+
 <p>
-&#x2013;
+Cuando se utiliza <code>orgstruct++-mode</code>, Org también exporta la
+indentacion Y ajustes de autocompletado en ese modo, y detecta el
+contexto del elemento después la primera línea de un elemento.
 </p>
+
 <p>
-&#x2013;
+También puede utilizar la edición de estructura de Org para plegar
+y desplegar encabezados en <i>cualquier</i> archivo, siempre que haya
+definido en <code>orgstruct-heading-prefix-regexp</code>: la expresión regular
+que debe coincidir con el prefijo local a utilizar antes de los
+encabezados Org. Por ejemplo, Si establece esta variable a ";; " en
+los archivos de Emacs Lisp, sera capas de plegar y desplegar
+encabezados en Emacs Lisp por líneas comentadas. Algunos comandos
+como <code>org-demote</code> se desactivan cuando el prefijo está establecido,
+pero el plegado/desplegado funcionará correctamente.
 </p>
 </div>
 </div>
@@ -2081,12 +2227,43 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 <h3 id="sec-2-12">2.12 Sintaxis Org                                                  <a id="Org-syntax" name="Org-syntax"></a></h3>
 <div class="outline-text-3" id="text-2-12">
 <p>
-&#x2013;
+Un documento de referencia que proporciona una descripción formal
+de la sintaxis de Org está disponible como <a href="http://orgmode.org/worg/dev/org-syntax.html">un borrador en Worg</a>,
+escrito y mantenido por Nicolás Goaziou. Define los principales
+conceptos internos de Org como <code>encabezados</code>, <code>secciones</code>,
+<code>palabras clave asociadas</code>, <code>(mayores) Elementos</code> y <code>objetos</code>. Cada
+parte de un fichero Org cae en una de las categorías anteriores.
 </p>
+
 <p>
-&#x2013;
+Para explorar la estructura abstracta de un búfer Org, ejecute esto
+en un buffer:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">M-: (org-element-parse-buffer) RET
+</pre>
+</div>
+
+<p>
+Se dará salida a una lista con el contenido del buffer representado
+como una estructura abstracta. El motor de exportación se basa en
+la información almacenada en esta lista. La mayoría de los comandos
+interactivos (por ejemplo, para la edición de estructura) también
+se basan en el sentido sintáctico al rededor del contexto.
+</p>
+
+<p>
+Puede verificar la sintaxis de sus documentos utilizando el comando
+<code>org-lint</code>.
 </p>
 </div>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3">3 Tablas                                                            <a id="Tables" name="Tables"></a></h2>
+<div class="outline-text-2" id="text-3">
 </div>
 </div>
 <div id="footnotes">
@@ -2094,29 +2271,30 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 <div id="text-footnotes">
 
 <div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
-Si no se utiliza font-lock a nivel glabal, debe activarlo en el buffer
-Org con <code>(add-hook 'org-mode-hook 'turn-on-font-lock)</code>
+Si no se utiliza font-lock a nivel glabal, debe activarlo en el
+buffer Org con <code>(add-hook 'org-mode-hook 'turn-on-font-lock)</code>
 </p></div>
 
 <div class="footdef"><sup><a id="fn.2" name="fn.2" class="footnum" href="#fnr.2">2</a></sup> <p class="footpara">
-Por favor considere suscribirse a la lista de correo, con el fin de
-reducir el trabajo que los moderadores de correo tienen que hacer.
+Por favor considere suscribirse a la lista de correo, con el
+fin de reducir el trabajo que los moderadores de correo tienen que
+hacer.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.3" name="fn.3" class="footnum" href="#fnr.3">3</a></sup> <p class="footpara">
-Las plantillas insertan fácilmente palabras clave minúsculas y Babel
-inserta de forma dinámica <code>#+results</code>.
+Las plantillas insertan fácilmente palabras clave minúsculas y
+Babel inserta de forma dinámica <code>#+results</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.4" name="fn.4" class="footnum" href="#fnr.4">4</a></sup> <p class="footpara">
-Vea las variables <code>org-special-ctrl-a/e</code>, <code>org-special-ctrl-k</code>, y
-<code>org-ctrl-k-protect-subtree</code> para configurar el comportamiento
+Vea las variables <code>org-special-ctrl-a/e</code>, <code>org-special-ctrl-k</code>,
+y <code>org-ctrl-k-protect-subtree</code> para configurar el comportamiento
 especial de <code>C-a</code>, <code>C-e</code>, y <code>C-k</code> en los encabezados.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.5" name="fn.5" class="footnum" href="#fnr.5">5</a></sup> <p class="footpara">
-Clocking sólo funciona con encabezados con menos de 30 asteriscos de
-indentacion.
+Clocking sólo funciona con encabezados con menos de 30
+asteriscos de indentacion.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.6" name="fn.6" class="footnum" href="#fnr.6">6</a></sup> <p class="footpara">
@@ -2128,21 +2306,22 @@ Vea la opción <code>org-cycle-global-at-bob</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.8" name="fn.8" class="footnum" href="#fnr.8">8</a></sup> <p class="footpara">
-El búfer indirecto (vea <a href="http://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Indirect-Buffers">Indirect Buffers</a> en el Manual de GNU Emacs)
-contiene todo el buffer, pero se redujo al árbol actual. La edición
-del búfer indirecto también cambiará el buffer original, pero sin
-afectar la visibilidad en ese búfer.
+El búfer indirecto (vea <a href="http://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Indirect-Buffers">Indirect Buffers</a> en el Manual de GNU
+Emacs) contiene todo el buffer, pero se redujo al árbol actual. La
+edición del búfer indirecto también cambiará el buffer original, pero
+sin afectar la visibilidad en ese búfer.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.9" name="fn.9" class="footnum" href="#fnr.9">9</a></sup> <p class="footpara">
-Cuando <code>org-agenda-inhibit-startup</code> no es <code>nil</code>, Org no respeta el
-estado de visibilidad por defecto al abrir un archivo por primera vez
-para la agenda ( Ver <i>Speeding up your agendas</i>).
+Cuando <code>org-agenda-inhibit-startup</code> no es <code>nil</code>, Org no respeta
+el estado de visibilidad por defecto al abrir un archivo por primera
+vez para la agenda ( Ver <i>Speeding up your
+agendas</i>).
 </p></div>
 
 <div class="footdef"><sup><a id="fn.10" name="fn.10" class="footnum" href="#fnr.10">10</a></sup> <p class="footpara">
-Véa también la variable <code>org-show-context-detail</code> para determinar cuánto
-contexto es muestrado alrededor de cada resultado.
+Véa también la variable <code>org-show-context-detail</code> para
+determinar cuánto contexto es muestrado alrededor de cada resultado.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.11" name="fn.11" class="footnum" href="#fnr.11">11</a></sup> <p class="footpara">
@@ -2150,17 +2329,18 @@ Esto depende de la opcion <code>org-remove-highlights-with-change</code>
 </p></div>
 
 <div class="footdef"><sup><a id="fn.12" name="fn.12" class="footnum" href="#fnr.12">12</a></sup> <p class="footpara">
-Esto no funciona en XEmacs, porque XEmacs utiliza pantalla selectiva
-para esquematizar, no propiedades de texto.
+Esto no funciona en XEmacs, porque XEmacs utiliza pantalla
+selectiva para esquematizar, no propiedades de texto.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.13" name="fn.13" class="footnum" href="#fnr.13">13</a></sup> <p class="footpara">
-Al usar '*' como para listas, las líneas deben tener una sangría o
-serán vistas como encabezados de primer nivel. Además, cuando usted
-utiliza el modo de esquema limpio (ocultando estrellas), los elementos
-de lista de una estrella pueden ser difícil de distinguir de los
-verdaderos encabezados. En resumen: a pesar de que '*' esta soportado,
-puede ser mejor no utilizarlo para elementos de lista sin formato.
+Al usar '*' como para listas, las líneas deben tener una
+sangría o serán vistas como encabezados de primer nivel. Además,
+cuando usted utiliza el modo de esquema limpio (ocultando estrellas),
+los elementos de lista de una estrella pueden ser difícil de
+distinguir de los verdaderos encabezados. En resumen: a pesar de que
+'*' esta soportado, puede ser mejor no utilizarlo para elementos de
+lista sin formato.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.14" name="fn.14" class="footnum" href="#fnr.14">14</a></sup> <p class="footpara">
@@ -2176,9 +2356,9 @@ balas se repliegan automaticamente a numeros.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.16" name="fn.16" class="footnum" href="#fnr.16">16</a></sup> <p class="footpara">
-Si hay una casilla de verificacion en el elemento, la cookie se debe
-colocar <i>antes</i> de la casilla de verificacion. Si ha activado las
-listas alfabeticas, tambien puede utilizar contadares como <code>[@b]</code>.
+Si hay una casilla de verificacion en el elemento, la cookie
+se debe colocar <i>antes</i> de la casilla de verificacion. Si ha activado
+las listas alfabeticas, tambien puede utilizar contadares como <code>[@b]</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.17" name="fn.17" class="footnum" href="#fnr.17">17</a></sup> <p class="footpara">
@@ -2186,9 +2366,9 @@ Vea tambien <code>org-list-empty-line-terminates-plain-lists</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.18" name="fn.18" class="footnum" href="#fnr.18">18</a></sup> <p class="footpara">
-Org solo cambia la configuracion de llenado para Emacs. Para XEmacs,
-debe utilizar <code>filladapt.el</code> de Kyle E. Jones. Para habilitar esta
-funcion agregue en <code>.emacs</code>: <code>(require 'filladapt)</code>
+Org solo cambia la configuracion de llenado para Emacs. Para
+XEmacs, debe utilizar <code>filladapt.el</code> de Kyle E. Jones. Para habilitar
+esta funcion agregue en <code>.emacs</code>: <code>(require 'filladapt)</code>
 </p></div>
 
 <div class="footdef"><sup><a id="fn.19" name="fn.19" class="footnum" href="#fnr.19">19</a></sup> <p class="footpara">
@@ -2197,12 +2377,23 @@ Si no desea que el elemento se divida, persanalice la variable
 </p></div>
 
 <div class="footdef"><sup><a id="fn.20" name="fn.20" class="footnum" href="#fnr.20">20</a></sup> <p class="footpara">
-Si quiere el ciclo alrededor de los elementos de esa manera, puede
-personalizar <code>org-list-use-circular-motion</code>.
+Si quiere el ciclo alrededor de los elementos de esa manera,
+puede personalizar <code>org-list-use-circular-motion</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.21" name="fn.21" class="footnum" href="#fnr.21">21</a></sup> <p class="footpara">
-Vea <code>org-list-use-circular-motion</code> para un comportamiento ciclico.
+Vea <code>org-list-use-circular-motion</code> para un comportamiento
+ciclico.
+</p></div>
+
+<div class="footdef"><sup><a id="fn.22" name="fn.22" class="footnum" href="#fnr.22">22</a></sup> <p class="footpara">
+La correspondiente configuracion por buffer es: <code>#+STARTUP:
+fninline</code> o <code>#+STARTUP: nofninline</code>
+</p></div>
+
+<div class="footdef"><sup><a id="fn.23" name="fn.23" class="footnum" href="#fnr.23">23</a></sup> <p class="footpara">
+Las correspondientes opcciones por buffer son <code>fnadjust</code> y
+<code>nofnadjust</code>.
 </p></div>
 
 

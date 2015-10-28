@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>The Org Manual</title>
-<!-- 2015-10-26 lun 17:00 -->
+<!-- 2015-10-27 mar 19:43 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Carsten Dominik with contributiond by Bastien Guerry, Nicolas Goazion, Eric Schulte, Jambunathan K. Dan Davison, Thomas O`Thoole, and Philip Rooke." />
@@ -2608,26 +2608,42 @@ encouraged because of possible conflicts with LaTeX snippets (see
 <a href="#Embedded-LaTeX">Embedded LaTeX</a>). Here are the valid references:
 </p>
 
-<dl class="org-dl">
-<dt> <code>[1]</code> </dt><dd>      A plain numeric footnote marker. Compatible with footnote.el,
+<ul class="org-ul">
+<li><code>[1]</code>
+
+<p>
+A plain numeric footnote marker. Compatible with <code>footnote.el</code>,
 but not recommended because something like <code>[1]</code> could easily be
 part of a code snippet.
-</dd>
+</p>
+</li>
 
-<dt> <code>[fn:name]</code> </dt><dd>      A named footnote reference, where <code>name</code> is a unique label word,
+<li><code>[fn:name]</code>
+
+<p>
+A named footnote reference, where <code>name</code> is a unique label word,
 or, for simplicity of automatic creation, a number.
-</dd>
+</p>
+</li>
 
-<dt> <code>[fn:: This is the inline definition of this footnote]</code> </dt><dd>      A LaTeX-like anonymous footnote where the definition is given
+<li><code>[fn:: This is the inline definition of this footnote]</code>
+
+<p>
+A LaTeX-like anonymous footnote where the definition is given
 directly at the reference point.
-</dd>
+</p>
+</li>
 
-<dt> <code>[fn:name: a definition]</code> </dt><dd>      An inline definition of a footnote, which also specifies a name
+<li><code>[fn:name: a definition]</code>
+
+<p>
+An inline definition of a footnote, which also specifies a name
 for the note. Since Org allows multiple references to the same
 note, you can then use <code>[fn:name]</code> to create additional
 references.
-</dd>
-</dl>
+</p>
+</li>
+</ul>
 
 <p>
 Footnote labels can be created automatically, or you can create
@@ -2641,7 +2657,7 @@ The following command handles footnotes:
 </p>
 
 <ul class="org-ul">
-<li><b><i>C-c C-x f</i></b>
+<li><code>C-c C-x f</code>
 
 <p>
 The footnote action command.
@@ -2666,44 +2682,96 @@ When this command is called with a prefix argument, a menu of
 additional options is offered:
 </p>
 
-<pre class="example">
-s   Sort the footnote definitions by reference sequence.  During editing,
-    Org makes no effort to sort footnote definitions into a particular
-    sequence.  If you want them sorted, use this command, which will
-    also move entries according to org-footnote-section.  Automatic
-    sorting after each insertion/deletion can be configured using the
-    option org-footnote-auto-adjust.
-r   Renumber the simple fn:N footnotes.  Automatic renumbering
-    after each insertion/deletion can be configured using the option
-    org-footnote-auto-adjust.
-S   Short for first r, then s action.
-n   Normalize the footnotes by collecting all definitions (including
-    inline definitions) into a special section, and then numbering them
-    in sequence.  The references will then also be numbers.  This is
-    meant to be the final step before finishing a document (e.g., sending
-    off an email).
-d   Delete the footnote at point, and all definitions of and references
-    to it.
-</pre>
+<ul class="org-ul">
+<li><code>s</code>
 
 <p>
-Depending on the variable =org-footnote-auto-adjust=<sup><a id="fnr.23" name="fnr.23" class="footref" href="#fn.23">23</a></sup>,
-renumbering and sorting footnotes can be automatic after each
-insertion or deletion.
+Sort the footnote definitions by reference sequence.
+</p>
+
+<p>
+During editing, Org makes no effort to sort footnote
+definitions into a particular sequence.
+</p>
+
+<p>
+If you want them sorted, use this command, which will also
+move entries according to <code>org-footnote-section</code>.
+</p>
+
+<p>
+Automatic sorting after each insertion/deletion can be
+configured using the option <code>org-footnote-auto-adjust</code>.
 </p>
 </li>
 
-<li><b><i>C-c C-c</i></b>
+<li><code>r</code>
+
+<p>
+Renumber the simple fn:N footnotes.
+</p>
+
+<p>
+Automatic renumbering after each insertion/deletion can be
+configured using the option <code>org-footnote-auto-adjust</code>.
+</p>
+</li>
+
+<li><code>S</code>
+
+<p>
+Short for first <code>r</code>, then <code>s</code> action.
+</p>
+</li>
+
+<li><code>n</code>
+
+<p>
+Normalize the footnotes by collecting all definitions
+(including inline definitions) into a special section, and
+then numbering them in sequence.
+</p>
+
+<p>
+The references will then also be numbers.
+</p>
+
+<p>
+This is meant to be the final step before finishing a
+document (e.g., sending off an email).
+</p>
+</li>
+
+<li><code>d</code>
+
+<p>
+Delete the footnote at point, and all definitions of and
+references to it.
+</p>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<p>
+Depending on the variable <code>org-footnote-auto-adjust</code> <sup><a id="fnr.23" name="fnr.23" class="footref" href="#fn.23">23</a></sup>,
+renumbering and sorting footnotes can be automatic after each
+insertion or deletion.
+</p>
+
+<ul class="org-ul">
+<li><code>C-c C-c</code>
 
 <p>
 If the cursor is on a footnote reference, jump to the
 definition. If it is a the definition, jump back to the
 reference. When called at a footnote location with a prefix
-argument, offer the same menu as <b><i>C-c C-x f</i></b>.
+argument, offer the same menu as <code>C-c C-x f</code>.
 </p>
 </li>
 
-<li><b><i>C-c C-o or mouse-1/2</i></b>
+<li><code>C-c C-o or mouse-1/2</code>
 
 <p>
 Footnote labels are also links to the corresponding
@@ -2712,13 +2780,13 @@ follow these links.
 </p>
 </li>
 
-<li><b>/C-c '/</b>
+<li>=C-c '=
 
 <p>
 Edit the footnote definition corresponding to the reference at
 point in a seperate window. This may be useful if editing
 footnotes in a narrowed buffer. The window can be closed by
-pressing <b>/C-c '/</b>.
+pressing =C-c '=.
 </p>
 </li>
 </ul>
@@ -7876,7 +7944,7 @@ allowed values.
 </p>
 
 <pre class="example">
-:COLUMNS:  %25ITEM %9Approved(Approved?){X} %Owner %11Status \ [fn:FOOT64]
+:COLUMNS:  %25ITEM %9Approved(Approved?){X} %Owner %11Status \ [fn:64]
                    %10Time_Estimate{:} %CLOCKSUM %CLOCKSUM_T
 :Owner_ALL: Tammy Mark Karl Lisa Don
 :Status_ALL: "In progress" "Not started yet" "Finished" ""
@@ -11683,7 +11751,7 @@ will be processed and entries will be made in the agenda:
   :PROPERTIES:
   :CATEGORY: Ann
   :END:
-%%(org-anniversary 1956  5 14)[fn:FOOT100] Arthur Dent is %d years old
+%%(org-anniversary 1956  5 14)[fn:100] Arthur Dent is %d years old
 %%(org-anniversary 1869 10  2) Mahatma Gandhi would be %d years old
 </pre>
 </div>
@@ -17592,7 +17660,7 @@ over <code>#+CAPTION</code>.
 
 <p>
 The <code>:float</code> specifies the float environment for the
-table. Possible values are <code>sideways=[fn:FOOT143],
+table. Possible values are <code>sideways=[fn:143],
         =multicolumn</code>, <code>t</code> and <code>nil</code>. When unspecified, a table with a
 caption will have a <code>table</code> environment. Moreover, the
 <code>:placement</code> attribute can specify the positioning of the
@@ -19812,7 +19880,7 @@ image.
 <p>
 In Texinfo output, description lists appear as two-column tables,
 using the default command <code>@table</code>. You can use <code>@ftable</code> or
-<code>@vtable=[fn:FOOT161] instead with =:table-type</code> attribute.
+<code>@vtable=[fn:161] instead with =:table-type</code> attribute.
 </p>
 
 <p>
@@ -27737,7 +27805,7 @@ You can narrow the current buffer to the current dynamic block
 <p>
 Org provides a special hook that can be used to narrow down the
 selection made by these agenda views: <code>agenda</code>,
-<code>agenda*=[fn:FOOT181], =todo</code>, <code>alltodo</code>, <code>tags</code>, <code>tags-todo</code>,
+<code>agenda*=[fn:181], =todo</code>, <code>alltodo</code>, <code>tags</code>, <code>tags-todo</code>,
 <code>tags-tree</code>. You may specify a function that is used at each match
 to verify if the match should indeed be part of the agenda view,
 and if not, how much should be skipped. You can specify a global
@@ -43070,24 +43138,24 @@ Jump to: <i>C</i> <i>H</i> <i>L</i> <i>O</i> <i>P</i> <i>U</i>
 <div id="text-footnotes">
 
 <div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
-If you don't use font-lock globally, turn it on in Org buffer with
-<code>(add-hook 'org-mode-hook 'turn-on-font-lock)</code>
+If you don't use font-lock globally, turn it on in Org buffer
+with <code>(add-hook 'org-mode-hook 'turn-on-font-lock)</code>
 </p></div>
 
 <div class="footdef"><sup><a id="fn.2" name="fn.2" class="footnum" href="#fnr.2">2</a></sup> <p class="footpara">
-Please consider subscribing to the mailing list, in order to minimize
-the work the mailing list moderators have to do.
+Please consider subscribing to the mailing list, in order to
+minimize the work the mailing list moderators have to do.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.3" name="fn.3" class="footnum" href="#fnr.3">3</a></sup> <p class="footpara">
-Easy templates insert lowercase keywords and Babel dynamically inserts
-<code>#+results</code>.
+Easy templates insert lowercase keywords and Babel dynamically
+inserts <code>#+results</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.4" name="fn.4" class="footnum" href="#fnr.4">4</a></sup> <p class="footpara">
-See the variables <code>org-special-ctrl-a/e</code>, <code>org-special-ctrl-k</code>, and
-<code>org-ctrl-k-protect-subtree</code> to configure special behavior of <code>C-a</code>,
-<code>C-e</code>, and <code>C-k</code> in headlines.
+See the variables <code>org-special-ctrl-a/e</code>, <code>org-special-ctrl-k</code>,
+and <code>org-ctrl-k-protect-subtree</code> to configure special behavior of
+<code>C-a</code>, <code>C-e</code>, and <code>C-k</code> in headlines.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.5" name="fn.5" class="footnum" href="#fnr.5">5</a></sup> <p class="footpara">
@@ -43103,21 +43171,21 @@ see the option <code>org-cycle-global-at-bob</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.8" name="fn.8" class="footnum" href="#fnr.8">8</a></sup> <p class="footpara">
-The indirect buffer (see <a href="http://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Indirect-Buffers">Indirect Buffers</a> in GNU Emacs Manual) will
-contain the entire buffer, but will be narrowed to the current
+The indirect buffer (see <a href="http://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Indirect-Buffers">Indirect Buffers</a> in GNU Emacs Manual)
+will contain the entire buffer, but will be narrowed to the current
 tree. Editing the indirect buffer will also change the original
 buffer, but without affecting visibility in that buffer.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.9" name="fn.9" class="footnum" href="#fnr.9">9</a></sup> <p class="footpara">
-When <code>org-agenda-inhibit-startup</code> is non- <code>nil</code>, Org will not honor
-the default visibility state when first opening a file for the agenda
-(see <a href="#Speeding-up-your-agendas">Speeding up your agendas</a>).
+When <code>org-agenda-inhibit-startup</code> is non- <code>nil</code>, Org will not
+honor the default visibility state when first opening a file for the
+agenda (see <a href="#Speeding-up-your-agendas">Speeding up your agendas</a>).
 </p></div>
 
 <div class="footdef"><sup><a id="fn.10" name="fn.10" class="footnum" href="#fnr.10">10</a></sup> <p class="footpara">
-See also the variable <code>org-show-context-detail</code> to decide how much
-context is shown around each match.
+See also the variable <code>org-show-context-detail</code> to decide how
+much context is shown around each match.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.11" name="fn.11" class="footnum" href="#fnr.11">11</a></sup> <p class="footpara">
@@ -43125,16 +43193,17 @@ This depends on the option <code>org-remove-highlights-with-change</code>
 </p></div>
 
 <div class="footdef"><sup><a id="fn.12" name="fn.12" class="footnum" href="#fnr.12">12</a></sup> <p class="footpara">
-This does not work under XEmacs, because XEmacs uses selective display
-for outlining, not text properties.
+This does not work under XEmacs, because XEmacs uses selective
+display for outlining, not text properties.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.13" name="fn.13" class="footnum" href="#fnr.13">13</a></sup> <p class="footpara">
-When using ‘*' as a bullet, lines must be indented or they will be
-seen as top-level headlines. Also, when you are hiding leading stars
-to get a clean outline view, plain list items starting with a star may
-be hard to distinguish from true headlines. In short: even though ‘*'
-is supported, it may be better to not use it for plain list items.
+When using ‘*' as a bullet, lines must be indented or they
+will be seen as top-level headlines. Also, when you are hiding leading
+stars to get a clean outline view, plain list items starting with a
+star may be hard to distinguish from true headlines. In short: even
+though ‘*' is supported, it may be better to not use it for plain list
+items.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.14" name="fn.14" class="footnum" href="#fnr.14">14</a></sup> <p class="footpara">
@@ -43150,9 +43219,9 @@ will automatically fallback to numbers.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.16" name="fn.16" class="footnum" href="#fnr.16">16</a></sup> <p class="footpara">
-If there's a checkbox in the item, the cookie must be put <i>before</i> the
-checkbox. If you have activated alphabetical lists, you can also use
-counters like <code>[@b]</code>.
+If there's a checkbox in the item, the cookie must be put
+<i>before</i> the checkbox. If you have activated alphabetical lists, you
+can also use counters like <code>[@b]</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.17" name="fn.17" class="footnum" href="#fnr.17">17</a></sup> <p class="footpara">
@@ -43160,14 +43229,14 @@ See also <code>org-list-empty-line-terminates-plain-lists</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.18" name="fn.18" class="footnum" href="#fnr.18">18</a></sup> <p class="footpara">
-Org only changes the filling settings for Emacs. For XEmacs, you
-should use Kyle E. Jones' <code>filladapt.el</code>. To turn this on, put into
-<code>.emacs</code>: <code>(require 'filladapt)</code>
+Org only changes the filling settings for Emacs. For XEmacs,
+you should use Kyle E. Jones' <code>filladapt.el</code>. To turn this on, put
+into <code>.emacs</code>: <code>(require 'filladapt)</code>
 </p></div>
 
 <div class="footdef"><sup><a id="fn.19" name="fn.19" class="footnum" href="#fnr.19">19</a></sup> <p class="footpara">
-If you do not want the item to be split, customize the variable
-<code>org-M-RET-may-split-line</code>.
+If you do not want the item to be split, customize the
+variable <code>org-M-RET-may-split-line</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.20" name="fn.20" class="footnum" href="#fnr.20">20</a></sup> <p class="footpara">
@@ -43180,17 +43249,18 @@ See <code>org-list-use-circular-motion</code> for a cyclic behavior.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.22" name="fn.22" class="footnum" href="#fnr.22">22</a></sup> <p class="footpara">
-The corresponding in-buffer setting is: <code>#+STARTUP: fninline</code> or
-<code>#+STARTUP: nofninline</code>
+The corresponding in-buffer setting is: <code>#+STARTUP: fninline</code>
+or <code>#+STARTUP: nofninline</code>
 </p></div>
 
 <div class="footdef"><sup><a id="fn.23" name="fn.23" class="footnum" href="#fnr.23">23</a></sup> <p class="footpara">
-the corresponding in-buffer options are <code>fnadjust</code> and <code>nofnadjust</code>.
+The corresponding in-buffer options are <code>fnadjust</code> and
+<code>nofnadjust</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.24" name="fn.24" class="footnum" href="#fnr.24">24</a></sup> <p class="footpara">
-To insert a vertical bar into a table field, use <code>\vert</code> or, inside a
-word <code>abc\vert{}def</code>.
+To insert a vertical bar into a table field, use <code>\vert</code> or,
+inside a word <code>abc\vert{}def</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.25" name="fn.25" class="footnum" href="#fnr.25">25</a></sup> <p class="footpara">
@@ -43198,42 +43268,43 @@ This feature does not work on XEmacs.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.26" name="fn.26" class="footnum" href="#fnr.26">26</a></sup> <p class="footpara">
-Centering does not work inside Emacs, but it does have an effect when
-exporting to HTML.
+Centering does not work inside Emacs, but it does have an
+effect when exporting to HTML.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.27" name="fn.27" class="footnum" href="#fnr.27">27</a></sup> <p class="footpara">
-Org will understand references typed by the user as ‘B4', but it will
-not use this syntax when offering a formula for editing. You can
-customize this behavior using the option
+Org will understand references typed by the user as ‘B4', but
+it will not use this syntax when offering a formula for editing. You
+can customize this behavior using the option
 <code>org-table-use-standard-references</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.28" name="fn.28" class="footnum" href="#fnr.28">28</a></sup> <p class="footpara">
-For backward compatibility you can also use special names like <code>$LR5</code>
-and <code>$LR12</code> to refer in a stable way to the 5th and 12th field in the
-last row of the table. However, this syntax is deprecated, it should
-not be used for new documents. Use <code>@&gt;$</code> instead.
+For backward compatibility you can also use special names like
+<code>$LR5</code> and <code>$LR12</code> to refer in a stable way to the 5th and 12th field
+in the last row of the table. However, this syntax is deprecated, it
+should not be used for new documents. Use <code>@&gt;$</code> instead.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.29" name="fn.29" class="footnum" href="#fnr.29">29</a></sup> <p class="footpara">
-The computation time scales as O(N\<sup>2</sup>) because the table named <code>FOO</code>
-is parsed for each field to be read.
+The computation time scales as O(N\<sup>2</sup>) because the table named
+<code>FOO</code> is parsed for each field to be read.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.30" name="fn.30" class="footnum" href="#fnr.30">30</a></sup> <p class="footpara">
-constants.el can supply the values of constants in two different unit
-systems, <code>SI</code> and <code>cgs</code>. Which one is used depends on the value of the
-variable <code>constants-unit-system</code>. You can use the <code>#+STARTUP</code> options
-<code>constSI</code> and <code>constcgs</code> to set this value for the current buffer.
+constants.el can supply the values of constants in two
+different unit systems, <code>SI</code> and <code>cgs</code>. Which one is used depends on
+the value of the variable <code>constants-unit-system</code>. You can use the
+<code>#+STARTUP</code> options <code>constSI</code> and <code>constcgs</code> to set this value for the
+current buffer.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.31" name="fn.31" class="footnum" href="#fnr.31">31</a></sup> <p class="footpara">
-The ‘printf' reformatting is limited in precision because the value
-passed to it is converted into an ‘integer' or ‘double'. The ‘integer'
-is limited in size by truncating the signed value to 32 bits. The
-‘double' is limited in precision to 64 bits overall which leaves
-approximately 16 significant decimal digits.
+The ‘printf' reformatting is limited in precision because the
+value passed to it is converted into an ‘integer' or ‘double'. The
+‘integer' is limited in size by truncating the signed value to 32
+bits. The ‘double' is limited in precision to 64 bits overall which
+leaves approximately 16 significant decimal digits.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.32" name="fn.32" class="footnum" href="#fnr.32">32</a></sup> <p class="footpara">
@@ -43242,21 +43313,21 @@ alphanumeric/underscore characters.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.33" name="fn.33" class="footnum" href="#fnr.33">33</a></sup> <p class="footpara">
-To insert a link targeting a headline, in-buffer completion can be
-used.  Just type a star followed by a few optional letters into the
-buffer and press <b><i>M-TAB</i></b>. All headlines in the current buffer will
-be offered as completions.
+To insert a link targeting a headline, in-buffer completion
+can be used.  Just type a star followed by a few optional letters into
+the buffer and press <b><i>M-TAB</i></b>. All headlines in the current buffer
+will be offered as completions.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.34" name="fn.34" class="footnum" href="#fnr.34">34</a></sup> <p class="footpara">
-When targeting a <code>#+NAME</code> keyword, <code>#+CAPTION</code> keyword is mandatory in
-order to get proper numbering (see <a href="#Images-and-tables">Images and tables</a>).
+When targeting a <code>#+NAME</code> keyword, <code>#+CAPTION</code> keyword is
+mandatory in order to get proper numbering (see <a href="#Images-and-tables">Images and tables</a>).
 </p></div>
 
 <div class="footdef"><sup><a id="fn.35" name="fn.35" class="footnum" href="#fnr.35">35</a></sup> <p class="footpara">
-If the headline contains a timestamp, it will be removed from the link
-and result in a wrong link &#x2013; you should avoid putting timestamp in
-the headline.
+If the headline contains a timestamp, it will be removed from
+the link and result in a wrong link &#x2013; you should avoid putting
+timestamp in the headline.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.36" name="fn.36" class="footnum" href="#fnr.36">36</a></sup> <p class="footpara">
@@ -43266,26 +43337,28 @@ The library org-id.el must first be loaded, either through
 </p></div>
 
 <div class="footdef"><sup><a id="fn.37" name="fn.37" class="footnum" href="#fnr.37">37</a></sup> <p class="footpara">
-Note that you don't have to use this command to insert a link. Links
-in Org are plain text, and you can type or paste them straight into
-the buffer. By using this command, the links are automatically
-enclosed in double brackets, and you will be asked for the optional
-descriptive text.
+Note that you don't have to use this command to insert a
+link. Links in Org are plain text, and you can type or paste them
+straight into the buffer. By using this command, the links are
+automatically enclosed in double brackets, and you will be asked for
+the optional descriptive text.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.38" name="fn.38" class="footnum" href="#fnr.38">38</a></sup> <p class="footpara">
-After insertion of a stored link, the link will be removed from the
-list of stored links. To keep it in the list later use, use a triple
-<b><i>C-u</i></b> prefix argument to <b><i>C-c C-l</i></b>, or configure the option
+After insertion of a stored link, the link will be removed
+from the list of stored links. To keep it in the list later use, use a
+triple <b><i>C-u</i></b> prefix argument to <b><i>C-c C-l</i></b>, or configure the option
 <code>org-keep-stored-link-after-insertion</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.39" name="fn.39" class="footnum" href="#fnr.39">39</a></sup> <p class="footpara">
-This works by calling a special function <code>org-PREFIX-complete-link</code>.
+This works by calling a special function
+<code>org-PREFIX-complete-link</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.40" name="fn.40" class="footnum" href="#fnr.40">40</a></sup> <p class="footpara">
-See the option <code>org-display-internal-link-with-indirect-buffer</code>
+See the option
+<code>org-display-internal-link-with-indirect-buffer</code>
 </p></div>
 
 <div class="footdef"><sup><a id="fn.41" name="fn.41" class="footnum" href="#fnr.41">41</a></sup> <p class="footpara">
@@ -43294,18 +43367,18 @@ with corresponding <code>#+STARTUP</code> keywords <code>inlineimages</code> and
 </p></div>
 
 <div class="footdef"><sup><a id="fn.42" name="fn.42" class="footnum" href="#fnr.42">42</a></sup> <p class="footpara">
-For backward compatibility, line numbers can also follow a single
-colon.
+For backward compatibility, line numbers can also follow a
+single colon.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.43" name="fn.43" class="footnum" href="#fnr.43">43</a></sup> <p class="footpara">
-Of course, you can make a document that contains only long lists of
-TODO items, but this is not required.
+Of course, you can make a document that contains only long
+lists of TODO items, but this is not required.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.44" name="fn.44" class="footnum" href="#fnr.44">44</a></sup> <p class="footpara">
-Changing this variable only becomes effective after restarting Org
-mode in a buffer.
+Changing this variable only becomes effective after restarting
+Org mode in a buffer.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.45" name="fn.45" class="footnum" href="#fnr.45">45</a></sup> <p class="footpara">
@@ -43314,22 +43387,22 @@ buffers.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.46" name="fn.46" class="footnum" href="#fnr.46">46</a></sup> <p class="footpara">
-All characters are allowed except <code>@^!</code>, which have a special meaning
-here.
+All characters are allowed except <code>@^!</code>, which have a special
+meaning here.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.47" name="fn.47" class="footnum" href="#fnr.47">47</a></sup> <p class="footpara">
-Check also the option <code>org-fast-tag-selection-include-todo</code>, it allows
-you to change the TODO state through the tags interface (see <a href="#Setting-tags">Setting
-tags</a>), in case you like to mingle the two concepts. Note that this
-means you need to come up with unique keys across both sets of
+Check also the option <code>org-fast-tag-selection-include-todo</code>,
+it allows you to change the TODO state through the tags interface (see
+<a href="#Setting-tags">Setting tags</a>), in case you like to mingle the two concepts. Note that
+this means you need to come up with unique keys across both sets of
 keywords.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.48" name="fn.48" class="footnum" href="#fnr.48">48</a></sup> <p class="footpara">
-Org mode parses these lines only when Org mode is activated after
-visiting a file. <b><i>C-c C-c</i></b> with the cursor in a line starting with
-‘#+' is simply restarting Org mode for the current buffer.
+Org mode parses these lines only when Org mode is activated
+after visiting a file. <b><i>C-c C-c</i></b> with the cursor in a line starting
+with ‘#+' is simply restarting Org mode for the current buffer.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.49" name="fn.49" class="footnum" href="#fnr.49">49</a></sup> <p class="footpara">
@@ -43337,7 +43410,8 @@ The corresponding in-buffer setting is: <code>#+STARTUP: logdone</code>
 </p></div>
 
 <div class="footdef"><sup><a id="fn.50" name="fn.50" class="footnum" href="#fnr.50">50</a></sup> <p class="footpara">
-The corresponding in-buffer setting is: <code>#+STARTUP: lognotedone</code>.
+The corresponding in-buffer setting is: <code>#+STARTUP:
+lognotedone</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.51" name="fn.51" class="footnum" href="#fnr.51">51</a></sup> <p class="footpara">
@@ -43345,16 +43419,16 @@ See the option <code>org-log-states-order-reversed</code>
 </p></div>
 
 <div class="footdef"><sup><a id="fn.52" name="fn.52" class="footnum" href="#fnr.52">52</a></sup> <p class="footpara">
-Note that the <code>LOGBOOK</code> drawer is unfolded when pressing <code>SPC</code> in the
-agenda to show an entry&#x2014;use <code>C-u SPC</code> to keep it folded here
+Note that the <code>LOGBOOK</code> drawer is unfolded when pressing <code>SPC</code>
+in the agenda to show an entry&#x2014;use <code>C-u SPC</code> to keep it folded here
 </p></div>
 
 <div class="footdef"><sup><a id="fn.53" name="fn.53" class="footnum" href="#fnr.53">53</a></sup> <p class="footpara">
-It is possible that Org mode will record two timestamps when you are
-using both <code>org-log-done</code> and state change logging. However, it will
-never prompt for two notes&#x2014;if you have configured both, the state
-change recording note will take precedence and cancel the ‘Closing
-Note'.
+It is possible that Org mode will record two timestamps when
+you are using both <code>org-log-done</code> and state change logging. However,
+it will never prompt for two notes&#x2014;if you have configured both, the
+state change recording note will take precedence and cancel the
+‘Closing Note'.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.54" name="fn.54" class="footnum" href="#fnr.54">54</a></sup> <p class="footpara">
@@ -43367,55 +43441,56 @@ To keep subtasks out of the global TODO list, see the
 </p></div>
 
 <div class="footdef"><sup><a id="fn.56" name="fn.56" class="footnum" href="#fnr.56">56</a></sup> <p class="footpara">
-With the exception of description lists. But you can allow it by
-modifying <code>org-list-automatic-rules</code> accordingly.
+With the exception of description lists. But you can allow it
+by modifying <code>org-list-automatic-rules</code> accordingly.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.57" name="fn.57" class="footnum" href="#fnr.57">57</a></sup> <p class="footpara">
-Set the option <code>org-checkbox-hierarchical-statistics</code> if you want such
-cookies to count all checkboxes below the cookie, not just those
-belonging to direct children.
+Set the option <code>org-checkbox-hierarchical-statistics</code> if you
+want such cookies to count all checkboxes below the cookie, not just
+those belonging to direct children.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.58" name="fn.58" class="footnum" href="#fnr.58">58</a></sup> <p class="footpara">
-<b><i>C-u C-c C-c</i></b> on the <i>first</i> item of a list with no checkbox will
-add checkboxes to the rest of the list.
+<b><i>C-u C-c C-c</i></b> on the <i>first</i> item of a list with no checkbox
+will add checkboxes to the rest of the list.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.59" name="fn.59" class="footnum" href="#fnr.59">59</a></sup> <p class="footpara">
-As with all these in-buffer settings, pressing <b><i>C-c C-c</i></b> activates
-any changes in the line.
+As with all these in-buffer settings, pressing <b><i>C-c C-c</i></b>
+activates any changes in the line.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.60" name="fn.60" class="footnum" href="#fnr.60">60</a></sup> <p class="footpara">
-This is only true if the search does not involve more complex tests
-including properties (see <a href="#Property-searches">Property searches</a>).
+This is only true if the search does not involve more complex
+tests including properties (see <a href="#Property-searches">Property searches</a>).
 </p></div>
 
 <div class="footdef"><sup><a id="fn.61" name="fn.61" class="footnum" href="#fnr.61">61</a></sup> <p class="footpara">
-Keys will automatically be assigned to tags which have no configured
-keys.
+Keys will automatically be assigned to tags which have no
+configured keys.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.62" name="fn.62" class="footnum" href="#fnr.62">62</a></sup> <p class="footpara">
-Contributed packages are not part of Emacs, but are distributed with
-the main distribution of Org (visit <a href="http://orgmode.org">http://orgmode.org</a>).
+Contributed packages are not part of Emacs, but are
+distributed with the main distribution of Org (visit
+<a href="http://orgmode.org">http://orgmode.org</a>).
 </p></div>
 
 <div class="footdef"><sup><a id="fn.63" name="fn.63" class="footnum" href="#fnr.63">63</a></sup> <p class="footpara">
-In this simplest form, the day name is optional when you type the date
-yourself. However, any dates inserted or modified by Org will add that
-day name, for reading convenience.
+In this simplest form, the day name is optional when you type
+the date yourself. However, any dates inserted or modified by Org will
+add that day name, for reading convenience.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.64" name="fn.64" class="footnum" href="#fnr.64">64</a></sup> <p class="footpara">
-This is inspired by the standard ISO 8601 date/time format. To use an
-alternative format, see <a href="#Custom-time-format">Custom time format</a>.
+This is inspired by the standard ISO 8601 date/time format. To
+use an alternative format, see <a href="#Custom-time-format">Custom time format</a>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.65" name="fn.65" class="footnum" href="#fnr.65">65</a></sup> <p class="footpara">
-When working with the standard diary sexp functions, you need to be
-very careful with the order of the arguments. That order depends
+When working with the standard diary sexp functions, you need
+to be very careful with the order of the arguments. That order depends
 evilly on the variable <code>calendar-date-style</code> (or, for older Emacs
 versions, <code>european-calendar-style</code>). For example, to specify a date
 December 1, 2005, the call might look like <code>(diary-date 12 1 2005)</code> or
@@ -43429,9 +43504,9 @@ wherever applicable, independent of the value of
 </p></div>
 
 <div class="footdef"><sup><a id="fn.66" name="fn.66" class="footnum" href="#fnr.66">66</a></sup> <p class="footpara">
-See the variable <code>org-read-date-prefer-future</code>. You may set that
-variable to the symbol <code>time</code> to even make a time before now shift the
-date to tomorrow.
+See the variable <code>org-read-date-prefer-future</code>. You may set
+that variable to the symbol <code>time</code> to even make a time before now
+shift the date to tomorrow.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.67" name="fn.67" class="footnum" href="#fnr.67">67</a></sup> <p class="footpara">
@@ -43445,14 +43520,14 @@ If you find this distracting, turn the display off with
 </p></div>
 
 <div class="footdef"><sup><a id="fn.69" name="fn.69" class="footnum" href="#fnr.69">69</a></sup> <p class="footpara">
-It will still be listed on that date after it has been marked DONE. If
-you don't like this, set the variable
+It will still be listed on that date after it has been marked
+DONE. If you don't like this, set the variable
 <code>org-agenda-skip-scheduled-if-done</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.70" name="fn.70" class="footnum" href="#fnr.70">70</a></sup> <p class="footpara">
-The ‘SCHEDULED' and ‘DEADLINE' dates are inserted on the line right
-below the headline. Don't put any text between this line and the
+The ‘SCHEDULED' and ‘DEADLINE' dates are inserted on the line
+right below the headline. Don't put any text between this line and the
 headline.
 </p></div>
 
@@ -43480,18 +43555,19 @@ With <code>lognoterepeat</code>, you will also be prompted for a note.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.75" name="fn.75" class="footnum" href="#fnr.75">75</a></sup> <p class="footpara">
-Clocking only works if all headings are indented with less than 30
-stars. This is a hardcoded limitation of <code>lmax</code> in <code>org-clock-sum</code>.
+Clocking only works if all headings are indented with less
+than 30 stars. This is a hardcoded limitation of <code>lmax</code> in
+<code>org-clock-sum</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.76" name="fn.76" class="footnum" href="#fnr.76">76</a></sup> <p class="footpara">
-To resume the clock under the assumption that you have worked on this
-task while outside Emacs, use <code>(setq org-clock-persist t)</code>.
+To resume the clock under the assumption that you have worked
+on this task while outside Emacs, use <code>(setq org-clock-persist t)</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.77" name="fn.77" class="footnum" href="#fnr.77">77</a></sup> <p class="footpara">
-To add an effort estimate “on the fly”, hook a function doing this to
-<code>org-clock-in-prepare-hook</code>.
+To add an effort estimate “on the fly”, hook a function doing
+this to <code>org-clock-in-prepare-hook</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.78" name="fn.78" class="footnum" href="#fnr.78">78</a></sup> <p class="footpara">
@@ -43503,12 +43579,13 @@ See also the variable <code>org-clock-modeline-total</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.80" name="fn.80" class="footnum" href="#fnr.80">80</a></sup> <p class="footpara">
-The corresponding in-buffer setting is: <code>#+STARTUP: lognoteclock-out</code>
+The corresponding in-buffer setting is: <code>#+STARTUP:
+lognoteclock-out</code>
 </p></div>
 
 <div class="footdef"><sup><a id="fn.81" name="fn.81" class="footnum" href="#fnr.81">81</a></sup> <p class="footpara">
-Note that all parameters must be specified in a single line &#x2013; the
-line is broken here only to fit it into the manual.
+Note that all parameters must be specified in a single line &#x2013;
+the line is broken here only to fit it into the manual.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.82" name="fn.82" class="footnum" href="#fnr.82">82</a></sup> <p class="footpara">
@@ -43522,8 +43599,8 @@ idleness. On other systems, idle time refers to Emacs idle time only.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.83" name="fn.83" class="footnum" href="#fnr.83">83</a></sup> <p class="footpara">
-Please note the pitfalls of summing hierarchical data in a flat list
-(see <a href="#Agenda-column-view">Agenda column view</a>).
+Please note the pitfalls of summing hierarchical data in a
+flat list (see <a href="#Agenda-column-view">Agenda column view</a>).
 </p></div>
 
 <div class="footdef"><sup><a id="fn.84" name="fn.84" class="footnum" href="#fnr.84">84</a></sup> <p class="footpara">
@@ -43531,20 +43608,20 @@ Please select your own key, <b><i>C-c c</i></b> is only a suggestion.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.85" name="fn.85" class="footnum" href="#fnr.85">85</a></sup> <p class="footpara">
-Datetree headlines for years accept tags, so if you use both <code>*
-2013 :noexport:</code> and <code>* 2013</code> in your file, the capture will refile
+Datetree headlines for years accept tags, so if you use both
+<code>* 2013 :noexport:</code> and <code>* 2013</code> in your file, the capture will refile
 the note to the first one matched.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.86" name="fn.86" class="footnum" href="#fnr.86">86</a></sup> <p class="footpara">
-If you need one of these sequences literally, escape the % with a
-backslash.
+If you need one of these sequences literally, escape the %
+with a backslash.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.87" name="fn.87" class="footnum" href="#fnr.87">87</a></sup> <p class="footpara">
-If you define your own link types (see <a href="#Adding-hyperlink-types">Adding hyperlink types</a>), any
-property you store with <code>org-store-link-props</code> can be accessed in
-capture templates in a similar way.
+If you define your own link types (see <a href="#Adding-hyperlink-types">Adding hyperlink
+types</a>), any property you store with <code>org-store-link-props</code> can be
+accessed in capture templates in a similar way.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.88" name="fn.88" class="footnum" href="#fnr.88">88</a></sup> <p class="footpara">
@@ -43553,42 +43630,42 @@ This will always be the other, not the user. See the variable
 </p></div>
 
 <div class="footdef"><sup><a id="fn.89" name="fn.89" class="footnum" href="#fnr.89">89</a></sup> <p class="footpara">
-If you move entries or Org files from one directory to another, you
-may want to configure <code>org-attach-directory</code> to contain an absolute
-path.
+If you move entries or Org files from one directory to
+another, you may want to configure <code>org-attach-directory</code> to contain
+an absolute path.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.90" name="fn.90" class="footnum" href="#fnr.90">90</a></sup> <p class="footpara">
-with corresponding <code>#+STARTUP</code> keywords <code>logrefile</code>, <code>lognoterefile</code>,
-and <code>nologrefile</code>
+with corresponding <code>#+STARTUP</code> keywords <code>logrefile</code>,
+<code>lognoterefile</code>, and <code>nologrefile</code>
 </p></div>
 
 <div class="footdef"><sup><a id="fn.91" name="fn.91" class="footnum" href="#fnr.91">91</a></sup> <p class="footpara">
-If the value of that variable is not a list, but a single file name,
-then the list of agenda files will be maintained in that external
-file.
+If the value of that variable is not a list, but a single file
+name, then the list of agenda files will be maintained in that
+external file.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.92" name="fn.92" class="footnum" href="#fnr.92">92</a></sup> <p class="footpara">
-When using the dispatcher, pressing &lt; before selecting a command will
-actually limit the command to the current file, and ignore
-<code>org-agenda-files</code> until the next dispatcher command.
+When using the dispatcher, pressing &lt; before selecting a
+command will actually limit the command to the current file, and
+ignore <code>org-agenda-files</code> until the next dispatcher command.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.93" name="fn.93" class="footnum" href="#fnr.93">93</a></sup> <p class="footpara">
-For backward compatibility, you can also press 1 to restrict to the
-current buffer.
+For backward compatibility, you can also press 1 to restrict
+to the current buffer.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.94" name="fn.94" class="footnum" href="#fnr.94">94</a></sup> <p class="footpara">
-For backward compatibility, you can also press 0 to restrict to the
-current region/subtree.
+For backward compatibility, you can also press 0 to restrict
+to the current region/subtree.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.95" name="fn.95" class="footnum" href="#fnr.95">95</a></sup> <p class="footpara">
-For backward compatibility, the universal prefix <b><i>C-u</i></b> causes all
-TODO entries to be listed before the agenda. This feature is
-deprecated, use the dedicated TODO list, or a block agenda instead
+For backward compatibility, the universal prefix <b><i>C-u</i></b>
+causes all TODO entries to be listed before the agenda. This feature
+is deprecated, use the dedicated TODO list, or a block agenda instead
 (see <a href="#Block-agenda">Block agenda</a>).
 </p></div>
 
@@ -43606,29 +43683,30 @@ the global options section, not in the section of an individual block.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.98" name="fn.98" class="footnum" href="#fnr.98">98</a></sup> <p class="footpara">
-Only tags filtering will be respected here, effort filtering is ignored.
+Only tags filtering will be respected here, effort filtering
+is ignored.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.99" name="fn.99" class="footnum" href="#fnr.99">99</a></sup> <p class="footpara">
-Moving agenda lines does not persist after an agenda refresh and does
-not modify the contributing .org files
+Moving agenda lines does not persist after an agenda refresh
+and does not modify the contributing .org files
 </p></div>
 
 <div class="footdef"><sup><a id="fn.100" name="fn.100" class="footnum" href="#fnr.100">100</a></sup> <p class="footpara">
-This file is parsed for the agenda when <code>org-agenda-include-diary</code> is
-set.
+This file is parsed for the agenda when
+<code>org-agenda-include-diary</code> is set.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.101" name="fn.101" class="footnum" href="#fnr.101">101</a></sup> <p class="footpara">
-You can provide a description for a prefix key by inserting a cons
-cell with the prefix and the description.
+You can provide a description for a prefix key by inserting a
+cons cell with the prefix and the description.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.102" name="fn.102" class="footnum" href="#fnr.102">102</a></sup> <p class="footpara">
-<i>Planned</i> means here that these entries have some planning information
-attached to them, like a time-stamp, a scheduled or a deadline string.
-See <code>org-agenda-entry-types</code> on how to set what planning information
-will be taken into account.
+<i>Planned</i> means here that these entries have some planning
+information attached to them, like a time-stamp, a scheduled or a
+deadline string.  See <code>org-agenda-entry-types</code> on how to set what
+planning information will be taken into account.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.103" name="fn.103" class="footnum" href="#fnr.103">103</a></sup> <p class="footpara">
@@ -43636,26 +43714,27 @@ You need to install Hrvoje Niksic's htmlize.el.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.104" name="fn.104" class="footnum" href="#fnr.104">104</a></sup> <p class="footpara">
-To create PDF output, the ghostscript ps2pdf utility must be installed
-on the system. Selecting a PDF file will also create the postscript
-file.
+To create PDF output, the ghostscript ps2pdf utility must be
+installed on the system. Selecting a PDF file will also create the
+postscript file.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.105" name="fn.105" class="footnum" href="#fnr.105">105</a></sup> <p class="footpara">
-If you want to store standard views like the weekly agenda or the
-global TODO list as well, you need to define custom commands for them
-in order to be able to specify file names.
+If you want to store standard views like the weekly agenda or
+the global TODO list as well, you need to define custom commands for
+them in order to be able to specify file names.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.106" name="fn.106" class="footnum" href="#fnr.106">106</a></sup> <p class="footpara">
-Quoting depends on the system you use, please check the FAQ for
-examples.
+Quoting depends on the system you use, please check the FAQ
+for examples.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.107" name="fn.107" class="footnum" href="#fnr.107">107</a></sup> <p class="footpara">
-For LaTeX export, this feature requires the <code>titletoc</code> package. Note
-that <code>titletoc</code> must be loaded <i>before</i> <code>hyperref</code>. Thus, you may have
-to customize <code>org-latex-default-packages-alist</code>.
+For LaTeX export, this feature requires the <code>titletoc</code>
+package. Note that <code>titletoc</code> must be loaded <i>before</i>
+<code>hyperref</code>. Thus, you may have to customize
+<code>org-latex-default-packages-alist</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.108" name="fn.108" class="footnum" href="#fnr.108">108</a></sup> <p class="footpara">
@@ -43664,8 +43743,8 @@ For a less drastic behavior, consider using a select tag (see
 </p></div>
 
 <div class="footdef"><sup><a id="fn.109" name="fn.109" class="footnum" href="#fnr.109">109</a></sup> <p class="footpara">
-This works automatically for the HTML back-end (it requires version
-1.34 of the htmlize.el package, which is distributed with
+This works automatically for the HTML back-end (it requires
+version 1.34 of the htmlize.el package, which is distributed with
 Org). Fontified code chunks in LaTeX can be achieved using either the
 <a href="https://www.ctan.org/tex-archive/macros/latex/contrib/listings/?lang=en">listings</a> or the <a href="https://github.com/gpoore/minted">minted</a> package. If you use minted or listing, you must
 load the packages manually, for example by adding the desired package
@@ -43674,22 +43753,22 @@ details.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.110" name="fn.110" class="footnum" href="#fnr.110">110</a></sup> <p class="footpara">
-Code in ‘src' blocks may also be evaluated either interactively or on
-export. See see <a href="#Working-with-source-code">Working with source code</a> for more information on
-evaluating code blocks.
+Code in ‘src' blocks may also be evaluated either
+interactively or on export. See see <a href="#Working-with-source-code">Working with source code</a> for more
+information on evaluating code blocks.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.111" name="fn.111" class="footnum" href="#fnr.111">111</a></sup> <p class="footpara">
-Adding <code>-k</code> to <code>-n -r</code> will <i>keep</i> the labels in the source code while
-using line numbers for the links, which might be useful to explain
-those in an Org mode example code.
+Adding <code>-k</code> to <code>-n -r</code> will <i>keep</i> the labels in the source
+code while using line numbers for the links, which might be useful to
+explain those in an Org mode example code.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.112" name="fn.112" class="footnum" href="#fnr.112">112</a></sup> <p class="footpara">
-Upon exit, lines starting with ‘*', ‘,*', ‘#+' and ‘,#+' will get a
-comma prepended, to keep them from being interpreted by Org as outline
-nodes or special syntax. These commas will be stripped for editing
-with <b>/C-c '/</b>, and also for export.
+Upon exit, lines starting with ‘*', ‘,*', ‘#+' and ‘,#+' will
+get a comma prepended, to keep them from being interpreted by Org as
+outline nodes or special syntax. These commas will be stripped for
+editing with <b>/C-c '/</b>, and also for export.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.113" name="fn.113" class="footnum" href="#fnr.113">113</a></sup> <p class="footpara">
@@ -43698,28 +43777,28 @@ You may select a different-mode with the variable
 </p></div>
 
 <div class="footdef"><sup><a id="fn.114" name="fn.114" class="footnum" href="#fnr.114">114</a></sup> <p class="footpara">
-While you can request paragraphs (‘verse', ‘quote', ‘center'), but
-this places severe restrictions on the type of content that is
-permissible
+While you can request paragraphs (‘verse', ‘quote',
+‘center'), but this places severe restrictions on the type of content
+that is permissible
 </p></div>
 
 <div class="footdef"><sup><a id="fn.115" name="fn.115" class="footnum" href="#fnr.115">115</a></sup> <p class="footpara">
-Note that <code>org-link-search-must-match-exact-headline</code> is locally bound
-to non- <code>nil</code>. Therefore, <code>org-link-search</code> only matches headlines and
-named elements.
+Note that <code>org-link-search-must-match-exact-headline</code> is
+locally bound to non- <code>nil</code>. Therefore, <code>org-link-search</code> only matches
+headlines and named elements.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.116" name="fn.116" class="footnum" href="#fnr.116">116</a></sup> <p class="footpara">
-Since commas separate arguments, commas within arguments have to be
-escaped with a backslash character. Conversely, backslash characters
-before a comma, and only them, need to be escaped with another
-backslash character.
+Since commas separate arguments, commas within arguments have
+to be escaped with a backslash character. Conversely, backslash
+characters before a comma, and only them, need to be escaped with
+another backslash character.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.117" name="fn.117" class="footnum" href="#fnr.117">117</a></sup> <p class="footpara">
-LaTeX is a macro system based on Donald E. Knuth's TeX system. Many of
-the features described here as “LaTeX” are really from TeX, but for
-simplicity I am blurring this distinction.
+LaTeX is a macro system based on Donald E. Knuth's TeX
+system. Many of the features described here as “LaTeX” are really from
+TeX, but for simplicity I am blurring this distinction.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.118" name="fn.118" class="footnum" href="#fnr.118">118</a></sup> <p class="footpara">
@@ -43729,9 +43808,9 @@ option <code>entitiespretty</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.119" name="fn.119" class="footnum" href="#fnr.119">119</a></sup> <p class="footpara">
-When MathJax is used, only the environments recognized by MathJax will
-be processed. When dvipng program or imagemagick suite is used to
-create images, any LaTeX environment will be handled.
+When MathJax is used, only the environments recognized by
+MathJax will be processed. When dvipng program or imagemagick suite is
+used to create images, any LaTeX environment will be handled.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.120" name="fn.120" class="footnum" href="#fnr.120">120</a></sup> <p class="footpara">
@@ -43742,25 +43821,26 @@ suite. Choose the converter by setting the variable
 </p></div>
 
 <div class="footdef"><sup><a id="fn.121" name="fn.121" class="footnum" href="#fnr.121">121</a></sup> <p class="footpara">
-Org mode has a method to test if the cursor is inside such a fragment,
-see the documentation of the function <code>org-inside-LaTeX-fragment-p</code>.
+Org mode has a method to test if the cursor is inside such a
+fragment, see the documentation of the function
+<code>org-inside-LaTeX-fragment-p</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.122" name="fn.122" class="footnum" href="#fnr.122">122</a></sup> <p class="footpara">
-It is also possible to use a less intrusive interface by setting
-<code>org-export-dispatch-use-expert-ui</code> to a non- <code>nil</code> value. In that
-case, only a prompt is visible from the minibuffer. From there one can
-still switch back to regular menu by pressing <code>?</code>.
+It is also possible to use a less intrusive interface by
+setting <code>org-export-dispatch-use-expert-ui</code> to a non- <code>nil</code> value. In
+that case, only a prompt is visible from the minibuffer. From there
+one can still switch back to regular menu by pressing <code>?</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.123" name="fn.123" class="footnum" href="#fnr.123">123</a></sup> <p class="footpara">
-The variable <code>org-export-date-timestamp-format</code> defines how this
-time-stamp will be exported.
+The variable <code>org-export-date-timestamp-format</code> defines how
+this time-stamp will be exported.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.124" name="fn.124" class="footnum" href="#fnr.124">124</a></sup> <p class="footpara">
-If you want to configure many options this way, you can use several
-<code>#+OPTIONS</code> lines.
+If you want to configure many options this way, you can use
+several <code>#+OPTIONS</code> lines.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.125" name="fn.125" class="footnum" href="#fnr.125">125</a></sup> <p class="footpara">
@@ -43768,14 +43848,14 @@ With the exception of ‘SETUPFILE'.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.126" name="fn.126" class="footnum" href="#fnr.126">126</a></sup> <p class="footpara">
-If this property is set, the entry will also get a <code>:B_environment:</code>
-tag to make this visible. This tag has no semantic meaning, it is only
-a visual aid.
+If this property is set, the entry will also get a
+<code>:B_environment:</code> tag to make this visible. This tag has no semantic
+meaning, it is only a visual aid.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.127" name="fn.127" class="footnum" href="#fnr.127">127</a></sup> <p class="footpara">
-The <code>fragile</code> option is added automatically if it contains code that
-requires a verbatim environment, though.
+The <code>fragile</code> option is added automatically if it contains
+code that requires a verbatim environment, though.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.128" name="fn.128" class="footnum" href="#fnr.128">128</a></sup> <p class="footpara">
@@ -43783,55 +43863,58 @@ But see the variable <code>org-html-inline-images</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.129" name="fn.129" class="footnum" href="#fnr.129">129</a></sup> <p class="footpara">
-By default Org loads MathJax from <a href="http://docs.mathjax.org/en/latest/start.html#using-the-mathjax-content-delivery-network-cdn">MathJax.org</a>.  A link to the terms of
-service of the MathJax CDN can be found in the docstring of
+By default Org loads MathJax from <a href="http://docs.mathjax.org/en/latest/start.html#using-the-mathjax-content-delivery-network-cdn">MathJax.org</a>.  A link to the
+terms of service of the MathJax CDN can be found in the docstring of
 <code>org-html-mathjax-options</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.130" name="fn.130" class="footnum" href="#fnr.130">130</a></sup> <p class="footpara">
-If the classes on TODO keywords and tags lead to conflicts, use the
-variables <code>org-html-todo-kwd-class-prefix</code> and
+If the classes on TODO keywords and tags lead to conflicts,
+use the variables <code>org-html-todo-kwd-class-prefix</code> and
 <code>org-html-tag-class-prefix</code> to make them unique.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.131" name="fn.131" class="footnum" href="#fnr.131">131</a></sup> <p class="footpara">
-This style is defined in the constant <code>org-html-style-default</code>, which
-you should not modify. To turn inclusion of these defaults off,
-customize <code>org-html-head-include-default-style</code> or set <code>html-style</code> to
-<code>nil</code> in an <code>OPTIONS</code> line.
+This style is defined in the constant
+<code>org-html-style-default</code>, which you should not modify. To turn
+inclusion of these defaults off, customize
+<code>org-html-head-include-default-style</code> or set <code>html-style</code> to <code>nil</code> in
+an <code>OPTIONS</code> line.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.132" name="fn.132" class="footnum" href="#fnr.132">132</a></sup> <p class="footpara">
-The default LaTeX output is designed for processing with <code>pdftex</code> or
-<code>latex</code>. The LaTeX exporter can be configured to support alternative
-TeX engines, see see <code>org-latex-pdf-process</code>, and alternative
-packages, see <code>org-latex-default-packages-alist</code> and
+The default LaTeX output is designed for processing with
+<code>pdftex</code> or <code>latex</code>. The LaTeX exporter can be configured to support
+alternative TeX engines, see see <code>org-latex-pdf-process</code>, and
+alternative packages, see <code>org-latex-default-packages-alist</code> and
 <code>org-latex-packages-alist</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.133" name="fn.133" class="footnum" href="#fnr.133">133</a></sup> <p class="footpara">
-Into which the values of <code>org-latex-default-packages-alist</code> and
-<code>org-latex-packages-alist</code> are spliced.
+Into which the values of <code>org-latex-default-packages-alist</code>
+and <code>org-latex-packages-alist</code> are spliced.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.134" name="fn.134" class="footnum" href="#fnr.134">134</a></sup> <p class="footpara">
-Unlike <code>LATEX_HEADER</code>, contents from <code>LATEX_HEADER_EXTRA</code> keywords
-will not be loaded when previewing LaTeX snippets (see <a href="#Previewing-LaTeX-fragments">Previewing
-LaTeX fragments</a>).
+Unlike <code>LATEX_HEADER</code>, contents from <code>LATEX_HEADER_EXTRA</code>
+keywords will not be loaded when previewing LaTeX snippets (see
+<a href="#Previewing-LaTeX-fragments">Previewing LaTeX fragments</a>).
 </p></div>
 
 <div class="footdef"><sup><a id="fn.135" name="fn.135" class="footnum" href="#fnr.135">135</a></sup> <p class="footpara">
-Requires adding the <code>tabularx</code> package to <code>org-latex-packages-alist</code>.
+Requires adding the <code>tabularx</code> package to
+<code>org-latex-packages-alist</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.136" name="fn.136" class="footnum" href="#fnr.136">136</a></sup> <p class="footpara">
-Requires adding the <code>tabu</code> package to <code>org-latex-packages-alist</code>.
+Requires adding the <code>tabu</code> package to
+<code>org-latex-packages-alist</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.137" name="fn.137" class="footnum" href="#fnr.137">137</a></sup> <p class="footpara">
-In the case of TikZ (<a href="http://sourceforge.net/projects/pgf/">http://sourceforge.net/projects/pgf/</a>) images, it
-will become an <code>\input</code> macro wrapped within a <code>tikzpicture</code>
-environment.
+In the case of TikZ (<a href="http://sourceforge.net/projects/pgf/">http://sourceforge.net/projects/pgf/</a>)
+images, it will become an <code>\input</code> macro wrapped within a
+<code>tikzpicture</code> environment.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.138" name="fn.138" class="footnum" href="#fnr.138">138</a></sup> <p class="footpara">
@@ -43844,7 +43927,8 @@ Versions 7.8 or later
 </p></div>
 
 <div class="footdef"><sup><a id="fn.140" name="fn.140" class="footnum" href="#fnr.140">140</a></sup> <p class="footpara">
-<a href="http://docs.oasis-open.org/office/v1.2/OpenDocument-v1.2.html">Open Document Format for Office Applications (OpenDocument) Version 1.2</a>
+<a href="http://docs.oasis-open.org/office/v1.2/OpenDocument-v1.2.html">Open Document Format for Office Applications (OpenDocument)
+Version 1.2</a>
 </p></div>
 
 <div class="footdef"><sup><a id="fn.141" name="fn.141" class="footnum" href="#fnr.141">141</a></sup> <p class="footpara">
@@ -43856,14 +43940,14 @@ To select the current subtree, use <b><i>C-c @</i></b>
 </p></div>
 
 <div class="footdef"><sup><a id="fn.143" name="fn.143" class="footnum" href="#fnr.143">143</a></sup> <p class="footpara">
-The column widths are interpreted as weighted ratios with the default
-weight being 1
+The column widths are interpreted as weighted ratios with the
+default weight being 1
 </p></div>
 
 <div class="footdef"><sup><a id="fn.144" name="fn.144" class="footnum" href="#fnr.144">144</a></sup> <p class="footpara">
-Use of ImageMagick is only desirable. However, if you routinely
-produce documents that have large images or you export your Org files
-that has images using a Emacs batch script, then the use of
+Use of ImageMagick is only desirable. However, if you
+routinely produce documents that have large images or you export your
+Org files that has images using a Emacs batch script, then the use of
 ImageMagick is mandatory.
 </p></div>
 
@@ -43876,8 +43960,8 @@ See <a href="http://dlmf.nist.gov/LaTeXML/">http://dlmf.nist.gov/LaTeXML/</a>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.147" name="fn.147" class="footnum" href="#fnr.147">147</a></sup> <p class="footpara">
-Your <code>htmlfontify.el</code> library must at least be at Emacs 24.1 levels
-for fontification to be turned on.
+Your <code>htmlfontify.el</code> library must at least be at Emacs 24.1
+levels for fontification to be turned on.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.148" name="fn.148" class="footnum" href="#fnr.148">148</a></sup> <p class="footpara">
@@ -43885,8 +43969,8 @@ for fontification to be turned on.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.149" name="fn.149" class="footnum" href="#fnr.149">149</a></sup> <p class="footpara">
-See the <code>&lt;table:table-template&gt;</code> element of the OpenDocument-v1.2
-specification
+See the <code>&lt;table:table-template&gt;</code> element of the
+OpenDocument-v1.2 specification
 </p></div>
 
 <div class="footdef"><sup><a id="fn.150" name="fn.150" class="footnum" href="#fnr.150">150</a></sup> <p class="footpara">
@@ -43902,8 +43986,8 @@ of the <code>&lt;table:table&gt;</code> element in the OpenDocument-v1.2 specifi
 </p></div>
 
 <div class="footdef"><sup><a id="fn.152" name="fn.152" class="footnum" href="#fnr.152">152</a></sup> <p class="footpara">
-By setting <code>org-texinfo-info-process</code>, it is possible to generate
-other formats, including DocBook.
+By setting <code>org-texinfo-info-process</code>, it is possible to
+generate other formats, including DocBook.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.153" name="fn.153" class="footnum" href="#fnr.153">153</a></sup> <p class="footpara">
@@ -43916,49 +44000,49 @@ See the variables <code>org-icalendar-use-deadline</code> and
 </p></div>
 
 <div class="footdef"><sup><a id="fn.155" name="fn.155" class="footnum" href="#fnr.155">155</a></sup> <p class="footpara">
-To add inherited tags or the TODO state, configure the variable
-<code>org-icalendar-categories</code>.
+To add inherited tags or the TODO state, configure the
+variable <code>org-icalendar-categories</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.156" name="fn.156" class="footnum" href="#fnr.156">156</a></sup> <p class="footpara">
-The LOCATION property can be inherited from higher in the hierarchy if
-you configure <code>org-use-property-inheritance</code> accordingly.
+The LOCATION property can be inherited from higher in the
+hierarchy if you configure <code>org-use-property-inheritance</code> accordingly.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.157" name="fn.157" class="footnum" href="#fnr.157">157</a></sup> <p class="footpara">
-If the publishing directory is the same than the source directory,
-file.org will be exported as file.org.org, so probably don't want to
-do this.
+If the publishing directory is the same than the source
+directory, file.org will be exported as file.org.org, so probably
+don't want to do this.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.158" name="fn.158" class="footnum" href="#fnr.158">158</a></sup> <p class="footpara">
-Note that ‘src' blocks may be inserted using Org mode's <a href="#Easy-templates">Easy templates</a>
-system
+Note that ‘src' blocks may be inserted using Org mode's <a href="#Easy-templates">Easy
+templates</a> system
 </p></div>
 
 <div class="footdef"><sup><a id="fn.159" name="fn.159" class="footnum" href="#fnr.159">159</a></sup> <p class="footpara">
-Whenever code is evaluated there is a potential for that code to do
-harm. Org mode provides safeguards to ensure that code is only
+Whenever code is evaluated there is a potential for that code
+to do harm. Org mode provides safeguards to ensure that code is only
 evaluated after explicit confirmation from the user. For information
 on these safeguards (and on how to disable them) see <a href="#Code-evaluation-security">Code evaluation
 security</a>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.160" name="fn.160" class="footnum" href="#fnr.160">160</a></sup> <p class="footpara">
-The option <code>org-babel-no-eval-on-ctrl-c-ctrl-c</code> can be used to remove
-code evaluation from the <b><i>C-c C-c</i></b> key binding.
+The option <code>org-babel-no-eval-on-ctrl-c-ctrl-c</code> can be used
+to remove code evaluation from the <b><i>C-c C-c</i></b> key binding.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.161" name="fn.161" class="footnum" href="#fnr.161">161</a></sup> <p class="footpara">
-The deprecated syntax for default header argument properties, using
-the name of the header argument as a property name directly, evaluates
-the property as seen by the corresponding source block
+The deprecated syntax for default header argument properties,
+using the name of the header argument as a property name directly,
+evaluates the property as seen by the corresponding source block
 definition. This behavior has been kept for backwards compatibility.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.162" name="fn.162" class="footnum" href="#fnr.162">162</a></sup> <p class="footpara">
-(The example needs property inheritance to be turned on for the
-<code>noweb-ref</code> property, see <a href="#Property-inheritance">Property inheritance</a>).
+(The example needs property inheritance to be turned on for
+the <code>noweb-ref</code> property, see <a href="#Property-inheritance">Property inheritance</a>).
 </p></div>
 
 <div class="footdef"><sup><a id="fn.163" name="fn.163" class="footnum" href="#fnr.163">163</a></sup> <p class="footpara">
@@ -43970,9 +44054,9 @@ Emacs 23.1 can actually crash with <code>org-indent-mode</code>
 </p></div>
 
 <div class="footdef"><sup><a id="fn.165" name="fn.165" class="footnum" href="#fnr.165">165</a></sup> <p class="footpara">
-<code>org-indent-mode</code> also sets the <code>wrap-prefix</code> property, such that
-<code>visual-line-mode</code> (or purely setting <code>word-wrap</code>) wraps long lines
-(including headlines) correctly indented.
+<code>org-indent-mode</code> also sets the <code>wrap-prefix</code> property, such
+that <code>visual-line-mode</code> (or purely setting <code>word-wrap</code>) wraps long
+lines (including headlines) correctly indented.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.166" name="fn.166" class="footnum" href="#fnr.166">166</a></sup> <p class="footpara">
@@ -43980,8 +44064,8 @@ See the variable <code>org-indent-indentation-per-level</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.167" name="fn.167" class="footnum" href="#fnr.167">167</a></sup> <p class="footpara">
-Turning on <code>org-indent-mode</code> sets <code>org-hide-leading-stars</code> to <code>t</code> and
-<code>org-adapt-indentation</code> to <code>nil</code>.
+Turning on <code>org-indent-mode</code> sets <code>org-hide-leading-stars</code> to
+<code>t</code> and <code>org-adapt-indentation</code> to <code>nil</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.168" name="fn.168" class="footnum" href="#fnr.168">168</a></sup> <p class="footpara">
@@ -43989,29 +44073,29 @@ See also the variable <code>org-adapt-indentation</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.169" name="fn.169" class="footnum" href="#fnr.169">169</a></sup> <p class="footpara">
-When you need to specify a level for a property search or refile
-targets, ‘LEVEL=2' will correspond to 3 stars, etc.
+When you need to specify a level for a property search or
+refile targets, ‘LEVEL=2' will correspond to 3 stars, etc.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.170" name="fn.170" class="footnum" href="#fnr.170">170</a></sup> <p class="footpara">
-org-R.el has been replaced by the Org mode functionality described in
-<a href="#Working-with-source-code">Working with source code</a> and is now obsolete.
+org-R.el has been replaced by the Org mode functionality
+described in <a href="#Working-with-source-code">Working with source code</a> and is now obsolete.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.171" name="fn.171" class="footnum" href="#fnr.171">171</a></sup> <p class="footpara">
-By default this works only for LaTeX, HTML, and Texinfo. Configure the
-variable <code>orgtbl-radio-table-templates</code> to install templates for other
-modes.
+By default this works only for LaTeX, HTML, and
+Texinfo. Configure the variable <code>orgtbl-radio-table-templates</code> to
+install templates for other modes.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.172" name="fn.172" class="footnum" href="#fnr.172">172</a></sup> <p class="footpara">
-If the ‘#+TBLFM' line contains an odd number of dollar characters,
-this may cause problems with font-lock in LaTeX mode. As shown in the
-example you can fix this by adding an extra line inside the <code>comment</code>
-environment that is used to balance the dollar expressions. If you are
-using AUCTeX with the font-latex library, a much better solution is to
-add the <code>comment</code> environment to the variable
-<code>LaTeX-verbatim-environments</code>.
+If the ‘#+TBLFM' line contains an odd number of dollar
+characters, this may cause problems with font-lock in LaTeX mode. As
+shown in the example you can fix this by adding an extra line inside
+the <code>comment</code> environment that is used to balance the dollar
+expressions. If you are using AUCTeX with the font-latex library, a
+much better solution is to add the <code>comment</code> environment to the
+variable <code>LaTeX-verbatim-environments</code>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.173" name="fn.173" class="footnum" href="#fnr.173">173</a></sup> <p class="footpara">
@@ -44020,31 +44104,33 @@ corresponds to order in the hierarchy, not to the number of stars.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.174" name="fn.174" class="footnum" href="#fnr.174">174</a></sup> <p class="footpara">
-If you can safely store the password in your Emacs setup, you might
-also want to configure <code>org-mobile-encryption-password</code>. Please read
-the docstring of that variable. Note that encryption will apply only
-to the contents of the .org files. The file names themselves will
+If you can safely store the password in your Emacs setup, you
+might also want to configure <code>org-mobile-encryption-password</code>. Please
+read the docstring of that variable. Note that encryption will apply
+only to the contents of the .org files. The file names themselves will
 remain visible.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.175" name="fn.175" class="footnum" href="#fnr.175">175</a></sup> <p class="footpara">
-If you cannot use Dropbox, or if your version of MobileOrg does not
-support it, you can use a webdav server. For more information, check
-out the documentation of MobileOrg and also this <a href="http://orgmode.org/worg/org-faq.html#mobileorg_webdav">FAQ entry</a>.
+If you cannot use Dropbox, or if your version of MobileOrg
+does not support it, you can use a webdav server. For more
+information, check out the documentation of MobileOrg and also this
+<a href="http://orgmode.org/worg/org-faq.html#mobileorg_webdav">FAQ entry</a>.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.176" name="fn.176" class="footnum" href="#fnr.176">176</a></sup> <p class="footpara">
-Symbolic links in <code>org-directory</code> need to have the same name as their
-targets.
+Symbolic links in <code>org-directory</code> need to have the same name
+as their targets.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.177" name="fn.177" class="footnum" href="#fnr.177">177</a></sup> <p class="footpara">
-While creating the agendas, Org mode will force ID properties on all
-referenced entries, so that these entries can be uniquely identified if
-<i>MobileOrg</i> flags them for further action. If you do not want to get
-these properties in so many entries, you can set the variable
-<code>org-mobile-force-id-on-agenda-items</code> to <code>nil</code>. Org mode will then rely
-on outline paths, in the hope that these will be unique enough.
+While creating the agendas, Org mode will force ID properties
+on all referenced entries, so that these entries can be uniquely
+identified if <i>MobileOrg</i> flags them for further action. If you do not
+want to get these properties in so many entries, you can set the
+variable <code>org-mobile-force-id-on-agenda-items</code> to <code>nil</code>. Org mode will
+then rely on outline paths, in the hope that these will be unique
+enough.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.178" name="fn.178" class="footnum" href="#fnr.178">178</a></sup> <p class="footpara">
@@ -44056,12 +44142,12 @@ mobileorg.org will be empty after this operation.
 </p></div>
 
 <div class="footdef"><sup><a id="fn.180" name="fn.180" class="footnum" href="#fnr.180">180</a></sup> <p class="footpara">
-Note, however, that there is a subtle difference. The view created
-automatically by M-x org-mobile-pull RET is guaranteed to search all
-files that have been addressed by the last pull. This might include a
-file that is not currently in your list of agenda files. If you later
-use C-c a ? to regenerate the view, only the current agenda files will
-be searched.
+Note, however, that there is a subtle difference. The view
+created automatically by M-x org-mobile-pull RET is guaranteed to
+search all files that have been addressed by the last pull. This might
+include a file that is not currently in your list of agenda files. If
+you later use C-c a ? to regenerate the view, only the current agenda
+files will be searched.
 </p></div>
 
 

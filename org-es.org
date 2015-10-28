@@ -313,11 +313,11 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
    #+END_SRC
 
 #    Org mode buffers need font-lock to be turned on: this is the
-#    default in Emacs[fn:FOOT1].
+#    default in Emacs[fn:1].
 
 
    Los buffers del modo Org necesitan font-lock para ser activados:
-   esto viene predeterminado en Emacs[fn:FOOT1].
+   esto viene predeterminado en Emacs[fn:1].
 
 #    There are compatibility issues between Org mode and some other
 #    Elisp packages, please take the time to check the list (see
@@ -396,14 +396,14 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #    or ideas about it, please mail to the Org mailing list
 #    [[mailto:emacs-orgmode@gnu.org][emacs-orgmode@gnu.org]]. You can subscribe to the list [[https://lists.gnu.org/mailman/listinfo/emacs-orgmode][on this web
 #    page]]. If you are not a member of the mailing list, your mail will
-#    be passed to the list after a moderator has approved it[fn:FOOT2].
+#    be passed to the list after a moderator has approved it[fn:2].
 
    Si encuentra problemas en Org, o si tiene preguntas, comentarios, o
    ideas al respecto, por favor enviar por correo a la lista de correo
    Org [[mailto:emacs-orgmode@gnu.org][emacs-orgmode@gnu.org]]. Usted puede suscribirse a la lista de
    correo [[https://lists.gnu.org/mailman/listinfo/emacs-orgmode][en esta pagina web]]. Si usted no es un miembro de la lista de
    correo , su correo sera pasado a la lista después de que un
-   moderador lo alla aprobado[fn:FOOT2].
+   moderador lo alla aprobado[fn:2].
 
 #    For bug reports, please first try to reproduce the bug with the
 #    latest version of Org available---if you are running an outdated
@@ -605,13 +605,13 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #     title) and /environment keywords/ (like =#+BEGIN_HTML= to start a
 #     =HTML= environment). They are written in uppercase in the manual
 #     to enhance its readability, but you can use lowercase in your Org
-#     files[fn:FOOT3].
+#     files[fn:3].
 
     Además, Org utiliza /palabras clave opcionales/ (como =#+TITLE=
     para establecer el título) y /palabras clave de entorno/ (como
     =#+BEGIN_HTML= para iniciar un entorno =HTML=). Están escritas en
     mayúsculas en el manual para mejorar su legibilidad, pero puede
-    utilizar minúsculas en sus Archivos Org[fn:FOOT3].
+    utilizar minúsculas en sus Archivos Org[fn:3].
 
 # *** 1.5.2 Keybindings and commands
 *** 1.5.2 Combinaciones de teclado y comandos
@@ -714,11 +714,11 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 
 #    Headlines define the structure of an outline tree. The headlines in
 #    Org start with one or more stars, on the left
-#    margin[fn:FOOT4] [fn:FOOT5]. For example:
+#    margin[fn:4] [fn:5]. For example:
 
    Los encabezados definen la estructura del arbol de esquema. Los
    encabezados en Org comienzan con uno o más asteriscos, en el margen
-   izquierdo[fn:FOOT4] [fn:FOOT5]. Por ejemplo:
+   izquierdo[fn:4] [fn:5]. Por ejemplo:
 
 #    #+BEGIN_EXAMPLE
 #      * Top level headline
@@ -814,17 +814,17 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
        #+END_EXAMPLE
 
 #        The cursor must be on a headline for this to
-#        work[fn:FOOT6]. When the cursor is at the beginning of the
+#        work[fn:6]. When the cursor is at the beginning of the
 #        buffer and the first line is not a headline, then =TAB=
-#        actually runs global cycling (see below)[fn:FOOT7]. Also when
+#        actually runs global cycling (see below)[fn:7]. Also when
 #        called with a prefix argument (*/C-u TAB/*), global cycling is
 #        invoked.
 
        El cursor debe estar en un encabezade para que esto
-       funcione[fn:FOOT6]. Cuando el cursor se encuentra al comienzo
+       funcione[fn:6]. Cuando el cursor se encuentra al comienzo
        del búfer y la primera línea no es un encabezado, entonces
        =TAB= ejecuta la rotacion global (véase más adelante
-       )[fn:FOOT7]. También cuando llama con el argumento prefijo
+       )[fn:7]. También cuando llama con el argumento prefijo
        (=C-u TAB=) , se invoca la rotacion global.
 
      - =S-TAB= (=org-global-cycle=)
@@ -905,13 +905,13 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 
      - =C-c C-x b= (=org-tree-to-indirect-buffer=)
 
-#        Show the current subtree in an indirect buffer[fn:FOOT8]. With
+#        Show the current subtree in an indirect buffer[fn:8]. With
 #        a numeric prefix argument =N=, go up to level =N= and then take
 #        that tree. If =N= is negative then go up that many levels. With
 #        a */C-u/* prefix, do not remove the previously used indirect
 #        buffer.
 
-       Muestra el subárbol actual en un búfer diferente[fn:FOOT8]. Con
+       Muestra el subárbol actual en un búfer diferente[fn:8]. Con
        Un argumento prefijo numérico =N=, va hasta el nivel =N= y
        luego toma ese árbol. Si =N= es negativo luego sube esa
        cantidad de niveles. Con el prefijo =C-u=, no retira los
@@ -928,13 +928,13 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 
 #     When Emacs first visits an Org file, the global state is set to
 #     OVERVIEW, i.e., only the top level headlines are
-#     visible[fn:FOOT9]. This can be configured through the variable
+#     visible[fn:9]. This can be configured through the variable
 #     =org-startup-folded=, or on a per-file basis by adding one of the
 #     following lines anywhere in the buffer:
 
     Cuando Emacs visita por primera un fichero Org, el estado global
     se establece en VISIÓN GENERAL, es decir, sólo los titulares de
-    primer nivel son visibles[fn:FOOT9]. Esto se puede configurar a
+    primer nivel son visibles[fn:9]. Esto se puede configurar a
     través de la variable =org-startup-folded=, o en función de cada
     archivo mediante la adición de una de las siguientes líneas en
     cualquier parte del búfer:
@@ -1402,7 +1402,7 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #    /sparse trees/ for selected information in an outline tree, so that
 #    the entire document is folded as much as possible, but the selected
 #    information is made visible along with the headline structure above
-#    it[fn:FOOT10]. Just try it out and you will see immediately how it
+#    it[fn:10]. Just try it out and you will see immediately how it
 #    works.
 
    Una característica importante del modo Org es la capacidad de
@@ -1410,7 +1410,7 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
    árbol de esquema, por lo que todo el documento se plega tanto como
    sea posible, pero la información seleccionada se hace visible,
    junto con la estructura de encabezados por encima de
-   ella[fn:FOOT10]. Haga la prueba y verá inmediatamente cómo trabaja.
+   ella[fn:10]. Haga la prueba y verá inmediatamente cómo trabaja.
 
 #    Org mode contains several commands for creating such trees, all these
 #    commands can be accessed through a dispatcher:
@@ -1436,7 +1436,7 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #       the full hierarchy of headlines above the match is shown, as
 #       well as the headline following the match. Each match is also
 #       highlighted; the highlights disappear when the buffer is changed
-#       by an editing command[fn:FOOT11], or by pressing */C-c
+#       by an editing command[fn:11], or by pressing */C-c
 #       C-c/*. When called with a */C-u/* prefix argument, previous
 #       highlights are kept, so several calls to this command can be
 #       stacked.
@@ -1450,7 +1450,7 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
        sobre la coincidencia, así como el encabezado tras la
        coincidencia. Cada correspondencia es también resaltada; el
        resaltado desaparece cuando se cambia el buffer con un comando
-       de edición[fn:FOOT11], o presionando =C-c C-c=. Cuando se llama
+       de edición[fn:11], o presionando =C-c C-c=. Cuando se llama
        con el argumento prefijo =C-u=, el resaltado anterior se
        mantiene, por lo que varias llamadas a este comando pueden ser
        almacenadas.
@@ -1502,13 +1502,13 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 
 #    To print a sparse tree, you can use the Emacs command
 #    =ps-print-buffer-with-faces= which does not print invisible parts
-#    of the document[fn:FOOT12]. Or you can use */C-c C-e C-v/* to
+#    of the document[fn:12]. Or you can use */C-c C-e C-v/* to
 #    export only the visible part of the document and print the
 #    resulting file.
 
    Para imprimir un árbol compacto, puede utilizar el comando de Emacs
    =ps-print-buffer-with-faces= que no imprime las partes invisibles
-   del documento[fn:FOOT12]. O puede usar =C-c C-e C-v= para sólo
+   del documento[fn:12]. O puede usar =C-c C-e C-v= para sólo
    exportar la parte visible del documento e imprimir el archivo
    resultante.
 
@@ -1532,24 +1532,24 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
    Org reconece listas ordenadas, listas desordenadas, y listas de
    descripción.
 
-#     - /Unordered/ list items start with ‘-', ‘+', or ‘*'[fn:FOOT13] as
+#     - /Unordered/ list items start with ‘-', ‘+', or ‘*'[fn:13] as
 #       bullets.
 
     - Las listas de elementos /desordenadas/ inician con '-', '+' o
-      '*'[fn:FOOT13].
+      '*'[fn:13].
 
 #     - /Ordered/ list items start with a numeral followed by either a
-#       period or a right parenthesis[fn:FOOT14], such as ‘1.' or
-#       ‘1)'[fn:FOOT15]. If you want a list to start with a different
+#       period or a right parenthesis[fn:14], such as ‘1.' or
+#       ‘1)'[fn:15]. If you want a list to start with a different
 #       value (e.g., 20), start the text of the item with
-#       =[@20]= [fn:FOOT16]. Those constructs can be used in any item of
+#       =[@20]= [fn:16]. Those constructs can be used in any item of
 #       the list in order to enforce a particular numbering.
 
     - Las listas de elementos /ordenadas/ inician con un número
-      seguido de un punto o un paréntesis derecho[fn:FOOT14], como
-      '1.' o ' 1)'[fn:FOOT15]. Si desea que la lista inicie con un
+      seguido de un punto o un paréntesis derecho[fn:14], como
+      '1.' o ' 1)'[fn:15]. Si desea que la lista inicie con un
       valor diferente (por ejemplo, 20), se inicia el texto del
-      elemento con =[@20]= [fn:FOOT16]. Esas construcciones se pueden
+      elemento con =[@20]= [fn:16]. Esas construcciones se pueden
       usar en cualquier elemento de la lista con el fin de aplicar una
       numeracion particular.
 
@@ -1576,13 +1576,13 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 
 #    A list ends whenever every item has ended, which means before any
 #    line less or equally indented than items at top level. It also ends
-#    before two blank lines[fn:FOOT17]. In that case, all items are
+#    before two blank lines[fn:17]. In that case, all items are
 #    closed.  Here is an example:
 
    Una lista termina cuando todos los elementos han terminado, lo que
    significa antes de cualquier línea de menor o igual indentacion que
    el elemento de nivel superior. También termina Antes de dos líneas
-   en blanco[fn:FOOT17]. En ese caso, todos los elementos son
+   en blanco[fn:17]. En ese caso, todos los elementos son
    Cerrados. He aquí un ejemplo:
 
 #    #+BEGIN_EXAMPLE
@@ -1620,13 +1620,13 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
    #+END_EXAMPLE
 
 #    Org supports these lists by tuning filling and wrapping commands to
-#    deal with them correctly[fn:FOOT18], and by exporting them properly
+#    deal with them correctly[fn:18], and by exporting them properly
 #    (see [[@Exporting][Exporting]]). Since indentation is what governs the structure of
 #    these lists, many structural constructs like =#+BEGIN_...= blocks
 #    can be indented to signal that they belong to a particular item.
 
    Org respalda estas listas con comandos de ajuste de llenado y
-   envoltura para tratar con ellos correctamente[fn:FOOT18] y
+   envoltura para tratar con ellos correctamente[fn:18] y
    exportarlos de manera adecuada ( Ver [[@Exporting][Exporting]]). Desde la
    indentacion se controla la estructura de estas listas, muchas
    construcciones estructurales como los bloques =#+BEGIN_...= pueden
@@ -1692,7 +1692,7 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #       Insert new item at current level. With a prefix argument, force
 #       a new heading (see [[@Structure-editing][Structure editing]]). If this command is used
 #       in the middle of an item, that item is /split/ in two, and the
-#       second part becomes the new item[fn:FOOT19]. If this command is
+#       second part becomes the new item[fn:19]. If this command is
 #       executed /before item's body/, the new item is created /before/
 #       the current one.
 
@@ -1700,7 +1700,7 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
       prefijo, fuerza un nuevo encabezado (ver [[@Structure-editing][Structure editing]]). Si
       utiliza este comando en medio de un elemento, ese elemento se
       /divide/ en dos, y la segunda parte se convierte en el nuevo
-      elemento[fn:FOOT19]. Si este comando es ejecutado /antes del
+      elemento[fn:19]. Si este comando es ejecutado /antes del
       cuerpo del elemento/, se crea el nuevo elemento /antes/ de el
       actual.
 
@@ -1714,13 +1714,13 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
     - =S-up=
     - =S-down=
 
-#       Jump to the previous/next item in the current list[fn:FOOT20],
+#       Jump to the previous/next item in the current list[fn:20],
 #       but only if =org-support-shift-select= is off. If not, you can
 #       still use paragraph jumping commands like */C-up/* and
 #       */C-down/* to quite similar effect.
 
       Saltar al anterior/siguiente elemento en la lista
-      actual[fn:FOOT20], pero sólo si =org-support-shift-select= está
+      actual[fn:20], pero sólo si =org-support-shift-select= está
       apagado. Si no, usted puede seguir utilizando los comandos de
       salto de párrafo como =C-up= y =C-down= con un efecto bastante
       similar.
@@ -1728,11 +1728,11 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
     - =M-up=
     - =M-down=
 
-#       Move the item including subitems up/down[fn:FOOT21] (swap with
+#       Move the item including subitems up/down[fn:21] (swap with
 #       previous/next item of same indentation). If the list is ordered,
 #       renumbering is automatic.
 
-      Mueva el elemento incluidos subelementos arriba/abajo[fn:FOOT21]
+      Mueva el elemento incluidos subelementos arriba/abajo[fn:21]
       (intercambia con el elemento anterior/siguiente de la misma
       indentacion). Si la lista está ordenada, la renumeracion es
       automática.
@@ -1984,12 +1984,12 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #    footnote reference is simply the marker in square brackets, inside
 #    text. For example:
 
---
-# Una nota al pie se comenzó con un marcador de la nota entre
-# corchetes en Columna 0 , sin sangría permitido. Termina en la
-# siguiente nota al pie Definición , titular, o después de dos líneas
-# en blanco consecutivos . los Referencia # nota es simplemente el
-# marcador entre corchetes , en el interior Texto. Por ejemplo:
+   Una nota al pie se inicia con un marcador de nota entre corchetes
+   en lo columna 0, la indentacion no esta permitida.  Finaliza con la
+   siguiente definición de nota al pie, encabezado, o después de dos
+   líneas consecutivos en blanco. La referencia de nota es un
+   simplemente marcador entre corchetes, dentro del texto. Por
+   ejemplo:
 
 #    #+BEGIN_EXAMPLE
 #      The Org homepage[fn:1] now looks a lot better than it used to.
@@ -1997,10 +1997,11 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #      [fn:1] The link is: http://orgmode.org
 #    #+END_EXAMPLE
 
---
-# # + BEGIN_EXAMPLE La página Org [nota : 1 ] ahora se ve mucho mejor
-# de lo que solía .  ...  [ Fn : 1 ] El enlace es: http://orgmode.org
-# # + END_EXAMPLE
+   #+BEGIN_EXAMPLE
+     La pagina de inicio de Org[fn:1] ahora se ve mucho mejor que de costumbre
+     ...
+     [fn:1] El enlace es: http://orgmode.org
+   #+END_EXAMPLE
 
 #    Org mode extends the number-based syntax to /named/ footnotes and
 #    optional inline definition. Using plain numbers as markers (as
@@ -2008,209 +2009,216 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
 #    encouraged because of possible conflicts with LaTeX snippets (see
 #    [[@Embedded-LaTeX][Embedded LaTeX]]). Here are the valid references:
 
---
-Modo # Org extiende la sintaxis basada en número a / nombre / notas al
-pie y # Definición en línea opcional . El uso de números simples como
-marcadores ( como # Footnote.el no ) es compatible con la
-compatibilidad hacia atrás , pero no # Animado debido a posibles
-conflictos con fragmentos LaTeX (véase # [ [@ Embedded - LaTeX ] [
-Embedded LaTeX ] ] ) . Aquí están las referencias válidas :
+   El modo Org extiende la sintaxis basada en números a notas con
+   /nombre/ y definición opcional en la misma línea. El uso de números
+   simples como marcadores (como hace footnote.el) es soportado por
+   compatibilidad hacia atrás, pero no animado debido a posibles
+   conflictos con fragmentos LaTeX (véase [[@Embedded-LaTeX][Embedded LaTeX]]). Aquí están
+   las referencias válidas:
 
-#     - =[1]= ::
-
---
-# - = [ 1 ] = ::
+    - =[1]=
 
 #       A plain numeric footnote marker. Compatible with footnote.el,
 #       but not recommended because something like =[1]= could easily be
 #       part of a code snippet.
 
---
-# Un marcador de la nota numérica simple. Compatible con footnote.el ,
-# Pero no es recomendable debido a algo como = [ 1 ] = podría ser
-# fácilmente Parte de un fragmento de código.
+      Un simple marcador numérico de la nota. Compatible con
+      =footnote.el=, pero no es recomendable debido que algo como
+      =[1]= podría ser fácilmente parte de un fragmento de código.
 
-#     - =[fn:name]= ::
-
---
-# - = [Nota : nombre ] = ::
+    - =[fn:nombre]=
 
 #       A named footnote reference, where =name= is a unique label word,
 #       or, for simplicity of automatic creation, a number.
 
---
-# Una llamada de nota con nombre, donde = name = es una palabra única
-# etiqueta, O , por simplicidad de la creación automática, un número.
+      Una nota con nombre como referencia, donde =nombre= es una
+      etiqueta única, o, por simplicidad de la creación automática, un
+      número.
 
 #     - =[fn:: This is the inline definition of this footnote]= ::
 
---
-# - = [ Fn :: Esta es la definición en línea de esta nota ] = ::
+    - =[fn:: Esta es una definicion de nota dentro de la linea]=
 
 #       A LaTeX-like anonymous footnote where the definition is given
 #       directly at the reference point.
 
---
-# Una nota anónima - LaTeX como lugar donde se indica la definición
-# Directamente en el punto de referencia.
+      Una nota anónima como en LaTeX donde se indica la definición
+      directamente en el punto de referencia.
 
 #     - =[fn:name: a definition]= ::
 
---
-# - = [Nota : nombre: una definición ] = ::
+    - =[fn:nombre: una definicion]=
 
 #       An inline definition of a footnote, which also specifies a name
 #       for the note. Since Org allows multiple references to the same
 #       note, you can then use =[fn:name]= to create additional
 #       references.
 
---
-# Una definición en línea de una nota al pie , que también especifica
-# un nombre Para la nota. Desde Org permite múltiples referencias a la
-# misma Nota, puede entonces utilizar = [nota : nombre ] = para crear
-# adicional Referencias #.
+      Una definición de nota dentro de línea, que también especifica
+      un nombre para la nota. Org permite múltiples referencias a la
+      misma nota, puede utilizar =[fn:nombre]= para crear referencias
+      adicionales.
 
 #    Footnote labels can be created automatically, or you can create
 #    names yourself. This is handled by the variable
 #    =org-footnote-auto-label= and its corresponding =#+STARTUP=
 #    keywords. See the docstring of that variable for details.
 
---
-Etiquetas # Footnote se pueden crear de forma automática, o puede
-crear # Nombres usted mismo . Esto es manejado por la variable # =
-Org- nota - etiqueta auto = y su correspondiente = # + STARTUP = #
-Palabras clave. Ver la cadena de documentación de esa variable para
-obtener más información .
+   Las etiquetas de nota se pueden crear de forma automática, o puede
+   crear nombres usted mismo. Esto es manejado por la variable
+   =org-footnote-auto-label= y su correspondiente palabra clave en
+   =#+STARTUP=. Vea la cadena de documentación de esa variable para
+   obtener más información.
 
 #    The following command handles footnotes:
 
---
-# El siguiente comando se encarga de las notas :
+   El siguiente comando se encarga de las notas:
 
-#     - */C-c C-x f/*
-
---
-# - * / C- c C- x f / *
+    - =C-c C-x f=
 
 #       The footnote action command.
 
---
-# El comando de acción nota al pie.
+      El comando acciona nota al pie.
 
 #       When the cursor is on a footnote reference, jump to the
 #       definition. When it is at a definition, jump to the (first)
 #       reference.
 
---
-# Cuando el cursor está en una llamada de nota , saltar a la
-# Definición . Cuando se está en una definición , saltar a la (
-# primera ) Referencia.
+      Cuando el cursor está en una referencia de nota, salta a la
+      definición. Cuando se está en una definición, salta a la
+      (primera) referencia.
 
 #       Otherwise, create a new footnote. Depending on the option
-#       =org-footnote-define-inline= [fn:FOOT22], the definition will be
+#       =org-footnote-define-inline= [fn:22], the definition will be
 #       placed right into the text as part of the reference, or
 #       separately into the location determined by the option
 #       =org-footnote-section=.
 
---
-# Si no, crear una nueva nota . Dependiendo de la opción = Org- nota -
-# define- inline = [ fn : FOOT22 ] , la definición será Colocado a la
-# derecha en el texto como parte de la referencia, o Separado en el
-# lugar determinado por la opción = Org- sección - nota = .
+      De otro modo, crear una nota nueva. Dependiendo de la opción
+      =org-footnote-define-inline= [fn:22], la definición será
+      colocado a la derecha en el texto como parte de la referencia, o
+      por separado en el lugar determinado por la opción
+      =org-footnote-section=.
 
 #       When this command is called with a prefix argument, a menu of
 #       additional options is offered:
 
---
-# Cuando este comando se llama con un argumento prefijo , un menú de
-# Opciones adicionales se ofrece :
+      Cuando este comando se llama con el argumento prefijo, se ofrece
+      un menú de opciones adicionales:
 
-#       #+BEGIN_EXAMPLE
-#         s   Sort the footnote definitions by reference sequence.  During editing,
-#             Org makes no effort to sort footnote definitions into a particular
-#             sequence.  If you want them sorted, use this command, which will
-#             also move entries according to org-footnote-section.  Automatic
-#             sorting after each insertion/deletion can be configured using the
-#             option org-footnote-auto-adjust.
-#         r   Renumber the simple fn:N footnotes.  Automatic renumbering
-#             after each insertion/deletion can be configured using the option
-#             org-footnote-auto-adjust.
-#         S   Short for first r, then s action.
-#         n   Normalize the footnotes by collecting all definitions (including
-#             inline definitions) into a special section, and then numbering them
-#             in sequence.  The references will then also be numbers.  This is
-#             meant to be the final step before finishing a document (e.g., sending
-#             off an email).
-#         d   Delete the footnote at point, and all definitions of and references
-#             to it.
-#       #+END_EXAMPLE
+       - =s=
 
---
-# + BEGIN_EXAMPLE   s Ordenar las definiciones de nota al pie de la
-secuencia de referencia. Durante la edición,       Org no hace ningún
-esfuerzo para ordenar las definiciones pie de página en un particular,
-      secuencia. Si usted quiere que ordenan, utilice este comando,
-que lo hará       también mover las entradas de acuerdo a
-org-sección-pie de página. Automática       la clasificación después
-de cada inserción / deleción se puede configurar mediante la
-      opción org-nota-auto-ajustar.    r Volver a numerar el simple
-fn: N notas al pie. Renumeración automática       después de cada
-inserción / deleción se puede configurar mediante la opción
-      org-nota-auto-ajuste.    S Abreviatura de primera r, entonces s
-acción.    n Normalizar las notas mediante la recopilación de todas
-las definiciones (incluyendo       definiciones inline) en una sección
-especial, y luego la numeración ellos       en secuencia. Las
-referencias serán entonces también ser números. Este es       pretende
-ser el paso final antes de terminar un documento (por ejemplo, el
-envío de       aprovechó un servicio de correo electrónico).    d
-Eliminar la nota al pie en el punto, y todas las definiciones y
-referencias       a la misma.  # + END_EXAMPLE
+         # Sort the footnote definitions by reference sequence.
 
-#       Depending on the variable =org-footnote-auto-adjust=[fn:FOOT23],
+         Ordena las /definiciones/ de nota por secuencia de referencia
+
+         # During editing, Org makes no effort to sort footnote
+         # definitions into a particular sequence.
+
+         Durante la edicion, Org no hace ningun enfuerzo por ordenar
+         las definiciones de nota en una secuencia en particular
+
+         # If you want them sorted, use this command, which will also
+         # move entries according to org-footnote-section.
+
+         Si desea el ordenamiento, utilice este comando, que lo hara
+         deacuerdo con =org-footnote-section=.
+
+         # Automatic sorting after each insertion/deletion can be
+         # configured using the option org-footnote-auto-adjust.
+
+         El ordenamiento automatico depues de cada
+         insercion/eliminacion se puede configurar mediante la opcion
+         =org-footnote-auto-adjust=.
+
+       - =r=
+
+         # Renumber the simple fn:N footnotes.
+
+         Renumerar /referencias/ de notas simples =fn:N=
+
+         # Automatic renumbering after each insertion/deletion can be
+         # configured using the option org-footnote-auto-adjust.
+
+         La renumeracion automatica depues de cada
+         insercion/eliminacion se puede configurar mediante la opcion
+         =org-footnote-auto-adjust=.
+
+       - =S=
+
+         # Short for first r, then s action.
+
+         Ordenamiento primero =r=, luego =s=.
+
+       - =n=
+
+         # Normalize the footnotes by collecting all definitions
+         # (including inline definitions) into a special section, and
+         # then numbering them in sequence.
+
+         Normaliza las notas mediante la recopilacion de todas las
+         definiciones (incluyendo las definiciones en linea) en una
+         seccion especial, y a continuacion, se enumera por secuencia.
+
+         # The references will then also be numbers.
+
+         Las referencias pasaran entonces a ser numeros.
+
+         # This is meant to be the final step before finishing a
+         # document (e.g., sending off an email).
+
+         Esto esta destinado a ser el pasa final antes de terminar un
+         documento (por ejemplo, el envio de un correo electronico).
+
+       - =d=
+
+         # Delete the footnote at point, and all definitions of and
+         # references to it.
+
+         Eliminar la nota en el punto, y todas las definiciones y
+         referencias a esta.
+
+#       Depending on the variable =org-footnote-auto-adjust=[fn:23],
 #       renumbering and sorting footnotes can be automatic after each
 #       insertion or deletion.
 
---
-# Dependiendo de la variable = org- nota -auto- ajuste = [ fn : FOOT23
-# ] , Renumeración y clasificación de las notas al pie puede ser
-# automática después de cada Inserción o deleción .
+      Dependiendo de la variable =org-footnote-auto-adjust= [fn:23],
+      la renumeración y clasificación de las notas puede ser
+      automática después de cada inserción o eliminacion.
 
-#     - */C-c C-c/*
+    - =C-c C-c=
 
 #       If the cursor is on a footnote reference, jump to the
 #       definition. If it is a the definition, jump back to the
 #       reference. When called at a footnote location with a prefix
 #       argument, offer the same menu as */C-c C-x f/*.
 
---
-# Si el cursor está en una llamada de nota , saltar a la Definición
-# . Si se trata de una definición , salta de nuevo a la
-# Referencia. Cuando se llama a una ubicación nota con un prefijo
-# Argumento , ofrecen el mismo menú que * / Cc Cx f / * .
+      Si el cursor está en una referencia de nota, saltar a la
+      definición. Si se trata de una definición, salta de nuevo a la
+      referencia. Cuando se llama detro de una nota con el argumento
+      prefijo, ofrecen el mismo menú que =C-c C-x f=.
 
-#     - */C-c C-o or mouse-1/2/*
+    - =C-c C-o or mouse-1/2=
 
 #       Footnote labels are also links to the corresponding
 #       definition/reference, and you can use the usual commands to
 #       follow these links.
 
---
-Etiquetas # Footnote son también vincula a la correspondiente #
-Definición / de referencia, y puede utilizar los comandos habituales a
-# Siguen estos enlaces.
+      Las etiquetas de nota también son enlaces a la correspondiente
+      definición/referencia, y puede utilizar los comandos habituales
+      a seguir estos enlaces.
 
-#     - */C-c '/*
+    - =C-c '=
 
 #       Edit the footnote definition corresponding to the reference at
 #       point in a seperate window. This may be useful if editing
 #       footnotes in a narrowed buffer. The window can be closed by
 #       pressing */C-c '/*.
 
---
-# Editar la definición pie de página correspondiente a la referencia
-# en Punto en una ventana separada. Esto puede ser útil si la edición
-# Notas al pie en un búfer estrechado. La ventana se puede cerrar
-# Presionando * / C- c ' / * .
+      Editar la definición nota correspondiente a la referencia en
+      punto en una ventana separada. Esto puede ser conveniente si
+      edita notas en un búfer estrecho. La ventana se puede cerrar
+      Presionando =C-c '=.
 
 # ** 2.11 The Orgstruct minor mode                                      <<@Orgstruct-mode>>
 ** 2.11 El modo menor Orgstruct                                       <<@Orgstruct-mode>>
@@ -2222,19 +2230,18 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    orgstruct-mode RET/*, or turn it on by default, for example in
 #    Message mode, with one of:
 
---
-# Si te gusta la forma intuitiva la edición de la estructura y el modo
-# Org Lista formatear trabajos , es posible que desee utilizar estos
-# comandos en Otros modos como el modo texto o en modo de correo
-# también. El modo menor = Orgstruct - mode = lo hace
-# posible. Seleccionar el modo como * / M- x -Mode orgstruct RET / * o
-# encenderlo por defecto, por ejemplo en Modo de mensaje , con uno de
-# :
+   Si le gusta la forma intuitiva en que el modo Org estructura la
+   edicion y el formato de trabajo listado, es posible que desee
+   utilizar estos comandos en otros modos como el modo texto o también
+   el modo de correo. El modo menor =orgstruct-mode= lo hace
+   posible. Seleccione el modo con =M-x orgstruct-mode RET= o
+   activelo por defecto, por ejemplo en modo Message, con uno
+   de:
 
-#    #+BEGIN_SRC lisp
-#      (add-hook 'message-mode-hook 'turn-on-orgstruct)
-#      (add-hook 'message-mode-hook 'turn-on-orgstruct++)
-#    #+END_SRC
+   #+BEGIN_SRC lisp
+     (add-hook 'message-mode-hook 'turn-on-orgstruct)
+     (add-hook 'message-mode-hook 'turn-on-orgstruct++)
+   #+END_SRC
 
 #    When this mode is active and the cursor is on a line that looks to
 #    Org like a headline or the first line of a list item, most
@@ -2243,23 +2250,21 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    using. If the cursor is not in one of those special lines,
 #    Orgstruct mode lurks silently in the shadows.
 
---
-# Cuando este modo está activo y el cursor está en una línea que se
-# parece a Org como un título o la primera línea de un elemento de la
-# lista , la mayoría Comandos de edición de la estructura va a
-# funcionar, incluso si las mismas claves Normalmente tienen una
-# funcionalidad diferente en el modo mayor está usando. Si el cursor
-# no está en una de esas líneas especiales , Modo # Orgstruct acecha
-# silenciosamente en las sombras.
+   Cuando este modo está activo y el cursor está en una línea que se
+   parece a un encabezado Org o a la primera línea de un elemento de
+   lista, la mayoría de comandos de edición de la estructura va a
+   funcionar, incluso si las mismas combinaciones normalmente tienen
+   una funcionalidad diferente en el modo mayor que está usando. Si el
+   cursor no está en una de esas líneas especiales, el modo Orgstruct
+   acecha silenciosamente en las sombras.
 
 #    When you use =orgstruct++-mode=, Org will also export indentation
 #    and autofill settings into that mode, and detect item context after
 #    the first line of an item.
 
---
-# Cuando se utiliza = orgstruct ++ - mode = , Org también exportar
-# muesca Y ajustes de autocompletar en ese modo , y detectar contexto
-# artículo después La primera línea de un elemento.
+   Cuando se utiliza =orgstruct++-mode=, Org también exporta la
+   indentacion Y ajustes de autocompletado en ese modo, y detecta el
+   contexto del elemento después la primera línea de un elemento.
 
 #    You can also use Org structure editing to fold and unfold headlines
 #    in /any/ file, provided you defined
@@ -2270,17 +2275,15 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    lines. Some commands like =org-demote= are disabled when the prefix
 #    is set, but folding/unfolding will work correctly.
 
---
-# También se puede utilizar la edición de estructura organizativa de
-# plegar y desplegar titulares En / cualquier / archivo , siempre que
-# haya definido = Orgstruct -encabezamiento -prefix -regexp = : la
-# expresión regular debe Coincidir con el prefijo local para utilizar
-# antes de los titulares de Org . Por ejemplo, Si establece esta
-# variable a ";; " en los archivos de Emacs Lisp , estará Capaces de
-# plegar y desplegar titulares en Emacs Lisp comentados
-# Líneas. Algunos comandos como = org- degradan = se desactivan cuando
-# el prefijo Está establecido , pero plegado / desplegado funcionará
-# correctamente .
+   También puede utilizar la edición de estructura de Org para plegar
+   y desplegar encabezados en /cualquier/ archivo, siempre que haya
+   definido en =orgstruct-heading-prefix-regexp=: la expresión regular
+   que debe coincidir con el prefijo local a utilizar antes de los
+   encabezados Org. Por ejemplo, Si establece esta variable a ";; " en
+   los archivos de Emacs Lisp, sera capas de plegar y desplegar
+   encabezados en Emacs Lisp por líneas comentadas. Algunos comandos
+   como =org-demote= se desactivan cuando el prefijo está establecido,
+   pero el plegado/desplegado funcionará correctamente.
 
 # ** 2.12 Org syntax                                                    <<@Org-syntax>>
 ** 2.12 Sintaxis Org                                                  <<@Org-syntax>>
@@ -2292,26 +2295,22 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    elements= and =objects=. Each part of an Org file falls into one of
 #    the categories above.
 
---
-# Un documento de referencia que proporciona una descripción formal de
-# la sintaxis de Org Está disponible como [ [
-# http://orgmode.org/worg/dev/org-syntax.html][a proyecto en huargo ]
-# ] , escrita y mantenida por Nicolás Goaziou . Define principales
-# conceptos internos de Org como = Titulares = , = secciones = , =
-# palabras clave asociadas = , = (mayor ) Elementos y = = = objetos
-# . Cada parte de un fichero Org cae en una de Las categorías
-# anteriores.
+   Un documento de referencia que proporciona una descripción formal
+   de la sintaxis de Org está disponible como [[http://orgmode.org/worg/dev/org-syntax.html][un borrador en Worg]],
+   escrito y mantenido por Nicolás Goaziou. Define los principales
+   conceptos internos de Org como =encabezados=, =secciones=,
+   =palabras clave asociadas=, =(mayores) Elementos= y =objetos=. Cada
+   parte de un fichero Org cae en una de las categorías anteriores.
 
 #    To explore the abstract structure of an Org buffer, run this in a
 #    buffer:
 
---
-# Para explorar la estructura abstracta de un búfer Org , ejecutar
-#    esto en un amortiguador:
+   Para explorar la estructura abstracta de un búfer Org, ejecute esto
+   en un buffer:
 
-#    #+BEGIN_SRC lisp
-#      M-: (org-element-parse-buffer) RET
-#    #+END_SRC
+   #+BEGIN_SRC lisp
+     M-: (org-element-parse-buffer) RET
+   #+END_SRC
 
 #    It will output a list containing the buffer's content represented
 #    as an abstract structure. The export engine relies on the
@@ -2319,9 +2318,19 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    for structure editing) also rely on the syntactic meaning of the
 #    surrounding context.
 
+   Se dará salida a una lista con el contenido del buffer representado
+   como una estructura abstracta. El motor de exportación se basa en
+   la información almacenada en esta lista. La mayoría de los comandos
+   interactivos (por ejemplo, para la edición de estructura) también
+   se basan en el sentido sintáctico al rededor del contexto.
+
 #    You can check syntax in your documents using =org-lint= command.
 
+   Puede verificar la sintaxis de sus documentos utilizando el comando
+   =org-lint=.
+
 # * 3 Tables                                                            <<@Tables>>
+* 3 Tablas                                                            <<@Tables>>
 
 #   Org comes with a fast and intuitive table editor. Spreadsheet-like
 #   calculations are supported using the Emacs calc package (see [[http://www.gnu.org/software/emacs/manual/html_mono/calc.html#Top][Calc]] in
@@ -2338,7 +2347,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #    Org makes it easy to format tables in plain ASCII. Any line with
 #    ‘|' as the first non-whitespace character is considered part of a
-#    table. ‘|' is also the column separator[fn:FOOT24]. A table might
+#    table. ‘|' is also the column separator[fn:24]. A table might
 #    look like this:
 
 #    #+BEGIN_EXAMPLE
@@ -2598,7 +2607,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    Sometimes a single field or a few fields need to carry more text,
 #    leading to inconveniently wide columns. Or maybe you want to make a
 #    table with several columns having a fixed width, regardless of
-#    content.  To set[fn:FOOT25] the width of a column, one field
+#    content.  To set[fn:25] the width of a column, one field
 #    anywhere in the column may contain just the string ‘<N>' where ‘N'
 #    is an integer specifying the width of the column in characters. The
 #    next re-align will then set the width of this column to this value.
@@ -2635,7 +2644,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #    If you would like to overrule the automatic alignment of
 #    number-rich columns to the right and of string-rich column to the
-#    left, you can use ‘<r>', ‘<c>'[fn:FOOT26] or ‘<l>' in a similar
+#    left, you can use ‘<r>', ‘<c>'[fn:26] or ‘<l>' in a similar
 #    fashion. You may also combine alignment and field width like this:
 #    ‘<r10>'.
 
@@ -2731,7 +2740,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #      Formulas can reference the value of another field in two
 #      ways. Like in any other spreadsheet, you may reference fields
 #      with a letter/number combination like =B3=, meaning the 2nd field
-#      in the 3rd row. However, Org prefers[fn:FOOT27] to use another,
+#      in the 3rd row. However, Org prefers[fn:27] to use another,
 #      more general representation that looks like this:
 
 #      #+BEGIN_EXAMPLE
@@ -2749,7 +2758,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #      horizontal separator lines (hlines). Like with columns, you can
 #      use absolute row numbers =@1=, =@2=,... =@N=, and row numbers
 #      relative to the current row like =@+3= or =@-1=. =@<= and =@>=
-#      are immutable references the first and last[fn:FOOT28] row in the
+#      are immutable references the first and last[fn:28] row in the
 #      table, respectively. You may also specify the row relative to one
 #      of the hlines: =@I= refers to the first hline, =@II= to the
 #      second, etc. =@-I= refers to the first such line above the
@@ -2832,7 +2841,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #      For the second/third example, the table named =FOO= must have at
 #      least as many rows/columns as the current table. Note that this
-#      is inefficient[fn:FOOT29] for large number of rows/columns.
+#      is inefficient[fn:29] for large number of rows/columns.
 
 # **** Named references
 
@@ -2851,7 +2860,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #      outline entry and in the hierarchy above it. If you have the
 #      constants.el package, it will also be used to resolve constants,
 #      including natural constants like ‘$h' for Planck's constant, and
-#      units like ‘$km' for kilometers[fn:FOOT30]. Column names and
+#      units like ‘$km' for kilometers[fn:30]. Column names and
 #      parameters can be specified in special table lines. These are
 #      described below, see [[@Advanced-features][Advanced features]]. All names must start with
 #      a letter, and further consist of letters and numbers.
@@ -2951,7 +2960,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     and -display for floating point numbers you may alternatively
 #     provide a ‘printf' format specifier to reformat the Calc result
 #     after it has been passed back to Org instead of letting Calc
-#     already do the formatting[fn:FOOT31]. A few examples:
+#     already do the formatting[fn:31]. A few examples:
 
 #     #+BEGIN_EXAMPLE
 #       $1+$2                Sum of first and second field
@@ -3412,7 +3421,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 # *** 3.5.10 Advanced features                                          <<@Advanced-features>>
 
 #     If you want the recalculation of fields to happen automatically,
-#     or if you want to be able to assign /names/ [fn:FOOT32] to fields
+#     or if you want to be able to assign /names/ [fn:32] to fields
 #     and columns, you need to reserve the first column of the table for
 #     special marking characters.
 
@@ -3761,13 +3770,13 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #    If none of the above succeeds, Org will search for a headline that
 #    is exactly the link text but may also include a TODO keyword and
-#    tags[fn:FOOT33].
+#    tags[fn:33].
 
 #    During export, internal links will be used to mark objects and
 #    assign them a number. Marked objects will then be referenced by
 #    links pointing to them. In particular, links without a description
 #    will appear as the number assigned to the marked
-#    object[fn:FOOT34]. In the following excerpt from an Org buffer
+#    object[fn:34]. In the following excerpt from an Org buffer
 
 #    #+BEGIN_EXAMPLE
 #      - one item
@@ -3907,13 +3916,13 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #         at the cursor, the link points to the target. Otherwise it
 #         points to the current headline, which will also be the
-#         description[fn:FOOT37].
+#         description[fn:37].
 
 #         If the headline has a =CUSTOM_ID= property, a link to this
 #         custom ID will be stored. In addition or alternatively
 #         (depending on the value of =org-id-link-to-org-use-id=), a
 #         globally unique =ID= property will be created and/or used to
-#         construct a link[fn:FOOT38]. So using this command in Org
+#         construct a link[fn:38]. So using this command in Org
 #         buffers will potentially create two links: a human-readable
 #         from the custom ID, and one that is globally unique and works
 #         even if the entry is moved from file to file. Later, when
@@ -3963,11 +3972,11 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #     - */C-c C-l/* (=org-insert-link=)
 
-#       Insert a link[fn:FOOT39]. This prompts for a link to be inserted
+#       Insert a link[fn:39]. This prompts for a link to be inserted
 #       into the buffer. You can just type a link, using text for an
 #       internal link, or one of the link type prefixes mentioned in the
 #       examples above.  The link will be inserted into the
-#       buffer[fn:FOOT40], along with a descriptive text. If some text
+#       buffer[fn:40], along with a descriptive text. If some text
 #       was selected when this command is called, the selected text
 #       becomes the default description.
 
@@ -3984,7 +3993,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #          defined through link abbreviations (see [[@Link-abbreviations][Link abbreviations]]).
 #          If you press =RET= after inserting only the prefix, Org will
 #          offer specific completion support for some link
-#          types[fn:FOOT41] For example, if you type file RET, file name
+#          types[fn:41] For example, if you type file RET, file name
 #          completion (alternative access: */C-u C-c C-l/*, see below)
 #          will be offered, and after bbdb RET you can complete contact
 #          names.
@@ -4044,7 +4053,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     - *mouse-3*
 
 #       Like *mouse-2*, but force file links to be opened with Emacs,
-#       and internal links to be displayed in another window[fn:FOOT42].
+#       and internal links to be displayed in another window[fn:42].
 
 #     - */C-c C-x C-v/* (=org-toggle-inline-images=)
 
@@ -4054,7 +4063,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #       called with a prefix argument, also display images that do have
 #       a link description. You can ask for inline images to be
 #       displayed at startup by configuring the variable
-#       =org-startup-with-inline-images= [fn:FOOT43].
+#       =org-startup-with-inline-images= [fn:43].
 
 #     - */C-c %/* (=org-mark-ring-push=)
 
@@ -4160,7 +4169,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #    File links can contain additional information to make Emacs jump to
 #    a particular location in the file when following a link. This can
-#    be a line number or a search option after a double[fn:FOOT44]
+#    be a line number or a search option after a double[fn:44]
 #    colon.  For example, when the command */C-c l/* creates a link (see
 #    [[@Handling-links][Handling links]]) to a file, it encodes the words in the current line
 #    as a search string that can be used to find this line back later
@@ -4236,7 +4245,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 # * 5 TODO items                                                        <<@TODO-items>>
 
 #   Org mode does not maintain TODO lists as separate
-#   documents[fn:FOOT45]. Instead, TODO items are an integral part of
+#   documents[fn:45]. Instead, TODO items are an integral part of
 #   the notes file, because TODO items usually come up while taking
 #   notes!  With Org mode, simply mark any entry in a tree as being a
 #   TODO item. In this way, information is not duplicated, and the
@@ -4349,7 +4358,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #     You can use TODO keywords to indicate different /sequential/
 #     states in the process of working on an item, for
-#     example[fn:FOOT46]:
+#     example[fn:46]:
 
 #     #+BEGIN_SRC lisp
 #       (setq org-todo-keywords
@@ -4388,7 +4397,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     rather different types. So the normal work flow would be to assign
 #     a task to a person, and later to mark it DONE. Org mode supports
 #     this style by adapting the workings of the command */C-c
-#     C-t/* [fn:FOOT47]. When used several times in succession, it will
+#     C-t/* [fn:47]. When used several times in succession, it will
 #     still cycle through all names, in order to first select the right
 #     type for a task. But when you return to the item after some time
 #     and execute */C-c C-t/* again, it will switch from any name
@@ -4450,7 +4459,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     state instead of cycling through the states, you can set up keys
 #     for single-letter access to the states. This is done by adding the
 #     selection character after each keyword, in
-#     parentheses[fn:FOOT48]. For example:
+#     parentheses[fn:48]. For example:
 
 #     #+BEGIN_SRC lisp
 #       (setq org-todo-keywords
@@ -4461,7 +4470,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #     If you then press */C-c C-t/* followed by the selection key, the
 #     entry will be switched to this state. SPC can be used to remove
-#     any TODO keyword from an entry.[fn:FOOT49]
+#     any TODO keyword from an entry.[fn:49]
 
 # *** 5.2.5 Setting up keywords for individual files                    <<@Per_file-keywords>>
 
@@ -4498,7 +4507,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     keyword if no bar is there) must always mean that the item is DONE
 #     (although you may use a different word). After changing one of
 #     these lines, use */C-c C-c/* with the cursor still in the line to
-#     make the changes known to Org mode[fn:FOOT50].
+#     make the changes known to Org mode[fn:50].
 
 # *** 5.2.6 Faces for TODO keywords                                     <<@Faces-for-TODO-keywords>>
 
@@ -4603,7 +4612,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 # *** 5.3.1 Closing items                                               <<@Closing-items>>
 
 #     The most basic logging is to keep track of /when/ a certain TODO
-#     item was finished. This is achieved with[fn:FOOT51]
+#     item was finished. This is achieved with[fn:51]
 
 #     #+BEGIN_SRC lisp
 #       (setq org-log-done 'time)
@@ -4617,7 +4626,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     pressing =C-c C-t SPC= for example), that line will also be
 #     removed, unless you set =org-closed-keep-when-no-todo= to non-
 #     =nil=. If you want to record a note along with the timestamp,
-#     use[fn:FOOT52]
+#     use[fn:52]
 
 #     #+BEGIN_SRC lisp
 #       (setq org-log-done 'note)
@@ -4638,11 +4647,11 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     occurred and maybe take a note about this change.  You can either
 #     record just a timestamp, or a time-stamped note for a
 #     change. These records will be inserted after the headline as an
-#     itemized list, newest first[fn:FOOT53]. When taking a lot of
+#     itemized list, newest first[fn:53]. When taking a lot of
 #     notes, you might want to get the notes out of the way into a
 #     drawer (see [[@Drawers][Drawers]]). Customize =org-log-into-drawer= to get this
 #     behavior -- the recommended drawer for this is called
-#     =LOGBOOK= [fn:FOOT54]. You can also overrule the setting of this
+#     =LOGBOOK= [fn:54]. You can also overrule the setting of this
 #     variable for a subtree by setting a =LOG_INTO_DRAWER= property.
 
 #     Since it is normally too much to record a note for every state,
@@ -4662,7 +4671,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #     You not only define global TODO keywords and fast access keys, but
 #     also request that a time is recorded when the entry is set to
-#     DONE[fn:FOOT55], and that a note is recorded when switching to
+#     DONE[fn:55], and that a note is recorded when switching to
 #     WAIT or CANCELED. The setting for WAIT is even more special: the
 #     ‘!'  after the slash means that in addition to the note taken when
 #     entering the state, a timestamp should be recorded when /leaving/
@@ -4849,7 +4858,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     - */S-up/* (=org-priority-up=)
 #     - */S-down/* (=org-priority-down=) ::
 
-#       Increase/decrease priority of current headline[fn:FOOT56]. Note
+#       Increase/decrease priority of current headline[fn:56]. Note
 #       that these keys are also used to modify timestamps (see [[@Creating-timestamps][Creating
 #       timestamps]]). See also [[@Conflicts][Conflicts]], for a discussion of the
 #       interaction with =shift-selection-mode=.
@@ -4870,7 +4879,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    It is often advisable to break down large tasks into smaller,
 #    manageable subtasks. You can do this by creating an outline tree
 #    below a TODO item, with detailed subtasks on the
-#    tree[fn:FOOT57]. To keep the overview over the fraction of subtasks
+#    tree[fn:57]. To keep the overview over the fraction of subtasks
 #    that are already completed, insert either =[/]= or =[%]= anywhere
 #    in the headline. These cookies will be updated each time the TODO
 #    status of a child changes, or when pressing */C-c C-c/* on the
@@ -4919,7 +4928,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 # ** 5.6 Checkboxes                                                     <<@Checkboxes>>
 
-#    Every item in a plain list[fn:FOOT58] (see [[@Plain-lists][Listas Planas]]) can be made
+#    Every item in a plain list[fn:58] (see [[@Plain-lists][Listas Planas]]) can be made
 #    into a checkbox by starting it with the string ‘[ ]'. This feature
 #    is similar to TODO items (see [[@TODO-items][TODO items]]), but is more
 #    lightweight. Checkboxes are not included in the global TODO list,
@@ -4953,7 +4962,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    opening a folded entry.  The cookies can be placed into a headline
 #    or into (the first line of) a plain list item. Each cookie covers
 #    checkboxes of direct children structurally below the headline/item
-#    on which the cookie appears[fn:FOOT59]. You have to insert the
+#    on which the cookie appears[fn:59]. You have to insert the
 #    cookie yourself by typing either ‘[/]' or ‘[%]'. With ‘[/]' you get
 #    an ‘n out of m' result, as in the examples above. With ‘[%]' you
 #    get information about the percentage of checkboxes checked (in the
@@ -4973,7 +4982,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #       Toggle checkbox status or (with prefix arg) checkbox presence at
 #       point.  With a single prefix argument, add an empty checkbox or
-#       remove the current one[fn:FOOT60]. With a double prefix
+#       remove the current one[fn:60]. With a double prefix
 #       argument, set it to ‘[-]', which is considered to be an
 #       intermediate state.
 
@@ -5056,7 +5065,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    marked with those tags. You can also set tags that all entries in a
 #    file should inherit just as if these tags were defined in a
 #    hypothetical level zero that surrounds the entire file. Use a line
-#    like this[fn:FOOT61]:
+#    like this[fn:61]:
 
 #    #+BEGIN_EXAMPLE
 #      #+FILETAGS: :Peter:Boss:Secret:
@@ -5068,7 +5077,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #    When a headline matches during a tags search while tag inheritance
 #    is turned on, all the sublevels in the same tree will (for a simple
-#    match form) match as well[fn:FOOT62]. The list of matches may then
+#    match form) match as well[fn:62]. The list of matches may then
 #    become very long. If you only want to see the first tags match in a
 #    subtree, configure =org-tags-match-list-sublevels= (not
 #    recommended).
@@ -5199,7 +5208,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    If at least one tag has a selection key then pressing */C-c C-c/*
 #    will automatically present you with a special interface, listing
 #    inherited tags, the tags of the current headline, and a list of all
-#    valid tags with corresponding keys[fn:FOOT63]. In this interface,
+#    valid tags with corresponding keys[fn:63]. In this interface,
 #    you can use the following keys:
 
 #     - */a-z.../* ::
@@ -5789,7 +5798,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #      allowed values.
 
 #      #+BEGIN_EXAMPLE
-#        :COLUMNS:  %25ITEM %9Approved(Approved?){X} %Owner %11Status \ [fn:FOOT64]
+#        :COLUMNS:  %25ITEM %9Approved(Approved?){X} %Owner %11Status \ [fn:64]
 #                           %10Time_Estimate{:} %CLOCKSUM %CLOCKSUM_T
 #        :Owner_ALL: Tammy Mark Karl Lisa Don
 #        :Status_ALL: "In progress" "Not started yet" "Finished" ""
@@ -5986,7 +5995,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #    An alternative way to capture and process property values into a
 #    table is provided by Eric Schulte's org-collector.el which is a
-#    contributed package[fn:FOOT65]. It provides a general API to
+#    contributed package[fn:65]. It provides a general API to
 #    collect properties from entries in a certain scope, and arbitrary
 #    Lisp expressions to process these values before inserting them into
 #    a table or a dynamic block.
@@ -6018,8 +6027,8 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #    A timestamp is a specification of a date (possibly with a time or a
 #    range of times) in a special format, either
-#    ‘<2003-09-16 Tue>'[fn:FOOT66] or ‘<2003-09-16 Tue 09:39>' or
-#    ‘<2003-09-16 Tue 12:00-12:30>'[fn:FOOT67]. A timestamp can appear
+#    ‘<2003-09-16 Tue>'[fn:66] or ‘<2003-09-16 Tue 09:39>' or
+#    ‘<2003-09-16 Tue 12:00-12:30>'[fn:67]. A timestamp can appear
 #    anywhere in the headline or body of an Org tree entry. Its presence
 #    causes entries to be shown on specific dates in the agenda (see
 #    [[@Weekly_daily-agenda][Weekly/daily agenda]]). We distinguish:
@@ -6056,7 +6065,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #       For more complex date specifications, Org mode supports using
 #       the special sexp diary entries implemented in the Emacs
-#       calendar/diary package[fn:FOOT68]. For example with optional
+#       calendar/diary package[fn:68]. For example with optional
 #       time
 
 #       #+BEGIN_EXAMPLE
@@ -6177,7 +6186,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     Org mode assumes that most of the time you will want to enter a
 #     date in the future: if you omit the month/year and the given
 #     day/month is /before/ today, it will assume that you mean a future
-#     date[fn:FOOT69]. If the date has been automatically shifted into
+#     date[fn:69]. If the date has been automatically shifted into
 #     the future, the time prompt will show this with ‘(=>F).'
 
 #     For example, let's assume that today is *June 13, 2006*. Here is
@@ -6244,7 +6253,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     #+END_EXAMPLE
 
 #     Parallel to the minibuffer prompt, a calendar is popped
-#     up[fn:FOOT70]. When you exit the date prompt, either by clicking
+#     up[fn:70]. When you exit the date prompt, either by clicking
 #     on a date in the calendar, or by pressing =RET=, the date selected
 #     in the calendar will be combined with the information entered at
 #     the prompt. You can control the calendar fully from the
@@ -6263,7 +6272,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     you they will grow on you, and you will start getting annoyed by
 #     pretty much any other way of entering a date/time out there. To
 #     help you understand what is going on, the current interpretation
-#     of your input will be displayed live in the minibuffer[fn:FOOT71].
+#     of your input will be displayed live in the minibuffer[fn:71].
 
 # *** 8.2.2 Custom time format                                          <<@Custom-time-format>>
 
@@ -6337,7 +6346,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #       Meaning: you are planning to start working on that task on the
 #       given date.
 
-#       The headline will be listed under the given date[fn:FOOT72].  In
+#       The headline will be listed under the given date[fn:72].  In
 #       addition, a reminder that the scheduled date has passed will be
 #       present in the compilation for /today/, until the entry is
 #       marked DONE, i.e., the task will automatically be forwarded
@@ -6381,7 +6390,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 # *** 8.3.1 Inserting deadlines or schedules                            <<@Inserting-deadline_schedule>>
 
-#     The following commands allow you to quickly insert[fn:FOOT73] a
+#     The following commands allow you to quickly insert[fn:73] a
 #     deadline or to schedule an item:
 
 #      - */C-c C-d/* (=org-deadline=)
@@ -6391,7 +6400,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #        CLOSED timestamp will be removed. When called with a prefix
 #        arg, an existing deadline will be removed from the
 #        entry. Depending on the variable
-#        =org-log-redeadline=[fn:FOOT74], a note will be taken when
+#        =org-log-redeadline=[fn:74], a note will be taken when
 #        changing an existing deadline.
 
 #      - */C-c C-s/* (=org-schedule=)
@@ -6400,7 +6409,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #        will happen in the line directly following the headline. Any
 #        CLOSED timestamp will be removed. When called with a prefix
 #        argument, remove the scheduling date from the entry. Depending
-#        on the variable =org-log-reschedule= [fn:FOOT75], a note will be
+#        on the variable =org-log-reschedule= [fn:75], a note will be
 #        taken when changing an existing scheduling time.
 
 #      - */C-c / d/* (=org-check-deadlines=)
@@ -6455,7 +6464,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     be active. Org mode deals with this in the following way: When you
 #     try to mark such an entry DONE (using */C-c C-t/*), it will shift
 #     the base date of the repeating timestamp by the repeater interval,
-#     and immediately set the entry state back to TODO[fn:FOOT76]. In
+#     and immediately set the entry state back to TODO[fn:76]. In
 #     the example above, setting the state to DONE would actually switch
 #     the date like this:
 
@@ -6467,7 +6476,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     To mark a task with a repeater as =DONE=, use */C-- 1 C-c C-t/*
 #     (i.e., =org-todo= with a numeric prefix argument of -1.)
 
-#     A timestamp[fn:FOOT77] will be added under the deadline, to keep a
+#     A timestamp[fn:77] will be added under the deadline, to keep a
 #     record that you actually acted on the previous instance of this
 #     deadline.
 
@@ -6520,7 +6529,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    clock.  When you stop working on that task, or when you mark the
 #    task done, the clock is stopped and the corresponding time interval
 #    is recorded. It also computes the total time spent on each
-#    subtree[fn:FOOT78] of a project. And it remembers a history or
+#    subtree[fn:78] of a project. And it remembers a history or
 #    tasks recently clocked, so that you can jump quickly between a
 #    number of tasks absorbing your time.
 
@@ -6532,7 +6541,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    #+END_SRC
 
 #    When you clock into a new task after resuming Emacs, the incomplete
-#    clock[fn:FOOT79] will be found (see [[@Resolving-idle-time][Resolving idle time]]) and you
+#    clock[fn:79] will be found (see [[@Resolving-idle-time][Resolving idle time]]) and you
 #    will be prompted about what to do with it.
 
 #    | • [[@Clocking-commands][Clocking commands]]:   | Starting and stopping a clock        |
@@ -6563,15 +6572,15 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #        time shown will be all time ever clocked for this task and its
 #        children. If the task has an effort estimate (see [[@Effort-estimates][Effort
 #        estimates]]), the mode line displays the current clocking time
-#        against it[fn:FOOT80] If the task is a repeating one (see
+#        against it[fn:80] If the task is a repeating one (see
 #        [[@Repeated-tasks][Repeated tasks]]), only the time since the last reset of the
-#        task [fn:FOOT81] will be shown. More control over what time is
+#        task [fn:81] will be shown. More control over what time is
 #        shown can be exercised with the =CLOCK_MODELINE_TOTAL=
 #        property.  It may have the values =current= to show only the
 #        current clocking instance, =today= to show all time clocked on
 #        this tasks today (see also the variable
 #        =org-extend-today-until=), =all= to include all time, or =auto=
-#        which is the default[fn:FOOT82].
+#        which is the default[fn:82].
 
 #        Clicking with mouse-1 onto the mode line entry will pop up a
 #        menu with clocking options.
@@ -6584,7 +6593,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #        time range as ‘=> HH:MM'. See the variable
 #        =org-log-note-clock-out= for the possibility to record an
 #        additional note together with the clock-out
-#        timestamp[fn:FOOT83].
+#        timestamp[fn:83].
 
 #      - */C-c C-x C-x/* (=org-clock-in-last=)
 
@@ -6777,7 +6786,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #       #+END: clocktable
 #     #+END_EXAMPLE
 
-#     and to use a specific time range you could write[fn:FOOT85]
+#     and to use a specific time range you could write[fn:85]
 
 #     #+BEGIN_EXAMPLE
 #       #+BEGIN: clocktable :tstart "<2006-08-10 Thu 10:00>"
@@ -6819,7 +6828,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #     By customizing the variable =org-clock-idle-time= to some integer,
 #     such as 10 or 15, Emacs can alert you when you get back to your
-#     computer after being idle for that many minutes[fn:FOOT86], and
+#     computer after being idle for that many minutes[fn:86], and
 #     ask what you want to do with the idle time. There will be a
 #     question waiting for you when you get back, indicating how much
 #     idle time has passed (constantly updated with the current amount),
@@ -6942,7 +6951,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #    If you switch to column view in the daily/weekly agenda, the effort
 #    column will summarize the estimated work effort for each
-#    day[fn:FOOT87], and you can use this to find space in your
+#    day[fn:87], and you can use this to find space in your
 #    schedule. To get an overview of the entire part of the day that is
 #    committed, you can set the option
 #    =org-agenda-columns-add-appointments-to-effort-sum=. The
@@ -7059,7 +7068,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 # *** 9.1.1 Setting up capture                                          <<@Setting-up-capture>>
 
 #     The following customization sets a default target file for notes,
-#     and defines a global key[fn:FOOT88] for capturing new material.
+#     and defines a global key[fn:88] for capturing new material.
 
 #     #+BEGIN_EXAMPLE
 #      (setq org-default-notes-file (concat org-directory "/notes.org"))
@@ -7272,7 +7281,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #          - =(file+datetree "path/to/file")=
 
 #            Will create a heading in a date tree for today's
-#            date[fn:FOOT89].
+#            date[fn:89].
 
 #          - =(file+datetree+prompt "path/to/file")=
 
@@ -7362,7 +7371,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 # **** 9.1.3.2 Template expansion                                       <<@Template-expansion>>
 
-#      In the template itself, special %-escapes[fn:FOOT90] allow
+#      In the template itself, special %-escapes[fn:90] allow
 #      dynamic insertion of content. The templates are expanded in the
 #      order given here:
 
@@ -7407,7 +7416,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #      #+END_EXAMPLE
 
 #      For specific link types, the following keywords will be
-#      defined[fn:FOOT91]:
+#      defined[fn:91]:
 
 #      | Link type                       | Available keywords                                     |
 #      |---------------------------------+--------------------------------------------------------|
@@ -7421,7 +7430,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #      |                                 | %:date (message date header field)                     |
 #      |                                 | %:date-timestamp (date as active timestamp)            |
 #      |                                 | %:date-timestamp-inactive (date as inactive timestamp) |
-#      |                                 | %:fromto (either "to NAME" or "from NAME")[fn:FOOT92]  |
+#      |                                 | %:fromto (either "to NAME" or "from NAME")[fn:92]  |
 #      |---------------------------------+--------------------------------------------------------|
 #      | gnus                            | %:group, for messages also all email fields            |
 #      |---------------------------------+--------------------------------------------------------|
@@ -7472,7 +7481,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    in a directory belonging to an outline node. Org uses directories
 #    named by the unique ID of each entry. These directories are located
 #    in the data directory which lives in the same directory where your
-#    Org file lives[fn:FOOT93]. If you initialize this directory with
+#    Org file lives[fn:93]. If you initialize this directory with
 #    =git init=, Org will automatically commit changes when it sees
 #    them. The attachment system has been contributed to Org by John
 #    Wiegley.
@@ -7634,7 +7643,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #       able to create new nodes as new parents for refiling on the fly,
 #       check the variable
 #       =org-refile-allow-creating-parent-nodes=. When the variable
-#       =org-log-refile= [fn:FOOT94] is set, a timestamp or a note will
+#       =org-log-refile= [fn:94] is set, a timestamp or a note will
 #       be recorded when an entry has been refiled.
 
 #     - */C-u C-c C-w/*
@@ -7845,12 +7854,12 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #    The information to be shown is normally collected from all /agenda
 #    files/, the files listed in the variable
-#    =org-agenda-files= [fn:FOOT95]. If a directory is part of this list,
+#    =org-agenda-files= [fn:95]. If a directory is part of this list,
 #    all files with the extension .org in this directory will be part of
 #    the list.
 
 #    Thus, even if you only work with a single Org file, that file
-#    should be put into the list[fn:FOOT96]. You can customize
+#    should be put into the list[fn:96]. You can customize
 #    =org-agenda-files=, but the easiest way to maintain it is through
 #    the following commands
 
@@ -7962,14 +7971,14 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     - <
 
 #       Restrict an agenda command to the current
-#       buffer[fn:FOOT97]. After pressing <, you still need to press the
+#       buffer[fn:97]. After pressing <, you still need to press the
 #       character selecting the command.
 
 #     - < <
 
 #       If there is an active region, restrict the following agenda
 #       command to the region. Otherwise, restrict it to the current
-#       subtree[fn:FOOT98]. After pressing < <, you still need to press
+#       subtree[fn:98]. After pressing < <, you still need to press
 #       the character selecting the command.
 
 #     - *
@@ -8012,7 +8021,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #        Compile an agenda for the current week from a list of Org
 #        files. The agenda shows the entries for each day. With a
-#        numeric prefix[fn:FOOT99] (like */C-u 2 1 C-c a a/*) you may
+#        numeric prefix[fn:99] (like */C-u 2 1 C-c a a/*) you may
 #        set the number of days to be displayed.
 
 #     The default number of days displayed in the agenda is set by the
@@ -8077,7 +8086,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #          :PROPERTIES:
 #          :CATEGORY: Ann
 #          :END:
-#        %%(org-anniversary 1956  5 14)[fn:FOOT100] Arthur Dent is %d years old
+#        %%(org-anniversary 1956  5 14)[fn:100] Arthur Dent is %d years old
 #        %%(org-anniversary 1869 10  2) Mahatma Gandhi would be %d years old
 #      #+END_EXAMPLE
 
@@ -8433,7 +8442,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     tag. Finally, if the project contains the special word IGNORE
 #     anywhere, it should not be listed either. In this case you would
 #     start by identifying eligible projects with a tags/todo
-#     match[fn:FOOT101] ‘+PROJECT/-MAYBE-DONE', and then check for TODO,
+#     match[fn:101] ‘+PROJECT/-MAYBE-DONE', and then check for TODO,
 #     NEXT, @SHOP, and IGNORE in the subtree to identify projects that
 #     are not stuck. The correct customization for this is
 
@@ -8576,7 +8585,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #         estimates.  The difference between this and a custom agenda
 #         command is that filtering is very fast, so that you can switch
 #         quickly between different filters without having to recreate
-#         the agenda.[fn:FOOT102]
+#         the agenda.[fn:102]
 
 #         You will be prompted for a tag selection letter; =SPC= will
 #         mean any tag at all. Pressing =TAB= at that prompt will offer
@@ -8898,7 +8907,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #        =org-agenda-start-with-clockreport-mode=. By using a prefix
 #        argument when toggling this mode (i.e., C-u R), the clock table
 #        will not show contributions from entries that are hidden by
-#        agenda filtering[fn:FOOT103]. See also the variable
+#        agenda filtering[fn:103]. See also the variable
 #        =org-clock-report-include-clocking-task=.
 
 #      - v c
@@ -9160,7 +9169,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #      - M-<up> (=org-agenda-drag-line-backward=)
 
-#        Drag the line at point backward one line[fn:FOOT104]. With a
+#        Drag the line at point backward one line[fn:104]. With a
 #        numeric prefix argument, drag backward by that many lines.
 
 #      - M-<down> (=org-agenda-drag-line-forward=)
@@ -9259,7 +9268,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #         - f
 
-#           Apply a function[fn:FOOT105] to marked entries. For example,
+#           Apply a function[fn:105] to marked entries. For example,
 #           the function below sets the CATEGORY property of the entries
 #           to web.
 
@@ -9294,7 +9303,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #        Insert a new entry into the diary, using the date at the cursor
 #        and (for block entries) the date at the mark. This will add to
-#        the Emacs diary file[fn:FOOT106], in a way similar to the i
+#        the Emacs diary file[fn:106], in a way similar to the i
 #        command in the calendar. The diary file will pop up in another
 #        window, where you can add the entry.
 
@@ -9409,14 +9418,14 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     the command.  Usually this will be just a single character, but if
 #     you have many similar commands, you can also define two-letter
 #     combinations where the first character is the same in several
-#     combinations and serves as a prefix key[fn:FOOT107]. The second
+#     combinations and serves as a prefix key[fn:107]. The second
 #     parameter is the search type, followed by the string or regular
 #     expression to be used for the matching. The example above will
 #     therefore define:
 
 #      - C-c a x
 
-#        as a global search for agenda entries planned[fn:FOOT108] this
+#        as a global search for agenda entries planned[fn:108] this
 #        week/day.
 
 #      - C-c a y
@@ -9582,8 +9591,8 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #    If you are away from your computer, it can be very useful to have a
 #    printed version of some agenda views to carry around. Org mode can
-#    export custom agenda views as plain text, HTML[fn:FOOT109],
-#    Postscript, PDF[fn:FOOT110], and iCalendar files. If you want to do
+#    export custom agenda views as plain text, HTML[fn:109],
+#    Postscript, PDF[fn:110], and iCalendar files. If you want to do
 #    this only occasionally, use the command
 
 #     - */C-x C-w/* (=org-agenda-write=)
@@ -9605,7 +9614,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #    If you need to export certain agenda views frequently, you can
 #    associate any custom agenda command with a list of output file
-#    names [fn:FOOT111]. Here is an example that first defines custom
+#    names [fn:111]. Here is an example that first defines custom
 #    commands for the agenda and the global TODO list, together with a
 #    number of files to which to export them. Then we define two block
 #    agenda commands and specify file names for them as well. File names
@@ -9678,7 +9687,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #      emacs -eval (org-batch-store-agenda-views) -kill
 #    #+END_EXAMPLE
 
-#    or, if you need to modify some parameters[fn:FOOT112]
+#    or, if you need to modify some parameters[fn:112]
 
 #    #+BEGIN_EXAMPLE
 #      emacs -eval '(org-batch-store-agenda-views                      \
@@ -9836,7 +9845,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     #+END_EXAMPLE
 
 #     Moreover, if you append ‘local' parameter, the table contains only
-#     entries for the children of the current section[fn:FOOT113]. In
+#     entries for the children of the current section[fn:113]. In
 #     this case, any depth parameter becomes relative to the current
 #     level.
 
@@ -9944,7 +9953,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     Finally, a ‘COMMENT' keyword at the beginning of an entry, but
 #     after any other keyword or priority cookie, comments out the
 #     entire subtree. In this case, the subtree is not exported and no
-#     code block within it is executed either[fn:FOOT114]. The command
+#     code block within it is executed either[fn:114]. The command
 #     below helps changing the comment status of a headline.
 
 #     C-c ;
@@ -10021,9 +10030,9 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    If the example is source code from a programming language, or any
 #    other text that can be marked up by font-lock in Emacs, you can ask
 #    for the example to look like the fontified Emacs
-#    buffer[fn:FOOT115].  This is done with the ‘src' block, where you
+#    buffer[fn:115].  This is done with the ‘src' block, where you
 #    also need to specify the name of the major mode that should be used
-#    to fontify the example[fn:FOOT116], see [[@Easy-templates][Easy templates]] for
+#    to fontify the example[fn:116], see [[@Easy-templates][Easy templates]] for
 #    shortcuts to easily insert code blocks.
 
 #    #+BEGIN_EXAMPLE
@@ -10046,7 +10055,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    cool.
 
 #    You can also add a =-r= switch which /removes/ the labels from the
-#    source code[fn:FOOT117]. With the =-n= switch, links to these
+#    source code[fn:117]. With the =-n= switch, links to these
 #    references will be labeled by the line numbers from the code
 #    listing, otherwise links will use the labels with no
 #    parentheses. Here is an example:
@@ -10079,11 +10088,11 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #       Edit the source code example at point in its native mode. This
 #       works by switching to a temporary buffer with the source
-#       code. You need to exit by pressing C-c ' again[fn:FOOT118]. The
+#       code. You need to exit by pressing C-c ' again[fn:118]. The
 #       edited version will then replace the old version in the Org
 #       buffer. Fixed-width regions (where each line starts with a colon
 #       followed by a space) will be edited using
-#       =artist-mode= [fn:FOOT119] to allow creating ASCII drawings
+#       =artist-mode= [fn:119] to allow creating ASCII drawings
 #       easily. Using this command in an empty line will create a new
 #       fixed-width region.
 
@@ -10111,7 +10120,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    the contents.
 
 #    If markup is requested, the included content will be placed within
-#    an appropriate block[fn:FOOT120]. No changes to the included
+#    an appropriate block[fn:120]. No changes to the included
 #    content are made and it is the responsibility of the user to ensure
 #    that the result is valid Org syntax. For markup ‘example' and
 #    ‘src', which is requesting a literal example, the content will be
@@ -10145,7 +10154,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    #+END_EXAMPLE
 
 #    Finally, you may use a file-link to extract an object as matched by
-#    =org-link-search= [fn:FOOT121] (see [[@Search-options][Search options]]). If the
+#    =org-link-search= [fn:121] (see [[@Search-options][Search options]]). If the
 #    =:only-contents= property is non- =nil=, only the contents of the
 #    requested element will be included, omitting properties drawer and
 #    planning-line if present. The =:lines= keyword operates locally
@@ -10184,7 +10193,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #      #+MACRO: name   replacement text $1, $2 are arguments
 #    #+END_EXAMPLE
 
-#    which can be referenced ={{{name(arg1, arg2)}}}= [fn:FOOT122].
+#    which can be referenced ={{{name(arg1, arg2)}}}= [fn:122].
 
 #    These references, called macros, can be inserted anywhere Org
 #    markup is recognized: paragraphs, headlines, verse blocks, tables
@@ -10239,7 +10248,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #    Plain ASCII is normally sufficient for almost all note taking.
 #    Exceptions include scientific notes, which often require
-#    mathematical symbols and the occasional formula. LaTeX[fn:FOOT123]
+#    mathematical symbols and the occasional formula. LaTeX[fn:123]
 #    is widely used to typeset scientific documents. Org mode supports
 #    embedding LaTeX code into its files, because many academics are
 #    used to writing and reading LaTeX source code, and because it can
@@ -10279,7 +10288,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     different lengths or a compact set of dots.
 
 #     If you would like to see entities displayed as UTF-8 characters,
-#     use the following command[fn:FOOT124]:
+#     use the following command[fn:124]:
 
 #      - */C-c C-x \ /*
 
@@ -10326,7 +10335,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     LaTeX fragments don't need any special marking at all. The
 #     following snippets will be identified as LaTeX source code:
 
-#      - Environments of any kind[fn:FOOT125]. The only requirement is
+#      - Environments of any kind[fn:125]. The only requirement is
 #        that the =\begin= statement appears on a new line, at the
 #        beginning of the line or after whitespaces only.
 
@@ -10366,7 +10375,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 # *** 11.7.4 Previewing LaTeX fragments                                 <<@Previewing-LaTeX-fragments>>
 
 #     If you have a working LaTeX installation and either dvipng or
-#     convert installed[fn:FOOT126], LaTeX fragments can be processed to
+#     convert installed[fn:126], LaTeX fragments can be processed to
 #     produce images of the typeset expressions to be used for inclusion
 #     while exporting to HTML (see see [[@LaTeX-fragments][LaTeX fragments]]), or for inline
 #     previewing within Org mode.
@@ -10427,7 +10436,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #      - Environment templates can be inserted with */C-c {/*.
 
 #      - The =TAB= key will do template expansion if the cursor is
-#        inside a LaTeX fragment[fn:FOOT127]. For example, =TAB= will
+#        inside a LaTeX fragment[fn:127]. For example, =TAB= will
 #        expand =fr= to =\frac{}{}= and position the cursor correctly
 #        inside the first brace. Another =TAB= will get you into the
 #        second brace. Even outside fragments, =TAB= will expand
@@ -10514,7 +10523,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #    The main entry point for export related tasks is the dispatcher, a
 #    hierarchical menu from which it is possible to select an export
-#    format and toggle export options[fn:FOOT128] from which it is
+#    format and toggle export options[fn:128] from which it is
 #    possible to select an export format and to toggle export options.
 
 #     - */C-c C-e/* (=org-export-dispatch=)
@@ -10624,7 +10633,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #     - ‘DATE'
 
-#       A date or a time-stamp[fn:FOOT129].
+#       A date or a time-stamp[fn:129].
 
 #     - ‘EMAIL'
 
@@ -10660,7 +10669,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #       The title to be shown. You can use several such keywords for
 #       long titles.
 
-#    The =#+OPTIONS= keyword is a compact[fn:FOOT130] form that
+#    The =#+OPTIONS= keyword is a compact[fn:130] form that
 #    recognizes the following arguments:
 
 #     - =':=
@@ -10819,7 +10828,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #       Toggle inclusion of tables (=org-export-with-tables=).
 
 #    When exporting only a subtree, each of the previous
-#    keywords[fn:FOOT131] can be overridden locally by special node
+#    keywords[fn:131] can be overridden locally by special node
 #    properties. These begin with =EXPORT_=, followed by the name of the
 #    keyword they supplant. For example, =DATE= and =OPTIONS= keywords
 #    become, respectively, =EXPORT_DATE= and =EXPORT_OPTIONS=
@@ -11032,7 +11041,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #      - All frame's children become =block= environments. Special block
 #        types can be enforced by setting headline's =BEAMER_ENV=
-#        property[fn:FOOT132] to an appropriate value (see
+#        property[fn:132] to an appropriate value (see
 #        =org-beamer-environments-default= for supported values and
 #        =org-beamer-environments-extra= for adding more).
 
@@ -11052,7 +11061,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     Headlines also support =BEAMER_ACT= and =BEAMER_OPT=
 #     properties. The former is translated as an overlay/action
 #     specification, or a default overlay specification when enclosed
-#     within square brackets. The latter specifies options[fn:FOOT133]
+#     within square brackets. The latter specifies options[fn:133]
 #     for the current frame or block.  The export back-end will
 #     automatically wrap properties within angular or square brackets
 #     when appropriate.
@@ -11462,7 +11471,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #     HTML export can inline images given as links in the Org file, and
 #     it can make an image the clickable part of a link. By
-#     default[fn:FOOT134], images are inlined if a link does not have a
+#     default[fn:134], images are inlined if a link does not have a
 #     description. So =[[file:myimg.jpg]]= will be inlined, while
 
 #     #+BEGIN_EXAMPLE
@@ -11497,7 +11506,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #     LaTeX math snippets (see [[@LaTeX-fragments][LaTeX fragments]]) can be displayed in two
 #     different ways on HTML pages. The default is to use [[http://www.mathjax.org][MathJax]] which
-#     should work out of the box with Org[fn:FOOT135]. Some MathJax
+#     should work out of the box with Org[fn:135]. Some MathJax
 #     display options can be configured via =org-html-mathjax-options=,
 #     or in the buffer. For example, with the following settings,
 
@@ -11553,7 +11562,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #     You can modify the CSS style definitions for the exported
 #     file. The HTML exporter assigns the following special CSS
-#     classes[fn:FOOT136] to appropriate parts of the document -- your
+#     classes[fn:136] to appropriate parts of the document -- your
 #     style specifications may change these, in addition to any of the
 #     standard classes like for headlines, tables, etc.
 
@@ -11589,7 +11598,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     | .footnum           | footnote number in footnote definition (always <sup>)  |
 
 #     Each exported file contains a compact default style that defines
-#     these classes in a basic way[fn:FOOT137]. You may overwrite these
+#     these classes in a basic way[fn:137]. You may overwrite these
 #     settings, or add to them by using the variables =org-html-head=
 #     and =org-html-head-extra=. You can override the global values of
 #     these variables for each file by using these keywords:
@@ -11710,7 +11719,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #    LaTeX export can produce an arbitrarily complex LaTeX document of
 #    any standard or custom document class. With further
-#    processing[fn:FOOT138], which the LaTeX exporter is able to
+#    processing[fn:138], which the LaTeX exporter is able to
 #    control, this back-end is able to produce PDF output. Because the
 #    LaTeX exporter can be configured to use the =hyperref= package, the
 #    default setup produces fully-linked PDF output.
@@ -11820,7 +11829,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     =EXPORT_LATEX_CLASS= property that applies when exporting a region
 #     containing only this (sub)tree. The class must be listed in
 #     =org-latex-classes=. This variable defines a header template for
-#     each class[fn:FOOT139], and allows you to define the sectioning
+#     each class[fn:139], and allows you to define the sectioning
 #     structure for each class. You can also define your own classes
 #     there.
 
@@ -11830,7 +11839,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     within square brackets.
 
 #     You can also use the =LATEX_HEADER= and
-#     =LATEX_HEADER_EXTRA= [fn:FOOT140] keywords in order to add lines
+#     =LATEX_HEADER_EXTRA= [fn:140] keywords in order to add lines
 #     to the header. See the docstring of =org-latex-classes= for more
 #     information.
 
@@ -11888,8 +11897,8 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #       - =:environment=
 
 #         Environment used for the table. It can be set to any LaTeX
-#         table environment, like =tabularx= [fn:FOOT141], =longtable=,
-#         =array=, =tabu= [fn:FOOT142], =bmatrix=... It defaults to
+#         table environment, like =tabularx= [fn:141], =longtable=,
+#         =array=, =tabu= [fn:142], =bmatrix=... It defaults to
 #         =org-latex-default-table-environment= value.
 
 #       - =:caption=
@@ -11904,7 +11913,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #       - =:placement=
 
 #         The =:float= specifies the float environment for the
-#         table. Possible values are =sideways=[fn:FOOT143],
+#         table. Possible values are =sideways=[fn:143],
 #         =multicolumn=, =t= and =nil=. When unspecified, a table with a
 #         caption will have a =table= environment. Moreover, the
 #         =:placement= attribute can specify the positioning of the
@@ -11978,7 +11987,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #      Images that are linked to without a description part in the link,
 #      like =[[file:img.jpg]]= or =[[./img.jpg]]= will be inserted into the PDF
 #      output file resulting from LaTeX processing. Org will use an
-#      =\includegraphics= macro to insert the image[fn:FOOT144].
+#      =\includegraphics= macro to insert the image[fn:144].
 
 #      You can specify specify image width or height with, respectively,
 #      =:width= and =:height= attributes. It is also possible to add any
@@ -12162,7 +12171,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 # ** 12.8 Markdown export                                               <<@Markdown-export>>
 
-#    =md= export back-end generates Markdown syntax[fn:FOOT145] for an
+#    =md= export back-end generates Markdown syntax[fn:145] for an
 #    Org mode buffer.
 
 #    It is built over HTML back-end: any construct not supported by
@@ -12195,9 +12204,9 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 # ** 12.9 OpenDocument Text export                                      <<@OpenDocument-Text-export>>
 
-#    Org mode[fn:FOOT146] supports export to OpenDocument Text (ODT)
+#    Org mode[fn:146] supports export to OpenDocument Text (ODT)
 #    format. Documents created by this exporter use the
-#    OpenDocument-v1.2 specification[fn:FOOT147] and are compatible with
+#    OpenDocument-v1.2 specification[fn:147] and are compatible with
 #    LibreOffice 3.4.
 
 #    | • [[@Pre_requisites-for-ODT-export][Pre-requisites for ODT export]]:     | What packages ODT exporter relies on        |
@@ -12231,8 +12240,8 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #        For an Org file myfile.org, the ODT file will be
 #        myfile.odt. The file will be overwritten without warning. If
-#        there is an active region,[fn:FOOT148] only the region will be
-#        exported. If the selected region is a single tree,[fn:FOOT149]
+#        there is an active region,[fn:148] only the region will be
+#        exported. If the selected region is a single tree,[fn:149]
 #        the tree head will become the document title. If the tree head
 #        entry has, or inherits, an =EXPORT_FILE_NAME= property, that
 #        name will be used for the export.
@@ -12388,7 +12397,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     groups]]). Furthermore, all tables are typeset to occupy the same
 #     width.  If the table specifies alignment and relative width for
 #     its columns (see [[@Column-width-and-alignment][Column width and alignment]]) then these are
-#     honored on export.[fn:FOOT150]
+#     honored on export.[fn:150]
 
 #     You can control the width of the table by specifying =:rel-width=
 #     property using an =#+ATTR_ODT= line.
@@ -12457,7 +12466,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #      document in units of centimeters. In order to scale the embedded
 #      images, the exporter queries for pixel dimensions of the images
 #      using one of a) ImageMagick's identify program or b) Emacs
-#      =create-image= and =image-size= APIs[fn:FOOT151]. The pixel
+#      =create-image= and =image-size= APIs[fn:151]. The pixel
 #      dimensions are subsequently converted in to units of centimeters
 #      using =org-odt-pixels-per-inch=. The default value of this
 #      variable is set to =display-pixels-per-inch=. You can tweak this
@@ -12546,7 +12555,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #          the variables =org-latex-to-mathml-convert-command= and
 #          =org-latex-to-mathml-jar-file=.
 
-#          To use MathToWeb[fn:FOOT152] as your converter, you can
+#          To use MathToWeb[fn:152] as your converter, you can
 #          configure the above variables as
 
 #          #+BEGIN_SRC lisp
@@ -12556,7 +12565,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #                  "/path/to/mathtoweb.jar")
 #          #+END_SRC
 
-#          To use LaTeXML[fn:FOOT153] use
+#          To use LaTeXML[fn:153] use
 
 #          #+BEGIN_SRC lisp
 #            (setq org-latex-to-mathml-convert-command
@@ -12660,7 +12669,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     Export of literal examples (see [[@Literal-examples][Literal examples]]) with full
 #     fontification is supported. Internally, the exporter relies on
 #     htmlfontify.el to generate all style definitions needed for a
-#     fancy listing.[fn:FOOT154] The auto-generated styles have ‘OrgSrc'
+#     fancy listing.[fn:154] The auto-generated styles have ‘OrgSrc'
 #     as prefix and inherit their color from the faces used by Emacs
 #     =font-lock= library for the source language.
 
@@ -12871,7 +12880,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #      export]].
 
 #      This feature closely mimics the way table templates are defined
-#      in the OpenDocument-v1.2 specification.[fn:FOOT155]
+#      in the OpenDocument-v1.2 specification.[fn:155]
 
 #      To have a quick preview of this feature, install the below
 #      setting and export the table that follows:
@@ -12906,7 +12915,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #      To use this feature proceed as follows:
 
-#       1. Create a table template[fn:FOOT156]
+#       1. Create a table template[fn:156]
 
 #          A table template is nothing but a set of ‘table-cell' and
 #          ‘paragraph' styles for each of the following table cell
@@ -12946,7 +12955,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #          =<office:automatic-styles>=...=</office:automatic-styles>=
 #          element of the content template file (see [[@x_orgodtcontenttemplate_xml][Factory styles]]).
 
-#       2. Define a table style[fn:FOOT157]
+#       2. Define a table style[fn:157]
 
 #          To define a table style, create an entry for the style in the
 #          variable =org-odt-table-styles= and specify the following:
@@ -12994,7 +13003,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #      corrupt. In such cases, you may want to validate the document
 #      against the OpenDocument RELAX NG Compact Syntax (RNC) schema.
 
-#      For de-compressing the .odt file[fn:FOOT158]: See [[http://www.gnu.org/software/emacs/manual/html_mono/emacs.html#File-Archives][(emacs)File
+#      For de-compressing the .odt file[fn:158]: See [[http://www.gnu.org/software/emacs/manual/html_mono/emacs.html#File-Archives][(emacs)File
 #      Archives]]. For general help with validation (and schema-sensitive
 #      editing) of XML files: See [[http://www.gnu.org/software/emacs/manual/html_mono/nxml-mode.html#Introduction][(nxml-mode)Introduction]].
 
@@ -13051,7 +13060,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #      - */C-c C-e i i/* (=org-texinfo-export-to-info=)
 
-#        Export to Texinfo and then process to an Info file[fn:FOOT159].
+#        Export to Texinfo and then process to an Info file[fn:159].
 
 # *** 12.11.2 Texinfo specific export settings                          <<@Texinfo-specific-export-settings>>
 
@@ -13121,7 +13130,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #      Along with the output file name, the header contains information
 #      about the language (see [[@Export-settings][Export settings]]) and current encoding
-#      used[fn:FOOT160]. Insert a =#+TEXINFO_HEADER= keyword for each
+#      used[fn:160]. Insert a =#+TEXINFO_HEADER= keyword for each
 #      additional command needed, e.g., @code{@synindex}.
 
 #      If you happen to regularly install the same set of commands, it
@@ -13269,7 +13278,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #      In Texinfo output, description lists appear as two-column tables,
 #      using the default command =@table=. You can use =@ftable= or
-#      =@vtable=[fn:FOOT161] instead with =:table-type= attribute.
+#      =@vtable=[fn:161] instead with =:table-type= attribute.
 
 #      In any case, these constructs require a highlighting command for
 #      entries in the list. You can provide one with =:indic=
@@ -13384,9 +13393,9 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    VEVENT, and TODO items as VTODO. It will also create events from
 #    deadlines that are in non-TODO items. Deadlines and scheduling
 #    dates in TODO items will be used to set the start and due dates for
-#    the TODO entry[fn:FOOT162]. As categories, it will use the tags
+#    the TODO entry[fn:162]. As categories, it will use the tags
 #    locally defined in the heading, and the file/tree
-#    category[fn:FOOT163].  See the variable =org-icalendar-alarm-time=
+#    category[fn:163].  See the variable =org-icalendar-alarm-time=
 #    for a way to assign alarms to entries with a time.
 
 #    The iCalendar standard requires each entry to have a globally
@@ -13417,7 +13426,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #       =org-agenda-files= and write it to the file given by
 #       =org-icalendar-combined-agenda-file=.
 
-#    The export will honor SUMMARY, DESCRIPTION and LOCATION[fn:FOOT164]
+#    The export will honor SUMMARY, DESCRIPTION and LOCATION[fn:164]
 #    properties if the selected entries have them. If not, the summary
 #    will be derived from the headline, and the description from the
 #    body (limited to =org-icalendar-include-body= characters).
@@ -13723,7 +13732,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     function =org-org-publish-to-org=. This will produce file.org and
 #     put it in the publishing directory. If you want a htmlized version
 #     of this file, set the parameter =:htmlized-source= to =t=, it will
-#     produce file.org.html in the publishing directory[fn:FOOT165].
+#     produce file.org.html in the publishing directory[fn:165].
 
 #     Other files like images only need to be copied to the publishing
 #     destination. For this you can use =org-publish-attachment=. For
@@ -14167,7 +14176,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 # ** 14.1 Structure of code blocks                                      <<@Structure-of-code-blocks>>
 
 #    Live code blocks can be specified with a ‘src' block or
-#    inline.[fn:FOOT166] The structure of a ‘src' block is
+#    inline.[fn:166] The structure of a ‘src' block is
 
 #    #+BEGIN_EXAMPLE
 #      #+NAME: <name>
@@ -14392,7 +14401,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 # ** 14.5 Evaluating code blocks                                        <<@Evaluating-code-blocks>>
 
-#    Code blocks can be evaluated[fn:FOOT167] and the results of
+#    Code blocks can be evaluated[fn:167] and the results of
 #    evaluation optionally placed in the Org mode buffer. The results of
 #    evaluation are placed following a line that begins by default with
 #    =#+RESULTS= and optionally a cache identifier and/or the name of
@@ -14407,7 +14416,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #    There are a number of ways to evaluate code blocks. The simplest is
 #    to press */C-c C-c/* or */C-c C-v e/* with the point on a code
-#    block[fn:FOOT168]. This will call the =org-babel-execute-src-block=
+#    block[fn:168]. This will call the =org-babel-execute-src-block=
 #    function to evaluate the block and insert its results into the Org
 #    mode buffer.
 
@@ -14624,7 +14633,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #      When properties are used to set default header arguments, they
 #      are always looked up with inheritance, regardless of the value of
 #      =org-use-property-inheritance=. Properties are evaluated as seen
-#      by the outermost call or source block.[fn:FOOT169]
+#      by the outermost call or source block.[fn:169]
 
 #      In the following example the value of the =:cache= header
 #      argument will default to =yes= in all code blocks in the subtree
@@ -15470,7 +15479,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #      simple code block concatenation may be achieved. For example,
 #      when tangling the following Org mode file, the bodies of code
 #      blocks will be concatenated into the resulting pure code
-#      file[fn:FOOT170].
+#      file[fn:170].
 
 #      #+BEGIN_EXAMPLE
 #        #+BEGIN_SRC sh :tangle yes :noweb yes :shebang #!/bin/sh
@@ -16323,7 +16332,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 
 #        Dynamic virtual indentation is controlled by the variable
-#        =org-startup-indented= [fn:FOOT171]
+#        =org-startup-indented= [fn:171]
 
 #        | indent   | start with org-indent-mode turned on  |
 #        | noindent | start with org-indent-mode turned off |
@@ -16528,14 +16537,14 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #      * Another top level headline     |    * Another top level headline
 #    #+END_EXAMPLE
 
-#    If you are using at least Emacs 23.2[fn:FOOT172] and version 6.29
+#    If you are using at least Emacs 23.2[fn:172] and version 6.29
 #    of Org, this kind of view can be achieved dynamically at display
 #    time using =org-indent-mode=. In this minor mode, all lines are
 #    prefixed for display with the necessary amount of
-#    space[fn:FOOT173]. Also headlines are prefixed with additional
-#    stars, so that the amount of indentation shifts by two[fn:FOOT174]
+#    space[fn:173]. Also headlines are prefixed with additional
+#    stars, so that the amount of indentation shifts by two[fn:174]
 #    spaces per level. All headline stars but the last one are made
-#    invisible using the =org-hide= face[fn:FOOT175]; see below under
+#    invisible using the =org-hide= face[fn:175]; see below under
 #    ‘2.' for more information on how this works. You can turn on
 #    =org-indent-mode= for all files by customizing the variable
 #    =org-startup-indented=, or you can turn it on for individual files
@@ -16561,7 +16570,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #        #+END_EXAMPLE
 
 #        Org supports this with paragraph filling, line wrapping, and
-#        structure editing[fn:FOOT176], preserving or adapting the
+#        structure editing[fn:176], preserving or adapting the
 #        indentation as appropriate.
 
 #     2. /Hiding leading stars/
@@ -16595,7 +16604,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #     3. Things become cleaner still if you skip all the even levels and
 #        use only odd levels 1, 3, 5..., effectively adding two stars to
-#        go from one outline level to the next[fn:FOOT177]. In this way
+#        go from one outline level to the next[fn:177]. In this way
 #        we get the outline view shown at the beginning of this
 #        section. In order to make the structure editing and export
 #        commands handle this convention correctly, configure the
@@ -17077,7 +17086,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    that detects special context for that add-on and executes
 #    functionality appropriate for the context. Here is an example from
 #    Dan Davison's org-R.el which allows you to evaluate commands based
-#    on the R programming language [fn:FOOT178]. For this package,
+#    on the R programming language [fn:178]. For this package,
 #    special contexts are lines that start with =#+R:= or =#+RR:=.
 
 #    #+BEGIN_SRC lisp
@@ -17194,7 +17203,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     The best way to wrap the source table in LaTeX is to use the
 #     =comment= environment provided by comment.sty. It has to be
 #     activated by placing =\usepackage{comment}= into the document
-#     header. Orgtbl mode can insert a radio table skeleton[fn:FOOT179]
+#     header. Orgtbl mode can insert a radio table skeleton[fn:179]
 #     with the command M-x orgtbl-insert-radio-table RET. You will be
 #     prompted for a table name, let's say we use ‘salesfigures'. You
 #     will then get the following template:
@@ -17212,7 +17221,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #     =orgtbl-to-latex= to convert the table into LaTeX and to put it
 #     into the receiver location with name =salesfigures=. You may now
 #     fill in the table -- feel free to use the spreadsheet
-#     features[fn:FOOT180]:
+#     features[fn:180]:
 
 #     #+BEGIN_EXAMPLE
 #       % BEGIN RECEIVE ORGTBL salesfigures
@@ -17445,7 +17454,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 #    Org provides a special hook that can be used to narrow down the
 #    selection made by these agenda views: =agenda=,
-#    =agenda*=[fn:FOOT181], =todo=, =alltodo=, =tags=, =tags-todo=,
+#    =agenda*=[fn:181], =todo=, =alltodo=, =tags=, =tags-todo=,
 #    =tags-tree=. You may specify a function that is used at each match
 #    to verify if the match should indeed be part of the agenda view,
 #    and if not, how much should be skipped. You can specify a global
@@ -17493,7 +17502,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    A general way to create custom searches is to base them on a search
 #    for entries with a certain level limit. If you want to study all
 #    entries with your custom search function, simply do a search for
-#    ‘LEVEL>0'[fn:FOOT182], and then use =org-agenda-skip-function= to
+#    ‘LEVEL>0'[fn:182], and then use =org-agenda-skip-function= to
 #    select the entries you really want to have.
 
 #    You may also put a Lisp form into =org-agenda-skip-function=. In
@@ -17921,10 +17930,10 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    done with Org mode 7.02 and with /MobileOrg 1.5/ (iPhone version),
 #    and you need an openssl installation on your system. To turn on
 #    encryption, set a password in /MobileOrg/ and, on the Emacs side,
-#    configure the variable =org-mobile-use-encryption= [fn:FOOT183].
+#    configure the variable =org-mobile-use-encryption= [fn:183].
 
 #    The easiest way to create that directory is to use a free
-#    [[http://dropbox.com][Dropbox.com]] account[fn:FOOT184]. When MobileOrg first connects to
+#    [[http://dropbox.com][Dropbox.com]] account[fn:184]. When MobileOrg first connects to
 #    your Dropbox, it will create a directory /MobileOrg/ inside the
 #    Dropbox. After the directory has been created, tell Emacs about it:
 
@@ -17943,16 +17952,16 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    =org-agenda-files=), but additional files can be included by
 #    customizing =org-mobile-files=. File names will be staged with
 #    paths relative to =org-directory=, so all files should be inside
-#    this directory[fn:FOOT185].
+#    this directory[fn:185].
 
 #    The push operation also creates a special Org file agendas.org with
-#    all custom agenda view defined by the user[fn:FOOT186].
+#    all custom agenda view defined by the user[fn:186].
 
 #    Finally, Org writes the file index.org, containing links to all
 #    other files. /MobileOrg/ first reads this file from the server, and
 #    then downloads all agendas and Org files listed in it. To speed up
 #    the download, MobileOrg will only read files whose
-#    checksums[fn:FOOT187] have changed.
+#    checksums[fn:187] have changed.
 
 # ** B.3 Pulling from MobileOrg                                         <<@Pulling-from-MobileOrg>>
 
@@ -17963,7 +17972,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #    information into an inbox file and operates on the pointers to
 #    flagged entries. Here is how it works:
 
-#     1. Org moves all entries found in mobileorg.org[fn:FOOT188] and
+#     1. Org moves all entries found in mobileorg.org[fn:188] and
 #        appends them to the file pointed to by the variable
 #        =org-mobile-inbox-for-pull=. Each captured entry and each
 #        editing event will be a top-level entry in the inbox file.
@@ -17998,7 +18007,7 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 #          processing for this flagged entry is finished.
 
 #    If you are not able to process all flagged entries directly, you
-#    can always return to this agenda view[fn:FOOT189] using C-c a ?.
+#    can always return to this agenda view[fn:189] using C-c a ?.
 
 # * Appendix C History and acknowledgments                              <<@History-and-acknowledgments>>
 
@@ -21623,98 +21632,88 @@ Definición / de referencia, y puede utilizar los comandos habituales a
 
 # * Footnotes
 
-[fn:FOOT1]
-Si no se utiliza font-lock a nivel glabal, debe activarlo en el buffer
-Org con =(add-hook 'org-mode-hook 'turn-on-font-lock)=
+[fn:1] Si no se utiliza font-lock a nivel glabal, debe activarlo en el
+buffer Org con =(add-hook 'org-mode-hook 'turn-on-font-lock)=
 
 # If you don't use font-lock globally, turn it on in Org buffer with
 # =(add-hook 'org-mode-hook 'turn-on-font-lock)=
 
-[fn:FOOT2]
-Por favor considere suscribirse a la lista de correo, con el fin de
-reducir el trabajo que los moderadores de correo tienen que hacer.
+[fn:2] Por favor considere suscribirse a la lista de correo, con el
+fin de reducir el trabajo que los moderadores de correo tienen que
+hacer.
 
 # Please consider subscribing to the mailing list, in order to minimize
 # the work the mailing list moderators have to do.
 
-[fn:FOOT3]
-Las plantillas insertan fácilmente palabras clave minúsculas y Babel
-inserta de forma dinámica =#+results=.
+[fn:3] Las plantillas insertan fácilmente palabras clave minúsculas y
+Babel inserta de forma dinámica =#+results=.
 
 # Easy templates insert lowercase keywords and Babel dynamically inserts
 # =#+results=.
 
-[fn:FOOT4]
-Vea las variables =org-special-ctrl-a/e=, =org-special-ctrl-k=, y
-=org-ctrl-k-protect-subtree= para configurar el comportamiento
+[fn:4] Vea las variables =org-special-ctrl-a/e=, =org-special-ctrl-k=,
+y =org-ctrl-k-protect-subtree= para configurar el comportamiento
 especial de =C-a=, =C-e=, y =C-k= en los encabezados.
 
 # See the variables =org-special-ctrl-a/e=, =org-special-ctrl-k=, and
 # =org-ctrl-k-protect-subtree= to configure special behavior of */C-a/*,
 # */C-e/*, and */C-k/* in headlines.
 
-[fn:FOOT5]
-Clocking sólo funciona con encabezados con menos de 30 asteriscos de
-indentacion.
+[fn:5] Clocking sólo funciona con encabezados con menos de 30
+asteriscos de indentacion.
 
 # Clocking only works with headings indented less than 30 stars.
 
-[fn:FOOT6]
-Sin embargo, vea, la opción =org-cycle-emulate-tab=.
+[fn:6] Sin embargo, vea, la opción =org-cycle-emulate-tab=.
 
 # see, however, the option =org-cycle-emulate-tab=.
 
-[fn:FOOT7]
-Vea la opción =org-cycle-global-at-bob=.
+[fn:7] Vea la opción =org-cycle-global-at-bob=.
 
 # see the option =org-cycle-global-at-bob=.
 
-[fn:FOOT8]
-El búfer indirecto (vea [[http://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Indirect-Buffers][Indirect Buffers]] en el Manual de GNU Emacs)
-contiene todo el buffer, pero se redujo al árbol actual. La edición
-del búfer indirecto también cambiará el buffer original, pero sin
-afectar la visibilidad en ese búfer.
+[fn:8] El búfer indirecto (vea [[http://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Indirect-Buffers][Indirect Buffers]] en el Manual de GNU
+Emacs) contiene todo el buffer, pero se redujo al árbol actual. La
+edición del búfer indirecto también cambiará el buffer original, pero
+sin afectar la visibilidad en ese búfer.
 
 # The indirect buffer (see [[http://www.gnu.org/software/emacs/manual/html_mono/emacs.html#Indirect-Buffers][Indirect Buffers]] in GNU Emacs Manual) will
 # contain the entire buffer, but will be narrowed to the current
 # tree. Editing the indirect buffer will also change the original
 # buffer, but without affecting visibility in that buffer.
 
-[fn:FOOT9]
-Cuando =org-agenda-inhibit-startup= no es =nil=, Org no respeta el
-estado de visibilidad por defecto al abrir un archivo por primera vez
-para la agenda ( Ver [[@Speeding-up-your-agendas][Speeding up your agendas]]).
+[fn:9] Cuando =org-agenda-inhibit-startup= no es =nil=, Org no respeta
+el estado de visibilidad por defecto al abrir un archivo por primera
+vez para la agenda ( Ver [[@Speeding-up-your-agendas][Speeding up your
+agendas]]).
 
 # When =org-agenda-inhibit-startup= is non- =nil=, Org will not honor
 # the default visibility state when first opening a file for the agenda
 # (see [[@Speeding-up-your-agendas][Speeding up your agendas]]).
 
-[fn:FOOT10]
-Véa también la variable =org-show-context-detail= para determinar cuánto
-contexto es muestrado alrededor de cada resultado.
+[fn:10] Véa también la variable =org-show-context-detail= para
+determinar cuánto contexto es muestrado alrededor de cada resultado.
 
 # See also the variable =org-show-context-detail= to decide how much
 # context is shown around each match.
 
-[fn:FOOT11]
-Esto depende de la opcion =org-remove-highlights-with-change=
+[fn:11] Esto depende de la opcion =org-remove-highlights-with-change=
 
 # This depends on the option =org-remove-highlights-with-change=
 
-[fn:FOOT12]
-Esto no funciona en XEmacs, porque XEmacs utiliza pantalla selectiva
-para esquematizar, no propiedades de texto.
+[fn:12] Esto no funciona en XEmacs, porque XEmacs utiliza pantalla
+selectiva para esquematizar, no propiedades de texto.
 
 # This does not work under XEmacs, because XEmacs uses selective display
 # for outlining, not text properties.
 
-[fn:FOOT13]
-Al usar '*' como para listas, las líneas deben tener una sangría o
-serán vistas como encabezados de primer nivel. Además, cuando usted
-utiliza el modo de esquema limpio (ocultando estrellas), los elementos
-de lista de una estrella pueden ser difícil de distinguir de los
-verdaderos encabezados. En resumen: a pesar de que '*' esta soportado,
-puede ser mejor no utilizarlo para elementos de lista sin formato.
+[fn:13] Al usar '*' como para listas, las líneas deben tener una
+sangría o serán vistas como encabezados de primer nivel. Además,
+cuando usted utiliza el modo de esquema limpio (ocultando estrellas),
+los elementos de lista de una estrella pueden ser difícil de
+distinguir de los verdaderos encabezados. En resumen: a pesar de que
+'*' esta soportado, puede ser mejor no utilizarlo para elementos de
+lista sin formato.
 
 # When using ‘*' as a bullet, lines must be indented or they will be
 # seen as top-level headlines. Also, when you are hiding leading stars
@@ -21722,15 +21721,13 @@ puede ser mejor no utilizarlo para elementos de lista sin formato.
 # be hard to distinguish from true headlines. In short: even though ‘*'
 # is supported, it may be better to not use it for plain list items.
 
-[fn:FOOT14]
-Puedes filtrar cualquiera de ellos configurando
+[fn:14] Puedes filtrar cualquiera de ellos configurando
 =org-plain-list-ordered-item-terminator=.
 
 # You can filter out any of them by configuring
 # =org-plain-list-ordered-item-terminator=.
 
-[fn:FOOT15]
-Tambien puede obtener 'a.', 'A.', 'a)' y 'A)' configurando
+[fn:15] Tambien puede obtener 'a.', 'A.', 'a)' y 'A)' configurando
 =org-list-allow-alphabetical=. Para minimizar la confucion con texto
 normal, limite su uso a solo un caracter. Mas alla de ese limite, las
 balas se repliegan automaticamente a numeros.
@@ -21740,110 +21737,109 @@ balas se repliegan automaticamente a numeros.
 # those are limited to one character only. Beyond that limit, bullets
 # will automatically fallback to numbers.
 
-[fn:FOOT16]
-Si hay una casilla de verificacion en el elemento, la cookie se debe
-colocar /antes/ de la casilla de verificacion. Si ha activado las
-listas alfabeticas, tambien puede utilizar contadares como =[@b]=.
+[fn:16] Si hay una casilla de verificacion en el elemento, la cookie
+se debe colocar /antes/ de la casilla de verificacion. Si ha activado
+las listas alfabeticas, tambien puede utilizar contadares como =[@b]=.
 
 # If there's a checkbox in the item, the cookie must be put /before/ the
 # checkbox. If you have activated alphabetical lists, you can also use
 # counters like =[@b]=.
 
-[fn:FOOT17]
-Vea tambien =org-list-empty-line-terminates-plain-lists=.
+[fn:17] Vea tambien =org-list-empty-line-terminates-plain-lists=.
 
 # See also =org-list-empty-line-terminates-plain-lists=.
 
-[fn:FOOT18]
-Org solo cambia la configuracion de llenado para Emacs. Para XEmacs,
-debe utilizar =filladapt.el= de Kyle E. Jones. Para habilitar esta
-funcion agregue en =.emacs=: =(require 'filladapt)=
+[fn:18] Org solo cambia la configuracion de llenado para Emacs. Para
+XEmacs, debe utilizar =filladapt.el= de Kyle E. Jones. Para habilitar
+esta funcion agregue en =.emacs=: =(require 'filladapt)=
 
 # Org only changes the filling settings for Emacs. For XEmacs, you
 # should use Kyle E. Jones' filladapt.el. To turn this on, put into
 # .emacs: =(require 'filladapt)=
 
-[fn:FOOT19]
-Si no desea que el elemento se divida, persanalice la variable
+[fn:19] Si no desea que el elemento se divida, persanalice la variable
 =org-M-RET-may-split-line=.
 
 # If you do not want the item to be split, customize the variable
 # =org-M-RET-may-split-line=.
 
-[fn:FOOT20]
-Si quiere el ciclo alrededor de los elementos de esa manera, puede
-personalizar =org-list-use-circular-motion=.
+[fn:20] Si quiere el ciclo alrededor de los elementos de esa manera,
+puede personalizar =org-list-use-circular-motion=.
 
 # If you want to cycle around items that way, you may customize
 # =org-list-use-circular-motion=.
 
-[fn:FOOT21]
-Vea =org-list-use-circular-motion= para un comportamiento ciclico.
+[fn:21] Vea =org-list-use-circular-motion= para un comportamiento
+ciclico.
 
 # See =org-list-use-circular-motion= for a cyclic behavior.
 
-[fn:FOOT22]
+[fn:22] La correspondiente configuracion por buffer es: =#+STARTUP:
+fninline= o =#+STARTUP: nofninline=
+
 # The corresponding in-buffer setting is: =#+STARTUP: fninline= or
 # =#+STARTUP: nofninline=
 
-[fn:FOOT23]
+[fn:23] Las correspondientes opcciones por buffer son =fnadjust= y
+=nofnadjust=.
+
 # the corresponding in-buffer options are =fnadjust= and =nofnadjust=.
 
-[fn:FOOT24]
+[fn:24]
 # To insert a vertical bar into a table field, use =\vert= or, inside a
 # word =abc\vert{}def=.
 
-[fn:FOOT25]
+[fn:25]
 # This feature does not work on XEmacs.
 
-[fn:FOOT26]
+[fn:26]
 # Centering does not work inside Emacs, but it does have an effect when
 # exporting to HTML.
 
-[fn:FOOT27]
+[fn:27]
 # Org will understand references typed by the user as ‘B4', but it will
 # not use this syntax when offering a formula for editing. You can
 # customize this behavior using the option
 # =org-table-use-standard-references=.
 
-[fn:FOOT28]
+[fn:28]
 # For backward compatibility you can also use special names like =$LR5=
 # and =$LR12= to refer in a stable way to the 5th and 12th field in the
 # last row of the table. However, this syntax is deprecated, it should
 # not be used for new documents. Use =@>$= instead.
 
-[fn:FOOT29]
+[fn:29]
 # The computation time scales as O(N\^2) because the table named =FOO=
 # is parsed for each field to be read.
 
-[fn:FOOT30]
+[fn:30]
 # constants.el can supply the values of constants in two different unit
 # systems, =SI= and =cgs=. Which one is used depends on the value of the
 # variable =constants-unit-system=. You can use the =#+STARTUP= options
 # =constSI= and =constcgs= to set this value for the current buffer.
 
-[fn:FOOT31]
+[fn:31]
 # The ‘printf' reformatting is limited in precision because the value
 # passed to it is converted into an ‘integer' or ‘double'. The ‘integer'
 # is limited in size by truncating the signed value to 32 bits. The
 # ‘double' is limited in precision to 64 bits overall which leaves
 # approximately 16 significant decimal digits.
 
-[fn:FOOT32]
+[fn:32]
 # Such names must start by an alphabetic character and use only
 # alphanumeric/underscore characters.
 
-[fn:FOOT33]
+[fn:33]
 # To insert a link targeting a headline, in-buffer completion can be
 # used.  Just type a star followed by a few optional letters into the
 # buffer and press */M-TAB/*. All headlines in the current buffer will
 # be offered as completions.
 
-[fn:FOOT34]
+[fn:34]
 # When targeting a =#+NAME= keyword, =#+CAPTION= keyword is mandatory in
 # order to get proper numbering (see [[@Images-and-tables][Images and tables]]).
 
-[fn:FOOT35]
+[fn:35]
 # The actual behavior of the search will depend on the value of the
 # option =org-link-search-must-match-exact-headline=. If its value is
 # =nil=, then a fuzzy text search will be done. If it is t, then only
@@ -21852,147 +21848,147 @@ Vea =org-list-use-circular-motion= para un comportamiento ciclico.
 # searched; if it is not found, then the user will be queried to create
 # it.
 
-[fn:FOOT36]
+[fn:36]
 # Headline searches always match the exact headline, ignoring spaces and
 # cookies. If the headline is not found and the value of the option
 # =org-link-search-must-match-exact-headline= is =query-to-create=, then
 # the user will be queried to create it.
 
-[fn:FOOT37]
+[fn:37]
 # If the headline contains a timestamp, it will be removed from the link
 # and result in a wrong link -- you should avoid putting timestamp in
 # the headline.
 
-[fn:FOOT38]
+[fn:38]
 # The library org-id.el must first be loaded, either through
 # =org-customize= by enabling =org-id= in =org-modules=, or by adding
 # =(require 'org-id)= in your .emacs.
 
-[fn:FOOT39]
+[fn:39]
 # Note that you don't have to use this command to insert a link. Links
 # in Org are plain text, and you can type or paste them straight into
 # the buffer. By using this command, the links are automatically
 # enclosed in double brackets, and you will be asked for the optional
 # descriptive text.
 
-[fn:FOOT40]
+[fn:40]
 # After insertion of a stored link, the link will be removed from the
 # list of stored links. To keep it in the list later use, use a triple
 # */C-u/* prefix argument to */C-c C-l/*, or configure the option
 # =org-keep-stored-link-after-insertion=.
 
-[fn:FOOT41]
+[fn:41]
 # This works by calling a special function =org-PREFIX-complete-link=.
 
-[fn:FOOT42]
+[fn:42]
 # See the option =org-display-internal-link-with-indirect-buffer=
 
-[fn:FOOT43]
+[fn:43]
 # with corresponding =#+STARTUP= keywords =inlineimages= and
 # =noinlineimages=
 
-[fn:FOOT44]
+[fn:44]
 # For backward compatibility, line numbers can also follow a single
 # colon.
 
-[fn:FOOT45]
+[fn:45]
 # Of course, you can make a document that contains only long lists of
 # TODO items, but this is not required.
 
-[fn:FOOT46]
+[fn:46]
 # Changing this variable only becomes effective after restarting Org
 # mode in a buffer.
 
-[fn:FOOT47]
+[fn:47]
 # This is also true for the t command in the timeline and agenda
 # buffers.
 
-[fn:FOOT48]
+[fn:48]
 # All characters are allowed except =@^!=, which have a special meaning
 # here.
 
-[fn:FOOT49]
+[fn:49]
 # Check also the option =org-fast-tag-selection-include-todo=, it allows
 # you to change the TODO state through the tags interface (see [[@Setting-tags][Setting
 # tags]]), in case you like to mingle the two concepts. Note that this
 # means you need to come up with unique keys across both sets of
 # keywords.
 
-[fn:FOOT50]
+[fn:50]
 # Org mode parses these lines only when Org mode is activated after
 # visiting a file. */C-c C-c/* with the cursor in a line starting with
 # ‘#+' is simply restarting Org mode for the current buffer.
 
-[fn:FOOT51]
+[fn:51]
 # The corresponding in-buffer setting is: =#+STARTUP: logdone=
 
-[fn:FOOT52]
+[fn:52]
 # The corresponding in-buffer setting is: =#+STARTUP: lognotedone=.
 
-[fn:FOOT53]
+[fn:53]
 # See the option =org-log-states-order-reversed=
 
-[fn:FOOT54]
+[fn:54]
 # Note that the =LOGBOOK= drawer is unfolded when pressing =SPC= in the
 # agenda to show an entry---use =C-u SPC= to keep it folded here
 
-[fn:FOOT55]
+[fn:55]
 # It is possible that Org mode will record two timestamps when you are
 # using both =org-log-done= and state change logging. However, it will
 # never prompt for two notes---if you have configured both, the state
 # change recording note will take precedence and cancel the ‘Closing
 # Note'.
 
-[fn:FOOT56]
+[fn:56]
 # See also the option =org-priority-start-cycle-with-default=.
 
-[fn:FOOT57]
+[fn:57]
 # To keep subtasks out of the global TODO list, see the
 # =org-agenda-todo-list-sublevels=.
 
-[fn:FOOT58]
+[fn:58]
 # With the exception of description lists. But you can allow it by
 # modifying =org-list-automatic-rules= accordingly.
 
-[fn:FOOT59]
+[fn:59]
 # Set the option =org-checkbox-hierarchical-statistics= if you want such
 # cookies to count all checkboxes below the cookie, not just those
 # belonging to direct children.
 
-[fn:FOOT60]
+[fn:60]
 # */C-u C-c C-c/* on the /first/ item of a list with no checkbox will
 # add checkboxes to the rest of the list.
 
-[fn:FOOT61]
+[fn:61]
 # As with all these in-buffer settings, pressing */C-c C-c/* activates
 # any changes in the line.
 
-[fn:FOOT62]
+[fn:62]
 # This is only true if the search does not involve more complex tests
 # including properties (see [[@Property-searches][Property searches]]).
 
-[fn:FOOT63]
+[fn:63]
 # Keys will automatically be assigned to tags which have no configured
 # keys.
 
-[fn:FOOT64]
+[fn:64]
 # Please note that the COLUMNS definition must be on a single line---it
 # is wrapped here only because of formatting constraints.
 
-[fn:FOOT65]
+[fn:65]
 # Contributed packages are not part of Emacs, but are distributed with
 # the main distribution of Org (visit [[http://orgmode.org]]).
 
-[fn:FOOT66]
+[fn:66]
 # In this simplest form, the day name is optional when you type the date
 # yourself. However, any dates inserted or modified by Org will add that
 # day name, for reading convenience.
 
-[fn:FOOT67]
+[fn:67]
 # This is inspired by the standard ISO 8601 date/time format. To use an
 # alternative format, see [[@Custom-time-format][Custom time format]].
 
-[fn:FOOT68]
+[fn:68]
 # When working with the standard diary sexp functions, you need to be
 # very careful with the order of the arguments. That order depends
 # evilly on the variable =calendar-date-style= (or, for older Emacs
@@ -22006,78 +22002,78 @@ Vea =org-list-use-circular-motion= para un comportamiento ciclico.
 # wherever applicable, independent of the value of
 # =calendar-date-style=.
 
-[fn:FOOT69]
+[fn:69]
 # See the variable =org-read-date-prefer-future=. You may set that
 # variable to the symbol =time= to even make a time before now shift the
 # date to tomorrow.
 
-[fn:FOOT70]
+[fn:70]
 # If you don't need/want the calendar, configure the variable
 # =org-popup-calendar-for-date-prompt=.
 
-[fn:FOOT71]
+[fn:71]
 # If you find this distracting, turn the display off with
 # =org-read-date-display-live=.
 
-[fn:FOOT72]
+[fn:72]
 # It will still be listed on that date after it has been marked DONE. If
 # you don't like this, set the variable
 # =org-agenda-skip-scheduled-if-done=.
 
-[fn:FOOT73]
+[fn:73]
 # The ‘SCHEDULED' and ‘DEADLINE' dates are inserted on the line right
 # below the headline. Don't put any text between this line and the
 # headline.
 
-[fn:FOOT74]
+[fn:74]
 # with corresponding =#+STARTUP= keywords =logredeadline=,
 # =lognoteredeadline=, and =nologredeadline=
 
-[fn:FOOT75]
+[fn:75]
 # with corresponding =#+STARTUP= keywords =logreschedule=,
 # =lognotereschedule=, and =nologreschedule=
 
-[fn:FOOT76]
+[fn:76]
 # In fact, the target state is taken from, in this sequence, the
 # =REPEAT_TO_STATE= property or the variable =org-todo-repeat-to-state=.
 # If neither of these is specified, the target state defaults to the
 # first state of the TODO state sequence.
 
-[fn:FOOT77]
+[fn:77]
 # You can change this using the option =org-log-repeat=, or the
 # =#+STARTUP= options =logrepeat=, =lognoterepeat=, and =nologrepeat=.
 # With =lognoterepeat=, you will also be prompted for a note.
 
-[fn:FOOT78]
+[fn:78]
 # Clocking only works if all headings are indented with less than 30
 # stars. This is a hardcoded limitation of =lmax= in =org-clock-sum=.
 
-[fn:FOOT79]
+[fn:79]
 # To resume the clock under the assumption that you have worked on this
 # task while outside Emacs, use =(setq org-clock-persist t)=.
 
-[fn:FOOT80]
+[fn:80]
 # To add an effort estimate “on the fly”, hook a function doing this to
 # =org-clock-in-prepare-hook=.
 
-[fn:FOOT81]
+[fn:81]
 # as recorded by the =LAST_REPEAT= property
 
-[fn:FOOT82]
+[fn:82]
 # See also the variable =org-clock-modeline-total=.
 
-[fn:FOOT83]
+[fn:83]
 # The corresponding in-buffer setting is: =#+STARTUP: lognoteclock-out=
 
-[fn:FOOT84]
+[fn:84]
 # Language terms can be set through the variable
 # =org-clock-clocktable-language-setup=.
 
-[fn:FOOT85]
+[fn:85]
 # Note that all parameters must be specified in a single line -- the
 # line is broken here only to fit it into the manual.
 
-[fn:FOOT86]
+[fn:86]
 # On computers using Mac OS X, idleness is based on actual user
 # idleness, not just Emacs' idle time. For X11, you can install a
 # utility program x11idle.c, available in the =contrib/scripts=
@@ -22086,73 +22082,73 @@ Vea =org-list-use-circular-motion= para un comportamiento ciclico.
 # you are running Debian, to get the same general treatment of
 # idleness. On other systems, idle time refers to Emacs idle time only.
 
-[fn:FOOT87]
+[fn:87]
 # Please note the pitfalls of summing hierarchical data in a flat list
 # (see [[@Agenda-column-view][Agenda column view]]).
 
-[fn:FOOT88]
+[fn:88]
 # Please select your own key, */C-c c/* is only a suggestion.
 
-[fn:FOOT89]
+[fn:89]
 # Datetree headlines for years accept tags, so if you use both =*
 # 2013 :noexport:= and =* 2013= in your file, the capture will refile
 # the note to the first one matched.
 
-[fn:FOOT90]
+[fn:90]
 # If you need one of these sequences literally, escape the % with a
 # backslash.
 
-[fn:FOOT91]
+[fn:91]
 # If you define your own link types (see [[@Adding-hyperlink-types][Adding hyperlink types]]), any
 # property you store with =org-store-link-props= can be accessed in
 # capture templates in a similar way.
 
-[fn:FOOT92]
+[fn:92]
 # This will always be the other, not the user. See the variable
 # =org-from-is-user-regexp=.
 
-[fn:FOOT93]
+[fn:93]
 # If you move entries or Org files from one directory to another, you
 # may want to configure =org-attach-directory= to contain an absolute
 # path.
 
-[fn:FOOT94]
+[fn:94]
 # with corresponding =#+STARTUP= keywords =logrefile=, =lognoterefile=,
 # and =nologrefile=
 
-[fn:FOOT95]
+[fn:95]
 # If the value of that variable is not a list, but a single file name,
 # then the list of agenda files will be maintained in that external
 # file.
 
-[fn:FOOT96]
+[fn:96]
 # When using the dispatcher, pressing < before selecting a command will
 # actually limit the command to the current file, and ignore
 # =org-agenda-files= until the next dispatcher command.
 
-[fn:FOOT97]
+[fn:97]
 # For backward compatibility, you can also press 1 to restrict to the
 # current buffer.
 
-[fn:FOOT98]
+[fn:98]
 # For backward compatibility, you can also press 0 to restrict to the
 # current region/subtree.
 
-[fn:FOOT99]
+[fn:99]
 # For backward compatibility, the universal prefix */C-u/* causes all
 # TODO entries to be listed before the agenda. This feature is
 # deprecated, use the dedicated TODO list, or a block agenda instead
 # (see [[@Block-agenda][Block agenda]]).
 
-[fn:FOOT100]
+[fn:100]
 # =org-anniversary= is just like =diary-anniversary=, but the argument
 # order is always according to ISO and therefore independent of the
 # value of =calendar-date-style=.
 
-[fn:FOOT101]
+[fn:101]
 # See [[@Tag-searches][Tag searches]].
 
-[fn:FOOT102]
+[fn:102]
 # Custom commands can preset a filter by binding the variable
 # =org-agenda-tag-filter-preset= as an option. This filter will then be
 # applied to the view and persist as a basic filter through refreshes
@@ -22160,58 +22156,58 @@ Vea =org-list-use-circular-motion= para un comportamiento ciclico.
 # entire agenda view -- in a block agenda, you should only set this in
 # the global options section, not in the section of an individual block.
 
-[fn:FOOT103]
+[fn:103]
 # Only tags filtering will be respected here, effort filtering is ignored.
 
-[fn:FOOT104]
+[fn:104]
 # Moving agenda lines does not persist after an agenda refresh and does
 # not modify the contributing .org files
 
-[fn:FOOT105]
+[fn:105]
 # You can also create persistent custom functions through
 # =org-agenda-bulk-custom-functions=.
 
-[fn:FOOT106]
+[fn:106]
 # This file is parsed for the agenda when =org-agenda-include-diary= is
 # set.
 
-[fn:FOOT107]
+[fn:107]
 # You can provide a description for a prefix key by inserting a cons
 # cell with the prefix and the description.
 
-[fn:FOOT108]
+[fn:108]
 # /Planned/ means here that these entries have some planning information
 # attached to them, like a time-stamp, a scheduled or a deadline string.
 # See =org-agenda-entry-types= on how to set what planning information
 # will be taken into account.
 
-[fn:FOOT109]
+[fn:109]
 # You need to install Hrvoje Niksic's htmlize.el.
 
-[fn:FOOT110]
+[fn:110]
 # To create PDF output, the ghostscript ps2pdf utility must be installed
 # on the system. Selecting a PDF file will also create the postscript
 # file.
 
-[fn:FOOT111]
+[fn:111]
 # If you want to store standard views like the weekly agenda or the
 # global TODO list as well, you need to define custom commands for them
 # in order to be able to specify file names.
 
-[fn:FOOT112]
+[fn:112]
 # Quoting depends on the system you use, please check the FAQ for
 # examples.
 
-[fn:FOOT113]
+[fn:113]
 # For LaTeX export, this feature requires the =titletoc= package. Note
 # that =titletoc= must be loaded /before/ =hyperref=. Thus, you may have
 # to customize =org-latex-default-packages-alist=.
 
-[fn:FOOT114]
+[fn:114]
 # For a less drastic behavior, consider using a select tag (see
 # [[@Export-settings][Export settings]]) instead.
 
-[fn:FOOT115]
+[fn:115]
 # This works automatically for the HTML back-end (it requires version
 # 1.34 of the htmlize.el package, which is distributed with
 # Org). Fontified code chunks in LaTeX can be achieved using either the
@@ -22220,285 +22216,285 @@ Vea =org-list-use-circular-motion= para un comportamiento ciclico.
 # to =org-latex-packages-alist=. Refer to =org-latex-listings= for
 # details.
 
-[fn:FOOT116]
+[fn:116]
 # Code in ‘src' blocks may also be evaluated either interactively or on
 # export. See see [[@Working-with-source-code][Working with source code]] for more information on
 # evaluating code blocks.
 
-[fn:FOOT117]
+[fn:117]
 # Adding =-k= to =-n -r= will /keep/ the labels in the source code while
 # using line numbers for the links, which might be useful to explain
 # those in an Org mode example code.
 
-[fn:FOOT118]
+[fn:118]
 # Upon exit, lines starting with ‘*', ‘,*', ‘#+' and ‘,#+' will get a
 # comma prepended, to keep them from being interpreted by Org as outline
 # nodes or special syntax. These commas will be stripped for editing
 # with */C-c '/*, and also for export.
 
-[fn:FOOT119]
+[fn:119]
 # You may select a different-mode with the variable
 # =org-edit-fixed-width-region-mode=.
 
-[fn:FOOT120]
+[fn:120]
 # While you can request paragraphs (‘verse', ‘quote', ‘center'), but
 # this places severe restrictions on the type of content that is
 # permissible
 
-[fn:FOOT121]
+[fn:121]
 # Note that =org-link-search-must-match-exact-headline= is locally bound
 # to non- =nil=. Therefore, =org-link-search= only matches headlines and
 # named elements.
 
-[fn:FOOT122]
+[fn:122]
 # Since commas separate arguments, commas within arguments have to be
 # escaped with a backslash character. Conversely, backslash characters
 # before a comma, and only them, need to be escaped with another
 # backslash character.
 
-[fn:FOOT123]
+[fn:123]
 # LaTeX is a macro system based on Donald E. Knuth's TeX system. Many of
 # the features described here as “LaTeX” are really from TeX, but for
 # simplicity I am blurring this distinction.
 
-[fn:FOOT124]
+[fn:124]
 # You can turn this on by default by setting the variable
 # =org-pretty-entities=, or on a per-file base with the =#+STARTUP=
 # option =entitiespretty=.
 
-[fn:FOOT125]
+[fn:125]
 # When MathJax is used, only the environments recognized by MathJax will
 # be processed. When dvipng program or imagemagick suite is used to
 # create images, any LaTeX environment will be handled.
 
-[fn:FOOT126]
+[fn:126]
 # These are respectively available at
 # [[http://sourceforge.net/projects/dvipng/]] and from the imagemagick
 # suite. Choose the converter by setting the variable
 # =org-latex-create-formula-image-program= accordingly.
 
-[fn:FOOT127]
+[fn:127]
 # Org mode has a method to test if the cursor is inside such a fragment,
 # see the documentation of the function =org-inside-LaTeX-fragment-p=.
 
-[fn:FOOT128]
+[fn:128]
 # It is also possible to use a less intrusive interface by setting
 # =org-export-dispatch-use-expert-ui= to a non- =nil= value. In that
 # case, only a prompt is visible from the minibuffer. From there one can
 # still switch back to regular menu by pressing =?=.
 
-[fn:FOOT129]
+[fn:129]
 # The variable =org-export-date-timestamp-format= defines how this
 # time-stamp will be exported.
 
-[fn:FOOT130]
+[fn:130]
 # If you want to configure many options this way, you can use several
 # =#+OPTIONS= lines.
 
-[fn:FOOT131]
+[fn:131]
 # With the exception of ‘SETUPFILE'.
 
-[fn:FOOT132]
+[fn:132]
 # If this property is set, the entry will also get a =:B_environment:=
 # tag to make this visible. This tag has no semantic meaning, it is only
 # a visual aid.
 
-[fn:FOOT133]
+[fn:133]
 # The =fragile= option is added automatically if it contains code that
 # requires a verbatim environment, though.
 
-[fn:FOOT134]
+[fn:134]
 # But see the variable =org-html-inline-images=.
 
-[fn:FOOT135]
+[fn:135]
 # By default Org loads MathJax from [[http://docs.mathjax.org/en/latest/start.html#using-the-mathjax-content-delivery-network-cdn][MathJax.org]].  A link to the terms of
 # service of the MathJax CDN can be found in the docstring of
 # =org-html-mathjax-options=.
 
-[fn:FOOT136]
+[fn:136]
 # If the classes on TODO keywords and tags lead to conflicts, use the
 # variables =org-html-todo-kwd-class-prefix= and
 # =org-html-tag-class-prefix= to make them unique.
 
-[fn:FOOT137]
+[fn:137]
 # This style is defined in the constant =org-html-style-default=, which
 # you should not modify. To turn inclusion of these defaults off,
 # customize =org-html-head-include-default-style= or set =html-style= to
 # =nil= in an =OPTIONS= line.
 
-[fn:FOOT138]
+[fn:138]
 # The default LaTeX output is designed for processing with =pdftex= or
 # =latex=. The LaTeX exporter can be configured to support alternative
 # TeX engines, see see =org-latex-pdf-process=, and alternative
 # packages, see =org-latex-default-packages-alist= and
 # =org-latex-packages-alist=.
 
-[fn:FOOT139]
+[fn:139]
 # Into which the values of =org-latex-default-packages-alist= and
 # =org-latex-packages-alist= are spliced.
 
-[fn:FOOT140]
+[fn:140]
 # Unlike =LATEX_HEADER=, contents from =LATEX_HEADER_EXTRA= keywords
 # will not be loaded when previewing LaTeX snippets (see [[@Previewing-LaTeX-fragments][Previewing
 # LaTeX fragments]]).
 
-[fn:FOOT141]
+[fn:141]
 # Requires adding the =tabularx= package to =org-latex-packages-alist=.
 
-[fn:FOOT142]
+[fn:142]
 # Requires adding the =tabu= package to =org-latex-packages-alist=.
 
-[fn:FOOT143]
+[fn:143]
 # Formerly, the value was =sidewaystable=. This is deprecated since Org
 # 8.3.
 
-[fn:FOOT144]
+[fn:144]
 # In the case of TikZ ([[http://sourceforge.net/projects/pgf/]]) images, it
 # will become an =\input= macro wrapped within a =tikzpicture=
 # environment.
 
-[fn:FOOT145]
+[fn:145]
 # Vanilla flavor, as defined at
 # [[http://daringfireball.net/projects/markdown/]].
 
-[fn:FOOT146]
+[fn:146]
 # Versions 7.8 or later
 
-[fn:FOOT147]
+[fn:147]
 # [[http://docs.oasis-open.org/office/v1.2/OpenDocument-v1.2.html][Open Document Format for Office Applications (OpenDocument) Version 1.2]]
 
-[fn:FOOT148]
+[fn:148]
 # This requires =transient-mark-mode= to be turned on
 
-[fn:FOOT149]
+[fn:149]
 # To select the current subtree, use */C-c @/*
 
-[fn:FOOT150]
+[fn:150]
 # The column widths are interpreted as weighted ratios with the default
 # weight being 1
 
-[fn:FOOT151]
+[fn:151]
 # Use of ImageMagick is only desirable. However, if you routinely
 # produce documents that have large images or you export your Org files
 # that has images using a Emacs batch script, then the use of
 # ImageMagick is mandatory.
 
-[fn:FOOT152]
+[fn:152]
 # See [[http://www.mathtoweb.com/cgi-bin/mathtoweb_home.pl][MathToWeb]].
 
-[fn:FOOT153]
+[fn:153]
 # See [[http://dlmf.nist.gov/LaTeXML/]].
 
-[fn:FOOT154]
+[fn:154]
 # Your =htmlfontify.el= library must at least be at Emacs 24.1 levels
 # for fontification to be turned on.
 
-[fn:FOOT155]
+[fn:155]
 [[http://docs.oasis-open.org/office/v1.2/OpenDocument-v1.2.html][OpenDocument-v1.2 Specification]]
 
-[fn:FOOT156]
+[fn:156]
 # See the =<table:table-template>= element of the OpenDocument-v1.2
 # specification
 
-[fn:FOOT157]
+[fn:157]
 # See the attributes =table:template-name=,
 # =table:use-first-row-styles=, =table:use-last-row-styles=,
 # =table:use-first-column-styles=, =table:use-last-column-styles=,
 # =table:use-banding-rows-styles=, and =table:use-banding-column-styles=
 # of the =<table:table>= element in the OpenDocument-v1.2 specification
 
-[fn:FOOT158]
+[fn:158]
 # .odt files are nothing but ‘zip' archives
 
-[fn:FOOT159]
+[fn:159]
 # By setting =org-texinfo-info-process=, it is possible to generate
 # other formats, including DocBook.
 
-[fn:FOOT160]
+[fn:160]
 # See =org-texinfo-coding-system= for more information.
 
-[fn:FOOT161]
+[fn:161]
 # For more information, See
 # [[http://www.gnu.org/software/texinfo/manual/texinfo/texinfo.html#Two_002dcolumn-Tables][(texinfo)Two-column
 # Tables]].
 
-[fn:FOOT162]
+[fn:162]
 # See the variables =org-icalendar-use-deadline= and
 # =org-icalendar-use-scheduled=.
 
-[fn:FOOT163]
+[fn:163]
 # To add inherited tags or the TODO state, configure the variable
 # =org-icalendar-categories=.
 
-[fn:FOOT164]
+[fn:164]
 # The LOCATION property can be inherited from higher in the hierarchy if
 # you configure =org-use-property-inheritance= accordingly.
 
-[fn:FOOT165]
+[fn:165]
 # If the publishing directory is the same than the source directory,
 # file.org will be exported as file.org.org, so probably don't want to
 # do this.
 
-[fn:FOOT166]
+[fn:166]
 # Note that ‘src' blocks may be inserted using Org mode's [[@Easy-templates][Easy templates]]
 # system
 
-[fn:FOOT167]
+[fn:167]
 # Whenever code is evaluated there is a potential for that code to do
 # harm. Org mode provides safeguards to ensure that code is only
 # evaluated after explicit confirmation from the user. For information
 # on these safeguards (and on how to disable them) see [[@Code-evaluation-security][Code evaluation
 # security]].
 
-[fn:FOOT168]
+[fn:168]
 # The option =org-babel-no-eval-on-ctrl-c-ctrl-c= can be used to remove
 # code evaluation from the */C-c C-c/* key binding.
 
-[fn:FOOT169]
+[fn:169]
 # The deprecated syntax for default header argument properties, using
 # the name of the header argument as a property name directly, evaluates
 # the property as seen by the corresponding source block
 # definition. This behavior has been kept for backwards compatibility.
 
-[fn:FOOT170]
+[fn:170]
 # (The example needs property inheritance to be turned on for the
 # =noweb-ref= property, see [[@Property-inheritance][Property inheritance]]).
 
-[fn:FOOT171]
+[fn:171]
 # Emacs 23 and Org mode 6.29 are required
 
-[fn:FOOT172]
+[fn:172]
 # Emacs 23.1 can actually crash with =org-indent-mode=
 
-[fn:FOOT173]
+[fn:173]
 # =org-indent-mode= also sets the =wrap-prefix= property, such that
 # =visual-line-mode= (or purely setting =word-wrap=) wraps long lines
 # (including headlines) correctly indented.
 
-[fn:FOOT174]
+[fn:174]
 # See the variable =org-indent-indentation-per-level=.
 
-[fn:FOOT175]
+[fn:175]
 # Turning on =org-indent-mode= sets =org-hide-leading-stars= to =t= and
 # =org-adapt-indentation= to =nil=.
 
-[fn:FOOT176]
+[fn:176]
 # See also the variable =org-adapt-indentation=.
 
-[fn:FOOT177]
+[fn:177]
 # When you need to specify a level for a property search or refile
 # targets, ‘LEVEL=2' will correspond to 3 stars, etc.
 
-[fn:FOOT178]
+[fn:178]
 # org-R.el has been replaced by the Org mode functionality described in
 # [[@Working-with-source-code][Working with source code]] and is now obsolete.
 
-[fn:FOOT179]
+[fn:179]
 # By default this works only for LaTeX, HTML, and Texinfo. Configure the
 # variable =orgtbl-radio-table-templates= to install templates for other
 # modes.
 
-[fn:FOOT180]
+[fn:180]
 # If the ‘#+TBLFM' line contains an odd number of dollar characters,
 # this may cause problems with font-lock in LaTeX mode. As shown in the
 # example you can fix this by adding an extra line inside the =comment=
@@ -22507,32 +22503,32 @@ Vea =org-list-use-circular-motion= para un comportamiento ciclico.
 # add the =comment= environment to the variable
 # =LaTeX-verbatim-environments=.
 
-[fn:FOOT181]
+[fn:181]
 # The =agenda*= view is the same as =agenda= except that it only considers
 # /appointments/, i.e., scheduled and deadline items that have a time
 # specification =[h]h:mm= in their time-stamps.
 
-[fn:FOOT182]
+[fn:182]
 # Note that, when using =org-odd-levels-only=, a level number
 # corresponds to order in the hierarchy, not to the number of stars.
 
-[fn:FOOT183]
+[fn:183]
 # If you can safely store the password in your Emacs setup, you might
 # also want to configure =org-mobile-encryption-password=. Please read
 # the docstring of that variable. Note that encryption will apply only
 # to the contents of the .org files. The file names themselves will
 # remain visible.
 
-[fn:FOOT184]
+[fn:184]
 # If you cannot use Dropbox, or if your version of MobileOrg does not
 # support it, you can use a webdav server. For more information, check
 # out the documentation of MobileOrg and also this [[http://orgmode.org/worg/org-faq.html#mobileorg_webdav][FAQ entry]].
 
-[fn:FOOT185]
+[fn:185]
 # Symbolic links in =org-directory= need to have the same name as their
 # targets.
 
-[fn:FOOT186]
+[fn:186]
 # While creating the agendas, Org mode will force ID properties on all
 # referenced entries, so that these entries can be uniquely identified if
 # /MobileOrg/ flags them for further action. If you do not want to get
@@ -22540,13 +22536,13 @@ Vea =org-list-use-circular-motion= para un comportamiento ciclico.
 # =org-mobile-force-id-on-agenda-items= to =nil=. Org mode will then rely
 # on outline paths, in the hope that these will be unique enough.
 
-[fn:FOOT187]
+[fn:187]
 # Checksums are stored automatically in the file checksums.dat
 
-[fn:FOOT188]
+[fn:188]
 # mobileorg.org will be empty after this operation.
 
-[fn:FOOT189]
+[fn:189]
 # Note, however, that there is a subtle difference. The view created
 # automatically by M-x org-mobile-pull RET is guaranteed to search all
 # files that have been addressed by the last pull. This might include a
