@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>The Org Manual</title>
-<!-- 2015-10-27 mar 19:55 -->
+<!-- 2015-12-02 mié 20:10 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Carsten Dominik with contributiond by Bastien Guerry, Nicolas Goazion, Eric Schulte, Jambunathan K. Dan Davison, Thomas O`Thoole, and Philip Rooke." />
@@ -63,7 +63,58 @@
 <li><a href="#sec-2-12">2.12 Sintaxis Org                                                  </a></li>
 </ul>
 </li>
-<li><a href="#sec-3">3 Tablas                                                            </a></li>
+<li><a href="#sec-3">3 Tablas                                                            </a>
+<ul>
+<li><a href="#sec-3-1">3.1 Editor de tablas incorporado                                   </a>
+<ul>
+<li><a href="#sec-3-1-1">Creación y conversión</a></li>
+<li><a href="#sec-3-1-2">Re-alineación y movimiento de campos</a></li>
+<li><a href="#sec-3-1-3">Edición de columnas y filas</a></li>
+<li><a href="#sec-3-1-4">Regiones</a></li>
+<li><a href="#sec-3-1-5">Cálculos</a></li>
+<li><a href="#sec-3-1-6">Varios</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-2">3.2 Ancho de columna y alineación                                  </a></li>
+<li><a href="#sec-3-3">3.3 Grupos de columnas                                             </a></li>
+<li><a href="#sec-3-4">3.4 El modo menor Orgtbl                                           </a></li>
+<li><a href="#sec-3-5">3.5 La hoja de cálculo                                             </a>
+<ul>
+<li><a href="#sec-3-5-1">3.5.1 Referencias                                                 </a>
+<ul>
+<li><a href="#sec-3-5-1-1">Referencias de campo</a></li>
+<li><a href="#sec-3-5-1-2">Referencias por rangos</a></li>
+<li><a href="#sec-3-5-1-3">Coordenadas de campo en fórmulas</a></li>
+<li><a href="#sec-3-5-1-4">Referencias con nombre</a></li>
+<li><a href="#sec-3-5-1-5">Referencias remotas</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-5-2">3.5.2 Sintaxis de formula para calc                               </a></li>
+<li><a href="#sec-3-5-3">3.5.3 Sintaxis de formula para lips                                </a></li>
+<li><a href="#sec-3-5-4">3.5.4 Valores de duracion y tiempo                                </a></li>
+<li><a href="#sec-3-5-5">3.5.5 Campos y rangos de formulas                                 </a></li>
+<li><a href="#sec-3-5-6">3.5.6 fórmulas de columna                                         </a></li>
+<li><a href="#sec-3-5-7">3.5.7 funciones de búsqueda                                       </a></li>
+<li><a href="#sec-3-5-8">3.5.8 Editar y depurar fórmulas                                   </a>
+<ul>
+<li><a href="#sec-3-5-8-1">Uso de múltiples lineas #+TBLFM                                  </a></li>
+<li><a href="#sec-3-5-8-2">Depuración de Fórmulas</a></li>
+</ul>
+</li>
+<li><a href="#sec-3-5-9">3.5.9 Actualizar la tabla                                         </a></li>
+<li><a href="#sec-3-5-10">3.5.10 Características avanzadas                                  </a></li>
+</ul>
+</li>
+<li><a href="#sec-3-6">3.6 Org-Plot                                                       </a>
+<ul>
+<li><a href="#sec-3-6-1">Trazar gráficos utilizando Gnuplot</a></li>
+<li><a href="#sec-3-6-2">Opciones de trazado</a></li>
+<li><a href="#sec-3-6-3">Graficos de barras ASCII</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#sec-4">4 Hyperlinks                                                        </a></li>
 </ul>
 </div>
 </div>
@@ -134,7 +185,7 @@ modify this GNU manual.”
 <h3 id="sec-1-1">1.1 Resumen                                                        <a id="Summary" name="Summary"></a></h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
-Org es un modo para guardar notas, mantener listas de tareas
+Org es un modo para tomar notas, mantener listas de tareas
 pendientes, y planificación de proyectos con un sistema rápido y
 eficaz de texto plano. Es también una sistema de creación con un
 soporte unico para programacion e investigación reproducible.
@@ -1878,7 +1929,7 @@ otro cajón. Los cajones se ven así:
 ** Este en un encabezado
    Aun fuera del cajon
    :NOMBREDECAJON:
-   Este es el interion del cajon.
+   Este es el interior del cajon.
    :END:
    Despues del cajon.
 </pre>
@@ -2010,9 +2061,10 @@ Una nota anónima como en LaTeX donde se indica la definición
 directamente en el punto de referencia.
 </p>
 
-<dl class="org-dl">
-<dt> <code>[fn:nombre: una definicion]</code> </dt><dd></dd>
-</dl>
+<ul class="org-ul">
+<li><code>[fn:nombre: una definicion]</code>
+</li>
+</ul>
 
 <p>
 Una definición de nota dentro de línea, que también especifica
@@ -2264,7 +2316,2082 @@ Puede verificar la sintaxis de sus documentos utilizando el comando
 <div id="outline-container-sec-3" class="outline-2">
 <h2 id="sec-3">3 Tablas                                                            <a id="Tables" name="Tables"></a></h2>
 <div class="outline-text-2" id="text-3">
+<p>
+Org viene con un editor de tablas rápido e intuitivo. Con calculos
+como los de una hoja de cálculo soportados por el paquete Emacs
+<code>calc</code> (ver <a href="http://www.gnu.org/software/emacs/manual/html_mono/calc.html#Top">Calc</a> en Gnu Emacs Calculator Manual).
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">• <a href="#Built-in-table-editor">Editor de tablas incorporado</a>:</td>
+<td class="left">Tablas sencillas</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Column-width-and-alignment">Ancho de columna y alineación</a>:</td>
+<td class="left">Anular los ajustes automaticos</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Column-groups">Grupos de columnas</a>:</td>
+<td class="left">Agrupación para activar líneas verticales</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Orgtbl-mode">Modo Orgtbl</a>:</td>
+<td class="left">El editor de tablas como modo menor</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#The-spreadsheet">La hoja de cálculo</a>:</td>
+<td class="left">El editor de tablas tiene capacidades de hoja de cálculo</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Org-plot">Org-Plot</a>:</td>
+<td class="left">Graficos de las tablas org</td>
+</tr>
+</tbody>
+</table>
 </div>
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1">3.1 Editor de tablas incorporado                                   <a id="Built-in-table-editor" name="Built-in-table-editor"></a></h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Org facilita la creacion de tablas en formato ASCII. Cualquier
+línea con '|' como primer caracter no-blanco se considera parte de
+una tabla. '|' es también el separador de columna<sup><a id="fnr.24" name="fnr.24" class="footref" href="#fn.24">24</a></sup>. Una tabla
+podría parecerse a esto:
+</p>
+
+<pre class="example">
+| Nombre | Teléfono | Edad |
+|--------+----------+------|
+| Peter  |     1234 |   17 |
+| Anna   |     4321 |   25 |
+</pre>
+
+<p>
+Una tabla se re-alinea automáticamente cada vez que se pulsa <code>TAB</code>
+o <code>RET</code> o <code>C-c C-c</code> dentro de la tabla. <code>TAB</code> también mueve el
+punto al siguiente campo (<code>RET</code> a la siguiente fila) y crea nuevas
+filas al final de la tabla o antes de las líneas horizontales. La
+indentacion de la tabla es establecida por la primera
+línea. Cualquier línea que inicia con '|-' es considerada como una
+línea de separación horizontal y se ampliará en la próxima
+re-alineacion a todo el ancho de la tabla. Por lo tanto, para crear
+la tabla anterior, sólo tendría que escribir
+</p>
+
+<pre class="example">
+| Nombre | Teléfono | Edad |
+|-
+</pre>
+
+<p>
+luego pulse <code>TAB</code> para alinear la tabla y empezar a rellenar
+campos. Seria aún más rápido escribir <code>|Nombre|Teléfono|Edad</code>
+seguido por <code>C-c RET</code>.
+</p>
+
+<p>
+Al escribir texto en un campo, Org trata a <code>DEL</code>, <code>Backspace</code> y
+todas las teclas de una forma especial, por lo que la inserción y
+eliminación evita el cambio de otros campos. Además, al escribir
+<i>inmediatamente después de que el cursor se a movido a un nuevo
+campo con <code>TAB</code>, <code>S-TAB</code> o <code>RET</code></i>, este es creado automaticamente
+en blanco. Si este comportamiento es demasiado impredecible para
+usted, configure las opciones <code>org-enable-table-editor</code> y
+<code>org-table-auto-blank-field</code>.
+</p>
+</div>
+<div id="outline-container-sec-3-1-1" class="outline-4">
+<h4 id="sec-3-1-1">Creación y conversión</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<ul class="org-ul">
+<li><code>C-c |</code> (<code>org-table-create-or-convert-from-region</code>)
+
+<p>
+Convierte la región activa a una tabla. Si cada línea contiene
+al menos un carácter <code>TAB</code>, la función asume la divicion por
+tabuladores. Si cada línea contiene una coma, los valores
+separados por comas (<code>CSV</code>) son asumidos. Si no, las líneas
+estan separadas por los espacios en blanco en los campos. Puede
+utilizar un argumento prefijo para forzar un separador
+específico: <code>C-u</code> fuerza <code>CSV</code>, <code>C-u C-u</code> fuerza <code>TAB</code>, <code>C-u C-u
+      C-u</code> pedirá una expresión regular para que coincida con el
+separador, y un argumento numérico <code>N</code> indica almenos <code>N</code>
+espacios consecutivos, o como alternativa <code>TAB</code> será el
+separador.
+</p>
+
+<p>
+Si no hay una región activa, este comando crea una tabla Org
+vacía. Pero es más secillo sólo comenzar a escribir, como en
+<code>|Nombre|Teléfono|Edad RET |- TAB</code>.
+</p>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-3-1-2" class="outline-4">
+<h4 id="sec-3-1-2">Re-alineación y movimiento de campos</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<ul class="org-ul">
+<li><code>C-c C-c</code> (<code>org-table-align</code>)
+
+<p>
+Re-alinear tabla y no pasar a otro campo.
+</p>
+</li>
+
+<li><code>C-c SPC</code> (<code>org-table-blank-field</code>)
+
+<p>
+Limpiar el campo en el punto.
+</p>
+</li>
+
+<li><code>&lt;TAB&gt;</code> (<code>org-table-next-field</code>)
+
+<p>
+Re-alinear, pasar al siguiente campo. Crea una nueva fila si es
+necesario.
+</p>
+</li>
+
+<li><code>S-TAB</code> (<code>org-table-previous-field</code>)
+
+<p>
+Re-alinear, pasar al campo anterior.
+</p>
+</li>
+
+<li><code>RET</code> (<code>org-table-next-row</code>)
+
+<p>
+Re-alinear y pasar a la fila siguiente. Crea una nueva fila si
+es necesario. Al inicio o al final de una línea, <code>RET</code> ejecuta
+<code>NEWLINE</code> (nueva linea), por lo que se puede utilizar para
+dividir una tabla.
+</p>
+</li>
+
+<li><code>M-a</code> (<code>org-table-beginning-of-field</code>)
+
+<p>
+Mover al inicio del campo actual, o si se esta hay ir al del
+campo anterior.
+</p>
+</li>
+
+<li><code>M-e</code> (<code>org-table-end-of-field</code>)
+
+<p>
+Mover al final del campo actual, o si se esta hay ir siguiente
+campo.
+</p>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-3-1-3" class="outline-4">
+<h4 id="sec-3-1-3">Edición de columnas y filas</h4>
+<div class="outline-text-4" id="text-3-1-3">
+<ul class="org-ul">
+<li><code>M-left</code> (<code>org-table-move-column-left</code>)
+</li>
+<li><code>M-right</code> (<code>org-table-move-column-right</code>)
+
+<p>
+Mover la columna actual a la izquierda/derecha.
+</p>
+</li>
+
+<li><code>M-S-left</code> (<code>org-table-delete-column</code>)
+
+<p>
+Matar la columna actual.
+</p>
+</li>
+
+<li><code>M-S-right</code> (<code>org-table-insert-column</code>)
+
+<p>
+Insertar una nueva columna a la izquierda de la posición del
+cursor.
+</p>
+</li>
+
+<li><code>M-up</code> (<code>org-table-move-row-up</code>)
+</li>
+<li><code>M-down (=org-table-move-row-down</code>)
+
+<p>
+Mover la fila actual hacia arriba/abajo.
+</p>
+</li>
+
+<li><code>M-S-up</code> (<code>org-table-kill-row</code>)
+
+<p>
+Matar la fila actual o la línea horizontal.
+</p>
+</li>
+
+<li><code>M-S-down</code> (<code>org-table-insert-row</code>)
+
+<p>
+Insertar una nueva fila encima de la fila actual. Con el
+argumento prefijo, la línea se crea debajo de la actual.
+</p>
+</li>
+
+<li><code>C-c -</code> (<code>org-table-insert-hline</code>)
+
+<p>
+Insertar una línea horizontal debajo de la fila actual. Con un prefijo
+argumento, la línea se crea por encima de la línea actual.
+</p>
+</li>
+
+<li><code>C-c RET</code> (<code>org-table-hline-and-move</code>)
+
+<p>
+Insertar una línea horizontal debajo de la fila actual y mover
+el cursor a la fila debajo de esa línea.
+</p>
+</li>
+
+<li><code>C-c ^</code> (<code>org-table-sort-lines</code>)
+
+<p>
+Ordena las líneas de la tabla en la región. La posición de punto
+indica la columna para ser utilizado para la clasificación, y el
+rango de líneas es el rango entre el separador horizontal más
+cercano a las líneas, o toda la tabla. Si el punto está antes de
+la primera columna, se le pedirá la columna de la
+clasificación. Si hay una región activa, la marca especifica la
+primera línea y la columna de clasificación, mientras que el
+punto debe estar en la última línea que se incluirán en la
+ordenacion. El comando solicita el tipo de clasificación
+(alfabéticamente, numéricamente, o por tiempo). Usted puede
+ordenar en orden normal o inverso. También puede proporcionar su
+propia funcion de extracción y comparación. Cuando se llama con
+un prefijo argumento, la clasificación alfabética distinguira
+entre mayúsculas y minúsculas.
+</p>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-3-1-4" class="outline-4">
+<h4 id="sec-3-1-4">Regiones</h4>
+<div class="outline-text-4" id="text-3-1-4">
+<ul class="org-ul">
+<li><code>C-c C-x M-w</code> (<code>org-table-copy-region</code>)
+
+<p>
+Copiar una región rectangular de una tabla a un portapapeles
+especial. Punto y marca determinan campos dentro del margen del
+rectángulo. Si no hay una región activa, copia sólo el campo
+actual. El proceso ignora líneas de separación horizontales.
+</p>
+</li>
+
+<li><code>C-c C-x C-w</code> (<code>org-table-cut-region</code>)
+
+<p>
+Copiar una región rectangular de una tabla a un portapapeles
+especial, y vaciar todos los campos en el rectángulo. Así que
+esta es la operación "corte".
+</p>
+</li>
+
+<li><code>C-c C-x C-y</code> (<code>org-table-paste-rectangle</code>)
+
+<p>
+Pegar una región rectangular en una tabla. La esquina superior
+izquierda termina en el campo actual. Todos los campos
+involucrados serán sobrescritos. Si el rectángulo no se ajusta a
+la actual tabla, la tabla se amplía según sea necesario. El
+proceso ignora líneas de separación horizontales.
+</p>
+</li>
+
+<li><code>M-RET</code> (<code>org-table-wrap-region</code>)
+
+<p>
+Dividir el campo actual en la posición del cursor y mover el
+resto a la línea de abajo. Si hay una región activa, y ambos
+punto y marca están en la misma columna, el texto de la columna
+es envuelto con ancho mínimo para el determinado número de
+líneas. Un argumento numérico prefijo se puede utilizar para
+cambiar el número de líneas deseadas. Si no hay ninguna región,
+pero se especifica un argumento prefijo, el campo actual se
+vacia, y su contenido es anexado al campo de arriba.
+</p>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-3-1-5" class="outline-4">
+<h4 id="sec-3-1-5">Cálculos</h4>
+<div class="outline-text-4" id="text-3-1-5">
+<ul class="org-ul">
+<li><code>C-c +</code> (<code>org-table-sum</code>)
+
+<p>
+Suma los números en la columna actual, o en el rectángulo
+definido por la región activa. El resultado se muestra en el
+área de eco y se puede insertar con C-y.
+</p>
+</li>
+
+<li><code>S-RET</code> (<code>org-table-copy-down</code>)
+
+<p>
+Cuando el campo actual está vacío, copia del primer campo
+superior no vacío. Cuando no está vacío, copia el campo actual a
+la siguiente fila y moeve el cursor junto con él. Dependiendo de
+la opción <code>org-table-copy-increment</code>, un valor entero dentro del
+campo será incrementado durante la copia. Los valores enteros
+que son demasiado grandes no serán incrementados. También, un
+argumento prefijo <code>0</code> deshabilita temporalmente el
+incremento. Esta combinacion también se utiliza para el cambio
+de seleccion y modos relacionados (ver [[Conflicts]
+[Conflicto]]).
+</p>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-3-1-6" class="outline-4">
+<h4 id="sec-3-1-6">Varios</h4>
+<div class="outline-text-4" id="text-3-1-6">
+<ul class="org-ul">
+<li><code>C-c `</code> (<code>org-table-edit-field</code>)
+
+<p>
+Edita el campo actual en una ventana separada. Esto es útil para
+campos que no son completamente visibles (véase <a href="#Column-width-and-alignment">Column width and
+alignment</a>). Cuando se llama con el prefijo <code>C-u</code>, el campa es
+visible por completo, de modo que pueda ser editado en su
+posicion. Cuando se llama con dos prefijos <code>C-u</code>, hace que la
+ventana del editor siga al cursor a través de la tabla y siempre
+muestre el campo actual. El modo de seguimiento finaliza
+automáticamente cuando el cursor sale de la tabla, o repitiendo
+este comando con <code>C-u C-u C-c `</code>.
+</p>
+</li>
+
+<li><code>M-x org-table-import RET</code>
+
+<p>
+Importar un archivo como una tabla. La tabla debe tener
+separadores <code>TAB</code> o espacios en blanco. Utilice, por ejemplo,
+para importar una hoja de cálculo o una tabla de datos de una
+base de datos, debido a que estos programas en general, escriben
+archivos de texto separados por tabuladores. Este comando
+funciona mediante la inserción del archivo en el buffer y luego
+la conversión de la región a una tabla. Cualquier argumento
+prefijo se pasa al convertidor, que lo utiliza para determinar
+el separador.
+</p>
+</li>
+
+<li><code>C-c |</code> (<code>org-table-create-or-convert-from-region</code>)
+
+<p>
+Las tablas también pueden ser importados con pegado de texto
+tabular dentro del buffer Org, seleccionando el texto pegado con
+<code>C-x C-x</code> y luego utilizando el comando <code>C-C |</code> (ver arriba
+debajo de <i>Creacion y conversion</i>).
+</p>
+</li>
+
+<li><code>M-x org-table-export RET</code>
+
+<p>
+Exportar la tabla, por defecto como un archivo con separadores
+<code>TAB</code>. Empleado para intercambio de datos con, por ejemplo, una
+hoja de cálculo o un programa de base de datos. El formato
+utilizado para exportar el archivo se puede configurar en la
+opción <code>org-table-export-default-format</code>. Usted ademas puede
+tener propiedades <code>TABLE_EXPORT_FILE</code> y <code>TABLE_EXPORT_FORMAT</code>
+para especificar el nombre del archivo y el formato de
+exportación de tabla en un subárbol. Org es compatible con
+formatos bastante generales para la exportación de tablas. El
+formato exportador es el mismo que el formato utilizado por
+tablas de radio Orgtbl, ver <i>Translator functions</i>, para una
+detallada descripción.
+</p>
+</li>
+</ul>
+
+
+<p>
+Si no le gusta el editor de tablas automático porque obstaculiza el
+manejo en líneas que le gustaría iniciar con '|', puede apagarlo
+con
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(setq org-enable-table-editor nil)
+</pre>
+</div>
+
+<p>
+En ese momento el único comando de tabla que aun funciona es <code>C-c
+   C-c</code> para realizar un re-alineamiento manual.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-2" class="outline-3">
+<h3 id="sec-3-2">3.2 Ancho de columna y alineación                                  <a id="Column-width-and-alignment" name="Column-width-and-alignment"></a></h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+El ancho de las columnas se determina automáticamente por el editor
+de tablas. Y también se determina la alineación de una columna
+automáticamente por la fracción de campos como numeros contra las
+columnas con campos no numericos.
+</p>
+
+<p>
+En ocaciones, un unico campo o algunos campos necesitan llevar más
+texto, que conducen a columnas de un ancho inconveniente. Quizás
+desea crear una tabla con varias columnas con anchura fija,
+independientemente de contenido. Para configurar<sup><a id="fnr.25" name="fnr.25" class="footref" href="#fn.25">25</a></sup> el ancho de
+una columna, un campo en cualquier lugar de la columna puede
+contener sólo la cadena '<code>&lt;N&gt;</code>' donde '<code>N</code>' es un número entero que
+especifica la anchura de la columna en caracteres. La próxima
+re-alineacion establece el ancho de esta columna a este valor.
+</p>
+
+<pre class="example">
+|---+------------------------------|               |---+--------|
+|   |                              |               |   | &lt;6&gt;    |
+| 1 | one                          |               | 1 | one    |
+| 2 | two                          |     ----\     | 2 | two    |
+| 3 | This is a long chunk of text |     ----/     | 3 | This=&gt; |
+| 4 | four                         |               | 4 | four   |
+|---+------------------------------|               |---+--------|
+</pre>
+
+<p>
+Los campos que son más anchos quedan recortados y terminan con la
+cadena '<code>=&gt;</code>'. Tenga en cuenta que el texto completo se encuentra
+aun en el buffer, pero esta oculto. Para ver el texto completo,
+mantenga el puntero del ratón sobre el campo – una ventana
+informacion mostrará el contenido completo. Para editar este campo,
+utilice el comando <code>C-c `</code> (es decir <code>C-c</code> seguido del acento
+grave). Esto abrirá una nueva ventana con el campo
+completo. Editelo y finalice con <code>C-c C-c</code>.
+</p>
+
+<p>
+Cuando visite a un archivo que contiene una tabla con columnas
+estrechas, el carácter de ocultacion no estara presente, y sera
+necesario re-alinear la tabla para que se muestre
+correctamente. Configure la opción <code>org-startup-align-all-tables</code>
+si desea realinear todas las tablas en un archivo al visitarlo,
+pero esto puede reducir la velocidad de arranque. También puede
+establecer esta opción en función de cada archivo con:
+</p>
+
+<pre class="example">
+#+STARTUP: align
+#+STARTUP: noalign
+</pre>
+
+<p>
+Si desea hacer caso omiso de la alineación automática a la derecha
+de columnas con muchos campos numericos y a la izquierda de
+columnas con campos de texto, puede usar '<code>&lt;r&gt;</code>', '<code>&lt;c&gt;</code>'<sup><a id="fnr.26" name="fnr.26" class="footref" href="#fn.26">26</a></sup> o
+'<code>&lt;l&gt;</code>' de maneras similares. También puede combinar la alineación
+y el ancho de campo de esta manera: '<code>&lt;R10&gt;</code>'.
+</p>
+
+<p>
+Las líneas que sólo contienen estas cookies de formato serán
+eliminadas automáticamente al exportar el documento.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-3" class="outline-3">
+<h3 id="sec-3-3">3.3 Grupos de columnas                                             <a id="Column-groups" name="Column-groups"></a></h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+Cuando Org exporta tablas, lo hace de forma predeterminada sin
+líneas verticales ya que es visualmente más satisfactorio en
+general. Ocasionalmente, sin embargo, las líneas verticales pueden
+ser útiles para estructurar una tabla en grupos de columnas, de
+igual forma las líneas horizontal pueden formar grupos de
+filas. Con el fin de especificar los grupos de columnas, puede
+utilizar una fila especial donde el primer campo contiene sólo
+'<code>/</code>'. Los otros campos pueden contener bien '<code>&lt;</code>' para indicar que
+esta columna debe comenzar un grupo, '<code>&gt;</code>' para indicar el final de
+una columna o '<code>&lt;&gt;</code>' (sin espacio entre '<code>&lt;</code>' y '<code>&gt;</code>') para hacer
+de una columna su propio grupo. Los límites entre los grupos de
+columnas son marcados con líneas verticales durante la
+exportación. Aquí hay un ejemplo:
+</p>
+
+<pre class="example">
+| N | N^2 | N^3 | N^4 | ~sqrt(n)~ | ~sqrt[4](N)~ |
+|---+-----+-----+-----+-----------+--------------|
+| / |   &lt; |     |   &gt; |         &lt; |            &gt; |
+| 1 |   1 |   1 |   1 |         1 |            1 |
+| 2 |   4 |   8 |  16 |    1.4142 |       1.1892 |
+| 3 |   9 |  27 |  81 |    1.7321 |       1.3161 |
+|---+-----+-----+-----+-----------+--------------|
+#+TBLFM: $2=$1^2::$3=$1^3::$4=$1^4::$5=sqrt($1)::$6=sqrt(sqrt(($1)))
+</pre>
+
+<p>
+También es suficiente para solo colocar el inicio del grupo de
+columnas después de cada línea vertical que le gustaría tener:
+</p>
+
+<pre class="example">
+|  N | N^2 | N^3 | N^4 | sqrt(n) | sqrt[4](N) |
+|----+-----+-----+-----+---------+------------|
+| /  | &lt;   |     |     | &lt;       |            |
+</pre>
+</div>
+</div>
+<div id="outline-container-sec-3-4" class="outline-3">
+<h3 id="sec-3-4">3.4 El modo menor Orgtbl                                           <a id="Orgtbl-mode" name="Orgtbl-mode"></a></h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+Si te gusta la forma intuitiva en que funciona el editor de tablas
+de Org, es posible que También quiera utilizarlo en otros modos
+como el modo texto o en modo Mail. El modo menor Orgtbl lo hace
+posible. Siempre se puede activar con <code>M-x orgtbl-mode RET</code>. Para
+activarlo de forma predeterminada, para ejemplo en el modo de
+mensaje, utilice
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(add-hook 'message-mode-hook 'turn-on-orgtbl)
+</pre>
+</div>
+
+<p>
+Ademas, con un poco de configuración especial, es posible manejar
+tablas de sintaxis arbitraria con el modo Orgtbl. Por ejemplo, es
+posible construir tablas LaTeX con la comodidad y poder del modo
+Orgtbl, incluyendo capacidades de hoja de cálculo. Para mas
+detalles, ver <i>Tables in arbitrary syntax</i>.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-5" class="outline-3">
+<h3 id="sec-3-5">3.5 La hoja de cálculo                                             <a id="The-spreadsheet" name="The-spreadsheet"></a></h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+El editor de tablas hace uso del paquete <code>calc</code> de Emacs para
+implementar capacidades de hoja de cálculo. También puede evaluar
+formulas Emacs Lisp para derivar campos de otros campos. Si bien
+todas las funciones, que Org implementa no son idénticas a otras
+hojas de cálculo. Por ejemplo, Org conoce el concepto de una
+<i>fórmula en columna</i> que será aplicada a todos los campos de una
+columna exeptuando la cabecera sin tener que copiar la fórmula para
+cada campo correspondiente. También hay un depurador y un editor de
+fórmulas con las características para destacar campos de la tabla
+correspondiente a las referencias en el punto en la fórmula,
+moviéndose estas referencias por las teclas de flecha
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">• <a href="#References">Referencias</a>:</td>
+<td class="left">Camo hacer referencia a otro campa o rango</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Formula-syntax-for-Calc">Sintaxis de formula para calc</a>:</td>
+<td class="left">Usando Calc para calcular cosas</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Formula-syntax-for-Lisp">Sintaxis de formula para Lisp</a>:</td>
+<td class="left">Escribir fórmulas en Emacs Lisp</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Durations-and-time-values">Valores de duracion y tiempo</a>:</td>
+<td class="left">Cómo calcular valores de duraciones y tiempo</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Field-and-range-formulas">Campos y rangos de formulas</a>:</td>
+<td class="left">Fórmula para (rangos de) campos específicos</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Column-formulas">Formulas de columna</a>:</td>
+<td class="left">Fórmulas válidas para una columna completa</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Lookup-functions">Funciones de busqueda</a>:</td>
+<td class="left">Funciones de búsqueda para buscar en tablas</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Editing-and-debugging-formulas">Edicion y depuracion de formulas</a>:</td>
+<td class="left">Correcion de fórmulas</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Updating-the-table">Actualizacion de la tabla</a>:</td>
+<td class="left">Recalcular todos los campos dependientes</td>
+</tr>
+
+<tr>
+<td class="left">• <a href="#Advanced-features">Funciones avanzadas</a>:</td>
+<td class="left">Nombres de campo y columna, parámetros y recálculo automático</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-sec-3-5-1" class="outline-4">
+<h4 id="sec-3-5-1">3.5.1 Referencias                                                 <a id="References" name="References"></a></h4>
+<div class="outline-text-4" id="text-3-5-1">
+<p>
+Para calcular campos de la tabla apartir de otros campos, las
+fórmulas deben referencia a otros campos o rangos. En Org, los
+campos pueden ser referenciados por nombre, por coordenadas
+absolutas, y por coordenadas relativas. Para averiguar las
+coordenadas de un campo, en dicho campo pulse <code>C-c ?</code>, o pulse
+<code>C-c }</code> para alternar la visualización de cuadrícula.
+</p>
+</div>
+<div id="outline-container-sec-3-5-1-1" class="outline-5">
+<h5 id="sec-3-5-1-1">Referencias de campo</h5>
+<div class="outline-text-5" id="text-3-5-1-1">
+<p>
+Las fórmulas pueden hacer referencia al valor de otro campo de
+dos formas. Al igual que en cualquier otra hoja de cálculo, puede
+hacer referencia a los campos con una combinacion de letra/número
+como <code>B3</code>, es decir, el segundo campo en la tercera fila. Sin
+embargo, Org da prioridad<sup><a id="fnr.27" name="fnr.27" class="footref" href="#fn.27">27</a></sup> a otra, representación más
+general que tiene para tal aspecto:
+</p>
+
+<pre class="example">
+@row$column
+</pre>
+
+<p>
+La especificacion column (columna) puede ser absoluta como <code>$1</code>,
+<code>$2</code>,&#x2026; <code>$N</code>, o con relación a la columna actual (es decir, la
+columna del campo que está siendo calculado) como <code>$+1</code> o
+<code>$-2</code>. <code>$&lt;</code> y <code>$&gt;</code> son referencias inmutables a la primera y la
+última columna, respectivamente, y se puede usar <code>$&gt;&gt;&gt;</code> para
+indicar la tercera columna de la derecha.
+</p>
+
+<p>
+La especificación row (fila) sólo cuenta las líneas con datos e
+ignora líneas de separación horizontales (hlines). Al igual que
+con las columnas, puede utilizar números de fila absolutos <code>@1</code>,
+<code>@2</code>,&#x2026; <code>@N</code> y números de fila con respecto a la fila actual
+como <code>@+3</code> o <code>@-1</code>. <code>@&lt;</code> y <code>@&gt;</code> son referencias inmutables la
+primera y última<sup><a id="fnr.28" name="fnr.28" class="footref" href="#fn.28">28</a></sup> fila de la tabla, respectivamente.
+También puede especificar la fila relativa a uno de los hlines:
+<code>@I</code> se refiere al primera hline, <code>@II</code> al segundo, etc. <code>@-I</code> se
+refiere a la primera línea por encima de la línea actual, <code>@+I</code> a
+la primera línea debajo de la línea actual. También puede
+escribir <code>@III+2</code> que es la segunda línea de datos después de la
+tercera hline en la tabla.
+</p>
+
+<p>
+<code>@0</code> y <code>$0</code> hacen referencia a la fila y columna actual,
+respectivamente, es decir, a la fila/columna para el campo que
+esta siendo calculado. Además, si omite la parte de la referencia
+o bien a la columna o a la fila, esta implicita la fila/columna
+actual.
+</p>
+
+<p>
+Las referencias Org con números <i>sin signo</i> son referencias fijas
+en el sentido de que si se utiliza la misma referencia en la
+fórmula en dos campos diferentes, se hará referencia a un mismo
+campo cada ocacion. Las Referencias Org con números <i>con signo</i>
+son referencias flotantes ya que el mismo operador de referencia
+puede hacer referencia a diferentes campos dependiendo del campo
+que esta siendo calculado por la fórmula.
+</p>
+
+<p>
+Aquí están algunos ejemplos:
+</p>
+
+<pre class="example">
+@2$3      segunda fila, tercera columna (igual que C2)
+$5        columna 5 de la fila actual (igual que E&amp;)
+@2        columna actual, fila 2
+@-1$-3    el campo una fila hacia arriba, tres columnas a la izquierda
+@-I$2     campo debajo del hline encima de la fila actual, la columna 2
+@&gt;$5      campo en la última fila, en la columna 5
+</pre>
+</div>
+</div>
+<div id="outline-container-sec-3-5-1-2" class="outline-5">
+<h5 id="sec-3-5-1-2">Referencias por rangos</h5>
+<div class="outline-text-5" id="text-3-5-1-2">
+<p>
+Usted puede hacer referencia a un rango rectangular de campos
+mediante la especificación de dos referencias de campo conectadas
+por dos puntos '<code>..</code>'. Si ambos campos se encuentran en la fila
+actual, puede usar simplemente '<code>$2..$7</code>', pero si al menos un
+campo se encuentra en una fila diferente, es necesario utilizar
+el formato general <code>@fila$columna</code> al menos para el primer campo
+(es decir, la referencia debe comenzar con '<code>@</code>' para ser
+interpretado correctamente). Ejemplos:
+</p>
+
+<div class="block">
+<p>
+<code>$1..$3</code>        primeros tres campos en la fila actual
+<code>$P..$Q</code>        rango, utilizando nombres de columna (vease bajo <a href="#Advanced-features">Advanced Features</a>)
+<code>$&lt;&lt;&lt;..$&gt;&gt;</code>     Comenzará en la tercera columna, continúando hasta el penúltimo
+<code>@2$1..@4$3</code>    6 campos entre estos dos campos (identico a <code>A2..C4</code>)
+<code>@-1$-2..@-1</code>   3 campos en la fila de arriba, inician 2 columnas a la izquierda
+<code>@I..II</code>        entre la primera y segunda hline, abreviatura de <code>@I..@II</code>
+</p>
+
+</div>
+
+<p>
+Los rangos de referencias devuelven un vector de valores que
+pueden alimentar funciones vectoriales detro de Calc. Dentro de
+un rango los campos vacíos son normalmente suprimidos, de modo
+que el vector contiene sólo los campos no-vacíos. Para otras
+opciones con el modo alterno '<code>E</code>', '<code>N</code>' y ejemplos vea <a href="#Formula-syntax-for-Calc">Formula
+syntax for Calc</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-5-1-3" class="outline-5">
+<h5 id="sec-3-5-1-3">Coordenadas de campo en fórmulas</h5>
+<div class="outline-text-5" id="text-3-5-1-3">
+<p>
+Una de las primeras acciones durante la evaluación de fórmulas
+Calc y fórmulas Lisp es sustituir <code>@#</code> y <code>$#</code> en la fórmula con
+el número de fila o columna del campo donde ira el resultado. Los
+tradicionales equivalentes de fórmulas Lisp son
+<code>org-table-current-dline</code> y <code>org-table-current-column</code>.
+Ejemplos:
+</p>
+
+<ul class="org-ul">
+<li><code>if(@# % 2, $#, string(""))</code>
+
+<p>
+Insertar el número de columna en las filas impares, establecer
+campo como vacio en todas las filas iguales.
+</p>
+</li>
+
+<li><code>$2 = '(identity remote(FOO, @@#$1))</code>
+
+<p>
+Copiar texto o valores de cada fila de la columna 1 de la
+tabla denominada <code>FOO</code> en la columna 2 de la tabla actual.
+</p>
+</li>
+
+<li><code>@3 = 2 * remote(FOO, @1$$#)</code>
+
+<p>
+Inserta el valor duplicado de cada columna de la fila 1 de la
+tabla llamada <code>FOO</code> en la fila 3 de la tabla actual.
+</p>
+</li>
+</ul>
+
+
+<p>
+Para el segundo/tercer ejemplo, la tabla denominada <code>FOO</code> debe
+tener al menos tantas filas/columnas como la tabla actual. Tenga
+en cuenta que esto es ineficiente<sup><a id="fnr.29" name="fnr.29" class="footref" href="#fn.29">29</a></sup> para gran número de
+filas/columnas.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-5-1-4" class="outline-5">
+<h5 id="sec-3-5-1-4">Referencias con nombre</h5>
+<div class="outline-text-5" id="text-3-5-1-4">
+<p>
+'<code>$nombre</code>' se interpreta como el nombre de una columna,
+parametro o constante. Las constantes se definen a nivel global a
+traves de la opcion <code>org-table-formula-costants</code>, y localmente
+(para el archivo) a traves de una linea como
+</p>
+
+<pre class="example">
+#+CONSTANTS: c=299792458. pi=3.14 eps=2.4e-6
+</pre>
+
+<p>
+Las propiedades también (ver <i>Properties and columns</i>) se pueden
+utilizar como constantes en fórmulas de tabla: para una propiedad
+'<code>:Xyz:</code>' utilice el nombre <code>$PROP_Xyz</code>, y la propiedad se
+buscará en la la entrada de esquema actual y en la jerarquía por
+encima de ella. Si usted tiene el paquete <code>constants.el</code>, también
+se utilizará para resolver constantes, incluyendo las constantes
+naturales como '<code>$h</code>' de la constante de Planck, y unidades como
+'<code>$km</code>' de kilómetros<sup><a id="fnr.30" name="fnr.30" class="footref" href="#fn.30">30</a></sup>. Los nombres de columna y parámetros
+se pueden especificar en líneas de tabla especiales. Estos son se
+describe a continuación, vea <a href="#Advanced-features">Advanced features</a>. Todos los nombres
+deben empezar con una letra, y componerse de letras y números
+adicionales.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-5-1-5" class="outline-5">
+<h5 id="sec-3-5-1-5">Referencias remotas</h5>
+<div class="outline-text-5" id="text-3-5-1-5">
+<p>
+También puede hacer referencia a constantes, campos y rangos de
+una tabla distinta, ya sea en el archivo actual o incluso en
+archivos diferentes. La sintaxis es
+</p>
+
+<pre class="example">
+remote(NOMBRE-O-ID,REF)
+</pre>
+
+<p>
+donde NOMBRE puede ser el nombre de una tabla en el archivo
+actual establecida con una linea <code>#+NAME: Nombre</code> antes de la
+tabla. También puede ser la ID de una entrada, incluso de un
+archivo diferente, y la referencia a continuación, se refiere a
+la primera tabla en esa entrada. REF es un campo absoluto o
+referencia de rango como se ha descrito anteriormente para el
+ejemplo <code>@3$3</code> o <code>$algunnombre</code>, válido en la tabla referenciada.
+</p>
+
+<p>
+Indirección de NOMBRE-O-ID: Cuando NOMBRE-O-ID tiene el formato
+<code>@FILA$COLUMNA</code> será sustituido por el nombre o ID encontrado en
+dicho campo de la tabla actual. Por ejemplo <code>remote($1, @&gt;$2)</code> <code>&gt;
+     =remote(year_2013, @&gt;$1)</code>. El formato <code>B3</code> no es compatible
+porque no se puede distinguir de un nombre simple de tabla o ID.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-5-2" class="outline-4">
+<h4 id="sec-3-5-2">3.5.2 Sintaxis de formula para calc                               <a id="Formula-syntax-for-Calc" name="Formula-syntax-for-Calc"></a></h4>
+<div class="outline-text-4" id="text-3-5-2">
+<p>
+Una fórmula puede ser cualquier expresión algebraica entendida por
+el paquete Calc de Emacs. Tenga en cuenta que calc tiene la
+convención no estándar que '<code>/</code>' tiene precedencia más baja que
+'<code>*</code>', por lo que '<code>a/b*c</code>'se interpreta como '<code>a/(b*c)</code>'. Antes
+de la evaluación por <code>calc-eval</code> (véase <a href="http://www.gnu.org/software/emacs/manual/html_mono/calc.html#Calling-Calc-from-Your-Programs">Calling Calc from Your
+Lisp Programs</a> en el manual de GNU Emacs Calc), la sustitución de
+variables se lleva a cabo de acuerdo a las reglas descritas
+arriba. Los vectores de rango pueden ser alimentados directamente
+en el vector de funciones Calc como '<code>vmean</code>' y '<code>vsum</code>'.
+</p>
+
+<p>
+Una fórmula de modo opcional puede contener una cadena después de
+un punto y coma. Esta cadena se compone de banderas para influir
+en Calc y otros modos durante la ejecución. De forma
+predeterminada, Org utiliza los modos estándar de Calc (precisión
+12, unidades de grados angulares, fracciones y modos simbólicos
+desactivados). El formato de visualización, sin embargo, se ha
+cambiado a <code>(float 8)</code> para mantener tablas compactas. Los ajustes
+por defecto pueden ser configurados mediante la opción
+<code>org-calc-default-modes</code>.
+</p>
+
+<p>
+Lista de modos:
+</p>
+
+<ul class="org-ul">
+<li><code>p20</code>
+
+<p>
+Ajusta el cálculo interno Calc a 20 dígitos de precisión.
+</p>
+</li>
+
+<li><code>n3</code>, <code>s3</code>, <code>e2</code>, <code>f4</code>
+
+<p>
+Resultado de Calc pasado de nuevo a Org normal, científico,
+ingeniería o de formato fijo. El formato Calc es de precisión
+ilimitada, siempre y cuando la precisión de cálculo Calc sea
+mayor.
+</p>
+</li>
+
+<li><code>D</code>, <code>R</code>
+
+<p>
+Modos de angulo de Calc, grados y radianes.
+</p>
+</li>
+
+<li><code>F</code>, <code>S</code>
+
+<p>
+Fracción y modos simbólicos de Calc.
+</p>
+</li>
+
+<li><code>T</code>, <code>t</code>
+
+<p>
+Duración de cálculos en Calc o Lisp, ver
+<a href="#Durations-and-time-values">Durations and time values</a>.
+</p>
+</li>
+
+<li><code>E</code>
+
+<p>
+Si y cómo considerar los campos vacíos. Sin '<code>E</code>' los campos
+vacíos en el rango de referencias se suprimen de manera que el
+vector Calc o la lista Lisp contiene sólo los campos no
+vacíos. Con '<code>E</code>' los campos vacíos se mantienen. Para los
+campos vacíos en rangos o referencias de campo el valor '<code>nan</code>'
+(not a number) se utiliza en fórmulas Calc y la cadena vacía se
+utiliza para las fórmulas de Lisp. Añadir '<code>N</code>' para usar 0 en
+ambos tipos de fórmula. Para el valor de un de campo el modo
+'<code>N</code>' tiene mayor precedencia que '<code>E</code>'.
+</p>
+</li>
+
+<li><code>N</code>
+
+<p>
+Interpretar todos los campos como números, utilice 0 para los
+no números. Vea la siguiente sección para ver cómo esto es
+esencial para cálculos con Fórmulas Lisp. En las fórmulas Calc
+se usa sólo ocasionalmente debido a que hay cadenas de números
+que ya se interpretan como números sin '<code>N</code>'.
+</p>
+</li>
+
+<li><code>L</code>
+
+<p>
+Literal, solamente para fórmulas Lisp. Consulte la siguiente
+sección.
+</p>
+</li>
+</ul>
+
+
+<p>
+A menos que utilice números enteros grandes o de alta precisión de
+cálculo y -display para los números de punto flotante puede,
+proporcionar, alternativamente un especificador de formato
+'<code>printf</code>' para reformatear el resultado Calc después de que se ha
+pasado de nuevo a Org en lugar de dejar a Calc hacer el
+formato<sup><a id="fnr.31" name="fnr.31" class="footref" href="#fn.31">31</a></sup>. Algunos ejemplos:
+</p>
+
+<pre class="example">
+$1+$2                Suma del primer y segundo campo
+$1+$2;%.2f           Igual, formato de resultado a dos decimales
+exp($2)+exp($1)      Se pueden utilizar funciones matemáticas
+$0;%.1f              Reformatear celda actual a 1 decimal
+($3-32)*5/9          Grados F -&gt; conversión a C
+$c/$1/$cm            Hz -&gt; conversión a cm, utilizando constants.el
+tan($1);Dp3s1        Calcular en grados, precisión 3, mostrar SCI 1
+sin($1);Dp3%.1e      Igual, pero usar el especificador printf para desplegar
+taylor($3,x=7,2)     Serie de Taylor de $3, para x=7, segundo grado
+</pre>
+
+<p>
+Calc también contiene un conjunto completo de operaciones lógicas,
+(ver <a href="http://www.gnu.org/software/emacs/manual/html_mono/calc.html#Logical-Operations">Logical Operations</a> en GNU Emacs Calc Manual). Por ejemplo
+</p>
+
+<ul class="org-ul">
+<li><code>if($1 &lt; 20, teen, string(""))</code>
+
+<p>
+"teen" si la edad <code>$1</code> es inferior a 20, de lo contrario el
+resultado de campo de la tabla Org se establece en vacio con la
+cadena vacía.
+</p>
+</li>
+
+<li><code>if("$1" == "nan" || "$2" == "nan", string(""), $1 + $2); E f-1</code>
+
+<p>
+Suma de las dos primeras columnas. Cuando al menos uno de los
+campos de entrada está vacío el campo de resultado de la tabla
+Org se establece en vacío. '<code>E</code>' se requiere para no convertir
+los campos vacíos a 0. '<code>f-1</code>' es un cadena opcional de formato
+Calc similar a '<code>%.1f</code>' pero deja vacío el resultado.
+</p>
+</li>
+
+<li><code>if(typeof(vmean($1..$7)) == 12, string(""), vmean($1..$7); E</code>
+
+<p>
+Valor medio de un rango a menos que haya algun campo
+vacío. Cada campo en el rango que está vacío se sustituye por
+'<code>nan</code>' que permite a '<code>vmean</code>' dar por resultado
+'<code>nan</code>'. Despues '<code>typeof == 12</code>' detecta el '<code>nan</code>' de
+'<code>vmean</code>' y el campo de resultado se establece como vacío.
+Utilice esto cuando se espera que el conjunto de muestras no
+tienen valores faltantes.
+</p>
+</li>
+
+<li><code>if("$1..$7" == "[]", string(""), vmean($1..$7))</code>
+
+<p>
+Valor medio de un rango con omicion de campos vacios. Cada
+campo en el rango que está vacío se salta. Cuando todos los
+campos en el rango están vacíos el valor medio no está definido
+y el campo de resultado se establece en vacío. Utilice esto
+cuando el conjunto de muestras puede tener un tamaño variable.
+</p>
+</li>
+
+<li><code>vmean($1..$7); EN</code>
+
+<p>
+Para completar el ejemplo anterior: El valor medio de un rango
+con campos vacíos contandos como muestras con valor 0. Utilice
+esto sólo cuando grupos de muestras incompletas deban ser
+rellenados con 0 para muestra de tamaño completo.
+</p>
+</li>
+</ul>
+
+
+<p>
+Usted puede agregar sus propias funciones de Calc definidas en
+Emacs Lisp con <code>defmath</code> y utilizarlas en la sintaxis de fórmula
+para Calc.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-5-3" class="outline-4">
+<h4 id="sec-3-5-3">3.5.3 Sintaxis de formula para lips                                <a id="Formula-syntax-for-Lisp" name="Formula-syntax-for-Lisp"></a></h4>
+<div class="outline-text-4" id="text-3-5-3">
+<p>
+También es posible escribir una fórmula en Emacs Lisp. Esto puede
+ser útil para manipulación de cadenas y estructuras de control, si
+la funcionalidad de Calc no es suficiente.
+</p>
+
+<p>
+Si una fórmula comienza con un apóstrofe seguido por un paréntesis
+de abertura, a continuación, se evalúa como una forma Lisp. La
+evaluación debe devolver una cadena o un número. Al igual que con
+calc fórmulas, puede especificar los modos y el formato de printf
+después de una punto y coma.
+</p>
+
+<p>
+Con formato Emacs Lisp, usted necesita ser consciente de la manera
+en que las referencias de campo son interpoladas en una cadena
+Lisp. Por defecto, un referencia se interpola como una cadena Lisp
+(entre comillas dobles) que contiene el campo. Si usted
+proporciona el interruptor de modo '<code>N</code>', todos los elementos
+referenciados serán números (campos no numéricos serán cero) e
+interpoladados como números de Lisp, sin las comillas. si
+proporciona la bandera '<code>L</code>', todos los campos se interpolan,
+literalmente, sin las comillas. Es decir, si quiere que una
+referencia sea interpretada como una cadena en formato Lisp,
+encierra el propio operador de referencia entre comillas dobles,
+como "<code>$3</code>". Los rangos se insertan separados por campos de
+espacio, por lo que se puede incrustar en sintaxis de lista o
+vector.
+</p>
+
+<p>
+Aquí hay algunos ejemplos &#x2013; observe cómo se utiliza el modo '<code>N</code>'
+cuando se hacen cálculos en Lisp:
+</p>
+
+<ul class="org-ul">
+<li>='(concat (substring $1 1 2) (substring $1 0 1) (substring $1 2))=
+
+<p>
+Cambia los dos primeros caracteres del contenido de la columna 1.
+</p>
+</li>
+
+<li>='(+ $1 $2);N=
+
+<p>
+Sumar columnas 1 y 2, el equivale para Calc es <code>$1+$2</code>.
+</p>
+</li>
+
+<li>='(apply '+ '($1..$4));N=
+
+<p>
+Calcula la suma de las columnas 1 a 4, en Calc es
+<code>vsum($1..$4)</code>.
+</p>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-3-5-4" class="outline-4">
+<h4 id="sec-3-5-4">3.5.4 Valores de duracion y tiempo                                <a id="Durations-and-time-values" name="Durations-and-time-values"></a></h4>
+<div class="outline-text-4" id="text-3-5-4">
+<p>
+Si desea calcular valores de tiempo utilice la bandera <code>T</code>, ya sea
+en fórmulas Calc o Elisp:
+</p>
+
+<pre class="example">
+| Tarea 1 |  Tarea 2 |    Total |
+|---------+----------+----------|
+|    2:12 |     1:47 | 03:59:00 |
+| 3:02:20 | -2:07:00 |     0.92 |
+#+TBLFM: @2$3=$1+$2;T::@3$3=$1+$2;t
+</pre>
+
+<p>
+Los valores de duración necesitan tener el formato <code>HH:MM[:SS]</code>,
+los segundos son opcionales. Con la bandera <code>T</code>, las duraciones
+calculadas se despliegan como <code>HH:MM:SS</code> (vér la primera fórmula
+en el ejemplo anterior). Con la bandera <code>t</code>, las duraciones
+calculadas se despliegan de acuerdo con el valor de la opción
+<code>org-table-duration-custom-format</code>, que por defecto es ='hours= y
+mostrará el resultado como una fracción de hora (ver la segunda
+fórmula en el ejemplo anterior).
+</p>
+
+<p>
+Tambien pueden ser manipulados valores de duración negativos, los
+números enteros son considerados como segundos en la suma y resta.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-5-5" class="outline-4">
+<h4 id="sec-3-5-5">3.5.5 Campos y rangos de formulas                                 <a id="Field-and-range-formulas" name="Field-and-range-formulas"></a></h4>
+<div class="outline-text-4" id="text-3-5-5">
+<p>
+Para asignar una fórmula a un campo determinado, escriba
+directamente en el campo, precedido por '<code>:=</code>', por ejemplo
+'<code>:=vsum(@II..III)</code>'. Cuando pulsa <code>TAB</code> o <code>RET</code> o <code>C-c C-c</code> con
+el cursor aun en el campo, la fórmula se almacena como la fórmula
+para este campo, tras evaluar, y el campo actual será reemplazado
+por el resultado.
+</p>
+
+<p>
+Las fórmulas se almacenan en una línea especial que empiezan con
+'<code>#+TBLFM:</code>' directamente debajo de la tabla. Si escribe la
+ecuación en el cuarto campo de la tercer línea de datos en la
+tabla, la fórmula se verá como '<code>@3$4=$1+$2</code>'. Al
+insertar/borrar/intercambiar columnas y filas con los comandos
+apropiados, <i>referencias absolutas</i> (pero no las relativas) las
+fórmulas almacenadas se modifican con el fin de todavía hacer
+referencia al mismo campo. Para anular esto, en particular en
+referencias de rangos, rangos sujetos en los bordes de la tabla
+(utilizando <code>@&lt;</code>, <code>@&gt;</code>, <code>$&lt;</code>, <code>$&gt;</code>), o a hlines utilizando la
+notación <code>@I</code>. La adaptación automática de referencias de campo,
+por supuesto, no sucede si edita la estructura de la tabla con los
+comandos normales de edición &#x2013; entonces debe fijar las ecuaciones
+a usted mismo.
+</p>
+
+<p>
+En lugar de escribir una ecuación en el campo, también puede
+utilizar el siguiente comando
+</p>
+
+<ul class="org-ul">
+<li><code>C-u C-c =</code> (<code>org-table-eval-formula</code>)
+
+<p>
+Poner una nueva fórmula para el campo actual. El comando pide
+una fórmula, la formula se aplica al campo actual, y se
+almacena en la linea predeterminada '<code>#+TBLFM:</code>'.
+</p>
+</li>
+</ul>
+
+
+<p>
+El lado izquierdo de una fórmula también puede ser una expresión
+especial con el fin de asignar la fórmula a un número de campos
+diferentes. No hay una combinacion de teclado para ingresar dicho
+rango fórmulas. Para agregarlos, utilice el editor de fórmulas
+(ver <a href="#Editing-and-debugging-formulas">Editing and debugging formulas</a>) o edite directamente la linea
+<code>#+TBLFM:</code>.
+</p>
+
+<ul class="org-ul">
+<li><code>$2=</code>
+
+<p>
+Fórmula de columna, válida para toda la columna. Esto es tan
+común que Org trata a estas fórmulas de una manera especial,
+ver <a href="#Column-formulas">Column formulas</a>.
+</p>
+</li>
+
+<li><code>@3=</code>
+
+<p>
+Fórmula de fila, se aplica a todos los campos de la fila
+especificada. <code>@&gt;=</code> significa la última fila.
+</p>
+</li>
+
+<li><code>@1$2..@4$3=</code>
+
+<p>
+Fórmula de rango, se aplica a todos los campos en el rango
+rectangular dado. Esto también puede utilizarse para asignar
+una fórmula a algunos, pero no todos los campos en una fila.
+</p>
+</li>
+
+<li><code>$name=</code>
+
+<p>
+Nombre de campo, ver <a href="#Advanced-features">Advanced features</a>.
+</p>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-3-5-6" class="outline-4">
+<h4 id="sec-3-5-6">3.5.6 fórmulas de columna                                         <a id="Column-formulas" name="Column-formulas"></a></h4>
+<div class="outline-text-4" id="text-3-5-6">
+<p>
+Al asignar una fórmula a una referencia de columna como <code>$3=</code>, la
+misma fórmula se utilizará en todos los campos de esa columna, con
+las muy convenientes excepciones siguientes: (i) Si la tabla
+contiene separadores horizontales hlines con filas arriba y abajo,
+todo antes de la primera de esas hline se considera parte del
+<i>encabezado</i> de tabla y no será modificado por las formulas de
+columna. Por lo tanto es obligatorio un encabezado cuando se
+utilizan fórmulas de columna y se desea agregar hlines a las filas
+del grupo, como por ejemplo para separar una fila total al final
+con la suma de las filas de arriba. (ii) Los campos que ya reciben
+un valor de una formula de campo/rango son abandonados por las
+fórmulas de columna. Estas condiciones hacen muy fácil usar
+fórmulas de columna.
+</p>
+
+<p>
+Para asignar una fórmula a una columna, escriba directamente en
+cualquier campo en la columna, precedido por un signo igual, como
+'<code>=$1+$2</code>'. Cuando pulse <code>TAB</code> o <code>RET</code> o <code>C-c C-c</code> con el cursor
+aun en el campo, la fórmula se almacena como la fórmula para la
+columna actual, luego se evalua y el campo actual es reemplazado
+con el resultado. Si el campo contiene sólo '=', la formula
+previamente almacenada se utiliza para esta columna. Para cada
+columna, Org sólo tiene presente la fórmula más recientemente
+utilizada. En la linea '<code>#+TBLFM:</code>', las fórmulas de columna se
+verán como '<code>$4=$1+$2</code>'. El lado izquierdo de un fórmula de
+columna no puede ser el nombre de la columna, debe ser la
+referencia numérica de columna o <code>$&gt;</code>.
+</p>
+
+<p>
+En lugar de escribir una ecuación dentro del campo, también puede
+utilizar el siguiente comando:
+</p>
+
+<ul class="org-ul">
+<li><code>C-c =</code> (<code>org-table-eval-formula</code>)
+
+<p>
+Pone una nueva fórmula para la columna actual y reemplaza el
+campo actual con el resultado de la fórmula. El comando solicita
+un fórmula, con un valor predeterminado tomado de la línea
+'<code>#+TBLFM</code>', lo aplica al campo actual y lo almacena. Con un
+argumento prefijo numérico (por ejemplo, <code>C-5 C-c =</code>) el comando
+se aplicará a los campos consecutivos en la columna actual.
+</p>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-3-5-7" class="outline-4">
+<h4 id="sec-3-5-7">3.5.7 funciones de búsqueda                                       <a id="Lookup-functions" name="Lookup-functions"></a></h4>
+<div class="outline-text-4" id="text-3-5-7">
+<p>
+Org tiene tres funciones Emacs Lisp predefinidas para búsquedas en
+tablas.
+</p>
+
+<ul class="org-ul">
+<li>(org-lookup-first VAL S-LIST R-LIST &amp;optional PREDICATE)
+
+<p>
+Busca el primer elemento <code>S</code> en la lista <code>S-LIST</code> para los que
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(PREDICATE VAL S)
+</pre>
+</div>
+
+<p>
+es <code>t</code>; devuelve el valor de la posición correspondiente en la
+lista <code>R-LIST</code>. <code>PREDICATE</code> por defecto es <code>equal</code>. Tenga en
+cuenta que los parámetros <code>VAL</code> y <code>S</code> se pasan a <code>PREDICATE</code> en
+el mismo orden que los parámetros correspondientes están en la
+llamada a <code>org-lookup-first</code>, donde <code>VAL</code> precede a <code>S-LIST</code>.
+Si <code>R-LIST</code> es <code>nil</code>, el elemento coincidente <code>S</code> de <code>S-LIST</code>
+se devuelve.
+</p>
+</li>
+
+<li>(org-lookup-last VAL S-LIST R-LIST &amp;optional PREDICATE)=
+
+<p>
+Similar al anterior <code>org-lookup-first</code>, pero busca para el
+<i>ultimo</i> elemento para el que <code>PREDICATE</code> es <code>t</code>.
+</p>
+</li>
+
+<li>(org-lookup-all VAL S-LIST R-LIST &amp;optional PREDICATE)=
+
+<p>
+Similar a <code>org-lookup-firts</code>, pero busca <i>todos</i> los elementos
+para los que <code>PREDICATE</code> es <code>t</code> y devuelve <i>todos</i> los valores
+correspondientes. Esta función puede utilizarse por sí misma en
+una fórmula, porque devuelve una lista de valores. Sin embargo,
+las búsquedas potentes se puede construir cuando esta función
+se combina con otras Funciones Emacs Lisp.
+</p>
+</li>
+</ul>
+
+
+<p>
+Si los rangos utilizados en estas funciones contienen campos
+vacíos, el modo <code>E</code> para la fórmula debe ser especificado de otra
+manera los campos vacíos no se incluirán en <code>S-LIST</code> y/o <code>R-LIST</code>
+que puede, por ejemplo, dar lugar a una asignación incorrecta de
+una elemento <code>S-LIST</code> al elemento correspondiente de <code>R-LIST</code>.
+</p>
+
+<p>
+Estas tres funciones se pueden utilizar para implementar matrices
+asociativas, conteo de celldas coincidentes, resultados de rango,
+datos de grupo etc. Para ejemplos prácticos vea <a href="http://orgmode.org/worg/org-tutorials/org-lookups.html">este tutorial en
+Worg</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-5-8" class="outline-4">
+<h4 id="sec-3-5-8">3.5.8 Editar y depurar fórmulas                                   <a id="Editing-and-debugging-formulas" name="Editing-and-debugging-formulas"></a></h4>
+<div class="outline-text-4" id="text-3-5-8">
+<p>
+Puede editar fórmulas individuales en el minibúfer o directamente
+en el campo. Org también puede preparar un buffer especial con
+todas las formulas activas de una tabla. Cuando ofrece una fórmula
+para la edición, Org convierte las referencias al formato estándar
+(como <code>B3</code> o <code>D&amp;</code>) si es posible. Si prefiere sólo trabajar con el
+formato interno (como <code>@3$2</code> o <code>$4</code>), configure la opción
+<code>org-table-use-standard-references</code>.
+</p>
+
+<ul class="org-ul">
+<li><code>C-c =</code> or <code>C-u C-c =</code> (<code>org-table-eval-formula</code>)
+
+<p>
+Editar la fórmula asociada a la columna/campo actual en el
+minibúfer. Véase <a href="#Column-formulas">Column formulas</a>, y <a href="#Field-and-range-formulas">Field and range formulas</a>.
+</p>
+</li>
+
+<li><code>C-u C-u C-c =</code> (<code>org-table-eval-formula</code>)
+
+<p>
+Reinsertar la fórmula activa (ya sea una fórmula de campo, o
+una fórmula de columna) en el campo actual, de modo que usted
+puede editarla directamente en el campo. La ventaja sobre la
+edición en el minibúfer es que se puede utilizar el comando
+<code>C-c ?</code>.
+</p>
+</li>
+
+<li><code>C-c ?</code> (<code>org-table-field-info</code>)
+
+<p>
+Mientras edita una fórmula en un campo de la tabla, resalta el
+campo(s) referenciado por la formula que se encuentra en la
+posición del cursor.
+</p>
+</li>
+
+<li><code>C-c }</code>
+
+<p>
+Cambiar la visualización de numeros en fila y columna para una
+tabla, utilizando una capa superpuesta
+(<code>org-table-toggle-coordinate-overlays</code>). Esta es actualizada
+cada vez que la tabla se alinea; puede forzarse con <code>C-c C-c</code>.
+</p>
+</li>
+
+<li><code>C-c {</code>
+
+<p>
+Alterna el depurador de fórmulas entre encendido y apagado
+(<code>org-table-toggle-formula-debugger</code>). Mirar abajo.
+</p>
+</li>
+
+<li><code>C-c '= (=org-table-edit-formulas</code>)
+
+<p>
+Edite todas las fórmulas de la tabla actual en un búfer
+especial, se mostrará una formula por línea. Si el campo actual
+tiene una fórmula activa, el cursor lo marcara en el editor de
+fórmulas. Mientras esta dentro del buffer especial, Org
+resaltara automáticamente cualquier campo o referencia de rango
+sobre la posición del cursor. Puede editar, eliminar y añadir
+fórmulas. Puede utilizar los siguientes comandos:
+</p>
+
+<ul class="org-ul">
+<li><code>C-c C-c</code> or <code>C-x C-s</code> (<code>org-table-fedit-finish</code>)
+
+<p>
+Salir del editor de fórmulas y almacenar las fórmulas
+modificadas. Con el prefijo <code>C-u</code>, también se aplican las
+nuevas fórmulas para toda la tabla.
+</p>
+</li>
+
+<li><code>C-c C-q</code> (<code>org-table-fedit-abort</code>)
+
+<p>
+Salir del editor de fórmulas sin instalar cambios.
+</p>
+</li>
+
+<li><code>C-c C-r</code> (<code>org-table-fedit-toggle-ref-type</code>)
+
+<p>
+Cambia todas las referencias en el editor entre formato
+estándar (como <code>B3</code>) e interno (como <code>@3$2</code>).
+</p>
+</li>
+
+<li><code>TAB</code> (<code>org-table-fedit-lisp-indent</code>)
+
+<p>
+Impresion bonita o indentado de fórmula Lisp en el
+punto. Cuando una línea contiene una fórmula Lisp, formatea
+la fórmula de acuerdo a las normas de Emacs Lisp. Otro <code>TAB</code>
+colapsa nuevamente la fórmula. En una fórmula abierta, <code>TAB</code>
+re-indenta como en el modo Emacs Lisp.
+</p>
+</li>
+
+<li><code>M-TAB</code> (<code>lisp-complete-symbol</code>)
+
+<p>
+Completar símbolos Lisp, igual que en el modo Emacs Lisp.
+</p>
+</li>
+
+<li><code>S-up/down/left/right</code>
+
+<p>
+Cambie la referencia en el punto. Por ejemplo, si la
+referencia es <code>B3</code> y pulsa <code>S-derecha</code>, se convertirá en
+<code>C3</code>. Esto también funciona en referencias relativas y
+referencias hline.
+</p>
+</li>
+
+<li><code>M-S-up</code> (<code>org-table-fedit-line-up</code>)
+</li>
+<li><code>M-S-down</code> (<code>org-table-fedit-line-down</code>)
+
+<p>
+Para las fórmulas de columna mueve arriba y abajo la línea
+de prueba en el búfer Org.
+</p>
+</li>
+
+<li><code>M-up</code> (<code>org-table-fedit-scroll-down</code>)
+</li>
+<li><code>M-down</code> (<code>org-table-fedit-scroll-up</code>)
+
+<p>
+Desplazar la ventana que muestra la tabla.
+</p>
+</li>
+
+<li><code>C-c }</code>
+
+<p>
+Alterna la regilla de condenadas de tabla entre encendido y
+apagado.
+</p>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<p>
+Hacier vacio un campo de la tabla no elimina la fórmula asociada a
+dicho campo, debido a que se almacena en una línea diferente (la
+linea '<code>#+TBLFM</code>') &#x2013; el próximo cálculo rellenara el campo de
+nuevo. Para eliminar una fórmula, tiene que dar una respuesta
+vacía cuando se le solicite la fórmula, o editar el Línea
+'<code>#+TBLFM</code>'.
+</p>
+
+<p>
+Usted puede editar directamente la linea '<code>#+TBLFM</code>' y volver a
+aplicar las ecuaciones modificadas con <code>C-c C-c</code> en dicha línea o
+con los comandos habituales de cálculo en la tabla.
+</p>
+</div>
+<div id="outline-container-sec-3-5-8-1" class="outline-5">
+<h5 id="sec-3-5-8-1">Uso de múltiples lineas #+TBLFM                                  <a id="Using-multiple-TBLFM-lines" name="Using-multiple-TBLFM-lines"></a></h5>
+<div class="outline-text-5" id="text-3-5-8-1">
+<p>
+Usted puede aplicar una fórmula temporalmente. Esto es útil al
+cambiar la fórmula. Coloque múltiples lineas '<code>#+TBLFM</code>' justo
+después la tabla y, a continuación, pulse <code>C-c C-c</code> en la fórmula
+a aplicar. Aquí un ejemplo:
+</p>
+
+<pre class="example">
+| x | y |
+|---+---|
+| 1 |   |
+| 2 |   |
+#+TBLFM: $2=$1*1
+#+TBLFM: $2=$1*2
+</pre>
+
+<p>
+Presionar <code>C-c C-c</code> en la línea '<code>#+TBLFM: $2=$1*2</code>' produce:
+</p>
+
+<pre class="example">
+| x | y |
+|---+---|
+| 1 | 2 |
+| 2 | 4 |
+#+TBLFM: $2=$1*1
+#+TBLFM: $2=$1*2
+</pre>
+
+<p>
+Nota: Si vuelve a calcular esta tabla (con <code>C-u C-c *</code>, por
+ejemplo), obtendrá el resultado de aplicar sólo la primera línea
+'<code>#+TBLFM</code>'.
+</p>
+
+<pre class="example">
+| x | y |
+|---+---|
+| 1 | 1 |
+| 2 | 2 |
+#+TBLFM: $2=$1*1
+#+TBLFM: $2=$1*2
+</pre>
+</div>
+</div>
+<div id="outline-container-sec-3-5-8-2" class="outline-5">
+<h5 id="sec-3-5-8-2">Depuración de Fórmulas</h5>
+<div class="outline-text-5" id="text-3-5-8-2">
+<p>
+Cuando la evaluación de una fórmula conduce a un error, el
+contenido de campo se convierte en la cadena '<code>#ERROR</code>'. Si
+quiere ver lo que que está pasando durante la sustitución de
+variables y el cálculo con el fin para encontrar un error,
+encienda la depuración de fórmulas en el menu <code>Tbl</code> o mediante
+<code>C-c {</code> y repita el cálculo, por ejemplo presionando en un campo
+<code>C-u C-u C-c = RET</code>. Se mostrará la información detallada.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-5-9" class="outline-4">
+<h4 id="sec-3-5-9">3.5.9 Actualizar la tabla                                         <a id="Updating-the-table" name="Updating-the-table"></a></h4>
+<div class="outline-text-4" id="text-3-5-9">
+<p>
+El cálculo de una tabla normalmente no es automático, sino que
+necesita ser activado por un comando. Véa <a href="#Advanced-features">Advanced features</a>, para
+una manera de hacer el cálculo al menos semi-automático.
+</p>
+
+<p>
+Con el fin de calcular una línea de la tabla o la tabla entera,
+utilice los siguientes comandos:
+</p>
+
+<ul class="org-ul">
+<li><code>C-c *</code> (<code>org-table-recalculate</code>)
+
+<p>
+Recalcular la fila actual aplicando primero las fórmulas de
+columna almacenadas de izquierda a derecha, y todas las
+fórmulas de campo/rango en la fila actual.
+</p>
+</li>
+
+<li><code>C-u C-c *</code>
+</li>
+<li><code>C-u C-c C-c</code>
+
+<p>
+Recalcular la tabla entera, línea por línea. Cualquier línea
+antes del primer hline se descarta, asumiendo que es parte de
+la cabecera de la tabla.
+</p>
+</li>
+
+<li><code>C-u C-u C-c *</code> or <code>C-u C-u C-c C-c</code> (<code>org-table-iterate</code>)
+
+<p>
+Iterar la tabla recalculando hasta que no ocurran más cambios.
+Esto puede ser necesario si algunos campos utilizan el valor de
+otros que se calculan <i>despues</i> en la secuencia de cálculo.
+</p>
+</li>
+
+<li><code>M-x org-table-recalculate-buffer-tables RET</code>
+
+<p>
+Recalcular todas las tablas en el búfer.
+</p>
+</li>
+
+<li><code>M-x org-table-iterate-buffer-tables RET</code>
+
+<p>
+Iterar todas las tablas en el búfer, con el fin de converger
+las dependencias tabla a tabla.
+</p>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-3-5-10" class="outline-4">
+<h4 id="sec-3-5-10">3.5.10 Características avanzadas                                  <a id="Advanced-features" name="Advanced-features"></a></h4>
+<div class="outline-text-4" id="text-3-5-10">
+<p>
+Si desea que el cálculo de campos suceda de forma automática, o si
+quiere ser capaz de asignar <i>nombres</i> <sup><a id="fnr.32" name="fnr.32" class="footref" href="#fn.32">32</a></sup> a los campos y
+columnas, es necesario reservar la primera columna de la tabla
+para caracteres de marcado especiales.
+</p>
+
+<ul class="org-ul">
+<li><code>C-#</code> (<code>org-table-rotate-recalc-marks</code>)
+</li>
+</ul>
+
+
+<p>
+Rotar la marca de cálculo en la primera columna a través de los
+estados ' ', '<code>#</code>', '<code>*</code>', '<code>!</code>', '<code>$</code>'. Cuando hay una región
+activa, cambia todas las marcas de la región.
+</p>
+
+
+<p>
+He aquí como ejemplo una tabla que recoge los resultados del
+examen de estudiantes y hace uso de estas características:
+</p>
+
+<pre class="example">
+|---+---------+--------+--------+--------+-------+------|
+|   | Student | Prob 1 | Prob 2 | Prob 3 | Total | Note |
+|---+---------+--------+--------+--------+-------+------|
+| ! |         |     P1 |     P2 |     P3 |   Tot |      |
+| # | Maximum |     10 |     15 |     25 |    50 | 10.0 |
+| ^ |         |     m1 |     m2 |     m3 |    mt |      |
+|---+---------+--------+--------+--------+-------+------|
+| # | Peter   |     10 |      8 |     23 |    41 |  8.2 |
+| # | Sam     |      2 |      4 |      3 |     9 |  1.8 |
+|---+---------+--------+--------+--------+-------+------|
+|   | Average |        |        |        |  25.0 |      |
+| ^ |         |        |        |        |    at |      |
+| $ | max=50  |        |        |        |       |      |
+|---+---------+--------+--------+--------+-------+------|
+#+TBLFM: $6=vsum($P1..$P3)::$7=10*$Tot/$max;%.1f::$at=vmean(@-II..@-I);%.1f
+</pre>
+
+<p>
+<b>Importante</b>: tenga en cuenta que para estas tablas especiales,
+recalcular la tabla con <code>C-u C-c *</code> sólo afectará a filas que
+están marcadas '<code>#</code>' o '<code>*</code>', y a los campos que tienen una
+fórmula asignada al campo. Las fórmulas de columna no se aplican
+en filas con el primer campo vacio.
+</p>
+
+<p>
+Los caracteres de marcado tienen el siguiente significado:
+</p>
+
+<ul class="org-ul">
+<li>'<code>!</code>'
+
+<p>
+Los campos de esta línea definen los nombres de las columnas, de
+modo que puede referirse a una columna como '<code>$Tot</code>' en lugar de
+'<code>$6</code>'.
+</p>
+</li>
+
+<li>'<code>^</code>'
+
+<p>
+Esta fila define los nombres de los campos de la fila
+<i>superior</i>. Con tal definición, cualquier fórmula en la tabla
+puede usar '<code>$m1</code>' para referirse a el valor '10'. También, si
+asigna una fórmula a un nombre de campo, se almacenara como
+'<code>$name=...</code>'.
+</p>
+</li>
+
+<li>'<code>_</code>'
+
+<p>
+Al igual a '<code>^</code>', pero define los nombres de los campos de la
+fila <i>inferior</i>.
+</p>
+</li>
+
+<li>'<code>$</code>'
+
+<p>
+Los campos de esta fila pueden definir <i>parámetros</i> para las
+fórmulas. Por ejemplo, si un campo en la fila '<code>$</code>' contiene
+'<code>max=50</code>', las fórmulas en esta tabla pueden hacer referencia
+al valor 50 usando '<code>$max</code>'. Los parámetros funcionan
+exactamente igual que las constantes, sólo que puede definirse
+en función de cada tabla.
+</p>
+</li>
+
+<li>'<code>#</code>'
+
+<p>
+Los campos de esta fila se recalculan automáticamente al pulsar
+<code>TAB</code>, <code>RET</code> o <code>S-TAB</code> en esta fila. Además, esta fila es
+seleccionada para un nuevo cálculo global con <code>C-u C-c *</code>. Las
+lineas no marcadas seran ignoradas por este comando.
+</p>
+</li>
+
+<li>'<code>*</code>'
+
+<p>
+Selecciona esta línea para un nuevo cálculo global con <code>C-u C-c
+      *</code>, pero no para el cálculo automático. Utilice esto cuando el
+cálculo automático ralentice demasiado la edición.
+</p>
+</li>
+
+<li>' '
+
+<p>
+Las líneas sin marcar están exentas de un nuevo cálculo con <code>C-u
+      C-c *</code>.  Todas las líneas que deban ser recalculadas deben estar
+marcadas con '<code>#</code>' o '<code>*</code>'.
+</p>
+</li>
+
+<li>'<code>/</code>'
+</li>
+</ul>
+
+
+<p>
+No exportar esta línea. Útil para las líneas que contienen los
+marcadores de reduccion '<code>&lt;N&gt;</code>' o marcadores de grupo de
+columnas.
+</p>
+
+
+<p>
+Por último, sólo para abrir el apetito sobre lo que se puede hacer
+con el fantástico paquete <code>calc.el</code>, aquí hay una tabla que
+calcula la serie de Taylor de grado <code>n</code> en la ubicación <code>x</code> para
+un par de funciones.
+</p>
+
+<pre class="example">
+|---+-------------+---+-----+--------------------------------------|
+|   | Func        | n | x   | Result                               |
+|---+-------------+---+-----+--------------------------------------|
+| # | exp(x)      | 1 | x   | 1 + x                                |
+| # | exp(x)      | 2 | x   | 1 + x + x^2 / 2                      |
+| # | exp(x)      | 3 | x   | 1 + x + x^2 / 2 + x^3 / 6            |
+| # | x^2+sqrt(x) | 2 | x=0 | x*(0.5 / 0) + x^2 (2 - 0.25 / 0) / 2 |
+| # | x^2+sqrt(x) | 2 | x=1 | 2 + 2.5 x - 2.5 + 0.875 (x - 1)^2    |
+| * | tan(x)      | 3 | x   | 0.0175 x + 1.77e-6 x^3               |
+|---+-------------+---+-----+--------------------------------------|
+#+TBLFM: $5=taylor($2,$4,$3);n3
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-3-6" class="outline-3">
+<h3 id="sec-3-6">3.6 Org-Plot                                                       <a id="Org-plot" name="Org-plot"></a></h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+Org-Plot puede producir gráficos de la información almacenada en
+tablas org, ya sea gráficamente o en ASCII-art.
+</p>
+</div>
+<div id="outline-container-sec-3-6-1" class="outline-4">
+<h4 id="sec-3-6-1">Trazar gráficos utilizando Gnuplot</h4>
+<div class="outline-text-4" id="text-3-6-1">
+<p>
+Org-Plot produce gráficos 2D y 3D utilizando Gnuplot
+<a href="http://www.gnuplot.info/">http://www.gnuplot.info/</a> y gnuplot-mode
+<a href="http://xafs.org/BruceRavel/GnuplotMode">http://xafs.org/BruceRavel/GnuplotMode</a>. Para ver esto en acción,
+asegúrese de tener instalado en su sistema tanto Gnuplot como el
+modo Gnuplot, a continuación, invoquelo en la siguiente tabla con
+<code>C-c " g</code> o <code>M-x org-plot/gnuplot RET</code>.
+</p>
+
+<pre class="example">
+#+PLOT: title:"Citas" ind:1 deps:(3) type:2d with:histograms set:"yrange [0:]"
+| Sede      | Max cites | H-index |
+|-----------+-----------+---------|
+| Chile     |    257.72 |   21.39 |
+| Leeds     |    165.77 |   19.68 |
+| Sao Paolo |     71.00 |   11.50 |
+| Stockholm |    134.19 |   14.33 |
+| Morelia   |    257.56 |   17.67 |
+</pre>
+
+<p>
+Observe que Org Plot es lo suficientemente inteligente como para
+aplicar las cabeceras de la tabla como etiquetas. Puede ejercerse
+más control sobre etiquetas, tipos, contenido y aspecto del
+grafico a través de las lineas <code>#+PLOT:</code> que preceden a una
+tabla. Vera a continuación una lista completa de opciones para
+Org-Plot. Las líneas <code>#+PLOT</code> son opcionales. Para más información
+y ejemplos vea el tutorial Org-Plot en
+<a href="http://orgmode.org/worg/org-tutorials/org-plot.html">http://orgmode.org/worg/org-tutorials/org-plot.html</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3-6-2" class="outline-4">
+<h4 id="sec-3-6-2">Opciones de trazado</h4>
+<div class="outline-text-4" id="text-3-6-2">
+<ul class="org-ul">
+<li><code>set</code>
+
+<p>
+Especifique cualquier opción <code>gnuplot</code> a establecer en la
+represetacion grafica.
+</p>
+
+<ul class="org-ul">
+<li><code>title</code>
+
+<p>
+Especifica el título del grafico.
+</p>
+</li>
+
+<li><code>ind</code>
+
+<p>
+Especifica qué columna de la tabla se utiliza como eje <code>x</code>.
+</p>
+</li>
+
+<li><code>deps</code>
+
+<p>
+Especifica las columnas a gráficar como una lista de estilos
+Lisp, rodeado entre paréntesis y separado por espacios, por
+ejemplo <code>dep:(3 4)</code> para graficar la tercera y cuarta columnas
+(por defecto gráfica todas las otras columnas ademas de la
+columna <code>ind</code>).
+</p>
+</li>
+
+<li><code>type</code>
+
+<p>
+Especifique si el grafico será <code>2d</code>, <code>3d</code>, o <code>grid</code>.
+</p>
+</li>
+
+<li><code>with</code>
+
+<p>
+Especifica la opcion <code>with</code> a insertar en cada columna
+graficada (por ejemplo, <code>lines</code>, <code>points</code>, <code>boxes</code>, <code>impulses</code>,
+etc&#x2026;).  Por defecto es <code>lines</code>.
+</p>
+</li>
+
+<li><code>file</code>
+
+<p>
+Si desea el grafico en un fichero, especifique
+"ruta/al/archivo-de-salido/deseado".
+</p>
+</li>
+
+<li><code>labels</code>
+
+<p>
+Lista de etiquetas a utilizar para los <code>deps</code> (por defecto en
+los encabezados de columna si existen).
+</p>
+</li>
+
+<li><code>line</code>
+
+<p>
+Especifica una línea completa para insertarse en el script
+Gnuplot.
+</p>
+</li>
+
+<li><code>map</code>
+
+<p>
+Al graficar en tipos <code>3d</code> o <code>grid</code>, ajústelo a <code>t</code> para
+graficar un mapeo plano en lugar de un <code>3d</code> inclinado.
+</p>
+</li>
+
+<li><code>timefmt</code>
+
+<p>
+Especifica el formato de las marcas de tiempo Org que serán
+analizados por Gnuplot. Por defecto como '%Y-%m-%d-%H:%M:%S'.
+</p>
+</li>
+
+<li><code>script</code>
+
+<p>
+Si busca un control total, puede especificar un archivo de
+comandos (coloque el nombre de archivo entre comillas dobles),
+que se utiliza para el gráfico. Antes de trazar, cada instancia
+de <code>$datafile</code> en el script especificado será reemplazado con
+la ruta de acceso al fichero de datos generado. Nota: incluso
+si se establece esta opción, todavía puede especificar el tipo
+de grafico, ya que puede afectar el contenido del archivo de
+datos.
+</p>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-3-6-3" class="outline-4">
+<h4 id="sec-3-6-3">Graficos de barras ASCII</h4>
+<div class="outline-text-4" id="text-3-6-3">
+<p>
+Con el cursor sobre una columna, pulse <code>C-c "= o un =M-x
+    orgtbl-ascii-plot RET</code> para crear una nueva columna que contiene
+un grafico de barrar ASCII-art. El grafico se implementa a través
+de una columna regular. Cuando la columna de origen cambia, el
+grafico de barras puede ser actualizado refrescando la tabla, por
+ejemplo pulsando <code>C-u C-c *</code>.
+</p>
+
+<pre class="example">
+| Sede          | Max cites |              |
+|---------------+-----------+--------------|
+| Chile         |    257.72 | WWWWWWWWWWWW |
+| Leeds         |    165.77 | WWWWWWWh     |
+| Sao Paolo     |     71.00 | WWW;         |
+| Stockholm     |    134.19 | WWWWWW:      |
+| Morelia       |    257.56 | WWWWWWWWWWWH |
+| Rochefourchat |      0.00 |              |
+#+TBLFM: $3='(orgtbl-ascii-draw $2 0.0 257.72 12)
+</pre>
+
+<p>
+La fórmula es una llamada elisp:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-lisp">(orgtbl-ascii-draw COLUMN MIN MAX WIDTH)
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><code>COLUMN</code>
+
+<p>
+es una referencia a la columna de la fuente.
+</p>
+</li>
+
+<li><code>MIN MAX</code>
+
+<p>
+son los valores mínimos y máximos a mostrar. Los valores fuente
+fuera de este rango se muestran como '<code>too small</code>' o o '<code>too
+       large</code>'.
+</p>
+</li>
+
+<li><code>WIDTH</code>
+
+<p>
+es el ancho en caracteres del grafico de barras. Su valor
+predeterminado es '<code>12</code>'.
+</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4">4 Hyperlinks                                                        <a id="Hyperlinks" name="Hyperlinks"></a></h2>
 </div>
 <div id="footnotes">
 <h2 class="footnotes">Footnotes: </h2>
@@ -2335,7 +4462,7 @@ selectiva para esquematizar, no propiedades de texto.
 
 <div class="footdef"><sup><a id="fn.13" name="fn.13" class="footnum" href="#fnr.13">13</a></sup> <p class="footpara">
 Al usar '*' como para listas, las líneas deben tener una
-sangría o serán vistas como encabezados de primer nivel. Además,
+indentacion o serán vistas como encabezados de primer nivel. Además,
 cuando usted utiliza el modo de esquema limpio (ocultando estrellas),
 los elementos de lista de una estrella pueden ser difícil de
 distinguir de los verdaderos encabezados. En resumen: a pesar de que
@@ -2394,6 +4521,61 @@ fninline</code> o <code>#+STARTUP: nofninline</code>
 <div class="footdef"><sup><a id="fn.23" name="fn.23" class="footnum" href="#fnr.23">23</a></sup> <p class="footpara">
 Las correspondientes opcciones por buffer son <code>fnadjust</code> y
 <code>nofnadjust</code>.
+</p></div>
+
+<div class="footdef"><sup><a id="fn.24" name="fn.24" class="footnum" href="#fnr.24">24</a></sup> <p class="footpara">
+Para insertar una barra vertical en un campo de tabla, utilice
+<code>\vert</code> o, detro de una palabra <code>\vert{}</code> como en <code>abc\vert{}def</code>
+</p></div>
+
+<div class="footdef"><sup><a id="fn.25" name="fn.25" class="footnum" href="#fnr.25">25</a></sup> <p class="footpara">
+Esta caracteristica no funciano en XEmacs
+</p></div>
+
+<div class="footdef"><sup><a id="fn.26" name="fn.26" class="footnum" href="#fnr.26">26</a></sup> <p class="footpara">
+El centrado no funciona dentro de Emacs, pero si tiene un efecto
+cuando exporta a HTML.
+</p></div>
+
+<div class="footdef"><sup><a id="fn.27" name="fn.27" class="footnum" href="#fnr.27">27</a></sup> <p class="footpara">
+Org entendera referencias introducidas por el usuario como
+'<code>B4</code>', pero no haga uso de esta sintaxis al ofrecer una formula para
+edicion. Pude persanalizar este comportamiento usando la opcion
+<code>org-table-use-standard-references</code>.
+</p></div>
+
+<div class="footdef"><sup><a id="fn.28" name="fn.28" class="footnum" href="#fnr.28">28</a></sup> <p class="footpara">
+Por compativilidad con versiones anteriores tambien puede
+utilizar nombres especiales como <code>LR5</code> y <code>LR12</code> para referirse de
+manera permanete a la quinto y doceavo campo en la última fila de la
+tabla. Sin embargo, esta sintaxis está obsoleta, no debería utilizarán
+para los nuevos documentos. En su lugar utilice <code>@&gt;$</code>.
+</p></div>
+
+<div class="footdef"><sup><a id="fn.29" name="fn.29" class="footnum" href="#fnr.29">29</a></sup> <p class="footpara">
+Las escalas de tiempo de calculo son O(N\<sup>2</sup>) ya que la tabla,
+denominada <code>FOO</code> es analizada para cada campo a ser leido.
+</p></div>
+
+<div class="footdef"><sup><a id="fn.30" name="fn.30" class="footnum" href="#fnr.30">30</a></sup> <p class="footpara">
+<code>constants.el</code> puede suministrar los valores de las constantes
+en dos sistemas de unidades difirentes, <code>SI</code> y <code>cgs</code>. Cual se utiliza
+depende del valor de la varible <code>constants-unit-system</code>. Puede
+utilizar <code>#+STARTUP</code> con la opcion <code>constSI</code> y <code>constcgs</code> para
+establecer este valor para el bufer en uso.
+</p></div>
+
+<div class="footdef"><sup><a id="fn.31" name="fn.31" class="footnum" href="#fnr.31">31</a></sup> <p class="footpara">
+El cambio de formato '<code>printf</code>' está limitado en la precisión
+ya que el valor que se pasa se convierte a un 'entero' o 'doble'. El
+'entero' es limitado en tamaño por truncamiento al valor con signo de
+32 bits. los 'doble' se limitan en precisión a 64 bits en general que
+deja aproximadamente 16 dígitos decimales significativos.
+</p></div>
+
+<div class="footdef"><sup><a id="fn.32" name="fn.32" class="footnum" href="#fnr.32">32</a></sup> <p class="footpara">
+Estos nombres deben empezar por un caracter alfabetico y
+utilizar solo caracteres alfanumecos/guion bajo.
 </p></div>
 
 
