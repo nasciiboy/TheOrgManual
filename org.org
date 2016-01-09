@@ -92,9 +92,9 @@ modify this GNU manual.”
    to install Org on top of this pre-packaged version, there are three
    ways to do it:
 
-    - By using Emacs package system.
-    - By downloading Org as an archive.
-    - By using Org's git repository.
+   - By using Emacs package system.
+   - By downloading Org as an archive.
+   - By using Org's git repository.
 
    We *strongly recommend* to stick to a single installation method.
 
@@ -2502,68 +2502,68 @@ modify this GNU manual.”
 
 *** Plot Options
 
-     - =set=
+    - =set=
 
-       Specify any =gnuplot= option to be set when graphing.
+      Specify any =gnuplot= option to be set when graphing.
 
-     - =title=
+    - =title=
 
-       Specify the title of the plot.
+      Specify the title of the plot.
 
-     - =ind=
+    - =ind=
 
-       Specify which column of the table to use as the =x= axis.
+      Specify which column of the table to use as the =x= axis.
 
-     - =deps=
+    - =deps=
 
-       Specify the columns to graph as a Lisp style list, surrounded
-       by parentheses and separated by spaces for example =dep:(3 4)=
-       to graph the third and fourth columns (defaults to graphing all
-       other columns aside from the =ind= column).
+      Specify the columns to graph as a Lisp style list, surrounded by
+      parentheses and separated by spaces for example =dep:(3 4)= to
+      graph the third and fourth columns (defaults to graphing all
+      other columns aside from the =ind= column).
 
-     - =type=
+    - =type=
 
-       Specify whether the plot will be =2d=, =3d=, or =grid=.
+      Specify whether the plot will be =2d=, =3d=, or =grid=.
 
-     - =with=
+    - =with=
 
-       Specify a =with= option to be inserted for every col being
-       plotted (e.g., =lines=, =points=, =boxes=, =impulses=, etc...).
-       Defaults to =lines=.
+      Specify a =with= option to be inserted for every col being
+      plotted (e.g., =lines=, =points=, =boxes=, =impulses=, etc...).
+      Defaults to =lines=.
 
-     - =file=
+    - =file=
 
-       If you want to plot to a file, specify
-       "path/to/desired/output-file".
+      If you want to plot to a file, specify
+      "path/to/desired/output-file".
 
-     - =labels=
+    - =labels=
 
-       List of labels to be used for the =deps= (defaults to the
-       column headers if they exist).
+      List of labels to be used for the =deps= (defaults to the column
+      headers if they exist).
 
-     - =line=
+    - =line=
 
-       Specify an entire line to be inserted in the Gnuplot script.
+      Specify an entire line to be inserted in the Gnuplot script.
 
-     - =map=
+    - =map=
 
-       When plotting =3d= or =grid= types, set this to =t= to graph a
-       flat mapping rather than a =3d= slope.
+      When plotting =3d= or =grid= types, set this to =t= to graph a
+      flat mapping rather than a =3d= slope.
 
-     - =timefmt=
+    - =timefmt=
 
-       Specify format of Org mode timestamps as they will be parsed by
-       Gnuplot. Defaults to '%Y-%m-%d-%H:%M:%S'.
+      Specify format of Org mode timestamps as they will be parsed by
+      Gnuplot. Defaults to '%Y-%m-%d-%H:%M:%S'.
 
-     - =script=
+    - =script=
 
-       If you want total control, you can specify a script file (place
-       the file name between double-quotes) which will be used to
-       plot. Before plotting, every instance of =$datafile= in the
-       specified script will be replaced with the path to the
-       generated data file.  Note: even if you set this option, you
-       may still want to specify the plot type, as that can impact the
-       content of the data file.
+      If you want total control, you can specify a script file (place
+      the file name between double-quotes) which will be used to
+      plot. Before plotting, every instance of =$datafile= in the
+      specified script will be replaced with the path to the generated
+      data file.  Note: even if you set this option, you may still
+      want to specify the plot type, as that can impact the content of
+      the data file.
 
 *** ASCII bar plots
 
@@ -2647,7 +2647,7 @@ modify this GNU manual.”
    is an underlined face. You can directly edit the visible part of a
    link. Note that this can be either the 'link' part (if there is no
    description) or the 'description' part. To edit also the invisible
-   'link' part, use */C-c C-l/* with the cursor on the link.
+   'link' part, use =C-c C-l= with the cursor on the link.
 
    If you place the cursor at the beginning or just behind the end of
    the displayed text and press =BACKSPACE=, you will remove the
@@ -2664,7 +2664,7 @@ modify this GNU manual.”
    like
 
    #+BEGIN_EXAMPLE
-     [[@my-custom-id]]
+     [[#my-custom-id]]
    #+END_EXAMPLE
 
    which will link to the entry with the =CUSTOM_ID= property
@@ -2674,25 +2674,25 @@ modify this GNU manual.”
    Links such as
 
    #+BEGIN_EXAMPLE
-     '[[My Target]]'
+     [[My Target]]
    #+END_EXAMPLE
 
    or
 
    #+BEGIN_EXAMPLE
-     '[[My Target][Find my target]]'
+     [[My Target][Find my target]]
    #+END_EXAMPLE
 
    lead to a text search in the current file.
 
-   The link can be followed with */C-c C-o/* when the cursor is on the
+   The link can be followed with =C-c C-o= when the cursor is on the
    link, or with a mouse click (see [[@Handling-links][Handling links]]). Links to custom
    IDs will point to the corresponding headline. The preferred match
    for a text link is a /dedicated target/: the same string in double
    angular brackets, like
 
    #+BEGIN_EXAMPLE
-     '<<My Target>>'
+     <<My Target>>
    #+END_EXAMPLE
 
    If no dedicated target exists, the link will then try to match the
@@ -2730,7 +2730,7 @@ modify this GNU manual.”
    text.  In the above example the search would be for 'my target'.
 
    Following a link pushes a mark onto Org's own mark ring. You can
-   return to the previous position with */C-c &/*. Using this command
+   return to the previous position with =C-c &=. Using this command
    several times in direct succession goes back to positions recorded
    earlier.
 
@@ -2751,7 +2751,7 @@ modify this GNU manual.”
     causes each occurrence of 'my target' in normal text to become
     activated as a link. The Org file is scanned automatically for
     radio targets only when the file is first loaded into Emacs. To
-    update the target list during editing, press */C-c C-c/* with the
+    update the target list during editing, press =C-c C-c= with the
     cursor on or at a target.
 
 ** 4.3 External links                                                 <<@External-links>>
@@ -2763,7 +2763,7 @@ modify this GNU manual.”
    after the colon. The following list shows examples for each link
    type.
 
-   #+BEGIN_EXAMPLE
+   #+BEGIN_BLOCK
      http://www.astro.uva.nl/~dominik          on the web
      doi:10.1000/182                           DOI for an electronic resource
      file:/home/dominik/images/jupiter.jpg     file, absolute path
@@ -2774,9 +2774,8 @@ modify this GNU manual.”
      /myself@some.where:papers/last.pdf        same as above
      file:sometextfile::NNN                    file, jump to line number
      file:projects.org                         another Org file
-     file:projects.org::some words             text search in Org file(35)
-     file:projects.org::*task title heading search in Org
-     file(36)
+     file:projects.org::some words             text search in Org file[fn:35]
+     file:projects.org::*task                  title heading search in Org [fn:36]
      file+sys:/path/to/file                    open via OS, like double-click
      file+emacs:/path/to/file                  force opening by Emacs
      docview:papers/last.pdf::NNN              open in doc-view mode at page
@@ -2795,7 +2794,7 @@ modify this GNU manual.”
      shell:ls *.org                            A shell command
      elisp:org-agenda                          Interactive Elisp command
      elisp:(find-file-other-frame "Elisp.org") Elisp form to evaluate
-   #+END_EXAMPLE
+   #+END_BLOCK
 
    On top of these built-in link types, some are available through the
    =contrib/= directory (see [[@Installation][Installation]]). For example, these links
@@ -2837,200 +2836,196 @@ modify this GNU manual.”
    Org provides methods to create a link in the correct syntax, to
    insert it into an Org file, and to follow the link.
 
-    - */C-c l/* (=org-store-link=)
+   - =C-c l= (=org-store-link=)
 
-      Store a link to the current location. This is a /global/ command
-      (you must create the key binding yourself) which can be used in
-      any buffer to create a link. The link will be stored for later
-      insertion into an Org buffer (see below). What kind of link will
-      be created depends on the current buffer:
+     Store a link to the current location. This is a /global/ command
+     (you must create the key binding yourself) which can be used in
+     any buffer to create a link. The link will be stored for later
+     insertion into an Org buffer (see below). What kind of link will
+     be created depends on the current buffer:
 
-      - *Org mode buffers*
+     - *Org mode buffers*
 
-        For Org files, if there is a
+       For Org files, if there is a
 
-        #+BEGIN_EXAMPLE
-          '<<target>>'
-        #+END_EXAMPLE
+       #+BEGIN_EXAMPLE
+         <<target>>
+       #+END_EXAMPLE
 
-        at the cursor, the link points to the target. Otherwise it
-        points to the current headline, which will also be the
-        description[fn:37].
+       at the cursor, the link points to the target. Otherwise it
+       points to the current headline, which will also be the
+       description[fn:37].
 
-        If the headline has a =CUSTOM_ID= property, a link to this
-        custom ID will be stored. In addition or alternatively
-        (depending on the value of =org-id-link-to-org-use-id=), a
-        globally unique =ID= property will be created and/or used to
-        construct a link[fn:38]. So using this command in Org
-        buffers will potentially create two links: a human-readable
-        from the custom ID, and one that is globally unique and works
-        even if the entry is moved from file to file. Later, when
-        inserting the link, you need to decide which one to use.
+       If the headline has a =CUSTOM_ID= property, a link to this
+       custom ID will be stored. In addition or alternatively
+       (depending on the value of =org-id-link-to-org-use-id=), a
+       globally unique =ID= property will be created and/or used to
+       construct a link[fn:38]. So using this command in Org buffers
+       will potentially create two links: a human-readable from the
+       custom ID, and one that is globally unique and works even if
+       the entry is moved from file to file. Later, when inserting the
+       link, you need to decide which one to use.
 
-      - *Email/News clients: VM, Rmail, Wanderlust, MH-E, Gnus*
+     - *Email/News clients: VM, Rmail, Wanderlust, MH-E, Gnus*
 
-        Pretty much all Emacs mail clients are supported. The link
-        will point to the current article, or, in some GNUS buffers,
-        to the group. The description is constructed from the author
-        and the subject.
+       Pretty much all Emacs mail clients are supported. The link will
+       point to the current article, or, in some GNUS buffers, to the
+       group. The description is constructed from the author and the
+       subject.
 
-      - *Web browsers: W3 and W3M*\\
+     - *Web browsers: W3 and W3M*
 
-        Here the link will be the current URL, with the page title as
-        description.
+       Here the link will be the current URL, with the page title as
+       description.
 
-      - *Contacts: BBDB*
+     - *Contacts: BBDB*
 
-        Links created in a BBDB buffer will point to the current
-        entry.
+       Links created in a BBDB buffer will point to the current entry.
 
-      - *Chat: IRC*
+     - *Chat: IRC*
 
-        For IRC links, if you set the option =org-irc-link-to-logs= to
-        =t=, a 'file:/' style link to the relevant point in the logs
-        for the current conversation is created. Otherwise an 'irc:/'
-        style link to the user/channel/server under the point will be
-        stored.
+       For IRC links, if you set the option =org-irc-link-to-logs= to
+       =t=, a '=file:/=' style link to the relevant point in the logs
+       for the current conversation is created. Otherwise an '=irc:/='
+       style link to the user/channel/server under the point will be
+       stored.
 
-      - *Other files*
+     - *Other files*
 
-        For any other files, the link will point to the file, with a
-        search string (see [[@Search-options][Search options]]) pointing to the contents of
-        the current line. If there is an active region, the selected
-        words will form the basis of the search string. If the
-        automatically created link is not working correctly or
-        accurately enough, you can write custom functions to select
-        the search string and to do the search for particular file
-        types -- see [[@Custom-searches][Custom searches]].  The key binding C-c l is only a
-        suggestion -- see [[@Installation][Installation]].
+       For any other files, the link will point to the file, with a
+       search string (see [[@Search-options][Search options]]) pointing to the contents of
+       the current line. If there is an active region, the selected
+       words will form the basis of the search string. If the
+       automatically created link is not working correctly or
+       accurately enough, you can write custom functions to select the
+       search string and to do the search for particular file types --
+       see [[@Custom-searches][Custom searches]].  The key binding =C-c l= is only a
+       suggestion -- see [[@Installation][Installation]].
 
-      - *Agenda view*
+     - *Agenda view*
 
-        When the cursor is in an agenda view, the created link points
-        to the entry referenced by the current line.
+       When the cursor is in an agenda view, the created link points
+       to the entry referenced by the current line.
 
-    - */C-c C-l/* (=org-insert-link=)
+   - =C-c C-l= (=org-insert-link=)
 
-      Insert a link[fn:39]. This prompts for a link to be inserted
-      into the buffer. You can just type a link, using text for an
-      internal link, or one of the link type prefixes mentioned in the
-      examples above.  The link will be inserted into the
-      buffer[fn:40], along with a descriptive text. If some text
-      was selected when this command is called, the selected text
-      becomes the default description.
+     Insert a link[fn:39]. This prompts for a link to be inserted into
+     the buffer. You can just type a link, using text for an internal
+     link, or one of the link type prefixes mentioned in the examples
+     above.  The link will be inserted into the buffer[fn:40], along
+     with a descriptive text. If some text was selected when this
+     command is called, the selected text becomes the default
+     description.
 
-       - *Inserting stored links*
+     - *Inserting stored links*
 
-         All links stored during the current session are part of the
-         history for this prompt, so you can access them with =up= and
-         =down= (or */M-p/n/*).
+       All links stored during the current session are part of the
+       history for this prompt, so you can access them with =up= and
+       =down= (or =M-p/n=).
 
-       - *Completion support*
+     - *Completion support*
 
-         Completion with =TAB= will help you to insert valid link
-         prefixes like 'http:' or 'ftp:', including the prefixes
-         defined through link abbreviations (see [[@Link-abbreviations][Link abbreviations]]).
-         If you press =RET= after inserting only the prefix, Org will
-         offer specific completion support for some link
-         types[fn:41] For example, if you type file RET, file name
-         completion (alternative access: */C-u C-c C-l/*, see below)
-         will be offered, and after bbdb RET you can complete contact
-         names.
+       Completion with =TAB= will help you to insert valid link
+       prefixes like '=http:=' or '=ftp:=', including the prefixes
+       defined through link abbreviations (see [[@Link-abbreviations][Link abbreviations]]).
+       If you press =RET= after inserting only the prefix, Org will
+       offer specific completion support for some link types[fn:41]
+       For example, if you type file =RET=, file name completion
+       (alternative access: =C-u C-c C-l=, see below) will be offered,
+       and after bbdb =RET= you can complete contact names.
 
-    - */C-u C-c C-l/*
+   - =C-u C-c C-l=
 
-      When */C-c C-l/* is called with a */C-u/* prefix argument, a
-      link to a file will be inserted and you may use file name
-      completion to select the name of the file. The path to the file
-      is inserted relative to the directory of the current Org file,
-      if the linked file is in the current directory or in a
-      sub-directory of it, or if the path is written relative to the
-      current directory using '../'. Otherwise an absolute path is
-      used, if possible with '~/' for your home directory. You can
-      force an absolute path with two */C-u/* prefixes.
+     When =C-c C-l= is called with a =C-u= prefix argument, a link to
+     a file will be inserted and you may use file name completion to
+     select the name of the file. The path to the file is inserted
+     relative to the directory of the current Org file, if the linked
+     file is in the current directory or in a sub-directory of it, or
+     if the path is written relative to the current directory using
+     '=../='. Otherwise an absolute path is used, if possible with
+     '=~/=' for your home directory. You can force an absolute path
+     with two =C-u= prefixes.
 
-    - */C-c C-l/* (with cursor on existing link)
+   - =C-c C-l= (with cursor on existing link)
 
-      When the cursor is on an existing link, */C-c C-l/* allows you
-      to edit the link and description parts of the link.
+     When the cursor is on an existing link, =C-c C-l= allows you to
+     edit the link and description parts of the link.
 
-    - */C-c C-o/* (=org-open-at-point=)
+   - =C-c C-o= (=org-open-at-point=)
 
-      Open link at point. This will launch a web browser for URLs
-      (using =browse-url-at-point=), run
-      VM/MH-E/Wanderlust/Rmail/Gnus/BBDB for the corresponding links,
-      and execute the command in a shell link. When the cursor is on
-      an internal link, this command runs the corresponding
-      search. When the cursor is on a TAG list in a headline, it
-      creates the corresponding TAGS view. If the cursor is on a
-      timestamp, it compiles the agenda for that date. Furthermore, it
-      will visit text and remote files in 'file:' links with Emacs and
-      select a suitable application for local non-text
-      files. Classification of files is based on file extension
-      only. See option =org-file-apps=. If you want to override the
-      default application and visit the file with Emacs, use a C-u
-      prefix. If you want to avoid opening in Emacs, use a */C-u C-u/*
-      prefix.
+     Open link at point. This will launch a web browser for URLs
+     (using =browse-url-at-point=), run
+     VM/MH-E/Wanderlust/Rmail/Gnus/BBDB for the corresponding links,
+     and execute the command in a shell link. When the cursor is on an
+     internal link, this command runs the corresponding search. When
+     the cursor is on a TAG list in a headline, it creates the
+     corresponding TAGS view. If the cursor is on a timestamp, it
+     compiles the agenda for that date. Furthermore, it will visit
+     text and remote files in '=file:=' links with Emacs and select a
+     suitable application for local non-text files. Classification of
+     files is based on file extension only. See option
+     =org-file-apps=. If you want to override the default application
+     and visit the file with Emacs, use a =C-u= prefix. If you want to
+     avoid opening in Emacs, use a =C-u C-u= prefix.
 
-      If the cursor is on a headline, but not on a link, offer all
-      links in the headline and entry text. If you want to setup the
-      frame configuration for following links, customize
-      =org-link-frame-setup=.
+     If the cursor is on a headline, but not on a link, offer all
+     links in the headline and entry text. If you want to setup the
+     frame configuration for following links, customize
+     =org-link-frame-setup=.
 
-    - */RET/*
+   - =RET=
 
-      When =org-return-follows-link= is set, RET will also follow the
-      link at point.
+     When =org-return-follows-link= is set, RET will also follow the
+     link at point.
 
-    - *mouse-2*
-    - *mouse-1*
+   - =mouse-2=
+   - =mouse-1=
 
-      On links, *mouse-2* will open the link just as */C-c C-o/*
-      would. Under Emacs 22 and later, mouse-1 will also follow a
-      link.
+     On links, =mouse-2= will open the link just as =C-c C-o=
+     would. Under Emacs 22 and later, mouse-1 will also follow a link.
 
-    - *mouse-3*
+   - =mouse-3=
 
-      Like *mouse-2*, but force file links to be opened with Emacs,
-      and internal links to be displayed in another window[fn:42].
+     Like =mouse-2=, but force file links to be opened with Emacs, and
+     internal links to be displayed in another window[fn:42].
 
-    - */C-c C-x C-v/* (=org-toggle-inline-images=)
+   - =C-c C-x C-v= (=org-toggle-inline-images=)
 
-      Toggle the inline display of linked images. Normally this will
-      only inline images that have no description part in the link,
-      i.e., images that will also be inlined during export. When
-      called with a prefix argument, also display images that do have
-      a link description. You can ask for inline images to be
-      displayed at startup by configuring the variable
-      =org-startup-with-inline-images= [fn:43].
+     Toggle the inline display of linked images. Normally this will
+     only inline images that have no description part in the link,
+     i.e., images that will also be inlined during export. When called
+     with a prefix argument, also display images that do have a link
+     description. You can ask for inline images to be displayed at
+     startup by configuring the variable
+     =org-startup-with-inline-images= [fn:43].
 
-    - */C-c %/* (=org-mark-ring-push=)
+   - =C-c %= (=org-mark-ring-push=)
 
-      Push the current position onto the mark ring, to be able to
-      return easily. Commands following an internal link do this
-      automatically.
+     Push the current position onto the mark ring, to be able to
+     return easily. Commands following an internal link do this
+     automatically.
 
-    - */C-c &/* (=org-mark-ring-goto=)
+   - =C-c &= (=org-mark-ring-goto=)
 
-      Jump back to a recorded position. A position is recorded by the
-      commands following internal links, and by */C-c %/*. Using this
-      command several times in direct succession moves through a ring
-      of previously recorded positions.
+     Jump back to a recorded position. A position is recorded by the
+     commands following internal links, and by =C-c %=. Using this
+     command several times in direct succession moves through a ring
+     of previously recorded positions.
 
-    - */C-c C-x C-n/* (=org-next-link=)
-    - */C-c C-x C-p/* (=org-previous-link=)
+   - =C-c C-x C-n= (=org-next-link=)
+   - =C-c C-x C-p= (=org-previous-link=)
 
-      Move forward/backward to the next link in the buffer. At the
-      limit of the buffer, the search fails once, and then wraps
-      around. The key bindings for this are really too long; you might
-      want to bind this also to */C-n/* and */C-p/*
+     Move forward/backward to the next link in the buffer. At the
+     limit of the buffer, the search fails once, and then wraps
+     around. The key bindings for this are really too long; you might
+     want to bind this also to =C-n= and =C-p=
 
-      #+BEGIN_SRC lisp
-        (add-hook 'org-load-hook
-          (lambda ()
-            (define-key org-mode-map "\C-n" 'org-next-link)
-            (define-key org-mode-map "\C-p" 'org-previous-link)))
-      #+END_SRC
+     #+BEGIN_SRC lisp
+       (add-hook 'org-load-hook
+         (lambda ()
+           (define-key org-mode-map "\C-n" 'org-next-link)
+           (define-key org-mode-map "\C-p" 'org-previous-link)))
+     #+END_SRC
 
 ** 4.5 Using links outside Org                                        <<@Using-links-outside-Org>>
 
@@ -3047,17 +3042,17 @@ modify this GNU manual.”
 ** 4.6 Link abbreviations                                             <<@Link-abbreviations>>
 
    Long URLs can be cumbersome to type, and often many similar links
-   are needed in a document. For this you can use link
-   abbreviations. An abbreviated link looks like this
+   are needed in a document. For this you can use link abbreviations.
+   An abbreviated link looks like this
 
    #+BEGIN_EXAMPLE
      [[linkword:tag][description]]
    #+END_EXAMPLE
 
    where the tag is optional. The /linkword/ must be a word, starting
-   with a letter, followed by letters, numbers, '-', and
-   '_'. Abbreviations are resolved according to the information in
-   the variable =org-link-abbrev-alist= that relates the linkwords to
+   with a letter, followed by letters, numbers, '-', and '_'.
+   Abbreviations are resolved according to the information in the
+   variable =org-link-abbrev-alist= that relates the linkwords to
    replacement text.  Here is an example:
 
    #+BEGIN_EXAMPLE
@@ -3100,19 +3095,19 @@ modify this GNU manual.”
    In-buffer completion (see [[@Completion][Completion]]) can be used after '[' to
    complete link abbreviations. You may also define a function
    =org-PREFIX-complete-link= that implements special (e.g.,
-   completion) support for inserting such a link with */C-c
-   C-l/*. Such a function should not accept any arguments, and return
-   the full link with prefix.
+   completion) support for inserting such a link with =C-c C-l=. Such
+   a function should not accept any arguments, and return the full
+   link with prefix.
 
 ** 4.7 Search options in file links                                   <<@Search-options>>
 
    File links can contain additional information to make Emacs jump to
    a particular location in the file when following a link. This can
-   be a line number or a search option after a double[fn:44]
-   colon.  For example, when the command */C-c l/* creates a link (see
-   [[@Handling-links][Handling links]]) to a file, it encodes the words in the current line
-   as a search string that can be used to find this line back later
-   when following the link with */C-c C-o/*.
+   be a line number or a search option after a double[fn:44] colon.
+   For example, when the command =C-c l= creates a link (see [[@Handling-links][Handling
+   links]]) to a file, it encodes the words in the current line as a
+   search string that can be used to find this line back later when
+   following the link with =C-c C-o=.
 
    Here is the syntax of the different ways to attach a search to a
    file link, together with an explanation:
@@ -3125,32 +3120,33 @@ modify this GNU manual.”
      [[file:~/xx.org::/regexp/]]
    #+END_EXAMPLE
 
-    - =255= ::
+   - =255= ::
 
-      Jump to line 255.
+     Jump to line 255.
 
-    - =My Target= ::
+   - =My Target= ::
 
-      Search for a link target =<<My Target>>=, or do a text search
-      for 'my target', similar to the search in internal links, see
-      [[@Internal-links][Internal links]]. In HTML export (see [[@HTML-export][HTML export]]), such a file
-      link will become an HTML reference to the corresponding named
-      anchor in the linked file.
+     Search for a link target =<<My Target>>=, or do a text search for
+     'my target', similar to the search in internal links, see
+     [[@Internal-links][Internal links]]. In HTML export (see [[@HTML-export][HTML export]]), such a file
+     link will become an HTML reference to the corresponding named
+     anchor in the linked file.
 
-    - =*My Target= ::
+   - =*My Target= ::
 
-      In an Org file, restrict search to headlines.
+     In an Org file, restrict search to headlines.
 
-    - =#my-custom-id= ::
+   - =#my-custom-id= ::
 
-      Link to a heading with a =CUSTOM_ID= property
+     Link to a heading with a =CUSTOM_ID= property
 
-    - =/regexp/= ::
+   - =/regexp/= ::
 
-      Do a regular expression search for =regexp=. This uses the Emacs
-      command =occur= to list all matches in a separate window.  If
-      the target file is in Org mode, =org-occur= is used to create a
-      sparse tree with the matches.
+     Do a regular expression search for =regexp=. This uses the Emacs
+     command =occur= to list all matches in a separate window.  If the
+     target file is in Org mode, =org-occur= is used to create a
+     sparse tree with the matches.
+
 
    As a degenerate case, a file link with an empty file name can be
    used to search the current file. For example, =[[file:::find me]]= does
@@ -3179,7 +3175,7 @@ modify this GNU manual.”
    =org-execute-file-search-functions=. See the docstring for these
    variables for more information. Org actually uses this mechanism
    for BibTeX database files, and you can use the corresponding code
-   as an implementation example. See the file org-bibtex.el.
+   as an implementation example. See the file =org-bibtex.el=.
 
 * 5 TODO items                                                        <<@TODO-items>>
 
@@ -3213,7 +3209,7 @@ modify this GNU manual.”
 
    The most important commands to work with TODO entries are:
 
-    - */C-c C-t/* (=org-todo=)
+    - =C-c C-t= (=org-todo=)
 
       Rotate the TODO state of the current item among
 
@@ -3230,14 +3226,14 @@ modify this GNU manual.”
       The same rotation can also be done “remotely” from the timeline
       and agenda buffers with the t command key (see [[@Agenda-commands][Agenda commands]]).
 
-    - */C-u C-c C-t/*
+    - =C-u C-c C-t=
 
       When TODO keywords have no selection keys, select a specific
       keyword using completion; otherwise force cycling through TODO
       states with no prompt. When =org-use-fast-todo-selection= is set
       to =prefix=, use the fast selection interface.
 
-    - */S-right/* / */S-left/*
+    - =S-right= / =S-left=
 
       Select the following/preceding TODO state, similar to
       cycling. Useful mostly if more than two TODO states are possible
@@ -3245,7 +3241,7 @@ modify this GNU manual.”
       the interaction with =shift-selection-mode=. See also the
       variable =org-treat-S-cursor-todo-selection-as-state-change=.
 
-    - */C-c / t/* (=org-show-todo-tree=)
+    - =C-c / t= (=org-show-todo-tree=)
 
       View TODO items in a /sparse tree/ (see [[@Sparse-trees][Sparse trees]]). Folds the
       entire buffer, but shows all TODO items (with not-DONE state)
@@ -3258,7 +3254,7 @@ modify this GNU manual.”
       two prefix arguments, find all TODO states, both un-done and
       done.
 
-    - */C-c a t/* (=org-todo-list=)
+    - =C-c a t= (=org-todo-list=)
 
       Show the global TODO list. Collects the TODO items (with
       not-DONE states) from all agenda files (see [[@Agenda-views][Agenda views]]) into a
@@ -3267,7 +3263,7 @@ modify this GNU manual.”
       from the new buffer (see [[@Agenda-commands][Agenda commands]]). See [[@Global-TODO-list][Global TODO list]],
       for more information.
 
-    - */S-M-RET/* (=org-insert-todo-heading=)
+    - =S-M-RET= (=org-insert-todo-heading=)
 
       Insert a new TODO entry below the current one.
 
@@ -3307,17 +3303,17 @@ modify this GNU manual.”
     The vertical bar separates the TODO keywords (states that /need
     action/) from the DONE states (which need /no further action/). If
     you don't provide the separator bar, the last state is used as the
-    DONE state.  With this setup, the command */C-c C-t/* will cycle
-    an entry from TODO to FEEDBACK, then to VERIFY, and finally to
-    DONE and DELEGATED. You may also use a numeric prefix argument to
-    quickly select a specific state.  For example */C-3 C-c C-t/* will
-    change the state immediately to VERIFY. Or you can use */S-left/*
-    to go backward through the sequence. If you define many keywords,
-    you can use in-buffer completion (see [[@Completion][Completion]]) or even a
-    special one-key selection scheme (see [[@Fast-access-to-TODO-states][Fast access to TODO states]])
-    to insert these words into the buffer. Changing a TODO state can
-    be logged with a timestamp, see [[@Tracking-TODO-state-changes][Tracking TODO state changes]], for
-    more information.
+    DONE state.  With this setup, the command =C-c C-t= will cycle an
+    entry from TODO to FEEDBACK, then to VERIFY, and finally to DONE
+    and DELEGATED. You may also use a numeric prefix argument to
+    quickly select a specific state.  For example =C-3 C-c C-t= will
+    change the state immediately to VERIFY. Or you can use =S-left= to
+    go backward through the sequence. If you define many keywords, you
+    can use in-buffer completion (see [[@Completion][Completion]]) or even a special
+    one-key selection scheme (see [[@Fast-access-to-TODO-states][Fast access to TODO states]]) to
+    insert these words into the buffer. Changing a TODO state can be
+    logged with a timestamp, see [[@Tracking-TODO-state-changes][Tracking TODO state changes]], for more
+    information.
 
 *** 5.2.2 TODO keywords as types                                      <<@TODO-types>>
 
@@ -3335,19 +3331,18 @@ modify this GNU manual.”
     In this case, different keywords do not indicate a sequence, but
     rather different types. So the normal work flow would be to assign
     a task to a person, and later to mark it DONE. Org mode supports
-    this style by adapting the workings of the command */C-c
-    C-t/* [fn:47]. When used several times in succession, it will
-    still cycle through all names, in order to first select the right
-    type for a task. But when you return to the item after some time
-    and execute */C-c C-t/* again, it will switch from any name
-    directly to DONE. Use prefix arguments or completion to quickly
-    select a specific name. You can also review the items of a
-    specific TODO type in a sparse tree by using a numeric prefix to
-    */C-c / t/*. For example, to see all things Lucy has to do, you
-    would use */C-3 C-c / t/*. To collect Lucy's items from all agenda
-    files into a single buffer, you would use the numeric prefix
-    argument as well when creating the global TODO list: */C-3 C-c a
-    t/*.
+    this style by adapting the workings of the command =C-c
+    C-t= [fn:47]. When used several times in succession, it will still
+    cycle through all names, in order to first select the right type
+    for a task. But when you return to the item after some time and
+    execute =C-c C-t= again, it will switch from any name directly to
+    DONE. Use prefix arguments or completion to quickly select a
+    specific name. You can also review the items of a specific TODO
+    type in a sparse tree by using a numeric prefix to =C-c / t=. For
+    example, to see all things Lucy has to do, you would use =C-3 C-c
+    / t=. To collect Lucy's items from all agenda files into a single
+    buffer, you would use the numeric prefix argument as well when
+    creating the global TODO list: =C-3 C-c a t=.
 
 *** 5.2.3 Multiple keyword sets in one file                           <<@Multiple-sets-in-one-file>>
 
@@ -3367,28 +3362,28 @@ modify this GNU manual.”
 
     The keywords should all be different, this helps Org mode to keep
     track of which subsequence should be used for a given entry. In
-    this setup, */C-c C-t/* only operates within a subsequence, so it
+    this setup, =C-c C-t= only operates within a subsequence, so it
     switches from =DONE= to (nothing) to =TODO=, and from =FIXED= to
     (nothing) to =REPORT=.  Therefore you need a mechanism to
     initially select the correct sequence.  Besides the obvious ways
     like typing a keyword or using completion, you may also apply the
     following commands:
 
-     - */C-u C-u C-c C-t/*
-     - */C-S-right/*
-     - */C-S-left/*
+     - =C-u C-u C-c C-t=
+     - =C-S-right=
+     - =C-S-left=
 
        These keys jump from one TODO subset to the next. In the above
-       example, */C-u C-u C-c C-t/* or */C-S-right/* would jump from
+       example, =C-u C-u C-c C-t= or =C-S-right= would jump from
        =TODO= or =DONE= to =REPORT=, and any of the words in the
-       second row to =CANCELED=. Note that the */C-S-/* key binding
+       second row to =CANCELED=. Note that the =C-S-= key binding
        conflict with =shift-selection-mode= (see [[@Conflicts][Conflicts]]).
 
-     - */S-right/*
-     - */S-left/*
+     - =S-right=
+     - =S-left=
 
-       */S-left/* and */S-right/* and walk through /all/ keywords from
-       all sets, so for example S-right would switch from =DONE= to
+       =S-left= and =S-right= and walk through /all/ keywords from all
+       sets, so for example S-right would switch from =DONE= to
        =REPORT= in the example above. See also [[@Conflicts][Conflicts]], for a
        discussion of the interaction with =shift-selection-mode=.
 
@@ -3407,7 +3402,7 @@ modify this GNU manual.”
               (sequence "|" "CANCELED(c)")))
     #+END_SRC
 
-    If you then press */C-c C-t/* followed by the selection key, the
+    If you then press =C-c C-t= followed by the selection key, the
     entry will be switched to this state. SPC can be used to remove
     any TODO keyword from an entry.[fn:49]
 
@@ -3445,7 +3440,7 @@ modify this GNU manual.”
     Remember that the keywords after the vertical bar (or the last
     keyword if no bar is there) must always mean that the item is DONE
     (although you may use a different word). After changing one of
-    these lines, use */C-c C-c/* with the cursor still in the line to
+    these lines, use =C-c C-c= with the cursor still in the line to
     make the changes known to Org mode[fn:50].
 
 *** 5.2.6 Faces for TODO keywords                                     <<@Faces-for-TODO-keywords>>
@@ -3508,7 +3503,7 @@ modify this GNU manual.”
       :END:
     #+END_EXAMPLE
 
-     - */C-c C-x o/* (=org-toggle-ordered-property=)
+     - =C-c C-x o= (=org-toggle-ordered-property=)
 
        Toggle the =ORDERED= property of the current entry. A property
        is used for this behavior because this should be local to the
@@ -3517,7 +3512,7 @@ modify this GNU manual.”
        better visibility, customize the option
        =org-track-ordered-property-with-tag=.
 
-     - */C-u C-u C-u C-c C-t/*
+     - =C-u C-u C-u C-c C-t=
 
        Change TODO state, circumventing any state blocking.
 
@@ -3605,8 +3600,7 @@ modify this GNU manual.”
     #+END_SRC
 
     To record a timestamp without a note for TODO keywords configured
-    with '@', just type */C-c C-c/* to enter a blank note when
-    prompted.
+    with '@', just type =C-c C-c= to enter a blank note when prompted.
 
     You not only define global TODO keywords and fast access keys, but
     also request that a time is recorded when the entry is set to
@@ -3785,7 +3779,7 @@ modify this GNU manual.”
    Priorities can be attached to any outline node; they do not need to
    be TODO items.
 
-    - */C-c ,/* ::
+    - =C-c ,=
 
       Set the priority of the current headline (=org-priority=).  The
       command prompts for a priority character 'A', 'B' or 'C'. When
@@ -3794,8 +3788,8 @@ modify this GNU manual.”
       timeline and agenda buffer with the , command (see [[@Agenda-commands][Agenda
       commands]]).
 
-    - */S-up/* (=org-priority-up=)
-    - */S-down/* (=org-priority-down=) ::
+    - =S-up= (=org-priority-up=)
+    - =S-down= (=org-priority-down=)
 
       Increase/decrease priority of current headline[fn:56]. Note
       that these keys are also used to modify timestamps (see [[@Creating-timestamps][Creating
@@ -3817,12 +3811,12 @@ modify this GNU manual.”
 
    It is often advisable to break down large tasks into smaller,
    manageable subtasks. You can do this by creating an outline tree
-   below a TODO item, with detailed subtasks on the
-   tree[fn:57]. To keep the overview over the fraction of subtasks
-   that are already completed, insert either =[/]= or =[%]= anywhere
-   in the headline. These cookies will be updated each time the TODO
-   status of a child changes, or when pressing */C-c C-c/* on the
-   cookie. For example:
+   below a TODO item, with detailed subtasks on the tree[fn:57]. To
+   keep the overview over the fraction of subtasks that are already
+   completed, insert either =[/]= or =[%]= anywhere in the
+   headline. These cookies will be updated each time the TODO status
+   of a child changes, or when pressing =C-c C-c= on the cookie. For
+   example:
 
    #+BEGIN_EXAMPLE
      * Organize Party [33%]
@@ -3867,14 +3861,14 @@ modify this GNU manual.”
 
 ** 5.6 Checkboxes                                                     <<@Checkboxes>>
 
-   Every item in a plain list[fn:58] (see [[@Plain-lists][Plain lists]]) can be made
-   into a checkbox by starting it with the string '[ ]'. This feature
-   is similar to TODO items (see [[@TODO-items][TODO items]]), but is more
-   lightweight. Checkboxes are not included in the global TODO list,
-   so they are often great to split a task into a number of simple
-   steps. Or you can use them in a shopping list. To toggle a
-   checkbox, use */C-c C-c/*, or use the mouse (thanks to Piotr
-   Zielinski's org-mouse.el).
+   Every item in a plain list[fn:58] (see [[@Plain-lists][Plain
+   lists]]) can be made into a checkbox by starting it with the string
+   '[ ]'. This feature is similar to TODO items (see
+   [[@TODO-items][TODO items]]), but is more lightweight. Checkboxes
+   are not included in the global TODO list, so they are often great
+   to split a task into a number of simple steps. Or you can use them
+   in a shopping list. To toggle a checkbox, use =C-c C-c=, or use the
+   mouse (thanks to Piotr Zielinski's org-mouse.el).
 
    Here is an example of a checkbox list.
 
@@ -3917,7 +3911,7 @@ modify this GNU manual.”
 
    The following commands work with checkboxes:
 
-    - */C-c C-c/* (=org-toggle-checkbox=)
+    - =C-c C-c= (=org-toggle-checkbox=)
 
       Toggle checkbox status or (with prefix arg) checkbox presence at
       point.  With a single prefix argument, add an empty checkbox or
@@ -3925,7 +3919,7 @@ modify this GNU manual.”
       argument, set it to '[-]', which is considered to be an
       intermediate state.
 
-    - */C-c C-x C-b/* (=org-toggle-checkbox=)
+    - =C-c C-x C-b= (=org-toggle-checkbox=)
 
       Toggle checkbox status or (with prefix arg) checkbox presence at
       point.  With double prefix argument, set it to '[-]', which is
@@ -3943,12 +3937,12 @@ modify this GNU manual.”
        - If there is no active region, just toggle the checkbox at
          point.
 
-    - */M-S-RET/* (=org-insert-todo-heading=)
+    - =M-S-RET= (=org-insert-todo-heading=)
 
       Insert a new item with a checkbox. This works only if the cursor
       is already in a plain list item (see [[@Plain-lists][Plain lists]]).
 
-    - */C-c C-x o/* (=org-toggle-ordered-property=)
+    - =C-c C-x o= (=org-toggle-ordered-property=)
 
       Toggle the =ORDERED= property of the entry, to toggle if
       checkboxes must be checked off in sequence. A property is used
@@ -3957,15 +3951,15 @@ modify this GNU manual.”
       /track/ the value of this property with a tag for better
       visibility, customize =org-track-ordered-property-with-tag=.
 
-    - */C-c #/* (=org-update-statistics-cookies=)
+    - =C-c #= (=org-update-statistics-cookies=)
 
       Update the statistics cookie in the current outline entry. When
-      called with a */C-u/* prefix, update the entire file. Checkbox
+      called with a =C-u= prefix, update the entire file. Checkbox
       statistic cookies are updated automatically if you toggle
-      checkboxes with */C-c C-c/* and make new ones with
-      */M-S-RET/*. TODO statistics cookies update when changing TODO
-      states. If you delete boxes/entries or add/change them by hand,
-      use this command to get things back into sync.
+      checkboxes with =C-c C-c= and make new ones with =M-S-RET=. TODO
+      statistics cookies update when changing TODO states. If you
+      delete boxes/entries or add/change them by hand, use this
+      command to get things back into sync.
 
 * 6 Tags                                                              <<@Tags>>
 
@@ -4036,7 +4030,7 @@ modify this GNU manual.”
    headline. After a colon, M-TAB offers completion on tags. There is
    also a special command for inserting tags:
 
-    - */C-c C-q/* (=org-set-tags-command=)
+    - =C-c C-q= (=org-set-tags-command=)
 
       Enter new tags for the current headline. Org mode will either
       offer completion or a special single-key interface for setting
@@ -4047,10 +4041,10 @@ modify this GNU manual.”
       after promotion, demotion, and TODO state changes (see [[@TODO-basics][TODO
       basics]]).
 
-    - */C-c C-c/* (=org-set-tags-command=)
+    - =C-c C-c= (=org-set-tags-command=)
 
-      When the cursor is in a headline, this does the same as */C-c
-      C-q/*.
+      When the cursor is in a headline, this does the same as =C-c
+      C-q=.
 
    Org supports tag insertion based on a /list of tags/. By default
    this list is constructed dynamically, containing all tags currently
@@ -4127,7 +4121,7 @@ modify this GNU manual.”
    you indicate that at most one of '@work', '@home', and
    '@tennisclub' should be selected. Multiple such groups are allowed.
 
-   Don't forget to press */C-c C-c/* with the cursor in one of these
+   Don't forget to press =C-c C-c= with the cursor in one of these
    lines to activate any changes.
 
    To set these mutually exclusive groups in the variable
@@ -4144,71 +4138,72 @@ modify this GNU manual.”
                            ("laptop" . ?l) ("pc" . ?p)))
    #+END_SRC
 
-   If at least one tag has a selection key then pressing */C-c C-c/*
+   If at least one tag has a selection key then pressing =C-c C-c=
    will automatically present you with a special interface, listing
    inherited tags, the tags of the current headline, and a list of all
-   valid tags with corresponding keys[fn:63]. In this interface,
-   you can use the following keys:
+   valid tags with corresponding keys[fn:63]. In this interface, you
+   can use the following keys:
 
-    - */a-z.../* ::
+    - =a-z...= ::
 
       Pressing keys assigned to tags will add or remove them from the
       list of tags in the current line. Selecting a tag in a group of
       mutually exclusive tags will turn off any other tags from that
       group.
 
-    - */TAB/* ::
+    - =TAB= ::
 
       Enter a tag in the minibuffer, even if the tag is not in the
       predefined list. You will be able to complete on all tags
       present in the buffer. You can also add several tags: just
       separate them with a comma.
 
-    - */SPC/* ::
+    - =SPC= ::
 
       Clear all tags for this line.
 
-    - */RET/* ::
+    - =RET= ::
 
       Accept the modified set.
 
-    - */C-g/* ::
+    - =C-g= ::
 
       Abort without installing changes.
 
-    - */q/* ::
+    - =q= ::
 
-      If q is not assigned to a tag, it aborts like */C-g/*.
+      If q is not assigned to a tag, it aborts like =C-g=.
 
-    - */!/* ::
+    - =!= ::
 
       Turn off groups of mutually exclusive tags. Use this to (as an
       exception) assign several tags from such a group.
 
-    - */C-c/* ::
+    - =C-c= ::
 
       Toggle auto-exit after the next change (see below). If you are
-      using expert mode, the first */C-c/* will display the selection
+      using expert mode, the first =C-c= will display the selection
       window.
+
 
    This method lets you assign tags to a headline with very few
    keys. With the above setup, you could clear the current tags and
    set '@home', 'laptop' and 'pc' tags with just the following keys:
-   */C-c C-c SPC h l p RET/*. Switching from '@home' to '@work' would
-   be done with */C-c C-c w RET/* or alternatively with */C-c C-c C-c
-   w/*. Adding the non-predefined tag 'Sarah' could be done with */C-c
-   C-c TAB S a r a h RET RET/*.
+   =C-c C-c SPC h l p RET=. Switching from '@home' to '@work' would be
+   done with =C-c C-c w RET= or alternatively with =C-c C-c C-c
+   w=. Adding the non-predefined tag 'Sarah' could be done with =C-c
+   C-c TAB S a r a h RET RET=.
 
    If you find that most of the time you need only a single key press
    to modify your list of tags, set
    =org-fast-tag-selection-single-key=. Then you no longer have to
    press =RET= to exit fast tag selection -- it will immediately exit
    after the first change. If you then occasionally need more keys,
-   press */C-c/* to turn off auto-exit for the current tag selection
-   process (in effect: start selection with */C-c C-c C-c/* instead of
-   */C-c C-c/*). If you set the variable to the value =expert=, the
+   press =C-c= to turn off auto-exit for the current tag selection
+   process (in effect: start selection with =C-c C-c C-c= instead of
+   =C-c C-c=). If you set the variable to the value =expert=, the
    special window is not even shown for single-key tag selection, it
-   comes up only when you press an extra */C-c/*.
+   comes up only when you press an extra =C-c=.
 
 ** 6.3 Tag hierarchy                                                  <<@Tag-hierarchy>>
 
@@ -4307,8 +4302,8 @@ modify this GNU manual.”
    project-identifier, i.e.  'P@2014_OrgTags'.
 
    If you want to ignore group tags temporarily, toggle group tags
-   support with =org-toggle-tags-groups=, bound to */C-c C-x q/*. If
-   you want to disable tag groups completely, set =org-group-tags= to
+   support with =org-toggle-tags-groups=, bound to =C-c C-x q=. If you
+   want to disable tag groups completely, set =org-group-tags= to
    =nil=.
 
 ** 6.4 Tag searches                                                   <<@Tag-searches>>
@@ -4316,19 +4311,19 @@ modify this GNU manual.”
    Once a system of tags has been set up, it can be used to collect
    related information into special lists.
 
-    - */C-c / m/* or */C-c \ /* (=org-match-sparse-tree=)
+    - =C-c / m= or =C-c \= (=org-match-sparse-tree=)
 
       Create a sparse tree with all headlines matching a
       tags/property/TODO search. With a C-u prefix argument, ignore
       headlines that are not a TODO line. See [[@Matching-tags-and-properties][Matching tags and
       properties]].
 
-    - */C-c a m/* (=org-tags-view=)
+    - =C-c a m= (=org-tags-view=)
 
       Create a global list of tag matches from all agenda files. See
       [[@Matching-tags-and-properties][Matching tags and properties]].
 
-    - */C-c a M/* (=org-tags-view=)
+    - =C-c a M= (=org-tags-view=)
 
       Create a global list of tag matches from all agenda files, but
       check only TODO items and force checking subitems (see the
@@ -4422,7 +4417,7 @@ modify this GNU manual.”
    #+END_EXAMPLE
 
    Contrary to properties set from a special drawer, you have to
-   refresh the buffer with */C-c C-c/* to activate this change.
+   refresh the buffer with =C-c C-c= to activate this change.
 
    If you want to add to the value of an existing property, append a
    =+= to the property name. The following results in the property
@@ -4463,48 +4458,48 @@ modify this GNU manual.”
 
    The following commands help to work with properties:
 
-    - */M-TAB/* (=pcomplete=)
+    - =M-TAB= (=pcomplete=)
 
       After an initial colon in a line, complete property keys. All
       keys used in the current file will be offered as possible
       completions.
 
-    - */C-c C-x p/* (=org-set-property=)
+    - =C-c C-x p= (=org-set-property=)
 
       Set a property. This prompts for a property name and a value. If
       necessary, the property drawer is created as well.
 
-    - */C-u M-x org-insert-drawer RET/*
+    - =C-u M-x org-insert-drawer RET=
 
       Insert a property drawer into the current entry. The drawer will
       be inserted early in the entry, but after the lines with
       planning information like deadlines.
 
-    - */C-c C-c/* (=org-property-action=)
+    - =C-c C-c= (=org-property-action=)
 
       With the cursor in a property drawer, this executes property
       commands.
 
-    - */C-c C-c s/* (=org-set-property=)
+    - =C-c C-c s= (=org-set-property=)
 
       Set a property in the current entry. Both the property and the
       value can be inserted using completion.
 
-    - */S-right/* (=org-property-next-allowed-value=)
-    - */S-left/* (=org-property-previous-allowed-value=)
+    - =S-right= (=org-property-next-allowed-value=)
+    - =S-left= (=org-property-previous-allowed-value=)
 
       Switch property at point to the next/previous allowed value.
 
-    - */C-c C-c d/* (=org-delete-property=)
+    - =C-c C-c d= (=org-delete-property=)
 
       Remove a property from the current entry.
 
-    - */C-c C-c D/* (=org-delete-property-globally=)
+    - =C-c C-c D= (=org-delete-property-globally=)
 
       Globally remove a property, from all entries in the current
       file.
 
-    - */C-c C-c c/* (=org-compute-property-at-point=)
+    - =C-c C-c c= (=org-compute-property-at-point=)
 
       Compute the property at point, using the operator and scope from
       the nearest column format definition.
@@ -4539,17 +4534,17 @@ modify this GNU manual.”
    properties, the same commands are used as for tag searches (see [[@Tag-searches][Tag
    searches]]).
 
-    - */C-c / m/* or */C-c \ /* (=org-match-sparse-tree=)
+    - =C-c / m= or =C-c \= (=org-match-sparse-tree=)
 
       Create a sparse tree with all matching entries. With a C-u prefix
       argument, ignore headlines that are not a TODO line.
 
-    - */C-c a m/* (=org-tags-view=)
+    - =C-c a m= (=org-tags-view=)
 
       Create a global list of tag/property matches from all agenda
       files. See [[@Matching-tags-and-properties][Matching tags and properties]].
 
-    - */C-c a M/* (=org-tags-view=)
+    - =C-c a M= (=org-tags-view=)
 
       Create a global list of tag matches from all agenda files, but
       check only TODO items and force checking of subitems (see the
@@ -4561,7 +4556,7 @@ modify this GNU manual.”
    There is also a special command for creating sparse trees based on
    a single property:
 
-    - */C-c / p/*
+    - =C-c / p=
 
       Create a sparse tree based on the value of a property. This
       first prompts for the name of a property, and then for a
@@ -4620,13 +4615,13 @@ modify this GNU manual.”
    structure over the headline of each item. While the headlines have
    been turned into a table row, you can still change the visibility
    of the outline tree. For example, you get a compact table by
-   switching to CONTENTS view (*/S-TAB S-TAB/*, or simply c while
-   column view is active), but you can still open, read, and edit the
-   entry below each headline. Or, you can switch to column view after
+   switching to CONTENTS view (=S-TAB S-TAB=, or simply c while column
+   view is active), but you can still open, read, and edit the entry
+   below each headline. Or, you can switch to column view after
    executing a sparse tree command and in this way get a table only
    for the selected items. Column view also works in agenda buffers
-   (see [[@Agenda-views][Agenda views]]) where queries have collected selected items,
-   possibly from a number of files.
+   (see [[@Agenda-views][Agenda views]]) where queries have collected
+   selected items, possibly from a number of files.
 
    | • [[@Defining-columns][Defining columns]]:      | The COLUMNS format property       |
    | • [[@Using-column-view][Using column view]]:     | How to create and use column view |
@@ -4764,7 +4759,7 @@ modify this GNU manual.”
 
 **** Turning column view on and off
 
-     - */C-c C-x C-c/* (=org-columns=)
+     - =C-c C-x C-c= (=org-columns=)
 
        Turn on column view. If the cursor is before the first headline
        in the file, column view is turned on for the entire file,
@@ -4778,16 +4773,16 @@ modify this GNU manual.”
        =org-columns-default-format=, and column view is established
        for the current entry and its subtree.
 
-    - */r/* (=org-columns-redo=)
+    - =r= (=org-columns-redo=)
 
       Recreate the column view, to include recent changes made in the
       buffer.
 
-    - */g/* (=org-columns-redo=)
+    - =g= (=org-columns-redo=)
 
       Same as r.
 
-    - */q/* (=org-columns-quit=)
+    - =q= (=org-columns-quit=)
 
       Exit column view.
 
@@ -4797,38 +4792,38 @@ modify this GNU manual.”
 
        Move through the column view from field to field.
 
-     - */S-left/right/*
+     - =S-left/right=
 
        Switch to the next/previous allowed value of the field. For
        this, you have to have specified allowed values for a property.
 
-     - */1..9,0/*
+     - =1..9,0=
 
        Directly select the Nth allowed value, 0 selects the 10th
        value.
 
-    - */n/* (=org-columns-next-allowed-value=)\\
-    - */p/* (=org-columns-previous-allowed-value=)
+    - =n= (=org-columns-next-allowed-value=)\\
+    - =p= (=org-columns-previous-allowed-value=)
 
       Same as S-left/right
 
-    - */e/* (=org-columns-edit-value=)
+    - =e= (=org-columns-edit-value=)
 
       Edit the property at point. For the special properties, this
       will invoke the same interface that you normally use to change
       that property. For example, when editing a TAGS property, the
       tag completion or fast selection interface will pop up.
 
-    - */C-c C-c/* (=org-columns-set-tags-or-toggle=)
+    - =C-c C-c= (=org-columns-set-tags-or-toggle=)
 
       When there is a checkbox at point, toggle it.
 
-    - */v/* (=org-columns-show-value=)
+    - =v= (=org-columns-show-value=)
 
       View the full value of this property. This is useful if the
       width of the column is smaller than that of the value.
 
-   - */a/* (=org-columns-edit-allowed=)
+   - =a= (=org-columns-edit-allowed=)
 
      Edit the list of allowed values for this property. If the list is
      found in the hierarchy, the modified value is stored there. If no
@@ -4836,16 +4831,16 @@ modify this GNU manual.”
      part of the current column view.
 
 **** Modifying the table structure
-      - */</* (=org-columns-narrow=)
-      - */>/* (=org-columns-widen=)
+      - =<= (=org-columns-narrow=)
+      - =>= (=org-columns-widen=)
 
         Make the column narrower/wider by one character.
 
-      - */S-M-right/* (=org-columns-new=)
+      - =S-M-right= (=org-columns-new=)
 
         Insert a new column, to the left of the current column.
 
-      - */S-M-left/* (=org-columns-delete=)
+      - =S-M-left= (=org-columns-delete=)
 
         Delete the current column.
 
@@ -4886,9 +4881,9 @@ modify this GNU manual.”
         - "ID"
 
           call column view in the tree that has an =:ID:= property
-          with the value label.  You can use */M-x org-id-copy RET/*
-          to create a globally unique ID for the current entry and
-          copy it to the kill-ring.
+          with the value label.  You can use =M-x org-id-copy RET= to
+          create a globally unique ID for the current entry and copy
+          it to the kill-ring.
 
      - =:hlines=
 
@@ -4910,17 +4905,17 @@ modify this GNU manual.”
 
    The following commands insert or update the dynamic block:
 
-    - */C-c C-x i/* (=org-insert-columns-dblock=)
+    - =C-c C-x i= (=org-insert-columns-dblock=)
 
       Insert a dynamic block capturing a column view. You will be
       prompted for the scope or ID of the view.
 
-    - */C-c C-c/* or */C-c C-x C-u/* (=org-dblock-update=)
+    - =C-c C-c= or =C-c C-x C-u= (=org-dblock-update=)
 
       Update dynamic block at point. The cursor needs to be in the
       =#+BEGIN= line of the dynamic block.
 
-    - */C-u C-c C-x C-u/* (=org-update-all-dblocks=)
+    - =C-u C-c C-x C-u= (=org-update-all-dblocks=)
 
       Update all dynamic blocks (see [[@Dynamic-blocks][Dynamic blocks]]).  This is useful
       if you have several clock table blocks, column-capturing blocks
@@ -5041,7 +5036,7 @@ modify this GNU manual.”
    specific format. All commands listed below produce timestamps in
    the correct format.
 
-    - */C-c ./* (=org-time-stamp=)
+    - =C-c .= (=org-time-stamp=)
 
       Prompt for a date and insert a corresponding timestamp. When the
       cursor is at an existing timestamp in the buffer, the command is
@@ -5049,47 +5044,47 @@ modify this GNU manual.”
       one. When this command is used twice in succession, a time range
       is inserted.
 
-    - */C-c !/* (=org-time-stamp-inactive=)
+    - =C-c != (=org-time-stamp-inactive=)
 
-      Like */C-c ./*, but insert an inactive timestamp that will not
+      Like =C-c .=, but insert an inactive timestamp that will not
       cause an agenda entry.
 
-    - */C-u C-c ./*
-    - */C-u C-c !/*
+    - =C-u C-c .=
+    - =C-u C-c !=
 
-      Like */C-c ./* and */C-c !/*, but use the alternative format
-      which contains date and time. The default time can be rounded to
+      Like =C-c .= and =C-c !=, but use the alternative format which
+      contains date and time. The default time can be rounded to
       multiples of 5 minutes, see the option
       =org-time-stamp-rounding-minutes=.
 
-    - */C-c C-c/*
+    - =C-c C-c=
 
       Normalize timestamp, insert/fix day name if missing or wrong.
 
-    - */C-c </* (=org-date-from-calendar=)
+    - =C-c <= (=org-date-from-calendar=)
 
       Insert a timestamp corresponding to the cursor date in the
       Calendar.
 
-    - */C-c >/* (=org-goto-calendar=)
+    - =C-c >= (=org-goto-calendar=)
 
       Access the Emacs calendar for the current date. If there is a
       timestamp in the current line, go to the corresponding date
       instead.
 
-    - */C-c C-o/* (=org-open-at-point=)
+    - =C-c C-o= (=org-open-at-point=)
 
       Access the agenda for the date given by the timestamp or -range
       at point (see [[@Weekly_daily-agenda][Weekly/daily agenda]]).
 
-    - */S-left/* (=org-timestamp-down-day=)
-    - */S-right/* (=org-timestamp-up-day=)
+    - =S-left= (=org-timestamp-down-day=)
+    - =S-right= (=org-timestamp-up-day=)
 
       Change date at cursor by one day. These key bindings conflict
       with shift-selection and related modes (see [[@Conflicts][Conflicts]]).
 
-    - */S-up/* (=org-timestamp-up=)
-    - */S-down/* (=org-timestamp-down-down=)
+    - =S-up= (=org-timestamp-up=)
+    - =S-down= (=org-timestamp-down-down=)
 
       Change the item under the cursor in a timestamp. The cursor can
       be on a year, month, day, hour or minute. When the timestamp
@@ -5101,7 +5096,7 @@ modify this GNU manual.”
       [[@Priorities][Priorities]]). The key bindings also conflict with shift-selection
       and related modes (see [[@Conflicts][Conflicts]]).
 
-    - */C-c C-y/* (=org-evaluate-time-range=)
+    - =C-c C-y= (=org-evaluate-time-range=)
 
       Evaluate a time range by computing the difference between start
       and end.  With a prefix argument, insert result after the time
@@ -5221,7 +5216,7 @@ modify this GNU manual.”
     get it by customizing the options =org-display-custom-times= and
     =org-time-stamp-custom-formats=.
 
-     - */C-c C-x C-t/* (=org-toggle-time-stamp-overlays=)
+     - =C-c C-x C-t= (=org-toggle-time-stamp-overlays=)
 
        Toggle the display of custom formats for dates and times.
 
@@ -5233,11 +5228,11 @@ modify this GNU manual.”
     - You cannot place the cursor onto a timestamp anymore, only before or
       after.
 
-    - The */S-up/down/* keys can no longer be used to adjust each
+    - The =S-up/down= keys can no longer be used to adjust each
       component of a timestamp. If the cursor is at the beginning of
-      the stamp, */S-up/down/* will change the stamp by one day, just
-      like */S-left/right/*.  At the end of the stamp, the time will
-      be changed by one minute.
+      the stamp, =S-up/down= will change the stamp by one day, just
+      like =S-left/right=.  At the end of the stamp, the time will be
+      changed by one minute.
 
     - If the timestamp contains a range of clock times or a repeater,
       these will not be overlaid, but remain in the buffer as they
@@ -5332,7 +5327,7 @@ modify this GNU manual.”
     The following commands allow you to quickly insert[fn:73] a
     deadline or to schedule an item:
 
-     - */C-c C-d/* (=org-deadline=)
+     - =C-c C-d= (=org-deadline=)
 
        Insert 'DEADLINE' keyword along with a stamp. The insertion
        will happen in the line directly following the headline. Any
@@ -5342,7 +5337,7 @@ modify this GNU manual.”
        =org-log-redeadline=[fn:74], a note will be taken when
        changing an existing deadline.
 
-     - */C-c C-s/* (=org-schedule=)
+     - =C-c C-s= (=org-schedule=)
 
        Insert 'SCHEDULED' keyword along with a stamp. The insertion
        will happen in the line directly following the headline. Any
@@ -5351,21 +5346,21 @@ modify this GNU manual.”
        on the variable =org-log-reschedule= [fn:75], a note will be
        taken when changing an existing scheduling time.
 
-     - */C-c / d/* (=org-check-deadlines=)
+     - =C-c / d= (=org-check-deadlines=)
 
        Create a sparse tree with all deadlines that are either
        past-due, or which will become due within
        =org-deadline-warning-days=. With C-u prefix, show all
        deadlines in the file. With a numeric prefix, check that many
-       days. For example, */C-1 C-c / d/* shows all deadlines due
+       days. For example, =C-1 C-c / d= shows all deadlines due
        tomorrow.
 
-     - */C-c / b/* (=org-check-before-date=)
+     - =C-c / b= (=org-check-before-date=)
 
        Sparse tree for deadlines and scheduled items before a given
        date.
 
-     - */C-c / a/* (=org-check-after-date=)
+     - =C-c / a= (=org-check-after-date=)
 
        Sparse tree for deadlines and scheduled items after a given
        date.
@@ -5401,18 +5396,18 @@ modify this GNU manual.”
     produce entries in the agenda. The problem with this is, however,
     that then also the /next/ instance of the repeated entry will not
     be active. Org mode deals with this in the following way: When you
-    try to mark such an entry DONE (using */C-c C-t/*), it will shift
+    try to mark such an entry DONE (using =C-c C-t=), it will shift
     the base date of the repeating timestamp by the repeater interval,
-    and immediately set the entry state back to TODO[fn:76]. In
-    the example above, setting the state to DONE would actually switch
-    the date like this:
+    and immediately set the entry state back to TODO[fn:76]. In the
+    example above, setting the state to DONE would actually switch the
+    date like this:
 
     #+BEGIN_EXAMPLE
       ** TODO Pay the rent
          DEADLINE: <2005-11-01 Tue +1m>
     #+END_EXAMPLE
 
-    To mark a task with a repeater as =DONE=, use */C-- 1 C-c C-t/*
+    To mark a task with a repeater as =DONE=, use =C-- 1 C-c C-t=
     (i.e., =org-todo= with a numeric prefix argument of -1.)
 
     A timestamp[fn:77] will be added under the deadline, to keep a
@@ -5458,7 +5453,7 @@ modify this GNU manual.”
 
     An alternative to using a repeater is to create a number of copies
     of a task subtree, with dates shifted in each copy. The command
-    */C-c C-x c/* was created for this purpose, it is described in
+    =C-c C-x c= was created for this purpose, it is described in
     [[@Structure-editing][Structure editing]].
 
 ** 8.4 Clocking work time                                             <<@Clocking-work-time>>
@@ -5489,7 +5484,7 @@ modify this GNU manual.”
 
 *** 8.4.1 Clocking commands                                           <<@Clocking-commands>>
 
-     - */C-c C-x C-i/* (=org-clock-in=)
+     - =C-c C-x C-i= (=org-clock-in=)
 
        Start the clock on the current item (clock-in). This inserts
        the CLOCK keyword together with a timestamp. If this is not the
@@ -5497,12 +5492,12 @@ modify this GNU manual.”
        wrapped into a =:LOGBOOK:= drawer (see also the variable
        =org-clock-into-drawer=). You can also overrule the setting of
        this variable for a subtree by setting a =CLOCK_INTO_DRAWER= or
-       =LOG_INTO_DRAWER= property. When called with a */C-u/* prefix
+       =LOG_INTO_DRAWER= property. When called with a =C-u= prefix
        argument, select the task from a list of recently clocked
-       tasks. With two */C-u C-u/* prefixes, clock into the task at
+       tasks. With two =C-u C-u= prefixes, clock into the task at
        point and mark it as the default task; the default task will
        then always be available with letter d when selecting a
-       clocking task. With three */C-u C-u C-u/* prefixes, force
+       clocking task. With three =C-u C-u C-u= prefixes, force
        continuous clocking by starting the clock when the last clock
        stopped.
 
@@ -5524,7 +5519,7 @@ modify this GNU manual.”
        Clicking with mouse-1 onto the mode line entry will pop up a
        menu with clocking options.
 
-     - */C-c C-x C-o/* (=org-clock-out=)
+     - =C-c C-x C-o= (=org-clock-out=)
 
        Stop the clock (clock-out). This inserts another timestamp at
        the same location where the clock was last started. It also
@@ -5534,30 +5529,30 @@ modify this GNU manual.”
        additional note together with the clock-out
        timestamp[fn:83].
 
-     - */C-c C-x C-x/* (=org-clock-in-last=)
+     - =C-c C-x C-x= (=org-clock-in-last=)
 
-       Reclock the last clocked task. With one */C-u/* prefix
-       argument, select the task from the clock history. With two
-       */C-u/* prefixes, force continuous clocking by starting the
-       clock when the last clock stopped.
+       Reclock the last clocked task. With one =C-u= prefix argument,
+       select the task from the clock history. With two =C-u=
+       prefixes, force continuous clocking by starting the clock when
+       the last clock stopped.
 
-     - */C-c C-x C-e/* (=org-clock-modify-effort-estimate=)
+     - =C-c C-x C-e= (=org-clock-modify-effort-estimate=)
 
        Update the effort estimate for the current clock task.
 
-     - */C-c C-c/* or */C-c C-y/* (=org-evaluate-time-range=)
+     - =C-c C-c= or =C-c C-y= (=org-evaluate-time-range=)
 
        Recompute the time interval after changing one of the
        timestamps. This is only necessary if you edit the timestamps
        directly. If you change them with S-cursor keys, the update is
        automatic.
 
-     - */C-S-up/down/* (=org-clock-timestamps-up/down=)
+     - =C-S-up/down= (=org-clock-timestamps-up/down=)
 
        On =CLOCK= log lines, increase/decrease both timestamps so that
        the clock duration keeps the same.
 
-     - */S-M-up/down/* (=org-timestamp-up/down=)
+     - =S-M-up/down= (=org-timestamp-up/down=)
 
        On =CLOCK= log lines, increase/decrease the timestamp at point
        and the one of the previous (or the next clock) timestamp by
@@ -5565,23 +5560,23 @@ modify this GNU manual.”
        a clocked-out timestamp by five minutes, then the clocked-in
        timestamp of the next clock will be increased by five minutes.
 
-     - */C-c C-t/* (=org-todo=)
+     - =C-c C-t= (=org-todo=)
 
        Changing the TODO state of an item to DONE automatically stops
        the clock if it is running in this same item.
 
-     - */C-c C-x C-q/* (=org-clock-cancel=)
+     - =C-c C-x C-q= (=org-clock-cancel=)
 
        Cancel the current clock. This is useful if a clock was started
        by mistake, or if you ended up working on something else.
 
-     - */C-c C-x C-j/* (=org-clock-goto=)
+     - =C-c C-x C-j= (=org-clock-goto=)
 
        Jump to the headline of the currently clocked in task. With a
-       */C-u/* prefix arg, select the target task from a list of
+       =C-u= prefix arg, select the target task from a list of
        recently clocked tasks.
 
-     - */C-c C-x C-d/* (=org-clock-display=)
+     - =C-c C-x C-d= (=org-clock-display=)
 
        Display time summaries for each subtree in the current
        buffer. This puts overlays at the end of each headline, showing
@@ -5589,7 +5584,7 @@ modify this GNU manual.”
        of any subheadings. You can use visibility cycling to study the
        tree, but the overlays disappear when you change the buffer
        (see variable =org-remove-highlights-with-change=) or press
-       */C-c C-c/*.
+       =C-c C-c=.
 
     The *l* key may be used in the timeline (see [[@Timeline][Timeline]]) and in the
     agenda (see [[@Weekly_daily-agenda][Weekly/daily agenda]]) to show which tasks have been
@@ -5605,7 +5600,7 @@ modify this GNU manual.”
     clocking information. Such a report is called a /clock table/,
     because it is formatted as one or several Org tables.
 
-     - */C-c C-x C-r/* (=org-clock-report=)
+     - =C-c C-x C-r= (=org-clock-report=)
 
        Insert a dynamic block (see [[@Dynamic-blocks][Dynamic blocks]]) containing a clock
        report as an Org mode table into the current file.  When the
@@ -5614,18 +5609,18 @@ modify this GNU manual.”
        in the current document and update it. The clock table always
        includes also trees with =:ARCHIVE:= tag.
 
-     - */C-c C-c/* or */C-c C-x C-u/* (=org-dblock-update=)
+     - =C-c C-c= or =C-c C-x C-u= (=org-dblock-update=)
 
        Update dynamic block at point. The cursor needs to be in the
        =#+BEGIN= line of the dynamic block.
 
-     - */C-u C-c C-x C-u/*
+     - =C-u C-c C-x C-u=
 
        Update all dynamic blocks (see [[@Dynamic-blocks][Dynamic blocks]]).  This is useful
        if you have several clock table blocks in a buffer.
 
-     - */S-left/*
-     - */S-right/* (=org-clocktable-try-shift=)
+     - =S-left=
+     - =S-right= (=org-clocktable-try-shift=)
 
        Shift the current =:block= interval and update the table. The
        cursor needs to be in the =#+BEGIN: clocktable= line for this
@@ -5633,7 +5628,7 @@ modify this GNU manual.”
        =today-1= etc.
 
     Here is an example of the frame for a clock table as it is
-    inserted into the buffer with the */C-c C-x C-r/* command:
+    inserted into the buffer with the =C-c C-x C-r= command:
 
     #+BEGIN_EXAMPLE
       #+BEGIN: clocktable :maxlevel 2 :emphasize nil :scope file
@@ -5796,16 +5791,16 @@ modify this GNU manual.”
      - S
 
        To keep none of the minutes and just clock out at the start of
-       the away time, use the shift key and press */S/*. Remember that
+       the away time, use the shift key and press =S=. Remember that
        using shift will always leave you clocked out, no matter which
        option you choose.
 
      - C
 
-       To cancel the clock altogether, use */C/*. Note that if instead of
-       canceling you subtract the away time, and the resulting clock
-       amount is less than a minute, the clock will still be canceled
-       rather than clutter up the log with an empty entry.
+       To cancel the clock altogether, use =C=. Note that if instead
+       of canceling you subtract the away time, and the resulting
+       clock amount is less than a minute, the clock will still be
+       canceled rather than clutter up the log with an empty entry.
 
     What if you subtracted those away minutes from the current clock,
     and now want to apply them to a new clock? Simply clock in to any
@@ -5829,8 +5824,8 @@ modify this GNU manual.”
     event rather than a set amount of idle time.
 
     You can also check all the files visited by your Org agenda for
-    dangling clocks at any time using */M-x org-resolve-clocks RET/*
-    (or */C-c C-x C-z/*).
+    dangling clocks at any time using =M-x org-resolve-clocks RET= (or
+    =C-c C-x C-z=).
 
 **** Continuous clocking
 
@@ -5841,7 +5836,7 @@ modify this GNU manual.”
      session, and start the new clock from there.
 
      If you only want this from time to time, use three universal
-     prefix arguments with =org-clock-in= and two */C-u C-u/* with
+     prefix arguments with =org-clock-in= and two =C-u C-u= with
      =org-clock-in-last=.
 
 ** 8.5 Effort estimates                                               <<@Effort-estimates>>
@@ -5855,14 +5850,14 @@ modify this GNU manual.”
    property =EFFORT=. You can set the effort for an entry with the
    following commands:
 
-    - */C-c C-x e/* (=org-set-effort=)
+    - =C-c C-x e= (=org-set-effort=)
 
       Set the effort estimate for the current entry. With a numeric
       prefix argument, set it to the Nth allowed value (see
       below). This command is also accessible from the agenda with the
       e key.
 
-    - */C-c C-x C-e/* (=org-clock-modify-effort-estimate=)
+    - =C-c C-x C-e= (=org-clock-modify-effort-estimate=)
 
       Modify the effort estimate of the item currently being clocked.
 
@@ -5883,7 +5878,7 @@ modify this GNU manual.”
    setup also in the agenda, a global setup may be advised.
 
    The way to assign estimates to individual items is then to switch
-   to column mode, and to use */S-right/* and */S-left/* to change the
+   to column mode, and to use =S-right= and =S-left= to change the
    value. The values you enter will immediately be summed up in the
    hierarchy. In the column next to it, any clocked time will be
    displayed.
@@ -5912,19 +5907,19 @@ modify this GNU manual.”
 
    The relative and countdown are started with separate commands.
 
-    - */C-c C-x 0/* (=org-timer-start=)
+    - =C-c C-x 0= (=org-timer-start=)
 
       Start or reset the relative timer. By default, the timer is set
-      to 0.  When called with a */C-u/* prefix, prompt the user for a
+      to 0.  When called with a =C-u= prefix, prompt the user for a
       starting offset. If there is a timer string at point, this is
       taken as the default, providing a convenient way to restart
       taking notes after a break in the process. When called with a
-      double prefix argument */C-u C-u/*, change all timer strings in
+      double prefix argument =C-u C-u=, change all timer strings in
       the active region by a certain amount. This can be used to fix
       timer strings if the timer was not started at exactly the right
       moment.
 
-    - */C-c C-x ;/* (=org-timer-set-timer=)
+    - =C-c C-x ;= (=org-timer-set-timer=)
 
       Start a countdown timer. The user is prompted for a duration.
       =org-timer-default-timer= sets the default countdown
@@ -5934,29 +5929,29 @@ modify this GNU manual.”
    Once started, relative and countdown timers are controlled with the
    same commands.
 
-    - */C-c C-x ./* (=org-timer=)
+    - =C-c C-x .= (=org-timer=)
 
       Insert the value of the current relative or countdown timer into
       the buffer. If no timer is running, the relative timer will be
       started. When called with a prefix argument, the relative timer
       is restarted.
 
-    - */C-c C-x -/* (=org-timer-item=)
+    - =C-c C-x -= (=org-timer-item=)
 
       Insert a description list item with the value of the current
       relative or countdown timer. With a prefix argument, first reset
       the relative timer to 0.
 
-    - */M-RET/* (=org-insert-heading=)
+    - =M-RET= (=org-insert-heading=)
 
       Once the timer list is started, you can also use M-RET to insert
       new timer items.
 
-    - */C-c C-x \ /* (=org-timer-pause-or-continue=)
+    - =C-c C-x \= (=org-timer-pause-or-continue=)
 
       Pause the timer, or continue it if it is already paused.
 
-    - */C-c C-x _/* (=org-timer-stop=)
+    - =C-c C-x _= (=org-timer-stop=)
 
       Stop the timer. After this, you can only start a new timer, not
       continue the old one. This command also removes the timer from
@@ -5996,8 +5991,8 @@ modify this GNU manual.”
      M-x org-capture-import-remember-templates RET
    #+END_EXAMPLE
 
-   and then customize the new variable with */M-x customize-variable
-   org-capture-templates/*, check the result, and save the
+   and then customize the new variable with =M-x customize-variable
+   org-capture-templates=, check the result, and save the
    customization.
 
    | • [[@Setting-up-capture][Setting up capture]]: | Where notes will be stored                 |
@@ -6016,7 +6011,7 @@ modify this GNU manual.”
 
 *** 9.1.2 Using capture                                               <<@Using-capture>>
 
-     - */C-c c/* (=org-capture=)
+     - =C-c c= (=org-capture=)
 
        Call the command =org-capture=. Note that this keybinding is
        global and not active by default: you need to install it. If
@@ -6026,15 +6021,15 @@ modify this GNU manual.”
        target file and switch to an indirect buffer narrowed to this
        new node. You may then insert the information you want.
 
-     - */C-c C-c/* (=org-capture-finalize=)
+     - =C-c C-c= (=org-capture-finalize=)
 
        Once you have finished entering information into the capture
-       buffer, */C-c C-c/* will return you to the window configuration
+       buffer, =C-c C-c= will return you to the window configuration
        before the capture process, so that you can resume your work
        without further distraction.  When called with a prefix arg,
        finalize and then jump to the captured item.
 
-     - */C-c C-w/* (=org-capture-refile=)
+     - =C-c C-w= (=org-capture-refile=)
 
        Finalize the capture process by refiling (see [[@Refile-and-copy][Refile and copy]])
        the note to a different place. Please realize that this is a
@@ -6044,7 +6039,7 @@ modify this GNU manual.”
        the cursor back to the parent. Any prefix argument given to
        this command will be passed on to the =org-refile= command.
 
-     - */C-c C-k/* (=org-capture-kill=)
+     - =C-c C-k= (=org-capture-kill=)
 
        Abort the capture process and return to the previous state.
 
@@ -6056,12 +6051,12 @@ modify this GNU manual.”
     To find the locations of the last stored capture, use
     =org-capture= with prefix commands:
 
-     - */C-u C-c c/*
+     - =C-u C-c c=
 
        Visit the target location of a capture template. You get to
        select the template in the usual way.
 
-     - */C-u C-u C-c c/*
+     - =C-u C-u C-c c=
 
        Visit the last stored capture item in its buffer.
 
@@ -6078,7 +6073,7 @@ modify this GNU manual.”
     for different target locations. The easiest way to create such
     templates is through the customize interface.
 
-     - */C-c c C/*
+     - =C-c c C=
 
        Customize the variable =org-capture-templates=.
 
@@ -6097,8 +6092,8 @@ modify this GNU manual.”
               "* %?\nEntered on %U\n  %i\n  %a")))
     #+END_EXAMPLE
 
-    If you then press */C-c c t/*, Org will prepare the template for
-    you like this:
+    If you then press =C-c c t=, Org will prepare the template for you
+    like this:
 
     #+BEGIN_EXAMPLE
       * TODO
@@ -6108,8 +6103,8 @@ modify this GNU manual.”
     During expansion of the template, =%a= has been replaced by a link
     to the location from where you called the capture command. This
     can be extremely useful for deriving tasks from emails, for
-    example. You fill in the task definition, press */C-c C-c/* and
-    Org returns you to the same place where you started the capture
+    example. You fill in the task definition, press =C-c C-c= and Org
+    returns you to the same place where you started the capture
     process.
 
     To define special keys to capture to a particular template without
@@ -6144,8 +6139,8 @@ modify this GNU manual.”
           ("b" "Templates for marking stuff to buy")
         #+END_EXAMPLE
 
-        If you do not define a template for the */C/* key, this key
-        will be used to open the customize buffer for this complex
+        If you do not define a template for the =C= key, this key will
+        be used to open the customize buffer for this complex
         variable.
 
       - description
@@ -6432,7 +6427,7 @@ modify this GNU manual.”
 
    The following commands deal with attachments:
 
-   - */C-c C-a/* (=org-attach=)
+   - =C-c C-a= (=org-attach=)
 
      The dispatcher for commands related to the attachment
      system. After these keys, a list of commands is displayed and you
@@ -6520,13 +6515,13 @@ modify this GNU manual.”
    ~/org/feeds.org under the heading 'Slashdot Entries', whenever the
    following command is used:
 
-    - */C-c C-x g/* (=org-feed-update-all=)
-    - */C-c C-x g/*
+    - =C-c C-x g= (=org-feed-update-all=)
+    - =C-c C-x g=
 
       Collect items from the feeds configured in =org-feed-alist= and
       act upon them.
 
-    - */C-c C-x G/* (=org-feed-goto-inbox=)
+    - =C-c C-x G= (=org-feed-goto-inbox=)
 
       Prompt for a feed name and go to the inbox configured for this
       feed.
@@ -6558,12 +6553,12 @@ modify this GNU manual.”
    note is cumbersome. To simplify this process, you can use the
    following special command:
 
-    - */C-c M-w/* (=org-copy=)
+    - =C-c M-w= (=org-copy=)
 
       Copying works like refiling, except that the original note is
       not deleted.
 
-    - */C-c C-w/* (=org-refile=)
+    - =C-c C-w= (=org-refile=)
 
       Refile the entry or region at point. This command offers
       possible locations for refiling the entry and lets you select
@@ -6585,25 +6580,26 @@ modify this GNU manual.”
       =org-log-refile= [fn:94] is set, a timestamp or a note will
       be recorded when an entry has been refiled.
 
-    - */C-u C-c C-w/*
+    - =C-u C-c C-w=
 
       Use the refile interface to jump to a heading.
 
-    - */C-u C-u C-c C-w/* (=org-refile-goto-last-stored=)
+    - =C-u C-u C-c C-w= (=org-refile-goto-last-stored=)
 
       Jump to the location where =org-refile= last moved a tree to.
 
-    - */C-2 C-c C-w/*
+    - =C-2 C-c C-w=
 
       Refile as the child of the item currently being clocked.
 
-    - */C-3 C-c C-w/*
+    - =C-3 C-c C-w=
 
       Refile and keep the entry in place. Also see =org-refile-keep=
       to make this the default behavior, and beware that this may
       result in duplicated =ID= properties.
 
-    - */C-0 C-c C-w/* or */C-u C-u C-u C-c C-w/* (=org-refile-cache-clear=)
+    - =C-0 C-c C-w= or =C-u C-u C-u C-c C-w=
+      (=org-refile-cache-clear=)
 
       Clear the target cache. Caching of refile targets can be turned
       on by setting =org-refile-use-cache=. To make the command see
@@ -6618,7 +6614,7 @@ modify this GNU manual.”
    compact and global searches like the construction of agenda views
    fast.
 
-    - */C-c C-x C-a/* (=org-archive-subtree-default=)
+    - =C-c C-x C-a= (=org-archive-subtree-default=)
 
       Archive the current entry using the command specified in the
       variable =org-archive-default-command=.
@@ -6631,12 +6627,12 @@ modify this GNU manual.”
     The most common archiving action is to move a project tree to
     another file, the archive file.
 
-     - */C-c C-x C-s/* or short */C-c $/* (=org-archive-subtree=)
+     - =C-c C-x C-s= or short =C-c $= (=org-archive-subtree=)
 
        Archive the subtree starting at the cursor position to the
        location given by =org-archive-location=.
 
-     - */C-u C-c C-x C-s/*
+     - =C-u C-c C-x C-s=
 
        Check if any direct children of the current headline could be
        moved to the archive. To do this, each subtree is checked for
@@ -6645,7 +6641,7 @@ modify this GNU manual.”
        headline when this command is invoked, the level 1 trees will
        be checked.
 
-     - */C-u C-u C-c C-x C-s/*
+     - =C-u C-u C-c C-x C-s=
 
        As above, but check subtree for timestamps instead of TODO
        entries. The command will offer to archive the subtree if it
@@ -6712,13 +6708,13 @@ modify this GNU manual.”
 
     The following commands help manage the ARCHIVE tag:
 
-     - */C-c C-x a/* (=org-toggle-archive-tag=)
+     - =C-c C-x a= (=org-toggle-archive-tag=)
 
        Toggle the ARCHIVE tag for the current headline. When the tag
        is set, the headline changes to a shadowed face, and the
        subtree below it is hidden.
 
-     - */C-u C-c C-x a/*
+     - =C-u C-c C-x a=
 
        Check if any direct children of the current headline should be
        archived.  To do this, each subtree is checked for open TODO
@@ -6727,11 +6723,11 @@ modify this GNU manual.”
        when this command is invoked, the level 1 trees will be
        checked.
 
-     - */C-TAB/* (=org-force-cycle-archived=)
+     - =C-TAB= (=org-force-cycle-archived=)
 
        Cycle a tree even if it is tagged with ARCHIVE.
 
-     - */C-c C-x A/* (=org-archive-to-archive-sibling=)
+     - =C-c C-x A= (=org-archive-to-archive-sibling=)
 
        Move the current entry to the /Archive Sibling/. This is a
        sibling of the entry with the heading 'Archive' and the tag
@@ -6802,24 +6798,24 @@ modify this GNU manual.”
    =org-agenda-files=, but the easiest way to maintain it is through
    the following commands
 
-    - */C-c [/* (=org-agenda-file-to-front=)
+    - =C-c [= (=org-agenda-file-to-front=)
 
       Add current file to the list of agenda files. The file is added
       to the front of the list. If it was already in the list, it is
       moved to the front. With a prefix argument, file is added/moved
       to the end.
 
-    - */C-c ]/* (=org-remove-file=)
+    - =C-c ]= (=org-remove-file=)
 
       Remove current file from the list of agenda files.
 
-    - */C-'/* (=org-cycle-agenda-files=)
-    - */C-,/*
+    - =C-'= (=org-cycle-agenda-files=)
+    - =C-,=
 
       Cycle through agenda file list, visiting one file after the
       other.
 
-    - */M-x org-iswitchb RET/*
+    - =M-x org-iswitchb RET=
 
       Command to use an =iswitchb=-like interface to switch to and
       between Org buffers.
@@ -6834,19 +6830,19 @@ modify this GNU manual.”
    dispatcher (see [[@Agenda-dispatcher][Agenda dispatcher]]). To restrict the agenda scope
    for an extended period, use the following commands:
 
-    - */C-c C-x </* (=org-agenda-set-restriction-lock=)
+    - =C-c C-x <= (=org-agenda-set-restriction-lock=)
 
       Permanently restrict the agenda to the current subtree. When
       with a prefix argument, or with the cursor before the first
       headline in a file, the agenda scope is set to the entire
-      file. This restriction remains in effect until removed with
-      */C-c C-x >/*, or by typing either < or > in the agenda
-      dispatcher. If there is a window displaying an agenda view, the
-      new restriction takes effect immediately.
+      file. This restriction remains in effect until removed with =C-c
+      C-x >=, or by typing either < or > in the agenda dispatcher. If
+      there is a window displaying an agenda view, the new restriction
+      takes effect immediately.
 
-    - */C-c C-x >/* (=org-agenda-remove-restriction-lock=)
+    - =C-c C-x >= (=org-agenda-remove-restriction-lock=)
 
-      Remove the permanent restriction created by */C-c C-x </*.
+      Remove the permanent restriction created by =C-c C-x <=.
 
    When working with speedbar.el, you can use the following commands
    in the Speedbar frame:
@@ -6865,12 +6861,11 @@ modify this GNU manual.”
 ** 10.2 The agenda dispatcher                                         <<@Agenda-dispatcher>>
 
    The views are created through a dispatcher, which should be bound
-   to a global key -- for example */C-c a/* (see [[@Activation][Activation]]). In the
-   following we will assume that */C-c a/* is indeed how the
-   dispatcher is accessed and list keyboard access to commands
-   accordingly. After pressing */C-c a/*, an additional letter is
-   required to execute a command.  The dispatcher offers the following
-   default commands:
+   to a global key -- for example =C-c a= (see [[@Activation][Activation]]). In the
+   following we will assume that =C-c a= is indeed how the dispatcher
+   is accessed and list keyboard access to commands accordingly. After
+   pressing =C-c a=, an additional letter is required to execute a
+   command.  The dispatcher offers the following default commands:
 
     - a
 
@@ -6956,12 +6951,12 @@ modify this GNU manual.”
     The purpose of the weekly/daily /agenda/ is to act like a page of
     a paper agenda, showing all the tasks for the current week or day.
 
-     - */C-c a a/* (=org-agenda-list=)
+     - =C-c a a= (=org-agenda-list=)
 
        Compile an agenda for the current week from a list of Org
        files. The agenda shows the entries for each day. With a
-       numeric prefix[fn:99] (like */C-u 2 1 C-c a a/*) you may
-       set the number of days to be displayed.
+       numeric prefix[fn:99] (like =C-u 2 1 C-c a a=) you may set the
+       number of days to be displayed.
 
     The default number of days displayed in the agenda is set by the
     variable =org-agenda-span= (or the obsolete
@@ -7047,7 +7042,7 @@ modify this GNU manual.”
      #+END_EXAMPLE
 
      You can then go ahead and define anniversaries for a BBDB record.
-     Basically, you need to press */C-o anniversary RET/* with the
+     Basically, you need to press =C-o anniversary RET= with the
      cursor in a BBDB record and then add the date in the format
      =YYYY-MM-DD= or =MM-DD=, followed by a space and the class of the
      anniversary ('birthday' or 'wedding', or a format string). If you
@@ -7084,7 +7079,7 @@ modify this GNU manual.”
     The global TODO list contains all unfinished TODO items formatted
     and collected into a single place.
 
-     - */C-c a t/* (=org-todo-list=)
+     - =C-c a t= (=org-todo-list=)
 
        Show the global TODO list. This collects the TODO items from
        all agenda files (see [[@Agenda-views][Agenda views]]) into a single buffer. By
@@ -7093,16 +7088,16 @@ modify this GNU manual.”
        examine and manipulate the TODO entries directly from that
        buffer (see [[@Agenda-commands][Agenda commands]]).
 
-     - */C-c a T/* (=org-todo-list=)
+     - =C-c a T= (=org-todo-list=)
 
        Like the above, but allows selection of a specific TODO
        keyword. You can also do this by specifying a prefix argument
-       to */C-c a t/*. You are prompted for a keyword, and you may
-       also specify several keywords by separating them with '|' as
-       the boolean OR operator. With a numeric prefix, the Nth keyword
-       in =org-todo-keywords= is selected. The r key in the agenda
-       buffer regenerates it, and you can give a prefix argument to
-       this command to change the selected TODO keyword, for example 3
+       to =C-c a t=. You are prompted for a keyword, and you may also
+       specify several keywords by separating them with '|' as the
+       boolean OR operator. With a numeric prefix, the Nth keyword in
+       =org-todo-keywords= is selected. The r key in the agenda buffer
+       regenerates it, and you can give a prefix argument to this
+       command to change the selected TODO keyword, for example 3
        r. If you often need a search for a specific keyword, define a
        custom command for it (see [[@Agenda-dispatcher][Agenda dispatcher]]).
 
@@ -7135,12 +7130,13 @@ modify this GNU manual.”
 *** 10.3.3 Matching tags and properties                               <<@Matching-tags-and-properties>>
 
     If headlines in the agenda files are marked with /tags/ (see
-    [[@Tags][Tags]]), or have properties (see [[@Properties-and-columns][Properties and columns]]), you can
+    [[@Tags][Tags]]), or have properties (see
+    [[@Properties-and-columns][Properties and columns]]), you can
     select headlines based on this metadata and collect them into an
     agenda buffer.  The match syntax described here also applies when
-    creating sparse trees with */C-c / m/*.
+    creating sparse trees with =C-c / m=.
 
-     - */C-c a m/* (=org-tags-view=)
+     - =C-c a m= (=org-tags-view=)
 
        Produce a list of all headlines that match a given set of
        tags. The command prompts for a selection criterion, which is a
@@ -7149,9 +7145,9 @@ modify this GNU manual.”
        need a specific search, define a custom command for it (see
        [[@Agenda-dispatcher][Agenda dispatcher]]).
 
-     - */C-c a M/* (=org-tags-view=)
+     - =C-c a M= (=org-tags-view=)
 
-       Like */C-c a m/*, but only select headlines that are also TODO
+       Like =C-c a m=, but only select headlines that are also TODO
        items in a not-DONE state and force checking subitems (see
        variable =org-tags-match-list-sublevels=). To exclude
        scheduled/deadline items, see the variable
@@ -7288,8 +7284,8 @@ modify this GNU manual.”
     meaningfully be combined with boolean AND.  However, /negative
     selection/ combined with AND can be meaningful. To make sure that
     only lines are checked that actually have any TODO keyword
-    (resulting in a speed-up), use */C-c a M/*, or equivalently start
-    the TODO part after the slash with '!'. Using */C-c a M/* or '/!'
+    (resulting in a speed-up), use =C-c a M=, or equivalently start
+    the TODO part after the slash with '!'. Using =C-c a M= or '/!'
     will not match TODO keywords in a DONE state. Examples:
 
      - 'work/WAITING'
@@ -7312,10 +7308,10 @@ modify this GNU manual.”
     mode file in a /time-sorted view/. The main purpose of this
     command is to give an overview over events in a project.
 
-     - */C-c a L/* (=org-timeline=)
+     - =C-c a L= (=org-timeline=)
 
        Show a time-sorted view of the Org file, with all time-stamped
-       items.  When called with a */C-u/* prefix, all unfinished TODO
+       items.  When called with a =C-u= prefix, all unfinished TODO
        entries (scheduled or not) are also listed under the current
        date.
 
@@ -7327,7 +7323,7 @@ modify this GNU manual.”
     This agenda view is a general text search facility for Org mode
     entries.  It is particularly useful to find notes.
 
-     - */C-c a s/* (=org-search-view=)
+     - =C-c a s= (=org-search-view=)
 
        This is a special search that lets you select entries by
        matching a substring or specific words using a boolean logic.
@@ -7357,11 +7353,11 @@ modify this GNU manual.”
     in the TODO lists Org mode produces. During the review, you need
     to identify such projects and define next actions for them.
 
-     - */C-c a #/* (=org-agenda-list-stuck-projects=)
+     - =C-c a #= (=org-agenda-list-stuck-projects=)
 
        List projects that are stuck.
 
-     - */C-c a !/*
+     - =C-c a !=
 
        Customize the variable =org-stuck-projects= to define what a
        stuck project is and how to find it.
@@ -7817,11 +7813,11 @@ modify this GNU manual.”
        in the agenda, as are entries that have been clocked on that
        day. You can configure the entry types that should be included
        in log mode using the variable
-       =org-agenda-log-mode-items=. When called with a */C-u/* prefix,
+       =org-agenda-log-mode-items=. When called with a =C-u= prefix,
        show all possible logbook entries, including state
-       changes. When called with two prefix arguments */C-u C-u/*,
-       show only logging information, nothing else. v L is equivalent
-       to */C-u v l/*.
+       changes. When called with two prefix arguments =C-u C-u=, show
+       only logging information, nothing else. v L is equivalent to
+       =C-u v l=.
 
      - v [ or short [ (=org-agenda-manipulate-query-add=)
 
@@ -8062,8 +8058,8 @@ modify this GNU manual.”
        days. For example, 3 6 5 S-right will change it by a year. With
        a C-u prefix, change the time by one hour. If you immediately
        repeat the command, it will continue to change hours even
-       without the prefix arg. With a double */C-u C-u/* prefix, do
-       the same for changing minutes.
+       without the prefix arg. With a double =C-u C-u= prefix, do the
+       same for changing minutes.
 
        The stamp is changed in the original Org file, but the change
        is not directly reflected in the agenda buffer. Use r or g to
@@ -8202,7 +8198,7 @@ modify this GNU manual.”
         - S
 
           Reschedule randomly into the coming N days. N will be
-          prompted for. With prefix arg (*/C-u B S/*), scatter only
+          prompted for. With prefix arg (=C-u B S=), scatter only
           across weekdays.
 
         - f
@@ -8294,7 +8290,7 @@ modify this GNU manual.”
        (.html or .htm), Postscript (.ps), PDF (.pdf), Org (.org) and
        plain text (any other extension). When exporting to Org, only
        the body of original headlines are exported, not subtrees or
-       inherited tags. When called with a */C-u/* prefix argument,
+       inherited tags. When called with a =C-u= prefix argument,
        immediately open the newly created file. Use the variable
        =org-agenda-exporter-settings= to set options for ps-print and
        for htmlize to be used during export.
@@ -8332,7 +8328,7 @@ modify this GNU manual.”
 
     Custom commands are configured in the variable
     =org-agenda-custom-commands=. You can customize this variable, for
-    example by pressing */C-c a C/*. You can also directly set it with
+    example by pressing =C-c a C=. You can also directly set it with
     Emacs Lisp in .emacs. The following example contains all valid
     agenda views:
 
@@ -8353,9 +8349,9 @@ modify this GNU manual.”
     #+END_SRC
 
     The initial string in each entry defines the keys you have to
-    press after the dispatcher command */C-c a/* in order to access
-    the command.  Usually this will be just a single character, but if
-    you have many similar commands, you can also define two-letter
+    press after the dispatcher command =C-c a= in order to access the
+    command.  Usually this will be just a single character, but if you
+    have many similar commands, you can also define two-letter
     combinations where the first character is the same in several
     combinations and serves as a prefix key[fn:107]. The second
     parameter is the search type, followed by the string or regular
@@ -8390,13 +8386,13 @@ modify this GNU manual.”
 
      - C-c a v
 
-       as the same search as */C-c a u/*, but limiting the search to
+       as the same search as =C-c a u=, but limiting the search to
        headlines that are also TODO items
 
      - C-c a U
 
-       as the same search as */C-c a u/*, but only in the current
-       buffer and displaying the result as a sparse tree
+       as the same search as =C-c a u=, but only in the current buffer
+       and displaying the result as a sparse tree
 
      - C-c a f
 
@@ -8417,10 +8413,10 @@ modify this GNU manual.”
     Another possibility is the construction of agenda views that
     comprise the results of /several/ commands, each of which creates
     a block in the agenda buffer. The available commands include
-    =agenda= for the daily or weekly agenda (as created with */C-c a
-    a/*), =alltodo= for the global TODO list (as constructed with
-    */C-c a t/*), and the matching commands discussed above: =todo=,
-    =tags=, and =tags-todo=. Here are two examples:
+    =agenda= for the daily or weekly agenda (as created with =C-c a
+    a=), =alltodo= for the global TODO list (as constructed with =C-c
+    a t=), and the matching commands discussed above: =todo=, =tags=,
+    and =tags-todo=. Here are two examples:
 
     #+BEGIN_SRC lisp
       (setq org-agenda-custom-commands
@@ -8434,11 +8430,11 @@ modify this GNU manual.”
                 (tags "office")))))
     #+END_SRC
 
-    This will define */C-c a h/* to create a multi-block view for
-    stuff you need to attend to at home. The resulting agenda buffer
-    will contain your agenda for the current week, all TODO items that
+    This will define =C-c a h= to create a multi-block view for stuff
+    you need to attend to at home. The resulting agenda buffer will
+    contain your agenda for the current week, all TODO items that
     carry the tag 'home', and also all lines tagged with
-    'garden'. Finally the command */C-c a o/* provides a similar view
+    'garden'. Finally the command =C-c a o= provides a similar view
     for office tasks.
 
 *** 10.6.3 Setting options for custom commands                        <<@Setting-options>>
@@ -8463,13 +8459,13 @@ modify this GNU manual.”
                 (org-agenda-text-search-extra-files nil)))))
     #+END_SRC
 
-    Now the */C-c a w/* command will sort the collected entries only
-    by priority, and the prefix format is modified to just say '
-    Mixed: ' instead of giving the category of the entry. The sparse
-    tags tree of */C-c a U/* will now turn out ultra-compact, because
-    neither the headline hierarchy above the match, nor the headline
-    following the match will be shown. The command */C-c a N/* will do
-    a text search limited to only a single file.
+    Now the =C-c a w= command will sort the collected entries only by
+    priority, and the prefix format is modified to just say ' Mixed: '
+    instead of giving the category of the entry. The sparse tags tree
+    of =C-c a U= will now turn out ultra-compact, because neither the
+    headline hierarchy above the match, nor the headline following the
+    match will be shown. The command =C-c a N= will do a text search
+    limited to only a single file.
 
     For command sets creating a block agenda,
     =org-agenda-custom-commands= has two separate spots for setting
@@ -8478,7 +8474,7 @@ modify this GNU manual.”
     all commands in the set. The former are just added to the command
     entry; the latter must come after the list of command
     entries. Going back to the block agenda example (see [[@Block-agenda][Block
-    agenda]]), let's change the sorting strategy for the */C-c a h/*
+    agenda]]), let's change the sorting strategy for the =C-c a h=
     commands to =priority-down=, but let's sort the results for GARDEN
     tags query in the opposite order, =priority-up=. This would look
     like this:
@@ -8534,7 +8530,7 @@ modify this GNU manual.”
    Postscript, PDF[fn:110], and iCalendar files. If you want to do
    this only occasionally, use the command
 
-    - */C-x C-w/* (=org-agenda-write=)
+    - =C-x C-w= (=org-agenda-write=)
 
       Write the agenda view to a file. Depending on the extension of
       the selected file name, the view will be exported as HTML
@@ -8591,7 +8587,7 @@ modify this GNU manual.”
    overhead. Instead, there is a special command to produce /all/
    specified files in one step:
 
-    - */C-c a e/* (=org-store-agenda-views=)
+    - =C-c a e= (=org-store-agenda-views=)
 
       Export all agenda views that have export file names associated
       with them.
@@ -8651,7 +8647,7 @@ modify this GNU manual.”
    file. It can be quite useful to use column view also from the
    agenda, where entries are collected by certain criteria.
 
-    - */C-c C-x C-c/* (=org-agenda-columns=)
+    - =C-c C-x C-c= (=org-agenda-columns=)
 
       Turn on column view in the agenda.
 
@@ -9023,7 +9019,7 @@ modify this GNU manual.”
    so often, shortcuts are provided using the Easy templates facility
    (see [[@Easy-templates][Easy templates]]).
 
-    - */C-c '/*
+    - =C-c '=
 
       Edit the source code example at point in its native mode. This
       works by switching to a temporary buffer with the source
@@ -9035,14 +9031,14 @@ modify this GNU manual.”
       easily. Using this command in an empty line will create a new
       fixed-width region.
 
-    - */C-c l/*
+    - =C-c l=
 
       Calling =org-store-link= while editing a source code example in
-      a temporary buffer created with */C-c '/* will prompt for a
+      a temporary buffer created with =C-c '= will prompt for a
       label. Make sure that it is unique in the current buffer, and
       insert it with the proper formatting like '(ref:label)' at the
       end of the current line. Then the label is stored as a link
-      '(label)', for retrieval with */C-c C-l/*.
+      '(label)', for retrieval with =C-c C-l=.
 
 ** 11.4 Include files                                                 <<@Include-files>>
 
@@ -9107,7 +9103,7 @@ modify this GNU manual.”
         Include the first 20 lines of the headline named conclusion.
    #+END_EXAMPLE
 
-    - */C-c '/*
+    - =C-c '=
 
       Visit the include file at point.
 
@@ -9229,7 +9225,7 @@ modify this GNU manual.”
     If you would like to see entities displayed as UTF-8 characters,
     use the following command[fn:124]:
 
-     - */C-c C-x \ /*
+     - =C-c C-x \=
 
        Toggle display of entities as UTF-8 characters. This does not
        change the buffer content which remains plain ASCII, but it
@@ -9255,7 +9251,7 @@ modify this GNU manual.”
     when setting this variable to ={}=, 'a_b' will not be interpreted
     as a subscript, but 'a_{b}' will.
 
-     - */C-c C-x \ /*
+     - =C-c C-x \=
 
        In addition to showing entities as UTF-8 characters, this
        command will also format sub- and superscripts in a WYSIWYM
@@ -9325,7 +9321,7 @@ modify this GNU manual.”
     =:html-scale=) property of the former can be used to adjust the
     size of the preview images.
 
-     - */C-c C-x C-l/*
+     - =C-c C-x C-l=
 
        Produce a preview image of the LaTeX fragment at point and
        overlay it over the source code. If there is no fragment at
@@ -9335,7 +9331,7 @@ modify this GNU manual.”
        the cursor is before the first headline, process the entire
        buffer.
 
-     - */C-c C-c/*
+     - =C-c C-c=
 
        Remove the overlay preview images.
 
@@ -9362,8 +9358,8 @@ modify this GNU manual.”
     from [[http://www.astro.uva.nl/~dominik/Tools/cdlatex]]. Don't use
     CDLaTeX mode itself under Org mode, but use the light version
     =org-cdlatex-mode= that comes as part of Org mode. Turn it on for
-    the current buffer with */M-x org-cdlatex-mode RET/*, or for all
-    Org files with
+    the current buffer with =M-x org-cdlatex-mode RET=, or for all Org
+    files with
 
     #+BEGIN_SRC lisp
       (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
@@ -9372,18 +9368,18 @@ modify this GNU manual.”
     When this mode is enabled, the following features are present (for
     more details see the documentation of CDLaTeX mode):
 
-     - Environment templates can be inserted with */C-c {/*.
+     - Environment templates can be inserted with =C-c {=.
 
      - The =TAB= key will do template expansion if the cursor is
-       inside a LaTeX fragment[fn:127]. For example, =TAB= will
-       expand =fr= to =\frac{}{}= and position the cursor correctly
-       inside the first brace. Another =TAB= will get you into the
-       second brace. Even outside fragments, =TAB= will expand
-       environment abbreviations at the beginning of a line. For
-       example, if you write 'equ' at the beginning of a line and
-       press =TAB=, this abbreviation will be expanded to an
-       =equation= environment. To get a list of all abbreviations,
-       type */M-x cdlatex-command-help RET/*.
+       inside a LaTeX fragment[fn:127]. For example, =TAB= will expand
+       =fr= to =\frac{}{}= and position the cursor correctly inside
+       the first brace. Another =TAB= will get you into the second
+       brace. Even outside fragments, =TAB= will expand environment
+       abbreviations at the beginning of a line. For example, if you
+       write 'equ' at the beginning of a line and press =TAB=, this
+       abbreviation will be expanded to an =equation= environment. To
+       get a list of all abbreviations, type =M-x cdlatex-command-help
+       RET=.
 
      - Pressing =_= and =^= inside a LaTeX fragment will insert these
        characters together with a pair of braces. If you use =TAB= to
@@ -9465,7 +9461,7 @@ modify this GNU manual.”
    format and toggle export options[fn:128] from which it is
    possible to select an export format and to toggle export options.
 
-    - */C-c C-e/* (=org-export-dispatch=)
+    - =C-c C-e= (=org-export-dispatch=)
 
       Dispatch for export and publishing commands. When called with a
       C-u prefix argument, repeat the last export command on the
@@ -9479,7 +9475,7 @@ modify this GNU manual.”
    Several export options (see [[@Export-settings][Export settings]]) can be toggled from
    the export dispatcher with the following key combinations:
 
-    - */C-a/*
+    - =C-a=
 
       Toggle asynchronous export. Asynchronous export uses an external
       Emacs process that is configured with a specified initialization
@@ -9493,14 +9489,14 @@ modify this GNU manual.”
       To make this behavior the default, customize the variable
       =org-export-in-background=.
 
-    - */C-b/*
+    - =C-b=
 
       Toggle body-only export. Its effect depends on the back-end
       used. Typically, if the back-end has a header section (like
       =<head>...</head>= in the HTML back-end), a body-only export
       will not include this header.
 
-    - */C-s/*
+    - =C-s=
 
       Toggle subtree export. The top heading becomes the document
       title.
@@ -9508,7 +9504,7 @@ modify this GNU manual.”
       You can change the default state of this option by setting
       =org-export-initial-scope=.
 
-    - */C-v/*
+    - =C-v=
 
       Toggle visible-only export. Only export the text that is
       currently visible, i.e., not hidden by outline visibility in the
@@ -9553,10 +9549,11 @@ modify this GNU manual.”
    In-buffer settings may appear anywhere in the file, either directly
    or indirectly through a file included using '#+SETUPFILE: filename'
    syntax.  Option keyword sets tailored to a particular back-end can
-   be inserted from the export dispatcher (see [[@The-export-dispatcher][The export dispatcher]])
-   using the =Insert template= command by pressing =#=. To insert
-   keywords individually, a good way to make sure the keyword is
-   correct is to type =#+= and then to use */M-<TAB>/* for completion.
+   be inserted from the export dispatcher (see
+   [[@The-export-dispatcher][The export dispatcher]]) using the
+   =Insert template= command by pressing =#=. To insert keywords
+   individually, a good way to make sure the keyword is correct is to
+   type =#+= and then to use =M-<TAB>= for completion.
 
    The export keywords available for every back-end, and their
    equivalent global variables, include:
@@ -9802,14 +9799,14 @@ modify this GNU manual.”
 
 *** ASCII export commands
 
-     - */C-c C-e t a/l/u/* (=org-ascii-export-to-ascii=)
+     - =C-c C-e t a/l/u= (=org-ascii-export-to-ascii=)
 
        Export as an ASCII file. For an Org file, myfile.org, the ASCII
        file will be myfile.txt. The file will be overwritten without
        warning. When the original file is myfile.txt, the resulting
        file becomes myfile.txt.txt in order to prevent data loss.
 
-     - */C-c C-e t A/L/U/* (=org-ascii-export-as-ascii=)
+     - =C-c C-e t A/L/U= (=org-ascii-export-as-ascii=)
 
        Export to a temporary buffer. Do not create a file.
 
@@ -9888,21 +9885,21 @@ modify this GNU manual.”
 
 *** 12.5.1 Beamer export commands                                     <<@Beamer-export-commands>>
 
-     - */C-c C-e l b/* (=org-beamer-export-to-latex=)
+     - =C-c C-e l b= (=org-beamer-export-to-latex=)
 
        Export as a LaTeX file. For an Org file myfile.org, the LaTeX
        file will be myfile.tex. The file will be overwritten without
        warning.
 
-     - */C-c C-e l B/* (=org-beamer-export-as-latex=)
+     - =C-c C-e l B= (=org-beamer-export-as-latex=)
 
        Export to a temporary buffer. Do not create a file.
 
-     - */C-c C-e l P/* (=org-beamer-export-to-pdf=)
+     - =C-c C-e l P= (=org-beamer-export-to-pdf=)
 
        Export as LaTeX and then process to PDF.
 
-     - */C-c C-e l O/*
+     - =C-c C-e l O=
 
        Export as LaTeX and then process to PDF, then open the
        resulting PDF file.
@@ -10077,7 +10074,7 @@ modify this GNU manual.”
       #+STARTUP: beamer
     #+END_EXAMPLE
 
-      - */C-c C-b/* (=org-beamer-select-environment=)
+      - =C-c C-b= (=org-beamer-select-environment=)
 
         In =org-beamer-mode=, this key offers fast selection of a
         Beamer environment or the =BEAMER_COL= property.
@@ -10142,14 +10139,14 @@ modify this GNU manual.”
 
 *** 12.6.1 HTML export commands                                       <<@HTML-Export-commands>>
 
-     - */C-c C-e h h/* (=org-html-export-to-html=)
+     - =C-c C-e h h= (=org-html-export-to-html=)
 
        Export as an HTML file. For an Org file myfile.org, the HTML
        file will be myfile.html. The file will be overwritten without
-       warning. */C-c C-e h o/* Export as an HTML file and immediately
+       warning. =C-c C-e h o= Export as an HTML file and immediately
        open it with a browser.
 
-     - */C-c C-e h H/* (=org-html-export-as-html=)
+     - =C-c C-e h H= (=org-html-export-as-html=)
 
        Export to a temporary buffer. Do not create a file.
 
@@ -10679,21 +10676,21 @@ modify this GNU manual.”
 
 *** 12.7.1 LaTeX export commands                                      <<@LaTeX-export-commands>>
 
-     - */C-c C-e l l/* (=org-latex-export-to-latex=)
+     - =C-c C-e l l= (=org-latex-export-to-latex=)
 
        Export as a LaTeX file. For an Org file myfile.org, the LaTeX
        file will be myfile.tex. The file will be overwritten without
        warning.
 
-     - */C-c C-e l L/* (=org-latex-export-as-latex=)
+     - =C-c C-e l L= (=org-latex-export-as-latex=)
 
        Export to a temporary buffer. Do not create a file.
 
-     - */C-c C-e l p/* (=org-latex-export-to-pdf=)
+     - =C-c C-e l p= (=org-latex-export-to-pdf=)
 
        Export as LaTeX and then process to PDF.
 
-     - */C-c C-e l o/*
+     - =C-c C-e l o=
 
        Export as LaTeX and then process to PDF, then open the
        resulting PDF file.
@@ -11119,17 +11116,17 @@ modify this GNU manual.”
 
 *** Markdown export commands
 
-     - */C-c C-e m m/* (=org-md-export-to-markdown=)
+     - =C-c C-e m m= (=org-md-export-to-markdown=)
 
        Export as a text file written in Markdown syntax. For an Org
        file, myfile.org, the resulting file will be myfile.md. The
        file will be overwritten without warning.
 
-     - */C-c C-e m M/* (=org-md-export-as-markdown=)
+     - =C-c C-e m M= (=org-md-export-as-markdown=)
 
        Export to a temporary buffer. Do not create a file.
 
-     - */C-c C-e m o/*
+     - =C-c C-e m o=
 
        Export as a text file with Markdown syntax, then open it.
 
@@ -11169,7 +11166,7 @@ modify this GNU manual.”
 
 *** 12.9.2 ODT export commands                                        <<@ODT-export-commands>>
 
-     - */C-c C-e o o/* (=org-odt-export-to-odt=)
+     - =C-c C-e o o= (=org-odt-export-to-odt=)
 
        Export as OpenDocument Text file.
 
@@ -11185,7 +11182,7 @@ modify this GNU manual.”
        entry has, or inherits, an =EXPORT_FILE_NAME= property, that
        name will be used for the export.
 
-       */C-c C-e o O/* Export as an OpenDocument Text file and open the
+       =C-c C-e o O= Export as an OpenDocument Text file and open the
        resulting file.
 
        If =org-odt-preferred-output-format= is specified, open the
@@ -11961,17 +11958,17 @@ modify this GNU manual.”
 
 *** Org export commands
 
-     - */C-c C-e O o/* (=org-org-export-to-org=)
+     - =C-c C-e O o= (=org-org-export-to-org=)
 
        Export as an Org document. For an Org file, myfile.org, the
        resulting file will be myfile.org.org. The file will be
        overwritten without warning.
 
-     - */C-c C-e O O/* (=org-org-export-as-org=)
+     - =C-c C-e O O= (=org-org-export-as-org=)
 
        Export to a temporary buffer. Do not create a file.
 
-     - */C-c C-e O v/*
+     - =C-c C-e O v=
 
        Export to an Org file, then open it.
 
@@ -11991,13 +11988,13 @@ modify this GNU manual.”
 
 *** 12.11.1 Texinfo export commands                                   <<@Texinfo-export-commands>>
 
-     - */C-c C-e i t/* (=org-texinfo-export-to-texinfo=)
+     - =C-c C-e i t= (=org-texinfo-export-to-texinfo=)
 
        Export as a Texinfo file. For an Org file, myfile.org, the
        resulting file will be myfile.texi. The file will be
        overwritten without warning.
 
-     - */C-c C-e i i/* (=org-texinfo-export-to-info=)
+     - =C-c C-e i i= (=org-texinfo-export-to-info=)
 
        Export to Texinfo and then process to an Info file[fn:159].
 
@@ -12348,18 +12345,18 @@ modify this GNU manual.”
    remains unique, but a synchronization program can still figure out
    from which entry all the different instances originate.
 
-    - */C-c C-e c f/* (=org-icalendar-export-to-ics=)
+    - =C-c C-e c f= (=org-icalendar-export-to-ics=)
 
       Create iCalendar entries for the current buffer and store them
       in the same directory, using a file extension .ics.
 
-    - */C-c C-e c a/* (=org-icalendar-export-agenda-files=)
+    - =C-c C-e c a= (=org-icalendar-export-agenda-files=)
 
-      Like */C-c C-e c f/*, but do this for all files in
+      Like =C-c C-e c f=, but do this for all files in
       =org-agenda-files=. For each of these files, a separate
       iCalendar file will be written.
 
-    - */C-c C-e c c/* (=org-icalendar-combine-agenda-files=)
+    - =C-c C-e c c= (=org-icalendar-combine-agenda-files=)
 
       Create a single large iCalendar file from all files in
       =org-agenda-files= and write it to the file given by
@@ -13050,20 +13047,20 @@ modify this GNU manual.”
    Once properly configured, Org can publish with the following
    commands:
 
-    - */C-c C-e P x/* (=org-publish=)
+    - =C-c C-e P x= (=org-publish=)
 
       Prompt for a specific project and publish all files that belong
       to it.
 
-    - */C-c C-e P p/* (=org-publish-current-project=)
+    - =C-c C-e P p= (=org-publish-current-project=)
 
       Publish the project containing the current file.
 
-    - */C-c C-e P f/* (=org-publish-current-file=)
+    - =C-c C-e P f= (=org-publish-current-file=)
 
       Publish only the current file.
 
-    - */C-c C-e P a/* (=org-publish-all=)
+    - =C-c C-e P a= (=org-publish-all=)
 
       Publish every project.
 
@@ -13174,14 +13171,14 @@ modify this GNU manual.”
 
 ** 14.2 Editing source code                                           <<@Editing-source-code>>
 
-   Use */C-c '/* to edit the current code block. This brings up a
+   Use =C-c '= to edit the current code block. This brings up a
    language major-mode edit buffer containing the body of the code
    block. Manually saving this buffer with =C-x C-s= will write the
    contents back to the Org buffer. You can also set
    =org-edit-src-auto-save-idle-delay= to save the base buffer after
    some idle delay, or =org-edit-src-turn-on-auto-save= to auto-save
-   this buffer into a separate file using =auto-save-mode=. Use */C-c
-   '/* again to exit.
+   this buffer into a separate file using =auto-save-mode=. Use =C-c
+   '= again to exit.
 
    The =org-src-mode= minor mode will be active in the edit
    buffer. The following variables can be used to configure the
@@ -13305,13 +13302,13 @@ modify this GNU manual.”
 
      - =org-babel-tangle=
 
-       Tangle the current file. Bound to */C-c C-v t/*.
+       Tangle the current file. Bound to =C-c C-v t=.
 
        With prefix argument only tangle the current code block.
 
      - =org-babel-tangle-file=
 
-       Choose a file to tangle. Bound to */C-c C-v f/*.
+       Choose a file to tangle. Bound to =C-c C-v f=.
 
 *** Hooks
 
@@ -13354,7 +13351,7 @@ modify this GNU manual.”
    information on the syntax used to define a code block).
 
    There are a number of ways to evaluate code blocks. The simplest is
-   to press */C-c C-c/* or */C-c C-v e/* with the point on a code
+   to press =C-c C-c= or =C-c C-v e= with the point on a code
    block[fn:168]. This will call the =org-babel-execute-src-block=
    function to evaluate the block and insert its results into the Org
    mode buffer.
@@ -13436,7 +13433,7 @@ modify this GNU manual.”
 
    Code blocks located in any Org mode file can be loaded into the
    “Library of Babel” with the =org-babel-lob-ingest= function, bound
-   to */C-c C-v i/*.
+   to =C-c C-v i=.
 
 ** 14.7 Languages                                                     <<@Languages>>
 
@@ -13588,7 +13585,7 @@ modify this GNU manual.”
      Properties defined in this way override the properties set in
      =org-babel-default-header-args= and are applied for all activated
      languages. It is convenient to use the =org-set-property=
-     function bound to */C-c C-x p/* to set properties in Org mode
+     function bound to =C-c C-x p= to set properties in Org mode
      documents.
 
 **** Language-specific header arguments in Org mode properties        <<@Language_specific-header-arguments-in-Org-mode-properties>>
@@ -14166,7 +14163,7 @@ modify this GNU manual.”
      code block execution. If it is absent, then the directory
      associated with the current buffer is used. In other words,
      supplying =:dir path= temporarily has the same effect as changing
-     the current directory with */M-x cd path RET/*, and then not
+     the current directory with =M-x cd path RET=, and then not
      supplying =:dir=. Under the surface, =:dir= simply sets the value
      of the Emacs variable =default-directory=.
 
@@ -14931,35 +14928,35 @@ modify this GNU manual.”
 
    Within a code block, the following key bindings are active:
 
-   | */C-c C-c/* | =org-babel-execute-src-block=     |
-   | */C-c C-o/* | =org-babel-open-src-block-result= |
-   | */M-up/*    | =org-babel-load-in-session=       |
-   | */M-down/*  | =org-babel-switch-to-session=     |
+   | ~C-c C-c~ | =org-babel-execute-src-block=     |
+   | ~C-c C-o~ | =org-babel-open-src-block-result= |
+   | ~M-up~    | =org-babel-load-in-session=       |
+   | ~M-down~  | =org-babel-switch-to-session=     |
 
    In an Org mode buffer, the following key bindings are active:
 
-   | */C-c C-v p/* or */C-c C-v C-p/* | =org-babel-previous-src-block=             |
-   | */C-c C-v n/* or */C-c C-v C-n/* | =org-babel-next-src-block=                 |
-   | */C-c C-v e/* or */C-c C-v C-e/* | =org-babel-execute-maybe=                  |
-   | */C-c C-v o/* or */C-c C-v C-o/* | =org-babel-open-src-block-result=          |
-   | */C-c C-v v/* or */C-c C-v C-v/* | =org-babel-expand-src-block=               |
-   | */C-c C-v u/* or */C-c C-v C-u/* | =org-babel-goto-src-block-head=            |
-   | */C-c C-v g/* or */C-c C-v C-g/* | =org-babel-goto-named-src-block=           |
-   | */C-c C-v r/* or */C-c C-v C-r/* | =org-babel-goto-named-result=              |
-   | */C-c C-v b/* or */C-c C-v C-b/* | =org-babel-execute-buffer=                 |
-   | */C-c C-v s/* or */C-c C-v C-s/* | =org-babel-execute-subtree=                |
-   | */C-c C-v d/* or */C-c C-v C-d/* | =org-babel-demarcate-block=                |
-   | */C-c C-v t/* or */C-c C-v C-t/* | =org-babel-tangle=                         |
-   | */C-c C-v f/* or */C-c C-v C-f/* | =org-babel-tangle-file=                    |
-   | */C-c C-v c/* or */C-c C-v C-c/* | =org-babel-check-src-block=                |
-   | */C-c C-v j/* or */C-c C-v C-j/* | =org-babel-insert-header-arg=              |
-   | */C-c C-v l/* or */C-c C-v C-l/* | =org-babel-load-in-session=                |
-   | */C-c C-v i/* or */C-c C-v C-i/* | =org-babel-lob-ingest=                     |
-   | */C-c C-v I/* or */C-c C-v C-I/* | =org-babel-view-src-block-info=            |
-   | */C-c C-v z/* or */C-c C-v C-z/* | =org-babel-switch-to-session-with-code=    |
-   | */C-c C-v a/* or */C-c C-v C-a/* | =org-babel-sha1-hash=                      |
-   | */C-c C-v h/* or */C-c C-v C-h/* | =org-babel-describe-bindings=              |
-   | */C-c C-v x/* or */C-c C-v C-x/* | =org-babel-do-key-sequence-in-edit-buffer= |
+   | =C-c C-v p~ or ~C-c C-v C-p~  | =org-babel-previous-src-block=             |
+   | ~C-c C-v n~ or ~C-c C-v C-n~ | =org-babel-next-src-block=                 |
+   | ~C-c C-v e~ or ~C-c C-v C-e~ | =org-babel-execute-maybe=                  |
+   | ~C-c C-v o~ or ~C-c C-v C-o~ | =org-babel-open-src-block-result=          |
+   | ~C-c C-v v~ or ~C-c C-v C-v~ | =org-babel-expand-src-block=               |
+   | ~C-c C-v u~ or ~C-c C-v C-u~ | =org-babel-goto-src-block-head=            |
+   | ~C-c C-v g~ or ~C-c C-v C-g~ | =org-babel-goto-named-src-block=           |
+   | ~C-c C-v r~ or ~C-c C-v C-r~ | =org-babel-goto-named-result=              |
+   | ~C-c C-v b~ or ~C-c C-v C-b~ | =org-babel-execute-buffer=                 |
+   | ~C-c C-v s~ or ~C-c C-v C-s~ | =org-babel-execute-subtree=                |
+   | ~C-c C-v d~ or ~C-c C-v C-d~ | =org-babel-demarcate-block=                |
+   | ~C-c C-v t~ or ~C-c C-v C-t~ | =org-babel-tangle=                         |
+   | ~C-c C-v f~ or ~C-c C-v C-f~ | =org-babel-tangle-file=                    |
+   | ~C-c C-v c~ or ~C-c C-v C-c~ | =org-babel-check-src-block=                |
+   | ~C-c C-v j~ or ~C-c C-v C-j~ | =org-babel-insert-header-arg=              |
+   | ~C-c C-v l~ or ~C-c C-v C-l~ | =org-babel-load-in-session=                |
+   | ~C-c C-v i~ or ~C-c C-v C-i~ | =org-babel-lob-ingest=                     |
+   | ~C-c C-v I~ or ~C-c C-v C-I~ | =org-babel-view-src-block-info=            |
+   | ~C-c C-v z~ or ~C-c C-v C-z~ | =org-babel-switch-to-session-with-code=    |
+   | ~C-c C-v a~ or ~C-c C-v C-a~ | =org-babel-sha1-hash=                      |
+   | ~C-c C-v h~ or ~C-c C-v C-h~ | =org-babel-describe-bindings=              |
+   | ~C-c C-v x~ or ~C-c C-v C-x~ | =org-babel-do-key-sequence-in-edit-buffer= |
 
 ** 14.12 Batch execution                                              <<@Batch-execution>>
 
@@ -15061,24 +15058,24 @@ modify this GNU manual.”
    which could be used in a similar way, for example yasnippet.
 
    To insert a structural element, type a '<', followed by a template
-   selector and */TAB/*. Completion takes effect only when the above
+   selector and =TAB=. Completion takes effect only when the above
    keystrokes are typed on a line by itself.
 
    The following template selectors are currently supported.
 
-   | s | =#+BEGIN_SRC     ... #+END_SRC=     |
-   | e | =#+BEGIN_EXAMPLE ... #+END_EXAMPLE= |
-   | q | =#+BEGIN_QUOTE   ... #+END_QUOTE=   |
-   | v | =#+BEGIN_VERSE   ... #+END_VERSE=   |
-   | c | =#+BEGIN_CENTER  ... #+END_CENTER=  |
-   | l | =#+BEGIN_LaTeX   ... #+END_LaTeX=   |
-   | L | =#+LaTeX:=                          |
-   | h | =#+BEGIN_HTML    ... #+END_HTML=    |
-   | H | =#+HTML:=                           |
-   | a | =#+BEGIN_ASCII   ... #+END_ASCII=   |
-   | A | =#+ASCII:=                          |
-   | i | =#+INDEX:= line                     |
-   | I | =#+INCLUDE:= line                   |
+   | s | ~#+BEGIN_SRC     ... #+END_SRC~     |
+   | e | ~#+BEGIN_EXAMPLE ... #+END_EXAMPLE~ |
+   | q | ~#+BEGIN_QUOTE   ... #+END_QUOTE~   |
+   | v | ~#+BEGIN_VERSE   ... #+END_VERSE~   |
+   | c | ~#+BEGIN_CENTER  ... #+END_CENTER~  |
+   | l | ~#+BEGIN_LaTeX   ... #+END_LaTeX~   |
+   | L | ~#+LaTeX:~                          |
+   | h | ~#+BEGIN_HTML    ... #+END_HTML~    |
+   | H | ~#+HTML:~                           |
+   | a | ~#+BEGIN_ASCII   ... #+END_ASCII~   |
+   | A | ~#+ASCII:~                          |
+   | i | ~#+INDEX:~ line                     |
+   | I | ~#+INCLUDE:~ line                   |
 
    For example, on an empty line, typing "<e" and then pressing TAB,
    will expand into a complete EXAMPLE template.
@@ -15100,7 +15097,7 @@ modify this GNU manual.”
    on a TTY, or on a small mobile device with a limited keyboard.
 
    To see which commands are available, activate the feature and press
-   */?/* with the cursor at the beginning of a headline.
+   =?= with the cursor at the beginning of a headline.
 
 ** 15.4 Code evaluation and security issues                           <<@Code-evaluation-security>>
 
@@ -15123,7 +15120,7 @@ modify this GNU manual.”
     - /Source code blocks/
 
       Source code blocks can be evaluated during export, or when
-      pressing */C-c C-c/* in the block. The most important thing to
+      pressing =C-c C-c= in the block. The most important thing to
       realize here is that Org mode files which contain code snippets
       are, in a certain sense, like executable files. So you should
       accept them and load them into Emacs only from trusted sources
@@ -15188,7 +15185,7 @@ modify this GNU manual.”
    setting. Several setting words can be in the same line, but you can
    also have multiple lines for the keyword. While these settings are
    described throughout the manual, here is a summary. After changing
-   any of these lines in the buffer, press */C-c C-c/* with the cursor
+   any of these lines in the buffer, press =C-c C-c= with the cursor
    still in the line to activate the changes immediately. Otherwise
    they become effective only when the file is visited again in a new
    Emacs session.
@@ -15248,11 +15245,11 @@ modify this GNU manual.”
       This line defines a file that holds more in-buffer
       setup. Normally this is entirely ignored. Only when the buffer
       is parsed for option-setting lines (i.e., when starting Org mode
-      for a file, when pressing */C-c C-c/* in a settings line, or
-      when exporting), then the contents of this file are parsed as if
-      they had been included in the buffer. In particular, the file
-      can be any other Org mode file with internal setup. You can
-      visit the file the cursor is in the line with */C-c '/*.
+      for a file, when pressing =C-c C-c= in a settings line, or when
+      exporting), then the contents of this file are parsed as if they
+      had been included in the buffer. In particular, the file can be
+      any other Org mode file with internal setup. You can visit the
+      file the cursor is in the line with =C-c '=.
 
     - #+STARTUP:
 
@@ -15409,14 +15406,14 @@ modify this GNU manual.”
       the current file. The corresponding variable is
       =org-todo-keywords=.
 
-** 15.7 The very busy */C-c C-c/* key                                 <<@The-very-busy-C_c-C_c-key>>
+** 15.7 The very busy =C-c C-c= key                                 <<@The-very-busy-C_c-C_c-key>>
 
-   The key */C-c C-c/* has many purposes in Org, which are all
-   mentioned scattered throughout this manual. One specific function
-   of this key is to add /tags/ to a headline (see [[@Tags][Tags]]). In many
-   other circumstances it means something like /“Hey Org, look here
-   and update according to what you see here”/. Here is a summary of
-   what this means in different contexts.
+   The key =C-c C-c= has many purposes in Org, which are all mentioned
+   scattered throughout this manual. One specific function of this key
+   is to add /tags/ to a headline (see [[@Tags][Tags]]). In many other
+   circumstances it means something like /“Hey Org, look here and
+   update according to what you see here”/. Here is a summary of what
+   this means in different contexts.
 
     - If there are highlights in the buffer from the creation of a
       sparse tree, or from clock display, remove these highlights.
@@ -15572,7 +15569,7 @@ modify this GNU manual.”
    likely be more cumbersome; you may find for some of the bindings
    below that a customized workaround suits you better. For example,
    changing a timestamp is really only fun with S-cursor keys, whereas
-   on a tty you would rather use */C-c ./* to re-insert the timestamp.
+   on a tty you would rather use =C-c .= to re-insert the timestamp.
 
    #+BEGIN_CENTER
      | *Default* | *Alternative 1* | *Speed key* | *Alternative 2* |
@@ -15667,12 +15664,12 @@ modify this GNU manual.”
        Complex ASCII tables with automatic line wrapping, column- and
        row-spanning, and alignment can be created using the Emacs
        table package by Takaaki Ota
-       ([[http://sourceforge.net/projects/table]], and also part of Emacs
-       22). Org mode will recognize these tables and export them
+       ([[http://sourceforge.net/projects/table]], and also part of
+       Emacs 22). Org mode will recognize these tables and export them
        properly. Because of interference with other Org mode
        functionality, you unfortunately cannot edit these tables
        directly in the buffer. Instead, you need to use the command
-       */C-c '/* to edit them, similar to source code snippets.
+       =C-c '= to edit them, similar to source code snippets.
 
         - C-c ' (=org-edit-special=)
 
@@ -15969,7 +15966,7 @@ modify this GNU manual.”
    calls the value of =org-man-command= to display the man page.
 
    Finally the function =org-man-store-link= is defined. When you try
-   to store a link with */C-c l/*, this function will be called to try
+   to store a link with =C-c l=, this function will be called to try
    to make a link. The function must first decide if it is supposed to
    create the link for this buffer type; we do this by checking the
    value of the variable =major-mode=. If not, the function must exit
@@ -15979,7 +15976,7 @@ modify this GNU manual.”
    and set the =:type= and =:link= properties. Optionally you can also
    set the =:description= property to provide a default for the link
    description when the link is later inserted into an Org buffer with
-   */C-c C-l/*.
+   =C-c C-l=.
 
    When it makes sense for your new link type, you may also define a
    function =org-PREFIX-complete-link= that implements special (e.g.,
@@ -16043,7 +16040,7 @@ modify this GNU manual.”
 
    The function first checks if the cursor is in such a line. If that
    is the case, =org-R-apply= is called and the function returns =t=
-   to signal that action was taken, and */C-c C-c/* will stop looking
+   to signal that action was taken, and =C-c C-c= will stop looking
    for other contexts.  If the function finds it should do nothing
    locally, it returns =nil= so that other, similar functions can have
    a try.
@@ -16133,8 +16130,8 @@ modify this GNU manual.”
 
      - You can just comment the table line-by-line whenever you want
        to process the file, and uncomment it whenever you need to edit
-       the table. This only sounds tedious -- the command */M-x
-       orgtbl-toggle-comment RET/* makes this comment-toggling very
+       the table. This only sounds tedious -- the command =M-x
+       orgtbl-toggle-comment RET= makes this comment-toggling very
        easy, in particular if you bind it to a key.
 
 *** A.6.2 A LaTeX example of radio tables                             <<@A-LaTeX-example>>
@@ -16177,7 +16174,7 @@ modify this GNU manual.”
       \end{comment}
     #+END_EXAMPLE
 
-    When you are done, press */C-c C-c/* in the table to get the
+    When you are done, press =C-c C-c= in the table to get the
     converted table inserted between the two marker lines.
 
     Now let's assume you want to make the table header by hand, because you
@@ -16305,7 +16302,7 @@ modify this GNU manual.”
      - The available translation functions for radio lists don't take
        parameters.
 
-     - */C-c C-c/* will work when pressed on the first item of the list.
+     - =C-c C-c= will work when pressed on the first item of the list.
 
     Here is a LaTeX example. Let's say that you have this in your
     LaTeX file:
@@ -16323,15 +16320,15 @@ modify this GNU manual.”
       \end{comment}
     #+END_EXAMPLE
 
-    Pressing */C-c C-c/* on =a new house= and will insert the
-    converted LaTeX list between the two marker lines.
+    Pressing =C-c C-c= on =a new house= and will insert the converted
+    LaTeX list between the two marker lines.
 
 ** A.7 Dynamic blocks                                                 <<@Dynamic-blocks>>
 
    Org documents can contain /dynamic blocks/. These are specially
    marked regions that are updated by some user-written function. A
    good example for such a block is the clock table inserted by the
-   command */C-c C-x C-r/* (see [[@Clocking-work-time][Clocking work time]]).
+   command =C-c C-x C-r= (see [[@Clocking-work-time][Clocking work time]]).
 
    Dynamic blocks are enclosed by a BEGIN-END structure that assigns a
    name to the block and can also specify parameters for the function
@@ -16345,11 +16342,11 @@ modify this GNU manual.”
 
    Dynamic blocks are updated with the following commands
 
-    - */C-c C-x C-u/* (=org-dblock-update=)
+    - =C-c C-x C-u= (=org-dblock-update=)
 
       Update dynamic block at point.
 
-    - */C-u C-c C-x C-u/*
+    - =C-u C-c C-x C-u=
 
       Update all dynamic blocks in the current file.
 
@@ -20087,7 +20084,7 @@ modify this GNU manual.”
 
   This is not a complete index of variables and faces, only the ones
   that are mentioned in the manual.  For a more complete list, use
-  */M-x org-customize RET/* and then click yourself through the tree.
+  =M-x org-customize RET= and then click yourself through the tree.
 
   Jump to: [[Variable-Index_vr_letter-C][C]] [[Variable-Index_vr_letter-H][H]] [[Variable-Index_vr_letter-L][L]] [[Variable-Index_vr_letter-O][O]] [[Variable-Index_vr_letter-P][P]] [[Variable-Index_vr_letter-U][U]]
 
@@ -20684,19 +20681,19 @@ alphanumeric/underscore characters.
 
 [fn:33] To insert a link targeting a headline, in-buffer completion
 can be used.  Just type a star followed by a few optional letters into
-the buffer and press */M-TAB/*. All headlines in the current buffer
-will be offered as completions.
+the buffer and press =M-TAB=. All headlines in the current buffer will
+be offered as completions.
 
 [fn:34] When targeting a =#+NAME= keyword, =#+CAPTION= keyword is
 mandatory in order to get proper numbering (see [[@Images-and-tables][Images and tables]]).
 
 [fn:35] The actual behavior of the search will depend on the value of
 the option =org-link-search-must-match-exact-headline=. If its value
-is =nil=, then a fuzzy text search will be done. If it is t, then only
-the exact headline will be matched, ignoring spaces and cookies. If
-the value is =query-to-create=, then an exact headline will be
-searched; if it is not found, then the user will be queried to create
-it.
+is =nil=, then a fuzzy text search will be done. If it is =t=, then
+only the exact headline will be matched, ignoring spaces and
+cookies. If the value is =query-to-create=, then an exact headline
+will be searched; if it is not found, then the user will be queried to
+create it.
 
 [fn:36] Headline searches always match the exact headline, ignoring
 spaces and cookies. If the headline is not found and the value of the
@@ -20707,9 +20704,9 @@ option =org-link-search-must-match-exact-headline= is
 the link and result in a wrong link -- you should avoid putting
 timestamp in the headline.
 
-[fn:38] The library org-id.el must first be loaded, either through
+[fn:38] The library =org-id.el= must first be loaded, either through
 =org-customize= by enabling =org-id= in =org-modules=, or by adding
-=(require 'org-id)= in your .emacs.
+=(require 'org-id)= in your =.emacs=.
 
 [fn:39] Note that you don't have to use this command to insert a
 link. Links in Org are plain text, and you can type or paste them
@@ -20719,7 +20716,7 @@ the optional descriptive text.
 
 [fn:40] After insertion of a stored link, the link will be removed
 from the list of stored links. To keep it in the list later use, use a
-triple */C-u/* prefix argument to */C-c C-l/*, or configure the option
+triple =C-u= prefix argument to =C-c C-l=, or configure the option
 =org-keep-stored-link-after-insertion=.
 
 [fn:41] This works by calling a special function
@@ -20753,7 +20750,7 @@ this means you need to come up with unique keys across both sets of
 keywords.
 
 [fn:50] Org mode parses these lines only when Org mode is activated
-after visiting a file. */C-c C-c/* with the cursor in a line starting
+after visiting a file. =C-c C-c= with the cursor in a line starting
 with '#+' is simply restarting Org mode for the current buffer.
 
 [fn:51] The corresponding in-buffer setting is: =#+STARTUP: logdone=
@@ -20784,10 +20781,10 @@ by modifying =org-list-automatic-rules= accordingly.
 want such cookies to count all checkboxes below the cookie, not just
 those belonging to direct children.
 
-[fn:60] */C-u C-c C-c/* on the /first/ item of a list with no checkbox
+[fn:60] =C-u C-c C-c= on the /first/ item of a list with no checkbox
 will add checkboxes to the rest of the list.
 
-[fn:61] As with all these in-buffer settings, pressing */C-c C-c/*
+[fn:61] As with all these in-buffer settings, pressing =C-c C-c=
 activates any changes in the line.
 
 [fn:62] This is only true if the search does not involve more complex
@@ -20890,7 +20887,7 @@ idleness. On other systems, idle time refers to Emacs idle time only.
 [fn:87] Please note the pitfalls of summing hierarchical data in a
 flat list (see [[@Agenda-column-view][Agenda column view]]).
 
-[fn:88] Please select your own key, */C-c c/* is only a suggestion.
+[fn:88] Please select your own key, =C-c c= is only a suggestion.
 
 [fn:89] Datetree headlines for years accept tags, so if you use both
 =* 2013 :noexport:= and =* 2013= in your file, the capture will refile
@@ -20927,9 +20924,9 @@ to the current buffer.
 [fn:98] For backward compatibility, you can also press 0 to restrict
 to the current region/subtree.
 
-[fn:99] For backward compatibility, the universal prefix */C-u/*
-causes all TODO entries to be listed before the agenda. This feature
-is deprecated, use the dedicated TODO list, or a block agenda instead
+[fn:99] For backward compatibility, the universal prefix =C-u= causes
+all TODO entries to be listed before the agenda. This feature is
+deprecated, use the dedicated TODO list, or a block agenda instead
 (see [[@Block-agenda][Block agenda]]).
 
 [fn:100] =org-anniversary= is just like =diary-anniversary=, but the
@@ -21005,7 +21002,7 @@ explain those in an Org mode example code.
 [fn:118] Upon exit, lines starting with '*', ',*', '#+' and ',#+' will
 get a comma prepended, to keep them from being interpreted by Org as
 outline nodes or special syntax. These commas will be stripped for
-editing with */C-c '/*, and also for export.
+editing with =C-c '=, and also for export.
 
 [fn:119] You may select a different-mode with the variable
 =org-edit-fixed-width-region-mode=.
@@ -21116,7 +21113,7 @@ Version 1.2]]
 
 [fn:148] This requires =transient-mark-mode= to be turned on
 
-[fn:149] To select the current subtree, use */C-c @/*
+[fn:149] To select the current subtree, use =C-c @=
 
 [fn:150] The column widths are interpreted as weighted ratios with the
 default weight being 1
@@ -21176,7 +21173,7 @@ on these safeguards (and on how to disable them) see [[@Code-evaluation-security
 security]].
 
 [fn:168] The option =org-babel-no-eval-on-ctrl-c-ctrl-c= can be used
-to remove code evaluation from the */C-c C-c/* key binding.
+to remove code evaluation from the =C-c C-c= key binding.
 
 [fn:169] The deprecated syntax for default header argument properties,
 using the name of the header argument as a property name directly,

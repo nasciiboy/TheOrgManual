@@ -4704,7 +4704,1081 @@ Copyright \copy 2004--2015 Free Software Foundation, Inc.
        es el ancho en caracteres del grafico de barras. Su valor
        predeterminado es '=12='.
 
-* 4 Hyperlinks                                                        <<@Hyperlinks>>
+# * 4 Hyperlinks                                                        <<@Hyperlinks>>
+* 4 hiperenlaces                                                     <<@Hyperlinks>>
+
+  # Like HTML, Org provides links inside a file, external links to other
+  # files, Usenet articles, emails, and much more.
+
+  Al igual que HTML, Org ofrece enlaces dentro de un archivo, enlaces
+  externos a otros archivos, artículos de Usenet, correos electrónicos
+  y mucho más.
+
+  # | • [[@Link-format][Link format]]:             | How links in Org are formatted            |
+  # | • [[@Internal-links][Internal links]]:          | Links to other places in the current file |
+  # | • [[@External-links][External links]]:          | URL-like links to the world               |
+  # | • [[@Handling-links][Handling links]]:          | Creating, inserting and following         |
+  # | • [[@Using-links-outside-Org][Using links outside Org]]: | Linking from my C source code?            |
+  # | • [[@Link-abbreviations][Link abbreviations]]:      | Shortcuts for writing complex links       |
+  # | • [[@Search-options][Search options]]:          | Linking to a specific location            |
+  # | • [[@Custom-searches][Custom searches]]:         | When the default search is not enough     |
+
+  | • [[@Link-format][Formato de enlace]]:             | Cual es el formato de enlaces en Org            |
+  | • [[@Internal-links][Enlaces internos]]:              | Enlaces a otros sitios en el archivo actual     |
+  | • [[@External-links][Enlaces externos]]:              | Enlaces a el mundo estilo URL                   |
+  | • [[@Handling-links][Manejo de enlaces]]:             | Creación, inserción y seguimiento               |
+  | • [[@Using-links-outside-Org][Uso de enlaces externos a Org]]: | Enlazar con mi codigo en C?                     |
+  | • [[@Link-abbreviations][Abreviacion de enlaces]]:        | Atajos para escribir enlaces complejos          |
+  | • [[@Search-options][Opciones de buesqueda]]:         | Enlazar a una ubicación específica              |
+  | • [[@Custom-searches][Busquedas personalizadas]]:      | Cuando la búsqueda por defecto no es suficiente |
+
+# ** 4.1 Link format                                                    <<@Link-format>>
+** 4.1 formato de enlace                                              <<@Link-format>>
+
+   # Org will recognize plain URL-like links and activate them as
+   # clickable links. The general link format, however, looks like this:
+
+   Org reconoce enlaces simples estilo URL y los activa como enlaces
+   en los que puede hacer clic. Sin embargo, el formato general de
+   enlace, se ve así:
+
+   # #+BEGIN_EXAMPLE
+   #   [[link][description]]       or alternatively           [[link]]
+   # #+END_EXAMPLE
+
+   #+BEGIN_EXAMPLE
+     [[enlace][descripcion]]       o alternativamente         [[enlace]
+   #+END_EXAMPLE
+
+   # Once a link in the buffer is complete (all brackets present), Org
+   # will change the display so that 'description' is displayed instead
+   # of
+
+   Una vez que el enlace en el buffer es terminado[ (todos los
+   corchetes presentes), Org modificara la visualizacion para mostrar
+   solamente la 'Descripción'
+
+   # #+BEGIN_EXAMPLE
+   #   [[link][description]]
+   # #+END_EXAMPLE
+
+   #+BEGIN_EXAMPLE
+     [[enlace][descripción]]
+   #+END_EXAMPLE
+
+   # and 'link' is displayed instead of
+
+   y 'enlace' se muestra en lugar de
+
+   # #+BEGIN_EXAMPLE
+   #   [[link]]
+   # #+END_EXAMPLE
+
+   #+BEGIN_EXAMPLE
+     [[enlace]]
+   #+END_EXAMPLE
+
+   # Links will be highlighted in the face =org-link=, which by default
+   # is an underlined face. You can directly edit the visible part of a
+   # link. Note that this can be either the 'link' part (if there is no
+   # description) or the 'description' part. To edit also the invisible
+   # 'link' part, use =C-c C-l= with the cursor on the link.
+
+   Los enlaces son resaltados con el aspecto =org-link=, que por
+   defecto es subrayado. Usted puede editar la parte visible de un
+   enlace directamente. Tenga en cuenta que esto puede ser o bien la
+   parte 'enlace' (si no hay descripción) o la 'descripción'. Para
+   editar la parte invisible 'enlace', Pulse =C-c C-l= con el cursor
+   sobre el enlace.
+
+   # If you place the cursor at the beginning or just behind the end of
+   # the displayed text and press =BACKSPACE=, you will remove the
+   # (invisible) bracket at that location. This makes the link
+   # incomplete and the internals are again displayed as plain
+   # text. Inserting the missing bracket hides the link internals
+   # again. To show the internal structure of all links, use the menu
+   # entry =Org->Hyperlinks->Literal links=.
+
+   Si coloca el cursor al inicio o exactamente detrás del final de el
+   texto mostrado y preciona =BACKSPACE=, removera el corchete
+   (invisible) en esa ubicación. Esto vuelve incompleto el enlace y el
+   contenido se muestra nuevamente como texto plano. Insertar el
+   corchete perdido oculta los enlaces internos de nuevo. Para mostrar
+   la estructura interna de todos los enlaces, use el menú
+   =Org->Hyperlinks->Literal links=.
+
+# ** 4.2 Internal links                                                 <<@Internal-links>>
+** 4.2 Enlaces internos                                               <<@Internal-links>>
+
+   # If the link does not look like a URL, it is considered to be
+   # internal in the current file. The most important case is a link
+   # like
+
+   Si el enlace no se ve como una URL, se considera que es interno al
+   archivo actual. El caso más importante es un enlace como
+
+   # #+BEGIN_EXAMPLE
+   #   [[[[#my-custom-id]]]]
+   # #+END_EXAMPLE
+
+   #+BEGIN_EXAMPLE
+     [[#mi-identificador-perzonalizado]]
+   #+END_EXAMPLE
+
+   # which will link to the entry with the =CUSTOM_ID= property
+   # 'my-custom-id'. You are responsible yourself to make sure these
+   # custom IDs are unique in a file.
+
+   que sera enlazado a la entrada =CUSTOM_ID= con la propiedad
+   'mi-identificador-personalizado'. Usted es responsable de asegurar
+   que los identificadores personalizados son únicos en un archivo.
+
+   # Links such as
+
+   Enlaces tales como
+
+   # #+BEGIN_EXAMPLE
+   #   '[[My Target]]'
+   # #+END_EXAMPLE
+
+   #+BEGIN_EXAMPLE
+     [[Mi objetivo]]
+   #+END_EXAMPLE
+
+   # or
+
+   o
+
+   # #+BEGIN_EXAMPLE
+   #   '[[My Target][Find my target]]'
+   # #+END_EXAMPLE
+
+   #+BEGIN_EXAMPLE
+     [[Mi objetivo][Localiza mi objetivo]]
+   #+END_EXAMPLE
+
+   # lead to a text search in the current file.
+
+   inica una búsqueda de texto en el archivo actual.
+
+   # The link can be followed with =C-c C-o= when the cursor is on the
+   # link, or with a mouse click (see [[@Handling-links][Handling links]]). Links to custom
+   # IDs will point to the corresponding headline. The preferred match
+   # for a text link is a /dedicated target/: the same string in double
+   # angular brackets, like
+
+   Puede seguir el enlace con =C-c C-o= cuando el cursor está sobre
+   el, o con un clic del ratón (vea [[@Handling-links][Handling links]]). Los enlaces a
+   identificadores perzonalizados señalarán el encabezado
+   correspondiente. Se da prioridad de busqueda a enlaces de texto con
+   un /objetivo dedicado/: la misma cadena dentro de corchetes
+   angulares, como
+
+   # #+BEGIN_EXAMPLE
+   #   '<<My Target>>'
+   # #+END_EXAMPLE
+
+   #+BEGIN_EXAMPLE
+     <<Mi Objetivo>>
+   #+END_EXAMPLE
+
+   # If no dedicated target exists, the link will then try to match the
+   # exact name of an element within the buffer. ¤Naming is done with the
+   # =#+NAME= keyword, which has to be put in the line before the
+   # element it refers to, as in the following example
+
+   Si no existe ningún objetivo específico, a continuación el enlace,
+   tratar de coincidir con el nombre exacto de un elemento dentro del
+   buffer. El nombramiento se hace con la palabra clave =#+NAME=, que
+   tiene que ser colocada en la línea anterior del elemento al que se
+   refiere, como en el ejemplo siguiente
+
+   # #+BEGIN_EXAMPLE
+   #   #+NAME: My Target
+   #   | a  | table      |
+   #   |----+------------|
+   #   | of | four cells |
+   # #+END_EXAMPLE
+
+   #+BEGIN_EXAMPLE
+     #+NAME: Mi blanco
+     | a  | tabla         |
+     |----+---------------|
+     | of | cuatro celdas |
+   #+END_EXAMPLE
+
+   # If none of the above succeeds, Org will search for a headline that
+   # is exactly the link text but may also include a TODO keyword and
+   # tags[fn:33].
+
+   Si ninguna de las anteriores tiene éxito, Org buscará un encabezado
+   que sea exacto al texto del enlace, también puede incluir palabras
+   clave TODO y etiquetas[fn:33].
+
+   # During export, internal links will be used to mark objects and
+   # assign them a number. Marked objects will then be referenced by
+   # links pointing to them. In particular, links without a description
+   # will appear as the number assigned to the marked
+   # object[fn:34]. In the following excerpt from an Org buffer
+
+   Durante la exportación, los enlaces internos se utilizan para
+   marcar los objetos y asignarles un número. Entonces los objetos
+   marcados serán referenciados por los enlaces que apuntan a
+   ellos. En particular, los enlaces sin una descripción aparecerán
+   como el número asignado a la marca del objeto[fn:34]. En el
+   siguiente extracto de un búfer Org
+
+   #+BEGIN_EXAMPLE
+     - one item
+     - <<target>>another item
+     Here we refer to item [[target]].
+   #+END_EXAMPLE
+
+   #+BEGIN_EXAMPLE
+     - un elemento
+     - <<objetivo>> otro elemento
+     Aquí nos referimos al elemento [[objetivo]].
+   #+END_EXAMPLE
+
+   # The last sentence will appear as 'Here we refer to item 2' when
+   # exported.
+
+   La última frase aparecerá como 'Aquí nos referimos al elemento 2'
+   al ser exportado.
+
+   # In non-Org files, the search will look for the words in the link
+   # text.  In the above example the search would be for 'my target'.
+
+   En los archivos no Org, se buscaran las palabras en el enlace de
+   texto. En el ejemplo anterior la búsqueda sería 'objetivo'.
+
+   # Following a link pushes a mark onto Org's own mark ring. You can
+   # return to the previous position with =C-c &=. Using this command
+   # several times in direct succession goes back to positions recorded
+   # earlier.
+
+   Al seguir un enlace se coloca una marca en propio anillo de marcas
+   de Org. Puede volver a la posición anterior con =C-c &=. Utilizar
+   este comando sucesivamente llevara a la posicion previa mas
+   reciente.
+
+   # | • [[@Radio-targets][Radio targets]]: | Make targets trigger links in plain text |
+
+   | • [[@Radio-targets][Radio objetivos]]: | Crear objetivos accionados por enlaces en texto plano |
+
+# *** 4.2.1 Radio targets                                               <<@Radio-targets>>
+*** 4.2.1 Radio objetivos                                             <<@Radio-targets>>
+
+    # Org can automatically turn any occurrences of certain target names
+    # in normal text into a link. So without explicitly creating a link,
+    # the text connects to the ¤target radioing its position. Radio
+    # targets are enclosed by triple angular brackets. For example, a
+    # target
+
+    Org puede convertir automáticamente cualquier aparicion de ciertos
+    nombres en texto normal en un enlace. Así que, sin crear una
+    vinculación expresa, el texto se conecta al radio objetivo. Los
+    Radio objetivos están encerrados por paréntesis angulares
+    triples. Por ejemplo, una objetivo
+
+    # #+BEGIN_EXAMPLE
+    #   '<<<My Target>>>'
+    # #+END_EXAMPLE
+
+    #+BEGIN_EXAMPLE
+      '<<<Mi objetivo>>>'
+    #+END_EXAMPLE
+
+    # causes each occurrence of 'my target' in normal text to become
+    # activated as a link. The Org file is scanned automatically for
+    # radio targets only when the file is first loaded into Emacs. To
+    # update the target list during editing, press =C-c C-c= with the
+    # cursor on or at a target.
+
+    hace que cada aparición de 'mi objetivo' en texto normal se
+    convierta en un enlace activo. El archivo Org se explora
+    automáticamente por radio objetivos sólo al ser cargado por
+    primera vez en Emacs. Para actualizar la lista de objetivos
+    durante la edición, pulse =C-c C-c= con el cursor sobre o en un
+    objetivo.
+
+# ** 4.3 External links                                                 <<@External-links>>
+** 4.3 Enlaces externos                                               <<@External-links>>
+
+   # Org supports links to files, websites, Usenet and email messages,
+   # BBDB database entries and links to both IRC conversations and their
+   # logs.  External links are URL-like locators. They start with a
+   # short identifying string followed by a colon. There can be no space
+   # after the colon. The following list shows examples for each link
+   # type.
+
+   Org soporta enlaces a archivos, páginas web, Usenet y mensajes de
+   correo electrónico, Entradas de bases de datos BBDB y enlaces a las
+   conversaciones de IRC y su registros. Los enlaces externos son
+   localizadores similares a URL. Inician con un pequeño identificador
+   seguido de dos puntos. No puede haber ningún espacio después de los
+   dos puntos. La siguiente lista muestra ejemplos para cada tipo de
+   enlace.
+
+   #+BEGIN_BLOCK
+     http://www.astro.uva.nl/~dominik          en la red
+     doi:10.1000/182                           DOI para un recurso electronico
+     file:/home/dominik/images/jupiter.jpg     fichero, ruta absoluta
+     /home/dominik/images/jupiter.jpg          igual que arriba
+     file:papers/last.pdf                      fichero, ruta relativa
+     ./papers/last.pdf                         igual que arriba
+     file:/myself@some.where:papers/last.pdf   fichero, ruta a una maquina remota
+     /myself@some.where:papers/last.pdf        igual que arriba
+     file:sometextfile::NNN                    fichero, saltar al numero de linea
+     file:projects.org                         otro fichero Org
+     file:projects.org::some words             buscar texto en fichero Org[fn:35]
+     file:projects.org::*task title            buscar encabezado en fichero Org[fn:36]
+     file+sys:/path/to/file                    abrir via OS, como doble-click
+     file+emacs:/path/to/file                  fuerza apertura con Emacs
+     docview:papers/last.pdf::NNN              abrir en modo doc-view en la pagina
+     id:B7423F4D-2E8A-471B-8810-C40F074717E9   Enlazar con ecabezado por ID
+     news:comp.emacs                           enlace Usenet
+     mailto:adent@galaxy.net                   enlace Mail
+     mhe:folder                                enlace a carpeta MH-E
+     mhe:folder#id                             enlace a mensage MH-E
+     rmail:folder                              enlace a carpeta RMAIL
+     rmail:folder#id                           enlace a mensaje RMAIL
+     gnus:group                                enlace a grupo Gnus
+     gnus:group#id                             enlace a articulo Gnus
+     bbdb:R.*Stallman                          enlace BBDB (con regexp)
+     irc:/irc.com/#emacs/bob                   enlace IRC
+     info:org#External links                   enlace a nodo o indice Info
+     shell:ls *.org                            Un comando shell
+     elisp:org-agenda                          Comando Interactivo Elisp
+     elisp:(find-file-other-frame "Elisp.org") formate de evaluacion Elisp
+   #+END_BLOCK
+
+   # On top of these built-in link types, some are available through the
+   # =contrib/= directory (see [[@Installation][Installation]]). For example, these links
+   # to VM or Wanderlust messages are available when you load the
+   # corresponding libraries from the =contrib/= directory:
+
+   Además de estos tipos de enlace incorporados, algunos están
+   disponibles a través del directorio =contrib/= (ver
+   [[@Installation][Installation]]). Por ejemplo, estos enlaces a mensajes VM o
+   Wanderlust están disponibles cuando se cargan las correspondientes
+   bibliotecas del directorio =contrib/= correspondiente:
+
+   # #+BEGIN_EXAMPLE
+   #   vm:folder                                 VM folder link
+   #   vm:folder#id                              VM message link
+   #   vm://myself@some.where.org/folder#id      VM on remote machine
+   #   vm-imap:account:folder                    VM IMAP folder link
+   #   vm-imap:account:folder#id                 VM IMAP message link
+   #   wl:folder                                 WANDERLUST folder link
+   #   wl:folder#id                              WANDERLUST message link
+   # #+END_EXAMPLE
+
+   #+BEGIN_EXAMPLE
+     vm:folder                                 enlace a folder VM
+     vm:folder#id                              enlace a mensage VM
+     vm://myself@some.where.org/folder#id      VM en maquina remota
+     vm-imap:account:folder                    enlace a forder VM IMAP
+     vm-imap:account:folder#id                 enlace a mensage VM IMAP
+     wl:folder                                 enlace a folder WANDERLUST
+     wl:folder#id                              enlace a mesage WANDERLUST
+   #+END_EXAMPLE
+
+   # For customizing Org to add new link types [[@Adding-hyperlink-types][Adding hyperlink types]].
+
+   Para personalizar Org para añadir nuevos tipos de enlace vea [[@Adding-hyperlink-types][Adding
+   hyperlink types]].
+
+   # A link should be enclosed in double brackets and may contain a
+   # descriptive text to be displayed instead of the URL (see [[@Link-format][Link
+   # format]]), for example:
+
+   Un enlace debe ir entre corchetes dobles y puede contener un texto
+   descriptivo que se mostrará en lugar de la URL (véase [[@Link-format][Link format]]),
+   por ejemplo:
+
+   # #+BEGIN_EXAMPLE
+   #   [[http://www.gnu.org/software/emacs/][GNU Emacs]]
+   # #+END_EXAMPLE
+
+   #+BEGIN_EXAMPLE
+     [[http://www.gnu.org/software/emacs/][GNU Emacs]]
+   #+END_EXAMPLE
+
+   # If the description is a file name or URL that points to an image,
+   # HTML export (see [[@HTML-export][HTML export]]) will inline the image as a clickable
+   # button. If there is no description at all and the link points to an
+   # image, that image will be inlined into the exported HTML file.
+
+   Si la descripción es un nombre de archivo o una URL que apunta a
+   una imagen, La exportación a HTML (ver [[@HTML-export][HTML export]]) incluye a la
+   imagen como un boton clickable. Si no hay descripción en absoluto y
+   el enlace apunta a una imagen, esa imagen se incluye en el archivo
+   HTML exportado.
+
+   # Org also finds external links in the normal text and activates them
+   # as links. If spaces must be part of the link (for example in
+   # =bbdb:Richard Stallman=), or if you need to remove ambiguities
+   # about the end of the link, enclose them in square brackets.
+
+   Org también localiza enlaces externos en el texto normal y los
+   activa como enlaces. Si los espacios deben ser parte del enlace
+   (por ejemplo, en =bbdb:Richard Stallman=), o si los necesita para
+   eliminar ambigüedades sobre el fin del enlace, encierrelo dentro de
+   corchetes.
+
+# ** 4.4 Handling links                                                 <<@Handling-links>>
+** 4.4 Manejo de enlaces                                              <<@Handling-links>>
+
+   # Org provides methods to create a link in the correct syntax, to
+   # insert it into an Org file, and to follow the link.
+
+   Org proporciona métodos para crear un enlace con la sintaxis apropiada, para
+   insertarlo en un archivo Org, y seguir el enlace.
+
+   # - =C-c l= (=org-store-link=)
+
+   - =C-c l= (=org-store-link=)
+
+     # Store a link to the current location. This is a /global/ command
+     # (you must create the key binding yourself) which can be used in
+     # any buffer to create a link. The link will be stored for later
+     # insertion into an Org buffer (see below). What kind of link will
+     # be created depends on the current buffer:
+
+     Guarda un enlace a la ubicación actual. Este es un comando
+     /global/ (debe crear la clave de unión usted mismo) puede ser
+     utilizado en cualquier buffer para crear un enlace. El enlace se
+     almacena para la posterior inserción en un buffor Org (vea más
+     abajo). El tipo de enlace que se creara dependera del búfer:
+
+     # - *Org mode buffers*
+
+     - *Buffers modo Org*
+
+       # For Org files, if there is a
+
+       Para los archivos org, si hay un
+
+       # #+BEGIN_EXAMPLE
+       #   '<<target>>'
+       # #+END_EXAMPLE
+
+       #+BEGIN_EXAMPLE
+         <<objetivo>>
+       #+END_EXAMPLE
+
+       # at the cursor, the link points to the target. Otherwise it
+       # points to the current headline, which will also be the
+       # description[fn:37].
+
+       en el cursor, el enlace apunta al objetivo. De lo contrario,
+       apunta al encabezado actual, que también será la
+       descripción[fn:37].
+
+       # If the headline has a =CUSTOM_ID= property, a link to this
+       # custom ID will be stored. In addition or alternatively
+       # (depending on the value of =org-id-link-to-org-use-id=), a
+       # globally unique =ID= property will be created and/or used to
+       # construct a link[fn:38]. So using this command in Org buffers
+       # will potentially create two links: a human-readable from the
+       # custom ID, and one that is globally unique and works even if
+       # the entry is moved from file to file. Later, when inserting the
+       # link, you need to decide which one to use.
+
+       Si el encabezado tiene una propiedad =CUSTOM_ID=, un enlace a
+       este ID personalizado se almacenará. Adicional o alternativamente
+
+       (en función del valor de =org-id-link-to-org-use-id=), una
+       propiedad =ID= global unica se creara y/o sera usada para
+       construir un enlace[fn:38]. Así que usando este comando en
+       buffers Org potencialmente creara dos enlaces: uno legible por
+       humanos con el ID personalizado, y otro que es único en el
+       mundo y funciona incluso si la entrada se mueve de un archivo a
+       otro. Más tarde, cuando inserte un enlace, necesitara decidir
+       cuál usar.
+
+     # - *Email/News clients: VM, Rmail, Wanderlust, MH-E, Gnus*
+
+     - *Clientes de Email/Noticias: VM, Rmail, Wanderlust, MH-E, Gnus*
+
+       # Pretty much all Emacs mail clients are supported. The link will
+       # point to the current article, or, in some GNUS buffers, to the
+       # group. The description is constructed from the author and the
+       # subject.
+
+       Prácticamente se admiten todos los clientes de correo de
+       Emacs. El enlace apuntara el artículo actual, o, en algunos
+       buffers GNUs, a el grupo. La descripción se construye a partir
+       del autor y el sujeto.
+
+     # - *Web browsers: W3 and W3M*
+
+     - *Navegadores Web: W3 y W3M*
+
+       # Here the link will be the current URL, with the page title as
+       # description.
+
+       Aquí el enlace será la URL actual, con el título de la página
+       como descripción.
+
+     # - *Contacts: BBDB*
+
+     - *Contactos: BBDB*
+
+       # Links created in a BBDB buffer will point to the current entry.
+
+       Enlaces creados en un buffer BBDB apuntarán a la entrada
+       actual.
+
+     # - *Chat: IRC*
+
+     - *Chat: IRC*
+
+       # For IRC links, if you set the option =org-irc-link-to-logs= to
+       # =t=, a 'file:/' style link to the relevant point in the logs
+       # for the current conversation is created. Otherwise an 'irc:/'
+       # style link to the user/channel/server under the point will be
+       # stored.
+
+       Para los enlaces de IRC, si establece la opción
+       =org-irc-link-to-logs= a =t=, se creara un enlace estilo
+       '=file:/=' apuntando a un punto relevante en los registros de
+       la conversacion actual. De lo contrario se almacena un enlace
+       estilo '=irc:/=' para el usuario/canal/servidor.
+
+     # - *Other files*
+
+     - *Otros archivos*
+
+       # For any other files, the link will point to the file, with a
+       # search string (see [[@Search-options][Search options]]) pointing to the contents of
+       # the current line. If there is an active region, the selected
+       # words will form the basis of the search string. If the
+       # automatically created link is not working correctly or
+       # accurately enough, you can write custom functions to select the
+       # search string and to do the search for particular file types --
+       # see [[@Custom-searches][Custom searches]].  The key binding C-c l is only a
+       # suggestion -- see [[@Installation][Installation]].
+
+       Para cualquier otro archivo, el enlace apuntará al archivo, con
+       una cadena de búsqueda (ver [[@Search-options][Search options]]) apuntando al
+       contenido de la línea actual. Si hay una región activa, se
+       seleccionan las balabras base de la cadena de busqueda. Si el
+       enlace creado automáticamente no funciona correctamente o con
+       suficiente precisión, puede escribir funciones personalizadas
+       para seleccionar el cadena de búsqueda y hacer la búsqueda por
+       tipos de archivos -- ver [[@Custom-searches][Custom searches]]. La combinacion =C-c
+       l= es sólo una sugerencia - ver [[@Installation][Installation]].
+
+     # - *Agenda view*
+
+     - *Vista de Agenda*
+
+       # When the cursor is in an agenda view, the created link points
+       # to the entry referenced by the current line.
+
+       Cuando el cursor se encuentra en una vista de agenda, los
+       puntos de enlace creados hacen referencia a la entrada de linea
+       actual.
+
+   # - =C-c C-l= (=org-insert-link=)
+
+   - =C-c C-l= (=org-insert-link=)
+
+     # Insert a link[fn:39]. This prompts for a link to be inserted into
+     # the buffer. You can just type a link, using text for an internal
+     # link, or one of the link type prefixes mentioned in the examples
+     # above.  The link will be inserted into the buffer[fn:40], along
+     # with a descriptive text. If some text was selected when this
+     # command is called, the selected text becomes the default
+     # description.
+
+     Inserte un enlace[fn:39]. Esto solicita un enlace para insertar
+     en la buffer. Usted puede escribir solo un enlace, usando el
+     texto para un enlace interno, o uno prefijos para los tipos de
+     enlace mencionados en los ejemplos arriba. El enlace se inserta
+     en el buffer[fn:40], a lo largo con un texto descriptivo. Si se
+     ha seleccionado algún texto cuando este comando se llama, el
+     texto seleccionado se convierte en el valor de descripción
+     predeterminado.
+
+     # - *Inserting stored links*
+
+     - *Insertar enlaces almacenados*
+
+       # All links stored during the current session are part of the
+       # history for this ¤prompt, so you can access them with =up= and
+       # =down= (or =M-p/n=).
+
+       Todos los enlaces almacenados durante la sesión actual son
+       parte del historial de este prompt, puede acceder a ellos con
+       /arriba/ y /abajo/ (o =M-p/n=).
+
+     # - *Completion support*
+
+     - *Soporte de autocompletado*
+
+       # Completion with =TAB= will help you to insert valid link
+       # prefixes like 'http:' or 'ftp:', including the prefixes defined
+       # through link abbreviations (see [[@Link-abbreviations][Link abbreviations]]).  If you
+       # press =RET= after inserting only the prefix, Org will offer
+       # specific completion support for some link types[fn:41] For
+       # example, if you type file RET, file name completion
+       # (alternative access: =C-u C-c C-l=, see below) will be offered,
+       # and after bbdb RET you can complete contact names.
+
+       =TAB= le ayudará a completar prefijos de enlace válidos como
+       '=http:=' o '=ftp:=', incluyendo los prefijos definidos a
+       través de enlaces abreviados (ver [[@Link-abbreviations][Link abbreviations]]). Si
+       presiona =RET= después de insertar sólo el prefijo, Org
+       ofrecerá apoyo para la terminación específica de algunos tipos
+       de enlace[fn:41]. Por ejemplo, si escribe /file/ seguido de
+       =RET=, se ofrecera terminación de nombre de archivo (acceso
+       alternativo: =C-u C-c C-l=, véase más adelante), y después de
+       /bbdb/ =RET= puede completar nombres de contacto.
+
+   - =C-u C-c C-l=
+
+     # When =C-c C-l= is called with a =C-u= prefix argument, a link to
+     # a file will be inserted and you may use file name completion to
+     # select the name of the file. The path to the file is inserted
+     # relative to the directory of the current Org file, if the linked
+     # file is in the current directory or in a sub-directory of it, or
+     # if the path is written relative to the current directory using
+     # '../'. Otherwise an absolute path is used, if possible with '~/'
+     # for your home directory. You can force an absolute path with two
+     # =C-u= prefixes.
+
+     Cuando se llama a =C-c C-l= con un argumento prefijo =C-u=, se
+     insertara un enlace a un archivo y se puede utilizar la
+     terminación de nombre de archivo para seleccionar el nombre del
+     archivo. Se inserta la ruta al archivo relativa al directorio del
+     actual archivo Org, si el archivo enlazado está en el directorio
+     actual o en un subdirectorio del mismo, o si la ruta escrita es
+     relativa al directorio actual utilizando '=../='. De lo
+     contrario, se utiliza una ruta absoluta, si es posible con '=~/='
+     para su directorio personal. Puede forzar una ruta absoluta con
+     de dos =C-u= prefijos.
+
+   # - =C-c C-l= (with cursor on existing link)
+
+   - =C-C C-l= (con el cursor sobre un vínculo existente)
+
+     # When the cursor is on an existing link, =C-c C-l= allows you to
+     # edit the link and description parts of the link.
+
+     Cuando el cursor está en un vínculo existente, =C-c C-l= le
+     permite editar los enlaces y la descripción.
+
+   - =C-C C-o= (=org-open-at-point=)
+
+     # Open link at point. This will launch a web browser for URLs
+     # (using =browse-url-at-point=), run
+     # VM/MH-E/Wanderlust/Rmail/Gnus/BBDB for the corresponding links,
+     # and execute the command in a shell link. When the cursor is on an
+     # internal link, this command runs the corresponding search. When
+     # the cursor is on a TAG list in a headline, it creates the
+     # corresponding TAGS view. If the cursor is on a timestamp, it
+     # compiles the agenda for that date. Furthermore, it will visit
+     # text and remote files in 'file:' links with Emacs and select a
+     # suitable application for local non-text files. Classification of
+     # files is based on file extension only. See option
+     # =org-file-apps=. If you want to override the default application
+     # and visit the file with Emacs, use a C-u prefix. If you want to
+     # avoid opening in Emacs, use a =C-u C-u= prefix.
+
+     Abrir el enlace en el punto. Esto abrirá un navegador web para
+     las direcciones URL (usando =browse-url-at-point=) ejecuta
+     VM/MH-E/Wanderlust/Rmail/Gnus/BBDB para los enlaces
+     correspondientes, y ejecuta el comando en un enlace de shell.
+     Cuando el cursor se encuentra en una enlace interno, este comando
+     ejecuta la búsqueda correspondiente. Cuando el cursor se
+     encuentra en una lista TAG en un encabezado, se crean los
+     correspondientes vistas TAGS. Si el cursor está en una marca de
+     tiempo, se compila la agenda para esa fecha. Además, en enlaces
+     '=file:=' se visitará el texto y archivos remotos con Emacs y una
+     aplicacion adecuada para archivos locales que no son de texto.
+     La clasificación de archivos se basa sólo en la extensión de
+     archivo. Ver la opción =org-file-apps=. Si desea anular la
+     aplicación por defecto y visitar el archivo con Emacs, utilice un
+     =C-u= prefijo. Para evitar la apertura en Emacs, con =C-u C-u=
+     prefijo.
+
+     # If the cursor is on a headline, but not on a link, offer all
+     # links in the headline and entry text. If you want to setup the
+     # frame configuration for following links, customize
+     # =org-link-frame-setup=.
+
+     Si el cursor está en un encabezado, pero no en un enlace, se
+     ofrecen todos los enlaces en el encabezado y entradas de
+     texto. Si desea establecer el marco de configuración para el
+     seguimiento de enlaces, personalice =org-link-frame-setup=.
+
+   - =RET=
+
+     # When =org-return-follows-link= is set, RET will also follow the
+     # link at point.
+
+     Cuando se establece =org-return-follows-link=, =RET= también
+     sigue el enlace en el punto.
+
+   - =mouse-2=
+   - =mouse-1=
+
+     # On links, *mouse-2* will open the link just as =C-c C-o=
+     # would. Under Emacs 22 and later, mouse-1 will also follow a link.
+
+     En los enlaces, =mouse-2= abrirá el enlace al igual que haria
+     =C-c C-o=. Bajo Emacs 22 y posteriores, el =mouse-1= también
+     seguirá un enlace.
+
+   - =mouse-3=
+
+     # Like *mouse-2*, but force file links to be opened with Emacs, and
+     # internal links to be displayed in another window[fn:42].
+
+     Como =mouse-3=, pero se fuerza la apertura de enlaces con Emacs,
+     y los enlaces internos se mostrarán en otra ventana[fn:42].
+
+   - =C-c C-x C-v= (=org-toggle-inline-images=)
+
+     # Toggle the inline display of linked images. Normally this will
+     # only inline images that have no description part in the link,
+     # i.e., images that will also be inlined during export. When called
+     # with a prefix argument, also display images that do have a link
+     # description. You can ask for inline images to be displayed at
+     # startup by configuring the variable
+     # =org-startup-with-inline-images= [fn:43].
+
+     Cambiar la visualización en línea de imágenes vinculadas.
+     Normalmente hará esto en imagenes en lines no tienen una
+     descripción en el enlace, es decir, imágenes que tambien son
+     colocadas en linea durante la exportación. Cuando se llama con un
+     argumento prefijo, también mostrara imágenes que sí tienen una
+     descripción en el enlace. Puede solicitar que las las imágenes se
+     muestren en línea al inicio configurando la variable
+     =org-startup-with-inline-images= [fn:43].
+
+   - =C-c %= (=org-mark-ring-push=)
+
+     # Push the current position onto the mark ring, to be able to
+     # return easily. Commands following an internal link do this
+     # automatically.
+
+     Colocar la posición actual en el anillo de la marcas, para poder
+     volver fácilmente. Seguir un enlace interno hacen esto
+     automáticamente.
+
+   - =C-c &= (=org-mark-ring-goto=)
+
+     # Jump back to a recorded position. A position is recorded by the
+     # commands following internal links, and by =C-c %=. Using this
+     # command several times in direct succession moves through a ring
+     # of previously recorded positions.
+
+     Ir de nuevo a la posición registrada. Una posición es registrada
+     por los comandos que siguen enlaces internos, y por =C-c %=. El
+     uso de este comando varias veces consecutivas lo trasladara por
+     las posiciones registradas anteriormente en el anillo.
+
+   - =C-c C-x C-n= (=org-next-link=)
+   - =C-c C-x C-p= (=org-previous-link=)
+
+     # Move forward/backward to the next link in the buffer. At the
+     # limit of the buffer, the search fails once, and then wraps
+     # around. The key bindings for this are really too long; you might
+     # want to bind this also to =C-n= and =C-p=
+
+     Desplazar al siguiente/anterior enlace en el buffer. En el límite
+     del buffer, la búsqueda falla una vez, y luego volvera alrededor.
+     Los atajos de teclado para esto son realmente demasiado largos;
+     quisa le interese vincularlos a =C-n= y =C-p=
+
+     #+BEGIN_SRC lisp
+       (add-hook 'org-load-hook
+         (lambda ()
+           (define-key org-mode-map "\C-n" 'org-next-link)
+           (define-key org-mode-map "\C-p" 'org-previous-link)))
+     #+END_SRC
+
+# ** 4.5 Using links outside Org                                        <<@Using-links-outside-Org>>
+** 4.5 Uso de enlaces externos a Org                                  <<@Using-links-outside-Org>>
+
+   # You can insert and follow links that have Org syntax not only in
+   # Org, but in any Emacs buffer. For this, you should create two
+   # global commands, like this (please select suitable global keys
+   # yourself):
+
+   Puede insertar y seguir enlaces con sintaxis Org no sólo en Org,
+   sino que en cualquier buffer Emacs. Para ello, debe crear dos
+   comandos globales, como los siguientes (por favor seleccione teclas
+   globales adecuadas):
+
+   #+BEGIN_SRC lisp
+     (global-set-key "\C-c L" 'org-insert-link-global)
+     (global-set-key "\C-c o" 'org-open-at-point-global)
+   #+END_SRC
+
+# ** 4.6 Link abbreviations                                             <<@Link-abbreviations>>
+** 4.6 Abreviacion de enlaces                                         <<@Link-abbreviations>>
+
+   # Long URLs can be cumbersome to type, and often many similar links
+   # are needed in a document. For this you can use link
+   # abbreviations. An abbreviated link looks like this
+
+   Los URL largos son incomodos de escribir, a menudo se necesitan
+   muchos enlaces similares en un documento. En estos casos puede usar
+   abreviaturas de enlace. Un enlace abreviado se ve así
+
+   # #+BEGIN_EXAMPLE
+   #   [[linkword:tag][description]]
+   # #+END_EXAMPLE
+
+   #+BEGIN_EXAMPLE
+     [[linkword:etiqueta][descripcion]]
+   #+END_EXAMPLE
+
+   # where the tag is optional. The /linkword/ must be a word, starting
+   # with a letter, followed by letters, numbers, '-', and
+   # '_'. Abbreviations are resolved according to the information in the
+   # variable =org-link-abbrev-alist= that relates the linkwords to
+   # replacement text.  Here is an example:
+
+   donde la etiqueta es opcional. El /linkword/ debe ser una palabra,
+   que inicia con una letra, seguida por letras, números, '=-=', y
+   '=_='.  Las abreviaciones se resuelven de acuerdo con la
+   información en la variable =org-link-abbrev-alist= que relaciona
+   los linkwords a texto de reemplazo. Aquí hay un ejemplo:
+
+   #+BEGIN_EXAMPLE
+     (setq org-link-abbrev-alist
+       '(("bugzilla"  . "http://10.1.2.9/bugzilla/show_bug.cgi?id=")
+         ("url-to-ja" . "http://translate.google.fr/translate?sl=en&tl=ja&u=%h")
+         ("google"    . "http://www.google.com/search?q=")
+         ("gmap"      . "http://maps.google.com/maps?q=%s")
+         ("omap"      . "http://nominatim.openstreetmap.org/search?q=%s&polygon=1")
+         ("ads"       . "http://adsabs.harvard.edu/cgi-bin/nph-abs_connect?author=%s&db_key=AST")))
+   #+END_EXAMPLE
+
+   # If the replacement text contains the string '%s', it will be
+   # replaced with the tag. Using '%h' instead of '%s' will url-encode
+   # the tag (see the example above, where we need to encode the URL
+   # parameter.) Using '%(my-function)' will pass the tag to a custom
+   # function, and replace it by the resulting string.
+
+   Si el texto de reemplazo contiene la cadena '=%s=', será sustituido
+   por la etiqueta. El uso de '=%h=' en lugar de '=%s=' se codifica en
+   el url la etiqueta (vea el ejemplo anterior, en el que necesitamos
+   codificar el parámetro URL.) El uso de '=%(mi-función)=' pasará la
+   etiqueta a una función personalizada, y se sustituira por la cadena
+   resultante.
+
+   # If the replacement text doesn't contain any specifier, it will
+   # simply be appended to the string in order to create the link.
+
+   Si el texto de reemplazo no contiene ningún especificador,
+   simplemente se anexa a la cadena con el fin de crear el enlace.
+
+   # Instead of a string, you may also specify a function that will be
+   # called with the tag as the only argument to create the link.
+
+   En lugar de una cadena, también puede especificar una función que
+   será llamada con la etiqueta como el único argumento para crear el
+   enlace.
+
+   # With the above setting, you could link to a specific bug with
+   # =[[bugzilla:129]]=, search the web for 'OrgMode' with =[[google:OrgMode]]=,
+   # show the map location of the Free Software Foundation =[[gmap:51
+   # Franklin Street, Boston]]= or of Carsten office =[[omap:Science Park
+   # 904, Amsterdam, The Netherlands]]= and find out what the Org author
+   # is doing besides Emacs hacking with =[[ads:Dominik,C]]=.
+
+   Con la configuracion anterior, puede vincular a un error específico
+   con =[[bugzilla:129]]=, buscar 'OrgMode' en la web con
+   =[[Google:OrgMode]]=, mostrar la ubicacion de la Free Software
+   Fundation con =[[gmap:51 Franklin Street, Boston]]= o de la oficina de
+   Carsten =[[omap:Science Park 904, Amsterdam, The Netherlands]]= y
+   averiguar lo que el autor Org está haciendo además hackear Emacs
+   con =[[ads:Dominik,C]]=.
+
+   # If you need special abbreviations just for a single Org buffer, you
+   # can define them in the file with
+
+   Si necesita abreviaturas particulares para un único búfer Org,
+   puede definirlas en el archivo con
+
+   #+BEGIN_EXAMPLE
+     #+LINK: bugzilla  http://10.1.2.9/bugzilla/show_bug.cgi?id=
+     #+LINK: google    http://www.google.com/search?q=%s
+   #+END_EXAMPLE
+
+   # In-buffer completion (see [[@Completion][Completion]]) can be used after '[' to
+   # complete link abbreviations. You may also define a function
+   # =org-PREFIX-complete-link= that implements special (e.g.,
+   # completion) support for inserting such a link with =C-c C-l=. Such
+   # a function should not accept any arguments, and return the full
+   # link with prefix.
+
+   Puede utilzar la terminacion dentro del buffer (véase [[@Completion][Completion]])
+   después de '[' para completar abreviaturas de enlace. También puede
+   definir una función =org-PREFIX-complete-link= par implementar
+   soporte especial (por ejemplo, terminacion) a la inserción de un
+   enlace con =C-c C-l=. Tal función no deberia aceptar ningún
+   argumento, y devolver el enlace completo con prefijo.
+
+# ** 4.7 Search options in file links                                   <<@Search-options>>
+** 4.7 Opciones de búsqueda en enlaces a archivos                     <<@Search-options>>
+
+   # File links can contain additional information to make Emacs jump to
+   # a particular location in the file when following a link. This can
+   # be a line number or a search option after a double[fn:44] colon.
+   # For example, when the command =C-c l= creates a link (see [[@Handling-links][Handling
+   # links]]) to a file, it encodes the words in the current line as a
+   # search string that can be used to find this line back later when
+   # following the link with =C-c C-o=.
+
+   Los enlaces a archivos pueden contener información adicional para
+   hacer que Emacs salte a un lugar determinado en el archivo cuando
+   se sigua un enlace. Esta puede ser un número de línea o una opción
+   de búsqueda después de dos doble punto[fn:44]. Por ejemplo, cuando
+   crea un enlace a un archivo con el comando =C-c l= (ver [[@Handling-links][Handling
+   links]]), se codifican las palabras en la línea actual como una
+   cadena de búsqueda que se puede utilizar para encontrar esta línea
+   de nuevo al seguir el enlace con =C-c C-o=.
+
+   # Here is the syntax of the different ways to attach a search to a
+   # file link, together with an explanation:
+
+   Aquí esta la sintaxis de las diferentes formas de adjuntar una
+   búsqueda a un enlace de archivos, junto con una explicación:
+
+   # #+BEGIN_EXAMPLE
+   #   [[file:~/code/main.c::255]]
+   #   [[file:~/xx.org::My Target]]
+   #   [[file:~/xx.org::*My Target]]
+   #   [[file:~/xx.org::#my-custom-id]]
+   #   [[file:~/xx.org::/regexp/]]
+   # #+END_EXAMPLE
+
+   #+BEGIN_EXAMPLE
+     [[file:~/code/main.c::255]]
+     [[file:~/xx.org::Mi Objetivo]]
+     [[file:~/xx.org::*Mi Objetivo]]
+     [[file:~/xx.org::#mi-id-personaliza]]
+     [[file:~/xx.org::/regexp/]]
+   #+END_EXAMPLE
+
+   - =255= ::
+
+     # Jump to line 255.
+
+     Saltar a la línea 255.
+
+   # - =My Target= ::
+
+   - =Mi Objetivo= ::
+
+     # Search for a link target =<<My Target>>=, or do a text search for
+     # 'my target', similar to the search in internal links, see
+     # [[@Internal-links][Internal links]]. In HTML export (see [[@HTML-export][HTML export]]), such a file
+     # link will become an HTML reference to the corresponding named
+     # anchor in the linked file.
+
+     Buscar un vinculo destino =<<Mi Objetivo>>=, o hace una búsqueda
+     de texto para 'mi objetivo', similar a la búsqueda de enlaces
+     internos, consulte [[@Internal-links][Internal links]]. En la exportación HTML (ver
+     [[@HTML-export][HTML export]]), tal enlace a archivo se convertira en una
+     referencia HTML a el correspondiente nobre ancla en el archivo
+     enlazado.
+
+   # - =*My Target= ::
+
+   - =*Mi Objetivo= ::
+
+     # In an Org file, restrict search to headlines.
+
+     En un archivo de Org, restringe la búsqueda a los encabezados.
+
+   # - =#my-custom-id= ::
+
+   - =#Mi-id-personalizado= ::
+
+     # Link to a heading with a =CUSTOM_ID= property
+
+     Enlace a un encabezado con una propiedad =CUSTOM_ID=
+
+   - =/regexp/= ::
+
+     # Do a regular expression search for =regexp=. This uses the Emacs
+     # command =occur= to list all matches in a separate window.  If the
+     # target file is in Org mode, =org-occur= is used to create a
+     # sparse tree with the matches.
+
+     Hace una búsqueda de expresiones regulares para =regexp=. Este
+     utiliza el comando =occur= de Emac para= listar todas las
+     coincidencias en una ventana separada. Si el archivo destino está
+     en modo Org, =org-ocurr= se utiliza para crear una árbol compacto
+     con las coincidencias.
+
+
+   # ¤As a degenerate case, a file link with an empty file name can be
+   # used to search the current file. For example, =[[file:::find me]]= does
+   # a search for 'find me' in the current file, just as
+
+   Un enlace de archivo con un nombre de archivo vacío puede ser usado
+   para buscar en el archivo actual. Por ejemplo, =[[file:::encuentrame]]=
+   hace una búsqueda de 'encuentrame' en el archivo actual, al igual
+   que haria
+
+   # #+BEGIN_EXAMPLE
+   #   [[find me]]
+   # #+END_EXAMPLE
+
+   #+BEGIN_EXAMPLE
+     [[encuentrame]]
+   #+END_EXAMPLE
+
+# ** 4.8 Custom Searches                                                <<@Custom-searches>>
+** 4.8 Búsquedas personalizadas                                       <<@Custom-searches>>
+
+   # The default mechanism for creating search strings and for doing the
+   # actual search related to a file link may not work correctly in all
+   # cases. For example, BibTeX database files have many entries like
+   # 'year="1993"' which would not result in good search strings,
+   # because the only unique identification for a BibTeX entry is the
+   # citation key.
+
+   El mecanismo por defecto para la creación de cadenas de búsqueda y
+   para hacer la búsqueda relacionada con un enlace de archivos no
+   funciona correctamente en todos los casos. Por ejemplo, las bases
+   de datos BibTeX tienen muchas entradas como 'year="1993"' que dan
+   lugar a buenas cadenas de búsqueda, porque la única identificación
+   única para una entrada BibTeX es la clave de la citación.
+
+   # If you come across such a problem, you can write custom functions
+   # to set the right search string for a particular file type, and to
+   # do the search for the string in the file. Using =add-hook=, these
+   # functions need to be added to the hook variables
+   # =org-create-file-search-functions= and
+   # =org-execute-file-search-functions=. See the docstring for these
+   # variables for more information. Org actually uses this mechanism
+   # for BibTeX database files, and you can use the corresponding code
+   # as an implementation example. See the file org-bibtex.el.
+
+   Si se encuentra con un problema, puede escribir funciones
+   personalizadas para establecer la cadena de búsqueda adecuada para
+   un determinado tipo de archivo, y para hacer la búsqueda de la
+   cadena en el archivo. Usando =add-hook=, éstas funciones necesitan
+   añadise a las variables de gancho
+   =org-create-file-search-functions= y
+   =org-execute-file-search-functions=. Consulte la cadena de
+   documentación para éstas variables para más información. En
+   realidad Org utiliza este mecanismo para los archivos de base de
+   datos BibTeX, y puede utilizar el código correspondiente como un
+   ejemplo de implementación. Vea el archivo =org-bibtex.el=.
+
+* 5 TODO items                                                        <<@TODO-items>>
 
 * Footnotes
 
@@ -4935,65 +6009,110 @@ utilizar solo caracteres alfanumecos/guion bajo.
 # Such names must start by an alphabetic character and use only
 # alphanumeric/underscore characters.
 
-[fn:33]
+[fn:33] Para insertar un enlace apuntando a un encabezado, puede
+utilizar el autocompletado. Dentro del buffer sólo tiene que escribir
+un asterisco seguido de unas cuantas letras opcionales y presionar
+=M-TAB=. Se ofreceran todos los encabezados en el búfer actual como
+autocompletado.
+
 # To insert a link targeting a headline, in-buffer completion can be
 # used.  Just type a star followed by a few optional letters into the
 # buffer and press */M-TAB/*. All headlines in the current buffer will
 # be offered as completions.
 
-[fn:34]
+[fn:34] Cuando apunta a la palabra clave =#+NAME=, la palabra clave
+=#+CAPTION= es obligatoria a fin de optener una numeracion apropiada
+(vea [[@Images-and-tables][Images and tables]]).
+
 # When targeting a =#+NAME= keyword, =#+CAPTION= keyword is mandatory in
 # order to get proper numbering (see [[@Images-and-tables][Images and tables]]).
 
-[fn:35]
+[fn:35] Eur comportamiento real de la busqueda dependera del valor de
+la opcion =org-link-search-must-match-exact-headline=. Si su valor es
+=nil=, se hara una busqueda de texto difusa.  Si es =t=, solo se
+buscara un encabezado que coincida exactamente, ignorando espacios y
+cookies. Si el valor es =query-to-create=, se buscara un encabezado
+exacto; si ne se encuentra, entonces se preguntara al usuario si desea
+crear un objetivo.
+
 # The actual behavior of the search will depend on the value of the
 # option =org-link-search-must-match-exact-headline=. If its value is
-# =nil=, then a fuzzy text search will be done. If it is t, then only
+# =nil=, then a ¤fuzzy text search will be done. If it is t, then only
 # the exact headline will be matched, ignoring spaces and cookies. If
 # the value is =query-to-create=, then an exact headline will be
 # searched; if it is not found, then the user will be queried to create
 # it.
 
-[fn:36]
+[fn:36] En las busquedas por encabezado el texto coincide exactamente,
+se ignoran los espacios en blanco y cookies. Si el encabezado no se
+encuentra el valor de la opcion
+=org-link-search-must-match-exact-headline= es =query-to-create=,
+luego se precunta al usuaria sobre si desea crear un objetivo.
+
 # Headline searches always match the exact headline, ignoring spaces and
 # cookies. If the headline is not found and the value of the option
 # =org-link-search-must-match-exact-headline= is =query-to-create=, then
 # the user will be queried to create it.
 
-[fn:37]
+[fn:37] Si el encabezado contiene una marca de tiempo, esta se remueve
+del enlace y el resultado es un enlace incorrecto -- debe evitar
+colocar marcas de tiempo en encabezados.
+
 # If the headline contains a timestamp, it will be removed from the link
 # and result in a wrong link -- you should avoid putting timestamp in
 # the headline.
 
-[fn:38]
+[fn:38] Primero debe cargar la libreria =org-id.el=, yo sea a travez
+de =org-customize= habilitando =org-id= en =org-modules=, o añadiendo
+=(require 'org-id)= en su =.emacs=.
+
 # The library org-id.el must first be loaded, either through
 # =org-customize= by enabling =org-id= in =org-modules=, or by adding
 # =(require 'org-id)= in your .emacs.
 
-[fn:39]
+[fn:39] Tenga en cuenta que usted no tiene que utilizar este comando
+para insertar un enlace. Los enlaces en Org son texto plano, y puede
+escribirlos o pegarlos directamente dentro del buffer. Mediante el uso
+de este comando, los enlaces son encerrados automaticamente entre
+corchetes dobles, y se le pedira opcionalmente un texto de
+descripcion.
+
 # Note that you don't have to use this command to insert a link. Links
 # in Org are plain text, and you can type or paste them straight into
 # the buffer. By using this command, the links are automatically
 # enclosed in double brackets, and you will be asked for the optional
 # descriptive text.
 
-[fn:40]
+[fn:40] Despues de la insercion de un enlace almacenado, el enlace
+sera retirado de la listo de enlaces almacenados. Para mantenerlo en
+la lista de uso posterior, utilice un triple argumento prefijo =C-u= a
+=C-c C-l= o configure la opcion
+=org-keep-stored-link-after-insertion=.
+
+
 # After insertion of a stored link, the link will be removed from the
 # list of stored links. To keep it in the list later use, use a triple
 # */C-u/* prefix argument to */C-c C-l/*, or configure the option
 # =org-keep-stored-link-after-insertion=.
 
-[fn:41]
+[fn:41] Esto funciona con una llamada especial a la funcion
+=org-PREFIX-complete-link=.
+
 # This works by calling a special function =org-PREFIX-complete-link=.
 
-[fn:42]
+[fn:42] Vea la opcion =org-display-internal-link-with-indirect-buffer=
+
 # See the option =org-display-internal-link-with-indirect-buffer=
 
-[fn:43]
+[fn:43] con la correspondiente palabra clave =inlineimages= y
+=noinlineimages= para =#+STARTUP=
+
 # with corresponding =#+STARTUP= keywords =inlineimages= and
 # =noinlineimages=
 
-[fn:44]
+[fn:44] Por compativilidad con versiones anteriores, los numeros de
+linea tambien pueden segir despues de un signo doble punto.
+
 # For backward compatibility, line numbers can also follow a single
 # colon.
 
